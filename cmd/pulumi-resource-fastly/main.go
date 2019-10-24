@@ -17,11 +17,11 @@ package main
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
 
-	xyz "github.com/pulumi/pulumi-xyz"
-	"github.com/pulumi/pulumi-xyz/pkg/version"
+	fastly "github.com/pulumi/pulumi-fastly"
+	"github.com/pulumi/pulumi-fastly/pkg/version"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfbridge.Main("xyz", version.Version, xyz.Provider())
+	tfbridge.Main("fastly", version.Version, fastly.Provider())
 }
