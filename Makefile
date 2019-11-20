@@ -1,4 +1,4 @@
-PROJECT_NAME := fastly Package
+PROJECT_NAME := Fastly Package
 include build/common.mk
 
 PACK             := fastly
@@ -41,8 +41,8 @@ build:: tfgen provider install_plugins
 		rm ./bin/setup.py.bak && \
 		cd ./bin && $(PYTHON) setup.py build sdist
 	cd ${PACKDIR}/dotnet/ && \
-    echo "${VERSION:v%=%}" >version.txt && \
-    dotnet build /p:Version=${DOTNET_VERSION}
+		echo "${VERSION:v%=%}" >version.txt && \
+		dotnet build /p:Version=${DOTNET_VERSION}
 
 tfgen::
 	go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/pkg/version.Version=${VERSION}" ${PROJECT}/cmd/${TFGEN}
@@ -81,6 +81,7 @@ publish_tgz:
 publish_packages:
 	$(call STEP_MESSAGE)
 	$$(go env GOPATH)/src/github.com/pulumi/scripts/ci/publish-tfgen-package .
+	$$(go env GOPATH)/src/github.com/pulumi/scripts/ci/build-package-docs.sh ${PACK}
 
 .PHONY: check_clean_worktree
 check_clean_worktree:
