@@ -1,0 +1,3 @@
+name: fastly
+description: A Pulumi resource provider for fastly.
+language: go
