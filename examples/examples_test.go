@@ -13,7 +13,7 @@ import (
 func TestAccService(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "minimal"),
+			Dir: path.Join(getCwd(t), "service"),
 		})
 
 	integration.ProgramTest(t, &test)

@@ -13,7 +13,6 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.3.3
 	github.com/pulumi/pulumi-terraform-bridge v1.4.0
-	github.com/stretchr/testify v1.4.0
 	github.com/terraform-providers/terraform-provider-fastly v0.11.0
 	golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7 // indirect
 )
