@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-fastly
 
-go 1.12
+go 1.13
 
 replace (
 	github.com/Nvveen/Gotty => github.com/ijc25/Gotty v0.0.0-20170406111628-a8b993ba6abd
@@ -14,4 +14,5 @@ require (
 	github.com/pulumi/pulumi-terraform-bridge v1.1.0
 	github.com/stretchr/testify v1.4.0
 	github.com/terraform-providers/terraform-provider-fastly v0.11.0
+	golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7 // indirect
 )

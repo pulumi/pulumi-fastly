@@ -30,7 +30,7 @@ const (
 	// packages:
 	mainPkg = "fastly"
 	// modules:
-	mainMod = "index" // the y module
+	mainMod = "index"
 )
 
 // makeMember manufactures a type token for the package and the given module and type.
@@ -59,20 +59,6 @@ func makeResource(mod string, res string) tokens.Type {
 	return makeType(mod+"/"+fn, res)
 }
 
-// boolRef returns a reference to the bool argument.
-func boolRef(b bool) *bool {
-	return &b
-}
-
-// stringValue gets a string value from a property map if present, else ""
-func stringValue(vars resource.PropertyMap, prop resource.PropertyKey) string {
-	val, ok := vars[prop]
-	if ok && val.IsString() {
-		return val.StringValue()
-	}
-	return ""
-}
-
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
 // it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
@@ -80,9 +66,6 @@ func stringValue(vars resource.PropertyMap, prop resource.PropertyKey) string {
 func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig) error {
 	return nil
 }
-
-// managedByPulumi is a default used for some managed resources, in the absence of something more meaningful.
-var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
@@ -113,27 +96,12 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: makeResource(mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: makeResource(mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: makeType(mainPkg, "Tags")},
-			// 	},
-			// },
 			"fastly_service_v1":                         {Tok: makeResource(mainMod, "Servicev1")},
 			"fastly_service_acl_entries_v1":             {Tok: makeResource(mainMod, "ServiceACLEntriesv1")},
 			"fastly_service_dictionary_items_v1":        {Tok: makeResource(mainMod, "ServiceDictionaryItemsv1")},
 			"fastly_service_dynamic_snippet_content_v1": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContentv1")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
 			"fastly_ip_ranges": {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
@@ -145,10 +113,6 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			// See the documentation for tfbridge.OverlayInfo for how to lay out this
-			// section, or refer to the AWS provider. Delete this section if there are
-			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges

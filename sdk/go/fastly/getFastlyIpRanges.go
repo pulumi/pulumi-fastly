@@ -17,7 +17,7 @@ func LookupFastlyIpRanges(ctx *pulumi.Context) (*GetFastlyIpRangesResult, error)
 	}
 	return &GetFastlyIpRangesResult{
 		CidrBlocks: outputs["cidrBlocks"],
-		Id:         outputs["id"],
+		Id: outputs["id"],
 	}, nil
 }
 

@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Add prepare command to rename the `fastly` occurrences
+* Initial release of the provider
 
 ---
 
