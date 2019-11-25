@@ -57,28 +57,28 @@ func GetServiceDictionaryItemsv1(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *ServiceDictionaryItemsv1) URN() *pulumi.URNOutput {
+func (r *ServiceDictionaryItemsv1) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *ServiceDictionaryItemsv1) ID() *pulumi.IDOutput {
+func (r *ServiceDictionaryItemsv1) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The ID of the dictionary that the items belong to
-func (r *ServiceDictionaryItemsv1) DictionaryId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["dictionaryId"])
+func (r *ServiceDictionaryItemsv1) DictionaryId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["dictionaryId"])
 }
 
 // A map representing an entry in the dictionary, (key/value)
-func (r *ServiceDictionaryItemsv1) Items() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["items"])
+func (r *ServiceDictionaryItemsv1) Items() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["items"])
 }
 
 // The ID of the service that the dictionary belongs to
-func (r *ServiceDictionaryItemsv1) ServiceId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["serviceId"])
+func (r *ServiceDictionaryItemsv1) ServiceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["serviceId"])
 }
 
 // Input properties used for looking up and filtering ServiceDictionaryItemsv1 resources.

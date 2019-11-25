@@ -60,28 +60,28 @@ func GetServiceDynamicSnippetContentv1(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *ServiceDynamicSnippetContentv1) URN() *pulumi.URNOutput {
+func (r *ServiceDynamicSnippetContentv1) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *ServiceDynamicSnippetContentv1) ID() *pulumi.IDOutput {
+func (r *ServiceDynamicSnippetContentv1) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The VCL code that specifies exactly what the snippet does.
-func (r *ServiceDynamicSnippetContentv1) Content() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["content"])
+func (r *ServiceDynamicSnippetContentv1) Content() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["content"])
 }
 
 // The ID of the service that the dynamic snippet belongs to
-func (r *ServiceDynamicSnippetContentv1) ServiceId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["serviceId"])
+func (r *ServiceDynamicSnippetContentv1) ServiceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["serviceId"])
 }
 
 // The ID of the dynamic snippet that the content belong to
-func (r *ServiceDynamicSnippetContentv1) SnippetId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["snippetId"])
+func (r *ServiceDynamicSnippetContentv1) SnippetId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["snippetId"])
 }
 
 // Input properties used for looking up and filtering ServiceDynamicSnippetContentv1 resources.
