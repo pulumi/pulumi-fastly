@@ -57,28 +57,28 @@ func GetServiceACLEntriesv1(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *ServiceACLEntriesv1) URN() *pulumi.URNOutput {
+func (r *ServiceACLEntriesv1) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *ServiceACLEntriesv1) ID() *pulumi.IDOutput {
+func (r *ServiceACLEntriesv1) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The ID of the ACL that the items belong to
-func (r *ServiceACLEntriesv1) AclId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["aclId"])
+func (r *ServiceACLEntriesv1) AclId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["aclId"])
 }
 
 // A Set ACL entries that are applied to the service. Defined below
-func (r *ServiceACLEntriesv1) Entries() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["entries"])
+func (r *ServiceACLEntriesv1) Entries() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["entries"])
 }
 
 // The ID of the Service that the ACL belongs to
-func (r *ServiceACLEntriesv1) ServiceId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["serviceId"])
+func (r *ServiceACLEntriesv1) ServiceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["serviceId"])
 }
 
 // Input properties used for looking up and filtering ServiceACLEntriesv1 resources.
