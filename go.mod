@@ -9,5 +9,5 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.6.0
 	github.com/pulumi/pulumi-terraform-bridge v1.4.3
-	github.com/terraform-providers/terraform-provider-fastly v0.11.0
+	github.com/terraform-providers/terraform-provider-fastly v0.11.1
 )
