@@ -364,6 +364,8 @@ export interface Servicev1Syslog {
     port?: number;
     responseCondition?: string;
     tlsCaCert?: string;
+    tlsClientCert?: string;
+    tlsClientKey?: string;
     tlsHostname?: string;
     token?: string;
     useTls?: boolean;

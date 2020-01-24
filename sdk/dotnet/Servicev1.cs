@@ -2638,6 +2638,12 @@ namespace Pulumi.Fastly
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
+        [Input("tlsClientCert")]
+        public Input<string>? TlsClientCert { get; set; }
+
+        [Input("tlsClientKey")]
+        public Input<string>? TlsClientKey { get; set; }
+
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
@@ -2683,6 +2689,12 @@ namespace Pulumi.Fastly
 
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
+
+        [Input("tlsClientCert")]
+        public Input<string>? TlsClientCert { get; set; }
+
+        [Input("tlsClientKey")]
+        public Input<string>? TlsClientKey { get; set; }
 
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
@@ -3606,6 +3618,8 @@ namespace Pulumi.Fastly
         public readonly int? Port;
         public readonly string? ResponseCondition;
         public readonly string? TlsCaCert;
+        public readonly string? TlsClientCert;
+        public readonly string? TlsClientKey;
         public readonly string? TlsHostname;
         public readonly string? Token;
         public readonly bool? UseTls;
@@ -3621,6 +3635,8 @@ namespace Pulumi.Fastly
             int? port,
             string? responseCondition,
             string? tlsCaCert,
+            string? tlsClientCert,
+            string? tlsClientKey,
             string? tlsHostname,
             string? token,
             bool? useTls)
@@ -3634,6 +3650,8 @@ namespace Pulumi.Fastly
             Port = port;
             ResponseCondition = responseCondition;
             TlsCaCert = tlsCaCert;
+            TlsClientCert = tlsClientCert;
+            TlsClientKey = tlsClientKey;
             TlsHostname = tlsHostname;
             Token = token;
             UseTls = useTls;

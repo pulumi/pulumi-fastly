@@ -364,6 +364,8 @@ export interface Servicev1Syslog {
     port?: pulumi.Input<number>;
     responseCondition?: pulumi.Input<string>;
     tlsCaCert?: pulumi.Input<string>;
+    tlsClientCert?: pulumi.Input<string>;
+    tlsClientKey?: pulumi.Input<string>;
     tlsHostname?: pulumi.Input<string>;
     token?: pulumi.Input<string>;
     useTls?: pulumi.Input<boolean>;
