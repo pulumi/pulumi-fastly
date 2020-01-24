@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.12.0 of the Fastly Terraform Provider
+* Upgrade to v0.12.1 of the Fastly Terraform Provider
 
 ---
 
