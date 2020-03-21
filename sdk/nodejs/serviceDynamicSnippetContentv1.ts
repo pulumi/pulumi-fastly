@@ -6,9 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_dynamic_snippet_content_v1.html.markdown.
- */
 export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
     /**
      * Get an existing ServiceDynamicSnippetContentv1 resource's state with the given name, ID, and optional extra

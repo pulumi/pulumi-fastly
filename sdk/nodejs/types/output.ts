@@ -129,9 +129,6 @@ export interface Servicev1Dictionary {
 export interface Servicev1Director {
     backends: string[];
     capacity?: number;
-    /**
-     * <elided>
-     */
     comment?: string;
     /**
      * The unique name for the Service to create.
@@ -144,9 +141,6 @@ export interface Servicev1Director {
 }
 
 export interface Servicev1Domain {
-    /**
-     * <elided>
-     */
     comment?: string;
     /**
      * The unique name for the Service to create.
