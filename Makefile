@@ -29,7 +29,7 @@ EMPTY_TO_AVOID_SED := ""
 # NOTE: Since the plugin is published using the nodejs style semver version
 # We set the PLUGIN_VERSION to be the same as the version we use when building
 # the provider (e.g. x.y.z-dev-... instead of x.y.zdev...)
-build:: tfgen provider install_plugins
+build:: tfgen provider
 	for LANGUAGE in "nodejs" "python" "go" "dotnet" ; do \
 		$(TFGEN) $$LANGUAGE --overlays overlays/$$LANGUAGE/ --out ${PACKDIR}/$$LANGUAGE/ || exit 3 ; \
 	done
@@ -52,12 +52,12 @@ build:: tfgen provider install_plugins
 tfgen::
 	go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/pkg/version.Version=${VERSION}" ${PROJECT}/cmd/${TFGEN}
 
-provider::
-	go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/pkg/version.Version=${VERSION}" ${PROJECT}/cmd/${PROVIDER}
+generate_schema:: tfgen
+	$(TFGEN) schema --out ./cmd/${PROVIDER}
 
-install_plugins::
-	[ -x "$(shell which pulumi)" ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource aws 1.10.0
+provider::
+	go generate ${PROJECT}/cmd/${PROVIDER}
+	go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/pkg/version.Version=${VERSION}" ${PROJECT}/cmd/${PROVIDER}
 
 lint::
 	#golangci-lint run
@@ -73,6 +73,9 @@ install::
 		(yarn unlink > /dev/null 2>&1 || true) && \
 		yarn link
 	cd ${PACKDIR}/python/bin && $(PIP) install --user -e .
+	echo "Copying NuGet packages to ${PULUMI_NUGET}"
+	[ ! -e "$(PULUMI_NUGET)" ] || rm -rf "$(PULUMI_NUGET)/*"
+	find . -name '*.nupkg' -exec cp -p {} ${PULUMI_NUGET} \;
 
 test_all::
 	PATH=$(PULUMI_BIN):$(PATH) go test -v -count=1 -cover -timeout 1h -parallel ${TESTPARALLELISM} ./examples
