@@ -11,7 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_dictionary_items_v1.html.markdown.
 type ServiceDictionaryItemsv1 struct {
 	pulumi.CustomResourceState
 

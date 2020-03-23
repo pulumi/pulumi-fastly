@@ -11,7 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_dynamic_snippet_content_v1.html.markdown.
 type ServiceDynamicSnippetContentv1 struct {
 	pulumi.CustomResourceState
 

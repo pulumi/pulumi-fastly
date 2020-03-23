@@ -6,9 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_dictionary_items_v1.html.markdown.
- */
 export class ServiceDictionaryItemsv1 extends pulumi.CustomResource {
     /**
      * Get an existing ServiceDictionaryItemsv1 resource's state with the given name, ID, and optional extra

@@ -10,9 +10,9 @@ for pkg in __all__:
         importlib.import_module(f'{__name__}.{pkg}')
 
 # Export this package's modules as members:
+from .get_fastly_ip_ranges import *
+from .provider import *
 from .service_acl_entriesv1 import *
 from .service_dictionary_itemsv1 import *
 from .service_dynamic_snippet_contentv1 import *
 from .servicev1 import *
-from .get_fastly_ip_ranges import *
-from .provider import *

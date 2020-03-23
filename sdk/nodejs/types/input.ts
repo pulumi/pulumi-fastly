@@ -129,9 +129,6 @@ export interface Servicev1Dictionary {
 export interface Servicev1Director {
     backends: pulumi.Input<pulumi.Input<string>[]>;
     capacity?: pulumi.Input<number>;
-    /**
-     * <elided>
-     */
     comment?: pulumi.Input<string>;
     /**
      * The unique name for the Service to create.
@@ -144,9 +141,6 @@ export interface Servicev1Director {
 }
 
 export interface Servicev1Domain {
-    /**
-     * <elided>
-     */
     comment?: pulumi.Input<string>;
     /**
      * The unique name for the Service to create.

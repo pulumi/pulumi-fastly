@@ -13,7 +13,7 @@ class Servicev1(pulumi.CustomResource):
     acls: pulumi.Output[list]
     """
     A set of ACL configuration blocks.  Defined below.
-    
+
       * `acl_id` (`str`) - The ID of the ACL.
       * `name` (`str`) - The unique name for the Service to create.
     """
@@ -30,7 +30,7 @@ class Servicev1(pulumi.CustomResource):
     A set of Backends to service requests from your Domains.
     Defined below. Backends must be defined in this argument, or defined in the
     `vcl` argument below
-    
+
       * `address` (`str`)
       * `autoLoadbalance` (`bool`)
       * `betweenBytesTimeout` (`float`)
@@ -61,7 +61,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A BigQuery endpoint to send streaming logs too.
     Defined below.
-    
+
       * `dataset` (`str`)
       * `email` (`str`)
       * `format` (`str`)
@@ -77,7 +77,7 @@ class Servicev1(pulumi.CustomResource):
     """
     An Azure Blob Storage endpoint to send streaming logs too.
     Defined below.
-    
+
       * `accountName` (`str`)
       * `container` (`str`)
       * `format` (`str`)
@@ -96,7 +96,7 @@ class Servicev1(pulumi.CustomResource):
     cache_settings: pulumi.Output[list]
     """
     A set of Cache Settings, allowing you to override
-    
+
       * `action` (`str`)
       * `cacheCondition` (`str`)
       * `name` (`str`) - The unique name for the Service to create.
@@ -105,11 +105,14 @@ class Servicev1(pulumi.CustomResource):
     """
     cloned_version: pulumi.Output[float]
     comment: pulumi.Output[str]
+    """
+    A personal freeform descriptive note
+    """
     conditions: pulumi.Output[list]
     """
     A set of conditions to add logic to any basic
     configuration object in this service. Defined below.
-    
+
       * `name` (`str`) - The unique name for the Service to create.
       * `priority` (`float`)
       * `statement` (`str`)
@@ -127,7 +130,7 @@ class Servicev1(pulumi.CustomResource):
     dictionaries: pulumi.Output[list]
     """
     A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
-    
+
       * `dictionary_id` (`str`) - The ID of the dictionary.
       * `name` (`str`) - The unique name for the Service to create.
       * `writeOnly` (`bool`)
@@ -136,10 +139,10 @@ class Servicev1(pulumi.CustomResource):
     """
     A director to allow more control over balancing traffic over backends.
     when an item is not to be cached based on an above `condition`. Defined below
-    
+
       * `backends` (`list`)
       * `capacity` (`float`)
-      * `comment` (`str`) - <elided>
+      * `comment` (`str`)
       * `name` (`str`) - The unique name for the Service to create.
       * `quorum` (`float`)
       * `retries` (`float`)
@@ -150,14 +153,14 @@ class Servicev1(pulumi.CustomResource):
     """
     A set of Domain names to serve as entry points for your
     Service. Defined below.
-    
-      * `comment` (`str`) - <elided>
+
+      * `comment` (`str`)
       * `name` (`str`) - The unique name for the Service to create.
     """
     dynamicsnippets: pulumi.Output[list]
     """
     A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
-    
+
       * `name` (`str`) - The unique name for the Service to create.
       * `priority` (`float`)
       * `snippet_id` (`str`) - The ID of the dynamic snippet.
@@ -172,7 +175,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A gcs endpoint to send streaming logs too.
     Defined below.
-    
+
       * `bucketName` (`str`)
       * `email` (`str`)
       * `format` (`str`)
@@ -190,7 +193,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A set of gzip rules to control automatic gzipping of
     content. Defined below.
-    
+
       * `cacheCondition` (`str`)
       * `contentTypes` (`list`)
       * `extensions` (`list`)
@@ -200,7 +203,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A set of Headers to manipulate for each request. Defined
     below.
-    
+
       * `action` (`str`)
       * `cacheCondition` (`str`)
       * `destination` (`str`)
@@ -217,7 +220,7 @@ class Servicev1(pulumi.CustomResource):
     healthchecks: pulumi.Output[list]
     """
     Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
-    
+
       * `checkInterval` (`float`)
       * `expectedResponse` (`float`)
       * `host` (`str`)
@@ -234,7 +237,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A logentries endpoint to send streaming logs too.
     Defined below.
-    
+
       * `format` (`str`)
       * `formatVersion` (`float`)
       * `name` (`str`) - The unique name for the Service to create.
@@ -252,7 +255,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A Papertrail endpoint to send streaming logs too.
     Defined below.
-    
+
       * `address` (`str`)
       * `format` (`str`)
       * `name` (`str`) - The unique name for the Service to create.
@@ -263,7 +266,7 @@ class Servicev1(pulumi.CustomResource):
     request_settings: pulumi.Output[list]
     """
     A set of Request modifiers. Defined below
-    
+
       * `action` (`str`)
       * `bypassBusyWait` (`bool`)
       * `default_host` (`str`) - The default hostname.
@@ -280,7 +283,7 @@ class Servicev1(pulumi.CustomResource):
     response_objects: pulumi.Output[list]
     """
     Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
-    
+
       * `cacheCondition` (`str`)
       * `content` (`str`)
       * `contentType` (`str`)
@@ -293,7 +296,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A set of S3 Buckets to send streaming logs too.
     Defined below.
-    
+
       * `bucketName` (`str`)
       * `domain` (`str`) - A set of Domain names to serve as entry points for your
         Service. Defined below.
@@ -314,7 +317,7 @@ class Servicev1(pulumi.CustomResource):
     snippets: pulumi.Output[list]
     """
     A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
-    
+
       * `content` (`str`)
       * `name` (`str`) - The unique name for the Service to create.
       * `priority` (`float`)
@@ -324,7 +327,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A Splunk endpoint to send streaming logs too.
     Defined below.
-    
+
       * `format` (`str`)
       * `formatVersion` (`float`)
       * `name` (`str`) - The unique name for the Service to create.
@@ -337,7 +340,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A Sumologic endpoint to send streaming logs too.
     Defined below.
-    
+
       * `format` (`str`)
       * `formatVersion` (`float`)
       * `messageType` (`str`)
@@ -350,7 +353,7 @@ class Servicev1(pulumi.CustomResource):
     """
     A syslog endpoint to send streaming logs too.
     Defined below.
-    
+
       * `address` (`str`)
       * `format` (`str`)
       * `formatVersion` (`float`)
@@ -371,7 +374,7 @@ class Servicev1(pulumi.CustomResource):
     A set of custom VCL configuration blocks. The
     ability to upload custom VCL code is not enabled by default for new Fastly
     accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
-    
+
       * `content` (`str`)
       * `main` (`bool`)
       * `name` (`str`) - The unique name for the Service to create.
@@ -385,11 +388,13 @@ class Servicev1(pulumi.CustomResource):
         Provides a Fastly Service, representing the configuration for a website, app,
         API, or anything else to be served through Fastly. A Service encompasses Domains
         and Backends.
-        
+
         The Service resource requires a domain name that is correctly set up to direct
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_v1.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] acls: A set of ACL configuration blocks.  Defined below.
@@ -402,6 +407,7 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[list] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[list] cache_settings: A set of Cache Settings, allowing you to override
+        :param pulumi.Input[str] comment: A personal freeform descriptive note
         :param pulumi.Input[list] conditions: A set of conditions to add logic to any basic
                configuration object in this service. Defined below.
         :param pulumi.Input[str] default_host: The default hostname.
@@ -442,14 +448,14 @@ class Servicev1(pulumi.CustomResource):
                ability to upload custom VCL code is not enabled by default for new Fastly
                accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
         :param pulumi.Input[str] version_comment: Description field for the version.
-        
+
         The **acls** object supports the following:
-        
+
           * `acl_id` (`pulumi.Input[str]`) - The ID of the ACL.
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-        
+
         The **backends** object supports the following:
-        
+
           * `address` (`pulumi.Input[str]`)
           * `autoLoadbalance` (`pulumi.Input[bool]`)
           * `betweenBytesTimeout` (`pulumi.Input[float]`)
@@ -475,9 +481,9 @@ class Servicev1(pulumi.CustomResource):
           * `sslSniHostname` (`pulumi.Input[str]`)
           * `useSsl` (`pulumi.Input[bool]`)
           * `weight` (`pulumi.Input[float]`)
-        
+
         The **bigqueryloggings** object supports the following:
-        
+
           * `dataset` (`pulumi.Input[str]`)
           * `email` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
@@ -488,9 +494,9 @@ class Servicev1(pulumi.CustomResource):
           * `secretKey` (`pulumi.Input[str]`)
           * `table` (`pulumi.Input[str]`)
           * `template` (`pulumi.Input[str]`)
-        
+
         The **blobstorageloggings** object supports the following:
-        
+
           * `accountName` (`pulumi.Input[str]`)
           * `container` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
@@ -505,53 +511,53 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `sasToken` (`pulumi.Input[str]`)
           * `timestampFormat` (`pulumi.Input[str]`)
-        
+
         The **cache_settings** object supports the following:
-        
+
           * `action` (`pulumi.Input[str]`)
           * `cacheCondition` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `staleTtl` (`pulumi.Input[float]`)
           * `ttl` (`pulumi.Input[float]`)
-        
+
         The **conditions** object supports the following:
-        
+
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `priority` (`pulumi.Input[float]`)
           * `statement` (`pulumi.Input[str]`)
           * `type` (`pulumi.Input[str]`)
-        
+
         The **dictionaries** object supports the following:
-        
+
           * `dictionary_id` (`pulumi.Input[str]`) - The ID of the dictionary.
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `writeOnly` (`pulumi.Input[bool]`)
-        
+
         The **directors** object supports the following:
-        
+
           * `backends` (`pulumi.Input[list]`)
           * `capacity` (`pulumi.Input[float]`)
-          * `comment` (`pulumi.Input[str]`) - <elided>
+          * `comment` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `quorum` (`pulumi.Input[float]`)
           * `retries` (`pulumi.Input[float]`)
           * `shield` (`pulumi.Input[str]`)
           * `type` (`pulumi.Input[float]`)
-        
+
         The **domains** object supports the following:
-        
-          * `comment` (`pulumi.Input[str]`) - <elided>
+
+          * `comment` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-        
+
         The **dynamicsnippets** object supports the following:
-        
+
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `priority` (`pulumi.Input[float]`)
           * `snippet_id` (`pulumi.Input[str]`) - The ID of the dynamic snippet.
           * `type` (`pulumi.Input[str]`)
-        
+
         The **gcsloggings** object supports the following:
-        
+
           * `bucketName` (`pulumi.Input[str]`)
           * `email` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
@@ -564,16 +570,16 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `secretKey` (`pulumi.Input[str]`)
           * `timestampFormat` (`pulumi.Input[str]`)
-        
+
         The **gzips** object supports the following:
-        
+
           * `cacheCondition` (`pulumi.Input[str]`)
           * `contentTypes` (`pulumi.Input[list]`)
           * `extensions` (`pulumi.Input[list]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-        
+
         The **headers** object supports the following:
-        
+
           * `action` (`pulumi.Input[str]`)
           * `cacheCondition` (`pulumi.Input[str]`)
           * `destination` (`pulumi.Input[str]`)
@@ -586,9 +592,9 @@ class Servicev1(pulumi.CustomResource):
           * `source` (`pulumi.Input[str]`)
           * `substitution` (`pulumi.Input[str]`)
           * `type` (`pulumi.Input[str]`)
-        
+
         The **healthchecks** object supports the following:
-        
+
           * `checkInterval` (`pulumi.Input[float]`)
           * `expectedResponse` (`pulumi.Input[float]`)
           * `host` (`pulumi.Input[str]`)
@@ -600,9 +606,9 @@ class Servicev1(pulumi.CustomResource):
           * `threshold` (`pulumi.Input[float]`)
           * `timeout` (`pulumi.Input[float]`)
           * `window` (`pulumi.Input[float]`)
-        
+
         The **logentries** object supports the following:
-        
+
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
@@ -611,18 +617,18 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `token` (`pulumi.Input[str]`)
           * `useTls` (`pulumi.Input[bool]`)
-        
+
         The **papertrails** object supports the following:
-        
+
           * `address` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `placement` (`pulumi.Input[str]`)
           * `port` (`pulumi.Input[float]`)
           * `responseCondition` (`pulumi.Input[str]`)
-        
+
         The **request_settings** object supports the following:
-        
+
           * `action` (`pulumi.Input[str]`)
           * `bypassBusyWait` (`pulumi.Input[bool]`)
           * `default_host` (`pulumi.Input[str]`) - The default hostname.
@@ -635,9 +641,9 @@ class Servicev1(pulumi.CustomResource):
           * `requestCondition` (`pulumi.Input[str]`)
           * `timerSupport` (`pulumi.Input[bool]`)
           * `xff` (`pulumi.Input[str]`)
-        
+
         The **response_objects** object supports the following:
-        
+
           * `cacheCondition` (`pulumi.Input[str]`)
           * `content` (`pulumi.Input[str]`)
           * `contentType` (`pulumi.Input[str]`)
@@ -645,9 +651,9 @@ class Servicev1(pulumi.CustomResource):
           * `requestCondition` (`pulumi.Input[str]`)
           * `response` (`pulumi.Input[str]`)
           * `status` (`pulumi.Input[float]`)
-        
+
         The **s3loggings** object supports the following:
-        
+
           * `bucketName` (`pulumi.Input[str]`)
           * `domain` (`pulumi.Input[str]`) - A set of Domain names to serve as entry points for your
             Service. Defined below.
@@ -664,16 +670,16 @@ class Servicev1(pulumi.CustomResource):
           * `s3AccessKey` (`pulumi.Input[str]`)
           * `s3SecretKey` (`pulumi.Input[str]`)
           * `timestampFormat` (`pulumi.Input[str]`)
-        
+
         The **snippets** object supports the following:
-        
+
           * `content` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `priority` (`pulumi.Input[float]`)
           * `type` (`pulumi.Input[str]`)
-        
+
         The **splunks** object supports the following:
-        
+
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
@@ -681,9 +687,9 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `token` (`pulumi.Input[str]`)
           * `url` (`pulumi.Input[str]`)
-        
+
         The **sumologics** object supports the following:
-        
+
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
           * `messageType` (`pulumi.Input[str]`)
@@ -691,9 +697,9 @@ class Servicev1(pulumi.CustomResource):
           * `placement` (`pulumi.Input[str]`)
           * `responseCondition` (`pulumi.Input[str]`)
           * `url` (`pulumi.Input[str]`)
-        
+
         The **syslogs** object supports the following:
-        
+
           * `address` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
@@ -708,14 +714,12 @@ class Servicev1(pulumi.CustomResource):
           * `tlsHostname` (`pulumi.Input[str]`)
           * `token` (`pulumi.Input[str]`)
           * `useTls` (`pulumi.Input[bool]`)
-        
+
         The **vcls** object supports the following:
-        
+
           * `content` (`pulumi.Input[str]`)
           * `main` (`pulumi.Input[bool]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_v1.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -780,7 +784,7 @@ class Servicev1(pulumi.CustomResource):
         """
         Get an existing Servicev1 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -795,6 +799,7 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[list] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[list] cache_settings: A set of Cache Settings, allowing you to override
+        :param pulumi.Input[str] comment: A personal freeform descriptive note
         :param pulumi.Input[list] conditions: A set of conditions to add logic to any basic
                configuration object in this service. Defined below.
         :param pulumi.Input[str] default_host: The default hostname.
@@ -835,14 +840,14 @@ class Servicev1(pulumi.CustomResource):
                ability to upload custom VCL code is not enabled by default for new Fastly
                accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
         :param pulumi.Input[str] version_comment: Description field for the version.
-        
+
         The **acls** object supports the following:
-        
+
           * `acl_id` (`pulumi.Input[str]`) - The ID of the ACL.
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-        
+
         The **backends** object supports the following:
-        
+
           * `address` (`pulumi.Input[str]`)
           * `autoLoadbalance` (`pulumi.Input[bool]`)
           * `betweenBytesTimeout` (`pulumi.Input[float]`)
@@ -868,9 +873,9 @@ class Servicev1(pulumi.CustomResource):
           * `sslSniHostname` (`pulumi.Input[str]`)
           * `useSsl` (`pulumi.Input[bool]`)
           * `weight` (`pulumi.Input[float]`)
-        
+
         The **bigqueryloggings** object supports the following:
-        
+
           * `dataset` (`pulumi.Input[str]`)
           * `email` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
@@ -881,9 +886,9 @@ class Servicev1(pulumi.CustomResource):
           * `secretKey` (`pulumi.Input[str]`)
           * `table` (`pulumi.Input[str]`)
           * `template` (`pulumi.Input[str]`)
-        
+
         The **blobstorageloggings** object supports the following:
-        
+
           * `accountName` (`pulumi.Input[str]`)
           * `container` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
@@ -898,53 +903,53 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `sasToken` (`pulumi.Input[str]`)
           * `timestampFormat` (`pulumi.Input[str]`)
-        
+
         The **cache_settings** object supports the following:
-        
+
           * `action` (`pulumi.Input[str]`)
           * `cacheCondition` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `staleTtl` (`pulumi.Input[float]`)
           * `ttl` (`pulumi.Input[float]`)
-        
+
         The **conditions** object supports the following:
-        
+
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `priority` (`pulumi.Input[float]`)
           * `statement` (`pulumi.Input[str]`)
           * `type` (`pulumi.Input[str]`)
-        
+
         The **dictionaries** object supports the following:
-        
+
           * `dictionary_id` (`pulumi.Input[str]`) - The ID of the dictionary.
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `writeOnly` (`pulumi.Input[bool]`)
-        
+
         The **directors** object supports the following:
-        
+
           * `backends` (`pulumi.Input[list]`)
           * `capacity` (`pulumi.Input[float]`)
-          * `comment` (`pulumi.Input[str]`) - <elided>
+          * `comment` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `quorum` (`pulumi.Input[float]`)
           * `retries` (`pulumi.Input[float]`)
           * `shield` (`pulumi.Input[str]`)
           * `type` (`pulumi.Input[float]`)
-        
+
         The **domains** object supports the following:
-        
-          * `comment` (`pulumi.Input[str]`) - <elided>
+
+          * `comment` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-        
+
         The **dynamicsnippets** object supports the following:
-        
+
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `priority` (`pulumi.Input[float]`)
           * `snippet_id` (`pulumi.Input[str]`) - The ID of the dynamic snippet.
           * `type` (`pulumi.Input[str]`)
-        
+
         The **gcsloggings** object supports the following:
-        
+
           * `bucketName` (`pulumi.Input[str]`)
           * `email` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
@@ -957,16 +962,16 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `secretKey` (`pulumi.Input[str]`)
           * `timestampFormat` (`pulumi.Input[str]`)
-        
+
         The **gzips** object supports the following:
-        
+
           * `cacheCondition` (`pulumi.Input[str]`)
           * `contentTypes` (`pulumi.Input[list]`)
           * `extensions` (`pulumi.Input[list]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-        
+
         The **headers** object supports the following:
-        
+
           * `action` (`pulumi.Input[str]`)
           * `cacheCondition` (`pulumi.Input[str]`)
           * `destination` (`pulumi.Input[str]`)
@@ -979,9 +984,9 @@ class Servicev1(pulumi.CustomResource):
           * `source` (`pulumi.Input[str]`)
           * `substitution` (`pulumi.Input[str]`)
           * `type` (`pulumi.Input[str]`)
-        
+
         The **healthchecks** object supports the following:
-        
+
           * `checkInterval` (`pulumi.Input[float]`)
           * `expectedResponse` (`pulumi.Input[float]`)
           * `host` (`pulumi.Input[str]`)
@@ -993,9 +998,9 @@ class Servicev1(pulumi.CustomResource):
           * `threshold` (`pulumi.Input[float]`)
           * `timeout` (`pulumi.Input[float]`)
           * `window` (`pulumi.Input[float]`)
-        
+
         The **logentries** object supports the following:
-        
+
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
@@ -1004,18 +1009,18 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `token` (`pulumi.Input[str]`)
           * `useTls` (`pulumi.Input[bool]`)
-        
+
         The **papertrails** object supports the following:
-        
+
           * `address` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `placement` (`pulumi.Input[str]`)
           * `port` (`pulumi.Input[float]`)
           * `responseCondition` (`pulumi.Input[str]`)
-        
+
         The **request_settings** object supports the following:
-        
+
           * `action` (`pulumi.Input[str]`)
           * `bypassBusyWait` (`pulumi.Input[bool]`)
           * `default_host` (`pulumi.Input[str]`) - The default hostname.
@@ -1028,9 +1033,9 @@ class Servicev1(pulumi.CustomResource):
           * `requestCondition` (`pulumi.Input[str]`)
           * `timerSupport` (`pulumi.Input[bool]`)
           * `xff` (`pulumi.Input[str]`)
-        
+
         The **response_objects** object supports the following:
-        
+
           * `cacheCondition` (`pulumi.Input[str]`)
           * `content` (`pulumi.Input[str]`)
           * `contentType` (`pulumi.Input[str]`)
@@ -1038,9 +1043,9 @@ class Servicev1(pulumi.CustomResource):
           * `requestCondition` (`pulumi.Input[str]`)
           * `response` (`pulumi.Input[str]`)
           * `status` (`pulumi.Input[float]`)
-        
+
         The **s3loggings** object supports the following:
-        
+
           * `bucketName` (`pulumi.Input[str]`)
           * `domain` (`pulumi.Input[str]`) - A set of Domain names to serve as entry points for your
             Service. Defined below.
@@ -1057,16 +1062,16 @@ class Servicev1(pulumi.CustomResource):
           * `s3AccessKey` (`pulumi.Input[str]`)
           * `s3SecretKey` (`pulumi.Input[str]`)
           * `timestampFormat` (`pulumi.Input[str]`)
-        
+
         The **snippets** object supports the following:
-        
+
           * `content` (`pulumi.Input[str]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
           * `priority` (`pulumi.Input[float]`)
           * `type` (`pulumi.Input[str]`)
-        
+
         The **splunks** object supports the following:
-        
+
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
@@ -1074,9 +1079,9 @@ class Servicev1(pulumi.CustomResource):
           * `responseCondition` (`pulumi.Input[str]`)
           * `token` (`pulumi.Input[str]`)
           * `url` (`pulumi.Input[str]`)
-        
+
         The **sumologics** object supports the following:
-        
+
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
           * `messageType` (`pulumi.Input[str]`)
@@ -1084,9 +1089,9 @@ class Servicev1(pulumi.CustomResource):
           * `placement` (`pulumi.Input[str]`)
           * `responseCondition` (`pulumi.Input[str]`)
           * `url` (`pulumi.Input[str]`)
-        
+
         The **syslogs** object supports the following:
-        
+
           * `address` (`pulumi.Input[str]`)
           * `format` (`pulumi.Input[str]`)
           * `formatVersion` (`pulumi.Input[float]`)
@@ -1101,18 +1106,17 @@ class Servicev1(pulumi.CustomResource):
           * `tlsHostname` (`pulumi.Input[str]`)
           * `token` (`pulumi.Input[str]`)
           * `useTls` (`pulumi.Input[bool]`)
-        
+
         The **vcls** object supports the following:
-        
+
           * `content` (`pulumi.Input[str]`)
           * `main` (`pulumi.Input[bool]`)
           * `name` (`pulumi.Input[str]`) - The unique name for the Service to create.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_v1.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["acls"] = acls
         __props__["activate"] = activate
         __props__["active_version"] = active_version

@@ -17,7 +17,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
     entries: pulumi.Output[list]
     """
     A Set ACL entries that are applied to the service. Defined below
-    
+
       * `comment` (`str`)
       * `id` (`str`)
       * `ip` (`str`)
@@ -31,22 +31,19 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, acl_id=None, entries=None, service_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a ServiceACLEntriesv1 resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
         :param pulumi.Input[list] entries: A Set ACL entries that are applied to the service. Defined below
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
-        
+
         The **entries** object supports the following:
-        
+
           * `comment` (`pulumi.Input[str]`)
           * `id` (`pulumi.Input[str]`)
           * `ip` (`pulumi.Input[str]`)
           * `negated` (`pulumi.Input[bool]`)
           * `subnet` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_acl_entries_v1.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,27 +80,26 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         """
         Get an existing ServiceACLEntriesv1 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
         :param pulumi.Input[list] entries: A Set ACL entries that are applied to the service. Defined below
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
-        
+
         The **entries** object supports the following:
-        
+
           * `comment` (`pulumi.Input[str]`)
           * `id` (`pulumi.Input[str]`)
           * `ip` (`pulumi.Input[str]`)
           * `negated` (`pulumi.Input[bool]`)
           * `subnet` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_acl_entries_v1.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["acl_id"] = acl_id
         __props__["entries"] = entries
         __props__["service_id"] = service_id

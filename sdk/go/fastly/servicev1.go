@@ -14,11 +14,11 @@ import (
 // Provides a Fastly Service, representing the configuration for a website, app,
 // API, or anything else to be served through Fastly. A Service encompasses Domains
 // and Backends.
-// 
+//
 // The Service resource requires a domain name that is correctly set up to direct
 // traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
 // on their documentation site for guidance.
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_v1.html.markdown.
 type Servicev1 struct {
 	pulumi.CustomResourceState
