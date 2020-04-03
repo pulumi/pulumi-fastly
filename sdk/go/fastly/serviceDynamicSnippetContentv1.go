@@ -102,4 +102,3 @@ type ServiceDynamicSnippetContentv1Args struct {
 func (ServiceDynamicSnippetContentv1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceDynamicSnippetContentv1Args)(nil)).Elem()
 }
-

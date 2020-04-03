@@ -221,7 +221,7 @@ export class Servicev1 extends pulumi.CustomResource {
     public readonly cacheSettings!: pulumi.Output<outputs.Servicev1CacheSetting[] | undefined>;
     public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
     /**
-     * A personal freeform descriptive note
+     * An optional comment about the Director.
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
@@ -230,7 +230,7 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly conditions!: pulumi.Output<outputs.Servicev1Condition[] | undefined>;
     /**
-     * The default hostname.
+     * Sets the host header.
      */
     public readonly defaultHost!: pulumi.Output<string>;
     /**
@@ -248,8 +248,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly directors!: pulumi.Output<outputs.Servicev1Director[] | undefined>;
     /**
-     * A set of Domain names to serve as entry points for your
-     * Service. Defined below.
+     * If you created the S3 bucket outside of `us-east-1`,
+     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
      */
     public readonly domains!: pulumi.Output<outputs.Servicev1Domain[]>;
     /**
@@ -277,7 +277,7 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly headers!: pulumi.Output<outputs.Servicev1Header[] | undefined>;
     /**
-     * Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+     * Name of a defined `healthcheck` to assign to this backend.
      */
     public readonly healthchecks!: pulumi.Output<outputs.Servicev1Healthcheck[] | undefined>;
     /**
@@ -286,7 +286,7 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly logentries!: pulumi.Output<outputs.Servicev1Logentry[] | undefined>;
     /**
-     * The unique name for the Service to create.
+     * A unique name to identify this dictionary.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -470,7 +470,7 @@ export interface Servicev1State {
     readonly cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;
     readonly clonedVersion?: pulumi.Input<number>;
     /**
-     * A personal freeform descriptive note
+     * An optional comment about the Director.
      */
     readonly comment?: pulumi.Input<string>;
     /**
@@ -479,7 +479,7 @@ export interface Servicev1State {
      */
     readonly conditions?: pulumi.Input<pulumi.Input<inputs.Servicev1Condition>[]>;
     /**
-     * The default hostname.
+     * Sets the host header.
      */
     readonly defaultHost?: pulumi.Input<string>;
     /**
@@ -497,8 +497,8 @@ export interface Servicev1State {
      */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
-     * A set of Domain names to serve as entry points for your
-     * Service. Defined below.
+     * If you created the S3 bucket outside of `us-east-1`,
+     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
      */
     readonly domains?: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
     /**
@@ -526,7 +526,7 @@ export interface Servicev1State {
      */
     readonly headers?: pulumi.Input<pulumi.Input<inputs.Servicev1Header>[]>;
     /**
-     * Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+     * Name of a defined `healthcheck` to assign to this backend.
      */
     readonly healthchecks?: pulumi.Input<pulumi.Input<inputs.Servicev1Healthcheck>[]>;
     /**
@@ -535,7 +535,7 @@ export interface Servicev1State {
      */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
     /**
-     * The unique name for the Service to create.
+     * A unique name to identify this dictionary.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -620,7 +620,7 @@ export interface Servicev1Args {
      */
     readonly cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;
     /**
-     * A personal freeform descriptive note
+     * An optional comment about the Director.
      */
     readonly comment?: pulumi.Input<string>;
     /**
@@ -629,7 +629,7 @@ export interface Servicev1Args {
      */
     readonly conditions?: pulumi.Input<pulumi.Input<inputs.Servicev1Condition>[]>;
     /**
-     * The default hostname.
+     * Sets the host header.
      */
     readonly defaultHost?: pulumi.Input<string>;
     /**
@@ -647,8 +647,8 @@ export interface Servicev1Args {
      */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
-     * A set of Domain names to serve as entry points for your
-     * Service. Defined below.
+     * If you created the S3 bucket outside of `us-east-1`,
+     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
      */
     readonly domains: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
     /**
@@ -676,7 +676,7 @@ export interface Servicev1Args {
      */
     readonly headers?: pulumi.Input<pulumi.Input<inputs.Servicev1Header>[]>;
     /**
-     * Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+     * Name of a defined `healthcheck` to assign to this backend.
      */
     readonly healthchecks?: pulumi.Input<pulumi.Input<inputs.Servicev1Healthcheck>[]>;
     /**
@@ -685,7 +685,7 @@ export interface Servicev1Args {
      */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
     /**
-     * The unique name for the Service to create.
+     * A unique name to identify this dictionary.
      */
     readonly name?: pulumi.Input<string>;
     /**

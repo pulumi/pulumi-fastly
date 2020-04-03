@@ -72,7 +72,7 @@ namespace Pulumi.Fastly
         public Output<int> ClonedVersion { get; private set; } = null!;
 
         /// <summary>
-        /// A personal freeform descriptive note
+        /// An optional comment about the Director.
         /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
@@ -85,7 +85,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Conditions>> Conditions { get; private set; } = null!;
 
         /// <summary>
-        /// The default hostname.
+        /// Sets the host header.
         /// </summary>
         [Output("defaultHost")]
         public Output<string> DefaultHost { get; private set; } = null!;
@@ -111,8 +111,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Directors>> Directors { get; private set; } = null!;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your
-        /// Service. Defined below.
+        /// If you created the S3 bucket outside of `us-east-1`,
+        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
         /// </summary>
         [Output("domains")]
         public Output<ImmutableArray<Outputs.Servicev1Domains>> Domains { get; private set; } = null!;
@@ -152,7 +152,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Headers>> Headers { get; private set; } = null!;
 
         /// <summary>
-        /// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+        /// Name of a defined `healthcheck` to assign to this backend.
         /// </summary>
         [Output("healthchecks")]
         public Output<ImmutableArray<Outputs.Servicev1Healthchecks>> Healthchecks { get; private set; } = null!;
@@ -165,7 +165,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Logentries>> Logentries { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -354,7 +354,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// A personal freeform descriptive note
+        /// An optional comment about the Director.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -373,7 +373,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The default hostname.
+        /// Sets the host header.
         /// </summary>
         [Input("defaultHost")]
         public Input<string>? DefaultHost { get; set; }
@@ -414,8 +414,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DomainsArgs>? _domains;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your
-        /// Service. Defined below.
+        /// If you created the S3 bucket outside of `us-east-1`,
+        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
         /// </summary>
         public InputList<Inputs.Servicev1DomainsArgs> Domains
         {
@@ -485,7 +485,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1HealthchecksArgs>? _healthchecks;
 
         /// <summary>
-        /// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+        /// Name of a defined `healthcheck` to assign to this backend.
         /// </summary>
         public InputList<Inputs.Servicev1HealthchecksArgs> Healthchecks
         {
@@ -507,7 +507,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -720,7 +720,7 @@ namespace Pulumi.Fastly
         public Input<int>? ClonedVersion { get; set; }
 
         /// <summary>
-        /// A personal freeform descriptive note
+        /// An optional comment about the Director.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -739,7 +739,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The default hostname.
+        /// Sets the host header.
         /// </summary>
         [Input("defaultHost")]
         public Input<string>? DefaultHost { get; set; }
@@ -780,8 +780,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DomainsGetArgs>? _domains;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your
-        /// Service. Defined below.
+        /// If you created the S3 bucket outside of `us-east-1`,
+        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
         /// </summary>
         public InputList<Inputs.Servicev1DomainsGetArgs> Domains
         {
@@ -851,7 +851,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1HealthchecksGetArgs>? _healthchecks;
 
         /// <summary>
-        /// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+        /// Name of a defined `healthcheck` to assign to this backend.
         /// </summary>
         public InputList<Inputs.Servicev1HealthchecksGetArgs> Healthchecks
         {
@@ -873,7 +873,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -1016,7 +1016,7 @@ namespace Pulumi.Fastly
         public Input<string>? AclId { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1035,7 +1035,7 @@ namespace Pulumi.Fastly
         public Input<string>? AclId { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1047,84 +1047,157 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1BackendsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Denotes if this Backend should be
+        /// included in the pool of backends that requests are load balanced against.
+        /// Default `true`.
+        /// </summary>
         [Input("autoLoadbalance")]
         public Input<bool>? AutoLoadbalance { get; set; }
 
+        /// <summary>
+        /// How long to wait between bytes in milliseconds. Default `10000`.
+        /// </summary>
         [Input("betweenBytesTimeout")]
         public Input<int>? BetweenBytesTimeout { get; set; }
 
+        /// <summary>
+        /// How long to wait for a timeout in milliseconds.
+        /// Default `1000`
+        /// </summary>
         [Input("connectTimeout")]
         public Input<int>? ConnectTimeout { get; set; }
 
+        /// <summary>
+        /// Number of errors to allow before the Backend is marked as down. Default `0`.
+        /// </summary>
         [Input("errorThreshold")]
         public Input<int>? ErrorThreshold { get; set; }
 
+        /// <summary>
+        /// How long to wait for the first bytes in milliseconds. Default `15000`.
+        /// </summary>
         [Input("firstByteTimeout")]
         public Input<int>? FirstByteTimeout { get; set; }
 
         /// <summary>
-        /// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+        /// Name of a defined `healthcheck` to assign to this backend.
         /// </summary>
         [Input("healthcheck")]
         public Input<string>? Healthcheck { get; set; }
 
+        /// <summary>
+        /// Maximum number of connections for this Backend.
+        /// Default `200`.
+        /// </summary>
         [Input("maxConn")]
         public Input<int>? MaxConn { get; set; }
 
+        /// <summary>
+        /// Maximum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         [Input("maxTlsVersion")]
         public Input<string>? MaxTlsVersion { get; set; }
 
+        /// <summary>
+        /// Minimum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         [Input("minTlsVersion")]
         public Input<string>? MinTlsVersion { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The hostname to override the Host header.
+        /// </summary>
         [Input("overrideHost")]
         public Input<string>? OverrideHost { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// Selected POP to serve as a "shield" for origin servers.
+        /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
 
+        /// <summary>
+        /// CA certificate attached to origin.
+        /// </summary>
         [Input("sslCaCert")]
         public Input<string>? SslCaCert { get; set; }
 
+        /// <summary>
+        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+        /// </summary>
         [Input("sslCertHostname")]
         public Input<string>? SslCertHostname { get; set; }
 
+        /// <summary>
+        /// Be strict about checking SSL certs. Default `true`.
+        /// </summary>
         [Input("sslCheckCert")]
         public Input<bool>? SslCheckCert { get; set; }
 
+        /// <summary>
+        /// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+        /// </summary>
         [Input("sslCiphers")]
         public Input<string>? SslCiphers { get; set; }
 
+        /// <summary>
+        /// Client certificate attached to origin. Used when connecting to the backend.
+        /// </summary>
         [Input("sslClientCert")]
         public Input<string>? SslClientCert { get; set; }
 
+        /// <summary>
+        /// Client key attached to origin. Used when connecting to the backend.
+        /// </summary>
         [Input("sslClientKey")]
         public Input<string>? SslClientKey { get; set; }
 
+        /// <summary>
+        /// Used for both SNI during the TLS handshake and to validate the cert.
+        /// </summary>
         [Input("sslHostname")]
         public Input<string>? SslHostname { get; set; }
 
+        /// <summary>
+        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+        /// </summary>
         [Input("sslSniHostname")]
         public Input<string>? SslSniHostname { get; set; }
 
+        /// <summary>
+        /// Whether or not to use SSL to reach the backend. Default `false`.
+        /// </summary>
         [Input("useSsl")]
         public Input<bool>? UseSsl { get; set; }
 
+        /// <summary>
+        /// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }
 
@@ -1135,84 +1208,157 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1BackendsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Denotes if this Backend should be
+        /// included in the pool of backends that requests are load balanced against.
+        /// Default `true`.
+        /// </summary>
         [Input("autoLoadbalance")]
         public Input<bool>? AutoLoadbalance { get; set; }
 
+        /// <summary>
+        /// How long to wait between bytes in milliseconds. Default `10000`.
+        /// </summary>
         [Input("betweenBytesTimeout")]
         public Input<int>? BetweenBytesTimeout { get; set; }
 
+        /// <summary>
+        /// How long to wait for a timeout in milliseconds.
+        /// Default `1000`
+        /// </summary>
         [Input("connectTimeout")]
         public Input<int>? ConnectTimeout { get; set; }
 
+        /// <summary>
+        /// Number of errors to allow before the Backend is marked as down. Default `0`.
+        /// </summary>
         [Input("errorThreshold")]
         public Input<int>? ErrorThreshold { get; set; }
 
+        /// <summary>
+        /// How long to wait for the first bytes in milliseconds. Default `15000`.
+        /// </summary>
         [Input("firstByteTimeout")]
         public Input<int>? FirstByteTimeout { get; set; }
 
         /// <summary>
-        /// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+        /// Name of a defined `healthcheck` to assign to this backend.
         /// </summary>
         [Input("healthcheck")]
         public Input<string>? Healthcheck { get; set; }
 
+        /// <summary>
+        /// Maximum number of connections for this Backend.
+        /// Default `200`.
+        /// </summary>
         [Input("maxConn")]
         public Input<int>? MaxConn { get; set; }
 
+        /// <summary>
+        /// Maximum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         [Input("maxTlsVersion")]
         public Input<string>? MaxTlsVersion { get; set; }
 
+        /// <summary>
+        /// Minimum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         [Input("minTlsVersion")]
         public Input<string>? MinTlsVersion { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The hostname to override the Host header.
+        /// </summary>
         [Input("overrideHost")]
         public Input<string>? OverrideHost { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// Selected POP to serve as a "shield" for origin servers.
+        /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
 
+        /// <summary>
+        /// CA certificate attached to origin.
+        /// </summary>
         [Input("sslCaCert")]
         public Input<string>? SslCaCert { get; set; }
 
+        /// <summary>
+        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+        /// </summary>
         [Input("sslCertHostname")]
         public Input<string>? SslCertHostname { get; set; }
 
+        /// <summary>
+        /// Be strict about checking SSL certs. Default `true`.
+        /// </summary>
         [Input("sslCheckCert")]
         public Input<bool>? SslCheckCert { get; set; }
 
+        /// <summary>
+        /// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+        /// </summary>
         [Input("sslCiphers")]
         public Input<string>? SslCiphers { get; set; }
 
+        /// <summary>
+        /// Client certificate attached to origin. Used when connecting to the backend.
+        /// </summary>
         [Input("sslClientCert")]
         public Input<string>? SslClientCert { get; set; }
 
+        /// <summary>
+        /// Client key attached to origin. Used when connecting to the backend.
+        /// </summary>
         [Input("sslClientKey")]
         public Input<string>? SslClientKey { get; set; }
 
+        /// <summary>
+        /// Used for both SNI during the TLS handshake and to validate the cert.
+        /// </summary>
         [Input("sslHostname")]
         public Input<string>? SslHostname { get; set; }
 
+        /// <summary>
+        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+        /// </summary>
         [Input("sslSniHostname")]
         public Input<string>? SslSniHostname { get; set; }
 
+        /// <summary>
+        /// Whether or not to use SSL to reach the backend. Default `false`.
+        /// </summary>
         [Input("useSsl")]
         public Input<bool>? UseSsl { get; set; }
 
+        /// <summary>
+        /// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }
 
@@ -1223,36 +1369,63 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1BigqueryloggingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of your BigQuery dataset.
+        /// </summary>
         [Input("dataset", required: true)]
         public Input<string> Dataset { get; set; } = null!;
 
+        /// <summary>
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The ID of your GCP project.
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// The ID of your BigQuery table.
+        /// </summary>
         [Input("table", required: true)]
         public Input<string> Table { get; set; } = null!;
 
+        /// <summary>
+        /// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+        /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
 
@@ -1263,36 +1436,63 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1BigqueryloggingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of your BigQuery dataset.
+        /// </summary>
         [Input("dataset", required: true)]
         public Input<string> Dataset { get; set; } = null!;
 
+        /// <summary>
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The ID of your GCP project.
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// The ID of your BigQuery table.
+        /// </summary>
         [Input("table", required: true)]
         public Input<string> Table { get; set; } = null!;
 
+        /// <summary>
+        /// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+        /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
 
@@ -1303,48 +1503,87 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1BlobstorageloggingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The unique Azure Blob Storage namespace in which your data objects are stored.
+        /// </summary>
         [Input("accountName", required: true)]
         public Input<string> AccountName { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the Azure Blob Storage container in which to store logs.
+        /// </summary>
         [Input("container", required: true)]
         public Input<string> Container { get; set; } = null!;
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+        /// </summary>
         [Input("sasToken", required: true)]
         public Input<string> SasToken { get; set; } = null!;
 
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
@@ -1355,48 +1594,87 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1BlobstorageloggingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The unique Azure Blob Storage namespace in which your data objects are stored.
+        /// </summary>
         [Input("accountName", required: true)]
         public Input<string> AccountName { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the Azure Blob Storage container in which to store logs.
+        /// </summary>
         [Input("container", required: true)]
         public Input<string> Container { get; set; } = null!;
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+        /// </summary>
         [Input("sasToken", required: true)]
         public Input<string> SasToken { get; set; } = null!;
 
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
@@ -1407,21 +1685,35 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1CacheSettingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Max "Time To Live" for stale (unreachable) objects.
+        /// </summary>
         [Input("staleTtl")]
         public Input<int>? StaleTtl { get; set; }
 
+        /// <summary>
+        /// The Time-To-Live (TTL) for the object.
+        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
@@ -1432,21 +1724,35 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1CacheSettingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Max "Time To Live" for stale (unreachable) objects.
+        /// </summary>
         [Input("staleTtl")]
         public Input<int>? StaleTtl { get; set; }
 
+        /// <summary>
+        /// The Time-To-Live (TTL) for the object.
+        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
@@ -1458,17 +1764,26 @@ namespace Pulumi.Fastly
     public sealed class Servicev1ConditionsArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// The statement used to determine if the condition is met.
+        /// </summary>
         [Input("statement", required: true)]
         public Input<string> Statement { get; set; } = null!;
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -1480,17 +1795,26 @@ namespace Pulumi.Fastly
     public sealed class Servicev1ConditionsGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// The statement used to determine if the condition is met.
+        /// </summary>
         [Input("statement", required: true)]
         public Input<string> Statement { get; set; } = null!;
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -1508,7 +1832,7 @@ namespace Pulumi.Fastly
         public Input<string>? DictionaryId { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1530,7 +1854,7 @@ namespace Pulumi.Fastly
         public Input<string>? DictionaryId { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1547,33 +1871,55 @@ namespace Pulumi.Fastly
     {
         [Input("backends", required: true)]
         private InputList<string>? _backends;
+
+        /// <summary>
+        /// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        /// </summary>
         public InputList<string> Backends
         {
             get => _backends ?? (_backends = new InputList<string>());
             set => _backends = value;
         }
 
+        /// <summary>
+        /// Load balancing weight for the backends. Default `100`.
+        /// </summary>
         [Input("capacity")]
         public Input<int>? Capacity { get; set; }
 
+        /// <summary>
+        /// An optional comment about the Director.
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+        /// </summary>
         [Input("quorum")]
         public Input<int>? Quorum { get; set; }
 
+        /// <summary>
+        /// How many backends to search if it fails. Default `5`.
+        /// </summary>
         [Input("retries")]
         public Input<int>? Retries { get; set; }
 
+        /// <summary>
+        /// Selected POP to serve as a "shield" for origin servers.
+        /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type")]
         public Input<int>? Type { get; set; }
 
@@ -1586,33 +1932,55 @@ namespace Pulumi.Fastly
     {
         [Input("backends", required: true)]
         private InputList<string>? _backends;
+
+        /// <summary>
+        /// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        /// </summary>
         public InputList<string> Backends
         {
             get => _backends ?? (_backends = new InputList<string>());
             set => _backends = value;
         }
 
+        /// <summary>
+        /// Load balancing weight for the backends. Default `100`.
+        /// </summary>
         [Input("capacity")]
         public Input<int>? Capacity { get; set; }
 
+        /// <summary>
+        /// An optional comment about the Director.
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+        /// </summary>
         [Input("quorum")]
         public Input<int>? Quorum { get; set; }
 
+        /// <summary>
+        /// How many backends to search if it fails. Default `5`.
+        /// </summary>
         [Input("retries")]
         public Input<int>? Retries { get; set; }
 
+        /// <summary>
+        /// Selected POP to serve as a "shield" for origin servers.
+        /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type")]
         public Input<int>? Type { get; set; }
 
@@ -1623,11 +1991,14 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1DomainsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional comment about the Director.
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1639,11 +2010,14 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1DomainsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional comment about the Director.
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1656,11 +2030,14 @@ namespace Pulumi.Fastly
     public sealed class Servicev1DynamicsnippetsArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
@@ -1670,6 +2047,9 @@ namespace Pulumi.Fastly
         [Input("snippetId")]
         public Input<string>? SnippetId { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -1681,11 +2061,14 @@ namespace Pulumi.Fastly
     public sealed class Servicev1DynamicsnippetsGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
@@ -1695,6 +2078,9 @@ namespace Pulumi.Fastly
         [Input("snippetId")]
         public Input<string>? SnippetId { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -1705,42 +2091,75 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1GcsloggingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the bucket in which to store the logs.
+        /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
 
+        /// <summary>
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
@@ -1751,42 +2170,75 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1GcsloggingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the bucket in which to store the logs.
+        /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
 
+        /// <summary>
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
@@ -1797,11 +2249,20 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1GzipsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
         [Input("contentTypes")]
         private InputList<string>? _contentTypes;
+
+        /// <summary>
+        /// The content-type for each type of content you wish to
+        /// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+        /// </summary>
         public InputList<string> ContentTypes
         {
             get => _contentTypes ?? (_contentTypes = new InputList<string>());
@@ -1810,6 +2271,11 @@ namespace Pulumi.Fastly
 
         [Input("extensions")]
         private InputList<string>? _extensions;
+
+        /// <summary>
+        /// File extensions for each file type to dynamically
+        /// gzip. Example: `["css", "js"]`.
+        /// </summary>
         public InputList<string> Extensions
         {
             get => _extensions ?? (_extensions = new InputList<string>());
@@ -1817,7 +2283,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1829,11 +2295,20 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1GzipsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
         [Input("contentTypes")]
         private InputList<string>? _contentTypes;
+
+        /// <summary>
+        /// The content-type for each type of content you wish to
+        /// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+        /// </summary>
         public InputList<string> ContentTypes
         {
             get => _contentTypes ?? (_contentTypes = new InputList<string>());
@@ -1842,6 +2317,11 @@ namespace Pulumi.Fastly
 
         [Input("extensions")]
         private InputList<string>? _extensions;
+
+        /// <summary>
+        /// File extensions for each file type to dynamically
+        /// gzip. Example: `["css", "js"]`.
+        /// </summary>
         public InputList<string> Extensions
         {
             get => _extensions ?? (_extensions = new InputList<string>());
@@ -1849,7 +2329,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -1861,42 +2341,78 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1HeadersArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
+        /// <summary>
+        /// The name of the header that is going to be affected by the Action.
+        /// </summary>
         [Input("destination", required: true)]
         public Input<string> Destination { get; set; } = null!;
 
+        /// <summary>
+        /// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
+        /// </summary>
         [Input("ignoreIfSet")]
         public Input<bool>? IgnoreIfSet { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// Regular expression to use (Only applies to the `regex` and `regex_repeat` actions.)
+        /// </summary>
         [Input("regex")]
         public Input<string>? Regex { get; set; }
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// Variable to be used as a source for the header
+        /// content. (Does not apply to the `delete` action.)
+        /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
 
+        /// <summary>
+        /// Value to substitute in place of regular expression. (Only applies to the `regex` and `regex_repeat` actions.)
+        /// </summary>
         [Input("substitution")]
         public Input<string>? Substitution { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -1907,42 +2423,78 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1HeadersGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
+        /// <summary>
+        /// The name of the header that is going to be affected by the Action.
+        /// </summary>
         [Input("destination", required: true)]
         public Input<string> Destination { get; set; } = null!;
 
+        /// <summary>
+        /// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
+        /// </summary>
         [Input("ignoreIfSet")]
         public Input<bool>? IgnoreIfSet { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// Regular expression to use (Only applies to the `regex` and `regex_repeat` actions.)
+        /// </summary>
         [Input("regex")]
         public Input<string>? Regex { get; set; }
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// Variable to be used as a source for the header
+        /// content. (Does not apply to the `delete` action.)
+        /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
 
+        /// <summary>
+        /// Value to substitute in place of regular expression. (Only applies to the `regex` and `regex_repeat` actions.)
+        /// </summary>
         [Input("substitution")]
         public Input<string>? Substitution { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -1953,39 +2505,69 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1HealthchecksArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// How often to run the Healthcheck in milliseconds. Default `5000`.
+        /// </summary>
         [Input("checkInterval")]
         public Input<int>? CheckInterval { get; set; }
 
+        /// <summary>
+        /// The status code expected from the host. Default `200`.
+        /// </summary>
         [Input("expectedResponse")]
         public Input<int>? ExpectedResponse { get; set; }
 
+        /// <summary>
+        /// The Host header to send for this Healthcheck.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+        /// </summary>
         [Input("httpVersion")]
         public Input<string>? HttpVersion { get; set; }
 
+        /// <summary>
+        /// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        /// </summary>
         [Input("initial")]
         public Input<int>? Initial { get; set; }
 
+        /// <summary>
+        /// Which HTTP method to use. Default `HEAD`.
+        /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// How many Healthchecks must succeed to be considered healthy. Default `3`.
+        /// </summary>
         [Input("threshold")]
         public Input<int>? Threshold { get; set; }
 
+        /// <summary>
+        /// Timeout in milliseconds. Default `500`.
+        /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
+        /// <summary>
+        /// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        /// </summary>
         [Input("window")]
         public Input<int>? Window { get; set; }
 
@@ -1996,39 +2578,69 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1HealthchecksGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// How often to run the Healthcheck in milliseconds. Default `5000`.
+        /// </summary>
         [Input("checkInterval")]
         public Input<int>? CheckInterval { get; set; }
 
+        /// <summary>
+        /// The status code expected from the host. Default `200`.
+        /// </summary>
         [Input("expectedResponse")]
         public Input<int>? ExpectedResponse { get; set; }
 
+        /// <summary>
+        /// The Host header to send for this Healthcheck.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+        /// </summary>
         [Input("httpVersion")]
         public Input<string>? HttpVersion { get; set; }
 
+        /// <summary>
+        /// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        /// </summary>
         [Input("initial")]
         public Input<int>? Initial { get; set; }
 
+        /// <summary>
+        /// Which HTTP method to use. Default `HEAD`.
+        /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// How many Healthchecks must succeed to be considered healthy. Default `3`.
+        /// </summary>
         [Input("threshold")]
         public Input<int>? Threshold { get; set; }
 
+        /// <summary>
+        /// Timeout in milliseconds. Default `500`.
+        /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
+        /// <summary>
+        /// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        /// </summary>
         [Input("window")]
         public Input<int>? Window { get; set; }
 
@@ -2039,30 +2651,51 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1LogentriesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
 
@@ -2073,30 +2706,51 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1LogentriesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
 
@@ -2107,24 +2761,39 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1PapertrailsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
@@ -2135,24 +2804,39 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1PapertrailsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
@@ -2163,45 +2847,83 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1RequestSettingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
+        /// <summary>
+        /// Disable collapsed forwarding, so you don't wait
+        /// for other objects to origin.
+        /// </summary>
         [Input("bypassBusyWait")]
         public Input<bool>? BypassBusyWait { get; set; }
 
         /// <summary>
-        /// The default hostname.
+        /// Sets the host header.
         /// </summary>
         [Input("defaultHost")]
         public Input<string>? DefaultHost { get; set; }
 
+        /// <summary>
+        /// Force a cache miss for the request. If specified,
+        /// can be `true` or `false`.
+        /// </summary>
         [Input("forceMiss")]
         public Input<bool>? ForceMiss { get; set; }
 
+        /// <summary>
+        /// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+        /// </summary>
         [Input("forceSsl")]
         public Input<bool>? ForceSsl { get; set; }
 
+        /// <summary>
+        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and
+        /// Fastly-Geo-Region into the request headers.
+        /// </summary>
         [Input("geoHeaders")]
         public Input<bool>? GeoHeaders { get; set; }
 
+        /// <summary>
+        /// Comma separated list of varnish request object fields
+        /// that should be in the hash key.
+        /// </summary>
         [Input("hashKeys")]
         public Input<string>? HashKeys { get; set; }
 
+        /// <summary>
+        /// How old an object is allowed to be to serve
+        /// `stale-if-error` or `stale-while-revalidate`, in seconds.
+        /// </summary>
         [Input("maxStaleAge")]
         public Input<int>? MaxStaleAge { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// Injects the X-Timer info into the request for
+        /// viewing origin fetch durations.
+        /// </summary>
         [Input("timerSupport")]
         public Input<bool>? TimerSupport { get; set; }
 
+        /// <summary>
+        /// X-Forwarded-For, should be `clear`, `leave`, `append`,
+        /// `append_all`, or `overwrite`. Default `append`.
+        /// </summary>
         [Input("xff")]
         public Input<string>? Xff { get; set; }
 
@@ -2212,45 +2934,83 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1RequestSettingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
+        /// <summary>
+        /// Disable collapsed forwarding, so you don't wait
+        /// for other objects to origin.
+        /// </summary>
         [Input("bypassBusyWait")]
         public Input<bool>? BypassBusyWait { get; set; }
 
         /// <summary>
-        /// The default hostname.
+        /// Sets the host header.
         /// </summary>
         [Input("defaultHost")]
         public Input<string>? DefaultHost { get; set; }
 
+        /// <summary>
+        /// Force a cache miss for the request. If specified,
+        /// can be `true` or `false`.
+        /// </summary>
         [Input("forceMiss")]
         public Input<bool>? ForceMiss { get; set; }
 
+        /// <summary>
+        /// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+        /// </summary>
         [Input("forceSsl")]
         public Input<bool>? ForceSsl { get; set; }
 
+        /// <summary>
+        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and
+        /// Fastly-Geo-Region into the request headers.
+        /// </summary>
         [Input("geoHeaders")]
         public Input<bool>? GeoHeaders { get; set; }
 
+        /// <summary>
+        /// Comma separated list of varnish request object fields
+        /// that should be in the hash key.
+        /// </summary>
         [Input("hashKeys")]
         public Input<string>? HashKeys { get; set; }
 
+        /// <summary>
+        /// How old an object is allowed to be to serve
+        /// `stale-if-error` or `stale-while-revalidate`, in seconds.
+        /// </summary>
         [Input("maxStaleAge")]
         public Input<int>? MaxStaleAge { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// Injects the X-Timer info into the request for
+        /// viewing origin fetch durations.
+        /// </summary>
         [Input("timerSupport")]
         public Input<bool>? TimerSupport { get; set; }
 
+        /// <summary>
+        /// X-Forwarded-For, should be `clear`, `leave`, `append`,
+        /// `append_all`, or `overwrite`. Default `append`.
+        /// </summary>
         [Input("xff")]
         public Input<string>? Xff { get; set; }
 
@@ -2261,27 +3021,46 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1ResponseObjectsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// The MIME type of the content.
+        /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// The HTTP Response. Default `Ok`.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
+        /// <summary>
+        /// The HTTP Status Code. Default `200`.
+        /// </summary>
         [Input("status")]
         public Input<int>? Status { get; set; }
 
@@ -2292,27 +3071,46 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1ResponseObjectsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// The MIME type of the content.
+        /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
+        /// <summary>
+        /// The HTTP Response. Default `Ok`.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
+        /// <summary>
+        /// The HTTP Status Code. Default `200`.
+        /// </summary>
         [Input("status")]
         public Input<int>? Status { get; set; }
 
@@ -2323,55 +3121,106 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1S3loggingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the bucket in which to store the logs.
+        /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your
-        /// Service. Defined below.
+        /// If you created the S3 bucket outside of `us-east-1`,
+        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
+        /// </summary>
         [Input("redundancy")]
         public Input<string>? Redundancy { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// AWS Access Key of an account with the required
+        /// permissions to post logs. It is **strongly** recommended you create a separate
+        /// IAM user with permissions to only operate on this Bucket. This key will be
+        /// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+        /// </summary>
         [Input("s3AccessKey")]
         public Input<string>? S3AccessKey { get; set; }
 
+        /// <summary>
+        /// AWS Secret Key of an account with the required
+        /// permissions to post logs. It is **strongly** recommended you create a separate
+        /// IAM user with permissions to only operate on this Bucket. This secret will be
+        /// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+        /// </summary>
         [Input("s3SecretKey")]
         public Input<string>? S3SecretKey { get; set; }
 
+        [Input("serverSideEncryption")]
+        public Input<string>? ServerSideEncryption { get; set; }
+
+        [Input("serverSideEncryptionKmsKeyId")]
+        public Input<string>? ServerSideEncryptionKmsKeyId { get; set; }
+
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
@@ -2382,55 +3231,106 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1S3loggingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the bucket in which to store the logs.
+        /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your
-        /// Service. Defined below.
+        /// If you created the S3 bucket outside of `us-east-1`,
+        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
+        /// </summary>
         [Input("redundancy")]
         public Input<string>? Redundancy { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// AWS Access Key of an account with the required
+        /// permissions to post logs. It is **strongly** recommended you create a separate
+        /// IAM user with permissions to only operate on this Bucket. This key will be
+        /// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+        /// </summary>
         [Input("s3AccessKey")]
         public Input<string>? S3AccessKey { get; set; }
 
+        /// <summary>
+        /// AWS Secret Key of an account with the required
+        /// permissions to post logs. It is **strongly** recommended you create a separate
+        /// IAM user with permissions to only operate on this Bucket. This secret will be
+        /// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+        /// </summary>
         [Input("s3SecretKey")]
         public Input<string>? S3SecretKey { get; set; }
 
+        [Input("serverSideEncryption")]
+        public Input<string>? ServerSideEncryption { get; set; }
+
+        [Input("serverSideEncryptionKmsKeyId")]
+        public Input<string>? ServerSideEncryptionKmsKeyId { get; set; }
+
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
@@ -2441,18 +3341,27 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SnippetsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -2463,18 +3372,27 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SnippetsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -2485,27 +3403,45 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SplunksArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
+        /// <summary>
+        /// The Splunk URL to stream logs to.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
@@ -2516,27 +3452,45 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SplunksGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
+        /// <summary>
+        /// The Splunk URL to stream logs to.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
@@ -2547,27 +3501,45 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SumologicsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Splunk URL to stream logs to.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
@@ -2578,27 +3550,45 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SumologicsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// The Splunk URL to stream logs to.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
@@ -2609,48 +3599,87 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SyslogsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }
 
+        /// <summary>
+        /// Used during the TLS handshake to validate the certificate.
+        /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         [Input("token")]
         public Input<string>? Token { get; set; }
 
+        /// <summary>
+        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
 
@@ -2661,48 +3690,87 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1SyslogsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }
 
+        /// <summary>
+        /// Used during the TLS handshake to validate the certificate.
+        /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         [Input("token")]
         public Input<string>? Token { get; set; }
 
+        /// <summary>
+        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
 
@@ -2713,14 +3781,22 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1VclsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, use this block as the main configuration. If
+        /// `false`, use this block as an includable library. Only a single VCL block can be
+        /// marked as the main block. Default is `false`.
+        /// </summary>
         [Input("main")]
         public Input<bool>? Main { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -2732,14 +3808,22 @@ namespace Pulumi.Fastly
 
     public sealed class Servicev1VclsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, use this block as the main configuration. If
+        /// `false`, use this block as an includable library. Only a single VCL block can be
+        /// marked as the main block. Default is `false`.
+        /// </summary>
         [Input("main")]
         public Input<bool>? Main { get; set; }
 
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -2761,7 +3845,7 @@ namespace Pulumi.Fastly
         /// </summary>
         public readonly string AclId;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
 
@@ -2778,36 +3862,109 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Backends
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// Denotes if this Backend should be
+        /// included in the pool of backends that requests are load balanced against.
+        /// Default `true`.
+        /// </summary>
         public readonly bool? AutoLoadbalance;
+        /// <summary>
+        /// How long to wait between bytes in milliseconds. Default `10000`.
+        /// </summary>
         public readonly int? BetweenBytesTimeout;
+        /// <summary>
+        /// How long to wait for a timeout in milliseconds.
+        /// Default `1000`
+        /// </summary>
         public readonly int? ConnectTimeout;
+        /// <summary>
+        /// Number of errors to allow before the Backend is marked as down. Default `0`.
+        /// </summary>
         public readonly int? ErrorThreshold;
+        /// <summary>
+        /// How long to wait for the first bytes in milliseconds. Default `15000`.
+        /// </summary>
         public readonly int? FirstByteTimeout;
         /// <summary>
-        /// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+        /// Name of a defined `healthcheck` to assign to this backend.
         /// </summary>
         public readonly string? Healthcheck;
+        /// <summary>
+        /// Maximum number of connections for this Backend.
+        /// Default `200`.
+        /// </summary>
         public readonly int? MaxConn;
+        /// <summary>
+        /// Maximum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         public readonly string? MaxTlsVersion;
+        /// <summary>
+        /// Minimum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         public readonly string? MinTlsVersion;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The hostname to override the Host header.
+        /// </summary>
         public readonly string? OverrideHost;
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         public readonly string? RequestCondition;
+        /// <summary>
+        /// Selected POP to serve as a "shield" for origin servers.
+        /// </summary>
         public readonly string? Shield;
+        /// <summary>
+        /// CA certificate attached to origin.
+        /// </summary>
         public readonly string? SslCaCert;
+        /// <summary>
+        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+        /// </summary>
         public readonly string? SslCertHostname;
+        /// <summary>
+        /// Be strict about checking SSL certs. Default `true`.
+        /// </summary>
         public readonly bool? SslCheckCert;
+        /// <summary>
+        /// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+        /// </summary>
         public readonly string? SslCiphers;
+        /// <summary>
+        /// Client certificate attached to origin. Used when connecting to the backend.
+        /// </summary>
         public readonly string? SslClientCert;
+        /// <summary>
+        /// Client key attached to origin. Used when connecting to the backend.
+        /// </summary>
         public readonly string? SslClientKey;
+        /// <summary>
+        /// Used for both SNI during the TLS handshake and to validate the cert.
+        /// </summary>
         public readonly string? SslHostname;
+        /// <summary>
+        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+        /// </summary>
         public readonly string? SslSniHostname;
+        /// <summary>
+        /// Whether or not to use SSL to reach the backend. Default `false`.
+        /// </summary>
         public readonly bool? UseSsl;
+        /// <summary>
+        /// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        /// </summary>
         public readonly int? Weight;
 
         [OutputConstructor]
@@ -2869,18 +4026,45 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Bigqueryloggings
     {
+        /// <summary>
+        /// The ID of your BigQuery dataset.
+        /// </summary>
         public readonly string Dataset;
+        /// <summary>
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// </summary>
         public readonly string? Email;
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The ID of your GCP project.
+        /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// </summary>
         public readonly string? SecretKey;
+        /// <summary>
+        /// The ID of your BigQuery table.
+        /// </summary>
         public readonly string Table;
+        /// <summary>
+        /// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+        /// </summary>
         public readonly string? Template;
 
         [OutputConstructor]
@@ -2912,22 +4096,61 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Blobstorageloggings
     {
+        /// <summary>
+        /// The unique Azure Blob Storage namespace in which your data objects are stored.
+        /// </summary>
         public readonly string AccountName;
+        /// <summary>
+        /// The name of the Azure Blob Storage container in which to store logs.
+        /// </summary>
         public readonly string Container;
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         public readonly int? FormatVersion;
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         public readonly int? GzipLevel;
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         public readonly int? Period;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// </summary>
         public readonly string? PublicKey;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+        /// </summary>
         public readonly string SasToken;
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         public readonly string? TimestampFormat;
 
         [OutputConstructor]
@@ -2967,13 +4190,27 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1CacheSettings
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         public readonly string? Action;
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         public readonly string? CacheCondition;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Max "Time To Live" for stale (unreachable) objects.
+        /// </summary>
         public readonly int? StaleTtl;
+        /// <summary>
+        /// The Time-To-Live (TTL) for the object.
+        /// </summary>
         public readonly int? Ttl;
 
         [OutputConstructor]
@@ -2996,11 +4233,20 @@ namespace Pulumi.Fastly
     public sealed class Servicev1Conditions
     {
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         public readonly int? Priority;
+        /// <summary>
+        /// The statement used to determine if the condition is met.
+        /// </summary>
         public readonly string Statement;
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -3025,7 +4271,7 @@ namespace Pulumi.Fastly
         /// </summary>
         public readonly string DictionaryId;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
         public readonly bool? WriteOnly;
@@ -3045,16 +4291,37 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Directors
     {
+        /// <summary>
+        /// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        /// </summary>
         public readonly ImmutableArray<string> Backends;
+        /// <summary>
+        /// Load balancing weight for the backends. Default `100`.
+        /// </summary>
         public readonly int? Capacity;
+        /// <summary>
+        /// An optional comment about the Director.
+        /// </summary>
         public readonly string? Comment;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+        /// </summary>
         public readonly int? Quorum;
+        /// <summary>
+        /// How many backends to search if it fails. Default `5`.
+        /// </summary>
         public readonly int? Retries;
+        /// <summary>
+        /// Selected POP to serve as a "shield" for origin servers.
+        /// </summary>
         public readonly string? Shield;
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         public readonly int? Type;
 
         [OutputConstructor]
@@ -3082,9 +4349,12 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Domains
     {
+        /// <summary>
+        /// An optional comment about the Director.
+        /// </summary>
         public readonly string? Comment;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
 
@@ -3102,14 +4372,20 @@ namespace Pulumi.Fastly
     public sealed class Servicev1Dynamicsnippets
     {
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         public readonly int? Priority;
         /// <summary>
         /// The ID of the dynamic snippet.
         /// </summary>
         public readonly string SnippetId;
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -3129,20 +4405,53 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Gcsloggings
     {
+        /// <summary>
+        /// The name of the bucket in which to store the logs.
+        /// </summary>
         public readonly string BucketName;
+        /// <summary>
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// </summary>
         public readonly string? Email;
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         public readonly int? GzipLevel;
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         public readonly int? Period;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// </summary>
         public readonly string? SecretKey;
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         public readonly string? TimestampFormat;
 
         [OutputConstructor]
@@ -3178,11 +4487,23 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Gzips
     {
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         public readonly string? CacheCondition;
+        /// <summary>
+        /// The content-type for each type of content you wish to
+        /// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+        /// </summary>
         public readonly ImmutableArray<string> ContentTypes;
+        /// <summary>
+        /// File extensions for each file type to dynamically
+        /// gzip. Example: `["css", "js"]`.
+        /// </summary>
         public readonly ImmutableArray<string> Extensions;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
 
@@ -3203,20 +4524,56 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Headers
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         public readonly string Action;
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         public readonly string? CacheCondition;
+        /// <summary>
+        /// The name of the header that is going to be affected by the Action.
+        /// </summary>
         public readonly string Destination;
+        /// <summary>
+        /// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
+        /// </summary>
         public readonly bool? IgnoreIfSet;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         public readonly int? Priority;
+        /// <summary>
+        /// Regular expression to use (Only applies to the `regex` and `regex_repeat` actions.)
+        /// </summary>
         public readonly string Regex;
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         public readonly string? RequestCondition;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// Variable to be used as a source for the header
+        /// content. (Does not apply to the `delete` action.)
+        /// </summary>
         public readonly string Source;
+        /// <summary>
+        /// Value to substitute in place of regular expression. (Only applies to the `regex` and `regex_repeat` actions.)
+        /// </summary>
         public readonly string Substitution;
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -3252,19 +4609,49 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Healthchecks
     {
+        /// <summary>
+        /// How often to run the Healthcheck in milliseconds. Default `5000`.
+        /// </summary>
         public readonly int? CheckInterval;
+        /// <summary>
+        /// The status code expected from the host. Default `200`.
+        /// </summary>
         public readonly int? ExpectedResponse;
+        /// <summary>
+        /// The Host header to send for this Healthcheck.
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+        /// </summary>
         public readonly string? HttpVersion;
+        /// <summary>
+        /// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        /// </summary>
         public readonly int? Initial;
+        /// <summary>
+        /// Which HTTP method to use. Default `HEAD`.
+        /// </summary>
         public readonly string? Method;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         public readonly string Path;
+        /// <summary>
+        /// How many Healthchecks must succeed to be considered healthy. Default `3`.
+        /// </summary>
         public readonly int? Threshold;
+        /// <summary>
+        /// Timeout in milliseconds. Default `500`.
+        /// </summary>
         public readonly int? Timeout;
+        /// <summary>
+        /// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        /// </summary>
         public readonly int? Window;
 
         [OutputConstructor]
@@ -3298,16 +4685,37 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Logentries
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         public readonly string Token;
+        /// <summary>
+        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// </summary>
         public readonly bool? UseTls;
 
         [OutputConstructor]
@@ -3335,14 +4743,29 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Papertrails
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
 
         [OutputConstructor]
@@ -3366,23 +4789,61 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1RequestSettings
     {
+        /// <summary>
+        /// Allows you to terminate request handling and immediately
+        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// </summary>
         public readonly string? Action;
+        /// <summary>
+        /// Disable collapsed forwarding, so you don't wait
+        /// for other objects to origin.
+        /// </summary>
         public readonly bool? BypassBusyWait;
         /// <summary>
-        /// The default hostname.
+        /// Sets the host header.
         /// </summary>
         public readonly string? DefaultHost;
+        /// <summary>
+        /// Force a cache miss for the request. If specified,
+        /// can be `true` or `false`.
+        /// </summary>
         public readonly bool? ForceMiss;
+        /// <summary>
+        /// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+        /// </summary>
         public readonly bool? ForceSsl;
+        /// <summary>
+        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and
+        /// Fastly-Geo-Region into the request headers.
+        /// </summary>
         public readonly bool? GeoHeaders;
+        /// <summary>
+        /// Comma separated list of varnish request object fields
+        /// that should be in the hash key.
+        /// </summary>
         public readonly string? HashKeys;
+        /// <summary>
+        /// How old an object is allowed to be to serve
+        /// `stale-if-error` or `stale-while-revalidate`, in seconds.
+        /// </summary>
         public readonly int? MaxStaleAge;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         public readonly string? RequestCondition;
+        /// <summary>
+        /// Injects the X-Timer info into the request for
+        /// viewing origin fetch durations.
+        /// </summary>
         public readonly bool? TimerSupport;
+        /// <summary>
+        /// X-Forwarded-For, should be `clear`, `leave`, `append`,
+        /// `append_all`, or `overwrite`. Default `append`.
+        /// </summary>
         public readonly string? Xff;
 
         [OutputConstructor]
@@ -3418,15 +4879,34 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1ResponseObjects
     {
+        /// <summary>
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// </summary>
         public readonly string? CacheCondition;
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         public readonly string? Content;
+        /// <summary>
+        /// The MIME type of the content.
+        /// </summary>
         public readonly string? ContentType;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// </summary>
         public readonly string? RequestCondition;
+        /// <summary>
+        /// The HTTP Response. Default `Ok`.
+        /// </summary>
         public readonly string? Response;
+        /// <summary>
+        /// The HTTP Status Code. Default `200`.
+        /// </summary>
         public readonly int? Status;
 
         [OutputConstructor]
@@ -3452,27 +4932,74 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1S3loggings
     {
+        /// <summary>
+        /// The name of the bucket in which to store the logs.
+        /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// A set of Domain names to serve as entry points for your
-        /// Service. Defined below.
+        /// If you created the S3 bucket outside of `us-east-1`,
+        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
         /// </summary>
         public readonly string? Domain;
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         public readonly int? FormatVersion;
+        /// <summary>
+        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// </summary>
         public readonly int? GzipLevel;
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// </summary>
         public readonly int? Period;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
+        /// </summary>
         public readonly string? Redundancy;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// AWS Access Key of an account with the required
+        /// permissions to post logs. It is **strongly** recommended you create a separate
+        /// IAM user with permissions to only operate on this Bucket. This key will be
+        /// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+        /// </summary>
         public readonly string? S3AccessKey;
+        /// <summary>
+        /// AWS Secret Key of an account with the required
+        /// permissions to post logs. It is **strongly** recommended you create a separate
+        /// IAM user with permissions to only operate on this Bucket. This secret will be
+        /// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+        /// </summary>
         public readonly string? S3SecretKey;
+        public readonly string? ServerSideEncryption;
+        public readonly string? ServerSideEncryptionKmsKeyId;
+        /// <summary>
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// </summary>
         public readonly string? TimestampFormat;
 
         [OutputConstructor]
@@ -3491,6 +5018,8 @@ namespace Pulumi.Fastly
             string? responseCondition,
             string? s3AccessKey,
             string? s3SecretKey,
+            string? serverSideEncryption,
+            string? serverSideEncryptionKmsKeyId,
             string? timestampFormat)
         {
             BucketName = bucketName;
@@ -3507,6 +5036,8 @@ namespace Pulumi.Fastly
             ResponseCondition = responseCondition;
             S3AccessKey = s3AccessKey;
             S3SecretKey = s3SecretKey;
+            ServerSideEncryption = serverSideEncryption;
+            ServerSideEncryptionKmsKeyId = serverSideEncryptionKmsKeyId;
             TimestampFormat = timestampFormat;
         }
     }
@@ -3514,12 +5045,21 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Snippets
     {
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         public readonly string Content;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// </summary>
         public readonly int? Priority;
+        /// <summary>
+        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -3539,15 +5079,33 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Splunks
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         public readonly string Token;
+        /// <summary>
+        /// The Splunk URL to stream logs to.
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]
@@ -3573,15 +5131,33 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Sumologics
     {
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         public readonly int? FormatVersion;
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// The Splunk URL to stream logs to.
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]
@@ -3607,22 +5183,61 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Syslogs
     {
+        /// <summary>
+        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// </summary>
         public readonly string? Format;
+        /// <summary>
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// </summary>
         public readonly int? FormatVersion;
+        /// <summary>
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// The name of the `condition` to apply. If empty, always execute.
+        /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        /// </summary>
         public readonly string? TlsCaCert;
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        /// </summary>
         public readonly string? TlsClientCert;
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        /// </summary>
         public readonly string? TlsClientKey;
+        /// <summary>
+        /// Used during the TLS handshake to validate the certificate.
+        /// </summary>
         public readonly string? TlsHostname;
+        /// <summary>
+        /// The Splunk token to be used for authentication.
+        /// </summary>
         public readonly string? Token;
+        /// <summary>
+        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// </summary>
         public readonly bool? UseTls;
 
         [OutputConstructor]
@@ -3662,10 +5277,18 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class Servicev1Vcls
     {
+        /// <summary>
+        /// The custom VCL code to upload.
+        /// </summary>
         public readonly string Content;
+        /// <summary>
+        /// If `true`, use this block as the main configuration. If
+        /// `false`, use this block as an includable library. Only a single VCL block can be
+        /// marked as the main block. Default is `false`.
+        /// </summary>
         public readonly bool? Main;
         /// <summary>
-        /// The unique name for the Service to create.
+        /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
 
