@@ -140,18 +140,30 @@ namespace Pulumi.Fastly
 
     public sealed class ServiceACLEntriesv1EntriesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A personal freeform descriptive note
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// An IP address that is the focus for the ACL
+        /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
 
+        /// <summary>
+        /// A boolean that will negate the match if true
+        /// </summary>
         [Input("negated")]
         public Input<bool>? Negated { get; set; }
 
+        /// <summary>
+        /// An optional subnet mask applied to the IP address
+        /// </summary>
         [Input("subnet")]
         public Input<string>? Subnet { get; set; }
 
@@ -162,18 +174,30 @@ namespace Pulumi.Fastly
 
     public sealed class ServiceACLEntriesv1EntriesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A personal freeform descriptive note
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// An IP address that is the focus for the ACL
+        /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
 
+        /// <summary>
+        /// A boolean that will negate the match if true
+        /// </summary>
         [Input("negated")]
         public Input<bool>? Negated { get; set; }
 
+        /// <summary>
+        /// An optional subnet mask applied to the IP address
+        /// </summary>
         [Input("subnet")]
         public Input<string>? Subnet { get; set; }
 
@@ -189,10 +213,22 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class ServiceACLEntriesv1Entries
     {
+        /// <summary>
+        /// A personal freeform descriptive note
+        /// </summary>
         public readonly string? Comment;
         public readonly string Id;
+        /// <summary>
+        /// An IP address that is the focus for the ACL
+        /// </summary>
         public readonly string Ip;
+        /// <summary>
+        /// A boolean that will negate the match if true
+        /// </summary>
         public readonly bool? Negated;
+        /// <summary>
+        /// An optional subnet mask applied to the IP address
+        /// </summary>
         public readonly string? Subnet;
 
         [OutputConstructor]

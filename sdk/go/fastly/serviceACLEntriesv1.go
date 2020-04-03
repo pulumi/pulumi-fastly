@@ -99,4 +99,3 @@ type ServiceACLEntriesv1Args struct {
 func (ServiceACLEntriesv1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceACLEntriesv1Args)(nil)).Elem()
 }
-

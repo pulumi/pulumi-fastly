@@ -99,4 +99,3 @@ type ServiceDictionaryItemsv1Args struct {
 func (ServiceDictionaryItemsv1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceDictionaryItemsv1Args)(nil)).Elem()
 }
-

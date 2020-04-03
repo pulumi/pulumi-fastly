@@ -41,13 +41,13 @@ type Servicev1 struct {
 	Blobstorageloggings Servicev1BlobstorageloggingArrayOutput `pulumi:"blobstorageloggings"`
 	// A set of Cache Settings, allowing you to override
 	CacheSettings Servicev1CacheSettingArrayOutput `pulumi:"cacheSettings"`
-	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
-	// A personal freeform descriptive note
+	ClonedVersion pulumi.IntOutput                 `pulumi:"clonedVersion"`
+	// An optional comment about the Director.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// A set of conditions to add logic to any basic
 	// configuration object in this service. Defined below.
 	Conditions Servicev1ConditionArrayOutput `pulumi:"conditions"`
-	// The default hostname.
+	// Sets the host header.
 	DefaultHost pulumi.StringOutput `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for
 	// requests.
@@ -57,8 +57,8 @@ type Servicev1 struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors Servicev1DirectorArrayOutput `pulumi:"directors"`
-	// A set of Domain names to serve as entry points for your
-	// Service. Defined below.
+	// If you created the S3 bucket outside of `us-east-1`,
+	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 	Domains Servicev1DomainArrayOutput `pulumi:"domains"`
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
@@ -74,12 +74,12 @@ type Servicev1 struct {
 	// A set of Headers to manipulate for each request. Defined
 	// below.
 	Headers Servicev1HeaderArrayOutput `pulumi:"headers"`
-	// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayOutput `pulumi:"healthchecks"`
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayOutput `pulumi:"logentries"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -159,13 +159,13 @@ type servicev1State struct {
 	Blobstorageloggings []Servicev1Blobstoragelogging `pulumi:"blobstorageloggings"`
 	// A set of Cache Settings, allowing you to override
 	CacheSettings []Servicev1CacheSetting `pulumi:"cacheSettings"`
-	ClonedVersion *int `pulumi:"clonedVersion"`
-	// A personal freeform descriptive note
+	ClonedVersion *int                    `pulumi:"clonedVersion"`
+	// An optional comment about the Director.
 	Comment *string `pulumi:"comment"`
 	// A set of conditions to add logic to any basic
 	// configuration object in this service. Defined below.
 	Conditions []Servicev1Condition `pulumi:"conditions"`
-	// The default hostname.
+	// Sets the host header.
 	DefaultHost *string `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for
 	// requests.
@@ -175,8 +175,8 @@ type servicev1State struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors []Servicev1Director `pulumi:"directors"`
-	// A set of Domain names to serve as entry points for your
-	// Service. Defined below.
+	// If you created the S3 bucket outside of `us-east-1`,
+	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 	Domains []Servicev1Domain `pulumi:"domains"`
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
@@ -192,12 +192,12 @@ type servicev1State struct {
 	// A set of Headers to manipulate for each request. Defined
 	// below.
 	Headers []Servicev1Header `pulumi:"headers"`
-	// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name *string `pulumi:"name"`
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -248,12 +248,12 @@ type Servicev1State struct {
 	// A set of Cache Settings, allowing you to override
 	CacheSettings Servicev1CacheSettingArrayInput
 	ClonedVersion pulumi.IntPtrInput
-	// A personal freeform descriptive note
+	// An optional comment about the Director.
 	Comment pulumi.StringPtrInput
 	// A set of conditions to add logic to any basic
 	// configuration object in this service. Defined below.
 	Conditions Servicev1ConditionArrayInput
-	// The default hostname.
+	// Sets the host header.
 	DefaultHost pulumi.StringPtrInput
 	// The default Time-to-live (TTL) for
 	// requests.
@@ -263,8 +263,8 @@ type Servicev1State struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors Servicev1DirectorArrayInput
-	// A set of Domain names to serve as entry points for your
-	// Service. Defined below.
+	// If you created the S3 bucket outside of `us-east-1`,
+	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 	Domains Servicev1DomainArrayInput
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
@@ -280,12 +280,12 @@ type Servicev1State struct {
 	// A set of Headers to manipulate for each request. Defined
 	// below.
 	Headers Servicev1HeaderArrayInput
-	// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayInput
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringPtrInput
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -337,12 +337,12 @@ type servicev1Args struct {
 	Blobstorageloggings []Servicev1Blobstoragelogging `pulumi:"blobstorageloggings"`
 	// A set of Cache Settings, allowing you to override
 	CacheSettings []Servicev1CacheSetting `pulumi:"cacheSettings"`
-	// A personal freeform descriptive note
+	// An optional comment about the Director.
 	Comment *string `pulumi:"comment"`
 	// A set of conditions to add logic to any basic
 	// configuration object in this service. Defined below.
 	Conditions []Servicev1Condition `pulumi:"conditions"`
-	// The default hostname.
+	// Sets the host header.
 	DefaultHost *string `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for
 	// requests.
@@ -352,8 +352,8 @@ type servicev1Args struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors []Servicev1Director `pulumi:"directors"`
-	// A set of Domain names to serve as entry points for your
-	// Service. Defined below.
+	// If you created the S3 bucket outside of `us-east-1`,
+	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 	Domains []Servicev1Domain `pulumi:"domains"`
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
@@ -369,12 +369,12 @@ type servicev1Args struct {
 	// A set of Headers to manipulate for each request. Defined
 	// below.
 	Headers []Servicev1Header `pulumi:"headers"`
-	// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name *string `pulumi:"name"`
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -423,12 +423,12 @@ type Servicev1Args struct {
 	Blobstorageloggings Servicev1BlobstorageloggingArrayInput
 	// A set of Cache Settings, allowing you to override
 	CacheSettings Servicev1CacheSettingArrayInput
-	// A personal freeform descriptive note
+	// An optional comment about the Director.
 	Comment pulumi.StringPtrInput
 	// A set of conditions to add logic to any basic
 	// configuration object in this service. Defined below.
 	Conditions Servicev1ConditionArrayInput
-	// The default hostname.
+	// Sets the host header.
 	DefaultHost pulumi.StringPtrInput
 	// The default Time-to-live (TTL) for
 	// requests.
@@ -438,8 +438,8 @@ type Servicev1Args struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors Servicev1DirectorArrayInput
-	// A set of Domain names to serve as entry points for your
-	// Service. Defined below.
+	// If you created the S3 bucket outside of `us-east-1`,
+	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 	Domains Servicev1DomainArrayInput
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
@@ -455,12 +455,12 @@ type Servicev1Args struct {
 	// A set of Headers to manipulate for each request. Defined
 	// below.
 	Headers Servicev1HeaderArrayInput
-	// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayInput
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringPtrInput
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -494,4 +494,3 @@ type Servicev1Args struct {
 func (Servicev1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*servicev1Args)(nil)).Elem()
 }
-

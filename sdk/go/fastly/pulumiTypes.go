@@ -12,10 +12,14 @@ import (
 )
 
 type ServiceACLEntriesv1Entry struct {
+	// A personal freeform descriptive note
 	Comment *string `pulumi:"comment"`
-	Id *string `pulumi:"id"`
+	Id      *string `pulumi:"id"`
+	// An IP address that is the focus for the ACL
 	Ip string `pulumi:"ip"`
+	// A boolean that will negate the match if true
 	Negated *bool `pulumi:"negated"`
+	// An optional subnet mask applied to the IP address
 	Subnet *string `pulumi:"subnet"`
 }
 
@@ -27,10 +31,14 @@ type ServiceACLEntriesv1EntryInput interface {
 }
 
 type ServiceACLEntriesv1EntryArgs struct {
+	// A personal freeform descriptive note
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id      pulumi.StringPtrInput `pulumi:"id"`
+	// An IP address that is the focus for the ACL
 	Ip pulumi.StringInput `pulumi:"ip"`
+	// A boolean that will negate the match if true
 	Negated pulumi.BoolPtrInput `pulumi:"negated"`
+	// An optional subnet mask applied to the IP address
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
 }
 
@@ -67,7 +75,7 @@ func (i ServiceACLEntriesv1EntryArray) ToServiceACLEntriesv1EntryArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1EntryArrayOutput)
 }
 
-type ServiceACLEntriesv1EntryOutput struct { *pulumi.OutputState }
+type ServiceACLEntriesv1EntryOutput struct{ *pulumi.OutputState }
 
 func (ServiceACLEntriesv1EntryOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ServiceACLEntriesv1Entry)(nil)).Elem()
@@ -81,27 +89,31 @@ func (o ServiceACLEntriesv1EntryOutput) ToServiceACLEntriesv1EntryOutputWithCont
 	return o
 }
 
+// A personal freeform descriptive note
 func (o ServiceACLEntriesv1EntryOutput) Comment() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ServiceACLEntriesv1Entry) *string { return v.Comment }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ServiceACLEntriesv1Entry) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
 func (o ServiceACLEntriesv1EntryOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ServiceACLEntriesv1Entry) *string { return v.Id }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ServiceACLEntriesv1Entry) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// An IP address that is the focus for the ACL
 func (o ServiceACLEntriesv1EntryOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func (v ServiceACLEntriesv1Entry) string { return v.Ip }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ServiceACLEntriesv1Entry) string { return v.Ip }).(pulumi.StringOutput)
 }
 
+// A boolean that will negate the match if true
 func (o ServiceACLEntriesv1EntryOutput) Negated() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v ServiceACLEntriesv1Entry) *bool { return v.Negated }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v ServiceACLEntriesv1Entry) *bool { return v.Negated }).(pulumi.BoolPtrOutput)
 }
 
+// An optional subnet mask applied to the IP address
 func (o ServiceACLEntriesv1EntryOutput) Subnet() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ServiceACLEntriesv1Entry) *string { return v.Subnet }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ServiceACLEntriesv1Entry) *string { return v.Subnet }).(pulumi.StringPtrOutput)
 }
 
-type ServiceACLEntriesv1EntryArrayOutput struct { *pulumi.OutputState}
+type ServiceACLEntriesv1EntryArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceACLEntriesv1EntryArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]ServiceACLEntriesv1Entry)(nil)).Elem()
@@ -116,7 +128,7 @@ func (o ServiceACLEntriesv1EntryArrayOutput) ToServiceACLEntriesv1EntryArrayOutp
 }
 
 func (o ServiceACLEntriesv1EntryArrayOutput) Index(i pulumi.IntInput) ServiceACLEntriesv1EntryOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ServiceACLEntriesv1Entry {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceACLEntriesv1Entry {
 		return vs[0].([]ServiceACLEntriesv1Entry)[vs[1].(int)]
 	}).(ServiceACLEntriesv1EntryOutput)
 }
@@ -124,7 +136,7 @@ func (o ServiceACLEntriesv1EntryArrayOutput) Index(i pulumi.IntInput) ServiceACL
 type Servicev1Acl struct {
 	// The ID of the ACL.
 	AclId *string `pulumi:"aclId"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
 }
 
@@ -138,7 +150,7 @@ type Servicev1AclInput interface {
 type Servicev1AclArgs struct {
 	// The ID of the ACL.
 	AclId pulumi.StringPtrInput `pulumi:"aclId"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -175,7 +187,7 @@ func (i Servicev1AclArray) ToServicev1AclArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1AclArrayOutput)
 }
 
-type Servicev1AclOutput struct { *pulumi.OutputState }
+type Servicev1AclOutput struct{ *pulumi.OutputState }
 
 func (Servicev1AclOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Acl)(nil)).Elem()
@@ -191,15 +203,15 @@ func (o Servicev1AclOutput) ToServicev1AclOutputWithContext(ctx context.Context)
 
 // The ID of the ACL.
 func (o Servicev1AclOutput) AclId() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Acl) *string { return v.AclId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Acl) *string { return v.AclId }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1AclOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Acl) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Acl) string { return v.Name }).(pulumi.StringOutput)
 }
 
-type Servicev1AclArrayOutput struct { *pulumi.OutputState}
+type Servicev1AclArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1AclArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Acl)(nil)).Elem()
@@ -214,38 +226,65 @@ func (o Servicev1AclArrayOutput) ToServicev1AclArrayOutputWithContext(ctx contex
 }
 
 func (o Servicev1AclArrayOutput) Index(i pulumi.IntInput) Servicev1AclOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Acl {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Acl {
 		return vs[0].([]Servicev1Acl)[vs[1].(int)]
 	}).(Servicev1AclOutput)
 }
 
 type Servicev1Backend struct {
+	// A hostname or IPv4 address of the Syslog endpoint.
 	Address string `pulumi:"address"`
+	// Denotes if this Backend should be
+	// included in the pool of backends that requests are load balanced against.
+	// Default `true`.
 	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`.
 	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds.
+	// Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`.
 	ErrorThreshold *int `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`.
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
-	// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+	// Name of a defined `healthcheck` to assign to this backend.
 	Healthcheck *string `pulumi:"healthcheck"`
+	// Maximum number of connections for this Backend.
+	// Default `200`.
 	MaxConn *int `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// The hostname to override the Host header.
 	OverrideHost *string `pulumi:"overrideHost"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port *int `pulumi:"port"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition *string `pulumi:"requestCondition"`
+	// Selected POP to serve as a "shield" for origin servers.
 	Shield *string `pulumi:"shield"`
+	// CA certificate attached to origin.
 	SslCaCert *string `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
 	SslCertHostname *string `pulumi:"sslCertHostname"`
+	// Be strict about checking SSL certs. Default `true`.
 	SslCheckCert *bool `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
 	SslCiphers *string `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend.
 	SslClientCert *string `pulumi:"sslClientCert"`
+	// Client key attached to origin. Used when connecting to the backend.
 	SslClientKey *string `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert.
 	SslHostname *string `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
 	SslSniHostname *string `pulumi:"sslSniHostname"`
+	// Whether or not to use SSL to reach the backend. Default `false`.
 	UseSsl *bool `pulumi:"useSsl"`
+	// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
 	Weight *int `pulumi:"weight"`
 }
 
@@ -257,32 +296,59 @@ type Servicev1BackendInput interface {
 }
 
 type Servicev1BackendArgs struct {
+	// A hostname or IPv4 address of the Syslog endpoint.
 	Address pulumi.StringInput `pulumi:"address"`
+	// Denotes if this Backend should be
+	// included in the pool of backends that requests are load balanced against.
+	// Default `true`.
 	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`.
 	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds.
+	// Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`.
 	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`.
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
-	// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+	// Name of a defined `healthcheck` to assign to this backend.
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
+	// Maximum number of connections for this Backend.
+	// Default `200`.
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The hostname to override the Host header.
 	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
+	// Selected POP to serve as a "shield" for origin servers.
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
+	// CA certificate attached to origin.
 	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
+	// Be strict about checking SSL certs. Default `true`.
 	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
 	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend.
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
+	// Client key attached to origin. Used when connecting to the backend.
 	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert.
 	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
+	// Whether or not to use SSL to reach the backend. Default `false`.
 	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
+	// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
 
@@ -319,7 +385,7 @@ func (i Servicev1BackendArray) ToServicev1BackendArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1BackendArrayOutput)
 }
 
-type Servicev1BackendOutput struct { *pulumi.OutputState }
+type Servicev1BackendOutput struct{ *pulumi.OutputState }
 
 func (Servicev1BackendOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Backend)(nil)).Elem()
@@ -333,109 +399,136 @@ func (o Servicev1BackendOutput) ToServicev1BackendOutputWithContext(ctx context.
 	return o
 }
 
+// A hostname or IPv4 address of the Syslog endpoint.
 func (o Servicev1BackendOutput) Address() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Backend) string { return v.Address }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Backend) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Denotes if this Backend should be
+// included in the pool of backends that requests are load balanced against.
+// Default `true`.
 func (o Servicev1BackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
 }
 
+// How long to wait between bytes in milliseconds. Default `10000`.
 func (o Servicev1BackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
 }
 
+// How long to wait for a timeout in milliseconds.
+// Default `1000`
 func (o Servicev1BackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
+// Number of errors to allow before the Backend is marked as down. Default `0`.
 func (o Servicev1BackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
+// How long to wait for the first bytes in milliseconds. Default `15000`.
 func (o Servicev1BackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *int { return v.FirstByteTimeout }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *int { return v.FirstByteTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.
+// Name of a defined `healthcheck` to assign to this backend.
 func (o Servicev1BackendOutput) Healthcheck() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
 }
 
+// Maximum number of connections for this Backend.
+// Default `200`.
 func (o Servicev1BackendOutput) MaxConn() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
+// Maximum allowed TLS version on SSL connections to this backend.
 func (o Servicev1BackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
 }
 
+// Minimum allowed TLS version on SSL connections to this backend.
 func (o Servicev1BackendOutput) MinTlsVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1BackendOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Backend) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Backend) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The hostname to override the Host header.
 func (o Servicev1BackendOutput) OverrideHost() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.OverrideHost }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.OverrideHost }).(pulumi.StringPtrOutput)
 }
 
+// The port number configured in Logentries to send logs to. Defaults to `20000`.
 func (o Servicev1BackendOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *int { return v.Port }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 func (o Servicev1BackendOutput) RequestCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
+// Selected POP to serve as a "shield" for origin servers.
 func (o Servicev1BackendOutput) Shield() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.Shield }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
 
+// CA certificate attached to origin.
 func (o Servicev1BackendOutput) SslCaCert() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
 }
 
+// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
 func (o Servicev1BackendOutput) SslCertHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
 }
 
+// Be strict about checking SSL certs. Default `true`.
 func (o Servicev1BackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
 }
 
+// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
 func (o Servicev1BackendOutput) SslCiphers() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
 }
 
+// Client certificate attached to origin. Used when connecting to the backend.
 func (o Servicev1BackendOutput) SslClientCert() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.SslClientCert }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslClientCert }).(pulumi.StringPtrOutput)
 }
 
+// Client key attached to origin. Used when connecting to the backend.
 func (o Servicev1BackendOutput) SslClientKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
 }
 
+// Used for both SNI during the TLS handshake and to validate the cert.
 func (o Servicev1BackendOutput) SslHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
 }
 
+// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
 func (o Servicev1BackendOutput) SslSniHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
 }
 
+// Whether or not to use SSL to reach the backend. Default `false`.
 func (o Servicev1BackendOutput) UseSsl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
 }
 
+// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
 func (o Servicev1BackendOutput) Weight() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Backend) *int { return v.Weight }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Backend) *int { return v.Weight }).(pulumi.IntPtrOutput)
 }
 
-type Servicev1BackendArrayOutput struct { *pulumi.OutputState}
+type Servicev1BackendArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1BackendArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Backend)(nil)).Elem()
@@ -450,22 +543,31 @@ func (o Servicev1BackendArrayOutput) ToServicev1BackendArrayOutputWithContext(ct
 }
 
 func (o Servicev1BackendArrayOutput) Index(i pulumi.IntInput) Servicev1BackendOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Backend {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Backend {
 		return vs[0].([]Servicev1Backend)[vs[1].(int)]
 	}).(Servicev1BackendOutput)
 }
 
 type Servicev1Bigquerylogging struct {
+	// The ID of your BigQuery dataset.
 	Dataset string `pulumi:"dataset"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 	Email *string `pulumi:"email"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The ID of your GCP project.
 	ProjectId string `pulumi:"projectId"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
 	SecretKey *string `pulumi:"secretKey"`
+	// The ID of your BigQuery table.
 	Table string `pulumi:"table"`
+	// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
 	Template *string `pulumi:"template"`
 }
 
@@ -477,16 +579,25 @@ type Servicev1BigqueryloggingInput interface {
 }
 
 type Servicev1BigqueryloggingArgs struct {
+	// The ID of your BigQuery dataset.
 	Dataset pulumi.StringInput `pulumi:"dataset"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 	Email pulumi.StringPtrInput `pulumi:"email"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The ID of your GCP project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// The ID of your BigQuery table.
 	Table pulumi.StringInput `pulumi:"table"`
+	// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
 	Template pulumi.StringPtrInput `pulumi:"template"`
 }
 
@@ -523,7 +634,7 @@ func (i Servicev1BigqueryloggingArray) ToServicev1BigqueryloggingArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1BigqueryloggingArrayOutput)
 }
 
-type Servicev1BigqueryloggingOutput struct { *pulumi.OutputState }
+type Servicev1BigqueryloggingOutput struct{ *pulumi.OutputState }
 
 func (Servicev1BigqueryloggingOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Bigquerylogging)(nil)).Elem()
@@ -537,48 +648,57 @@ func (o Servicev1BigqueryloggingOutput) ToServicev1BigqueryloggingOutputWithCont
 	return o
 }
 
+// The ID of your BigQuery dataset.
 func (o Servicev1BigqueryloggingOutput) Dataset() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) string { return v.Dataset }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Dataset }).(pulumi.StringOutput)
 }
 
+// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 func (o Servicev1BigqueryloggingOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) *string { return v.Email }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1BigqueryloggingOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1BigqueryloggingOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1BigqueryloggingOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The ID of your GCP project.
 func (o Servicev1BigqueryloggingOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) string { return v.ProjectId }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1BigqueryloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
 func (o Servicev1BigqueryloggingOutput) SecretKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// The ID of your BigQuery table.
 func (o Servicev1BigqueryloggingOutput) Table() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) string { return v.Table }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Table }).(pulumi.StringOutput)
 }
 
+// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
 func (o Servicev1BigqueryloggingOutput) Template() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Bigquerylogging) *string { return v.Template }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Template }).(pulumi.StringPtrOutput)
 }
 
-type Servicev1BigqueryloggingArrayOutput struct { *pulumi.OutputState}
+type Servicev1BigqueryloggingArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1BigqueryloggingArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Bigquerylogging)(nil)).Elem()
@@ -593,26 +713,39 @@ func (o Servicev1BigqueryloggingArrayOutput) ToServicev1BigqueryloggingArrayOutp
 }
 
 func (o Servicev1BigqueryloggingArrayOutput) Index(i pulumi.IntInput) Servicev1BigqueryloggingOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Bigquerylogging {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Bigquerylogging {
 		return vs[0].([]Servicev1Bigquerylogging)[vs[1].(int)]
 	}).(Servicev1BigqueryloggingOutput)
 }
 
 type Servicev1Blobstoragelogging struct {
+	// The unique Azure Blob Storage namespace in which your data objects are stored.
 	AccountName string `pulumi:"accountName"`
+	// The name of the Azure Blob Storage container in which to store logs.
 	Container string `pulumi:"container"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion *int `pulumi:"formatVersion"`
+	// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path *string `pulumi:"path"`
+	// How frequently the logs should be transferred in seconds. Default `3600`.
 	Period *int `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey *string `pulumi:"publicKey"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
 	SasToken string `pulumi:"sasToken"`
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -624,20 +757,33 @@ type Servicev1BlobstorageloggingInput interface {
 }
 
 type Servicev1BlobstorageloggingArgs struct {
+	// The unique Azure Blob Storage namespace in which your data objects are stored.
 	AccountName pulumi.StringInput `pulumi:"accountName"`
+	// The name of the Azure Blob Storage container in which to store logs.
 	Container pulumi.StringInput `pulumi:"container"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently the logs should be transferred in seconds. Default `3600`.
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
 	SasToken pulumi.StringInput `pulumi:"sasToken"`
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -674,7 +820,7 @@ func (i Servicev1BlobstorageloggingArray) ToServicev1BlobstorageloggingArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1BlobstorageloggingArrayOutput)
 }
 
-type Servicev1BlobstorageloggingOutput struct { *pulumi.OutputState }
+type Servicev1BlobstorageloggingOutput struct{ *pulumi.OutputState }
 
 func (Servicev1BlobstorageloggingOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Blobstoragelogging)(nil)).Elem()
@@ -688,64 +834,77 @@ func (o Servicev1BlobstorageloggingOutput) ToServicev1BlobstorageloggingOutputWi
 	return o
 }
 
+// The unique Azure Blob Storage namespace in which your data objects are stored.
 func (o Servicev1BlobstorageloggingOutput) AccountName() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) string { return v.AccountName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.AccountName }).(pulumi.StringOutput)
 }
 
+// The name of the Azure Blob Storage container in which to store logs.
 func (o Servicev1BlobstorageloggingOutput) Container() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) string { return v.Container }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.Container }).(pulumi.StringOutput)
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1BlobstorageloggingOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 func (o Servicev1BlobstorageloggingOutput) FormatVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
+// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 func (o Servicev1BlobstorageloggingOutput) GzipLevel() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 func (o Servicev1BlobstorageloggingOutput) MessageType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1BlobstorageloggingOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 func (o Servicev1BlobstorageloggingOutput) Path() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *string { return v.Path }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
+// How frequently the logs should be transferred in seconds. Default `3600`.
 func (o Servicev1BlobstorageloggingOutput) Period() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *int { return v.Period }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1BlobstorageloggingOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 func (o Servicev1BlobstorageloggingOutput) PublicKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1BlobstorageloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
 func (o Servicev1BlobstorageloggingOutput) SasToken() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) string { return v.SasToken }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.SasToken }).(pulumi.StringOutput)
 }
 
+// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 func (o Servicev1BlobstorageloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Blobstoragelogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-type Servicev1BlobstorageloggingArrayOutput struct { *pulumi.OutputState}
+type Servicev1BlobstorageloggingArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1BlobstorageloggingArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Blobstoragelogging)(nil)).Elem()
@@ -760,17 +919,23 @@ func (o Servicev1BlobstorageloggingArrayOutput) ToServicev1BlobstorageloggingArr
 }
 
 func (o Servicev1BlobstorageloggingArrayOutput) Index(i pulumi.IntInput) Servicev1BlobstorageloggingOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Blobstoragelogging {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Blobstoragelogging {
 		return vs[0].([]Servicev1Blobstoragelogging)[vs[1].(int)]
 	}).(Servicev1BlobstorageloggingOutput)
 }
 
 type Servicev1CacheSetting struct {
+	// Allows you to terminate request handling and immediately
+	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 	Action *string `pulumi:"action"`
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition *string `pulumi:"cacheCondition"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Max "Time To Live" for stale (unreachable) objects.
 	StaleTtl *int `pulumi:"staleTtl"`
+	// The Time-To-Live (TTL) for the object.
 	Ttl *int `pulumi:"ttl"`
 }
 
@@ -782,11 +947,17 @@ type Servicev1CacheSettingInput interface {
 }
 
 type Servicev1CacheSettingArgs struct {
+	// Allows you to terminate request handling and immediately
+	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 	Action pulumi.StringPtrInput `pulumi:"action"`
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Max "Time To Live" for stale (unreachable) objects.
 	StaleTtl pulumi.IntPtrInput `pulumi:"staleTtl"`
+	// The Time-To-Live (TTL) for the object.
 	Ttl pulumi.IntPtrInput `pulumi:"ttl"`
 }
 
@@ -823,7 +994,7 @@ func (i Servicev1CacheSettingArray) ToServicev1CacheSettingArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1CacheSettingArrayOutput)
 }
 
-type Servicev1CacheSettingOutput struct { *pulumi.OutputState }
+type Servicev1CacheSettingOutput struct{ *pulumi.OutputState }
 
 func (Servicev1CacheSettingOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1CacheSetting)(nil)).Elem()
@@ -837,28 +1008,34 @@ func (o Servicev1CacheSettingOutput) ToServicev1CacheSettingOutputWithContext(ct
 	return o
 }
 
+// Allows you to terminate request handling and immediately
+// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 func (o Servicev1CacheSettingOutput) Action() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1CacheSetting) *string { return v.Action }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1CacheSetting) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
 
+// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 func (o Servicev1CacheSettingOutput) CacheCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1CacheSetting) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1CacheSetting) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1CacheSettingOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1CacheSetting) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1CacheSetting) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Max "Time To Live" for stale (unreachable) objects.
 func (o Servicev1CacheSettingOutput) StaleTtl() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1CacheSetting) *int { return v.StaleTtl }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1CacheSetting) *int { return v.StaleTtl }).(pulumi.IntPtrOutput)
 }
 
+// The Time-To-Live (TTL) for the object.
 func (o Servicev1CacheSettingOutput) Ttl() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1CacheSetting) *int { return v.Ttl }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1CacheSetting) *int { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
-type Servicev1CacheSettingArrayOutput struct { *pulumi.OutputState}
+type Servicev1CacheSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1CacheSettingArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1CacheSetting)(nil)).Elem()
@@ -873,16 +1050,19 @@ func (o Servicev1CacheSettingArrayOutput) ToServicev1CacheSettingArrayOutputWith
 }
 
 func (o Servicev1CacheSettingArrayOutput) Index(i pulumi.IntInput) Servicev1CacheSettingOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1CacheSetting {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1CacheSetting {
 		return vs[0].([]Servicev1CacheSetting)[vs[1].(int)]
 	}).(Servicev1CacheSettingOutput)
 }
 
 type Servicev1Condition struct {
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority *int `pulumi:"priority"`
+	// The statement used to determine if the condition is met.
 	Statement string `pulumi:"statement"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type string `pulumi:"type"`
 }
 
@@ -894,10 +1074,13 @@ type Servicev1ConditionInput interface {
 }
 
 type Servicev1ConditionArgs struct {
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
+	// The statement used to determine if the condition is met.
 	Statement pulumi.StringInput `pulumi:"statement"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -934,7 +1117,7 @@ func (i Servicev1ConditionArray) ToServicev1ConditionArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1ConditionArrayOutput)
 }
 
-type Servicev1ConditionOutput struct { *pulumi.OutputState }
+type Servicev1ConditionOutput struct{ *pulumi.OutputState }
 
 func (Servicev1ConditionOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Condition)(nil)).Elem()
@@ -948,24 +1131,27 @@ func (o Servicev1ConditionOutput) ToServicev1ConditionOutputWithContext(ctx cont
 	return o
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1ConditionOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Condition) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Condition) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 func (o Servicev1ConditionOutput) Priority() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Condition) *int { return v.Priority }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Condition) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
+// The statement used to determine if the condition is met.
 func (o Servicev1ConditionOutput) Statement() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Condition) string { return v.Statement }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Condition) string { return v.Statement }).(pulumi.StringOutput)
 }
 
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 func (o Servicev1ConditionOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Condition) string { return v.Type }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Condition) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type Servicev1ConditionArrayOutput struct { *pulumi.OutputState}
+type Servicev1ConditionArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1ConditionArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Condition)(nil)).Elem()
@@ -980,7 +1166,7 @@ func (o Servicev1ConditionArrayOutput) ToServicev1ConditionArrayOutputWithContex
 }
 
 func (o Servicev1ConditionArrayOutput) Index(i pulumi.IntInput) Servicev1ConditionOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Condition {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Condition {
 		return vs[0].([]Servicev1Condition)[vs[1].(int)]
 	}).(Servicev1ConditionOutput)
 }
@@ -988,9 +1174,9 @@ func (o Servicev1ConditionArrayOutput) Index(i pulumi.IntInput) Servicev1Conditi
 type Servicev1Dictionary struct {
 	// The ID of the dictionary.
 	DictionaryId *string `pulumi:"dictionaryId"`
-	// The unique name for the Service to create.
-	Name string `pulumi:"name"`
-	WriteOnly *bool `pulumi:"writeOnly"`
+	// A unique name to identify this dictionary.
+	Name      string `pulumi:"name"`
+	WriteOnly *bool  `pulumi:"writeOnly"`
 }
 
 type Servicev1DictionaryInput interface {
@@ -1003,8 +1189,8 @@ type Servicev1DictionaryInput interface {
 type Servicev1DictionaryArgs struct {
 	// The ID of the dictionary.
 	DictionaryId pulumi.StringPtrInput `pulumi:"dictionaryId"`
-	// The unique name for the Service to create.
-	Name pulumi.StringInput `pulumi:"name"`
+	// A unique name to identify this dictionary.
+	Name      pulumi.StringInput  `pulumi:"name"`
 	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
 }
 
@@ -1041,7 +1227,7 @@ func (i Servicev1DictionaryArray) ToServicev1DictionaryArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1DictionaryArrayOutput)
 }
 
-type Servicev1DictionaryOutput struct { *pulumi.OutputState }
+type Servicev1DictionaryOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DictionaryOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Dictionary)(nil)).Elem()
@@ -1057,19 +1243,19 @@ func (o Servicev1DictionaryOutput) ToServicev1DictionaryOutputWithContext(ctx co
 
 // The ID of the dictionary.
 func (o Servicev1DictionaryOutput) DictionaryId() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Dictionary) *string { return v.DictionaryId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Dictionary) *string { return v.DictionaryId }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1DictionaryOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Dictionary) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Dictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o Servicev1DictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Dictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Dictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }
 
-type Servicev1DictionaryArrayOutput struct { *pulumi.OutputState}
+type Servicev1DictionaryArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DictionaryArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Dictionary)(nil)).Elem()
@@ -1084,20 +1270,27 @@ func (o Servicev1DictionaryArrayOutput) ToServicev1DictionaryArrayOutputWithCont
 }
 
 func (o Servicev1DictionaryArrayOutput) Index(i pulumi.IntInput) Servicev1DictionaryOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Dictionary {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Dictionary {
 		return vs[0].([]Servicev1Dictionary)[vs[1].(int)]
 	}).(Servicev1DictionaryOutput)
 }
 
 type Servicev1Director struct {
+	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
 	Backends []string `pulumi:"backends"`
+	// Load balancing weight for the backends. Default `100`.
 	Capacity *int `pulumi:"capacity"`
+	// An optional comment about the Director.
 	Comment *string `pulumi:"comment"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
 	Quorum *int `pulumi:"quorum"`
+	// How many backends to search if it fails. Default `5`.
 	Retries *int `pulumi:"retries"`
+	// Selected POP to serve as a "shield" for origin servers.
 	Shield *string `pulumi:"shield"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type *int `pulumi:"type"`
 }
 
@@ -1109,14 +1302,21 @@ type Servicev1DirectorInput interface {
 }
 
 type Servicev1DirectorArgs struct {
+	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
 	Backends pulumi.StringArrayInput `pulumi:"backends"`
+	// Load balancing weight for the backends. Default `100`.
 	Capacity pulumi.IntPtrInput `pulumi:"capacity"`
+	// An optional comment about the Director.
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
 	Quorum pulumi.IntPtrInput `pulumi:"quorum"`
+	// How many backends to search if it fails. Default `5`.
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
+	// Selected POP to serve as a "shield" for origin servers.
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type pulumi.IntPtrInput `pulumi:"type"`
 }
 
@@ -1153,7 +1353,7 @@ func (i Servicev1DirectorArray) ToServicev1DirectorArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1DirectorArrayOutput)
 }
 
-type Servicev1DirectorOutput struct { *pulumi.OutputState }
+type Servicev1DirectorOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DirectorOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Director)(nil)).Elem()
@@ -1167,40 +1367,47 @@ func (o Servicev1DirectorOutput) ToServicev1DirectorOutputWithContext(ctx contex
 	return o
 }
 
+// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
 func (o Servicev1DirectorOutput) Backends() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v Servicev1Director) []string { return v.Backends }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v Servicev1Director) []string { return v.Backends }).(pulumi.StringArrayOutput)
 }
 
+// Load balancing weight for the backends. Default `100`.
 func (o Servicev1DirectorOutput) Capacity() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Director) *int { return v.Capacity }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Director) *int { return v.Capacity }).(pulumi.IntPtrOutput)
 }
 
+// An optional comment about the Director.
 func (o Servicev1DirectorOutput) Comment() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Director) *string { return v.Comment }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Director) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1DirectorOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Director) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Director) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
 func (o Servicev1DirectorOutput) Quorum() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Director) *int { return v.Quorum }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Director) *int { return v.Quorum }).(pulumi.IntPtrOutput)
 }
 
+// How many backends to search if it fails. Default `5`.
 func (o Servicev1DirectorOutput) Retries() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Director) *int { return v.Retries }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Director) *int { return v.Retries }).(pulumi.IntPtrOutput)
 }
 
+// Selected POP to serve as a "shield" for origin servers.
 func (o Servicev1DirectorOutput) Shield() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Director) *string { return v.Shield }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Director) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
 
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 func (o Servicev1DirectorOutput) Type() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Director) *int { return v.Type }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Director) *int { return v.Type }).(pulumi.IntPtrOutput)
 }
 
-type Servicev1DirectorArrayOutput struct { *pulumi.OutputState}
+type Servicev1DirectorArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DirectorArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Director)(nil)).Elem()
@@ -1215,14 +1422,15 @@ func (o Servicev1DirectorArrayOutput) ToServicev1DirectorArrayOutputWithContext(
 }
 
 func (o Servicev1DirectorArrayOutput) Index(i pulumi.IntInput) Servicev1DirectorOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Director {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Director {
 		return vs[0].([]Servicev1Director)[vs[1].(int)]
 	}).(Servicev1DirectorOutput)
 }
 
 type Servicev1Domain struct {
+	// An optional comment about the Director.
 	Comment *string `pulumi:"comment"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
 }
 
@@ -1234,8 +1442,9 @@ type Servicev1DomainInput interface {
 }
 
 type Servicev1DomainArgs struct {
+	// An optional comment about the Director.
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -1272,7 +1481,7 @@ func (i Servicev1DomainArray) ToServicev1DomainArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1DomainArrayOutput)
 }
 
-type Servicev1DomainOutput struct { *pulumi.OutputState }
+type Servicev1DomainOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DomainOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Domain)(nil)).Elem()
@@ -1286,16 +1495,17 @@ func (o Servicev1DomainOutput) ToServicev1DomainOutputWithContext(ctx context.Co
 	return o
 }
 
+// An optional comment about the Director.
 func (o Servicev1DomainOutput) Comment() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Domain) *string { return v.Comment }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Domain) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1DomainOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Domain) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Domain) string { return v.Name }).(pulumi.StringOutput)
 }
 
-type Servicev1DomainArrayOutput struct { *pulumi.OutputState}
+type Servicev1DomainArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DomainArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Domain)(nil)).Elem()
@@ -1310,17 +1520,19 @@ func (o Servicev1DomainArrayOutput) ToServicev1DomainArrayOutputWithContext(ctx 
 }
 
 func (o Servicev1DomainArrayOutput) Index(i pulumi.IntInput) Servicev1DomainOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Domain {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Domain {
 		return vs[0].([]Servicev1Domain)[vs[1].(int)]
 	}).(Servicev1DomainOutput)
 }
 
 type Servicev1Dynamicsnippet struct {
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority *int `pulumi:"priority"`
 	// The ID of the dynamic snippet.
 	SnippetId *string `pulumi:"snippetId"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type string `pulumi:"type"`
 }
 
@@ -1332,11 +1544,13 @@ type Servicev1DynamicsnippetInput interface {
 }
 
 type Servicev1DynamicsnippetArgs struct {
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// The ID of the dynamic snippet.
 	SnippetId pulumi.StringPtrInput `pulumi:"snippetId"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -1373,7 +1587,7 @@ func (i Servicev1DynamicsnippetArray) ToServicev1DynamicsnippetArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1DynamicsnippetArrayOutput)
 }
 
-type Servicev1DynamicsnippetOutput struct { *pulumi.OutputState }
+type Servicev1DynamicsnippetOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DynamicsnippetOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Dynamicsnippet)(nil)).Elem()
@@ -1387,25 +1601,27 @@ func (o Servicev1DynamicsnippetOutput) ToServicev1DynamicsnippetOutputWithContex
 	return o
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1DynamicsnippetOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Dynamicsnippet) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Dynamicsnippet) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 func (o Servicev1DynamicsnippetOutput) Priority() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Dynamicsnippet) *int { return v.Priority }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Dynamicsnippet) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
 // The ID of the dynamic snippet.
 func (o Servicev1DynamicsnippetOutput) SnippetId() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Dynamicsnippet) *string { return v.SnippetId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Dynamicsnippet) *string { return v.SnippetId }).(pulumi.StringPtrOutput)
 }
 
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 func (o Servicev1DynamicsnippetOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Dynamicsnippet) string { return v.Type }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Dynamicsnippet) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type Servicev1DynamicsnippetArrayOutput struct { *pulumi.OutputState}
+type Servicev1DynamicsnippetArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1DynamicsnippetArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Dynamicsnippet)(nil)).Elem()
@@ -1420,24 +1636,35 @@ func (o Servicev1DynamicsnippetArrayOutput) ToServicev1DynamicsnippetArrayOutput
 }
 
 func (o Servicev1DynamicsnippetArrayOutput) Index(i pulumi.IntInput) Servicev1DynamicsnippetOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Dynamicsnippet {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Dynamicsnippet {
 		return vs[0].([]Servicev1Dynamicsnippet)[vs[1].(int)]
 	}).(Servicev1DynamicsnippetOutput)
 }
 
 type Servicev1Gcslogging struct {
+	// The name of the bucket in which to store the logs.
 	BucketName string `pulumi:"bucketName"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 	Email *string `pulumi:"email"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
+	// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path *string `pulumi:"path"`
+	// How frequently the logs should be transferred in seconds. Default `3600`.
 	Period *int `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
 	SecretKey *string `pulumi:"secretKey"`
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -1449,18 +1676,29 @@ type Servicev1GcsloggingInput interface {
 }
 
 type Servicev1GcsloggingArgs struct {
+	// The name of the bucket in which to store the logs.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 	Email pulumi.StringPtrInput `pulumi:"email"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
+	// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently the logs should be transferred in seconds. Default `3600`.
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -1497,7 +1735,7 @@ func (i Servicev1GcsloggingArray) ToServicev1GcsloggingArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1GcsloggingArrayOutput)
 }
 
-type Servicev1GcsloggingOutput struct { *pulumi.OutputState }
+type Servicev1GcsloggingOutput struct{ *pulumi.OutputState }
 
 func (Servicev1GcsloggingOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Gcslogging)(nil)).Elem()
@@ -1511,56 +1749,67 @@ func (o Servicev1GcsloggingOutput) ToServicev1GcsloggingOutputWithContext(ctx co
 	return o
 }
 
+// The name of the bucket in which to store the logs.
 func (o Servicev1GcsloggingOutput) BucketName() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) string { return v.BucketName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
+// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 func (o Servicev1GcsloggingOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.Email }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1GcsloggingOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 func (o Servicev1GcsloggingOutput) GzipLevel() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 func (o Servicev1GcsloggingOutput) MessageType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1GcsloggingOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 func (o Servicev1GcsloggingOutput) Path() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.Path }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
+// How frequently the logs should be transferred in seconds. Default `3600`.
 func (o Servicev1GcsloggingOutput) Period() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *int { return v.Period }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1GcsloggingOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1GcsloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
 func (o Servicev1GcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 func (o Servicev1GcsloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gcslogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-type Servicev1GcsloggingArrayOutput struct { *pulumi.OutputState}
+type Servicev1GcsloggingArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1GcsloggingArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Gcslogging)(nil)).Elem()
@@ -1575,16 +1824,22 @@ func (o Servicev1GcsloggingArrayOutput) ToServicev1GcsloggingArrayOutputWithCont
 }
 
 func (o Servicev1GcsloggingArrayOutput) Index(i pulumi.IntInput) Servicev1GcsloggingOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Gcslogging {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Gcslogging {
 		return vs[0].([]Servicev1Gcslogging)[vs[1].(int)]
 	}).(Servicev1GcsloggingOutput)
 }
 
 type Servicev1Gzip struct {
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition *string `pulumi:"cacheCondition"`
+	// The content-type for each type of content you wish to
+	// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
 	ContentTypes []string `pulumi:"contentTypes"`
+	// File extensions for each file type to dynamically
+	// gzip. Example: `["css", "js"]`.
 	Extensions []string `pulumi:"extensions"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
 }
 
@@ -1596,10 +1851,16 @@ type Servicev1GzipInput interface {
 }
 
 type Servicev1GzipArgs struct {
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
+	// The content-type for each type of content you wish to
+	// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
 	ContentTypes pulumi.StringArrayInput `pulumi:"contentTypes"`
+	// File extensions for each file type to dynamically
+	// gzip. Example: `["css", "js"]`.
 	Extensions pulumi.StringArrayInput `pulumi:"extensions"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -1636,7 +1897,7 @@ func (i Servicev1GzipArray) ToServicev1GzipArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1GzipArrayOutput)
 }
 
-type Servicev1GzipOutput struct { *pulumi.OutputState }
+type Servicev1GzipOutput struct{ *pulumi.OutputState }
 
 func (Servicev1GzipOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Gzip)(nil)).Elem()
@@ -1650,24 +1911,30 @@ func (o Servicev1GzipOutput) ToServicev1GzipOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 func (o Servicev1GzipOutput) CacheCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Gzip) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Gzip) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
+// The content-type for each type of content you wish to
+// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
 func (o Servicev1GzipOutput) ContentTypes() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v Servicev1Gzip) []string { return v.ContentTypes }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v Servicev1Gzip) []string { return v.ContentTypes }).(pulumi.StringArrayOutput)
 }
 
+// File extensions for each file type to dynamically
+// gzip. Example: `["css", "js"]`.
 func (o Servicev1GzipOutput) Extensions() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v Servicev1Gzip) []string { return v.Extensions }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v Servicev1Gzip) []string { return v.Extensions }).(pulumi.StringArrayOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1GzipOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Gzip) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Gzip) string { return v.Name }).(pulumi.StringOutput)
 }
 
-type Servicev1GzipArrayOutput struct { *pulumi.OutputState}
+type Servicev1GzipArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1GzipArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Gzip)(nil)).Elem()
@@ -1682,24 +1949,38 @@ func (o Servicev1GzipArrayOutput) ToServicev1GzipArrayOutputWithContext(ctx cont
 }
 
 func (o Servicev1GzipArrayOutput) Index(i pulumi.IntInput) Servicev1GzipOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Gzip {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Gzip {
 		return vs[0].([]Servicev1Gzip)[vs[1].(int)]
 	}).(Servicev1GzipOutput)
 }
 
 type Servicev1Header struct {
+	// Allows you to terminate request handling and immediately
+	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 	Action string `pulumi:"action"`
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition *string `pulumi:"cacheCondition"`
+	// The name of the header that is going to be affected by the Action.
 	Destination string `pulumi:"destination"`
+	// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
 	IgnoreIfSet *bool `pulumi:"ignoreIfSet"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority *int `pulumi:"priority"`
+	// Regular expression to use (Only applies to the `regex` and `regexRepeat` actions.)
 	Regex *string `pulumi:"regex"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition *string `pulumi:"requestCondition"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// Variable to be used as a source for the header
+	// content. (Does not apply to the `delete` action.)
 	Source *string `pulumi:"source"`
+	// Value to substitute in place of regular expression. (Only applies to the `regex` and `regexRepeat` actions.)
 	Substitution *string `pulumi:"substitution"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type string `pulumi:"type"`
 }
 
@@ -1711,18 +1992,32 @@ type Servicev1HeaderInput interface {
 }
 
 type Servicev1HeaderArgs struct {
+	// Allows you to terminate request handling and immediately
+	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 	Action pulumi.StringInput `pulumi:"action"`
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
+	// The name of the header that is going to be affected by the Action.
 	Destination pulumi.StringInput `pulumi:"destination"`
+	// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
 	IgnoreIfSet pulumi.BoolPtrInput `pulumi:"ignoreIfSet"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
+	// Regular expression to use (Only applies to the `regex` and `regexRepeat` actions.)
 	Regex pulumi.StringPtrInput `pulumi:"regex"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// Variable to be used as a source for the header
+	// content. (Does not apply to the `delete` action.)
 	Source pulumi.StringPtrInput `pulumi:"source"`
+	// Value to substitute in place of regular expression. (Only applies to the `regex` and `regexRepeat` actions.)
 	Substitution pulumi.StringPtrInput `pulumi:"substitution"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -1759,7 +2054,7 @@ func (i Servicev1HeaderArray) ToServicev1HeaderArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1HeaderArrayOutput)
 }
 
-type Servicev1HeaderOutput struct { *pulumi.OutputState }
+type Servicev1HeaderOutput struct{ *pulumi.OutputState }
 
 func (Servicev1HeaderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Header)(nil)).Elem()
@@ -1773,56 +2068,70 @@ func (o Servicev1HeaderOutput) ToServicev1HeaderOutputWithContext(ctx context.Co
 	return o
 }
 
+// Allows you to terminate request handling and immediately
+// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 func (o Servicev1HeaderOutput) Action() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Header) string { return v.Action }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Header) string { return v.Action }).(pulumi.StringOutput)
 }
 
+// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 func (o Servicev1HeaderOutput) CacheCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
+// The name of the header that is going to be affected by the Action.
 func (o Servicev1HeaderOutput) Destination() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Header) string { return v.Destination }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Header) string { return v.Destination }).(pulumi.StringOutput)
 }
 
+// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
 func (o Servicev1HeaderOutput) IgnoreIfSet() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *bool { return v.IgnoreIfSet }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *bool { return v.IgnoreIfSet }).(pulumi.BoolPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1HeaderOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Header) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Header) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 func (o Servicev1HeaderOutput) Priority() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *int { return v.Priority }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
+// Regular expression to use (Only applies to the `regex` and `regexRepeat` actions.)
 func (o Servicev1HeaderOutput) Regex() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *string { return v.Regex }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *string { return v.Regex }).(pulumi.StringPtrOutput)
 }
 
+// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 func (o Servicev1HeaderOutput) RequestCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1HeaderOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// Variable to be used as a source for the header
+// content. (Does not apply to the `delete` action.)
 func (o Servicev1HeaderOutput) Source() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *string { return v.Source }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
 
+// Value to substitute in place of regular expression. (Only applies to the `regex` and `regexRepeat` actions.)
 func (o Servicev1HeaderOutput) Substitution() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Header) *string { return v.Substitution }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Header) *string { return v.Substitution }).(pulumi.StringPtrOutput)
 }
 
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 func (o Servicev1HeaderOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Header) string { return v.Type }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Header) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type Servicev1HeaderArrayOutput struct { *pulumi.OutputState}
+type Servicev1HeaderArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1HeaderArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Header)(nil)).Elem()
@@ -1837,23 +2146,33 @@ func (o Servicev1HeaderArrayOutput) ToServicev1HeaderArrayOutputWithContext(ctx 
 }
 
 func (o Servicev1HeaderArrayOutput) Index(i pulumi.IntInput) Servicev1HeaderOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Header {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Header {
 		return vs[0].([]Servicev1Header)[vs[1].(int)]
 	}).(Servicev1HeaderOutput)
 }
 
 type Servicev1Healthcheck struct {
+	// How often to run the Healthcheck in milliseconds. Default `5000`.
 	CheckInterval *int `pulumi:"checkInterval"`
+	// The status code expected from the host. Default `200`.
 	ExpectedResponse *int `pulumi:"expectedResponse"`
+	// The Host header to send for this Healthcheck.
 	Host string `pulumi:"host"`
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
 	HttpVersion *string `pulumi:"httpVersion"`
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
 	Initial *int `pulumi:"initial"`
+	// Which HTTP method to use. Default `HEAD`.
 	Method *string `pulumi:"method"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path string `pulumi:"path"`
+	// How many Healthchecks must succeed to be considered healthy. Default `3`.
 	Threshold *int `pulumi:"threshold"`
+	// Timeout in milliseconds. Default `500`.
 	Timeout *int `pulumi:"timeout"`
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
 	Window *int `pulumi:"window"`
 }
 
@@ -1865,17 +2184,27 @@ type Servicev1HealthcheckInput interface {
 }
 
 type Servicev1HealthcheckArgs struct {
+	// How often to run the Healthcheck in milliseconds. Default `5000`.
 	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
+	// The status code expected from the host. Default `200`.
 	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
+	// The Host header to send for this Healthcheck.
 	Host pulumi.StringInput `pulumi:"host"`
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
 	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
 	Initial pulumi.IntPtrInput `pulumi:"initial"`
+	// Which HTTP method to use. Default `HEAD`.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path pulumi.StringInput `pulumi:"path"`
+	// How many Healthchecks must succeed to be considered healthy. Default `3`.
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
+	// Timeout in milliseconds. Default `500`.
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
 	Window pulumi.IntPtrInput `pulumi:"window"`
 }
 
@@ -1912,7 +2241,7 @@ func (i Servicev1HealthcheckArray) ToServicev1HealthcheckArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1HealthcheckArrayOutput)
 }
 
-type Servicev1HealthcheckOutput struct { *pulumi.OutputState }
+type Servicev1HealthcheckOutput struct{ *pulumi.OutputState }
 
 func (Servicev1HealthcheckOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Healthcheck)(nil)).Elem()
@@ -1926,52 +2255,62 @@ func (o Servicev1HealthcheckOutput) ToServicev1HealthcheckOutputWithContext(ctx 
 	return o
 }
 
+// How often to run the Healthcheck in milliseconds. Default `5000`.
 func (o Servicev1HealthcheckOutput) CheckInterval() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
 }
 
+// The status code expected from the host. Default `200`.
 func (o Servicev1HealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
 }
 
+// The Host header to send for this Healthcheck.
 func (o Servicev1HealthcheckOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) string { return v.Host }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
 func (o Servicev1HealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
 }
 
+// When loading a config, the initial number of probes to be seen as OK. Default `2`.
 func (o Servicev1HealthcheckOutput) Initial() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
 }
 
+// Which HTTP method to use. Default `HEAD`.
 func (o Servicev1HealthcheckOutput) Method() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1HealthcheckOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 func (o Servicev1HealthcheckOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) string { return v.Path }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) string { return v.Path }).(pulumi.StringOutput)
 }
 
+// How many Healthchecks must succeed to be considered healthy. Default `3`.
 func (o Servicev1HealthcheckOutput) Threshold() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
+// Timeout in milliseconds. Default `500`.
 func (o Servicev1HealthcheckOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
+// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
 func (o Servicev1HealthcheckOutput) Window() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Healthcheck) *int { return v.Window }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Window }).(pulumi.IntPtrOutput)
 }
 
-type Servicev1HealthcheckArrayOutput struct { *pulumi.OutputState}
+type Servicev1HealthcheckArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1HealthcheckArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Healthcheck)(nil)).Elem()
@@ -1986,20 +2325,27 @@ func (o Servicev1HealthcheckArrayOutput) ToServicev1HealthcheckArrayOutputWithCo
 }
 
 func (o Servicev1HealthcheckArrayOutput) Index(i pulumi.IntInput) Servicev1HealthcheckOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Healthcheck {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Healthcheck {
 		return vs[0].([]Servicev1Healthcheck)[vs[1].(int)]
 	}).(Servicev1HealthcheckOutput)
 }
 
 type Servicev1Logentry struct {
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion *int `pulumi:"formatVersion"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port *int `pulumi:"port"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// The Splunk token to be used for authentication.
 	Token string `pulumi:"token"`
+	// Whether to use TLS for secure logging. Defaults to `true`
 	UseTls *bool `pulumi:"useTls"`
 }
 
@@ -2011,14 +2357,21 @@ type Servicev1LogentryInput interface {
 }
 
 type Servicev1LogentryArgs struct {
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The Splunk token to be used for authentication.
 	Token pulumi.StringInput `pulumi:"token"`
+	// Whether to use TLS for secure logging. Defaults to `true`
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
@@ -2055,7 +2408,7 @@ func (i Servicev1LogentryArray) ToServicev1LogentryArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1LogentryArrayOutput)
 }
 
-type Servicev1LogentryOutput struct { *pulumi.OutputState }
+type Servicev1LogentryOutput struct{ *pulumi.OutputState }
 
 func (Servicev1LogentryOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Logentry)(nil)).Elem()
@@ -2069,40 +2422,47 @@ func (o Servicev1LogentryOutput) ToServicev1LogentryOutputWithContext(ctx contex
 	return o
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1LogentryOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Logentry) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Logentry) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 func (o Servicev1LogentryOutput) FormatVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Logentry) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Logentry) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1LogentryOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Logentry) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Logentry) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1LogentryOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Logentry) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Logentry) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The port number configured in Logentries to send logs to. Defaults to `20000`.
 func (o Servicev1LogentryOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Logentry) *int { return v.Port }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Logentry) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1LogentryOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Logentry) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Logentry) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// The Splunk token to be used for authentication.
 func (o Servicev1LogentryOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Logentry) string { return v.Token }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Logentry) string { return v.Token }).(pulumi.StringOutput)
 }
 
+// Whether to use TLS for secure logging. Defaults to `true`
 func (o Servicev1LogentryOutput) UseTls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Logentry) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Logentry) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
 
-type Servicev1LogentryArrayOutput struct { *pulumi.OutputState}
+type Servicev1LogentryArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1LogentryArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Logentry)(nil)).Elem()
@@ -2117,18 +2477,23 @@ func (o Servicev1LogentryArrayOutput) ToServicev1LogentryArrayOutputWithContext(
 }
 
 func (o Servicev1LogentryArrayOutput) Index(i pulumi.IntInput) Servicev1LogentryOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Logentry {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Logentry {
 		return vs[0].([]Servicev1Logentry)[vs[1].(int)]
 	}).(Servicev1LogentryOutput)
 }
 
 type Servicev1Papertrail struct {
+	// A hostname or IPv4 address of the Syslog endpoint.
 	Address string `pulumi:"address"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port int `pulumi:"port"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
 }
 
@@ -2140,12 +2505,17 @@ type Servicev1PapertrailInput interface {
 }
 
 type Servicev1PapertrailArgs struct {
+	// A hostname or IPv4 address of the Syslog endpoint.
 	Address pulumi.StringInput `pulumi:"address"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port pulumi.IntInput `pulumi:"port"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 }
 
@@ -2182,7 +2552,7 @@ func (i Servicev1PapertrailArray) ToServicev1PapertrailArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1PapertrailArrayOutput)
 }
 
-type Servicev1PapertrailOutput struct { *pulumi.OutputState }
+type Servicev1PapertrailOutput struct{ *pulumi.OutputState }
 
 func (Servicev1PapertrailOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Papertrail)(nil)).Elem()
@@ -2196,32 +2566,37 @@ func (o Servicev1PapertrailOutput) ToServicev1PapertrailOutputWithContext(ctx co
 	return o
 }
 
+// A hostname or IPv4 address of the Syslog endpoint.
 func (o Servicev1PapertrailOutput) Address() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Papertrail) string { return v.Address }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Papertrail) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1PapertrailOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Papertrail) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Papertrail) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1PapertrailOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Papertrail) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Papertrail) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1PapertrailOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Papertrail) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Papertrail) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The port number configured in Logentries to send logs to. Defaults to `20000`.
 func (o Servicev1PapertrailOutput) Port() pulumi.IntOutput {
-	return o.ApplyT(func (v Servicev1Papertrail) int { return v.Port }).(pulumi.IntOutput)
+	return o.ApplyT(func(v Servicev1Papertrail) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1PapertrailOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Papertrail) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Papertrail) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-type Servicev1PapertrailArrayOutput struct { *pulumi.OutputState}
+type Servicev1PapertrailArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1PapertrailArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Papertrail)(nil)).Elem()
@@ -2236,25 +2611,43 @@ func (o Servicev1PapertrailArrayOutput) ToServicev1PapertrailArrayOutputWithCont
 }
 
 func (o Servicev1PapertrailArrayOutput) Index(i pulumi.IntInput) Servicev1PapertrailOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Papertrail {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Papertrail {
 		return vs[0].([]Servicev1Papertrail)[vs[1].(int)]
 	}).(Servicev1PapertrailOutput)
 }
 
 type Servicev1RequestSetting struct {
+	// Allows you to terminate request handling and immediately
+	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 	Action *string `pulumi:"action"`
+	// Disable collapsed forwarding, so you don't wait
+	// for other objects to origin.
 	BypassBusyWait *bool `pulumi:"bypassBusyWait"`
-	// The default hostname.
+	// Sets the host header.
 	DefaultHost *string `pulumi:"defaultHost"`
+	// Force a cache miss for the request. If specified,
+	// can be `true` or `false`.
 	ForceMiss *bool `pulumi:"forceMiss"`
+	// Forces the request to use SSL (Redirects a non-SSL request to SSL).
 	ForceSsl *bool `pulumi:"forceSsl"`
+	// Injects Fastly-Geo-Country, Fastly-Geo-City, and
+	// Fastly-Geo-Region into the request headers.
 	GeoHeaders *bool `pulumi:"geoHeaders"`
+	// Comma separated list of varnish request object fields
+	// that should be in the hash key.
 	HashKeys *string `pulumi:"hashKeys"`
+	// How old an object is allowed to be to serve
+	// `stale-if-error` or `stale-while-revalidate`, in seconds.
 	MaxStaleAge *int `pulumi:"maxStaleAge"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition *string `pulumi:"requestCondition"`
+	// Injects the X-Timer info into the request for
+	// viewing origin fetch durations.
 	TimerSupport *bool `pulumi:"timerSupport"`
+	// X-Forwarded-For, should be `clear`, `leave`, `append`,
+	// `appendAll`, or `overwrite`. Default `append`.
 	Xff *string `pulumi:"xff"`
 }
 
@@ -2266,19 +2659,37 @@ type Servicev1RequestSettingInput interface {
 }
 
 type Servicev1RequestSettingArgs struct {
+	// Allows you to terminate request handling and immediately
+	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 	Action pulumi.StringPtrInput `pulumi:"action"`
+	// Disable collapsed forwarding, so you don't wait
+	// for other objects to origin.
 	BypassBusyWait pulumi.BoolPtrInput `pulumi:"bypassBusyWait"`
-	// The default hostname.
+	// Sets the host header.
 	DefaultHost pulumi.StringPtrInput `pulumi:"defaultHost"`
+	// Force a cache miss for the request. If specified,
+	// can be `true` or `false`.
 	ForceMiss pulumi.BoolPtrInput `pulumi:"forceMiss"`
+	// Forces the request to use SSL (Redirects a non-SSL request to SSL).
 	ForceSsl pulumi.BoolPtrInput `pulumi:"forceSsl"`
+	// Injects Fastly-Geo-Country, Fastly-Geo-City, and
+	// Fastly-Geo-Region into the request headers.
 	GeoHeaders pulumi.BoolPtrInput `pulumi:"geoHeaders"`
+	// Comma separated list of varnish request object fields
+	// that should be in the hash key.
 	HashKeys pulumi.StringPtrInput `pulumi:"hashKeys"`
+	// How old an object is allowed to be to serve
+	// `stale-if-error` or `stale-while-revalidate`, in seconds.
 	MaxStaleAge pulumi.IntPtrInput `pulumi:"maxStaleAge"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
+	// Injects the X-Timer info into the request for
+	// viewing origin fetch durations.
 	TimerSupport pulumi.BoolPtrInput `pulumi:"timerSupport"`
+	// X-Forwarded-For, should be `clear`, `leave`, `append`,
+	// `appendAll`, or `overwrite`. Default `append`.
 	Xff pulumi.StringPtrInput `pulumi:"xff"`
 }
 
@@ -2315,7 +2726,7 @@ func (i Servicev1RequestSettingArray) ToServicev1RequestSettingArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1RequestSettingArrayOutput)
 }
 
-type Servicev1RequestSettingOutput struct { *pulumi.OutputState }
+type Servicev1RequestSettingOutput struct{ *pulumi.OutputState }
 
 func (Servicev1RequestSettingOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1RequestSetting)(nil)).Elem()
@@ -2329,57 +2740,75 @@ func (o Servicev1RequestSettingOutput) ToServicev1RequestSettingOutputWithContex
 	return o
 }
 
+// Allows you to terminate request handling and immediately
+// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
 func (o Servicev1RequestSettingOutput) Action() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *string { return v.Action }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
 
+// Disable collapsed forwarding, so you don't wait
+// for other objects to origin.
 func (o Servicev1RequestSettingOutput) BypassBusyWait() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *bool { return v.BypassBusyWait }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.BypassBusyWait }).(pulumi.BoolPtrOutput)
 }
 
-// The default hostname.
+// Sets the host header.
 func (o Servicev1RequestSettingOutput) DefaultHost() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *string { return v.DefaultHost }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.DefaultHost }).(pulumi.StringPtrOutput)
 }
 
+// Force a cache miss for the request. If specified,
+// can be `true` or `false`.
 func (o Servicev1RequestSettingOutput) ForceMiss() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *bool { return v.ForceMiss }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.ForceMiss }).(pulumi.BoolPtrOutput)
 }
 
+// Forces the request to use SSL (Redirects a non-SSL request to SSL).
 func (o Servicev1RequestSettingOutput) ForceSsl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *bool { return v.ForceSsl }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.ForceSsl }).(pulumi.BoolPtrOutput)
 }
 
+// Injects Fastly-Geo-Country, Fastly-Geo-City, and
+// Fastly-Geo-Region into the request headers.
 func (o Servicev1RequestSettingOutput) GeoHeaders() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *bool { return v.GeoHeaders }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.GeoHeaders }).(pulumi.BoolPtrOutput)
 }
 
+// Comma separated list of varnish request object fields
+// that should be in the hash key.
 func (o Servicev1RequestSettingOutput) HashKeys() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *string { return v.HashKeys }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.HashKeys }).(pulumi.StringPtrOutput)
 }
 
+// How old an object is allowed to be to serve
+// `stale-if-error` or `stale-while-revalidate`, in seconds.
 func (o Servicev1RequestSettingOutput) MaxStaleAge() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *int { return v.MaxStaleAge }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *int { return v.MaxStaleAge }).(pulumi.IntPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1RequestSettingOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 func (o Servicev1RequestSettingOutput) RequestCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
+// Injects the X-Timer info into the request for
+// viewing origin fetch durations.
 func (o Servicev1RequestSettingOutput) TimerSupport() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *bool { return v.TimerSupport }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.TimerSupport }).(pulumi.BoolPtrOutput)
 }
 
+// X-Forwarded-For, should be `clear`, `leave`, `append`,
+// `appendAll`, or `overwrite`. Default `append`.
 func (o Servicev1RequestSettingOutput) Xff() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1RequestSetting) *string { return v.Xff }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.Xff }).(pulumi.StringPtrOutput)
 }
 
-type Servicev1RequestSettingArrayOutput struct { *pulumi.OutputState}
+type Servicev1RequestSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1RequestSettingArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1RequestSetting)(nil)).Elem()
@@ -2394,19 +2823,26 @@ func (o Servicev1RequestSettingArrayOutput) ToServicev1RequestSettingArrayOutput
 }
 
 func (o Servicev1RequestSettingArrayOutput) Index(i pulumi.IntInput) Servicev1RequestSettingOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1RequestSetting {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1RequestSetting {
 		return vs[0].([]Servicev1RequestSetting)[vs[1].(int)]
 	}).(Servicev1RequestSettingOutput)
 }
 
 type Servicev1ResponseObject struct {
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition *string `pulumi:"cacheCondition"`
+	// The custom VCL code to upload.
 	Content *string `pulumi:"content"`
+	// The MIME type of the content.
 	ContentType *string `pulumi:"contentType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition *string `pulumi:"requestCondition"`
+	// The HTTP Response. Default `Ok`.
 	Response *string `pulumi:"response"`
+	// The HTTP Status Code. Default `200`.
 	Status *int `pulumi:"status"`
 }
 
@@ -2418,13 +2854,20 @@ type Servicev1ResponseObjectInput interface {
 }
 
 type Servicev1ResponseObjectArgs struct {
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
+	// The custom VCL code to upload.
 	Content pulumi.StringPtrInput `pulumi:"content"`
+	// The MIME type of the content.
 	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
+	// The HTTP Response. Default `Ok`.
 	Response pulumi.StringPtrInput `pulumi:"response"`
+	// The HTTP Status Code. Default `200`.
 	Status pulumi.IntPtrInput `pulumi:"status"`
 }
 
@@ -2461,7 +2904,7 @@ func (i Servicev1ResponseObjectArray) ToServicev1ResponseObjectArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1ResponseObjectArrayOutput)
 }
 
-type Servicev1ResponseObjectOutput struct { *pulumi.OutputState }
+type Servicev1ResponseObjectOutput struct{ *pulumi.OutputState }
 
 func (Servicev1ResponseObjectOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1ResponseObject)(nil)).Elem()
@@ -2475,36 +2918,43 @@ func (o Servicev1ResponseObjectOutput) ToServicev1ResponseObjectOutputWithContex
 	return o
 }
 
+// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
+// see [Fastly's Documentation on Conditionals][fastly-conditionals].
 func (o Servicev1ResponseObjectOutput) CacheCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1ResponseObject) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
+// The custom VCL code to upload.
 func (o Servicev1ResponseObjectOutput) Content() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1ResponseObject) *string { return v.Content }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.Content }).(pulumi.StringPtrOutput)
 }
 
+// The MIME type of the content.
 func (o Servicev1ResponseObjectOutput) ContentType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1ResponseObject) *string { return v.ContentType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.ContentType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1ResponseObjectOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1ResponseObject) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1ResponseObject) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 func (o Servicev1ResponseObjectOutput) RequestCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1ResponseObject) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
+// The HTTP Response. Default `Ok`.
 func (o Servicev1ResponseObjectOutput) Response() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1ResponseObject) *string { return v.Response }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.Response }).(pulumi.StringPtrOutput)
 }
 
+// The HTTP Status Code. Default `200`.
 func (o Servicev1ResponseObjectOutput) Status() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1ResponseObject) *int { return v.Status }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1ResponseObject) *int { return v.Status }).(pulumi.IntPtrOutput)
 }
 
-type Servicev1ResponseObjectArrayOutput struct { *pulumi.OutputState}
+type Servicev1ResponseObjectArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1ResponseObjectArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1ResponseObject)(nil)).Elem()
@@ -2519,29 +2969,50 @@ func (o Servicev1ResponseObjectArrayOutput) ToServicev1ResponseObjectArrayOutput
 }
 
 func (o Servicev1ResponseObjectArrayOutput) Index(i pulumi.IntInput) Servicev1ResponseObjectOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1ResponseObject {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1ResponseObject {
 		return vs[0].([]Servicev1ResponseObject)[vs[1].(int)]
 	}).(Servicev1ResponseObjectOutput)
 }
 
 type Servicev1S3logging struct {
+	// The name of the bucket in which to store the logs.
 	BucketName string `pulumi:"bucketName"`
-	// A set of Domain names to serve as entry points for your
-	// Service. Defined below.
+	// If you created the S3 bucket outside of `us-east-1`,
+	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 	Domain *string `pulumi:"domain"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion *int `pulumi:"formatVersion"`
+	// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path *string `pulumi:"path"`
+	// How frequently the logs should be transferred in seconds. Default `3600`.
 	Period *int `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
 	Redundancy *string `pulumi:"redundancy"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// AWS Access Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This key will be
+	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
 	S3AccessKey *string `pulumi:"s3AccessKey"`
-	S3SecretKey *string `pulumi:"s3SecretKey"`
+	// AWS Secret Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This secret will be
+	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+	S3SecretKey                  *string `pulumi:"s3SecretKey"`
+	ServerSideEncryption         *string `pulumi:"serverSideEncryption"`
+	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -2553,23 +3024,44 @@ type Servicev1S3loggingInput interface {
 }
 
 type Servicev1S3loggingArgs struct {
+	// The name of the bucket in which to store the logs.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// A set of Domain names to serve as entry points for your
-	// Service. Defined below.
+	// If you created the S3 bucket outside of `us-east-1`,
+	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently the logs should be transferred in seconds. Default `3600`.
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
 	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// AWS Access Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This key will be
+	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
 	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
-	S3SecretKey pulumi.StringPtrInput `pulumi:"s3SecretKey"`
+	// AWS Secret Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This secret will be
+	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+	S3SecretKey                  pulumi.StringPtrInput `pulumi:"s3SecretKey"`
+	ServerSideEncryption         pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -2606,7 +3098,7 @@ func (i Servicev1S3loggingArray) ToServicev1S3loggingArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1S3loggingArrayOutput)
 }
 
-type Servicev1S3loggingOutput struct { *pulumi.OutputState }
+type Servicev1S3loggingOutput struct{ *pulumi.OutputState }
 
 func (Servicev1S3loggingOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1S3logging)(nil)).Elem()
@@ -2620,70 +3112,97 @@ func (o Servicev1S3loggingOutput) ToServicev1S3loggingOutputWithContext(ctx cont
 	return o
 }
 
+// The name of the bucket in which to store the logs.
 func (o Servicev1S3loggingOutput) BucketName() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1S3logging) string { return v.BucketName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1S3logging) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// A set of Domain names to serve as entry points for your
-// Service. Defined below.
+// If you created the S3 bucket outside of `us-east-1`,
+// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
 func (o Servicev1S3loggingOutput) Domain() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.Domain }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1S3loggingOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 func (o Servicev1S3loggingOutput) FormatVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
+// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
 func (o Servicev1S3loggingOutput) GzipLevel() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 func (o Servicev1S3loggingOutput) MessageType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1S3loggingOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1S3logging) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1S3logging) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
 func (o Servicev1S3loggingOutput) Path() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.Path }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
+// How frequently the logs should be transferred in seconds. Default `3600`.
 func (o Servicev1S3loggingOutput) Period() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *int { return v.Period }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1S3loggingOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
 func (o Servicev1S3loggingOutput) Redundancy() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1S3loggingOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// AWS Access Key of an account with the required
+// permissions to post logs. It is **strongly** recommended you create a separate
+// IAM user with permissions to only operate on this Bucket. This key will be
+// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
 func (o Servicev1S3loggingOutput) S3AccessKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.S3AccessKey }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.S3AccessKey }).(pulumi.StringPtrOutput)
 }
 
+// AWS Secret Key of an account with the required
+// permissions to post logs. It is **strongly** recommended you create a separate
+// IAM user with permissions to only operate on this Bucket. This secret will be
+// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
 func (o Servicev1S3loggingOutput) S3SecretKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
 }
 
+func (o Servicev1S3loggingOutput) ServerSideEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
+}
+
+func (o Servicev1S3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
+}
+
+// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
 func (o Servicev1S3loggingOutput) TimestampFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1S3logging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-type Servicev1S3loggingArrayOutput struct { *pulumi.OutputState}
+type Servicev1S3loggingArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1S3loggingArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1S3logging)(nil)).Elem()
@@ -2698,16 +3217,19 @@ func (o Servicev1S3loggingArrayOutput) ToServicev1S3loggingArrayOutputWithContex
 }
 
 func (o Servicev1S3loggingArrayOutput) Index(i pulumi.IntInput) Servicev1S3loggingOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1S3logging {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1S3logging {
 		return vs[0].([]Servicev1S3logging)[vs[1].(int)]
 	}).(Servicev1S3loggingOutput)
 }
 
 type Servicev1Snippet struct {
+	// The custom VCL code to upload.
 	Content string `pulumi:"content"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority *int `pulumi:"priority"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type string `pulumi:"type"`
 }
 
@@ -2719,10 +3241,13 @@ type Servicev1SnippetInput interface {
 }
 
 type Servicev1SnippetArgs struct {
+	// The custom VCL code to upload.
 	Content pulumi.StringInput `pulumi:"content"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -2759,7 +3284,7 @@ func (i Servicev1SnippetArray) ToServicev1SnippetArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1SnippetArrayOutput)
 }
 
-type Servicev1SnippetOutput struct { *pulumi.OutputState }
+type Servicev1SnippetOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SnippetOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Snippet)(nil)).Elem()
@@ -2773,24 +3298,27 @@ func (o Servicev1SnippetOutput) ToServicev1SnippetOutputWithContext(ctx context.
 	return o
 }
 
+// The custom VCL code to upload.
 func (o Servicev1SnippetOutput) Content() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Snippet) string { return v.Content }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Snippet) string { return v.Content }).(pulumi.StringOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1SnippetOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Snippet) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Snippet) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
 func (o Servicev1SnippetOutput) Priority() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Snippet) *int { return v.Priority }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Snippet) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 func (o Servicev1SnippetOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Snippet) string { return v.Type }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Snippet) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type Servicev1SnippetArrayOutput struct { *pulumi.OutputState}
+type Servicev1SnippetArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SnippetArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Snippet)(nil)).Elem()
@@ -2805,19 +3333,25 @@ func (o Servicev1SnippetArrayOutput) ToServicev1SnippetArrayOutputWithContext(ct
 }
 
 func (o Servicev1SnippetArrayOutput) Index(i pulumi.IntInput) Servicev1SnippetOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Snippet {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Snippet {
 		return vs[0].([]Servicev1Snippet)[vs[1].(int)]
 	}).(Servicev1SnippetOutput)
 }
 
 type Servicev1Splunk struct {
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion *int `pulumi:"formatVersion"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// The Splunk token to be used for authentication.
 	Token string `pulumi:"token"`
+	// The Splunk URL to stream logs to.
 	Url string `pulumi:"url"`
 }
 
@@ -2829,13 +3363,19 @@ type Servicev1SplunkInput interface {
 }
 
 type Servicev1SplunkArgs struct {
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The Splunk token to be used for authentication.
 	Token pulumi.StringInput `pulumi:"token"`
+	// The Splunk URL to stream logs to.
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -2872,7 +3412,7 @@ func (i Servicev1SplunkArray) ToServicev1SplunkArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1SplunkArrayOutput)
 }
 
-type Servicev1SplunkOutput struct { *pulumi.OutputState }
+type Servicev1SplunkOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SplunkOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Splunk)(nil)).Elem()
@@ -2886,36 +3426,42 @@ func (o Servicev1SplunkOutput) ToServicev1SplunkOutputWithContext(ctx context.Co
 	return o
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1SplunkOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Splunk) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Splunk) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 func (o Servicev1SplunkOutput) FormatVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Splunk) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Splunk) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1SplunkOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Splunk) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Splunk) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1SplunkOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Splunk) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Splunk) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1SplunkOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Splunk) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Splunk) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// The Splunk token to be used for authentication.
 func (o Servicev1SplunkOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Splunk) string { return v.Token }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Splunk) string { return v.Token }).(pulumi.StringOutput)
 }
 
+// The Splunk URL to stream logs to.
 func (o Servicev1SplunkOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Splunk) string { return v.Url }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Splunk) string { return v.Url }).(pulumi.StringOutput)
 }
 
-type Servicev1SplunkArrayOutput struct { *pulumi.OutputState}
+type Servicev1SplunkArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SplunkArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Splunk)(nil)).Elem()
@@ -2930,19 +3476,25 @@ func (o Servicev1SplunkArrayOutput) ToServicev1SplunkArrayOutputWithContext(ctx 
 }
 
 func (o Servicev1SplunkArrayOutput) Index(i pulumi.IntInput) Servicev1SplunkOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Splunk {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Splunk {
 		return vs[0].([]Servicev1Splunk)[vs[1].(int)]
 	}).(Servicev1SplunkOutput)
 }
 
 type Servicev1Sumologic struct {
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion *int `pulumi:"formatVersion"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// The Splunk URL to stream logs to.
 	Url string `pulumi:"url"`
 }
 
@@ -2954,13 +3506,19 @@ type Servicev1SumologicInput interface {
 }
 
 type Servicev1SumologicArgs struct {
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The Splunk URL to stream logs to.
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -2997,7 +3555,7 @@ func (i Servicev1SumologicArray) ToServicev1SumologicArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1SumologicArrayOutput)
 }
 
-type Servicev1SumologicOutput struct { *pulumi.OutputState }
+type Servicev1SumologicOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SumologicOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Sumologic)(nil)).Elem()
@@ -3011,36 +3569,42 @@ func (o Servicev1SumologicOutput) ToServicev1SumologicOutputWithContext(ctx cont
 	return o
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1SumologicOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Sumologic) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 func (o Servicev1SumologicOutput) FormatVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Sumologic) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Sumologic) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 func (o Servicev1SumologicOutput) MessageType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Sumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1SumologicOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Sumologic) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Sumologic) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1SumologicOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Sumologic) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1SumologicOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Sumologic) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// The Splunk URL to stream logs to.
 func (o Servicev1SumologicOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Sumologic) string { return v.Url }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Sumologic) string { return v.Url }).(pulumi.StringOutput)
 }
 
-type Servicev1SumologicArrayOutput struct { *pulumi.OutputState}
+type Servicev1SumologicArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SumologicArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Sumologic)(nil)).Elem()
@@ -3055,26 +3619,39 @@ func (o Servicev1SumologicArrayOutput) ToServicev1SumologicArrayOutputWithContex
 }
 
 func (o Servicev1SumologicArrayOutput) Index(i pulumi.IntInput) Servicev1SumologicOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Sumologic {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Sumologic {
 		return vs[0].([]Servicev1Sumologic)[vs[1].(int)]
 	}).(Servicev1SumologicOutput)
 }
 
 type Servicev1Syslog struct {
+	// A hostname or IPv4 address of the Syslog endpoint.
 	Address string `pulumi:"address"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion *int `pulumi:"formatVersion"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port *int `pulumi:"port"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
 	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
 	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
 	TlsClientKey *string `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate.
 	TlsHostname *string `pulumi:"tlsHostname"`
+	// The Splunk token to be used for authentication.
 	Token *string `pulumi:"token"`
+	// Whether to use TLS for secure logging. Defaults to `true`
 	UseTls *bool `pulumi:"useTls"`
 }
 
@@ -3086,20 +3663,33 @@ type Servicev1SyslogInput interface {
 }
 
 type Servicev1SyslogArgs struct {
+	// A hostname or IPv4 address of the Syslog endpoint.
 	Address pulumi.StringInput `pulumi:"address"`
+	// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The port number configured in Logentries to send logs to. Defaults to `20000`.
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The name of the `condition` to apply. If empty, always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
 	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
 	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
 	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate.
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
+	// The Splunk token to be used for authentication.
 	Token pulumi.StringPtrInput `pulumi:"token"`
+	// Whether to use TLS for secure logging. Defaults to `true`
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
@@ -3136,7 +3726,7 @@ func (i Servicev1SyslogArray) ToServicev1SyslogArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1SyslogArrayOutput)
 }
 
-type Servicev1SyslogOutput struct { *pulumi.OutputState }
+type Servicev1SyslogOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SyslogOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Syslog)(nil)).Elem()
@@ -3150,64 +3740,77 @@ func (o Servicev1SyslogOutput) ToServicev1SyslogOutputWithContext(ctx context.Co
 	return o
 }
 
+// A hostname or IPv4 address of the Syslog endpoint.
 func (o Servicev1SyslogOutput) Address() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Syslog) string { return v.Address }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Syslog) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
 func (o Servicev1SyslogOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.Format }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
 func (o Servicev1SyslogOutput) FormatVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
 func (o Servicev1SyslogOutput) MessageType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1SyslogOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Syslog) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Syslog) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
 func (o Servicev1SyslogOutput) Placement() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.Placement }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The port number configured in Logentries to send logs to. Defaults to `20000`.
 func (o Servicev1SyslogOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *int { return v.Port }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// The name of the `condition` to apply. If empty, always execute.
 func (o Servicev1SyslogOutput) ResponseCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
 func (o Servicev1SyslogOutput) TlsCaCert() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
 func (o Servicev1SyslogOutput) TlsClientCert() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
 func (o Servicev1SyslogOutput) TlsClientKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
+// Used during the TLS handshake to validate the certificate.
 func (o Servicev1SyslogOutput) TlsHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
+// The Splunk token to be used for authentication.
 func (o Servicev1SyslogOutput) Token() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *string { return v.Token }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *string { return v.Token }).(pulumi.StringPtrOutput)
 }
 
+// Whether to use TLS for secure logging. Defaults to `true`
 func (o Servicev1SyslogOutput) UseTls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Syslog) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Syslog) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
 
-type Servicev1SyslogArrayOutput struct { *pulumi.OutputState}
+type Servicev1SyslogArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1SyslogArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Syslog)(nil)).Elem()
@@ -3222,15 +3825,19 @@ func (o Servicev1SyslogArrayOutput) ToServicev1SyslogArrayOutputWithContext(ctx 
 }
 
 func (o Servicev1SyslogArrayOutput) Index(i pulumi.IntInput) Servicev1SyslogOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Syslog {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Syslog {
 		return vs[0].([]Servicev1Syslog)[vs[1].(int)]
 	}).(Servicev1SyslogOutput)
 }
 
 type Servicev1Vcl struct {
+	// The custom VCL code to upload.
 	Content string `pulumi:"content"`
+	// If `true`, use this block as the main configuration. If
+	// `false`, use this block as an includable library. Only a single VCL block can be
+	// marked as the main block. Default is `false`.
 	Main *bool `pulumi:"main"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
 }
 
@@ -3242,9 +3849,13 @@ type Servicev1VclInput interface {
 }
 
 type Servicev1VclArgs struct {
+	// The custom VCL code to upload.
 	Content pulumi.StringInput `pulumi:"content"`
+	// If `true`, use this block as the main configuration. If
+	// `false`, use this block as an includable library. Only a single VCL block can be
+	// marked as the main block. Default is `false`.
 	Main pulumi.BoolPtrInput `pulumi:"main"`
-	// The unique name for the Service to create.
+	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -3281,7 +3892,7 @@ func (i Servicev1VclArray) ToServicev1VclArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1VclArrayOutput)
 }
 
-type Servicev1VclOutput struct { *pulumi.OutputState }
+type Servicev1VclOutput struct{ *pulumi.OutputState }
 
 func (Servicev1VclOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1Vcl)(nil)).Elem()
@@ -3295,20 +3906,24 @@ func (o Servicev1VclOutput) ToServicev1VclOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The custom VCL code to upload.
 func (o Servicev1VclOutput) Content() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Vcl) string { return v.Content }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Vcl) string { return v.Content }).(pulumi.StringOutput)
 }
 
+// If `true`, use this block as the main configuration. If
+// `false`, use this block as an includable library. Only a single VCL block can be
+// marked as the main block. Default is `false`.
 func (o Servicev1VclOutput) Main() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v Servicev1Vcl) *bool { return v.Main }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v Servicev1Vcl) *bool { return v.Main }).(pulumi.BoolPtrOutput)
 }
 
-// The unique name for the Service to create.
+// A unique name to identify this dictionary.
 func (o Servicev1VclOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v Servicev1Vcl) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v Servicev1Vcl) string { return v.Name }).(pulumi.StringOutput)
 }
 
-type Servicev1VclArrayOutput struct { *pulumi.OutputState}
+type Servicev1VclArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1VclArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]Servicev1Vcl)(nil)).Elem()
@@ -3323,7 +3938,7 @@ func (o Servicev1VclArrayOutput) ToServicev1VclArrayOutputWithContext(ctx contex
 }
 
 func (o Servicev1VclArrayOutput) Index(i pulumi.IntInput) Servicev1VclOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) Servicev1Vcl {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1Vcl {
 		return vs[0].([]Servicev1Vcl)[vs[1].(int)]
 	}).(Servicev1VclOutput)
 }

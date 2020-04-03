@@ -18,11 +18,11 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
     """
     A Set ACL entries that are applied to the service. Defined below
 
-      * `comment` (`str`)
+      * `comment` (`str`) - A personal freeform descriptive note
       * `id` (`str`)
-      * `ip` (`str`)
-      * `negated` (`bool`)
-      * `subnet` (`str`)
+      * `ip` (`str`) - An IP address that is the focus for the ACL
+      * `negated` (`bool`) - A boolean that will negate the match if true
+      * `subnet` (`str`) - An optional subnet mask applied to the IP address
     """
     service_id: pulumi.Output[str]
     """
@@ -39,11 +39,11 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
 
         The **entries** object supports the following:
 
-          * `comment` (`pulumi.Input[str]`)
+          * `comment` (`pulumi.Input[str]`) - A personal freeform descriptive note
           * `id` (`pulumi.Input[str]`)
-          * `ip` (`pulumi.Input[str]`)
-          * `negated` (`pulumi.Input[bool]`)
-          * `subnet` (`pulumi.Input[str]`)
+          * `ip` (`pulumi.Input[str]`) - An IP address that is the focus for the ACL
+          * `negated` (`pulumi.Input[bool]`) - A boolean that will negate the match if true
+          * `subnet` (`pulumi.Input[str]`) - An optional subnet mask applied to the IP address
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -90,11 +90,11 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
 
         The **entries** object supports the following:
 
-          * `comment` (`pulumi.Input[str]`)
+          * `comment` (`pulumi.Input[str]`) - A personal freeform descriptive note
           * `id` (`pulumi.Input[str]`)
-          * `ip` (`pulumi.Input[str]`)
-          * `negated` (`pulumi.Input[bool]`)
-          * `subnet` (`pulumi.Input[str]`)
+          * `ip` (`pulumi.Input[str]`) - An IP address that is the focus for the ACL
+          * `negated` (`pulumi.Input[bool]`) - A boolean that will negate the match if true
+          * `subnet` (`pulumi.Input[str]`) - An optional subnet mask applied to the IP address
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
