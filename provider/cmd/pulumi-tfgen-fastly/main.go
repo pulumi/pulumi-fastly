@@ -15,10 +15,10 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfgen"
 
-	fastly "github.com/pulumi/pulumi-fastly/provider"
-	"github.com/pulumi/pulumi-fastly/provider/pkg/version"
+	fastly "github.com/pulumi/pulumi-fastly/provider/v2"
+	"github.com/pulumi/pulumi-fastly/provider/v2/pkg/version"
 )
 
 func main() {

@@ -14,6 +14,8 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to get the [IP ranges][1] of Fastly edge nodes.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/d/ip_ranges.html.markdown.
         /// </summary>
         [Obsolete("Use GetFastlyIpRanges.InvokeAsync() instead")]
@@ -24,6 +26,8 @@ namespace Pulumi.Fastly
     {
         /// <summary>
         /// Use this data source to get the [IP ranges][1] of Fastly edge nodes.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/d/ip_ranges.html.markdown.
         /// </summary>

@@ -424,6 +424,8 @@ class Servicev1(pulumi.CustomResource):
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_v1.html.markdown.
 
         :param str resource_name: The name of the resource.

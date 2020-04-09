@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  * 
  * ## Example Usage
  * 
+ * 
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -29,7 +31,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/d/ip_ranges.html.markdown.
  */
-export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> & GetFastlyIpRangesResult {
+export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
     if (!opts) {
         opts = {}
     }
@@ -37,10 +39,8 @@ export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastl
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetFastlyIpRangesResult> = pulumi.runtime.invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", {
+    return pulumi.runtime.invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", {
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**
