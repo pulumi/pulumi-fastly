@@ -18,6 +18,8 @@ namespace Pulumi.Fastly
     /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
     /// on their documentation site for guidance.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_v1.html.markdown.
     /// </summary>
     public partial class Servicev1 : Pulumi.CustomResource
