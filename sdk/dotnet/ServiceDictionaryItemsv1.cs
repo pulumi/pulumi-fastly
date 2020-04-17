@@ -38,7 +38,7 @@ namespace Pulumi.Fastly
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ServiceDictionaryItemsv1(string name, ServiceDictionaryItemsv1Args args, CustomResourceOptions? options = null)
-            : base("fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1", name, args ?? new ServiceDictionaryItemsv1Args(), MakeResourceOptions(options, ""))
         {
         }
 

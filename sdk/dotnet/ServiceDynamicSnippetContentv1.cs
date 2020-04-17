@@ -38,7 +38,7 @@ namespace Pulumi.Fastly
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ServiceDynamicSnippetContentv1(string name, ServiceDynamicSnippetContentv1Args args, CustomResourceOptions? options = null)
-            : base("fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1", name, args ?? new ServiceDynamicSnippetContentv1Args(), MakeResourceOptions(options, ""))
         {
         }
 
