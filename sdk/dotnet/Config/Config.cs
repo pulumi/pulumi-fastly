@@ -8,7 +8,6 @@ namespace Pulumi.Fastly
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("fastly");
-
         /// <summary>
         /// Fastly API Key from https://app.fastly.com/#account
         /// </summary>
@@ -19,8 +18,5 @@ namespace Pulumi.Fastly
         /// </summary>
         public static string? BaseUrl { get; set; } = __config.Get("baseUrl") ?? Utilities.GetEnv("FASTLY_API_URL") ?? "https://api.fastly.com";
 
-    }
-    namespace ConfigTypes
-    {
     }
 }

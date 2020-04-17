@@ -21,7 +21,7 @@ namespace Pulumi.Fastly
         /// A Set ACL entries that are applied to the service. Defined below
         /// </summary>
         [Output("entries")]
-        public Output<ImmutableArray<Outputs.ServiceACLEntriesv1Entries>> Entries { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.ServiceACLEntriesv1Entry>> Entries { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the Service that the ACL belongs to
@@ -38,7 +38,7 @@ namespace Pulumi.Fastly
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ServiceACLEntriesv1(string name, ServiceACLEntriesv1Args args, CustomResourceOptions? options = null)
-            : base("fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1", name, args ?? new ServiceACLEntriesv1Args(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -82,14 +82,14 @@ namespace Pulumi.Fastly
         public Input<string> AclId { get; set; } = null!;
 
         [Input("entries")]
-        private InputList<Inputs.ServiceACLEntriesv1EntriesArgs>? _entries;
+        private InputList<Inputs.ServiceACLEntriesv1EntryArgs>? _entries;
 
         /// <summary>
         /// A Set ACL entries that are applied to the service. Defined below
         /// </summary>
-        public InputList<Inputs.ServiceACLEntriesv1EntriesArgs> Entries
+        public InputList<Inputs.ServiceACLEntriesv1EntryArgs> Entries
         {
-            get => _entries ?? (_entries = new InputList<Inputs.ServiceACLEntriesv1EntriesArgs>());
+            get => _entries ?? (_entries = new InputList<Inputs.ServiceACLEntriesv1EntryArgs>());
             set => _entries = value;
         }
 
@@ -113,14 +113,14 @@ namespace Pulumi.Fastly
         public Input<string>? AclId { get; set; }
 
         [Input("entries")]
-        private InputList<Inputs.ServiceACLEntriesv1EntriesGetArgs>? _entries;
+        private InputList<Inputs.ServiceACLEntriesv1EntryGetArgs>? _entries;
 
         /// <summary>
         /// A Set ACL entries that are applied to the service. Defined below
         /// </summary>
-        public InputList<Inputs.ServiceACLEntriesv1EntriesGetArgs> Entries
+        public InputList<Inputs.ServiceACLEntriesv1EntryGetArgs> Entries
         {
-            get => _entries ?? (_entries = new InputList<Inputs.ServiceACLEntriesv1EntriesGetArgs>());
+            get => _entries ?? (_entries = new InputList<Inputs.ServiceACLEntriesv1EntryGetArgs>());
             set => _entries = value;
         }
 
@@ -133,118 +133,5 @@ namespace Pulumi.Fastly
         public ServiceACLEntriesv1State()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class ServiceACLEntriesv1EntriesArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// A personal freeform descriptive note
-        /// </summary>
-        [Input("comment")]
-        public Input<string>? Comment { get; set; }
-
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
-        /// <summary>
-        /// An IP address that is the focus for the ACL
-        /// </summary>
-        [Input("ip", required: true)]
-        public Input<string> Ip { get; set; } = null!;
-
-        /// <summary>
-        /// A boolean that will negate the match if true
-        /// </summary>
-        [Input("negated")]
-        public Input<bool>? Negated { get; set; }
-
-        /// <summary>
-        /// An optional subnet mask applied to the IP address
-        /// </summary>
-        [Input("subnet")]
-        public Input<string>? Subnet { get; set; }
-
-        public ServiceACLEntriesv1EntriesArgs()
-        {
-        }
-    }
-
-    public sealed class ServiceACLEntriesv1EntriesGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// A personal freeform descriptive note
-        /// </summary>
-        [Input("comment")]
-        public Input<string>? Comment { get; set; }
-
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
-        /// <summary>
-        /// An IP address that is the focus for the ACL
-        /// </summary>
-        [Input("ip", required: true)]
-        public Input<string> Ip { get; set; } = null!;
-
-        /// <summary>
-        /// A boolean that will negate the match if true
-        /// </summary>
-        [Input("negated")]
-        public Input<bool>? Negated { get; set; }
-
-        /// <summary>
-        /// An optional subnet mask applied to the IP address
-        /// </summary>
-        [Input("subnet")]
-        public Input<string>? Subnet { get; set; }
-
-        public ServiceACLEntriesv1EntriesGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class ServiceACLEntriesv1Entries
-    {
-        /// <summary>
-        /// A personal freeform descriptive note
-        /// </summary>
-        public readonly string? Comment;
-        public readonly string Id;
-        /// <summary>
-        /// An IP address that is the focus for the ACL
-        /// </summary>
-        public readonly string Ip;
-        /// <summary>
-        /// A boolean that will negate the match if true
-        /// </summary>
-        public readonly bool? Negated;
-        /// <summary>
-        /// An optional subnet mask applied to the IP address
-        /// </summary>
-        public readonly string? Subnet;
-
-        [OutputConstructor]
-        private ServiceACLEntriesv1Entries(
-            string? comment,
-            string id,
-            string ip,
-            bool? negated,
-            string? subnet)
-        {
-            Comment = comment;
-            Id = id;
-            Ip = ip;
-            Negated = negated;
-            Subnet = subnet;
-        }
-    }
     }
 }
