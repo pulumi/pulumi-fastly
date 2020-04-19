@@ -8,6 +8,7 @@ export * from "./serviceACLEntriesv1";
 export * from "./serviceDictionaryItemsv1";
 export * from "./serviceDynamicSnippetContentv1";
 export * from "./servicev1";
+export * from "./userv1";
 
 // Export sub-modules:
 import * as config from "./config/index";
