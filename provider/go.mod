@@ -8,5 +8,5 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk v1.7.0
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.0.0
 	github.com/pulumi/pulumi/sdk/v2 v2.0.0
-	github.com/terraform-providers/terraform-provider-fastly v0.13.0
+	github.com/terraform-providers/terraform-provider-fastly v0.14.0
 )

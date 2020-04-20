@@ -61,7 +61,7 @@ provider:: generate_schema
 
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource aws 1.10.0
+	pulumi plugin install resource aws 2.0.0
 
 lint::
 	#golangci-lint run

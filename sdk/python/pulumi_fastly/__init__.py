@@ -16,3 +16,4 @@ from .service_acl_entriesv1 import *
 from .service_dictionary_itemsv1 import *
 from .service_dynamic_snippet_contentv1 import *
 from .servicev1 import *
+from .userv1 import *

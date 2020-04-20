@@ -25,6 +25,7 @@
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",
+        "userv1.ts",
         "utilities.ts"
     ]
 }
