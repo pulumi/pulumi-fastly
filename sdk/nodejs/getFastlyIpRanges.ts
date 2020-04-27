@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as fastly from "@pulumi/fastly";
  * 
- * const fastlyFastlyIpRanges = fastly.getFastlyIpRanges();
+ * const fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));
  * const fromFastly = new aws.ec2.SecurityGroup("fromFastly", {
  *     ingress: [{
  *         cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,
