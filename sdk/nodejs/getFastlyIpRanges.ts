@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to get the [IP ranges][1] of Fastly edge nodes.
+ * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
  * 
  * ## Example Usage
  * 
@@ -52,7 +52,7 @@ export interface GetFastlyIpRangesResult {
      */
     readonly cidrBlocks: string[];
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
 }
