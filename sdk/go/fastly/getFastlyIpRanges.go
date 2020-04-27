@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Use this data source to get the [IP ranges][1] of Fastly edge nodes.
+// Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
 func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFastlyIpRangesResult, error) {
 	var rv GetFastlyIpRangesResult
 	err := ctx.Invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, &rv, opts...)
@@ -21,6 +21,6 @@ func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFa
 type GetFastlyIpRangesResult struct {
 	// The lexically ordered list of CIDR blocks.
 	CidrBlocks []string `pulumi:"cidrBlocks"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 }
