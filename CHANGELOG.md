@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Regenerate datasource examples to be async
-* Upgrade to pulumi-terraform-bridge v2.1.0
+_(none)_
 
 ---
+
+## 2.2.0 (2020-04-28)
+* Regenerate datasource examples to be async
+* Upgrade to pulumi-terraform-bridge v2.1.0
 
 ## 2.1.0 (2020-04-20)
 * Upgrade to v0.14.0 of the Fastly Terraform Provider
