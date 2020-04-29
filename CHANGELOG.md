@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.15.0 of the Fastly Terraform Provider
+_(none)_
 
 ---
+
+## 2.3.0 (2020-04-29)
+* Upgrade to v0.15.0 of the Fastly Terraform Provider
 
 ## 2.2.0 (2020-04-28)
 * Regenerate datasource examples to be async
