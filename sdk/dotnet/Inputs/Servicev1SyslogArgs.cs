@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -43,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -61,19 +61,19 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        /// A secure certificate to authenticate the server with. Must be in PEM format.
         /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
         /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        /// The client certificate used to make authenticated requests. Must be in PEM format.
         /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
         /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        /// The client private key used to make authenticated requests. Must be in PEM format.
         /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }

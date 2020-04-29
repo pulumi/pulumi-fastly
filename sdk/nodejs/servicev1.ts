@@ -160,6 +160,11 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly healthchecks!: pulumi.Output<outputs.Servicev1Healthcheck[] | undefined>;
     /**
+     * An HTTPS endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly httpsloggings!: pulumi.Output<outputs.Servicev1Httpslogging[] | undefined>;
+    /**
      * A logentries endpoint to send streaming logs too.
      * Defined below.
      */
@@ -249,6 +254,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["gzips"] = state ? state.gzips : undefined;
             inputs["headers"] = state ? state.headers : undefined;
             inputs["healthchecks"] = state ? state.healthchecks : undefined;
+            inputs["httpsloggings"] = state ? state.httpsloggings : undefined;
             inputs["logentries"] = state ? state.logentries : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["papertrails"] = state ? state.papertrails : undefined;
@@ -285,6 +291,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["gzips"] = args ? args.gzips : undefined;
             inputs["headers"] = args ? args.headers : undefined;
             inputs["healthchecks"] = args ? args.healthchecks : undefined;
+            inputs["httpsloggings"] = args ? args.httpsloggings : undefined;
             inputs["logentries"] = args ? args.logentries : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["papertrails"] = args ? args.papertrails : undefined;
@@ -408,6 +415,11 @@ export interface Servicev1State {
      * Name of a defined `healthcheck` to assign to this backend.
      */
     readonly healthchecks?: pulumi.Input<pulumi.Input<inputs.Servicev1Healthcheck>[]>;
+    /**
+     * An HTTPS endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly httpsloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Httpslogging>[]>;
     /**
      * A logentries endpoint to send streaming logs too.
      * Defined below.
@@ -558,6 +570,11 @@ export interface Servicev1Args {
      * Name of a defined `healthcheck` to assign to this backend.
      */
     readonly healthchecks?: pulumi.Input<pulumi.Input<inputs.Servicev1Healthcheck>[]>;
+    /**
+     * An HTTPS endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly httpsloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Httpslogging>[]>;
     /**
      * A logentries endpoint to send streaming logs too.
      * Defined below.

@@ -34,7 +34,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Initial;
         /// <summary>
-        /// Which HTTP method to use. Default `HEAD`.
+        /// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
         /// </summary>
         public readonly string? Method;
         /// <summary>

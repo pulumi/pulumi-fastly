@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Container { get; set; } = null!;
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -43,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -67,7 +67,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }

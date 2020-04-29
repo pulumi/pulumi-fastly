@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1SplunkGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -43,13 +43,25 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// </summary>
+        [Input("tlsCaCert")]
+        public Input<string>? TlsCaCert { get; set; }
+
+        /// <summary>
+        /// Used during the TLS handshake to validate the certificate.
+        /// </summary>
+        [Input("tlsHostname")]
+        public Input<string>? TlsHostname { get; set; }
+
+        /// <summary>
         /// The Splunk token to be used for authentication.
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// The Splunk URL to stream logs to.
+        /// URL that log data will be sent to. Must use the https protocol.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

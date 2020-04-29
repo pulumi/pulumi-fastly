@@ -156,6 +156,13 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Healthcheck>> Healthchecks { get; private set; } = null!;
 
         /// <summary>
+        /// An HTTPS endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("httpsloggings")]
+        public Output<ImmutableArray<Outputs.Servicev1Httpslogging>> Httpsloggings { get; private set; } = null!;
+
+        /// <summary>
         /// A logentries endpoint to send streaming logs too.
         /// Defined below.
         /// </summary>
@@ -489,6 +496,19 @@ namespace Pulumi.Fastly
         {
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.Servicev1HealthcheckArgs>());
             set => _healthchecks = value;
+        }
+
+        [Input("httpsloggings")]
+        private InputList<Inputs.Servicev1HttpsloggingArgs>? _httpsloggings;
+
+        /// <summary>
+        /// An HTTPS endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1HttpsloggingArgs> Httpsloggings
+        {
+            get => _httpsloggings ?? (_httpsloggings = new InputList<Inputs.Servicev1HttpsloggingArgs>());
+            set => _httpsloggings = value;
         }
 
         [Input("logentries")]
@@ -855,6 +875,19 @@ namespace Pulumi.Fastly
         {
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.Servicev1HealthcheckGetArgs>());
             set => _healthchecks = value;
+        }
+
+        [Input("httpsloggings")]
+        private InputList<Inputs.Servicev1HttpsloggingGetArgs>? _httpsloggings;
+
+        /// <summary>
+        /// An HTTPS endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1HttpsloggingGetArgs> Httpsloggings
+        {
+            get => _httpsloggings ?? (_httpsloggings = new InputList<Inputs.Servicev1HttpsloggingGetArgs>());
+            set => _httpsloggings = value;
         }
 
         [Input("logentries")]
