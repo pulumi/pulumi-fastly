@@ -43,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Initial { get; set; }
 
         /// <summary>
-        /// Which HTTP method to use. Default `HEAD`.
+        /// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }

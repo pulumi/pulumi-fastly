@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Splunk
     {
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         public readonly string? Format;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
@@ -34,11 +34,19 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// </summary>
+        public readonly string? TlsCaCert;
+        /// <summary>
+        /// Used during the TLS handshake to validate the certificate.
+        /// </summary>
+        public readonly string? TlsHostname;
+        /// <summary>
         /// The Splunk token to be used for authentication.
         /// </summary>
         public readonly string Token;
         /// <summary>
-        /// The Splunk URL to stream logs to.
+        /// URL that log data will be sent to. Must use the https protocol.
         /// </summary>
         public readonly string Url;
 
@@ -54,6 +62,10 @@ namespace Pulumi.Fastly.Outputs
 
             string? responseCondition,
 
+            string? tlsCaCert,
+
+            string? tlsHostname,
+
             string token,
 
             string url)
@@ -63,6 +75,8 @@ namespace Pulumi.Fastly.Outputs
             Name = name;
             Placement = placement;
             ResponseCondition = responseCondition;
+            TlsCaCert = tlsCaCert;
+            TlsHostname = tlsHostname;
             Token = token;
             Url = url;
         }

@@ -73,6 +73,9 @@ type Servicev1 struct {
 	Headers Servicev1HeaderArrayOutput `pulumi:"headers"`
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayOutput `pulumi:"healthchecks"`
+	// An HTTPS endpoint to send streaming logs to.
+	// Defined below.
+	Httpsloggings Servicev1HttpsloggingArrayOutput `pulumi:"httpsloggings"`
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayOutput `pulumi:"logentries"`
@@ -191,6 +194,9 @@ type servicev1State struct {
 	Headers []Servicev1Header `pulumi:"headers"`
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
+	// An HTTPS endpoint to send streaming logs to.
+	// Defined below.
+	Httpsloggings []Servicev1Httpslogging `pulumi:"httpsloggings"`
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
@@ -279,6 +285,9 @@ type Servicev1State struct {
 	Headers Servicev1HeaderArrayInput
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayInput
+	// An HTTPS endpoint to send streaming logs to.
+	// Defined below.
+	Httpsloggings Servicev1HttpsloggingArrayInput
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput
@@ -368,6 +377,9 @@ type servicev1Args struct {
 	Headers []Servicev1Header `pulumi:"headers"`
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
+	// An HTTPS endpoint to send streaming logs to.
+	// Defined below.
+	Httpsloggings []Servicev1Httpslogging `pulumi:"httpsloggings"`
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
@@ -454,6 +466,9 @@ type Servicev1Args struct {
 	Headers Servicev1HeaderArrayInput
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayInput
+	// An HTTPS endpoint to send streaming logs to.
+	// Defined below.
+	Httpsloggings Servicev1HttpsloggingArrayInput
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput

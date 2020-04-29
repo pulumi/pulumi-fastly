@@ -152,7 +152,7 @@ export interface Servicev1Bigquerylogging {
      */
     email?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -160,7 +160,7 @@ export interface Servicev1Bigquerylogging {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -195,7 +195,7 @@ export interface Servicev1Blobstoragelogging {
      */
     container: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -207,7 +207,7 @@ export interface Servicev1Blobstoragelogging {
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
      */
     messageType?: string;
     /**
@@ -223,7 +223,7 @@ export interface Servicev1Blobstoragelogging {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -375,7 +375,7 @@ export interface Servicev1Gcslogging {
      */
     email?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -383,7 +383,7 @@ export interface Servicev1Gcslogging {
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
      */
     messageType?: string;
     /**
@@ -399,7 +399,7 @@ export interface Servicev1Gcslogging {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -514,7 +514,7 @@ export interface Servicev1Healthcheck {
      */
     initial?: number;
     /**
-     * Which HTTP method to use. Default `HEAD`.
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
      */
     method?: string;
     /**
@@ -539,9 +539,84 @@ export interface Servicev1Healthcheck {
     window?: number;
 }
 
+export interface Servicev1Httpslogging {
+    /**
+     * The MIME type of the content.
+     */
+    contentType?: string;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * Custom header sent with the request.
+     */
+    headerName?: string;
+    /**
+     * Value of the custom header sent with the request.
+     */
+    headerValue?: string;
+    /**
+     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+     */
+    jsonFormat?: string;
+    /**
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     */
+    messageType?: string;
+    /**
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     */
+    method?: string;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The maximum number of bytes sent in one request.
+     */
+    requestMaxBytes?: number;
+    /**
+     * The maximum number of logs sent in one request.
+     */
+    requestMaxEntries?: number;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: string;
+    /**
+     * Used during the TLS handshake to validate the certificate.
+     */
+    tlsHostname?: string;
+    /**
+     * URL that log data will be sent to. Must use the https protocol.
+     */
+    url: string;
+}
+
 export interface Servicev1Logentry {
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -553,7 +628,7 @@ export interface Servicev1Logentry {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -580,7 +655,7 @@ export interface Servicev1Papertrail {
      */
     address: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -588,7 +663,7 @@ export interface Servicev1Papertrail {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -703,7 +778,7 @@ export interface Servicev1S3logging {
      */
     domain?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -715,7 +790,7 @@ export interface Servicev1S3logging {
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
      */
     messageType?: string;
     /**
@@ -731,7 +806,7 @@ export interface Servicev1S3logging {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -785,7 +860,7 @@ export interface Servicev1Snippet {
 
 export interface Servicev1Splunk {
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -797,7 +872,7 @@ export interface Servicev1Splunk {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -805,18 +880,26 @@ export interface Servicev1Splunk {
      */
     responseCondition?: string;
     /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * Used during the TLS handshake to validate the certificate.
+     */
+    tlsHostname?: string;
+    /**
      * The Splunk token to be used for authentication.
      */
     token: string;
     /**
-     * The Splunk URL to stream logs to.
+     * URL that log data will be sent to. Must use the https protocol.
      */
     url: string;
 }
 
 export interface Servicev1Sumologic {
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -824,7 +907,7 @@ export interface Servicev1Sumologic {
      */
     formatVersion?: number;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
      */
     messageType?: string;
     /**
@@ -832,7 +915,7 @@ export interface Servicev1Sumologic {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -840,7 +923,7 @@ export interface Servicev1Sumologic {
      */
     responseCondition?: string;
     /**
-     * The Splunk URL to stream logs to.
+     * URL that log data will be sent to. Must use the https protocol.
      */
     url: string;
 }
@@ -851,7 +934,7 @@ export interface Servicev1Syslog {
      */
     address: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %>s %b`.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
@@ -859,7 +942,7 @@ export interface Servicev1Syslog {
      */
     formatVersion?: number;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`.  Default `classic`.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
      */
     messageType?: string;
     /**
@@ -867,7 +950,7 @@ export interface Servicev1Syslog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed, overriding any `formatVersion` default. Can be either `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -879,15 +962,15 @@ export interface Servicev1Syslog {
      */
     responseCondition?: string;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+     * A secure certificate to authenticate the server with. Must be in PEM format.
      */
     tlsCaCert?: string;
     /**
-     * The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+     * The client certificate used to make authenticated requests. Must be in PEM format.
      */
     tlsClientCert?: string;
     /**
-     * The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+     * The client private key used to make authenticated requests. Must be in PEM format.
      */
     tlsClientKey?: string;
     /**

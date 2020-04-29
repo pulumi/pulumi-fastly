@@ -11,12 +11,12 @@ namespace Pulumi.Fastly.Outputs
 {
 
     [OutputType]
-    public sealed class Servicev1Syslog
+    public sealed class Servicev1Httpslogging
     {
         /// <summary>
-        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// The MIME type of the content.
         /// </summary>
-        public readonly string Address;
+        public readonly string? ContentType;
         /// <summary>
         /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
@@ -26,9 +26,25 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
+        /// Custom header sent with the request.
+        /// </summary>
+        public readonly string? HeaderName;
+        /// <summary>
+        /// Value of the custom header sent with the request.
+        /// </summary>
+        public readonly string? HeaderValue;
+        /// <summary>
+        /// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+        /// </summary>
+        public readonly string? JsonFormat;
+        /// <summary>
         /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
         /// </summary>
         public readonly string? MessageType;
+        /// <summary>
+        /// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        /// </summary>
+        public readonly string? Method;
         /// <summary>
         /// A unique name to identify this dictionary.
         /// </summary>
@@ -38,9 +54,13 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The maximum number of bytes sent in one request.
         /// </summary>
-        public readonly int? Port;
+        public readonly int? RequestMaxBytes;
+        /// <summary>
+        /// The maximum number of logs sent in one request.
+        /// </summary>
+        public readonly int? RequestMaxEntries;
         /// <summary>
         /// The name of the `condition` to apply. If empty, always execute.
         /// </summary>
@@ -62,29 +82,35 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The Splunk token to be used for authentication.
+        /// URL that log data will be sent to. Must use the https protocol.
         /// </summary>
-        public readonly string? Token;
-        /// <summary>
-        /// Whether to use TLS for secure logging. Defaults to `true`
-        /// </summary>
-        public readonly bool? UseTls;
+        public readonly string Url;
 
         [OutputConstructor]
-        private Servicev1Syslog(
-            string address,
+        private Servicev1Httpslogging(
+            string? contentType,
 
             string? format,
 
             int? formatVersion,
 
+            string? headerName,
+
+            string? headerValue,
+
+            string? jsonFormat,
+
             string? messageType,
+
+            string? method,
 
             string name,
 
             string? placement,
 
-            int? port,
+            int? requestMaxBytes,
+
+            int? requestMaxEntries,
 
             string? responseCondition,
 
@@ -96,24 +122,26 @@ namespace Pulumi.Fastly.Outputs
 
             string? tlsHostname,
 
-            string? token,
-
-            bool? useTls)
+            string url)
         {
-            Address = address;
+            ContentType = contentType;
             Format = format;
             FormatVersion = formatVersion;
+            HeaderName = headerName;
+            HeaderValue = headerValue;
+            JsonFormat = jsonFormat;
             MessageType = messageType;
+            Method = method;
             Name = name;
             Placement = placement;
-            Port = port;
+            RequestMaxBytes = requestMaxBytes;
+            RequestMaxEntries = requestMaxEntries;
             ResponseCondition = responseCondition;
             TlsCaCert = tlsCaCert;
             TlsClientCert = tlsClientCert;
             TlsClientKey = tlsClientKey;
             TlsHostname = tlsHostname;
-            Token = token;
-            UseTls = useTls;
+            Url = url;
         }
     }
 }

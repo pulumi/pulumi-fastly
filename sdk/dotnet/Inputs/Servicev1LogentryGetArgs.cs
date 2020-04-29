@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LogentryGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting. Default `%h %l %u %t \"%r\" %&gt;s %b`.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed, overriding any `format_version` default. Can be either `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }

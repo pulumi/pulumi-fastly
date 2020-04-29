@@ -10,13 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class Servicev1SyslogGetArgs : Pulumi.ResourceArgs
+    public sealed class Servicev1HttpsloggingGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// The MIME type of the content.
         /// </summary>
-        [Input("address", required: true)]
-        public Input<string> Address { get; set; } = null!;
+        [Input("contentType")]
+        public Input<string>? ContentType { get; set; }
 
         /// <summary>
         /// Apache-style string or VCL variables to use for log formatting.
@@ -31,10 +31,34 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
+        /// Custom header sent with the request.
+        /// </summary>
+        [Input("headerName")]
+        public Input<string>? HeaderName { get; set; }
+
+        /// <summary>
+        /// Value of the custom header sent with the request.
+        /// </summary>
+        [Input("headerValue")]
+        public Input<string>? HeaderValue { get; set; }
+
+        /// <summary>
+        /// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+        /// </summary>
+        [Input("jsonFormat")]
+        public Input<string>? JsonFormat { get; set; }
+
+        /// <summary>
         /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
+
+        /// <summary>
+        /// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        /// </summary>
+        [Input("method")]
+        public Input<string>? Method { get; set; }
 
         /// <summary>
         /// A unique name to identify this dictionary.
@@ -49,10 +73,16 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The maximum number of bytes sent in one request.
         /// </summary>
-        [Input("port")]
-        public Input<int>? Port { get; set; }
+        [Input("requestMaxBytes")]
+        public Input<int>? RequestMaxBytes { get; set; }
+
+        /// <summary>
+        /// The maximum number of logs sent in one request.
+        /// </summary>
+        [Input("requestMaxEntries")]
+        public Input<int>? RequestMaxEntries { get; set; }
 
         /// <summary>
         /// The name of the `condition` to apply. If empty, always execute.
@@ -85,18 +115,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The Splunk token to be used for authentication.
+        /// URL that log data will be sent to. Must use the https protocol.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        [Input("url", required: true)]
+        public Input<string> Url { get; set; } = null!;
 
-        /// <summary>
-        /// Whether to use TLS for secure logging. Defaults to `true`
-        /// </summary>
-        [Input("useTls")]
-        public Input<bool>? UseTls { get; set; }
-
-        public Servicev1SyslogGetArgs()
+        public Servicev1HttpsloggingGetArgs()
         {
         }
     }
