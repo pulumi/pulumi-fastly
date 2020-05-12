@@ -5,8 +5,6 @@
 _SNAKE_TO_CAMEL_CASE_TABLE = {
     "acl_id": "aclId",
     "active_version": "activeVersion",
-    "api_key": "apiKey",
-    "base_url": "baseUrl",
     "cache_settings": "cacheSettings",
     "cloned_version": "clonedVersion",
     "default_host": "defaultHost",
@@ -23,8 +21,6 @@ _SNAKE_TO_CAMEL_CASE_TABLE = {
 _CAMEL_TO_SNAKE_CASE_TABLE = {
     "aclId": "acl_id",
     "activeVersion": "active_version",
-    "apiKey": "api_key",
-    "baseUrl": "base_url",
     "cacheSettings": "cache_settings",
     "clonedVersion": "cloned_version",
     "defaultHost": "default_host",

@@ -38,6 +38,24 @@ class AwaitableGetFastlyIpRangesResult(GetFastlyIpRangesResult):
 def get_fastly_ip_ranges(opts=None):
     """
     Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
+
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_fastly as fastly
+
+    fastly = fastly.get_fastly_ip_ranges()
+    from_fastly = aws.ec2.SecurityGroup("fromFastly", ingress=[{
+        "cidrBlocks": fastly.cidr_blocks,
+        "fromPort": "443",
+        "protocol": "tcp",
+        "toPort": "443",
+    }])
+    ```
     """
     __args__ = dict()
 

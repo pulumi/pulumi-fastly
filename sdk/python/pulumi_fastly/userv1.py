@@ -28,6 +28,16 @@ class Userv1(pulumi.CustomResource):
 
         The User resource requires a login and name, and optionally a role.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.Userv1("demo", login="demo@example.com")
+        ```
 
 
         :param str resource_name: The name of the resource.
