@@ -10,19 +10,19 @@ import * as utilities from "./utilities";
  * Provides a Fastly Service, representing the configuration for a website, app,
  * API, or anything else to be served through Fastly. A Service encompasses Domains
  * and Backends.
- * 
+ *
  * The Service resource requires a domain name that is correctly set up to direct
  * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
  * on their documentation site for guidance.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
- * 
+ *
  * const demo = new fastly.Servicev1("demo", {
  *     backends: [{
  *         address: "127.0.0.1",
@@ -36,8 +36,6 @@ import * as utilities from "./utilities";
  *     forceDestroy: true,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/service_v1.html.markdown.
  */
 export class Servicev1 extends pulumi.CustomResource {
     /**
