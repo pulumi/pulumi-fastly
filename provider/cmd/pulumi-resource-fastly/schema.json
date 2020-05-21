@@ -1,0 +1,3287 @@
+{
+    "name": "fastly",
+    "description": "A Pulumi package for creating and managing fastly cloud resources.",
+    "keywords": [
+        "pulumi",
+        "fastly"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`fastly` Terraform Provider](https://github.com/terraform-providers/terraform-provider-fastly).",
+    "repository": "https://github.com/GrubhubProd/pulumi-fastly",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string",
+                "description": "Fastly API Key from https://app.fastly.com/#account\n",
+                "defaultInfo": {
+                    "environment": [
+                        "FASTLY_API_KEY"
+                    ]
+                }
+            },
+            "baseUrl": {
+                "type": "string",
+                "description": "Fastly API URL\n",
+                "default": "https://api.fastly.com",
+                "defaultInfo": {
+                    "environment": [
+                        "FASTLY_API_URL"
+                    ]
+                }
+            }
+        }
+    },
+    "types": {
+        "fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry": {
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "A personal freeform descriptive note\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ip": {
+                    "type": "string",
+                    "description": "An IP address that is the focus for the ACL\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "negated": {
+                    "type": "boolean",
+                    "description": "A boolean that will negate the match if true\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "subnet": {
+                    "type": "string",
+                    "description": "An optional subnet mask applied to the IP address\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "ip"
+            ]
+        },
+        "fastly:/Servicev1Acl:Servicev1Acl": {
+            "properties": {
+                "aclId": {
+                    "type": "string",
+                    "description": "The ID of the ACL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Backend:Servicev1Backend": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "A hostname or IPv4 address of the Syslog endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "autoLoadbalance": {
+                    "type": "boolean",
+                    "description": "Denotes if this Backend should be\nincluded in the pool of backends that requests are load balanced against.\nDefault `true`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "betweenBytesTimeout": {
+                    "type": "integer",
+                    "description": "How long to wait between bytes in milliseconds. Default `10000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "connectTimeout": {
+                    "type": "integer",
+                    "description": "How long to wait for a timeout in milliseconds.\nDefault `1000`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "errorThreshold": {
+                    "type": "integer",
+                    "description": "Number of errors to allow before the Backend is marked as down. Default `0`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "firstByteTimeout": {
+                    "type": "integer",
+                    "description": "How long to wait for the first bytes in milliseconds. Default `15000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "healthcheck": {
+                    "type": "string",
+                    "description": "Name of a defined `healthcheck` to assign to this backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxConn": {
+                    "type": "integer",
+                    "description": "Maximum number of connections for this Backend.\nDefault `200`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxTlsVersion": {
+                    "type": "string",
+                    "description": "Maximum allowed TLS version on SSL connections to this backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minTlsVersion": {
+                    "type": "string",
+                    "description": "Minimum allowed TLS version on SSL connections to this backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "overrideHost": {
+                    "type": "string",
+                    "description": "The hostname to override the Host header.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "shield": {
+                    "type": "string",
+                    "description": "Selected POP to serve as a \"shield\" for origin servers.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCaCert": {
+                    "type": "string",
+                    "description": "CA certificate attached to origin.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCertHostname": {
+                    "type": "string",
+                    "description": "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCheckCert": {
+                    "type": "boolean",
+                    "description": "Be strict about checking SSL certs. Default `true`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCiphers": {
+                    "type": "string",
+                    "description": "Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslClientCert": {
+                    "type": "string",
+                    "description": "Client certificate attached to origin. Used when connecting to the backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslClientKey": {
+                    "type": "string",
+                    "description": "Client key attached to origin. Used when connecting to the backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslHostname": {
+                    "type": "string",
+                    "description": "Used for both SNI during the TLS handshake and to validate the cert.\n",
+                    "deprecationMessage": "Use ssl_cert_hostname and ssl_sni_hostname instead.",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslSniHostname": {
+                    "type": "string",
+                    "description": "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useSsl": {
+                    "type": "boolean",
+                    "description": "Whether or not to use SSL to reach the backend. Default `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "weight": {
+                    "type": "integer",
+                    "description": "The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging": {
+            "properties": {
+                "dataset": {
+                    "type": "string",
+                    "description": "The ID of your BigQuery dataset.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of your GCP project.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "table": {
+                    "type": "string",
+                    "description": "The ID of your BigQuery table.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "template": {
+                    "type": "string",
+                    "description": "Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "dataset",
+                "name",
+                "projectId",
+                "table"
+            ]
+        },
+        "fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging": {
+            "properties": {
+                "accountName": {
+                    "type": "string",
+                    "description": "The unique Azure Blob Storage namespace in which your data objects are stored.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "container": {
+                    "type": "string",
+                    "description": "The name of the Azure Blob Storage container in which to store logs.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently the logs should be transferred in seconds. Default `3600`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sasToken": {
+                    "type": "string",
+                    "description": "The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "`strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accountName",
+                "container",
+                "name",
+                "sasToken"
+            ]
+        },
+        "fastly:/Servicev1CacheSetting:Servicev1CacheSetting": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Allows you to terminate request handling and immediately\nperform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cacheCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,\nsee [Fastly's Documentation on Conditionals][fastly-conditionals].\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "staleTtl": {
+                    "type": "integer",
+                    "description": "Max \"Time To Live\" for stale (unreachable) objects.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The Time-To-Live (TTL) for the object.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Condition:Servicev1Condition": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "statement": {
+                    "type": "string",
+                    "description": "The statement used to determine if the condition is met.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "statement",
+                "type"
+            ]
+        },
+        "fastly:/Servicev1Dictionary:Servicev1Dictionary": {
+            "properties": {
+                "dictionaryId": {
+                    "type": "string",
+                    "description": "The ID of the dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "writeOnly": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Director:Servicev1Director": {
+            "properties": {
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Names of defined backends to map the director to. Example: `[ \"origin1\", \"origin2\" ]`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "capacity": {
+                    "type": "integer",
+                    "description": "Load balancing weight for the backends. Default `100`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment about the Director.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quorum": {
+                    "type": "integer",
+                    "description": "Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "How many backends to search if it fails. Default `5`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "shield": {
+                    "type": "string",
+                    "description": "Selected POP to serve as a \"shield\" for origin servers.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "integer",
+                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "backends",
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Domain:Servicev1Domain": {
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment about the Director.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "snippetId": {
+                    "type": "string",
+                    "description": "The ID of the dynamic snippet.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ]
+        },
+        "fastly:/Servicev1Gcslogging:Servicev1Gcslogging": {
+            "properties": {
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of the bucket in which to store the logs.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently the logs should be transferred in seconds. Default `3600`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "`strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "bucketName",
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Gzip:Servicev1Gzip": {
+            "properties": {
+                "cacheCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,\nsee [Fastly's Documentation on Conditionals][fastly-conditionals].\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "contentTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The content-type for each type of content you wish to\nhave dynamically gzip'ed. Example: `[\"text/html\", \"text/css\"]`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "extensions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "File extensions for each file type to dynamically\ngzip. Example: `[\"css\", \"js\"]`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Header:Servicev1Header": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Allows you to terminate request handling and immediately\nperform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cacheCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,\nsee [Fastly's Documentation on Conditionals][fastly-conditionals].\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "destination": {
+                    "type": "string",
+                    "description": "The name of the header that is going to be affected by the Action.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ignoreIfSet": {
+                    "type": "boolean",
+                    "description": "Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "regex": {
+                    "type": "string",
+                    "description": "Regular expression to use (Only applies to the `regex` and `regex_repeat` actions.)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "source": {
+                    "type": "string",
+                    "description": "Variable to be used as a source for the header\ncontent. (Does not apply to the `delete` action.)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "substitution": {
+                    "type": "string",
+                    "description": "Value to substitute in place of regular expression. (Only applies to the `regex` and `regex_repeat` actions.)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "destination",
+                "name",
+                "type"
+            ]
+        },
+        "fastly:/Servicev1Healthcheck:Servicev1Healthcheck": {
+            "properties": {
+                "checkInterval": {
+                    "type": "integer",
+                    "description": "How often to run the Healthcheck in milliseconds. Default `5000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "expectedResponse": {
+                    "type": "integer",
+                    "description": "The status code expected from the host. Default `200`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The Host header to send for this Healthcheck.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpVersion": {
+                    "type": "string",
+                    "description": "Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "initial": {
+                    "type": "integer",
+                    "description": "When loading a config, the initial number of probes to be seen as OK. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "method": {
+                    "type": "string",
+                    "description": "HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "threshold": {
+                    "type": "integer",
+                    "description": "How many Healthchecks must succeed to be considered healthy. Default `3`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in milliseconds. Default `500`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "window": {
+                    "type": "integer",
+                    "description": "The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "host",
+                "name",
+                "path"
+            ]
+        },
+        "fastly:/Servicev1Httpslogging:Servicev1Httpslogging": {
+            "properties": {
+                "contentType": {
+                    "type": "string",
+                    "description": "The MIME type of the content.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "headerName": {
+                    "type": "string",
+                    "description": "Custom header sent with the request.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "headerValue": {
+                    "type": "string",
+                    "description": "Value of the custom header sent with the request.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "jsonFormat": {
+                    "type": "string",
+                    "description": "Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "method": {
+                    "type": "string",
+                    "description": "HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxBytes": {
+                    "type": "integer",
+                    "description": "The maximum number of bytes sent in one request.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxEntries": {
+                    "type": "integer",
+                    "description": "The maximum number of logs sent in one request.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "Used during the TLS handshake to validate the certificate.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL that log data will be sent to. Must use the https protocol.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "url"
+            ]
+        },
+        "fastly:/Servicev1Logentry:Servicev1Logentry": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Splunk token to be used for authentication.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useTls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS for secure logging. Defaults to `true`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/Servicev1Papertrail:Servicev1Papertrail": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "A hostname or IPv4 address of the Syslog endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name",
+                "port"
+            ]
+        },
+        "fastly:/Servicev1RequestSetting:Servicev1RequestSetting": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Allows you to terminate request handling and immediately\nperform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bypassBusyWait": {
+                    "type": "boolean",
+                    "description": "Disable collapsed forwarding, so you don't wait\nfor other objects to origin.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultHost": {
+                    "type": "string",
+                    "description": "Sets the host header.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "forceMiss": {
+                    "type": "boolean",
+                    "description": "Force a cache miss for the request. If specified,\ncan be `true` or `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "forceSsl": {
+                    "type": "boolean",
+                    "description": "Forces the request to use SSL (Redirects a non-SSL request to SSL).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "geoHeaders": {
+                    "type": "boolean",
+                    "description": "Injects Fastly-Geo-Country, Fastly-Geo-City, and\nFastly-Geo-Region into the request headers.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hashKeys": {
+                    "type": "string",
+                    "description": "Comma separated list of varnish request object fields\nthat should be in the hash key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxStaleAge": {
+                    "type": "integer",
+                    "description": "How old an object is allowed to be to serve\n`stale-if-error` or `stale-while-revalidate`, in seconds.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timerSupport": {
+                    "type": "boolean",
+                    "description": "Injects the X-Timer info into the request for\nviewing origin fetch durations.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "xff": {
+                    "type": "string",
+                    "description": "X-Forwarded-For, should be `clear`, `leave`, `append`,\n`append_all`, or `overwrite`. Default `append`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/Servicev1ResponseObject:Servicev1ResponseObject": {
+            "properties": {
+                "cacheCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,\nsee [Fastly's Documentation on Conditionals][fastly-conditionals].\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "content": {
+                    "type": "string",
+                    "description": "The custom VCL code to upload.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "contentType": {
+                    "type": "string",
+                    "description": "The MIME type of the content.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestCondition": {
+                    "type": "string",
+                    "description": "Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "response": {
+                    "type": "string",
+                    "description": "The HTTP Response. Default `Ok`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "integer",
+                    "description": "The HTTP Status Code. Default `200`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/Servicev1S3logging:Servicev1S3logging": {
+            "properties": {
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of the bucket in which to store the logs.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently the logs should be transferred in seconds. Default `3600`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "redundancy": {
+                    "type": "string",
+                    "description": "The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "s3AccessKey": {
+                    "type": "string",
+                    "description": "AWS Access Key of an account with the required\npermissions to post logs. It is **strongly** recommended you create a separate\nIAM user with permissions to only operate on this Bucket. This key will be\nnot be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "s3SecretKey": {
+                    "type": "string",
+                    "description": "AWS Secret Key of an account with the required\npermissions to post logs. It is **strongly** recommended you create a separate\nIAM user with permissions to only operate on this Bucket. This secret will be\nnot be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serverSideEncryption": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serverSideEncryptionKmsKeyId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "`strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "bucketName",
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Snippet:Servicev1Snippet": {
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "The custom VCL code to upload.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "content",
+                "name",
+                "type"
+            ]
+        },
+        "fastly:/Servicev1Splunk:Servicev1Splunk": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "Used during the TLS handshake to validate the certificate.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Splunk token to be used for authentication.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL that log data will be sent to. Must use the https protocol.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token",
+                "url"
+            ]
+        },
+        "fastly:/Servicev1Sumologic:Servicev1Sumologic": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL that log data will be sent to. Must use the https protocol.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "url"
+            ]
+        },
+        "fastly:/Servicev1Syslog:Servicev1Syslog": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "A hostname or IPv4 address of the Syslog endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "Used during the TLS handshake to validate the certificate.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Splunk token to be used for authentication.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useTls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS for secure logging. Defaults to `true`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name"
+            ]
+        },
+        "fastly:/Servicev1Vcl:Servicev1Vcl": {
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "The custom VCL code to upload.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "main": {
+                    "type": "boolean",
+                    "description": "If `true`, use this block as the main configuration. If\n`false`, use this block as an includable library. Only a single VCL block can be\nmarked as the main block. Default is `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "content",
+                "name"
+            ]
+        }
+    },
+    "provider": {
+        "description": "The provider type for the fastly package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "inputProperties": {
+            "apiKey": {
+                "type": "string",
+                "description": "Fastly API Key from https://app.fastly.com/#account\n",
+                "defaultInfo": {
+                    "environment": [
+                        "FASTLY_API_KEY"
+                    ]
+                }
+            },
+            "baseUrl": {
+                "type": "string",
+                "description": "Fastly API URL\n",
+                "default": "https://api.fastly.com",
+                "defaultInfo": {
+                    "environment": [
+                        "FASTLY_API_URL"
+                    ]
+                }
+            }
+        }
+    },
+    "resources": {
+        "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1": {
+            "properties": {
+                "aclId": {
+                    "type": "string",
+                    "description": "The ID of the ACL that the items belong to\n"
+                },
+                "entries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
+                    },
+                    "description": "A Set ACL entries that are applied to the service. Defined below\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the Service that the ACL belongs to\n"
+                }
+            },
+            "required": [
+                "aclId",
+                "serviceId"
+            ],
+            "inputProperties": {
+                "aclId": {
+                    "type": "string",
+                    "description": "The ID of the ACL that the items belong to\n"
+                },
+                "entries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
+                    },
+                    "description": "A Set ACL entries that are applied to the service. Defined below\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the Service that the ACL belongs to\n"
+                }
+            },
+            "requiredInputs": [
+                "aclId",
+                "serviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceACLEntriesv1 resources.\n",
+                "properties": {
+                    "aclId": {
+                        "type": "string",
+                        "description": "The ID of the ACL that the items belong to\n"
+                    },
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
+                        },
+                        "description": "A Set ACL entries that are applied to the service. Defined below\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the Service that the ACL belongs to\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1": {
+            "properties": {
+                "dictionaryId": {
+                    "type": "string",
+                    "description": "The ID of the dictionary that the items belong to\n"
+                },
+                "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "A map representing an entry in the dictionary, (key/value)\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service that the dictionary belongs to\n"
+                }
+            },
+            "required": [
+                "dictionaryId",
+                "serviceId"
+            ],
+            "inputProperties": {
+                "dictionaryId": {
+                    "type": "string",
+                    "description": "The ID of the dictionary that the items belong to\n"
+                },
+                "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "A map representing an entry in the dictionary, (key/value)\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service that the dictionary belongs to\n"
+                }
+            },
+            "requiredInputs": [
+                "dictionaryId",
+                "serviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceDictionaryItemsv1 resources.\n",
+                "properties": {
+                    "dictionaryId": {
+                        "type": "string",
+                        "description": "The ID of the dictionary that the items belong to\n"
+                    },
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "A map representing an entry in the dictionary, (key/value)\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service that the dictionary belongs to\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1": {
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "The VCL code that specifies exactly what the snippet does.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service that the dynamic snippet belongs to\n"
+                },
+                "snippetId": {
+                    "type": "string",
+                    "description": "The ID of the dynamic snippet that the content belong to\n"
+                }
+            },
+            "required": [
+                "content",
+                "serviceId",
+                "snippetId"
+            ],
+            "inputProperties": {
+                "content": {
+                    "type": "string",
+                    "description": "The VCL code that specifies exactly what the snippet does.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service that the dynamic snippet belongs to\n"
+                },
+                "snippetId": {
+                    "type": "string",
+                    "description": "The ID of the dynamic snippet that the content belong to\n"
+                }
+            },
+            "requiredInputs": [
+                "content",
+                "serviceId",
+                "snippetId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceDynamicSnippetContentv1 resources.\n",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The VCL code that specifies exactly what the snippet does.\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service that the dynamic snippet belongs to\n"
+                    },
+                    "snippetId": {
+                        "type": "string",
+                        "description": "The ID of the dynamic snippet that the content belong to\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/servicev1:Servicev1": {
+            "description": "Provides a Fastly Service, representing the configuration for a website, app,\nAPI, or anything else to be served through Fastly. A Service encompasses Domains\nand Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "properties": {
+                "acls": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Acl:Servicev1Acl"
+                    },
+                    "description": "A set of ACL configuration blocks.  Defined below.\n"
+                },
+                "activate": {
+                    "type": "boolean",
+                    "description": "Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.\n"
+                },
+                "activeVersion": {
+                    "type": "integer",
+                    "description": "The currently active version of your Fastly Service.\n"
+                },
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Backend:Servicev1Backend"
+                    },
+                    "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
+                },
+                "bigqueryloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
+                    },
+                    "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "blobstorageloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
+                    },
+                    "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "cacheSettings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1CacheSetting:Servicev1CacheSetting"
+                    },
+                    "description": "A set of Cache Settings, allowing you to override\n"
+                },
+                "clonedVersion": {
+                    "type": "integer"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment about the Director.\n"
+                },
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Condition:Servicev1Condition"
+                    },
+                    "description": "A set of conditions to add logic to any basic\nconfiguration object in this service. Defined below.\n"
+                },
+                "defaultHost": {
+                    "type": "string",
+                    "description": "Sets the host header.\n"
+                },
+                "defaultTtl": {
+                    "type": "integer",
+                    "description": "The default Time-to-live (TTL) for\nrequests.\n"
+                },
+                "dictionaries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Dictionary:Servicev1Dictionary"
+                    },
+                    "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
+                },
+                "directors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Director:Servicev1Director"
+                    },
+                    "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
+                    },
+                    "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n"
+                },
+                "dynamicsnippets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
+                    },
+                    "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
+                },
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Services that are active cannot be destroyed. In\norder to destroy the Service, set `force_destroy` to `true`. Default `false`.\n"
+                },
+                "gcsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Gcslogging:Servicev1Gcslogging"
+                    },
+                    "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "gzips": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Gzip:Servicev1Gzip"
+                    },
+                    "description": "A set of gzip rules to control automatic gzipping of\ncontent. Defined below.\n"
+                },
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Header:Servicev1Header"
+                    },
+                    "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
+                },
+                "healthchecks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Healthcheck:Servicev1Healthcheck"
+                    },
+                    "description": "Name of a defined `healthcheck` to assign to this backend.\n"
+                },
+                "httpsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Httpslogging:Servicev1Httpslogging"
+                    },
+                    "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "logentries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Logentry:Servicev1Logentry"
+                    },
+                    "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n"
+                },
+                "papertrails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Papertrail:Servicev1Papertrail"
+                    },
+                    "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "requestSettings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1RequestSetting:Servicev1RequestSetting"
+                    },
+                    "description": "A set of Request modifiers. Defined below\n"
+                },
+                "responseObjects": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
+                    },
+                    "description": "Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.\n"
+                },
+                "s3loggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1S3logging:Servicev1S3logging"
+                    },
+                    "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
+                },
+                "snippets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Snippet:Servicev1Snippet"
+                    },
+                    "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
+                },
+                "splunks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Splunk:Servicev1Splunk"
+                    },
+                    "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "sumologics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Sumologic:Servicev1Sumologic"
+                    },
+                    "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "syslogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Syslog:Servicev1Syslog"
+                    },
+                    "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "vcls": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
+                    },
+                    "description": "A set of custom VCL configuration blocks. The\nability to upload custom VCL code is not enabled by default for new Fastly\naccounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).\n"
+                },
+                "versionComment": {
+                    "type": "string",
+                    "description": "Description field for the version.\n"
+                }
+            },
+            "required": [
+                "activeVersion",
+                "clonedVersion",
+                "defaultHost",
+                "domains",
+                "name"
+            ],
+            "inputProperties": {
+                "acls": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Acl:Servicev1Acl"
+                    },
+                    "description": "A set of ACL configuration blocks.  Defined below.\n"
+                },
+                "activate": {
+                    "type": "boolean",
+                    "description": "Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.\n"
+                },
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Backend:Servicev1Backend"
+                    },
+                    "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
+                },
+                "bigqueryloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
+                    },
+                    "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "blobstorageloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
+                    },
+                    "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "cacheSettings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1CacheSetting:Servicev1CacheSetting"
+                    },
+                    "description": "A set of Cache Settings, allowing you to override\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment about the Director.\n"
+                },
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Condition:Servicev1Condition"
+                    },
+                    "description": "A set of conditions to add logic to any basic\nconfiguration object in this service. Defined below.\n"
+                },
+                "defaultHost": {
+                    "type": "string",
+                    "description": "Sets the host header.\n"
+                },
+                "defaultTtl": {
+                    "type": "integer",
+                    "description": "The default Time-to-live (TTL) for\nrequests.\n"
+                },
+                "dictionaries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Dictionary:Servicev1Dictionary"
+                    },
+                    "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
+                },
+                "directors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Director:Servicev1Director"
+                    },
+                    "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
+                    },
+                    "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n"
+                },
+                "dynamicsnippets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
+                    },
+                    "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
+                },
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Services that are active cannot be destroyed. In\norder to destroy the Service, set `force_destroy` to `true`. Default `false`.\n"
+                },
+                "gcsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Gcslogging:Servicev1Gcslogging"
+                    },
+                    "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "gzips": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Gzip:Servicev1Gzip"
+                    },
+                    "description": "A set of gzip rules to control automatic gzipping of\ncontent. Defined below.\n"
+                },
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Header:Servicev1Header"
+                    },
+                    "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
+                },
+                "healthchecks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Healthcheck:Servicev1Healthcheck"
+                    },
+                    "description": "Name of a defined `healthcheck` to assign to this backend.\n"
+                },
+                "httpsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Httpslogging:Servicev1Httpslogging"
+                    },
+                    "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "logentries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Logentry:Servicev1Logentry"
+                    },
+                    "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n"
+                },
+                "papertrails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Papertrail:Servicev1Papertrail"
+                    },
+                    "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "requestSettings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1RequestSetting:Servicev1RequestSetting"
+                    },
+                    "description": "A set of Request modifiers. Defined below\n"
+                },
+                "responseObjects": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
+                    },
+                    "description": "Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.\n"
+                },
+                "s3loggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1S3logging:Servicev1S3logging"
+                    },
+                    "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
+                },
+                "snippets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Snippet:Servicev1Snippet"
+                    },
+                    "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
+                },
+                "splunks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Splunk:Servicev1Splunk"
+                    },
+                    "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "sumologics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Sumologic:Servicev1Sumologic"
+                    },
+                    "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "syslogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Syslog:Servicev1Syslog"
+                    },
+                    "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "vcls": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
+                    },
+                    "description": "A set of custom VCL configuration blocks. The\nability to upload custom VCL code is not enabled by default for new Fastly\naccounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).\n"
+                },
+                "versionComment": {
+                    "type": "string",
+                    "description": "Description field for the version.\n"
+                }
+            },
+            "requiredInputs": [
+                "domains"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Servicev1 resources.\n",
+                "properties": {
+                    "acls": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Acl:Servicev1Acl"
+                        },
+                        "description": "A set of ACL configuration blocks.  Defined below.\n"
+                    },
+                    "activate": {
+                        "type": "boolean",
+                        "description": "Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.\n"
+                    },
+                    "activeVersion": {
+                        "type": "integer",
+                        "description": "The currently active version of your Fastly Service.\n"
+                    },
+                    "backends": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Backend:Servicev1Backend"
+                        },
+                        "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
+                    },
+                    "bigqueryloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
+                        },
+                        "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "blobstorageloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
+                        },
+                        "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "cacheSettings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1CacheSetting:Servicev1CacheSetting"
+                        },
+                        "description": "A set of Cache Settings, allowing you to override\n"
+                    },
+                    "clonedVersion": {
+                        "type": "integer"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "An optional comment about the Director.\n"
+                    },
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Condition:Servicev1Condition"
+                        },
+                        "description": "A set of conditions to add logic to any basic\nconfiguration object in this service. Defined below.\n"
+                    },
+                    "defaultHost": {
+                        "type": "string",
+                        "description": "Sets the host header.\n"
+                    },
+                    "defaultTtl": {
+                        "type": "integer",
+                        "description": "The default Time-to-live (TTL) for\nrequests.\n"
+                    },
+                    "dictionaries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Dictionary:Servicev1Dictionary"
+                        },
+                        "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
+                    },
+                    "directors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Director:Servicev1Director"
+                        },
+                        "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
+                    },
+                    "domains": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
+                        },
+                        "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n"
+                    },
+                    "dynamicsnippets": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
+                        },
+                        "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
+                    },
+                    "forceDestroy": {
+                        "type": "boolean",
+                        "description": "Services that are active cannot be destroyed. In\norder to destroy the Service, set `force_destroy` to `true`. Default `false`.\n"
+                    },
+                    "gcsloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Gcslogging:Servicev1Gcslogging"
+                        },
+                        "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "gzips": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Gzip:Servicev1Gzip"
+                        },
+                        "description": "A set of gzip rules to control automatic gzipping of\ncontent. Defined below.\n"
+                    },
+                    "headers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Header:Servicev1Header"
+                        },
+                        "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
+                    },
+                    "healthchecks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Healthcheck:Servicev1Healthcheck"
+                        },
+                        "description": "Name of a defined `healthcheck` to assign to this backend.\n"
+                    },
+                    "httpsloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Httpslogging:Servicev1Httpslogging"
+                        },
+                        "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "logentries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Logentry:Servicev1Logentry"
+                        },
+                        "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name to identify this dictionary.\n"
+                    },
+                    "papertrails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Papertrail:Servicev1Papertrail"
+                        },
+                        "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "requestSettings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1RequestSetting:Servicev1RequestSetting"
+                        },
+                        "description": "A set of Request modifiers. Defined below\n"
+                    },
+                    "responseObjects": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
+                        },
+                        "description": "Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.\n"
+                    },
+                    "s3loggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1S3logging:Servicev1S3logging"
+                        },
+                        "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
+                    },
+                    "snippets": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Snippet:Servicev1Snippet"
+                        },
+                        "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
+                    },
+                    "splunks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Splunk:Servicev1Splunk"
+                        },
+                        "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "sumologics": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Sumologic:Servicev1Sumologic"
+                        },
+                        "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "syslogs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Syslog:Servicev1Syslog"
+                        },
+                        "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "vcls": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
+                        },
+                        "description": "A set of custom VCL configuration blocks. The\nability to upload custom VCL code is not enabled by default for new Fastly\naccounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).\n"
+                    },
+                    "versionComment": {
+                        "type": "string",
+                        "description": "Description field for the version.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/userv1:Userv1": {
+            "description": "Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.\n\nThe User resource requires a login and name, and optionally a role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Userv1(\"demo\", {\n    login: \"demo@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Userv1(\"demo\", login=\"demo@example.com\")\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "properties": {
+                "login": {
+                    "type": "string",
+                    "description": "The email address, which is the login name, of the User.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The real life name of the user.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).\n"
+                }
+            },
+            "required": [
+                "login",
+                "name"
+            ],
+            "inputProperties": {
+                "login": {
+                    "type": "string",
+                    "description": "The email address, which is the login name, of the User.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The real life name of the user.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).\n"
+                }
+            },
+            "requiredInputs": [
+                "login"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Userv1 resources.\n",
+                "properties": {
+                    "login": {
+                        "type": "string",
+                        "description": "The email address, which is the login name, of the User.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The real life name of the user.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "fastly:index/getFastlyIpRanges:getFastlyIpRanges": {
+            "description": "Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));\nconst fromFastly = new aws.ec2.SecurityGroup(\"from_fastly\", {\n    ingress: [{\n        cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,\n        fromPort: 443,\n        protocol: \"tcp\",\n        toPort: 443,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\nfastly = fastly.get_fastly_ip_ranges()\nfrom_fastly = aws.ec2.SecurityGroup(\"fromFastly\", ingress=[{\n    \"cidrBlocks\": fastly.cidr_blocks,\n    \"fromPort\": \"443\",\n    \"protocol\": \"tcp\",\n    \"toPort\": \"443\",\n}])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "outputs": {
+                "description": "A collection of values returned by getFastlyIpRanges.\n",
+                "properties": {
+                    "cidrBlocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The lexically ordered list of CIDR blocks.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cidrBlocks",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "namespaces": {
+                "fastly": "Fastly"
+            },
+            "packageReferences": {
+                "Pulumi": "2.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "nodejs": {
+            "dependencies": {
+                "@pulumi/pulumi": "^2.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^8.0.25"
+            },
+            "packageDescription": "A Pulumi package for creating and managing fastly cloud resources.",
+            "packageName": "",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "requires": {
+                "pulumi": "\u003e=2.0.0,\u003c3.0.0"
+            }
+        }
+    }
+}

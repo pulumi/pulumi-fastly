@@ -8,23 +8,21 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.
- * 
+ *
  * The User resource requires a login and name, and optionally a role.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
- * 
+ *
  * const demo = new fastly.Userv1("demo", {
  *     login: "demo@example.com",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/r/user_v1.html.markdown.
  */
 export class Userv1 extends pulumi.CustomResource {
     /**

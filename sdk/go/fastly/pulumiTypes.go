@@ -298,6 +298,8 @@ type Servicev1Backend struct {
 	// Client key attached to origin. Used when connecting to the backend.
 	SslClientKey *string `pulumi:"sslClientKey"`
 	// Used for both SNI during the TLS handshake and to validate the cert.
+	//
+	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
 	SslHostname *string `pulumi:"sslHostname"`
 	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
 	SslSniHostname *string `pulumi:"sslSniHostname"`
@@ -367,6 +369,8 @@ type Servicev1BackendArgs struct {
 	// Client key attached to origin. Used when connecting to the backend.
 	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
 	// Used for both SNI during the TLS handshake and to validate the cert.
+	//
+	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
 	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
 	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
@@ -538,6 +542,8 @@ func (o Servicev1BackendOutput) SslClientKey() pulumi.StringPtrOutput {
 }
 
 // Used for both SNI during the TLS handshake and to validate the cert.
+//
+// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
 func (o Servicev1BackendOutput) SslHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
 }

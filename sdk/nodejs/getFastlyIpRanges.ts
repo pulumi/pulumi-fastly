@@ -8,16 +8,16 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as fastly from "@pulumi/fastly";
- * 
+ *
  * const fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));
  * const fromFastly = new aws.ec2.SecurityGroup("fromFastly", {
  *     ingress: [{
@@ -28,8 +28,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-fastly/blob/master/website/docs/d/ip_ranges.html.markdown.
  */
 export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
     if (!opts) {
