@@ -50,10 +50,10 @@ def get_fastly_ip_ranges(opts=None):
 
     fastly = fastly.get_fastly_ip_ranges()
     from_fastly = aws.ec2.SecurityGroup("fromFastly", ingress=[{
-        "cidrBlocks": fastly.cidr_blocks,
-        "fromPort": "443",
+        "cidr_blocks": fastly.cidr_blocks,
+        "from_port": "443",
         "protocol": "tcp",
-        "toPort": "443",
+        "to_port": "443",
     }])
     ```
     """

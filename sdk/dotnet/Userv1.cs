@@ -13,6 +13,27 @@ namespace Pulumi.Fastly
     /// Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.
     /// 
     /// The User resource requires a login and name, and optionally a role.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.Userv1("demo", new Fastly.Userv1Args
+    ///         {
+    ///             Login = "demo@example.com",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Userv1 : Pulumi.CustomResource
     {
