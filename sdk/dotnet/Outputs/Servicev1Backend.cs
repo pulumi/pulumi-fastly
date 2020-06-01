@@ -74,7 +74,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>
-        /// Selected POP to serve as a "shield" for origin servers.
+        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
         /// </summary>
         public readonly string? Shield;
         /// <summary>

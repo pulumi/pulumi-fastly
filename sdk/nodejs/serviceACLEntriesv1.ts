@@ -6,6 +6,100 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+ *
+ * ## Example Usage
+ *
+ * ### Basic usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const myaclName = config.get("myaclName") || "My ACL";
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domain: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backend: [{
+ *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         port: 80,
+ *     }],
+ *     acl: [{
+ *         name: myaclName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const entries = new fastly.ServiceACLEntriesv1("entries", {
+ *     serviceId: myservice.id,
+ *     aclId: myservice.acls.apply(acls => acls.reduce((__obj, d) => { ...__obj, [d.name]: d.aclId })[myaclName]),
+ *     entry: [{
+ *         ip: "127.0.0.1",
+ *         subnet: "24",
+ *         negated: false,
+ *         comment: "ALC Entry 1",
+ *     }],
+ * });
+ * ```
+ *
+ * ### Complex object usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const aclName = "myAcl";
+ * const aclEntries = [
+ *     {
+ *         ip: "1.2.3.4",
+ *         comment: "aclEntry1",
+ *     },
+ *     {
+ *         ip: "1.2.3.5",
+ *         comment: "aclEntry2",
+ *     },
+ *     {
+ *         ip: "1.2.3.6",
+ *         comment: "aclEntry3",
+ *     },
+ * ];
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domain: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backend: [{
+ *         address: "1.2.3.4",
+ *         name: "localhost",
+ *         port: 80,
+ *     }],
+ *     acl: [{
+ *         name: aclName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const entries = new fastly.ServiceACLEntriesv1("entries", {
+ *     serviceId: myservice.id,
+ *     aclId: myservice.acls.apply(acls => acls.reduce((__obj, d) => { ...__obj, [d.name]: d.aclId })[aclName]),
+ *     dynamic: [{
+ *         forEach: aclEntries.map(e => {
+ *             ip: e.ip,
+ *             comment: e.comment,
+ *         }),
+ *         content: [{
+ *             ip: entry.value.ip,
+ *             subnet: 22,
+ *             comment: entry.value.comment,
+ *             negated: false,
+ *         }],
+ *     }],
+ * });
+ * ```
+ */
 export class ServiceACLEntriesv1 extends pulumi.CustomResource {
     /**
      * Get an existing ServiceACLEntriesv1 resource's state with the given name, ID, and optional extra

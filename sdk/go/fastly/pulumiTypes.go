@@ -283,7 +283,7 @@ type Servicev1Backend struct {
 	Port *int `pulumi:"port"`
 	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition *string `pulumi:"requestCondition"`
-	// Selected POP to serve as a "shield" for origin servers.
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
 	Shield *string `pulumi:"shield"`
 	// CA certificate attached to origin.
 	SslCaCert *string `pulumi:"sslCaCert"`
@@ -354,7 +354,7 @@ type Servicev1BackendArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
-	// Selected POP to serve as a "shield" for origin servers.
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
 	// CA certificate attached to origin.
 	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
@@ -506,7 +506,7 @@ func (o Servicev1BackendOutput) RequestCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
-// Selected POP to serve as a "shield" for origin servers.
+// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
 func (o Servicev1BackendOutput) Shield() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
@@ -1250,8 +1250,12 @@ type Servicev1Dictionary struct {
 	// The ID of the dictionary.
 	DictionaryId *string `pulumi:"dictionaryId"`
 	// A unique name to identify this dictionary.
-	Name      string `pulumi:"name"`
-	WriteOnly *bool  `pulumi:"writeOnly"`
+	Name string `pulumi:"name"`
+	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+	// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+	// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+	// the items are managed outside of the provider.
+	WriteOnly *bool `pulumi:"writeOnly"`
 }
 
 // Servicev1DictionaryInput is an input type that accepts Servicev1DictionaryArgs and Servicev1DictionaryOutput values.
@@ -1270,7 +1274,11 @@ type Servicev1DictionaryArgs struct {
 	// The ID of the dictionary.
 	DictionaryId pulumi.StringPtrInput `pulumi:"dictionaryId"`
 	// A unique name to identify this dictionary.
-	Name      pulumi.StringInput  `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+	// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+	// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+	// the items are managed outside of the provider.
 	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
 }
 
@@ -1336,6 +1344,10 @@ func (o Servicev1DictionaryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Dictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+// the items are managed outside of the provider.
 func (o Servicev1DictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Dictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }
@@ -1373,7 +1385,7 @@ type Servicev1Director struct {
 	Quorum *int `pulumi:"quorum"`
 	// How many backends to search if it fails. Default `5`.
 	Retries *int `pulumi:"retries"`
-	// Selected POP to serve as a "shield" for origin servers.
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
 	Shield *string `pulumi:"shield"`
 	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type *int `pulumi:"type"`
@@ -1404,7 +1416,7 @@ type Servicev1DirectorArgs struct {
 	Quorum pulumi.IntPtrInput `pulumi:"quorum"`
 	// How many backends to search if it fails. Default `5`.
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
-	// Selected POP to serve as a "shield" for origin servers.
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
 	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 	Type pulumi.IntPtrInput `pulumi:"type"`
@@ -1492,7 +1504,7 @@ func (o Servicev1DirectorOutput) Retries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *int { return v.Retries }).(pulumi.IntPtrOutput)
 }
 
-// Selected POP to serve as a "shield" for origin servers.
+// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
 func (o Servicev1DirectorOutput) Shield() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }

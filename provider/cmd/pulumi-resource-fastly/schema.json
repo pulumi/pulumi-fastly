@@ -244,7 +244,7 @@
                 },
                 "shield": {
                     "type": "string",
-                    "description": "Selected POP to serve as a \"shield\" for origin servers.\n",
+                    "description": "Selected POP to serve as a \"shield\" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -708,6 +708,7 @@
                 },
                 "writeOnly": {
                     "type": "boolean",
+                    "description": "If `true`, the dictionary is a private dictionary, and items are not readable in the UI or\nvia API. Default is `false`. It is important to note that changing this attribute will delete and recreate the\ndictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if\nthe items are managed outside of the provider.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -781,7 +782,7 @@
                 },
                 "shield": {
                     "type": "string",
-                    "description": "Selected POP to serve as a \"shield\" for origin servers.\n",
+                    "description": "Selected POP to serve as a \"shield\" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2340,6 +2341,7 @@
     },
     "resources": {
         "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1": {
+            "description": "Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.\n\n{{% examples %}}\n{{% /examples %}}\n",
             "properties": {
                 "aclId": {
                     "type": "string",
@@ -2405,6 +2407,7 @@
             }
         },
         "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1": {
+            "description": "Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.\n\n{{% examples %}}\n{{% /examples %}}\n",
             "properties": {
                 "dictionaryId": {
                     "type": "string",
@@ -2470,6 +2473,7 @@
             }
         },
         "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1": {
+            "description": "Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison. \n \n{{% examples %}}\n{{% /examples %}}\n",
             "properties": {
                 "content": {
                     "type": "string",
@@ -2528,7 +2532,7 @@
             }
         },
         "fastly:index/servicev1:Servicev1": {
-            "description": "Provides a Fastly Service, representing the configuration for a website, app,\nAPI, or anything else to be served through Fastly. A Service encompasses Domains\nand Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "description": "Provides a Fastly Service, representing the configuration for a website, app,\nAPI, or anything else to be served through Fastly. A Service encompasses Domains\nand Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n\n{{% examples %}}\n## Example Usage\n\n{{% example %}}\n### Basic usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Servicev1(\"demo\", {\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n        port: 80,\n    }],\n    domains: [{\n        comment: \"demo\",\n        name: \"demo.notexample.com\",\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Servicev1(\"demo\",\n    backends=[{\n        \"address\": \"127.0.0.1\",\n        \"name\": \"localhost\",\n        \"port\": 80,\n    }],\n    domains=[{\n        \"comment\": \"demo\",\n        \"name\": \"demo.notexample.com\",\n    }],\n    force_destroy=True)\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Servicev1(\"demo\", new Fastly.Servicev1Args\n        {\n            Backends = \n            {\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.1\",\n                    Name = \"localhost\",\n                    Port = 80,\n                },\n            },\n            Domains = \n            {\n                new Fastly.Inputs.Servicev1DomainArgs\n                {\n                    Comment = \"demo\",\n                    Name = \"demo.notexample.com\",\n                },\n            },\n            ForceDestroy = true,\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Basic usage with custom VCL:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\nimport * as fs from \"fs\";\n\nconst demo = new fastly.Servicev1(\"demo\", {\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n        port: 80,\n    }],\n    domains: [{\n        comment: \"demo\",\n        name: \"demo.notexample.com\",\n    }],\n    forceDestroy: true,\n    vcls: [\n        {\n            content: fs.readFileSync(`./my_custom_main.vcl`, \"utf-8\"),\n            main: true,\n            name: \"my_custom_main_vcl\",\n        },\n        {\n            content: fs.readFileSync(`./my_custom_library.vcl`, \"utf-8\"),\n            name: \"my_custom_library_vcl\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Servicev1(\"demo\",\n    backends=[{\n        \"address\": \"127.0.0.1\",\n        \"name\": \"localhost\",\n        \"port\": 80,\n    }],\n    domains=[{\n        \"comment\": \"demo\",\n        \"name\": \"demo.notexample.com\",\n    }],\n    force_destroy=True,\n    vcls=[\n        {\n            \"content\": (lambda path: open(path).read())(f\"{path['module']}/my_custom_main.vcl\"),\n            \"main\": True,\n            \"name\": \"my_custom_main_vcl\",\n        },\n        {\n            \"content\": (lambda path: open(path).read())(f\"{path['module']}/my_custom_library.vcl\"),\n            \"name\": \"my_custom_library_vcl\",\n        },\n    ])\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Servicev1(\"demo\", new Fastly.Servicev1Args\n        {\n            Backends = \n            {\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.1\",\n                    Name = \"localhost\",\n                    Port = 80,\n                },\n            },\n            Domains = \n            {\n                new Fastly.Inputs.Servicev1DomainArgs\n                {\n                    Comment = \"demo\",\n                    Name = \"demo.notexample.com\",\n                },\n            },\n            ForceDestroy = true,\n            Vcls = \n            {\n                new Fastly.Inputs.Servicev1VclArgs\n                {\n                    Content = File.ReadAllText($\"{path.Module}/my_custom_main.vcl\"),\n                    Main = true,\n                    Name = \"my_custom_main_vcl\",\n                },\n                new Fastly.Inputs.Servicev1VclArgs\n                {\n                    Content = File.ReadAllText($\"{path.Module}/my_custom_library.vcl\"),\n                    Name = \"my_custom_library_vcl\",\n                },\n            },\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Basic usage with custom Director\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Servicev1(\"demo\", {\n    backends: [\n        {\n            address: \"127.0.0.1\",\n            name: \"origin1\",\n            port: 80,\n        },\n        {\n            address: \"127.0.0.2\",\n            name: \"origin2\",\n            port: 80,\n        },\n    ],\n    directors: [{\n        backends: [\n            \"origin1\",\n            \"origin2\",\n        ],\n        name: \"mydirector\",\n        quorum: 0,\n        type: 3,\n    }],\n    domains: [{\n        comment: \"demo\",\n        name: \"demo.notexample.com\",\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Servicev1(\"demo\",\n    backends=[\n        {\n            \"address\": \"127.0.0.1\",\n            \"name\": \"origin1\",\n            \"port\": 80,\n        },\n        {\n            \"address\": \"127.0.0.2\",\n            \"name\": \"origin2\",\n            \"port\": 80,\n        },\n    ],\n    directors=[{\n        \"backends\": [\n            \"origin1\",\n            \"origin2\",\n        ],\n        \"name\": \"mydirector\",\n        \"quorum\": 0,\n        \"type\": 3,\n    }],\n    domains=[{\n        \"comment\": \"demo\",\n        \"name\": \"demo.notexample.com\",\n    }],\n    force_destroy=True)\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Servicev1(\"demo\", new Fastly.Servicev1Args\n        {\n            Backends = \n            {\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.1\",\n                    Name = \"origin1\",\n                    Port = 80,\n                },\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.2\",\n                    Name = \"origin2\",\n                    Port = 80,\n                },\n            },\n            Directors = \n            {\n                new Fastly.Inputs.Servicev1DirectorArgs\n                {\n                    Backends = \n                    {\n                        \"origin1\",\n                        \"origin2\",\n                    },\n                    Name = \"mydirector\",\n                    Quorum = 0,\n                    Type = 3,\n                },\n            },\n            Domains = \n            {\n                new Fastly.Inputs.Servicev1DomainArgs\n                {\n                    Comment = \"demo\",\n                    Name = \"demo.notexample.com\",\n                },\n            },\n            ForceDestroy = true,\n        });\n    }\n\n}\n```\n\n\u003e **Note:** For an AWS S3 Bucket, the Backend address is\n`\u003cdomain\u003e.s3-website-\u003cregion\u003e.amazonaws.com`. The `default_host` attribute\nshould be set to `\u003cbucket_name\u003e.s3-website-\u003cregion\u003e.amazonaws.com`. See the\nFastly documentation on [Amazon S3][fastly-s3].\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "acls": {
                     "type": "array",
@@ -2574,7 +2578,8 @@
                     "description": "A set of Cache Settings, allowing you to override\n"
                 },
                 "clonedVersion": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The latest cloned version by the provider. The value gets only set after running `pulumi up`.\n"
                 },
                 "comment": {
                     "type": "string",
@@ -3003,7 +3008,8 @@
                         "description": "A set of Cache Settings, allowing you to override\n"
                     },
                     "clonedVersion": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The latest cloned version by the provider. The value gets only set after running `pulumi up`.\n"
                     },
                     "comment": {
                         "type": "string",
@@ -3174,7 +3180,7 @@
             }
         },
         "fastly:index/userv1:Userv1": {
-            "description": "Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.\n\nThe User resource requires a login and name, and optionally a role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Userv1(\"demo\", {\n    login: \"demo@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Userv1(\"demo\", login=\"demo@example.com\")\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Userv1(\"demo\", new Fastly.Userv1Args\n        {\n            Login = \"demo@example.com\",\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.\n\nThe User resource requires a login and name, and optionally a role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Userv1(\"demo\", {\n    login: \"demo@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Userv1(\"demo\", login=\"demo@example.com\")\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Userv1(\"demo\", new Fastly.Userv1Args\n        {\n            Login = \"demo@example.com\",\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "login": {
                     "type": "string",
@@ -3232,7 +3238,7 @@
     },
     "functions": {
         "fastly:index/getFastlyIpRanges:getFastlyIpRanges": {
-            "description": "Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));\nconst fromFastly = new aws.ec2.SecurityGroup(\"from_fastly\", {\n    ingress: [{\n        cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,\n        fromPort: 443,\n        protocol: \"tcp\",\n        toPort: 443,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\nfastly = fastly.get_fastly_ip_ranges()\nfrom_fastly = aws.ec2.SecurityGroup(\"fromFastly\", ingress=[{\n    \"cidr_blocks\": fastly.cidr_blocks,\n    \"from_port\": \"443\",\n    \"protocol\": \"tcp\",\n    \"to_port\": \"443\",\n}])\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var fastly = Output.Create(Fastly.GetFastlyIpRanges.InvokeAsync());\n        var fromFastly = new Aws.Ec2.SecurityGroup(\"fromFastly\", new Aws.Ec2.SecurityGroupArgs\n        {\n            Ingress = \n            {\n                new Aws.Ec2.Inputs.SecurityGroupIngressArgs\n                {\n                    CidrBlocks = fastly.Apply(fastly =\u003e fastly.CidrBlocks),\n                    FromPort = \"443\",\n                    Protocol = \"tcp\",\n                    ToPort = \"443\",\n                },\n            },\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.\n\n{{% examples %}}\n{{% /examples %}}\n",
             "outputs": {
                 "description": "A collection of values returned by getFastlyIpRanges.\n",
                 "properties": {
@@ -3241,16 +3247,24 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The lexically ordered list of CIDR blocks.\n"
+                        "description": "The lexically ordered list of ipv4 CIDR blocks.\n"
                     },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ipv6CidrBlocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The lexically ordered list of ipv6 CIDR blocks.\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "cidrBlocks",
+                    "ipv6CidrBlocks",
                     "id"
                 ]
             }

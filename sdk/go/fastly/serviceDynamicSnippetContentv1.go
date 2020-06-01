@@ -10,6 +10,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
+//
 type ServiceDynamicSnippetContentv1 struct {
 	pulumi.CustomResourceState
 

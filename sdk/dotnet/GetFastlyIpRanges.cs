@@ -36,6 +36,7 @@ namespace Pulumi.Fastly
         ///                 {
         ///                     CidrBlocks = fastly.Apply(fastly =&gt; fastly.CidrBlocks),
         ///                     FromPort = "443",
+        ///                     Ipv6CidrBlocks = fastly.Apply(fastly =&gt; fastly.Ipv6CidrBlocks),
         ///                     Protocol = "tcp",
         ///                     ToPort = "443",
         ///                 },
@@ -58,22 +59,29 @@ namespace Pulumi.Fastly
     public sealed class GetFastlyIpRangesResult
     {
         /// <summary>
-        /// The lexically ordered list of CIDR blocks.
+        /// The lexically ordered list of ipv4 CIDR blocks.
         /// </summary>
         public readonly ImmutableArray<string> CidrBlocks;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The lexically ordered list of ipv6 CIDR blocks.
+        /// </summary>
+        public readonly ImmutableArray<string> Ipv6CidrBlocks;
 
         [OutputConstructor]
         private GetFastlyIpRangesResult(
             ImmutableArray<string> cidrBlocks,
 
-            string id)
+            string id,
+
+            ImmutableArray<string> ipv6CidrBlocks)
         {
             CidrBlocks = cidrBlocks;
             Id = id;
+            Ipv6CidrBlocks = ipv6CidrBlocks;
         }
     }
 }

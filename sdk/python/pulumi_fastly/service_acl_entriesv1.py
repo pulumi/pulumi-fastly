@@ -30,7 +30,98 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, acl_id=None, entries=None, service_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a ServiceACLEntriesv1 resource with the given unique name, props, and options.
+        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+
+        ## Example Usage
+
+        ### Basic usage
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        myacl_name = config.get("myaclName")
+        if myacl_name is None:
+            myacl_name = "My ACL"
+        myservice = fastly.Servicev1("myservice",
+            domain=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backend=[{
+                "address": "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                "name": "AWS S3 hosting",
+                "port": 80,
+            }],
+            acl=[{
+                "name": myacl_name,
+            }],
+            force_destroy=True)
+        entries = fastly.ServiceACLEntriesv1("entries",
+            service_id=myservice.id,
+            acl_id=myservice.acls.apply(lambda acls: {d["name"]: d["acl_id"] for d in acls}[myacl_name]),
+            entry=[{
+                "ip": "127.0.0.1",
+                "subnet": "24",
+                "negated": False,
+                "comment": "ALC Entry 1",
+            }])
+        ```
+
+        ### Complex object usage
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        acl_name = "my_acl"
+        acl_entries = [
+            {
+                "ip": "1.2.3.4",
+                "comment": "acl_entry_1",
+            },
+            {
+                "ip": "1.2.3.5",
+                "comment": "acl_entry_2",
+            },
+            {
+                "ip": "1.2.3.6",
+                "comment": "acl_entry_3",
+            },
+        ]
+        myservice = fastly.Servicev1("myservice",
+            domain=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backend=[{
+                "address": "1.2.3.4",
+                "name": "localhost",
+                "port": 80,
+            }],
+            acl=[{
+                "name": acl_name,
+            }],
+            force_destroy=True)
+        entries = fastly.ServiceACLEntriesv1("entries",
+            service_id=myservice.id,
+            acl_id=myservice.acls.apply(lambda acls: {d["name"]: d["acl_id"] for d in acls}[acl_name]),
+            dynamic=[{
+                "forEach": [{
+                    "ip": e["ip"],
+                    "comment": e["comment"],
+                } for e in acl_entries],
+                "content": [{
+                    "ip": entry["value"]["ip"],
+                    "subnet": 22,
+                    "comment": entry["value"]["comment"],
+                    "negated": False,
+                }],
+            }])
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to

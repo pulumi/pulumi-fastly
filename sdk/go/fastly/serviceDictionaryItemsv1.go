@@ -10,6 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
 type ServiceDictionaryItemsv1 struct {
 	pulumi.CustomResourceState
 

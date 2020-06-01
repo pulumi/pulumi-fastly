@@ -24,6 +24,12 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+        /// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+        /// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+        /// the items are managed outside of the provider.
+        /// </summary>
         [Input("writeOnly")]
         public Input<bool>? WriteOnly { get; set; }
 

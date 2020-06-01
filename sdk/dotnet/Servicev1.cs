@@ -17,6 +17,151 @@ namespace Pulumi.Fastly
     /// The Service resource requires a domain name that is correctly set up to direct
     /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
     /// on their documentation site for guidance.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.Servicev1("demo", new Fastly.Servicev1Args
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1BackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.1",
+    ///                     Name = "localhost",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1DomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "demo.notexample.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Basic usage with custom VCL:
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.Servicev1("demo", new Fastly.Servicev1Args
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1BackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.1",
+    ///                     Name = "localhost",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1DomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "demo.notexample.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///             Vcls = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1VclArgs
+    ///                 {
+    ///                     Content = File.ReadAllText($"{path.Module}/my_custom_main.vcl"),
+    ///                     Main = true,
+    ///                     Name = "my_custom_main_vcl",
+    ///                 },
+    ///                 new Fastly.Inputs.Servicev1VclArgs
+    ///                 {
+    ///                     Content = File.ReadAllText($"{path.Module}/my_custom_library.vcl"),
+    ///                     Name = "my_custom_library_vcl",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Basic usage with custom Director
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.Servicev1("demo", new Fastly.Servicev1Args
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1BackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.1",
+    ///                     Name = "origin1",
+    ///                     Port = 80,
+    ///                 },
+    ///                 new Fastly.Inputs.Servicev1BackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.2",
+    ///                     Name = "origin2",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Directors = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1DirectorArgs
+    ///                 {
+    ///                     Backends = 
+    ///                     {
+    ///                         "origin1",
+    ///                         "origin2",
+    ///                     },
+    ///                     Name = "mydirector",
+    ///                     Quorum = 0,
+    ///                     Type = 3,
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.Servicev1DomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "demo.notexample.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Servicev1 : Pulumi.CustomResource
     {
@@ -66,6 +211,9 @@ namespace Pulumi.Fastly
         [Output("cacheSettings")]
         public Output<ImmutableArray<Outputs.Servicev1CacheSetting>> CacheSettings { get; private set; } = null!;
 
+        /// <summary>
+        /// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+        /// </summary>
         [Output("clonedVersion")]
         public Output<int> ClonedVersion { get; private set; } = null!;
 
@@ -734,6 +882,9 @@ namespace Pulumi.Fastly
             set => _cacheSettings = value;
         }
 
+        /// <summary>
+        /// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+        /// </summary>
         [Input("clonedVersion")]
         public Input<int>? ClonedVersion { get; set; }
 

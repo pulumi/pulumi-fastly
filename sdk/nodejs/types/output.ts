@@ -97,7 +97,7 @@ export interface Servicev1Backend {
      */
     requestCondition?: string;
     /**
-     * Selected POP to serve as a "shield" for origin servers.
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
      */
     shield?: string;
     /**
@@ -297,6 +297,12 @@ export interface Servicev1Dictionary {
      * A unique name to identify this dictionary.
      */
     name: string;
+    /**
+     * If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+     * via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+     * dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+     * the items are managed outside of the provider.
+     */
     writeOnly?: boolean;
 }
 
@@ -326,7 +332,7 @@ export interface Servicev1Director {
      */
     retries?: number;
     /**
-     * Selected POP to serve as a "shield" for origin servers.
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
      */
     shield?: string;
     /**

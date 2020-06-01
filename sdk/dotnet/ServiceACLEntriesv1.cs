@@ -9,6 +9,9 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Fastly
 {
+    /// <summary>
+    /// Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+    /// </summary>
     public partial class ServiceACLEntriesv1 : Pulumi.CustomResource
     {
         /// <summary>

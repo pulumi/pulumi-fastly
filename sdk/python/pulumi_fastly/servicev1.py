@@ -49,7 +49,7 @@ class Servicev1(pulumi.CustomResource):
       * `overrideHost` (`str`) - The hostname to override the Host header.
       * `port` (`float`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
       * `requestCondition` (`str`) - Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-      * `shield` (`str`) - Selected POP to serve as a "shield" for origin servers.
+      * `shield` (`str`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
       * `sslCaCert` (`str`) - CA certificate attached to origin.
       * `sslCertHostname` (`str`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
       * `sslCheckCert` (`bool`) - Be strict about checking SSL certs. Default `true`.
@@ -110,6 +110,9 @@ class Servicev1(pulumi.CustomResource):
       * `ttl` (`float`) - The Time-To-Live (TTL) for the object.
     """
     cloned_version: pulumi.Output[float]
+    """
+    The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+    """
     comment: pulumi.Output[str]
     """
     An optional comment about the Director.
@@ -139,7 +142,10 @@ class Servicev1(pulumi.CustomResource):
 
       * `dictionary_id` (`str`) - The ID of the dictionary.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `writeOnly` (`bool`)
+      * `writeOnly` (`bool`) - If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+        via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+        dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+        the items are managed outside of the provider.
     """
     directors: pulumi.Output[list]
     """
@@ -152,7 +158,7 @@ class Servicev1(pulumi.CustomResource):
       * `name` (`str`) - A unique name to identify this dictionary.
       * `quorum` (`float`) - Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
       * `retries` (`float`) - How many backends to search if it fails. Default `5`.
-      * `shield` (`str`) - Selected POP to serve as a "shield" for origin servers.
+      * `shield` (`str`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
       * `type` (`float`) - The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
     """
     domains: pulumi.Output[list]
@@ -450,6 +456,91 @@ class Servicev1(pulumi.CustomResource):
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
 
+        ## Example Usage
+
+        ### Basic usage
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.Servicev1("demo",
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+                "port": 80,
+            }],
+            domains=[{
+                "comment": "demo",
+                "name": "demo.notexample.com",
+            }],
+            force_destroy=True)
+        ```
+
+        ### Basic usage with custom VCL:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.Servicev1("demo",
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+                "port": 80,
+            }],
+            domains=[{
+                "comment": "demo",
+                "name": "demo.notexample.com",
+            }],
+            force_destroy=True,
+            vcls=[
+                {
+                    "content": (lambda path: open(path).read())(f"{path['module']}/my_custom_main.vcl"),
+                    "main": True,
+                    "name": "my_custom_main_vcl",
+                },
+                {
+                    "content": (lambda path: open(path).read())(f"{path['module']}/my_custom_library.vcl"),
+                    "name": "my_custom_library_vcl",
+                },
+            ])
+        ```
+
+        ### Basic usage with custom Director
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.Servicev1("demo",
+            backends=[
+                {
+                    "address": "127.0.0.1",
+                    "name": "origin1",
+                    "port": 80,
+                },
+                {
+                    "address": "127.0.0.2",
+                    "name": "origin2",
+                    "port": 80,
+                },
+            ],
+            directors=[{
+                "backends": [
+                    "origin1",
+                    "origin2",
+                ],
+                "name": "mydirector",
+                "quorum": 0,
+                "type": 3,
+            }],
+            domains=[{
+                "comment": "demo",
+                "name": "demo.notexample.com",
+            }],
+            force_destroy=True)
+        ```
 
 
         :param str resource_name: The name of the resource.
@@ -533,7 +624,7 @@ class Servicev1(pulumi.CustomResource):
           * `overrideHost` (`pulumi.Input[str]`) - The hostname to override the Host header.
           * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
           * `requestCondition` (`pulumi.Input[str]`) - Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for origin servers.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
           * `sslCaCert` (`pulumi.Input[str]`) - CA certificate attached to origin.
           * `sslCertHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
           * `sslCheckCert` (`pulumi.Input[bool]`) - Be strict about checking SSL certs. Default `true`.
@@ -596,7 +687,10 @@ class Servicev1(pulumi.CustomResource):
 
           * `dictionary_id` (`pulumi.Input[str]`) - The ID of the dictionary.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `writeOnly` (`pulumi.Input[bool]`)
+          * `writeOnly` (`pulumi.Input[bool]`) - If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+            via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+            dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+            the items are managed outside of the provider.
 
         The **directors** object supports the following:
 
@@ -606,7 +700,7 @@ class Servicev1(pulumi.CustomResource):
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `quorum` (`pulumi.Input[float]`) - Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
           * `retries` (`pulumi.Input[float]`) - How many backends to search if it fails. Default `5`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for origin servers.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
           * `type` (`pulumi.Input[float]`) - The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 
         The **domains** object supports the following:
@@ -913,6 +1007,7 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[list] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[list] cache_settings: A set of Cache Settings, allowing you to override
+        :param pulumi.Input[float] cloned_version: The latest cloned version by the provider. The value gets only set after running `pulumi up`.
         :param pulumi.Input[str] comment: An optional comment about the Director.
         :param pulumi.Input[list] conditions: A set of conditions to add logic to any basic
                configuration object in this service. Defined below.
@@ -982,7 +1077,7 @@ class Servicev1(pulumi.CustomResource):
           * `overrideHost` (`pulumi.Input[str]`) - The hostname to override the Host header.
           * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
           * `requestCondition` (`pulumi.Input[str]`) - Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for origin servers.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
           * `sslCaCert` (`pulumi.Input[str]`) - CA certificate attached to origin.
           * `sslCertHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
           * `sslCheckCert` (`pulumi.Input[bool]`) - Be strict about checking SSL certs. Default `true`.
@@ -1045,7 +1140,10 @@ class Servicev1(pulumi.CustomResource):
 
           * `dictionary_id` (`pulumi.Input[str]`) - The ID of the dictionary.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `writeOnly` (`pulumi.Input[bool]`)
+          * `writeOnly` (`pulumi.Input[bool]`) - If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
+            via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
+            dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
+            the items are managed outside of the provider.
 
         The **directors** object supports the following:
 
@@ -1055,7 +1153,7 @@ class Servicev1(pulumi.CustomResource):
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `quorum` (`pulumi.Input[float]`) - Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
           * `retries` (`pulumi.Input[float]`) - How many backends to search if it fails. Default `5`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for origin servers.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
           * `type` (`pulumi.Input[float]`) - The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 
         The **domains** object supports the following:
