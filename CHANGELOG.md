@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.16.0 of the Fastly Terraform Provider
+_(none)_
 
 ---
+
+## 2.4.0 (2020-06-01)
+* Upgrade to v0.16.0 of the Fastly Terraform Provider
 
 ## 2.3.2 (2020-05-28)
 * Upgrade to Pulumi v2.3.0
