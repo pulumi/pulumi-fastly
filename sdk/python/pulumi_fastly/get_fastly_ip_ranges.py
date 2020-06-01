@@ -13,18 +13,24 @@ class GetFastlyIpRangesResult:
     """
     A collection of values returned by getFastlyIpRanges.
     """
-    def __init__(__self__, cidr_blocks=None, id=None):
+    def __init__(__self__, cidr_blocks=None, id=None, ipv6_cidr_blocks=None):
         if cidr_blocks and not isinstance(cidr_blocks, list):
             raise TypeError("Expected argument 'cidr_blocks' to be a list")
         __self__.cidr_blocks = cidr_blocks
         """
-        The lexically ordered list of CIDR blocks.
+        The lexically ordered list of ipv4 CIDR blocks.
         """
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
         The provider-assigned unique ID for this managed resource.
+        """
+        if ipv6_cidr_blocks and not isinstance(ipv6_cidr_blocks, list):
+            raise TypeError("Expected argument 'ipv6_cidr_blocks' to be a list")
+        __self__.ipv6_cidr_blocks = ipv6_cidr_blocks
+        """
+        The lexically ordered list of ipv6 CIDR blocks.
         """
 class AwaitableGetFastlyIpRangesResult(GetFastlyIpRangesResult):
     # pylint: disable=using-constant-test
@@ -33,7 +39,8 @@ class AwaitableGetFastlyIpRangesResult(GetFastlyIpRangesResult):
             yield self
         return GetFastlyIpRangesResult(
             cidr_blocks=self.cidr_blocks,
-            id=self.id)
+            id=self.id,
+            ipv6_cidr_blocks=self.ipv6_cidr_blocks)
 
 def get_fastly_ip_ranges(opts=None):
     """
@@ -52,6 +59,7 @@ def get_fastly_ip_ranges(opts=None):
     from_fastly = aws.ec2.SecurityGroup("fromFastly", ingress=[{
         "cidr_blocks": fastly.cidr_blocks,
         "from_port": "443",
+        "ipv6_cidr_blocks": fastly.ipv6_cidr_blocks,
         "protocol": "tcp",
         "to_port": "443",
     }])
@@ -68,4 +76,5 @@ def get_fastly_ip_ranges(opts=None):
 
     return AwaitableGetFastlyIpRangesResult(
         cidr_blocks=__ret__.get('cidrBlocks'),
-        id=__ret__.get('id'))
+        id=__ret__.get('id'),
+        ipv6_cidr_blocks=__ret__.get('ipv6CidrBlocks'))

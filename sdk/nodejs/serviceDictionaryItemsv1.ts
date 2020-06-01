@@ -6,6 +6,80 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+ *
+ * ## Example Usage
+ *
+ * ### Basic usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const mydictName = config.get("mydictName") || "My Dictionary";
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domain: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backend: [{
+ *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         port: 80,
+ *     }],
+ *     dictionary: [{
+ *         name: mydictName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const items = new fastly.ServiceDictionaryItemsv1("items", {
+ *     serviceId: myservice.id,
+ *     dictionaryId: myservice.dictionaries.apply(dictionaries => dictionaries.reduce((__obj, s) => { ...__obj, [s.name]: s.dictionaryId })[mydictName]),
+ *     items: {
+ *         key1: "value1",
+ *         key2: "value2",
+ *     },
+ * });
+ * ```
+ *
+ * ### Complex object usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const mydict = config.getObject("mydict") || {
+ *     name: "My Dictionary",
+ *     items: {
+ *         key1: "value1x",
+ *         key2: "value2x",
+ *     },
+ * };
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domain: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backend: [{
+ *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         port: 80,
+ *     }],
+ *     dictionary: [{
+ *         name: mydict.name,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const items = new fastly.ServiceDictionaryItemsv1("items", {
+ *     serviceId: myservice.id,
+ *     dictionaryId: myservice.dictionaries.apply(dictionaries => dictionaries.reduce((__obj, d) => { ...__obj, [d.name]: d.dictionaryId })[mydict.name]),
+ *     items: mydict.items,
+ * });
+ * ```
+ */
 export class ServiceDictionaryItemsv1 extends pulumi.CustomResource {
     /**
      * Get an existing ServiceDictionaryItemsv1 resource's state with the given name, ID, and optional extra

@@ -38,7 +38,8 @@ type Servicev1 struct {
 	Blobstorageloggings Servicev1BlobstorageloggingArrayOutput `pulumi:"blobstorageloggings"`
 	// A set of Cache Settings, allowing you to override
 	CacheSettings Servicev1CacheSettingArrayOutput `pulumi:"cacheSettings"`
-	ClonedVersion pulumi.IntOutput                 `pulumi:"clonedVersion"`
+	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
 	// An optional comment about the Director.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// A set of conditions to add logic to any basic
@@ -159,7 +160,8 @@ type servicev1State struct {
 	Blobstorageloggings []Servicev1Blobstoragelogging `pulumi:"blobstorageloggings"`
 	// A set of Cache Settings, allowing you to override
 	CacheSettings []Servicev1CacheSetting `pulumi:"cacheSettings"`
-	ClonedVersion *int                    `pulumi:"clonedVersion"`
+	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+	ClonedVersion *int `pulumi:"clonedVersion"`
 	// An optional comment about the Director.
 	Comment *string `pulumi:"comment"`
 	// A set of conditions to add logic to any basic
@@ -250,6 +252,7 @@ type Servicev1State struct {
 	Blobstorageloggings Servicev1BlobstorageloggingArrayInput
 	// A set of Cache Settings, allowing you to override
 	CacheSettings Servicev1CacheSettingArrayInput
+	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
 	ClonedVersion pulumi.IntPtrInput
 	// An optional comment about the Director.
 	Comment pulumi.StringPtrInput

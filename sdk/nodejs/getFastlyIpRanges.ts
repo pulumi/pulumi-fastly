@@ -23,6 +23,7 @@ import * as utilities from "./utilities";
  *     ingress: [{
  *         cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,
  *         fromPort: 443,
+ *         ipv6CidrBlocks: fastlyFastlyIpRanges.ipv6CidrBlocks,
  *         protocol: "tcp",
  *         toPort: 443,
  *     }],
@@ -46,9 +47,13 @@ export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastl
  */
 export interface GetFastlyIpRangesResult {
     /**
-     * The lexically ordered list of CIDR blocks.
+     * The lexically ordered list of ipv4 CIDR blocks.
      */
     readonly cidrBlocks: string[];
+    /**
+     * The lexically ordered list of ipv6 CIDR blocks.
+     */
+    readonly ipv6CidrBlocks: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */

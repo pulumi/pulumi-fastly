@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
+ * ### Basic usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,6 +28,120 @@ import * as utilities from "./utilities";
  *         address: "127.0.0.1",
  *         name: "localhost",
  *         port: 80,
+ *     }],
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "demo.notexample.com",
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
+ * ### Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const website = new aws.s3.Bucket("website", {
+ *     acl: "public-read",
+ *     website: {
+ *         errorDocument: "error.html",
+ *         indexDocument: "index.html",
+ *     },
+ * });
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [{
+ *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         port: 80,
+ *     }],
+ *     defaultHost: pulumi.interpolate`${website.name}.s3-website-us-west-2.amazonaws.com`,
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "demo.notexample.com",
+ *     }],
+ *     forceDestroy: true,
+ *     gzips: [{
+ *         contentTypes: [
+ *             "text/html",
+ *             "text/css",
+ *         ],
+ *         extensions: [
+ *             "css",
+ *             "js",
+ *         ],
+ *         name: "file extensions and content types",
+ *     }],
+ *     headers: [{
+ *         action: "delete",
+ *         destination: "http.x-amz-request-id",
+ *         name: "remove x-amz-request-id",
+ *         type: "cache",
+ *     }],
+ * });
+ * ```
+ *
+ * ### Basic usage with custom VCL:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ * import * as fs from "fs";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "localhost",
+ *         port: 80,
+ *     }],
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "demo.notexample.com",
+ *     }],
+ *     forceDestroy: true,
+ *     vcls: [
+ *         {
+ *             content: fs.readFileSync(`./my_custom_main.vcl`, "utf-8"),
+ *             main: true,
+ *             name: "myCustomMainVcl",
+ *         },
+ *         {
+ *             content: fs.readFileSync(`./my_custom_library.vcl`, "utf-8"),
+ *             name: "myCustomLibraryVcl",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Basic usage with custom Director
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [
+ *         {
+ *             address: "127.0.0.1",
+ *             name: "origin1",
+ *             port: 80,
+ *         },
+ *         {
+ *             address: "127.0.0.2",
+ *             name: "origin2",
+ *             port: 80,
+ *         },
+ *     ],
+ *     directors: [{
+ *         backends: [
+ *             "origin1",
+ *             "origin2",
+ *         ],
+ *         name: "mydirector",
+ *         quorum: 0,
+ *         type: 3,
  *     }],
  *     domains: [{
  *         comment: "demo",
@@ -96,6 +210,9 @@ export class Servicev1 extends pulumi.CustomResource {
      * A set of Cache Settings, allowing you to override
      */
     public readonly cacheSettings!: pulumi.Output<outputs.Servicev1CacheSetting[] | undefined>;
+    /**
+     * The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+     */
     public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
     /**
      * An optional comment about the Director.
@@ -352,6 +469,9 @@ export interface Servicev1State {
      * A set of Cache Settings, allowing you to override
      */
     readonly cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;
+    /**
+     * The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+     */
     readonly clonedVersion?: pulumi.Input<number>;
     /**
      * An optional comment about the Director.
