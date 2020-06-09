@@ -86,7 +86,15 @@
             "type": "object",
             "required": [
                 "ip"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "ip"
+                    ]
+                }
+            }
         },
         "fastly:/Servicev1Acl:Servicev1Acl": {
             "properties": {
@@ -112,7 +120,15 @@
             "type": "object",
             "required": [
                 "name"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "aclId",
+                        "name"
+                    ]
+                }
+            }
         },
         "fastly:/Servicev1Backend:Servicev1Backend": {
             "properties": {
@@ -719,7 +735,15 @@
             "type": "object",
             "required": [
                 "name"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "dictionaryId",
+                        "name"
+                    ]
+                }
+            }
         },
         "fastly:/Servicev1Director:Servicev1Director": {
             "properties": {
@@ -874,7 +898,16 @@
             "required": [
                 "name",
                 "type"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name",
+                        "snippetId",
+                        "type"
+                    ]
+                }
+            }
         },
         "fastly:/Servicev1Gcslogging:Servicev1Gcslogging": {
             "properties": {
@@ -1160,7 +1193,20 @@
                 "destination",
                 "name",
                 "type"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "action",
+                        "destination",
+                        "name",
+                        "regex",
+                        "source",
+                        "substitution",
+                        "type"
+                    ]
+                }
+            }
         },
         "fastly:/Servicev1Healthcheck:Servicev1Healthcheck": {
             "properties": {
@@ -3238,7 +3284,7 @@
     },
     "functions": {
         "fastly:index/getFastlyIpRanges:getFastlyIpRanges": {
-            "description": "Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));\nconst fromFastly = new aws.ec2.SecurityGroup(\"from_fastly\", {\n    ingress: [{\n        cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,\n        fromPort: 443,\n        ipv6CidrBlocks: fastlyFastlyIpRanges.ipv6CidrBlocks,\n        protocol: \"tcp\",\n        toPort: 443,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\nfastly = fastly.get_fastly_ip_ranges()\nfrom_fastly = aws.ec2.SecurityGroup(\"fromFastly\", ingress=[{\n    \"cidr_blocks\": fastly.cidr_blocks,\n    \"from_port\": \"443\",\n    \"ipv6_cidr_blocks\": fastly.ipv6_cidr_blocks,\n    \"protocol\": \"tcp\",\n    \"to_port\": \"443\",\n}])\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var fastly = Output.Create(Fastly.GetFastlyIpRanges.InvokeAsync());\n        var fromFastly = new Aws.Ec2.SecurityGroup(\"fromFastly\", new Aws.Ec2.SecurityGroupArgs\n        {\n            Ingress = \n            {\n                new Aws.Ec2.Inputs.SecurityGroupIngressArgs\n                {\n                    CidrBlocks = fastly.Apply(fastly =\u003e fastly.CidrBlocks),\n                    FromPort = \"443\",\n                    Ipv6CidrBlocks = fastly.Apply(fastly =\u003e fastly.Ipv6CidrBlocks),\n                    Protocol = \"tcp\",\n                    ToPort = \"443\",\n                },\n            },\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));\nconst fromFastly = new aws.ec2.SecurityGroup(\"from_fastly\", {\n    ingress: [{\n        cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,\n        fromPort: 443,\n        ipv6CidrBlocks: fastlyFastlyIpRanges.ipv6CidrBlocks,\n        protocol: \"tcp\",\n        toPort: 443,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\nfastly = fastly.get_fastly_ip_ranges()\nfrom_fastly = aws.ec2.SecurityGroup(\"fromFastly\", ingress=[{\n    \"cidr_blocks\": fastly.cidr_blocks,\n    \"from_port\": \"443\",\n    \"ipv6_cidr_blocks\": fastly.ipv6_cidr_blocks,\n    \"protocol\": \"tcp\",\n    \"to_port\": \"443\",\n}])\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var fastly = Output.Create(Fastly.GetFastlyIpRanges.InvokeAsync());\n        var fromFastly = new Aws.Ec2.SecurityGroup(\"fromFastly\", new Aws.Ec2.SecurityGroupArgs\n        {\n            Ingress = \n            {\n                new Aws.Ec2.Inputs.SecurityGroupIngressArgs\n                {\n                    CidrBlocks = fastly.Apply(fastly =\u003e fastly.CidrBlocks),\n                    FromPort = 443,\n                    Ipv6CidrBlocks = fastly.Apply(fastly =\u003e fastly.Ipv6CidrBlocks),\n                    Protocol = \"tcp\",\n                    ToPort = 443,\n                },\n            },\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "outputs": {
                 "description": "A collection of values returned by getFastlyIpRanges.\n",
                 "properties": {
@@ -3288,8 +3334,10 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^8.0.25"
             },
+            "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing fastly cloud resources.",
             "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-fastly` repo](https://github.com/terraform-providers/terraform-provider-fastly/issues).",
             "typescriptVersion": ""
         },
         "python": {

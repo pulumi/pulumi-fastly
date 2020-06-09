@@ -3,6 +3,7 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface ServiceACLEntriesv1Entry {
     /**
@@ -126,6 +127,8 @@ export interface Servicev1Backend {
     sslClientKey?: pulumi.Input<string>;
     /**
      * Used for both SNI during the TLS handshake and to validate the cert.
+     *
+     * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
      */
     sslHostname?: pulumi.Input<string>;
     /**

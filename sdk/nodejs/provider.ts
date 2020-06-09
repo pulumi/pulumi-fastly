@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -37,10 +35,8 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        {
-            inputs["apiKey"] = (args ? args.apiKey : undefined) || utilities.getEnv("FASTLY_API_KEY");
-            inputs["baseUrl"] = (args ? args.baseUrl : undefined) || (utilities.getEnv("FASTLY_API_URL") || "https://api.fastly.com");
-        }
+        inputs["apiKey"] = (args ? args.apiKey : undefined) || utilities.getEnv("FASTLY_API_KEY");
+        inputs["baseUrl"] = (args ? args.baseUrl : undefined) || (utilities.getEnv("FASTLY_API_URL") || "https://api.fastly.com");
         if (!opts) {
             opts = {}
         }
