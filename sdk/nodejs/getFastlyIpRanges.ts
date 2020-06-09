@@ -51,11 +51,11 @@ export interface GetFastlyIpRangesResult {
      */
     readonly cidrBlocks: string[];
     /**
-     * The lexically ordered list of ipv6 CIDR blocks.
-     */
-    readonly ipv6CidrBlocks: string[];
-    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The lexically ordered list of ipv6 CIDR blocks.
+     */
+    readonly ipv6CidrBlocks: string[];
 }
