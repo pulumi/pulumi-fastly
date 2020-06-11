@@ -4,20 +4,10 @@ package examples
 
 import (
 	"os"
-	"path"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
-
-func TestAccService(t *testing.T) {
-	test := getJSBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "service"),
-		})
-
-	integration.ProgramTest(t, &test)
-}
 
 func getCwd(t *testing.T) string {
 	cwd, err := os.Getwd()
@@ -33,4 +23,3 @@ func getBaseOptions() integration.ProgramTestOptions {
 		ExpectRefreshChanges: true,
 	}
 }
-
