@@ -6,6 +6,9 @@ _(none)_
 
 ---
 
+## 2.4.2 (2020-06-11)
+* Switch to GitHub actions for build
+
 ## 2.4.1 (2020-06-04)
 * Upgrade to v0.16.1 of the Fastly Terraform Provider
 
