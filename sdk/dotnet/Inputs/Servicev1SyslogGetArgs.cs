@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1SyslogGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// The SFTP address to stream logs to.
         /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -43,13 +43,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The port the SFTP service listens on. (Default: `22`).
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -79,19 +79,19 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? TlsClientKey { get; set; }
 
         /// <summary>
-        /// Used during the TLS handshake to validate the certificate.
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The Splunk token to be used for authentication.
+        /// The token to use for authentication (https://www.scalyr.com/keys).
         /// </summary>
         [Input("token")]
         public Input<string>? Token { get; set; }
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// Whether to use TLS for secure logging. Can be either true or false.
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }

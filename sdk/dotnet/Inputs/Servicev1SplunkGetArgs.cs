@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -49,19 +49,19 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? TlsCaCert { get; set; }
 
         /// <summary>
-        /// Used during the TLS handshake to validate the certificate.
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The Splunk token to be used for authentication.
+        /// The token to use for authentication (https://www.scalyr.com/keys).
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// URL that log data will be sent to. Must use the https protocol.
+        /// The Elasticsearch URL to stream logs to.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

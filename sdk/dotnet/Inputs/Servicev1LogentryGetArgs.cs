@@ -31,13 +31,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The port the SFTP service listens on. (Default: `22`).
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -49,13 +49,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The Splunk token to be used for authentication.
+        /// The token to use for authentication (https://www.scalyr.com/keys).
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// Whether to use TLS for secure logging. Can be either true or false.
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }

@@ -31,7 +31,7 @@ class Servicev1(pulumi.CustomResource):
     Defined below. Backends must be defined in this argument, or defined in the
     `vcl` argument below
 
-      * `address` (`str`) - A hostname or IPv4 address of the Syslog endpoint.
+      * `address` (`str`) - The SFTP address to stream logs to.
       * `autoLoadbalance` (`bool`) - Denotes if this Backend should be
         included in the pool of backends that requests are load balanced against.
         Default `true`.
@@ -47,9 +47,9 @@ class Servicev1(pulumi.CustomResource):
       * `minTlsVersion` (`str`) - Minimum allowed TLS version on SSL connections to this backend.
       * `name` (`str`) - A unique name to identify this dictionary.
       * `overrideHost` (`str`) - The hostname to override the Host header.
-      * `port` (`float`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
       * `requestCondition` (`str`) - Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-      * `shield` (`str`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+      * `shield` (`str`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
       * `sslCaCert` (`str`) - CA certificate attached to origin.
       * `sslCertHostname` (`str`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
       * `sslCheckCert` (`bool`) - Be strict about checking SSL certs. Default `true`.
@@ -59,7 +59,7 @@ class Servicev1(pulumi.CustomResource):
       * `sslHostname` (`str`) - Used for both SNI during the TLS handshake and to validate the cert.
       * `sslSniHostname` (`str`) - Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
       * `useSsl` (`bool`) - Whether or not to use SSL to reach the backend. Default `false`.
-      * `weight` (`float`) - The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+      * `weight` (`float`) - The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
     """
     bigqueryloggings: pulumi.Output[list]
     """
@@ -70,10 +70,10 @@ class Servicev1(pulumi.CustomResource):
       * `email` (`str`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
-      * `projectId` (`str`) - The ID of your GCP project.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `projectId` (`str`) - The ID of your Google Cloud Platform project.
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
-      * `secretKey` (`str`) - The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+      * `secretKey` (`str`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
       * `table` (`str`) - The ID of your BigQuery table.
       * `template` (`str`) - Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
     """
@@ -86,16 +86,16 @@ class Servicev1(pulumi.CustomResource):
       * `container` (`str`) - The name of the Azure Blob Storage container in which to store logs.
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-      * `gzipLevel` (`float`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-      * `messageType` (`str`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `path` (`str`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-      * `period` (`float`) - How frequently the logs should be transferred in seconds. Default `3600`.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
+      * `path` (`str`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
       * `publicKey` (`str`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
       * `sasToken` (`str`) - The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-      * `timestampFormat` (`str`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
     """
     cache_settings: pulumi.Output[list]
     """
@@ -158,7 +158,7 @@ class Servicev1(pulumi.CustomResource):
       * `name` (`str`) - A unique name to identify this dictionary.
       * `quorum` (`float`) - Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
       * `retries` (`float`) - How many backends to search if it fails. Default `5`.
-      * `shield` (`str`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+      * `shield` (`str`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
       * `type` (`float`) - The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
     """
     domains: pulumi.Output[list]
@@ -191,15 +191,15 @@ class Servicev1(pulumi.CustomResource):
       * `bucketName` (`str`) - The name of the bucket in which to store the logs.
       * `email` (`str`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
-      * `gzipLevel` (`float`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-      * `messageType` (`str`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `path` (`str`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-      * `period` (`float`) - How frequently the logs should be transferred in seconds. Default `3600`.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
+      * `path` (`str`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
-      * `secretKey` (`str`) - The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
-      * `timestampFormat` (`str`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+      * `secretKey` (`str`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
     """
     gzips: pulumi.Output[list]
     """
@@ -246,7 +246,7 @@ class Servicev1(pulumi.CustomResource):
       * `initial` (`float`) - When loading a config, the initial number of probes to be seen as OK. Default `2`.
       * `method` (`str`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `path` (`str`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+      * `path` (`str`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
       * `threshold` (`float`) - How many Healthchecks must succeed to be considered healthy. Default `3`.
       * `timeout` (`float`) - Timeout in milliseconds. Default `500`.
       * `window` (`float`) - The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
@@ -262,18 +262,18 @@ class Servicev1(pulumi.CustomResource):
       * `headerName` (`str`) - Custom header sent with the request.
       * `headerValue` (`str`) - Value of the custom header sent with the request.
       * `jsonFormat` (`str`) - Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-      * `messageType` (`str`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
       * `method` (`str`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
-      * `requestMaxBytes` (`float`) - The maximum number of bytes sent in one request.
-      * `requestMaxEntries` (`float`) - The maximum number of logs sent in one request.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `requestMaxBytes` (`float`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+      * `requestMaxEntries` (`float`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
       * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
       * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
       * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
-      * `tlsHostname` (`str`) - Used during the TLS handshake to validate the certificate.
-      * `url` (`str`) - URL that log data will be sent to. Must use the https protocol.
+      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+      * `url` (`str`) - The Elasticsearch URL to stream logs to.
     """
     logentries: pulumi.Output[list]
     """
@@ -283,11 +283,161 @@ class Servicev1(pulumi.CustomResource):
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
-      * `port` (`float`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
-      * `token` (`str`) - The Splunk token to be used for authentication.
-      * `useTls` (`bool`) - Whether to use TLS for secure logging. Defaults to `true`
+      * `token` (`str`) - The token to use for authentication (https://www.scalyr.com/keys).
+      * `useTls` (`bool`) - Whether to use TLS for secure logging. Can be either true or false.
+    """
+    logging_datadogs: pulumi.Output[list]
+    """
+    A Datadog endpoint to send streaming logs to.
+    Defined below.
+
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `region` (`str`) - The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `token` (`str`) - The token to use for authentication (https://www.scalyr.com/keys).
+    """
+    logging_elasticsearches: pulumi.Output[list]
+    """
+    An Elasticsearch endpoint to send streaming logs to.
+    Defined below.
+
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `index` (`str`) - The name of the Elasticsearch index to send documents (logs) to.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `password` (`str`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+      * `pipeline` (`str`) - The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `requestMaxBytes` (`float`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+      * `requestMaxEntries` (`float`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
+      * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
+      * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
+      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+      * `url` (`str`) - The Elasticsearch URL to stream logs to.
+      * `user` (`str`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+    """
+    logging_ftps: pulumi.Output[list]
+    """
+    An FTP endpoint to send streaming logs to.
+    Defined below.
+
+      * `address` (`str`) - The SFTP address to stream logs to.
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `password` (`str`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+      * `path` (`str`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
+      * `publicKey` (`str`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+      * `user` (`str`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+    """
+    logging_googlepubsubs: pulumi.Output[list]
+    """
+    A Google Cloud Pub/Sub endpoint to send streaming logs to.
+    Defined below.
+
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `projectId` (`str`) - The ID of your Google Cloud Platform project.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `secretKey` (`str`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+      * `topic` (`str`) - The Kafka topic to send logs to.
+      * `user` (`str`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+    """
+    logging_kafkas: pulumi.Output[list]
+    """
+    A Kafka endpoint to send streaming logs to.
+    Defined below.
+
+      * `brokers` (`str`) - A comma-separated list of IP addresses or hostnames of Kafka brokers.
+      * `compressionCodec` (`str`) - The codec used for compression of your logs. One of: gzip, snappy, lz4.
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `requiredAcks` (`str`) - The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
+      * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
+      * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
+      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+      * `topic` (`str`) - The Kafka topic to send logs to.
+      * `useTls` (`bool`) - Whether to use TLS for secure logging. Can be either true or false.
+    """
+    logging_logglies: pulumi.Output[list]
+    """
+    A Loggly endpoint to send streaming logs to.
+    Defined below.
+
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `token` (`str`) - The token to use for authentication (https://www.scalyr.com/keys).
+    """
+    logging_newrelics: pulumi.Output[list]
+    """
+    A New Relic endpoint to send streaming logs to.
+    Defined below.
+
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `token` (`str`) - The token to use for authentication (https://www.scalyr.com/keys).
+    """
+    logging_scalyrs: pulumi.Output[list]
+    """
+    A Scalyr endpoint to send streaming logs to.
+    Defined below.
+
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `region` (`str`) - The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `token` (`str`) - The token to use for authentication (https://www.scalyr.com/keys).
+    """
+    logging_sftps: pulumi.Output[list]
+    """
+    An SFTP endpoint to send streaming logs to.
+    Defined below.
+
+      * `address` (`str`) - The SFTP address to stream logs to.
+      * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
+      * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+      * `name` (`str`) - A unique name to identify this dictionary.
+      * `password` (`str`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+      * `path` (`str`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
+      * `publicKey` (`str`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+      * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
+      * `secretKey` (`str`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+      * `sshKnownHosts` (`str`) - A list of host keys for all hosts we can connect to over SFTP.
+      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+      * `user` (`str`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
     """
     name: pulumi.Output[str]
     """
@@ -298,11 +448,11 @@ class Servicev1(pulumi.CustomResource):
     A Papertrail endpoint to send streaming logs too.
     Defined below.
 
-      * `address` (`str`) - A hostname or IPv4 address of the Syslog endpoint.
+      * `address` (`str`) - The SFTP address to stream logs to.
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
-      * `port` (`float`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
     """
     request_settings: pulumi.Output[list]
@@ -353,12 +503,13 @@ class Servicev1(pulumi.CustomResource):
         then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-      * `gzipLevel` (`float`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-      * `messageType` (`str`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `path` (`str`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-      * `period` (`float`) - How frequently the logs should be transferred in seconds. Default `3600`.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
+      * `path` (`str`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `publicKey` (`str`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
       * `redundancy` (`str`) - The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
       * `s3AccessKey` (`str`) - AWS Access Key of an account with the required
@@ -371,7 +522,7 @@ class Servicev1(pulumi.CustomResource):
         not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
       * `serverSideEncryption` (`str`)
       * `serverSideEncryptionKmsKeyId` (`str`)
-      * `timestampFormat` (`str`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
     """
     snippets: pulumi.Output[list]
     """
@@ -390,12 +541,12 @@ class Servicev1(pulumi.CustomResource):
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
       * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
-      * `tlsHostname` (`str`) - Used during the TLS handshake to validate the certificate.
-      * `token` (`str`) - The Splunk token to be used for authentication.
-      * `url` (`str`) - URL that log data will be sent to. Must use the https protocol.
+      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+      * `token` (`str`) - The token to use for authentication (https://www.scalyr.com/keys).
+      * `url` (`str`) - The Elasticsearch URL to stream logs to.
     """
     sumologics: pulumi.Output[list]
     """
@@ -404,37 +555,35 @@ class Servicev1(pulumi.CustomResource):
 
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-      * `messageType` (`str`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
-      * `url` (`str`) - URL that log data will be sent to. Must use the https protocol.
+      * `url` (`str`) - The Elasticsearch URL to stream logs to.
     """
     syslogs: pulumi.Output[list]
     """
     A syslog endpoint to send streaming logs too.
     Defined below.
 
-      * `address` (`str`) - A hostname or IPv4 address of the Syslog endpoint.
+      * `address` (`str`) - The SFTP address to stream logs to.
       * `format` (`str`) - Apache-style string or VCL variables to use for log formatting.
       * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-      * `messageType` (`str`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
       * `name` (`str`) - A unique name to identify this dictionary.
-      * `placement` (`str`) - Where in the generated VCL the logging call should be placed.
-      * `port` (`float`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+      * `placement` (`str`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
       * `responseCondition` (`str`) - The name of the `condition` to apply. If empty, always execute.
       * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
       * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
       * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
-      * `tlsHostname` (`str`) - Used during the TLS handshake to validate the certificate.
-      * `token` (`str`) - The Splunk token to be used for authentication.
-      * `useTls` (`bool`) - Whether to use TLS for secure logging. Defaults to `true`
+      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+      * `token` (`str`) - The token to use for authentication (https://www.scalyr.com/keys).
+      * `useTls` (`bool`) - Whether to use TLS for secure logging. Can be either true or false.
     """
     vcls: pulumi.Output[list]
     """
-    A set of custom VCL configuration blocks. The
-    ability to upload custom VCL code is not enabled by default for new Fastly
-    accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+    A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 
       * `content` (`str`) - The custom VCL code to upload.
       * `main` (`bool`) - If `true`, use this block as the main configuration. If
@@ -446,7 +595,7 @@ class Servicev1(pulumi.CustomResource):
     """
     Description field for the version.
     """
-    def __init__(__self__, resource_name, opts=None, acls=None, activate=None, backends=None, bigqueryloggings=None, blobstorageloggings=None, cache_settings=None, comment=None, conditions=None, default_host=None, default_ttl=None, dictionaries=None, directors=None, domains=None, dynamicsnippets=None, force_destroy=None, gcsloggings=None, gzips=None, headers=None, healthchecks=None, httpsloggings=None, logentries=None, name=None, papertrails=None, request_settings=None, response_objects=None, s3loggings=None, snippets=None, splunks=None, sumologics=None, syslogs=None, vcls=None, version_comment=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, acls=None, activate=None, backends=None, bigqueryloggings=None, blobstorageloggings=None, cache_settings=None, comment=None, conditions=None, default_host=None, default_ttl=None, dictionaries=None, directors=None, domains=None, dynamicsnippets=None, force_destroy=None, gcsloggings=None, gzips=None, headers=None, healthchecks=None, httpsloggings=None, logentries=None, logging_datadogs=None, logging_elasticsearches=None, logging_ftps=None, logging_googlepubsubs=None, logging_kafkas=None, logging_logglies=None, logging_newrelics=None, logging_scalyrs=None, logging_sftps=None, name=None, papertrails=None, request_settings=None, response_objects=None, s3loggings=None, snippets=None, splunks=None, sumologics=None, syslogs=None, vcls=None, version_comment=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Fastly Service, representing the configuration for a website, app,
         API, or anything else to be served through Fastly. A Service encompasses Domains
@@ -580,6 +729,24 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[list] logentries: A logentries endpoint to send streaming logs too.
                Defined below.
+        :param pulumi.Input[list] logging_datadogs: A Datadog endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_elasticsearches: An Elasticsearch endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_ftps: An FTP endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_googlepubsubs: A Google Cloud Pub/Sub endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_kafkas: A Kafka endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_logglies: A Loggly endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_newrelics: A New Relic endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_scalyrs: A Scalyr endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_sftps: An SFTP endpoint to send streaming logs to.
+               Defined below.
         :param pulumi.Input[str] name: A unique name to identify this dictionary.
         :param pulumi.Input[list] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
@@ -594,9 +761,7 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[list] syslogs: A syslog endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] vcls: A set of custom VCL configuration blocks. The
-               ability to upload custom VCL code is not enabled by default for new Fastly
-               accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+        :param pulumi.Input[list] vcls: A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         :param pulumi.Input[str] version_comment: Description field for the version.
 
         The **acls** object supports the following:
@@ -606,7 +771,7 @@ class Servicev1(pulumi.CustomResource):
 
         The **backends** object supports the following:
 
-          * `address` (`pulumi.Input[str]`) - A hostname or IPv4 address of the Syslog endpoint.
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
           * `autoLoadbalance` (`pulumi.Input[bool]`) - Denotes if this Backend should be
             included in the pool of backends that requests are load balanced against.
             Default `true`.
@@ -622,9 +787,9 @@ class Servicev1(pulumi.CustomResource):
           * `minTlsVersion` (`pulumi.Input[str]`) - Minimum allowed TLS version on SSL connections to this backend.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `overrideHost` (`pulumi.Input[str]`) - The hostname to override the Host header.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `requestCondition` (`pulumi.Input[str]`) - Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
           * `sslCaCert` (`pulumi.Input[str]`) - CA certificate attached to origin.
           * `sslCertHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
           * `sslCheckCert` (`pulumi.Input[bool]`) - Be strict about checking SSL certs. Default `true`.
@@ -634,7 +799,7 @@ class Servicev1(pulumi.CustomResource):
           * `sslHostname` (`pulumi.Input[str]`) - Used for both SNI during the TLS handshake and to validate the cert.
           * `sslSniHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
           * `useSsl` (`pulumi.Input[bool]`) - Whether or not to use SSL to reach the backend. Default `false`.
-          * `weight` (`pulumi.Input[float]`) - The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+          * `weight` (`pulumi.Input[float]`) - The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
 
         The **bigqueryloggings** object supports the following:
 
@@ -642,10 +807,10 @@ class Servicev1(pulumi.CustomResource):
           * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `projectId` (`pulumi.Input[str]`) - The ID of your GCP project.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `secretKey` (`pulumi.Input[str]`) - The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
           * `table` (`pulumi.Input[str]`) - The ID of your BigQuery table.
           * `template` (`pulumi.Input[str]`) - Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
 
@@ -655,16 +820,16 @@ class Servicev1(pulumi.CustomResource):
           * `container` (`pulumi.Input[str]`) - The name of the Azure Blob Storage container in which to store logs.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `gzipLevel` (`pulumi.Input[float]`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-          * `period` (`pulumi.Input[float]`) - How frequently the logs should be transferred in seconds. Default `3600`.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `sasToken` (`pulumi.Input[str]`) - The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-          * `timestampFormat` (`pulumi.Input[str]`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 
         The **cache_settings** object supports the following:
 
@@ -700,7 +865,7 @@ class Servicev1(pulumi.CustomResource):
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `quorum` (`pulumi.Input[float]`) - Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
           * `retries` (`pulumi.Input[float]`) - How many backends to search if it fails. Default `5`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
           * `type` (`pulumi.Input[float]`) - The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 
         The **domains** object supports the following:
@@ -720,15 +885,15 @@ class Servicev1(pulumi.CustomResource):
           * `bucketName` (`pulumi.Input[str]`) - The name of the bucket in which to store the logs.
           * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
-          * `gzipLevel` (`pulumi.Input[float]`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-          * `period` (`pulumi.Input[float]`) - How frequently the logs should be transferred in seconds. Default `3600`.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `secretKey` (`pulumi.Input[str]`) - The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
-          * `timestampFormat` (`pulumi.Input[str]`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 
         The **gzips** object supports the following:
 
@@ -767,7 +932,7 @@ class Servicev1(pulumi.CustomResource):
           * `initial` (`pulumi.Input[float]`) - When loading a config, the initial number of probes to be seen as OK. Default `2`.
           * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
           * `threshold` (`pulumi.Input[float]`) - How many Healthchecks must succeed to be considered healthy. Default `3`.
           * `timeout` (`pulumi.Input[float]`) - Timeout in milliseconds. Default `500`.
           * `window` (`pulumi.Input[float]`) - The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
@@ -780,37 +945,160 @@ class Servicev1(pulumi.CustomResource):
           * `headerName` (`pulumi.Input[str]`) - Custom header sent with the request.
           * `headerValue` (`pulumi.Input[str]`) - Value of the custom header sent with the request.
           * `jsonFormat` (`pulumi.Input[str]`) - Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request.
-          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
           * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
           * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - Used during the TLS handshake to validate the certificate.
-          * `url` (`pulumi.Input[str]`) - URL that log data will be sent to. Must use the https protocol.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
 
         The **logentries** object supports the following:
 
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `token` (`pulumi.Input[str]`) - The Splunk token to be used for authentication.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Defaults to `true`
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
+
+        The **logging_datadogs** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `region` (`pulumi.Input[str]`) - The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_elasticsearches** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `index` (`pulumi.Input[str]`) - The name of the Elasticsearch index to send documents (logs) to.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+          * `pipeline` (`pulumi.Input[str]`) - The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
+          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
+          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+
+        The **logging_ftps** object supports the following:
+
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
+          * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+
+        The **logging_googlepubsubs** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+
+        The **logging_kafkas** object supports the following:
+
+          * `brokers` (`pulumi.Input[str]`) - A comma-separated list of IP addresses or hostnames of Kafka brokers.
+          * `compressionCodec` (`pulumi.Input[str]`) - The codec used for compression of your logs. One of: gzip, snappy, lz4.
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `requiredAcks` (`pulumi.Input[str]`) - The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
+          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
+          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
+          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
+
+        The **logging_logglies** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_newrelics** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_scalyrs** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `region` (`pulumi.Input[str]`) - The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_sftps** object supports the following:
+
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
+          * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+          * `sshKnownHosts` (`pulumi.Input[str]`) - A list of host keys for all hosts we can connect to over SFTP.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
 
         The **papertrails** object supports the following:
 
-          * `address` (`pulumi.Input[str]`) - A hostname or IPv4 address of the Syslog endpoint.
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
 
         The **request_settings** object supports the following:
@@ -854,12 +1142,13 @@ class Servicev1(pulumi.CustomResource):
             then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `gzipLevel` (`pulumi.Input[float]`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-          * `period` (`pulumi.Input[float]`) - How frequently the logs should be transferred in seconds. Default `3600`.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
           * `redundancy` (`pulumi.Input[str]`) - The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `s3AccessKey` (`pulumi.Input[str]`) - AWS Access Key of an account with the required
@@ -872,7 +1161,7 @@ class Servicev1(pulumi.CustomResource):
             not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
           * `serverSideEncryption` (`pulumi.Input[str]`)
           * `serverSideEncryptionKmsKeyId` (`pulumi.Input[str]`)
-          * `timestampFormat` (`pulumi.Input[str]`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 
         The **snippets** object supports the following:
 
@@ -886,39 +1175,39 @@ class Servicev1(pulumi.CustomResource):
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - Used during the TLS handshake to validate the certificate.
-          * `token` (`pulumi.Input[str]`) - The Splunk token to be used for authentication.
-          * `url` (`pulumi.Input[str]`) - URL that log data will be sent to. Must use the https protocol.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
 
         The **sumologics** object supports the following:
 
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `url` (`pulumi.Input[str]`) - URL that log data will be sent to. Must use the https protocol.
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
 
         The **syslogs** object supports the following:
 
-          * `address` (`pulumi.Input[str]`) - A hostname or IPv4 address of the Syslog endpoint.
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
           * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
           * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - Used during the TLS handshake to validate the certificate.
-          * `token` (`pulumi.Input[str]`) - The Splunk token to be used for authentication.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Defaults to `true`
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
 
         The **vcls** object supports the following:
 
@@ -968,6 +1257,15 @@ class Servicev1(pulumi.CustomResource):
             __props__['healthchecks'] = healthchecks
             __props__['httpsloggings'] = httpsloggings
             __props__['logentries'] = logentries
+            __props__['logging_datadogs'] = logging_datadogs
+            __props__['logging_elasticsearches'] = logging_elasticsearches
+            __props__['logging_ftps'] = logging_ftps
+            __props__['logging_googlepubsubs'] = logging_googlepubsubs
+            __props__['logging_kafkas'] = logging_kafkas
+            __props__['logging_logglies'] = logging_logglies
+            __props__['logging_newrelics'] = logging_newrelics
+            __props__['logging_scalyrs'] = logging_scalyrs
+            __props__['logging_sftps'] = logging_sftps
             __props__['name'] = name
             __props__['papertrails'] = papertrails
             __props__['request_settings'] = request_settings
@@ -988,7 +1286,7 @@ class Servicev1(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, acls=None, activate=None, active_version=None, backends=None, bigqueryloggings=None, blobstorageloggings=None, cache_settings=None, cloned_version=None, comment=None, conditions=None, default_host=None, default_ttl=None, dictionaries=None, directors=None, domains=None, dynamicsnippets=None, force_destroy=None, gcsloggings=None, gzips=None, headers=None, healthchecks=None, httpsloggings=None, logentries=None, name=None, papertrails=None, request_settings=None, response_objects=None, s3loggings=None, snippets=None, splunks=None, sumologics=None, syslogs=None, vcls=None, version_comment=None):
+    def get(resource_name, id, opts=None, acls=None, activate=None, active_version=None, backends=None, bigqueryloggings=None, blobstorageloggings=None, cache_settings=None, cloned_version=None, comment=None, conditions=None, default_host=None, default_ttl=None, dictionaries=None, directors=None, domains=None, dynamicsnippets=None, force_destroy=None, gcsloggings=None, gzips=None, headers=None, healthchecks=None, httpsloggings=None, logentries=None, logging_datadogs=None, logging_elasticsearches=None, logging_ftps=None, logging_googlepubsubs=None, logging_kafkas=None, logging_logglies=None, logging_newrelics=None, logging_scalyrs=None, logging_sftps=None, name=None, papertrails=None, request_settings=None, response_objects=None, s3loggings=None, snippets=None, splunks=None, sumologics=None, syslogs=None, vcls=None, version_comment=None):
         """
         Get an existing Servicev1 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1033,6 +1331,24 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[list] logentries: A logentries endpoint to send streaming logs too.
                Defined below.
+        :param pulumi.Input[list] logging_datadogs: A Datadog endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_elasticsearches: An Elasticsearch endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_ftps: An FTP endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_googlepubsubs: A Google Cloud Pub/Sub endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_kafkas: A Kafka endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_logglies: A Loggly endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_newrelics: A New Relic endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_scalyrs: A Scalyr endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[list] logging_sftps: An SFTP endpoint to send streaming logs to.
+               Defined below.
         :param pulumi.Input[str] name: A unique name to identify this dictionary.
         :param pulumi.Input[list] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
@@ -1047,9 +1363,7 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[list] syslogs: A syslog endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] vcls: A set of custom VCL configuration blocks. The
-               ability to upload custom VCL code is not enabled by default for new Fastly
-               accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+        :param pulumi.Input[list] vcls: A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         :param pulumi.Input[str] version_comment: Description field for the version.
 
         The **acls** object supports the following:
@@ -1059,7 +1373,7 @@ class Servicev1(pulumi.CustomResource):
 
         The **backends** object supports the following:
 
-          * `address` (`pulumi.Input[str]`) - A hostname or IPv4 address of the Syslog endpoint.
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
           * `autoLoadbalance` (`pulumi.Input[bool]`) - Denotes if this Backend should be
             included in the pool of backends that requests are load balanced against.
             Default `true`.
@@ -1075,9 +1389,9 @@ class Servicev1(pulumi.CustomResource):
           * `minTlsVersion` (`pulumi.Input[str]`) - Minimum allowed TLS version on SSL connections to this backend.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `overrideHost` (`pulumi.Input[str]`) - The hostname to override the Host header.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `requestCondition` (`pulumi.Input[str]`) - Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
           * `sslCaCert` (`pulumi.Input[str]`) - CA certificate attached to origin.
           * `sslCertHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
           * `sslCheckCert` (`pulumi.Input[bool]`) - Be strict about checking SSL certs. Default `true`.
@@ -1087,7 +1401,7 @@ class Servicev1(pulumi.CustomResource):
           * `sslHostname` (`pulumi.Input[str]`) - Used for both SNI during the TLS handshake and to validate the cert.
           * `sslSniHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
           * `useSsl` (`pulumi.Input[bool]`) - Whether or not to use SSL to reach the backend. Default `false`.
-          * `weight` (`pulumi.Input[float]`) - The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+          * `weight` (`pulumi.Input[float]`) - The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
 
         The **bigqueryloggings** object supports the following:
 
@@ -1095,10 +1409,10 @@ class Servicev1(pulumi.CustomResource):
           * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `projectId` (`pulumi.Input[str]`) - The ID of your GCP project.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `secretKey` (`pulumi.Input[str]`) - The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
           * `table` (`pulumi.Input[str]`) - The ID of your BigQuery table.
           * `template` (`pulumi.Input[str]`) - Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
 
@@ -1108,16 +1422,16 @@ class Servicev1(pulumi.CustomResource):
           * `container` (`pulumi.Input[str]`) - The name of the Azure Blob Storage container in which to store logs.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `gzipLevel` (`pulumi.Input[float]`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-          * `period` (`pulumi.Input[float]`) - How frequently the logs should be transferred in seconds. Default `3600`.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `sasToken` (`pulumi.Input[str]`) - The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-          * `timestampFormat` (`pulumi.Input[str]`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 
         The **cache_settings** object supports the following:
 
@@ -1153,7 +1467,7 @@ class Servicev1(pulumi.CustomResource):
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `quorum` (`pulumi.Input[float]`) - Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
           * `retries` (`pulumi.Input[float]`) - How many backends to search if it fails. Default `5`.
-          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+          * `shield` (`pulumi.Input[str]`) - Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
           * `type` (`pulumi.Input[float]`) - The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
 
         The **domains** object supports the following:
@@ -1173,15 +1487,15 @@ class Servicev1(pulumi.CustomResource):
           * `bucketName` (`pulumi.Input[str]`) - The name of the bucket in which to store the logs.
           * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
-          * `gzipLevel` (`pulumi.Input[float]`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-          * `period` (`pulumi.Input[float]`) - How frequently the logs should be transferred in seconds. Default `3600`.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `secretKey` (`pulumi.Input[str]`) - The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
-          * `timestampFormat` (`pulumi.Input[str]`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 
         The **gzips** object supports the following:
 
@@ -1220,7 +1534,7 @@ class Servicev1(pulumi.CustomResource):
           * `initial` (`pulumi.Input[float]`) - When loading a config, the initial number of probes to be seen as OK. Default `2`.
           * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
           * `threshold` (`pulumi.Input[float]`) - How many Healthchecks must succeed to be considered healthy. Default `3`.
           * `timeout` (`pulumi.Input[float]`) - Timeout in milliseconds. Default `500`.
           * `window` (`pulumi.Input[float]`) - The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
@@ -1233,37 +1547,160 @@ class Servicev1(pulumi.CustomResource):
           * `headerName` (`pulumi.Input[str]`) - Custom header sent with the request.
           * `headerValue` (`pulumi.Input[str]`) - Value of the custom header sent with the request.
           * `jsonFormat` (`pulumi.Input[str]`) - Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request.
-          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
           * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
           * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - Used during the TLS handshake to validate the certificate.
-          * `url` (`pulumi.Input[str]`) - URL that log data will be sent to. Must use the https protocol.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
 
         The **logentries** object supports the following:
 
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `token` (`pulumi.Input[str]`) - The Splunk token to be used for authentication.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Defaults to `true`
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
+
+        The **logging_datadogs** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `region` (`pulumi.Input[str]`) - The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_elasticsearches** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `index` (`pulumi.Input[str]`) - The name of the Elasticsearch index to send documents (logs) to.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+          * `pipeline` (`pulumi.Input[str]`) - The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
+          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
+          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+
+        The **logging_ftps** object supports the following:
+
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
+          * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+
+        The **logging_googlepubsubs** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+
+        The **logging_kafkas** object supports the following:
+
+          * `brokers` (`pulumi.Input[str]`) - A comma-separated list of IP addresses or hostnames of Kafka brokers.
+          * `compressionCodec` (`pulumi.Input[str]`) - The codec used for compression of your logs. One of: gzip, snappy, lz4.
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `requiredAcks` (`pulumi.Input[str]`) - The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
+          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
+          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
+          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
+
+        The **logging_logglies** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_newrelics** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_scalyrs** object supports the following:
+
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `region` (`pulumi.Input[str]`) - The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+
+        The **logging_sftps** object supports the following:
+
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
+          * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
+          * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+          * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
+          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
+          * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+          * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
+          * `secretKey` (`pulumi.Input[str]`) - Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+          * `sshKnownHosts` (`pulumi.Input[str]`) - A list of host keys for all hosts we can connect to over SFTP.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+          * `user` (`pulumi.Input[str]`) - Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
 
         The **papertrails** object supports the following:
 
-          * `address` (`pulumi.Input[str]`) - A hostname or IPv4 address of the Syslog endpoint.
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
 
         The **request_settings** object supports the following:
@@ -1307,12 +1744,13 @@ class Servicev1(pulumi.CustomResource):
             then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `gzipLevel` (`pulumi.Input[float]`) - Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
-          * `period` (`pulumi.Input[float]`) - How frequently the logs should be transferred in seconds. Default `3600`.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `path` (`pulumi.Input[str]`) - The path to upload log files to. If the path ends in / then it is treated as a directory.
+          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `publicKey` (`pulumi.Input[str]`) - A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
           * `redundancy` (`pulumi.Input[str]`) - The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `s3AccessKey` (`pulumi.Input[str]`) - AWS Access Key of an account with the required
@@ -1325,7 +1763,7 @@ class Servicev1(pulumi.CustomResource):
             not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
           * `serverSideEncryption` (`pulumi.Input[str]`)
           * `serverSideEncryptionKmsKeyId` (`pulumi.Input[str]`)
-          * `timestampFormat` (`pulumi.Input[str]`) - `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 
         The **snippets** object supports the following:
 
@@ -1339,39 +1777,39 @@ class Servicev1(pulumi.CustomResource):
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - Used during the TLS handshake to validate the certificate.
-          * `token` (`pulumi.Input[str]`) - The Splunk token to be used for authentication.
-          * `url` (`pulumi.Input[str]`) - URL that log data will be sent to. Must use the https protocol.
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
 
         The **sumologics** object supports the following:
 
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
-          * `url` (`pulumi.Input[str]`) - URL that log data will be sent to. Must use the https protocol.
+          * `url` (`pulumi.Input[str]`) - The Elasticsearch URL to stream logs to.
 
         The **syslogs** object supports the following:
 
-          * `address` (`pulumi.Input[str]`) - A hostname or IPv4 address of the Syslog endpoint.
+          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
           * `format` (`pulumi.Input[str]`) - Apache-style string or VCL variables to use for log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
-          * `placement` (`pulumi.Input[str]`) - Where in the generated VCL the logging call should be placed.
-          * `port` (`pulumi.Input[float]`) - The port number configured in Logentries to send logs to. Defaults to `20000`.
+          * `placement` (`pulumi.Input[str]`) - The name of an existing condition in the configured endpoint, or leave blank to always execute.
+          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
           * `responseCondition` (`pulumi.Input[str]`) - The name of the `condition` to apply. If empty, always execute.
           * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
           * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
           * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - Used during the TLS handshake to validate the certificate.
-          * `token` (`pulumi.Input[str]`) - The Splunk token to be used for authentication.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Defaults to `true`
+          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+          * `token` (`pulumi.Input[str]`) - The token to use for authentication (https://www.scalyr.com/keys).
+          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
 
         The **vcls** object supports the following:
 
@@ -1408,6 +1846,15 @@ class Servicev1(pulumi.CustomResource):
         __props__["healthchecks"] = healthchecks
         __props__["httpsloggings"] = httpsloggings
         __props__["logentries"] = logentries
+        __props__["logging_datadogs"] = logging_datadogs
+        __props__["logging_elasticsearches"] = logging_elasticsearches
+        __props__["logging_ftps"] = logging_ftps
+        __props__["logging_googlepubsubs"] = logging_googlepubsubs
+        __props__["logging_kafkas"] = logging_kafkas
+        __props__["logging_logglies"] = logging_logglies
+        __props__["logging_newrelics"] = logging_newrelics
+        __props__["logging_scalyrs"] = logging_scalyrs
+        __props__["logging_sftps"] = logging_sftps
         __props__["name"] = name
         __props__["papertrails"] = papertrails
         __props__["request_settings"] = request_settings

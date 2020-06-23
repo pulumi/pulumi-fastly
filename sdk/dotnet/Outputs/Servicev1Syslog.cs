@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Syslog
     {
         /// <summary>
-        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// The SFTP address to stream logs to.
         /// </summary>
         public readonly string Address;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -34,11 +34,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The port the SFTP service listens on. (Default: `22`).
         /// </summary>
         public readonly int? Port;
         /// <summary>
@@ -58,15 +58,15 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
-        /// Used during the TLS handshake to validate the certificate.
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The Splunk token to be used for authentication.
+        /// The token to use for authentication (https://www.scalyr.com/keys).
         /// </summary>
         public readonly string? Token;
         /// <summary>
-        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// Whether to use TLS for secure logging. Can be either true or false.
         /// </summary>
         public readonly bool? UseTls;
 

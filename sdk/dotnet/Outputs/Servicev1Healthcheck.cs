@@ -42,7 +42,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// The path to upload log files to. If the path ends in / then it is treated as a directory.
         /// </summary>
         public readonly string Path;
         /// <summary>

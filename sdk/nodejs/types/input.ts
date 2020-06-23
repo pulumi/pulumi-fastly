@@ -38,7 +38,7 @@ export interface Servicev1Acl {
 
 export interface Servicev1Backend {
     /**
-     * A hostname or IPv4 address of the Syslog endpoint.
+     * The SFTP address to stream logs to.
      */
     address: pulumi.Input<string>;
     /**
@@ -90,7 +90,7 @@ export interface Servicev1Backend {
      */
     overrideHost?: pulumi.Input<string>;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port?: pulumi.Input<number>;
     /**
@@ -98,7 +98,7 @@ export interface Servicev1Backend {
      */
     requestCondition?: pulumi.Input<string>;
     /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
      */
     shield?: pulumi.Input<string>;
     /**
@@ -140,7 +140,7 @@ export interface Servicev1Backend {
      */
     useSsl?: pulumi.Input<boolean>;
     /**
-     * The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
      */
     weight?: pulumi.Input<number>;
 }
@@ -163,11 +163,11 @@ export interface Servicev1Bigquerylogging {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The ID of your GCP project.
+     * The ID of your Google Cloud Platform project.
      */
     projectId: pulumi.Input<string>;
     /**
@@ -175,7 +175,7 @@ export interface Servicev1Bigquerylogging {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -206,11 +206,11 @@ export interface Servicev1Blobstoragelogging {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -218,15 +218,15 @@ export interface Servicev1Blobstoragelogging {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path?: pulumi.Input<string>;
     /**
-     * How frequently the logs should be transferred in seconds. Default `3600`.
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -242,7 +242,7 @@ export interface Servicev1Blobstoragelogging {
      */
     sasToken: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -335,7 +335,7 @@ export interface Servicev1Director {
      */
     retries?: pulumi.Input<number>;
     /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
      */
     shield?: pulumi.Input<string>;
     /**
@@ -388,11 +388,11 @@ export interface Servicev1Gcslogging {
      */
     format?: pulumi.Input<string>;
     /**
-     * Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -400,15 +400,15 @@ export interface Servicev1Gcslogging {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path?: pulumi.Input<string>;
     /**
-     * How frequently the logs should be transferred in seconds. Default `3600`.
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -416,11 +416,11 @@ export interface Servicev1Gcslogging {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -531,7 +531,7 @@ export interface Servicev1Healthcheck {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path: pulumi.Input<string>;
     /**
@@ -574,7 +574,7 @@ export interface Servicev1Httpslogging {
      */
     jsonFormat?: pulumi.Input<string>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -586,15 +586,15 @@ export interface Servicev1Httpslogging {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The maximum number of bytes sent in one request.
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
      */
     requestMaxBytes?: pulumi.Input<number>;
     /**
-     * The maximum number of logs sent in one request.
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
      */
     requestMaxEntries?: pulumi.Input<number>;
     /**
@@ -614,11 +614,11 @@ export interface Servicev1Httpslogging {
      */
     tlsClientKey?: pulumi.Input<string>;
     /**
-     * Used during the TLS handshake to validate the certificate.
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * URL that log data will be sent to. Must use the https protocol.
+     * The Elasticsearch URL to stream logs to.
      */
     url: pulumi.Input<string>;
 }
@@ -637,11 +637,11 @@ export interface Servicev1Logentry {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port?: pulumi.Input<number>;
     /**
@@ -649,18 +649,429 @@ export interface Servicev1Logentry {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The Splunk token to be used for authentication.
+     * The token to use for authentication (https://www.scalyr.com/keys).
      */
     token: pulumi.Input<string>;
     /**
-     * Whether to use TLS for secure logging. Defaults to `true`
+     * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: pulumi.Input<boolean>;
 }
 
+export interface Servicev1LoggingDatadog {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingElasticsearch {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * The name of the Elasticsearch index to send documents (logs) to.
+     */
+    index: pulumi.Input<string>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+     */
+    pipeline?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: pulumi.Input<number>;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxEntries?: pulumi.Input<number>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * The Elasticsearch URL to stream logs to.
+     */
+    url: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user?: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingFtp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password: pulumi.Input<string>;
+    /**
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingGooglepubsub {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The ID of your Google Cloud Platform project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingKafka {
+    /**
+     * A comma-separated list of IP addresses or hostnames of Kafka brokers.
+     */
+    brokers: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. One of: gzip, snappy, lz4.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+     */
+    requiredAcks?: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: pulumi.Input<boolean>;
+}
+
+export interface Servicev1LoggingLoggly {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingNewrelic {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingScalyr {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingSftp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * A list of host keys for all hosts we can connect to over SFTP.
+     */
+    sshKnownHosts: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user: pulumi.Input<string>;
+}
+
 export interface Servicev1Papertrail {
     /**
-     * A hostname or IPv4 address of the Syslog endpoint.
+     * The SFTP address to stream logs to.
      */
     address: pulumi.Input<string>;
     /**
@@ -672,11 +1083,11 @@ export interface Servicev1Papertrail {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port: pulumi.Input<number>;
     /**
@@ -795,11 +1206,11 @@ export interface Servicev1S3logging {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -807,17 +1218,21 @@ export interface Servicev1S3logging {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path?: pulumi.Input<string>;
     /**
-     * How frequently the logs should be transferred in seconds. Default `3600`.
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
     /**
      * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
      */
@@ -843,7 +1258,7 @@ export interface Servicev1S3logging {
     serverSideEncryption?: pulumi.Input<string>;
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -881,7 +1296,7 @@ export interface Servicev1Splunk {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -893,15 +1308,15 @@ export interface Servicev1Splunk {
      */
     tlsCaCert?: pulumi.Input<string>;
     /**
-     * Used during the TLS handshake to validate the certificate.
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The Splunk token to be used for authentication.
+     * The token to use for authentication (https://www.scalyr.com/keys).
      */
     token: pulumi.Input<string>;
     /**
-     * URL that log data will be sent to. Must use the https protocol.
+     * The Elasticsearch URL to stream logs to.
      */
     url: pulumi.Input<string>;
 }
@@ -916,7 +1331,7 @@ export interface Servicev1Sumologic {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -924,7 +1339,7 @@ export interface Servicev1Sumologic {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -932,14 +1347,14 @@ export interface Servicev1Sumologic {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * URL that log data will be sent to. Must use the https protocol.
+     * The Elasticsearch URL to stream logs to.
      */
     url: pulumi.Input<string>;
 }
 
 export interface Servicev1Syslog {
     /**
-     * A hostname or IPv4 address of the Syslog endpoint.
+     * The SFTP address to stream logs to.
      */
     address: pulumi.Input<string>;
     /**
@@ -951,7 +1366,7 @@ export interface Servicev1Syslog {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -959,11 +1374,11 @@ export interface Servicev1Syslog {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port?: pulumi.Input<number>;
     /**
@@ -983,15 +1398,15 @@ export interface Servicev1Syslog {
      */
     tlsClientKey?: pulumi.Input<string>;
     /**
-     * Used during the TLS handshake to validate the certificate.
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The Splunk token to be used for authentication.
+     * The token to use for authentication (https://www.scalyr.com/keys).
      */
     token?: pulumi.Input<string>;
     /**
-     * Whether to use TLS for secure logging. Defaults to `true`
+     * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: pulumi.Input<boolean>;
 }

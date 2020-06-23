@@ -134,7 +134,7 @@
             "properties": {
                 "address": {
                     "type": "string",
-                    "description": "A hostname or IPv4 address of the Syslog endpoint.\n",
+                    "description": "The SFTP address to stream logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -242,7 +242,7 @@
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -260,7 +260,7 @@
                 },
                 "shield": {
                     "type": "string",
-                    "description": "Selected POP to serve as a \"shield\" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.\n",
+                    "description": "Selected POP to serve as a \"shield\" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -351,7 +351,7 @@
                 },
                 "weight": {
                     "type": "integer",
-                    "description": "The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.\n",
+                    "description": "The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -405,7 +405,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -414,7 +414,7 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "The ID of your GCP project.\n",
+                    "description": "The ID of your Google Cloud Platform project.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -432,7 +432,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.\n",
+                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -506,7 +506,7 @@
                 },
                 "gzipLevel": {
                     "type": "integer",
-                    "description": "Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.\n",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -515,7 +515,7 @@
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -533,7 +533,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -542,7 +542,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently the logs should be transferred in seconds. Default `3600`.\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -551,7 +551,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -587,7 +587,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "`strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.\n",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -806,7 +806,7 @@
                 },
                 "shield": {
                     "type": "string",
-                    "description": "Selected POP to serve as a \"shield\" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.\n",
+                    "description": "Selected POP to serve as a \"shield\" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -940,7 +940,7 @@
                 },
                 "gzipLevel": {
                     "type": "integer",
-                    "description": "Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.\n",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -949,7 +949,7 @@
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -967,7 +967,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -976,7 +976,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently the logs should be transferred in seconds. Default `3600`.\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -985,7 +985,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1003,7 +1003,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.\n",
+                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1012,7 +1012,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "`strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.\n",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1275,7 +1275,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1375,7 +1375,7 @@
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1402,7 +1402,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1411,7 +1411,7 @@
                 },
                 "requestMaxBytes": {
                     "type": "integer",
-                    "description": "The maximum number of bytes sent in one request.\n",
+                    "description": "The maximum number of bytes sent in one request. Defaults to `0` for unbounded.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1420,7 +1420,7 @@
                 },
                 "requestMaxEntries": {
                     "type": "integer",
-                    "description": "The maximum number of logs sent in one request.\n",
+                    "description": "The maximum number of logs sent in one request. Defaults to `0` for unbounded.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1465,7 +1465,7 @@
                 },
                 "tlsHostname": {
                     "type": "string",
-                    "description": "Used during the TLS handshake to validate the certificate.\n",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1474,7 +1474,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "URL that log data will be sent to. Must use the https protocol.\n",
+                    "description": "The Elasticsearch URL to stream logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1519,7 +1519,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1528,7 +1528,7 @@
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1546,7 +1546,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The Splunk token to be used for authentication.\n",
+                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1555,7 +1555,7 @@
                 },
                 "useTls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS for secure logging. Defaults to `true`\n",
+                    "description": "Whether to use TLS for secure logging. Can be either true or false.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1569,11 +1569,967 @@
                 "token"
             ]
         },
+        "fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region that log data will be sent to. One of US or EU. Defaults to US if undefined.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "index": {
+                    "type": "string",
+                    "description": "The name of the Elasticsearch index to send documents (logs) to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pipeline": {
+                    "type": "string",
+                    "description": "The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxBytes": {
+                    "type": "integer",
+                    "description": "The maximum number of bytes sent in one request. Defaults to `0` for unbounded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxEntries": {
+                    "type": "integer",
+                    "description": "The maximum number of logs sent in one request. Defaults to `0` for unbounded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The Elasticsearch URL to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "index",
+                "name",
+                "url"
+            ]
+        },
+        "fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "The SFTP address to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name",
+                "password",
+                "path",
+                "user"
+            ]
+        },
+        "fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of your Google Cloud Platform project.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "The Kafka topic to send logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "projectId",
+                "secretKey",
+                "topic",
+                "user"
+            ]
+        },
+        "fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka": {
+            "properties": {
+                "brokers": {
+                    "type": "string",
+                    "description": "A comma-separated list of IP addresses or hostnames of Kafka brokers.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "compressionCodec": {
+                    "type": "string",
+                    "description": "The codec used for compression of your logs. One of: gzip, snappy, lz4.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requiredAcks": {
+                    "type": "string",
+                    "description": "The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1\tWait for all in-sync replicas to respond.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "The Kafka topic to send logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useTls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS for secure logging. Can be either true or false.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "brokers",
+                "name",
+                "topic"
+            ]
+        },
+        "fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region that log data will be sent to. One of US or EU. Defaults to US if undefined.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "The SFTP address to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sshKnownHosts": {
+                    "type": "string",
+                    "description": "A list of host keys for all hosts we can connect to over SFTP.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name",
+                "path",
+                "sshKnownHosts",
+                "user"
+            ]
+        },
         "fastly:/Servicev1Papertrail:Servicev1Papertrail": {
             "properties": {
                 "address": {
                     "type": "string",
-                    "description": "A hostname or IPv4 address of the Syslog endpoint.\n",
+                    "description": "The SFTP address to stream logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1600,7 +2556,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1609,7 +2565,7 @@
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1860,7 +2816,7 @@
                 },
                 "gzipLevel": {
                     "type": "integer",
-                    "description": "Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.\n",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1869,7 +2825,7 @@
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1887,7 +2843,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.\n",
+                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1896,7 +2852,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently the logs should be transferred in seconds. Default `3600`.\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1905,7 +2861,16 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1966,7 +2931,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "`strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.\n",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2057,7 +3022,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2084,7 +3049,7 @@
                 },
                 "tlsHostname": {
                     "type": "string",
-                    "description": "Used during the TLS handshake to validate the certificate.\n",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2093,7 +3058,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The Splunk token to be used for authentication.\n",
+                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2102,7 +3067,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "URL that log data will be sent to. Must use the https protocol.\n",
+                    "description": "The Elasticsearch URL to stream logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2139,7 +3104,7 @@
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2157,7 +3122,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2175,7 +3140,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "URL that log data will be sent to. Must use the https protocol.\n",
+                    "description": "The Elasticsearch URL to stream logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2193,7 +3158,7 @@
             "properties": {
                 "address": {
                     "type": "string",
-                    "description": "A hostname or IPv4 address of the Syslog endpoint.\n",
+                    "description": "The SFTP address to stream logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2220,7 +3185,7 @@
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.\n",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2238,7 +3203,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2247,7 +3212,7 @@
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port number configured in Logentries to send logs to. Defaults to `20000`.\n",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2292,7 +3257,7 @@
                 },
                 "tlsHostname": {
                     "type": "string",
-                    "description": "Used during the TLS handshake to validate the certificate.\n",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2301,7 +3266,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The Splunk token to be used for authentication.\n",
+                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2310,7 +3275,7 @@
                 },
                 "useTls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS for secure logging. Defaults to `true`\n",
+                    "description": "Whether to use TLS for secure logging. Can be either true or false.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2720,6 +3685,69 @@
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
+                "loggingDatadogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
+                    },
+                    "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingElasticsearches": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
+                    },
+                    "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingFtps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp"
+                    },
+                    "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingGooglepubsubs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
+                    },
+                    "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingKafkas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka"
+                    },
+                    "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingLogglies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
+                    },
+                    "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingNewrelics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
+                    },
+                    "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingScalyrs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
+                    },
+                    "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingSftps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp"
+                    },
+                    "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "A unique name to identify this dictionary.\n"
@@ -2785,7 +3813,7 @@
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
                     },
-                    "description": "A set of custom VCL configuration blocks. The\nability to upload custom VCL code is not enabled by default for new Fastly\naccounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).\n"
+                    "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                 },
                 "versionComment": {
                     "type": "string",
@@ -2932,6 +3960,69 @@
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
+                "loggingDatadogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
+                    },
+                    "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingElasticsearches": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
+                    },
+                    "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingFtps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp"
+                    },
+                    "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingGooglepubsubs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
+                    },
+                    "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingKafkas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka"
+                    },
+                    "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingLogglies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
+                    },
+                    "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingNewrelics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
+                    },
+                    "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingScalyrs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
+                    },
+                    "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingSftps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp"
+                    },
+                    "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "A unique name to identify this dictionary.\n"
@@ -2997,7 +4088,7 @@
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
                     },
-                    "description": "A set of custom VCL configuration blocks. The\nability to upload custom VCL code is not enabled by default for new Fastly\naccounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).\n"
+                    "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                 },
                 "versionComment": {
                     "type": "string",
@@ -3150,6 +4241,69 @@
                         },
                         "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                     },
+                    "loggingDatadogs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
+                        },
+                        "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingElasticsearches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
+                        },
+                        "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingFtps": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp"
+                        },
+                        "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingGooglepubsubs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
+                        },
+                        "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingKafkas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka"
+                        },
+                        "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingLogglies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
+                        },
+                        "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingNewrelics": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
+                        },
+                        "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingScalyrs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
+                        },
+                        "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingSftps": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp"
+                        },
+                        "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "A unique name to identify this dictionary.\n"
@@ -3215,7 +4369,7 @@
                         "items": {
                             "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
                         },
-                        "description": "A set of custom VCL configuration blocks. The\nability to upload custom VCL code is not enabled by default for new Fastly\naccounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).\n"
+                        "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                     },
                     "versionComment": {
                         "type": "string",

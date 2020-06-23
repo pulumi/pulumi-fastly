@@ -55,7 +55,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Retries { get; set; }
 
         /// <summary>
-        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
         /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
