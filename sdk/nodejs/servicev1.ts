@@ -286,6 +286,51 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly logentries!: pulumi.Output<outputs.Servicev1Logentry[] | undefined>;
     /**
+     * A Datadog endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingDatadogs!: pulumi.Output<outputs.Servicev1LoggingDatadog[] | undefined>;
+    /**
+     * An Elasticsearch endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingElasticsearches!: pulumi.Output<outputs.Servicev1LoggingElasticsearch[] | undefined>;
+    /**
+     * An FTP endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingFtps!: pulumi.Output<outputs.Servicev1LoggingFtp[] | undefined>;
+    /**
+     * A Google Cloud Pub/Sub endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingGooglepubsubs!: pulumi.Output<outputs.Servicev1LoggingGooglepubsub[] | undefined>;
+    /**
+     * A Kafka endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingKafkas!: pulumi.Output<outputs.Servicev1LoggingKafka[] | undefined>;
+    /**
+     * A Loggly endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingLogglies!: pulumi.Output<outputs.Servicev1LoggingLoggly[] | undefined>;
+    /**
+     * A New Relic endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingNewrelics!: pulumi.Output<outputs.Servicev1LoggingNewrelic[] | undefined>;
+    /**
+     * A Scalyr endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingScalyrs!: pulumi.Output<outputs.Servicev1LoggingScalyr[] | undefined>;
+    /**
+     * An SFTP endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingSftps!: pulumi.Output<outputs.Servicev1LoggingSftp[] | undefined>;
+    /**
      * A unique name to identify this dictionary.
      */
     public readonly name!: pulumi.Output<string>;
@@ -327,9 +372,7 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly syslogs!: pulumi.Output<outputs.Servicev1Syslog[] | undefined>;
     /**
-     * A set of custom VCL configuration blocks. The
-     * ability to upload custom VCL code is not enabled by default for new Fastly
-     * accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+     * A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
      */
     public readonly vcls!: pulumi.Output<outputs.Servicev1Vcl[] | undefined>;
     /**
@@ -372,6 +415,15 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["healthchecks"] = state ? state.healthchecks : undefined;
             inputs["httpsloggings"] = state ? state.httpsloggings : undefined;
             inputs["logentries"] = state ? state.logentries : undefined;
+            inputs["loggingDatadogs"] = state ? state.loggingDatadogs : undefined;
+            inputs["loggingElasticsearches"] = state ? state.loggingElasticsearches : undefined;
+            inputs["loggingFtps"] = state ? state.loggingFtps : undefined;
+            inputs["loggingGooglepubsubs"] = state ? state.loggingGooglepubsubs : undefined;
+            inputs["loggingKafkas"] = state ? state.loggingKafkas : undefined;
+            inputs["loggingLogglies"] = state ? state.loggingLogglies : undefined;
+            inputs["loggingNewrelics"] = state ? state.loggingNewrelics : undefined;
+            inputs["loggingScalyrs"] = state ? state.loggingScalyrs : undefined;
+            inputs["loggingSftps"] = state ? state.loggingSftps : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["papertrails"] = state ? state.papertrails : undefined;
             inputs["requestSettings"] = state ? state.requestSettings : undefined;
@@ -409,6 +461,15 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["healthchecks"] = args ? args.healthchecks : undefined;
             inputs["httpsloggings"] = args ? args.httpsloggings : undefined;
             inputs["logentries"] = args ? args.logentries : undefined;
+            inputs["loggingDatadogs"] = args ? args.loggingDatadogs : undefined;
+            inputs["loggingElasticsearches"] = args ? args.loggingElasticsearches : undefined;
+            inputs["loggingFtps"] = args ? args.loggingFtps : undefined;
+            inputs["loggingGooglepubsubs"] = args ? args.loggingGooglepubsubs : undefined;
+            inputs["loggingKafkas"] = args ? args.loggingKafkas : undefined;
+            inputs["loggingLogglies"] = args ? args.loggingLogglies : undefined;
+            inputs["loggingNewrelics"] = args ? args.loggingNewrelics : undefined;
+            inputs["loggingScalyrs"] = args ? args.loggingScalyrs : undefined;
+            inputs["loggingSftps"] = args ? args.loggingSftps : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["papertrails"] = args ? args.papertrails : undefined;
             inputs["requestSettings"] = args ? args.requestSettings : undefined;
@@ -545,6 +606,51 @@ export interface Servicev1State {
      */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
     /**
+     * A Datadog endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDatadog>[]>;
+    /**
+     * An Elasticsearch endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingElasticsearch>[]>;
+    /**
+     * An FTP endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingFtps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingFtp>[]>;
+    /**
+     * A Google Cloud Pub/Sub endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingGooglepubsub>[]>;
+    /**
+     * A Kafka endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKafka>[]>;
+    /**
+     * A Loggly endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingLogglies?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLoggly>[]>;
+    /**
+     * A New Relic endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingNewrelic>[]>;
+    /**
+     * A Scalyr endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingScalyr>[]>;
+    /**
+     * An SFTP endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingSftps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingSftp>[]>;
+    /**
      * A unique name to identify this dictionary.
      */
     readonly name?: pulumi.Input<string>;
@@ -586,9 +692,7 @@ export interface Servicev1State {
      */
     readonly syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
     /**
-     * A set of custom VCL configuration blocks. The
-     * ability to upload custom VCL code is not enabled by default for new Fastly
-     * accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+     * A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
      */
     readonly vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;
     /**
@@ -700,6 +804,51 @@ export interface Servicev1Args {
      */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
     /**
+     * A Datadog endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDatadog>[]>;
+    /**
+     * An Elasticsearch endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingElasticsearch>[]>;
+    /**
+     * An FTP endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingFtps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingFtp>[]>;
+    /**
+     * A Google Cloud Pub/Sub endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingGooglepubsub>[]>;
+    /**
+     * A Kafka endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKafka>[]>;
+    /**
+     * A Loggly endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingLogglies?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLoggly>[]>;
+    /**
+     * A New Relic endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingNewrelic>[]>;
+    /**
+     * A Scalyr endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingScalyr>[]>;
+    /**
+     * An SFTP endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingSftps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingSftp>[]>;
+    /**
      * A unique name to identify this dictionary.
      */
     readonly name?: pulumi.Input<string>;
@@ -741,9 +890,7 @@ export interface Servicev1Args {
      */
     readonly syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
     /**
-     * A set of custom VCL configuration blocks. The
-     * ability to upload custom VCL code is not enabled by default for new Fastly
-     * accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+     * A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
      */
     readonly vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;
     /**

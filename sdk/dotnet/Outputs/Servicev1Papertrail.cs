@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Papertrail
     {
         /// <summary>
-        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// The SFTP address to stream logs to.
         /// </summary>
         public readonly string Address;
         /// <summary>
@@ -26,11 +26,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The port the SFTP service listens on. (Default: `22`).
         /// </summary>
         public readonly int Port;
         /// <summary>

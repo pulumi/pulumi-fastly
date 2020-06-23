@@ -26,11 +26,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The port the SFTP service listens on. (Default: `22`).
         /// </summary>
         public readonly int? Port;
         /// <summary>
@@ -38,11 +38,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The Splunk token to be used for authentication.
+        /// The token to use for authentication (https://www.scalyr.com/keys).
         /// </summary>
         public readonly string Token;
         /// <summary>
-        /// Whether to use TLS for secure logging. Defaults to `true`
+        /// Whether to use TLS for secure logging. Can be either true or false.
         /// </summary>
         public readonly bool? UseTls;
 

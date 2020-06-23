@@ -37,13 +37,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The ID of your GCP project.
+        /// The ID of your Google Cloud Platform project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -55,7 +55,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }

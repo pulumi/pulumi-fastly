@@ -80,6 +80,33 @@ type Servicev1 struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayOutput `pulumi:"logentries"`
+	// A Datadog endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDatadogs Servicev1LoggingDatadogArrayOutput `pulumi:"loggingDatadogs"`
+	// An Elasticsearch endpoint to send streaming logs to.
+	// Defined below.
+	LoggingElasticsearches Servicev1LoggingElasticsearchArrayOutput `pulumi:"loggingElasticsearches"`
+	// An FTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingFtps Servicev1LoggingFtpArrayOutput `pulumi:"loggingFtps"`
+	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+	// Defined below.
+	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayOutput `pulumi:"loggingGooglepubsubs"`
+	// A Kafka endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKafkas Servicev1LoggingKafkaArrayOutput `pulumi:"loggingKafkas"`
+	// A Loggly endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogglies Servicev1LoggingLogglyArrayOutput `pulumi:"loggingLogglies"`
+	// A New Relic endpoint to send streaming logs to.
+	// Defined below.
+	LoggingNewrelics Servicev1LoggingNewrelicArrayOutput `pulumi:"loggingNewrelics"`
+	// A Scalyr endpoint to send streaming logs to.
+	// Defined below.
+	LoggingScalyrs Servicev1LoggingScalyrArrayOutput `pulumi:"loggingScalyrs"`
+	// An SFTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingSftps Servicev1LoggingSftpArrayOutput `pulumi:"loggingSftps"`
 	// A unique name to identify this dictionary.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A Papertrail endpoint to send streaming logs too.
@@ -103,9 +130,7 @@ type Servicev1 struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs Servicev1SyslogArrayOutput `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks. The
-	// ability to upload custom VCL code is not enabled by default for new Fastly
-	// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls Servicev1VclArrayOutput `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
@@ -202,6 +227,33 @@ type servicev1State struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
+	// A Datadog endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDatadogs []Servicev1LoggingDatadog `pulumi:"loggingDatadogs"`
+	// An Elasticsearch endpoint to send streaming logs to.
+	// Defined below.
+	LoggingElasticsearches []Servicev1LoggingElasticsearch `pulumi:"loggingElasticsearches"`
+	// An FTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingFtps []Servicev1LoggingFtp `pulumi:"loggingFtps"`
+	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+	// Defined below.
+	LoggingGooglepubsubs []Servicev1LoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
+	// A Kafka endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
+	// A Loggly endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
+	// A New Relic endpoint to send streaming logs to.
+	// Defined below.
+	LoggingNewrelics []Servicev1LoggingNewrelic `pulumi:"loggingNewrelics"`
+	// A Scalyr endpoint to send streaming logs to.
+	// Defined below.
+	LoggingScalyrs []Servicev1LoggingScalyr `pulumi:"loggingScalyrs"`
+	// An SFTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingSftps []Servicev1LoggingSftp `pulumi:"loggingSftps"`
 	// A unique name to identify this dictionary.
 	Name *string `pulumi:"name"`
 	// A Papertrail endpoint to send streaming logs too.
@@ -225,9 +277,7 @@ type servicev1State struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs []Servicev1Syslog `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks. The
-	// ability to upload custom VCL code is not enabled by default for new Fastly
-	// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls []Servicev1Vcl `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment *string `pulumi:"versionComment"`
@@ -294,6 +344,33 @@ type Servicev1State struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput
+	// A Datadog endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDatadogs Servicev1LoggingDatadogArrayInput
+	// An Elasticsearch endpoint to send streaming logs to.
+	// Defined below.
+	LoggingElasticsearches Servicev1LoggingElasticsearchArrayInput
+	// An FTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingFtps Servicev1LoggingFtpArrayInput
+	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+	// Defined below.
+	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayInput
+	// A Kafka endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKafkas Servicev1LoggingKafkaArrayInput
+	// A Loggly endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogglies Servicev1LoggingLogglyArrayInput
+	// A New Relic endpoint to send streaming logs to.
+	// Defined below.
+	LoggingNewrelics Servicev1LoggingNewrelicArrayInput
+	// A Scalyr endpoint to send streaming logs to.
+	// Defined below.
+	LoggingScalyrs Servicev1LoggingScalyrArrayInput
+	// An SFTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingSftps Servicev1LoggingSftpArrayInput
 	// A unique name to identify this dictionary.
 	Name pulumi.StringPtrInput
 	// A Papertrail endpoint to send streaming logs too.
@@ -317,9 +394,7 @@ type Servicev1State struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs Servicev1SyslogArrayInput
-	// A set of custom VCL configuration blocks. The
-	// ability to upload custom VCL code is not enabled by default for new Fastly
-	// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls Servicev1VclArrayInput
 	// Description field for the version.
 	VersionComment pulumi.StringPtrInput
@@ -386,6 +461,33 @@ type servicev1Args struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
+	// A Datadog endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDatadogs []Servicev1LoggingDatadog `pulumi:"loggingDatadogs"`
+	// An Elasticsearch endpoint to send streaming logs to.
+	// Defined below.
+	LoggingElasticsearches []Servicev1LoggingElasticsearch `pulumi:"loggingElasticsearches"`
+	// An FTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingFtps []Servicev1LoggingFtp `pulumi:"loggingFtps"`
+	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+	// Defined below.
+	LoggingGooglepubsubs []Servicev1LoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
+	// A Kafka endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
+	// A Loggly endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
+	// A New Relic endpoint to send streaming logs to.
+	// Defined below.
+	LoggingNewrelics []Servicev1LoggingNewrelic `pulumi:"loggingNewrelics"`
+	// A Scalyr endpoint to send streaming logs to.
+	// Defined below.
+	LoggingScalyrs []Servicev1LoggingScalyr `pulumi:"loggingScalyrs"`
+	// An SFTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingSftps []Servicev1LoggingSftp `pulumi:"loggingSftps"`
 	// A unique name to identify this dictionary.
 	Name *string `pulumi:"name"`
 	// A Papertrail endpoint to send streaming logs too.
@@ -409,9 +511,7 @@ type servicev1Args struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs []Servicev1Syslog `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks. The
-	// ability to upload custom VCL code is not enabled by default for new Fastly
-	// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls []Servicev1Vcl `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment *string `pulumi:"versionComment"`
@@ -475,6 +575,33 @@ type Servicev1Args struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput
+	// A Datadog endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDatadogs Servicev1LoggingDatadogArrayInput
+	// An Elasticsearch endpoint to send streaming logs to.
+	// Defined below.
+	LoggingElasticsearches Servicev1LoggingElasticsearchArrayInput
+	// An FTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingFtps Servicev1LoggingFtpArrayInput
+	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+	// Defined below.
+	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayInput
+	// A Kafka endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKafkas Servicev1LoggingKafkaArrayInput
+	// A Loggly endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogglies Servicev1LoggingLogglyArrayInput
+	// A New Relic endpoint to send streaming logs to.
+	// Defined below.
+	LoggingNewrelics Servicev1LoggingNewrelicArrayInput
+	// A Scalyr endpoint to send streaming logs to.
+	// Defined below.
+	LoggingScalyrs Servicev1LoggingScalyrArrayInput
+	// An SFTP endpoint to send streaming logs to.
+	// Defined below.
+	LoggingSftps Servicev1LoggingSftpArrayInput
 	// A unique name to identify this dictionary.
 	Name pulumi.StringPtrInput
 	// A Papertrail endpoint to send streaming logs too.
@@ -498,9 +625,7 @@ type Servicev1Args struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs Servicev1SyslogArrayInput
-	// A set of custom VCL configuration blocks. The
-	// ability to upload custom VCL code is not enabled by default for new Fastly
-	// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls Servicev1VclArrayInput
 	// Description field for the version.
 	VersionComment pulumi.StringPtrInput

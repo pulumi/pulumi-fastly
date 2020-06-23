@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Backend
     {
         /// <summary>
-        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// The SFTP address to stream logs to.
         /// </summary>
         public readonly string Address;
         /// <summary>
@@ -66,7 +66,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? OverrideHost;
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The port the SFTP service listens on. (Default: `22`).
         /// </summary>
         public readonly int? Port;
         /// <summary>
@@ -74,7 +74,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>
-        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
         /// </summary>
         public readonly string? Shield;
         /// <summary>
@@ -114,7 +114,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? UseSsl;
         /// <summary>
-        /// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        /// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
         /// </summary>
         public readonly int? Weight;
 

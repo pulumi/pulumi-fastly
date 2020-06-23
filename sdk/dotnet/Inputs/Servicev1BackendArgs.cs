@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1BackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A hostname or IPv4 address of the Syslog endpoint.
+        /// The SFTP address to stream logs to.
         /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
@@ -89,7 +89,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? OverrideHost { get; set; }
 
         /// <summary>
-        /// The port number configured in Logentries to send logs to. Defaults to `20000`.
+        /// The port the SFTP service listens on. (Default: `22`).
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -101,7 +101,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? RequestCondition { get; set; }
 
         /// <summary>
-        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
         /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
@@ -161,7 +161,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? UseSsl { get; set; }
 
         /// <summary>
-        /// The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        /// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
         /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }

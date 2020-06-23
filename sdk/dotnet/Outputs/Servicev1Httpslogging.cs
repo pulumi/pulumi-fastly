@@ -38,7 +38,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? JsonFormat;
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -50,15 +50,15 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The maximum number of bytes sent in one request.
+        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         /// </summary>
         public readonly int? RequestMaxBytes;
         /// <summary>
-        /// The maximum number of logs sent in one request.
+        /// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         /// </summary>
         public readonly int? RequestMaxEntries;
         /// <summary>
@@ -78,11 +78,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
-        /// Used during the TLS handshake to validate the certificate.
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// URL that log data will be sent to. Must use the https protocol.
+        /// The Elasticsearch URL to stream logs to.
         /// </summary>
         public readonly string Url;
 

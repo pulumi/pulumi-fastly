@@ -38,7 +38,7 @@ export interface Servicev1Acl {
 
 export interface Servicev1Backend {
     /**
-     * A hostname or IPv4 address of the Syslog endpoint.
+     * The SFTP address to stream logs to.
      */
     address: string;
     /**
@@ -90,7 +90,7 @@ export interface Servicev1Backend {
      */
     overrideHost?: string;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port?: number;
     /**
@@ -98,7 +98,7 @@ export interface Servicev1Backend {
      */
     requestCondition?: string;
     /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
      */
     shield?: string;
     /**
@@ -140,7 +140,7 @@ export interface Servicev1Backend {
      */
     useSsl?: boolean;
     /**
-     * The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
      */
     weight?: number;
 }
@@ -163,11 +163,11 @@ export interface Servicev1Bigquerylogging {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
-     * The ID of your GCP project.
+     * The ID of your Google Cloud Platform project.
      */
     projectId: string;
     /**
@@ -175,7 +175,7 @@ export interface Servicev1Bigquerylogging {
      */
     responseCondition?: string;
     /**
-     * The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
      */
     secretKey?: string;
     /**
@@ -206,11 +206,11 @@ export interface Servicev1Blobstoragelogging {
      */
     formatVersion?: number;
     /**
-     * Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: string;
     /**
@@ -218,15 +218,15 @@ export interface Servicev1Blobstoragelogging {
      */
     name: string;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path?: string;
     /**
-     * How frequently the logs should be transferred in seconds. Default `3600`.
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
@@ -242,7 +242,7 @@ export interface Servicev1Blobstoragelogging {
      */
     sasToken: string;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
      */
     timestampFormat?: string;
 }
@@ -335,7 +335,7 @@ export interface Servicev1Director {
      */
     retries?: number;
     /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://docs.fastly.com/api/tools#datacenter) API response.
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
      */
     shield?: string;
     /**
@@ -388,11 +388,11 @@ export interface Servicev1Gcslogging {
      */
     format?: string;
     /**
-     * Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: string;
     /**
@@ -400,15 +400,15 @@ export interface Servicev1Gcslogging {
      */
     name: string;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path?: string;
     /**
-     * How frequently the logs should be transferred in seconds. Default `3600`.
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
@@ -416,11 +416,11 @@ export interface Servicev1Gcslogging {
      */
     responseCondition?: string;
     /**
-     * The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
      */
     secretKey?: string;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
      */
     timestampFormat?: string;
 }
@@ -531,7 +531,7 @@ export interface Servicev1Healthcheck {
      */
     name: string;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path: string;
     /**
@@ -574,7 +574,7 @@ export interface Servicev1Httpslogging {
      */
     jsonFormat?: string;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: string;
     /**
@@ -586,15 +586,15 @@ export interface Servicev1Httpslogging {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
-     * The maximum number of bytes sent in one request.
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
      */
     requestMaxBytes?: number;
     /**
-     * The maximum number of logs sent in one request.
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
      */
     requestMaxEntries?: number;
     /**
@@ -614,11 +614,11 @@ export interface Servicev1Httpslogging {
      */
     tlsClientKey?: string;
     /**
-     * Used during the TLS handshake to validate the certificate.
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
      */
     tlsHostname?: string;
     /**
-     * URL that log data will be sent to. Must use the https protocol.
+     * The Elasticsearch URL to stream logs to.
      */
     url: string;
 }
@@ -637,11 +637,11 @@ export interface Servicev1Logentry {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port?: number;
     /**
@@ -649,18 +649,429 @@ export interface Servicev1Logentry {
      */
     responseCondition?: string;
     /**
-     * The Splunk token to be used for authentication.
+     * The token to use for authentication (https://www.scalyr.com/keys).
      */
     token: string;
     /**
-     * Whether to use TLS for secure logging. Defaults to `true`
+     * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: boolean;
 }
 
+export interface Servicev1LoggingDatadog {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     */
+    region?: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: string;
+}
+
+export interface Servicev1LoggingElasticsearch {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * The name of the Elasticsearch index to send documents (logs) to.
+     */
+    index: string;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: string;
+    /**
+     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+     */
+    pipeline?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: number;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxEntries?: number;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: string;
+    /**
+     * The Elasticsearch URL to stream logs to.
+     */
+    url: string;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user?: string;
+}
+
+export interface Servicev1LoggingFtp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: string;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password: string;
+    /**
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     */
+    path: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     */
+    period?: number;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: number;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user: string;
+}
+
+export interface Servicev1LoggingGooglepubsub {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The ID of your Google Cloud Platform project.
+     */
+    projectId: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     */
+    secretKey: string;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: string;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user: string;
+}
+
+export interface Servicev1LoggingKafka {
+    /**
+     * A comma-separated list of IP addresses or hostnames of Kafka brokers.
+     */
+    brokers: string;
+    /**
+     * The codec used for compression of your logs. One of: gzip, snappy, lz4.
+     */
+    compressionCodec?: string;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+     */
+    requiredAcks?: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: string;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: string;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: boolean;
+}
+
+export interface Servicev1LoggingLoggly {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: string;
+}
+
+export interface Servicev1LoggingNewrelic {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: string;
+}
+
+export interface Servicev1LoggingScalyr {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     */
+    region?: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The token to use for authentication (https://www.scalyr.com/keys).
+     */
+    token: string;
+}
+
+export interface Servicev1LoggingSftp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: string;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     */
+    formatVersion?: number;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: string;
+    /**
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     */
+    path: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     */
+    period?: number;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    placement?: string;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: number;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The name of the `condition` to apply. If empty, always execute.
+     */
+    responseCondition?: string;
+    /**
+     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     */
+    secretKey?: string;
+    /**
+     * A list of host keys for all hosts we can connect to over SFTP.
+     */
+    sshKnownHosts: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     */
+    user: string;
+}
+
 export interface Servicev1Papertrail {
     /**
-     * A hostname or IPv4 address of the Syslog endpoint.
+     * The SFTP address to stream logs to.
      */
     address: string;
     /**
@@ -672,11 +1083,11 @@ export interface Servicev1Papertrail {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port: number;
     /**
@@ -795,11 +1206,11 @@ export interface Servicev1S3logging {
      */
     formatVersion?: number;
     /**
-     * Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: string;
     /**
@@ -807,17 +1218,21 @@ export interface Servicev1S3logging {
      */
     name: string;
     /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+     * The path to upload log files to. If the path ends in / then it is treated as a directory.
      */
     path?: string;
     /**
-     * How frequently the logs should be transferred in seconds. Default `3600`.
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
     /**
      * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
      */
@@ -843,7 +1258,7 @@ export interface Servicev1S3logging {
     serverSideEncryption?: string;
     serverSideEncryptionKmsKeyId?: string;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
      */
     timestampFormat?: string;
 }
@@ -881,7 +1296,7 @@ export interface Servicev1Splunk {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
@@ -893,15 +1308,15 @@ export interface Servicev1Splunk {
      */
     tlsCaCert?: string;
     /**
-     * Used during the TLS handshake to validate the certificate.
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
      */
     tlsHostname?: string;
     /**
-     * The Splunk token to be used for authentication.
+     * The token to use for authentication (https://www.scalyr.com/keys).
      */
     token: string;
     /**
-     * URL that log data will be sent to. Must use the https protocol.
+     * The Elasticsearch URL to stream logs to.
      */
     url: string;
 }
@@ -916,7 +1331,7 @@ export interface Servicev1Sumologic {
      */
     formatVersion?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: string;
     /**
@@ -924,7 +1339,7 @@ export interface Servicev1Sumologic {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
@@ -932,14 +1347,14 @@ export interface Servicev1Sumologic {
      */
     responseCondition?: string;
     /**
-     * URL that log data will be sent to. Must use the https protocol.
+     * The Elasticsearch URL to stream logs to.
      */
     url: string;
 }
 
 export interface Servicev1Syslog {
     /**
-     * A hostname or IPv4 address of the Syslog endpoint.
+     * The SFTP address to stream logs to.
      */
     address: string;
     /**
@@ -951,7 +1366,7 @@ export interface Servicev1Syslog {
      */
     formatVersion?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
      */
     messageType?: string;
     /**
@@ -959,11 +1374,11 @@ export interface Servicev1Syslog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     placement?: string;
     /**
-     * The port number configured in Logentries to send logs to. Defaults to `20000`.
+     * The port the SFTP service listens on. (Default: `22`).
      */
     port?: number;
     /**
@@ -983,15 +1398,15 @@ export interface Servicev1Syslog {
      */
     tlsClientKey?: string;
     /**
-     * Used during the TLS handshake to validate the certificate.
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
      */
     tlsHostname?: string;
     /**
-     * The Splunk token to be used for authentication.
+     * The token to use for authentication (https://www.scalyr.com/keys).
      */
     token?: string;
     /**
-     * Whether to use TLS for secure logging. Defaults to `true`
+     * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: boolean;
 }

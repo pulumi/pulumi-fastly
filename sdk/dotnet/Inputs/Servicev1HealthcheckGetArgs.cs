@@ -55,7 +55,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// The path to upload log files to. If the path ends in / then it is treated as a directory.
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;

@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -49,7 +49,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// URL that log data will be sent to. Must use the https protocol.
+        /// The Elasticsearch URL to stream logs to.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

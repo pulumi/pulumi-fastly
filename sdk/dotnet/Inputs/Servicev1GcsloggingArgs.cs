@@ -31,13 +31,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// Level of GZIP compression from `0`to `9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`.
+        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
         /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`.  Default `blank`.
+        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -49,19 +49,19 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path.
+        /// The path to upload log files to. If the path ends in / then it is treated as a directory.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// How frequently the logs should be transferred in seconds. Default `3600`.
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -73,13 +73,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The secret key associated with the sservice account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines.
+        /// Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
         /// <summary>
-        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`.
+        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

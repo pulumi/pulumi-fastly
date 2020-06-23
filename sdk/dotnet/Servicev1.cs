@@ -318,6 +318,69 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Logentry>> Logentries { get; private set; } = null!;
 
         /// <summary>
+        /// A Datadog endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingDatadogs")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingDatadog>> LoggingDatadogs { get; private set; } = null!;
+
+        /// <summary>
+        /// An Elasticsearch endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingElasticsearches")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingElasticsearch>> LoggingElasticsearches { get; private set; } = null!;
+
+        /// <summary>
+        /// An FTP endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingFtps")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingFtp>> LoggingFtps { get; private set; } = null!;
+
+        /// <summary>
+        /// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingGooglepubsubs")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingGooglepubsub>> LoggingGooglepubsubs { get; private set; } = null!;
+
+        /// <summary>
+        /// A Kafka endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingKafkas")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingKafka>> LoggingKafkas { get; private set; } = null!;
+
+        /// <summary>
+        /// A Loggly endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingLogglies")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingLoggly>> LoggingLogglies { get; private set; } = null!;
+
+        /// <summary>
+        /// A New Relic endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingNewrelics")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingNewrelic>> LoggingNewrelics { get; private set; } = null!;
+
+        /// <summary>
+        /// A Scalyr endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingScalyrs")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingScalyr>> LoggingScalyrs { get; private set; } = null!;
+
+        /// <summary>
+        /// An SFTP endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingSftps")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingSftp>> LoggingSftps { get; private set; } = null!;
+
+        /// <summary>
         /// A unique name to identify this dictionary.
         /// </summary>
         [Output("name")]
@@ -377,9 +440,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Syslog>> Syslogs { get; private set; } = null!;
 
         /// <summary>
-        /// A set of custom VCL configuration blocks. The
-        /// ability to upload custom VCL code is not enabled by default for new Fastly
-        /// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+        /// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         /// </summary>
         [Output("vcls")]
         public Output<ImmutableArray<Outputs.Servicev1Vcl>> Vcls { get; private set; } = null!;
@@ -672,6 +733,123 @@ namespace Pulumi.Fastly
             set => _logentries = value;
         }
 
+        [Input("loggingDatadogs")]
+        private InputList<Inputs.Servicev1LoggingDatadogArgs>? _loggingDatadogs;
+
+        /// <summary>
+        /// A Datadog endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingDatadogArgs> LoggingDatadogs
+        {
+            get => _loggingDatadogs ?? (_loggingDatadogs = new InputList<Inputs.Servicev1LoggingDatadogArgs>());
+            set => _loggingDatadogs = value;
+        }
+
+        [Input("loggingElasticsearches")]
+        private InputList<Inputs.Servicev1LoggingElasticsearchArgs>? _loggingElasticsearches;
+
+        /// <summary>
+        /// An Elasticsearch endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingElasticsearchArgs> LoggingElasticsearches
+        {
+            get => _loggingElasticsearches ?? (_loggingElasticsearches = new InputList<Inputs.Servicev1LoggingElasticsearchArgs>());
+            set => _loggingElasticsearches = value;
+        }
+
+        [Input("loggingFtps")]
+        private InputList<Inputs.Servicev1LoggingFtpArgs>? _loggingFtps;
+
+        /// <summary>
+        /// An FTP endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingFtpArgs> LoggingFtps
+        {
+            get => _loggingFtps ?? (_loggingFtps = new InputList<Inputs.Servicev1LoggingFtpArgs>());
+            set => _loggingFtps = value;
+        }
+
+        [Input("loggingGooglepubsubs")]
+        private InputList<Inputs.Servicev1LoggingGooglepubsubArgs>? _loggingGooglepubsubs;
+
+        /// <summary>
+        /// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingGooglepubsubArgs> LoggingGooglepubsubs
+        {
+            get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.Servicev1LoggingGooglepubsubArgs>());
+            set => _loggingGooglepubsubs = value;
+        }
+
+        [Input("loggingKafkas")]
+        private InputList<Inputs.Servicev1LoggingKafkaArgs>? _loggingKafkas;
+
+        /// <summary>
+        /// A Kafka endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingKafkaArgs> LoggingKafkas
+        {
+            get => _loggingKafkas ?? (_loggingKafkas = new InputList<Inputs.Servicev1LoggingKafkaArgs>());
+            set => _loggingKafkas = value;
+        }
+
+        [Input("loggingLogglies")]
+        private InputList<Inputs.Servicev1LoggingLogglyArgs>? _loggingLogglies;
+
+        /// <summary>
+        /// A Loggly endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingLogglyArgs> LoggingLogglies
+        {
+            get => _loggingLogglies ?? (_loggingLogglies = new InputList<Inputs.Servicev1LoggingLogglyArgs>());
+            set => _loggingLogglies = value;
+        }
+
+        [Input("loggingNewrelics")]
+        private InputList<Inputs.Servicev1LoggingNewrelicArgs>? _loggingNewrelics;
+
+        /// <summary>
+        /// A New Relic endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingNewrelicArgs> LoggingNewrelics
+        {
+            get => _loggingNewrelics ?? (_loggingNewrelics = new InputList<Inputs.Servicev1LoggingNewrelicArgs>());
+            set => _loggingNewrelics = value;
+        }
+
+        [Input("loggingScalyrs")]
+        private InputList<Inputs.Servicev1LoggingScalyrArgs>? _loggingScalyrs;
+
+        /// <summary>
+        /// A Scalyr endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingScalyrArgs> LoggingScalyrs
+        {
+            get => _loggingScalyrs ?? (_loggingScalyrs = new InputList<Inputs.Servicev1LoggingScalyrArgs>());
+            set => _loggingScalyrs = value;
+        }
+
+        [Input("loggingSftps")]
+        private InputList<Inputs.Servicev1LoggingSftpArgs>? _loggingSftps;
+
+        /// <summary>
+        /// An SFTP endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingSftpArgs> LoggingSftps
+        {
+            get => _loggingSftps ?? (_loggingSftps = new InputList<Inputs.Servicev1LoggingSftpArgs>());
+            set => _loggingSftps = value;
+        }
+
         /// <summary>
         /// A unique name to identify this dictionary.
         /// </summary>
@@ -783,9 +961,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1VclArgs>? _vcls;
 
         /// <summary>
-        /// A set of custom VCL configuration blocks. The
-        /// ability to upload custom VCL code is not enabled by default for new Fastly
-        /// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+        /// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         /// </summary>
         public InputList<Inputs.Servicev1VclArgs> Vcls
         {
@@ -1054,6 +1230,123 @@ namespace Pulumi.Fastly
             set => _logentries = value;
         }
 
+        [Input("loggingDatadogs")]
+        private InputList<Inputs.Servicev1LoggingDatadogGetArgs>? _loggingDatadogs;
+
+        /// <summary>
+        /// A Datadog endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingDatadogGetArgs> LoggingDatadogs
+        {
+            get => _loggingDatadogs ?? (_loggingDatadogs = new InputList<Inputs.Servicev1LoggingDatadogGetArgs>());
+            set => _loggingDatadogs = value;
+        }
+
+        [Input("loggingElasticsearches")]
+        private InputList<Inputs.Servicev1LoggingElasticsearchGetArgs>? _loggingElasticsearches;
+
+        /// <summary>
+        /// An Elasticsearch endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingElasticsearchGetArgs> LoggingElasticsearches
+        {
+            get => _loggingElasticsearches ?? (_loggingElasticsearches = new InputList<Inputs.Servicev1LoggingElasticsearchGetArgs>());
+            set => _loggingElasticsearches = value;
+        }
+
+        [Input("loggingFtps")]
+        private InputList<Inputs.Servicev1LoggingFtpGetArgs>? _loggingFtps;
+
+        /// <summary>
+        /// An FTP endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingFtpGetArgs> LoggingFtps
+        {
+            get => _loggingFtps ?? (_loggingFtps = new InputList<Inputs.Servicev1LoggingFtpGetArgs>());
+            set => _loggingFtps = value;
+        }
+
+        [Input("loggingGooglepubsubs")]
+        private InputList<Inputs.Servicev1LoggingGooglepubsubGetArgs>? _loggingGooglepubsubs;
+
+        /// <summary>
+        /// A Google Cloud Pub/Sub endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingGooglepubsubGetArgs> LoggingGooglepubsubs
+        {
+            get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.Servicev1LoggingGooglepubsubGetArgs>());
+            set => _loggingGooglepubsubs = value;
+        }
+
+        [Input("loggingKafkas")]
+        private InputList<Inputs.Servicev1LoggingKafkaGetArgs>? _loggingKafkas;
+
+        /// <summary>
+        /// A Kafka endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingKafkaGetArgs> LoggingKafkas
+        {
+            get => _loggingKafkas ?? (_loggingKafkas = new InputList<Inputs.Servicev1LoggingKafkaGetArgs>());
+            set => _loggingKafkas = value;
+        }
+
+        [Input("loggingLogglies")]
+        private InputList<Inputs.Servicev1LoggingLogglyGetArgs>? _loggingLogglies;
+
+        /// <summary>
+        /// A Loggly endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingLogglyGetArgs> LoggingLogglies
+        {
+            get => _loggingLogglies ?? (_loggingLogglies = new InputList<Inputs.Servicev1LoggingLogglyGetArgs>());
+            set => _loggingLogglies = value;
+        }
+
+        [Input("loggingNewrelics")]
+        private InputList<Inputs.Servicev1LoggingNewrelicGetArgs>? _loggingNewrelics;
+
+        /// <summary>
+        /// A New Relic endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingNewrelicGetArgs> LoggingNewrelics
+        {
+            get => _loggingNewrelics ?? (_loggingNewrelics = new InputList<Inputs.Servicev1LoggingNewrelicGetArgs>());
+            set => _loggingNewrelics = value;
+        }
+
+        [Input("loggingScalyrs")]
+        private InputList<Inputs.Servicev1LoggingScalyrGetArgs>? _loggingScalyrs;
+
+        /// <summary>
+        /// A Scalyr endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingScalyrGetArgs> LoggingScalyrs
+        {
+            get => _loggingScalyrs ?? (_loggingScalyrs = new InputList<Inputs.Servicev1LoggingScalyrGetArgs>());
+            set => _loggingScalyrs = value;
+        }
+
+        [Input("loggingSftps")]
+        private InputList<Inputs.Servicev1LoggingSftpGetArgs>? _loggingSftps;
+
+        /// <summary>
+        /// An SFTP endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingSftpGetArgs> LoggingSftps
+        {
+            get => _loggingSftps ?? (_loggingSftps = new InputList<Inputs.Servicev1LoggingSftpGetArgs>());
+            set => _loggingSftps = value;
+        }
+
         /// <summary>
         /// A unique name to identify this dictionary.
         /// </summary>
@@ -1165,9 +1458,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1VclGetArgs>? _vcls;
 
         /// <summary>
-        /// A set of custom VCL configuration blocks. The
-        /// ability to upload custom VCL code is not enabled by default for new Fastly
-        /// accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).
+        /// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         /// </summary>
         public InputList<Inputs.Servicev1VclGetArgs> Vcls
         {
