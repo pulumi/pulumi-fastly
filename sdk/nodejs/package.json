@@ -7,7 +7,7 @@
         "fastly"
     ],
     "homepage": "https://pulumi.io",
-    "repository": "https://github.com/GrubhubProd/pulumi-fastly",
+    "repository": "https://github.com/pulumi/pulumi-fastly",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc"

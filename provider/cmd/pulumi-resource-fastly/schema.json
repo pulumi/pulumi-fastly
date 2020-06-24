@@ -8,7 +8,7 @@
     "homepage": "https://pulumi.io",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`fastly` Terraform Provider](https://github.com/terraform-providers/terraform-provider-fastly).",
-    "repository": "https://github.com/GrubhubProd/pulumi-fastly",
+    "repository": "https://github.com/pulumi/pulumi-fastly",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
