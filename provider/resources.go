@@ -80,7 +80,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:    []string{"pulumi", "fastly"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/GrubhubProd/pulumi-fastly",
+		Repository:  "https://github.com/pulumi/pulumi-fastly",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"api_key": {
 				Default: &tfbridge.DefaultInfo{

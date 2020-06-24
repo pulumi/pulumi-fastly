@@ -7,7 +7,7 @@
     <Description>A Pulumi package for creating and managing fastly cloud resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://pulumi.io</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GrubhubProd/pulumi-fastly</RepositoryUrl>
+    <RepositoryUrl>https://github.com/pulumi/pulumi-fastly</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 
     <TargetFramework>netcoreapp3.1</TargetFramework>

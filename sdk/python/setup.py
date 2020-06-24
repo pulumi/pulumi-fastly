@@ -39,7 +39,7 @@ setup(name='pulumi_fastly',
       keywords='pulumi fastly',
       url='https://pulumi.io',
       project_urls={
-          'Repository': 'https://github.com/GrubhubProd/pulumi-fastly'
+          'Repository': 'https://github.com/pulumi/pulumi-fastly'
       },
       license='Apache-2.0',
       packages=find_packages(),
