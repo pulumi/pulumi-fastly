@@ -5,10 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison. 
- *  
- * ## Example Usage
+ * Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
  *
+ * ## Example Usage
  * ### Basic usage
  *
  * ```typescript
@@ -16,16 +15,16 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const myservice = new fastly.Servicev1("myservice", {
- *     domain: [{
+ *     domains: [{
  *         name: "snippet.fastlytestdomain.com",
  *         comment: "snippet test",
  *     }],
- *     backend: [{
+ *     backends: [{
  *         address: "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
  *         name: "AWS S3 hosting",
  *         port: 80,
  *     }],
- *     dynamicsnippet: [{
+ *     dynamicsnippets: [{
  *         name: "My Dynamic Snippet",
  *         type: "recv",
  *         priority: 110,
@@ -41,7 +40,6 @@ import * as utilities from "./utilities";
  * }`,
  * });
  * ```
- *
  * ### Multiple dynamic snippets
  *
  * ```typescript
@@ -49,16 +47,16 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const myservice = new fastly.Servicev1("myservice", {
- *     domain: [{
+ *     domains: [{
  *         name: "snippet.fastlytestdomain.com",
  *         comment: "snippet test",
  *     }],
- *     backend: [{
+ *     backends: [{
  *         address: "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
  *         name: "AWS S3 hosting",
  *         port: 80,
  *     }],
- *     dynamicsnippet: [
+ *     dynamicsnippets: [
  *         {
  *             name: "My Dynamic Snippet One",
  *             type: "recv",

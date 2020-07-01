@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  * on their documentation site for guidance.
  *
  * ## Example Usage
- *
  * ### Basic usage
  *
  * ```typescript
@@ -36,7 +35,6 @@ import * as utilities from "./utilities";
  *     forceDestroy: true,
  * });
  * ```
- *
  * ### Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header
  *
  * ```typescript
@@ -82,7 +80,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- *
  * ### Basic usage with custom VCL:
  *
  * ```typescript
@@ -105,16 +102,15 @@ import * as utilities from "./utilities";
  *         {
  *             content: fs.readFileSync(`./my_custom_main.vcl`, "utf-8"),
  *             main: true,
- *             name: "myCustomMainVcl",
+ *             name: "my_custom_main_vcl",
  *         },
  *         {
  *             content: fs.readFileSync(`./my_custom_library.vcl`, "utf-8"),
- *             name: "myCustomLibraryVcl",
+ *             name: "my_custom_library_vcl",
  *         },
  *     ],
  * });
  * ```
- *
  * ### Basic usage with custom Director
  *
  * ```typescript
@@ -150,6 +146,11 @@ import * as utilities from "./utilities";
  *     forceDestroy: true,
  * });
  * ```
+ *
+ * > **Note:** For an AWS S3 Bucket, the Backend address is
+ * `<domain>.s3-website-<region>.amazonaws.com`. The `defaultHost` attribute
+ * should be set to `<bucket_name>.s3-website-<region>.amazonaws.com`. See the
+ * Fastly documentation on [Amazon S3][fastly-s3].
  */
 export class Servicev1 extends pulumi.CustomResource {
     /**

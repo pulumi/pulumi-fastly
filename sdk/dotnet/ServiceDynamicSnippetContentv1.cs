@@ -10,8 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
-    /// Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison. 
-    ///  
+    /// Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
+    /// 
+    /// ## Example Usage
     /// </summary>
     public partial class ServiceDynamicSnippetContentv1 : Pulumi.CustomResource
     {

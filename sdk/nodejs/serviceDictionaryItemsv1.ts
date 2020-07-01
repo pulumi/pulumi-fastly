@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
  *
  * ## Example Usage
- *
  * ### Basic usage
  *
  * ```typescript
@@ -18,16 +17,16 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const mydictName = config.get("mydictName") || "My Dictionary";
  * const myservice = new fastly.Servicev1("myservice", {
- *     domain: [{
+ *     domains: [{
  *         name: "demo.notexample.com",
  *         comment: "demo",
  *     }],
- *     backend: [{
+ *     backends: [{
  *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
  *         name: "AWS S3 hosting",
  *         port: 80,
  *     }],
- *     dictionary: [{
+ *     dictionaries: [{
  *         name: mydictName,
  *     }],
  *     forceDestroy: true,
@@ -41,7 +40,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- *
  * ### Complex object usage
  *
  * ```typescript
@@ -57,16 +55,16 @@ import * as utilities from "./utilities";
  *     },
  * };
  * const myservice = new fastly.Servicev1("myservice", {
- *     domain: [{
+ *     domains: [{
  *         name: "demo.notexample.com",
  *         comment: "demo",
  *     }],
- *     backend: [{
+ *     backends: [{
  *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
  *         name: "AWS S3 hosting",
  *         port: 80,
  *     }],
- *     dictionary: [{
+ *     dictionaries: [{
  *         name: mydict.name,
  *     }],
  *     forceDestroy: true,

@@ -17,6 +17,99 @@ import (
 // The Service resource requires a domain name that is correctly set up to direct
 // traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
 // on their documentation site for guidance.
+//
+// ## Example Usage
+// ### Basic usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
+// 			Backends: fastly.Servicev1BackendArray{
+// 				&fastly.Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.1"),
+// 					Name:    pulumi.String("localhost"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 			},
+// 			Domains: fastly.Servicev1DomainArray{
+// 				&fastly.Servicev1DomainArgs{
+// 					Comment: pulumi.String("demo"),
+// 					Name:    pulumi.String("demo.notexample.com"),
+// 				},
+// 			},
+// 			ForceDestroy: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Basic usage with custom Director
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
+// 			Backends: fastly.Servicev1BackendArray{
+// 				&fastly.Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.1"),
+// 					Name:    pulumi.String("origin1"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 				&fastly.Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.2"),
+// 					Name:    pulumi.String("origin2"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 			},
+// 			Directors: fastly.Servicev1DirectorArray{
+// 				&fastly.Servicev1DirectorArgs{
+// 					Backends: pulumi.StringArray{
+// 						pulumi.String("origin1"),
+// 						pulumi.String("origin2"),
+// 					},
+// 					Name:   pulumi.String("mydirector"),
+// 					Quorum: pulumi.Int(0),
+// 					Type:   pulumi.Int(3),
+// 				},
+// 			},
+// 			Domains: fastly.Servicev1DomainArray{
+// 				&fastly.Servicev1DomainArgs{
+// 					Comment: pulumi.String("demo"),
+// 					Name:    pulumi.String("demo.notexample.com"),
+// 				},
+// 			},
+// 			ForceDestroy: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// > **Note:** For an AWS S3 Bucket, the Backend address is
+// `<domain>.s3-website-<region>.amazonaws.com`. The `defaultHost` attribute
+// should be set to `<bucket_name>.s3-website-<region>.amazonaws.com`. See the
+// Fastly documentation on [Amazon S3][fastly-s3].
 type Servicev1 struct {
 	pulumi.CustomResourceState
 

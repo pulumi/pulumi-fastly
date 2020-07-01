@@ -11,6 +11,8 @@ namespace Pulumi.Fastly
 {
     /// <summary>
     /// Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+    /// 
+    /// ## Example Usage
     /// </summary>
     public partial class ServiceDictionaryItemsv1 : Pulumi.CustomResource
     {

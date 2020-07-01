@@ -11,15 +11,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as fastly from "@pulumi/fastly";
  *
  * const fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));
- * const fromFastly = new aws.ec2.SecurityGroup("fromFastly", {
+ * const fromFastly = new aws.ec2.SecurityGroup("from_fastly", {
  *     ingress: [{
  *         cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,
  *         fromPort: 443,
