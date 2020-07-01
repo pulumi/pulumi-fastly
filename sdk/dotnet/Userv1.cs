@@ -16,8 +16,6 @@ namespace Pulumi.Fastly
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Fastly = Pulumi.Fastly;

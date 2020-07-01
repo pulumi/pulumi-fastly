@@ -19,7 +19,6 @@ namespace Pulumi.Fastly
     /// on their documentation site for guidance.
     /// 
     /// ## Example Usage
-    /// 
     /// ### Basic usage
     /// 
     /// ```csharp
@@ -55,7 +54,6 @@ namespace Pulumi.Fastly
     /// 
     /// }
     /// ```
-    /// 
     /// ### Basic usage with custom VCL:
     /// 
     /// ```csharp
@@ -106,7 +104,6 @@ namespace Pulumi.Fastly
     /// 
     /// }
     /// ```
-    /// 
     /// ### Basic usage with custom Director
     /// 
     /// ```csharp
@@ -162,6 +159,11 @@ namespace Pulumi.Fastly
     /// 
     /// }
     /// ```
+    /// 
+    /// &gt; **Note:** For an AWS S3 Bucket, the Backend address is
+    /// `&lt;domain&gt;.s3-website-&lt;region&gt;.amazonaws.com`. The `default_host` attribute
+    /// should be set to `&lt;bucket_name&gt;.s3-website-&lt;region&gt;.amazonaws.com`. See the
+    /// Fastly documentation on [Amazon S3][fastly-s3].
     /// </summary>
     public partial class Servicev1 : Pulumi.CustomResource
     {

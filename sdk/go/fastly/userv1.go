@@ -13,6 +13,29 @@ import (
 // Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.
 //
 // The User resource requires a login and name, and optionally a role.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewUserv1(ctx, "demo", &fastly.Userv1Args{
+// 			Login: pulumi.String("demo@example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Userv1 struct {
 	pulumi.CustomResourceState
 

@@ -46,7 +46,6 @@ namespace Pulumi.Fastly
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

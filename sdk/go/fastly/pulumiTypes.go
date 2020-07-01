@@ -25,8 +25,7 @@ type ServiceACLEntriesv1Entry struct {
 // ServiceACLEntriesv1EntryInput is an input type that accepts ServiceACLEntriesv1EntryArgs and ServiceACLEntriesv1EntryOutput values.
 // You can construct a concrete instance of `ServiceACLEntriesv1EntryInput` via:
 //
-// 		 ServiceACLEntriesv1EntryArgs{...}
-//
+//          ServiceACLEntriesv1EntryArgs{...}
 type ServiceACLEntriesv1EntryInput interface {
 	pulumi.Input
 
@@ -61,8 +60,7 @@ func (i ServiceACLEntriesv1EntryArgs) ToServiceACLEntriesv1EntryOutputWithContex
 // ServiceACLEntriesv1EntryArrayInput is an input type that accepts ServiceACLEntriesv1EntryArray and ServiceACLEntriesv1EntryArrayOutput values.
 // You can construct a concrete instance of `ServiceACLEntriesv1EntryArrayInput` via:
 //
-// 		 ServiceACLEntriesv1EntryArray{ ServiceACLEntriesv1EntryArgs{...} }
-//
+//          ServiceACLEntriesv1EntryArray{ ServiceACLEntriesv1EntryArgs{...} }
 type ServiceACLEntriesv1EntryArrayInput interface {
 	pulumi.Input
 
@@ -152,8 +150,7 @@ type Servicev1Acl struct {
 // Servicev1AclInput is an input type that accepts Servicev1AclArgs and Servicev1AclOutput values.
 // You can construct a concrete instance of `Servicev1AclInput` via:
 //
-// 		 Servicev1AclArgs{...}
-//
+//          Servicev1AclArgs{...}
 type Servicev1AclInput interface {
 	pulumi.Input
 
@@ -183,8 +180,7 @@ func (i Servicev1AclArgs) ToServicev1AclOutputWithContext(ctx context.Context) S
 // Servicev1AclArrayInput is an input type that accepts Servicev1AclArray and Servicev1AclArrayOutput values.
 // You can construct a concrete instance of `Servicev1AclArrayInput` via:
 //
-// 		 Servicev1AclArray{ Servicev1AclArgs{...} }
-//
+//          Servicev1AclArray{ Servicev1AclArgs{...} }
 type Servicev1AclArrayInput interface {
 	pulumi.Input
 
@@ -312,8 +308,7 @@ type Servicev1Backend struct {
 // Servicev1BackendInput is an input type that accepts Servicev1BackendArgs and Servicev1BackendOutput values.
 // You can construct a concrete instance of `Servicev1BackendInput` via:
 //
-// 		 Servicev1BackendArgs{...}
-//
+//          Servicev1BackendArgs{...}
 type Servicev1BackendInput interface {
 	pulumi.Input
 
@@ -395,8 +390,7 @@ func (i Servicev1BackendArgs) ToServicev1BackendOutputWithContext(ctx context.Co
 // Servicev1BackendArrayInput is an input type that accepts Servicev1BackendArray and Servicev1BackendArrayOutput values.
 // You can construct a concrete instance of `Servicev1BackendArrayInput` via:
 //
-// 		 Servicev1BackendArray{ Servicev1BackendArgs{...} }
-//
+//          Servicev1BackendArray{ Servicev1BackendArgs{...} }
 type Servicev1BackendArrayInput interface {
 	pulumi.Input
 
@@ -609,8 +603,7 @@ type Servicev1Bigquerylogging struct {
 // Servicev1BigqueryloggingInput is an input type that accepts Servicev1BigqueryloggingArgs and Servicev1BigqueryloggingOutput values.
 // You can construct a concrete instance of `Servicev1BigqueryloggingInput` via:
 //
-// 		 Servicev1BigqueryloggingArgs{...}
-//
+//          Servicev1BigqueryloggingArgs{...}
 type Servicev1BigqueryloggingInput interface {
 	pulumi.Input
 
@@ -656,8 +649,7 @@ func (i Servicev1BigqueryloggingArgs) ToServicev1BigqueryloggingOutputWithContex
 // Servicev1BigqueryloggingArrayInput is an input type that accepts Servicev1BigqueryloggingArray and Servicev1BigqueryloggingArrayOutput values.
 // You can construct a concrete instance of `Servicev1BigqueryloggingArrayInput` via:
 //
-// 		 Servicev1BigqueryloggingArray{ Servicev1BigqueryloggingArgs{...} }
-//
+//          Servicev1BigqueryloggingArray{ Servicev1BigqueryloggingArgs{...} }
 type Servicev1BigqueryloggingArrayInput interface {
 	pulumi.Input
 
@@ -797,8 +789,7 @@ type Servicev1Blobstoragelogging struct {
 // Servicev1BlobstorageloggingInput is an input type that accepts Servicev1BlobstorageloggingArgs and Servicev1BlobstorageloggingOutput values.
 // You can construct a concrete instance of `Servicev1BlobstorageloggingInput` via:
 //
-// 		 Servicev1BlobstorageloggingArgs{...}
-//
+//          Servicev1BlobstorageloggingArgs{...}
 type Servicev1BlobstorageloggingInput interface {
 	pulumi.Input
 
@@ -852,8 +843,7 @@ func (i Servicev1BlobstorageloggingArgs) ToServicev1BlobstorageloggingOutputWith
 // Servicev1BlobstorageloggingArrayInput is an input type that accepts Servicev1BlobstorageloggingArray and Servicev1BlobstorageloggingArrayOutput values.
 // You can construct a concrete instance of `Servicev1BlobstorageloggingArrayInput` via:
 //
-// 		 Servicev1BlobstorageloggingArray{ Servicev1BlobstorageloggingArgs{...} }
-//
+//          Servicev1BlobstorageloggingArray{ Servicev1BlobstorageloggingArgs{...} }
 type Servicev1BlobstorageloggingArrayInput interface {
 	pulumi.Input
 
@@ -997,8 +987,7 @@ type Servicev1CacheSetting struct {
 // Servicev1CacheSettingInput is an input type that accepts Servicev1CacheSettingArgs and Servicev1CacheSettingOutput values.
 // You can construct a concrete instance of `Servicev1CacheSettingInput` via:
 //
-// 		 Servicev1CacheSettingArgs{...}
-//
+//          Servicev1CacheSettingArgs{...}
 type Servicev1CacheSettingInput interface {
 	pulumi.Input
 
@@ -1036,8 +1025,7 @@ func (i Servicev1CacheSettingArgs) ToServicev1CacheSettingOutputWithContext(ctx 
 // Servicev1CacheSettingArrayInput is an input type that accepts Servicev1CacheSettingArray and Servicev1CacheSettingArrayOutput values.
 // You can construct a concrete instance of `Servicev1CacheSettingArrayInput` via:
 //
-// 		 Servicev1CacheSettingArray{ Servicev1CacheSettingArgs{...} }
-//
+//          Servicev1CacheSettingArray{ Servicev1CacheSettingArgs{...} }
 type Servicev1CacheSettingArrayInput interface {
 	pulumi.Input
 
@@ -1134,8 +1122,7 @@ type Servicev1Condition struct {
 // Servicev1ConditionInput is an input type that accepts Servicev1ConditionArgs and Servicev1ConditionOutput values.
 // You can construct a concrete instance of `Servicev1ConditionInput` via:
 //
-// 		 Servicev1ConditionArgs{...}
-//
+//          Servicev1ConditionArgs{...}
 type Servicev1ConditionInput interface {
 	pulumi.Input
 
@@ -1169,8 +1156,7 @@ func (i Servicev1ConditionArgs) ToServicev1ConditionOutputWithContext(ctx contex
 // Servicev1ConditionArrayInput is an input type that accepts Servicev1ConditionArray and Servicev1ConditionArrayOutput values.
 // You can construct a concrete instance of `Servicev1ConditionArrayInput` via:
 //
-// 		 Servicev1ConditionArray{ Servicev1ConditionArgs{...} }
-//
+//          Servicev1ConditionArray{ Servicev1ConditionArgs{...} }
 type Servicev1ConditionArrayInput interface {
 	pulumi.Input
 
@@ -1261,8 +1247,7 @@ type Servicev1Dictionary struct {
 // Servicev1DictionaryInput is an input type that accepts Servicev1DictionaryArgs and Servicev1DictionaryOutput values.
 // You can construct a concrete instance of `Servicev1DictionaryInput` via:
 //
-// 		 Servicev1DictionaryArgs{...}
-//
+//          Servicev1DictionaryArgs{...}
 type Servicev1DictionaryInput interface {
 	pulumi.Input
 
@@ -1297,8 +1282,7 @@ func (i Servicev1DictionaryArgs) ToServicev1DictionaryOutputWithContext(ctx cont
 // Servicev1DictionaryArrayInput is an input type that accepts Servicev1DictionaryArray and Servicev1DictionaryArrayOutput values.
 // You can construct a concrete instance of `Servicev1DictionaryArrayInput` via:
 //
-// 		 Servicev1DictionaryArray{ Servicev1DictionaryArgs{...} }
-//
+//          Servicev1DictionaryArray{ Servicev1DictionaryArgs{...} }
 type Servicev1DictionaryArrayInput interface {
 	pulumi.Input
 
@@ -1394,8 +1378,7 @@ type Servicev1Director struct {
 // Servicev1DirectorInput is an input type that accepts Servicev1DirectorArgs and Servicev1DirectorOutput values.
 // You can construct a concrete instance of `Servicev1DirectorInput` via:
 //
-// 		 Servicev1DirectorArgs{...}
-//
+//          Servicev1DirectorArgs{...}
 type Servicev1DirectorInput interface {
 	pulumi.Input
 
@@ -1437,8 +1420,7 @@ func (i Servicev1DirectorArgs) ToServicev1DirectorOutputWithContext(ctx context.
 // Servicev1DirectorArrayInput is an input type that accepts Servicev1DirectorArray and Servicev1DirectorArrayOutput values.
 // You can construct a concrete instance of `Servicev1DirectorArrayInput` via:
 //
-// 		 Servicev1DirectorArray{ Servicev1DirectorArgs{...} }
-//
+//          Servicev1DirectorArray{ Servicev1DirectorArgs{...} }
 type Servicev1DirectorArrayInput interface {
 	pulumi.Input
 
@@ -1544,8 +1526,7 @@ type Servicev1Domain struct {
 // Servicev1DomainInput is an input type that accepts Servicev1DomainArgs and Servicev1DomainOutput values.
 // You can construct a concrete instance of `Servicev1DomainInput` via:
 //
-// 		 Servicev1DomainArgs{...}
-//
+//          Servicev1DomainArgs{...}
 type Servicev1DomainInput interface {
 	pulumi.Input
 
@@ -1575,8 +1556,7 @@ func (i Servicev1DomainArgs) ToServicev1DomainOutputWithContext(ctx context.Cont
 // Servicev1DomainArrayInput is an input type that accepts Servicev1DomainArray and Servicev1DomainArrayOutput values.
 // You can construct a concrete instance of `Servicev1DomainArrayInput` via:
 //
-// 		 Servicev1DomainArray{ Servicev1DomainArgs{...} }
-//
+//          Servicev1DomainArray{ Servicev1DomainArgs{...} }
 type Servicev1DomainArrayInput interface {
 	pulumi.Input
 
@@ -1656,8 +1636,7 @@ type Servicev1Dynamicsnippet struct {
 // Servicev1DynamicsnippetInput is an input type that accepts Servicev1DynamicsnippetArgs and Servicev1DynamicsnippetOutput values.
 // You can construct a concrete instance of `Servicev1DynamicsnippetInput` via:
 //
-// 		 Servicev1DynamicsnippetArgs{...}
-//
+//          Servicev1DynamicsnippetArgs{...}
 type Servicev1DynamicsnippetInput interface {
 	pulumi.Input
 
@@ -1691,8 +1670,7 @@ func (i Servicev1DynamicsnippetArgs) ToServicev1DynamicsnippetOutputWithContext(
 // Servicev1DynamicsnippetArrayInput is an input type that accepts Servicev1DynamicsnippetArray and Servicev1DynamicsnippetArrayOutput values.
 // You can construct a concrete instance of `Servicev1DynamicsnippetArrayInput` via:
 //
-// 		 Servicev1DynamicsnippetArray{ Servicev1DynamicsnippetArgs{...} }
-//
+//          Servicev1DynamicsnippetArray{ Servicev1DynamicsnippetArgs{...} }
 type Servicev1DynamicsnippetArrayInput interface {
 	pulumi.Input
 
@@ -1798,8 +1776,7 @@ type Servicev1Gcslogging struct {
 // Servicev1GcsloggingInput is an input type that accepts Servicev1GcsloggingArgs and Servicev1GcsloggingOutput values.
 // You can construct a concrete instance of `Servicev1GcsloggingInput` via:
 //
-// 		 Servicev1GcsloggingArgs{...}
-//
+//          Servicev1GcsloggingArgs{...}
 type Servicev1GcsloggingInput interface {
 	pulumi.Input
 
@@ -1849,8 +1826,7 @@ func (i Servicev1GcsloggingArgs) ToServicev1GcsloggingOutputWithContext(ctx cont
 // Servicev1GcsloggingArrayInput is an input type that accepts Servicev1GcsloggingArray and Servicev1GcsloggingArrayOutput values.
 // You can construct a concrete instance of `Servicev1GcsloggingArrayInput` via:
 //
-// 		 Servicev1GcsloggingArray{ Servicev1GcsloggingArgs{...} }
-//
+//          Servicev1GcsloggingArray{ Servicev1GcsloggingArgs{...} }
 type Servicev1GcsloggingArrayInput interface {
 	pulumi.Input
 
@@ -1983,8 +1959,7 @@ type Servicev1Gzip struct {
 // Servicev1GzipInput is an input type that accepts Servicev1GzipArgs and Servicev1GzipOutput values.
 // You can construct a concrete instance of `Servicev1GzipInput` via:
 //
-// 		 Servicev1GzipArgs{...}
-//
+//          Servicev1GzipArgs{...}
 type Servicev1GzipInput interface {
 	pulumi.Input
 
@@ -2021,8 +1996,7 @@ func (i Servicev1GzipArgs) ToServicev1GzipOutputWithContext(ctx context.Context)
 // Servicev1GzipArrayInput is an input type that accepts Servicev1GzipArray and Servicev1GzipArrayOutput values.
 // You can construct a concrete instance of `Servicev1GzipArrayInput` via:
 //
-// 		 Servicev1GzipArray{ Servicev1GzipArgs{...} }
-//
+//          Servicev1GzipArray{ Servicev1GzipArgs{...} }
 type Servicev1GzipArrayInput interface {
 	pulumi.Input
 
@@ -2134,8 +2108,7 @@ type Servicev1Header struct {
 // Servicev1HeaderInput is an input type that accepts Servicev1HeaderArgs and Servicev1HeaderOutput values.
 // You can construct a concrete instance of `Servicev1HeaderInput` via:
 //
-// 		 Servicev1HeaderArgs{...}
-//
+//          Servicev1HeaderArgs{...}
 type Servicev1HeaderInput interface {
 	pulumi.Input
 
@@ -2188,8 +2161,7 @@ func (i Servicev1HeaderArgs) ToServicev1HeaderOutputWithContext(ctx context.Cont
 // Servicev1HeaderArrayInput is an input type that accepts Servicev1HeaderArray and Servicev1HeaderArrayOutput values.
 // You can construct a concrete instance of `Servicev1HeaderArrayInput` via:
 //
-// 		 Servicev1HeaderArray{ Servicev1HeaderArgs{...} }
-//
+//          Servicev1HeaderArray{ Servicev1HeaderArgs{...} }
 type Servicev1HeaderArrayInput interface {
 	pulumi.Input
 
@@ -2336,8 +2308,7 @@ type Servicev1Healthcheck struct {
 // Servicev1HealthcheckInput is an input type that accepts Servicev1HealthcheckArgs and Servicev1HealthcheckOutput values.
 // You can construct a concrete instance of `Servicev1HealthcheckInput` via:
 //
-// 		 Servicev1HealthcheckArgs{...}
-//
+//          Servicev1HealthcheckArgs{...}
 type Servicev1HealthcheckInput interface {
 	pulumi.Input
 
@@ -2385,8 +2356,7 @@ func (i Servicev1HealthcheckArgs) ToServicev1HealthcheckOutputWithContext(ctx co
 // Servicev1HealthcheckArrayInput is an input type that accepts Servicev1HealthcheckArray and Servicev1HealthcheckArrayOutput values.
 // You can construct a concrete instance of `Servicev1HealthcheckArrayInput` via:
 //
-// 		 Servicev1HealthcheckArray{ Servicev1HealthcheckArgs{...} }
-//
+//          Servicev1HealthcheckArray{ Servicev1HealthcheckArgs{...} }
 type Servicev1HealthcheckArrayInput interface {
 	pulumi.Input
 
@@ -2539,8 +2509,7 @@ type Servicev1Httpslogging struct {
 // Servicev1HttpsloggingInput is an input type that accepts Servicev1HttpsloggingArgs and Servicev1HttpsloggingOutput values.
 // You can construct a concrete instance of `Servicev1HttpsloggingInput` via:
 //
-// 		 Servicev1HttpsloggingArgs{...}
-//
+//          Servicev1HttpsloggingArgs{...}
 type Servicev1HttpsloggingInput interface {
 	pulumi.Input
 
@@ -2602,8 +2571,7 @@ func (i Servicev1HttpsloggingArgs) ToServicev1HttpsloggingOutputWithContext(ctx 
 // Servicev1HttpsloggingArrayInput is an input type that accepts Servicev1HttpsloggingArray and Servicev1HttpsloggingArrayOutput values.
 // You can construct a concrete instance of `Servicev1HttpsloggingArrayInput` via:
 //
-// 		 Servicev1HttpsloggingArray{ Servicev1HttpsloggingArgs{...} }
-//
+//          Servicev1HttpsloggingArray{ Servicev1HttpsloggingArgs{...} }
 type Servicev1HttpsloggingArrayInput interface {
 	pulumi.Input
 
@@ -2771,8 +2739,7 @@ type Servicev1Logentry struct {
 // Servicev1LogentryInput is an input type that accepts Servicev1LogentryArgs and Servicev1LogentryOutput values.
 // You can construct a concrete instance of `Servicev1LogentryInput` via:
 //
-// 		 Servicev1LogentryArgs{...}
-//
+//          Servicev1LogentryArgs{...}
 type Servicev1LogentryInput interface {
 	pulumi.Input
 
@@ -2814,8 +2781,7 @@ func (i Servicev1LogentryArgs) ToServicev1LogentryOutputWithContext(ctx context.
 // Servicev1LogentryArrayInput is an input type that accepts Servicev1LogentryArray and Servicev1LogentryArrayOutput values.
 // You can construct a concrete instance of `Servicev1LogentryArrayInput` via:
 //
-// 		 Servicev1LogentryArray{ Servicev1LogentryArgs{...} }
-//
+//          Servicev1LogentryArray{ Servicev1LogentryArgs{...} }
 type Servicev1LogentryArrayInput interface {
 	pulumi.Input
 
@@ -2931,8 +2897,7 @@ type Servicev1LoggingDatadog struct {
 // Servicev1LoggingDatadogInput is an input type that accepts Servicev1LoggingDatadogArgs and Servicev1LoggingDatadogOutput values.
 // You can construct a concrete instance of `Servicev1LoggingDatadogInput` via:
 //
-// 		 Servicev1LoggingDatadogArgs{...}
-//
+//          Servicev1LoggingDatadogArgs{...}
 type Servicev1LoggingDatadogInput interface {
 	pulumi.Input
 
@@ -2972,8 +2937,7 @@ func (i Servicev1LoggingDatadogArgs) ToServicev1LoggingDatadogOutputWithContext(
 // Servicev1LoggingDatadogArrayInput is an input type that accepts Servicev1LoggingDatadogArray and Servicev1LoggingDatadogArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingDatadogArrayInput` via:
 //
-// 		 Servicev1LoggingDatadogArray{ Servicev1LoggingDatadogArgs{...} }
-//
+//          Servicev1LoggingDatadogArray{ Servicev1LoggingDatadogArgs{...} }
 type Servicev1LoggingDatadogArrayInput interface {
 	pulumi.Input
 
@@ -3102,8 +3066,7 @@ type Servicev1LoggingElasticsearch struct {
 // Servicev1LoggingElasticsearchInput is an input type that accepts Servicev1LoggingElasticsearchArgs and Servicev1LoggingElasticsearchOutput values.
 // You can construct a concrete instance of `Servicev1LoggingElasticsearchInput` via:
 //
-// 		 Servicev1LoggingElasticsearchArgs{...}
-//
+//          Servicev1LoggingElasticsearchArgs{...}
 type Servicev1LoggingElasticsearchInput interface {
 	pulumi.Input
 
@@ -3161,8 +3124,7 @@ func (i Servicev1LoggingElasticsearchArgs) ToServicev1LoggingElasticsearchOutput
 // Servicev1LoggingElasticsearchArrayInput is an input type that accepts Servicev1LoggingElasticsearchArray and Servicev1LoggingElasticsearchArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingElasticsearchArrayInput` via:
 //
-// 		 Servicev1LoggingElasticsearchArray{ Servicev1LoggingElasticsearchArgs{...} }
-//
+//          Servicev1LoggingElasticsearchArray{ Servicev1LoggingElasticsearchArgs{...} }
 type Servicev1LoggingElasticsearchArrayInput interface {
 	pulumi.Input
 
@@ -3332,8 +3294,7 @@ type Servicev1LoggingFtp struct {
 // Servicev1LoggingFtpInput is an input type that accepts Servicev1LoggingFtpArgs and Servicev1LoggingFtpOutput values.
 // You can construct a concrete instance of `Servicev1LoggingFtpInput` via:
 //
-// 		 Servicev1LoggingFtpArgs{...}
-//
+//          Servicev1LoggingFtpArgs{...}
 type Servicev1LoggingFtpInput interface {
 	pulumi.Input
 
@@ -3387,8 +3348,7 @@ func (i Servicev1LoggingFtpArgs) ToServicev1LoggingFtpOutputWithContext(ctx cont
 // Servicev1LoggingFtpArrayInput is an input type that accepts Servicev1LoggingFtpArray and Servicev1LoggingFtpArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingFtpArrayInput` via:
 //
-// 		 Servicev1LoggingFtpArray{ Servicev1LoggingFtpArgs{...} }
-//
+//          Servicev1LoggingFtpArray{ Servicev1LoggingFtpArgs{...} }
 type Servicev1LoggingFtpArrayInput interface {
 	pulumi.Input
 
@@ -3538,8 +3498,7 @@ type Servicev1LoggingGooglepubsub struct {
 // Servicev1LoggingGooglepubsubInput is an input type that accepts Servicev1LoggingGooglepubsubArgs and Servicev1LoggingGooglepubsubOutput values.
 // You can construct a concrete instance of `Servicev1LoggingGooglepubsubInput` via:
 //
-// 		 Servicev1LoggingGooglepubsubArgs{...}
-//
+//          Servicev1LoggingGooglepubsubArgs{...}
 type Servicev1LoggingGooglepubsubInput interface {
 	pulumi.Input
 
@@ -3583,8 +3542,7 @@ func (i Servicev1LoggingGooglepubsubArgs) ToServicev1LoggingGooglepubsubOutputWi
 // Servicev1LoggingGooglepubsubArrayInput is an input type that accepts Servicev1LoggingGooglepubsubArray and Servicev1LoggingGooglepubsubArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingGooglepubsubArrayInput` via:
 //
-// 		 Servicev1LoggingGooglepubsubArray{ Servicev1LoggingGooglepubsubArgs{...} }
-//
+//          Servicev1LoggingGooglepubsubArray{ Servicev1LoggingGooglepubsubArgs{...} }
 type Servicev1LoggingGooglepubsubArrayInput interface {
 	pulumi.Input
 
@@ -3719,8 +3677,7 @@ type Servicev1LoggingKafka struct {
 // Servicev1LoggingKafkaInput is an input type that accepts Servicev1LoggingKafkaArgs and Servicev1LoggingKafkaOutput values.
 // You can construct a concrete instance of `Servicev1LoggingKafkaInput` via:
 //
-// 		 Servicev1LoggingKafkaArgs{...}
-//
+//          Servicev1LoggingKafkaArgs{...}
 type Servicev1LoggingKafkaInput interface {
 	pulumi.Input
 
@@ -3774,8 +3731,7 @@ func (i Servicev1LoggingKafkaArgs) ToServicev1LoggingKafkaOutputWithContext(ctx 
 // Servicev1LoggingKafkaArrayInput is an input type that accepts Servicev1LoggingKafkaArray and Servicev1LoggingKafkaArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingKafkaArrayInput` via:
 //
-// 		 Servicev1LoggingKafkaArray{ Servicev1LoggingKafkaArgs{...} }
-//
+//          Servicev1LoggingKafkaArray{ Servicev1LoggingKafkaArgs{...} }
 type Servicev1LoggingKafkaArrayInput interface {
 	pulumi.Input
 
@@ -3919,8 +3875,7 @@ type Servicev1LoggingLoggly struct {
 // Servicev1LoggingLogglyInput is an input type that accepts Servicev1LoggingLogglyArgs and Servicev1LoggingLogglyOutput values.
 // You can construct a concrete instance of `Servicev1LoggingLogglyInput` via:
 //
-// 		 Servicev1LoggingLogglyArgs{...}
-//
+//          Servicev1LoggingLogglyArgs{...}
 type Servicev1LoggingLogglyInput interface {
 	pulumi.Input
 
@@ -3958,8 +3913,7 @@ func (i Servicev1LoggingLogglyArgs) ToServicev1LoggingLogglyOutputWithContext(ct
 // Servicev1LoggingLogglyArrayInput is an input type that accepts Servicev1LoggingLogglyArray and Servicev1LoggingLogglyArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingLogglyArrayInput` via:
 //
-// 		 Servicev1LoggingLogglyArray{ Servicev1LoggingLogglyArgs{...} }
-//
+//          Servicev1LoggingLogglyArray{ Servicev1LoggingLogglyArgs{...} }
 type Servicev1LoggingLogglyArrayInput interface {
 	pulumi.Input
 
@@ -4063,8 +4017,7 @@ type Servicev1LoggingNewrelic struct {
 // Servicev1LoggingNewrelicInput is an input type that accepts Servicev1LoggingNewrelicArgs and Servicev1LoggingNewrelicOutput values.
 // You can construct a concrete instance of `Servicev1LoggingNewrelicInput` via:
 //
-// 		 Servicev1LoggingNewrelicArgs{...}
-//
+//          Servicev1LoggingNewrelicArgs{...}
 type Servicev1LoggingNewrelicInput interface {
 	pulumi.Input
 
@@ -4102,8 +4055,7 @@ func (i Servicev1LoggingNewrelicArgs) ToServicev1LoggingNewrelicOutputWithContex
 // Servicev1LoggingNewrelicArrayInput is an input type that accepts Servicev1LoggingNewrelicArray and Servicev1LoggingNewrelicArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingNewrelicArrayInput` via:
 //
-// 		 Servicev1LoggingNewrelicArray{ Servicev1LoggingNewrelicArgs{...} }
-//
+//          Servicev1LoggingNewrelicArray{ Servicev1LoggingNewrelicArgs{...} }
 type Servicev1LoggingNewrelicArrayInput interface {
 	pulumi.Input
 
@@ -4209,8 +4161,7 @@ type Servicev1LoggingScalyr struct {
 // Servicev1LoggingScalyrInput is an input type that accepts Servicev1LoggingScalyrArgs and Servicev1LoggingScalyrOutput values.
 // You can construct a concrete instance of `Servicev1LoggingScalyrInput` via:
 //
-// 		 Servicev1LoggingScalyrArgs{...}
-//
+//          Servicev1LoggingScalyrArgs{...}
 type Servicev1LoggingScalyrInput interface {
 	pulumi.Input
 
@@ -4250,8 +4201,7 @@ func (i Servicev1LoggingScalyrArgs) ToServicev1LoggingScalyrOutputWithContext(ct
 // Servicev1LoggingScalyrArrayInput is an input type that accepts Servicev1LoggingScalyrArray and Servicev1LoggingScalyrArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingScalyrArrayInput` via:
 //
-// 		 Servicev1LoggingScalyrArray{ Servicev1LoggingScalyrArgs{...} }
-//
+//          Servicev1LoggingScalyrArray{ Servicev1LoggingScalyrArgs{...} }
 type Servicev1LoggingScalyrArrayInput interface {
 	pulumi.Input
 
@@ -4382,8 +4332,7 @@ type Servicev1LoggingSftp struct {
 // Servicev1LoggingSftpInput is an input type that accepts Servicev1LoggingSftpArgs and Servicev1LoggingSftpOutput values.
 // You can construct a concrete instance of `Servicev1LoggingSftpInput` via:
 //
-// 		 Servicev1LoggingSftpArgs{...}
-//
+//          Servicev1LoggingSftpArgs{...}
 type Servicev1LoggingSftpInput interface {
 	pulumi.Input
 
@@ -4443,8 +4392,7 @@ func (i Servicev1LoggingSftpArgs) ToServicev1LoggingSftpOutputWithContext(ctx co
 // Servicev1LoggingSftpArrayInput is an input type that accepts Servicev1LoggingSftpArray and Servicev1LoggingSftpArrayOutput values.
 // You can construct a concrete instance of `Servicev1LoggingSftpArrayInput` via:
 //
-// 		 Servicev1LoggingSftpArray{ Servicev1LoggingSftpArgs{...} }
-//
+//          Servicev1LoggingSftpArray{ Servicev1LoggingSftpArgs{...} }
 type Servicev1LoggingSftpArrayInput interface {
 	pulumi.Input
 
@@ -4603,8 +4551,7 @@ type Servicev1Papertrail struct {
 // Servicev1PapertrailInput is an input type that accepts Servicev1PapertrailArgs and Servicev1PapertrailOutput values.
 // You can construct a concrete instance of `Servicev1PapertrailInput` via:
 //
-// 		 Servicev1PapertrailArgs{...}
-//
+//          Servicev1PapertrailArgs{...}
 type Servicev1PapertrailInput interface {
 	pulumi.Input
 
@@ -4642,8 +4589,7 @@ func (i Servicev1PapertrailArgs) ToServicev1PapertrailOutputWithContext(ctx cont
 // Servicev1PapertrailArrayInput is an input type that accepts Servicev1PapertrailArray and Servicev1PapertrailArrayOutput values.
 // You can construct a concrete instance of `Servicev1PapertrailArrayInput` via:
 //
-// 		 Servicev1PapertrailArray{ Servicev1PapertrailArgs{...} }
-//
+//          Servicev1PapertrailArray{ Servicev1PapertrailArgs{...} }
 type Servicev1PapertrailArrayInput interface {
 	pulumi.Input
 
@@ -4767,8 +4713,7 @@ type Servicev1RequestSetting struct {
 // Servicev1RequestSettingInput is an input type that accepts Servicev1RequestSettingArgs and Servicev1RequestSettingOutput values.
 // You can construct a concrete instance of `Servicev1RequestSettingInput` via:
 //
-// 		 Servicev1RequestSettingArgs{...}
-//
+//          Servicev1RequestSettingArgs{...}
 type Servicev1RequestSettingInput interface {
 	pulumi.Input
 
@@ -4826,8 +4771,7 @@ func (i Servicev1RequestSettingArgs) ToServicev1RequestSettingOutputWithContext(
 // Servicev1RequestSettingArrayInput is an input type that accepts Servicev1RequestSettingArray and Servicev1RequestSettingArrayOutput values.
 // You can construct a concrete instance of `Servicev1RequestSettingArrayInput` via:
 //
-// 		 Servicev1RequestSettingArray{ Servicev1RequestSettingArgs{...} }
-//
+//          Servicev1RequestSettingArray{ Servicev1RequestSettingArgs{...} }
 type Servicev1RequestSettingArrayInput interface {
 	pulumi.Input
 
@@ -4972,8 +4916,7 @@ type Servicev1ResponseObject struct {
 // Servicev1ResponseObjectInput is an input type that accepts Servicev1ResponseObjectArgs and Servicev1ResponseObjectOutput values.
 // You can construct a concrete instance of `Servicev1ResponseObjectInput` via:
 //
-// 		 Servicev1ResponseObjectArgs{...}
-//
+//          Servicev1ResponseObjectArgs{...}
 type Servicev1ResponseObjectInput interface {
 	pulumi.Input
 
@@ -5014,8 +4957,7 @@ func (i Servicev1ResponseObjectArgs) ToServicev1ResponseObjectOutputWithContext(
 // Servicev1ResponseObjectArrayInput is an input type that accepts Servicev1ResponseObjectArray and Servicev1ResponseObjectArrayOutput values.
 // You can construct a concrete instance of `Servicev1ResponseObjectArrayInput` via:
 //
-// 		 Servicev1ResponseObjectArray{ Servicev1ResponseObjectArgs{...} }
-//
+//          Servicev1ResponseObjectArray{ Servicev1ResponseObjectArgs{...} }
 type Servicev1ResponseObjectArrayInput interface {
 	pulumi.Input
 
@@ -5154,8 +5096,7 @@ type Servicev1S3logging struct {
 // Servicev1S3loggingInput is an input type that accepts Servicev1S3loggingArgs and Servicev1S3loggingOutput values.
 // You can construct a concrete instance of `Servicev1S3loggingInput` via:
 //
-// 		 Servicev1S3loggingArgs{...}
-//
+//          Servicev1S3loggingArgs{...}
 type Servicev1S3loggingInput interface {
 	pulumi.Input
 
@@ -5222,8 +5163,7 @@ func (i Servicev1S3loggingArgs) ToServicev1S3loggingOutputWithContext(ctx contex
 // Servicev1S3loggingArrayInput is an input type that accepts Servicev1S3loggingArray and Servicev1S3loggingArrayOutput values.
 // You can construct a concrete instance of `Servicev1S3loggingArrayInput` via:
 //
-// 		 Servicev1S3loggingArray{ Servicev1S3loggingArgs{...} }
-//
+//          Servicev1S3loggingArray{ Servicev1S3loggingArgs{...} }
 type Servicev1S3loggingArrayInput interface {
 	pulumi.Input
 
@@ -5388,8 +5328,7 @@ type Servicev1Snippet struct {
 // Servicev1SnippetInput is an input type that accepts Servicev1SnippetArgs and Servicev1SnippetOutput values.
 // You can construct a concrete instance of `Servicev1SnippetInput` via:
 //
-// 		 Servicev1SnippetArgs{...}
-//
+//          Servicev1SnippetArgs{...}
 type Servicev1SnippetInput interface {
 	pulumi.Input
 
@@ -5423,8 +5362,7 @@ func (i Servicev1SnippetArgs) ToServicev1SnippetOutputWithContext(ctx context.Co
 // Servicev1SnippetArrayInput is an input type that accepts Servicev1SnippetArray and Servicev1SnippetArrayOutput values.
 // You can construct a concrete instance of `Servicev1SnippetArrayInput` via:
 //
-// 		 Servicev1SnippetArray{ Servicev1SnippetArgs{...} }
-//
+//          Servicev1SnippetArray{ Servicev1SnippetArgs{...} }
 type Servicev1SnippetArrayInput interface {
 	pulumi.Input
 
@@ -5524,8 +5462,7 @@ type Servicev1Splunk struct {
 // Servicev1SplunkInput is an input type that accepts Servicev1SplunkArgs and Servicev1SplunkOutput values.
 // You can construct a concrete instance of `Servicev1SplunkInput` via:
 //
-// 		 Servicev1SplunkArgs{...}
-//
+//          Servicev1SplunkArgs{...}
 type Servicev1SplunkInput interface {
 	pulumi.Input
 
@@ -5569,8 +5506,7 @@ func (i Servicev1SplunkArgs) ToServicev1SplunkOutputWithContext(ctx context.Cont
 // Servicev1SplunkArrayInput is an input type that accepts Servicev1SplunkArray and Servicev1SplunkArrayOutput values.
 // You can construct a concrete instance of `Servicev1SplunkArrayInput` via:
 //
-// 		 Servicev1SplunkArray{ Servicev1SplunkArgs{...} }
-//
+//          Servicev1SplunkArray{ Servicev1SplunkArgs{...} }
 type Servicev1SplunkArrayInput interface {
 	pulumi.Input
 
@@ -5691,8 +5627,7 @@ type Servicev1Sumologic struct {
 // Servicev1SumologicInput is an input type that accepts Servicev1SumologicArgs and Servicev1SumologicOutput values.
 // You can construct a concrete instance of `Servicev1SumologicInput` via:
 //
-// 		 Servicev1SumologicArgs{...}
-//
+//          Servicev1SumologicArgs{...}
 type Servicev1SumologicInput interface {
 	pulumi.Input
 
@@ -5732,8 +5667,7 @@ func (i Servicev1SumologicArgs) ToServicev1SumologicOutputWithContext(ctx contex
 // Servicev1SumologicArrayInput is an input type that accepts Servicev1SumologicArray and Servicev1SumologicArrayOutput values.
 // You can construct a concrete instance of `Servicev1SumologicArrayInput` via:
 //
-// 		 Servicev1SumologicArray{ Servicev1SumologicArgs{...} }
-//
+//          Servicev1SumologicArray{ Servicev1SumologicArgs{...} }
 type Servicev1SumologicArrayInput interface {
 	pulumi.Input
 
@@ -5858,8 +5792,7 @@ type Servicev1Syslog struct {
 // Servicev1SyslogInput is an input type that accepts Servicev1SyslogArgs and Servicev1SyslogOutput values.
 // You can construct a concrete instance of `Servicev1SyslogInput` via:
 //
-// 		 Servicev1SyslogArgs{...}
-//
+//          Servicev1SyslogArgs{...}
 type Servicev1SyslogInput interface {
 	pulumi.Input
 
@@ -5913,8 +5846,7 @@ func (i Servicev1SyslogArgs) ToServicev1SyslogOutputWithContext(ctx context.Cont
 // Servicev1SyslogArrayInput is an input type that accepts Servicev1SyslogArray and Servicev1SyslogArrayOutput values.
 // You can construct a concrete instance of `Servicev1SyslogArrayInput` via:
 //
-// 		 Servicev1SyslogArray{ Servicev1SyslogArgs{...} }
-//
+//          Servicev1SyslogArray{ Servicev1SyslogArgs{...} }
 type Servicev1SyslogArrayInput interface {
 	pulumi.Input
 
@@ -6054,8 +5986,7 @@ type Servicev1Vcl struct {
 // Servicev1VclInput is an input type that accepts Servicev1VclArgs and Servicev1VclOutput values.
 // You can construct a concrete instance of `Servicev1VclInput` via:
 //
-// 		 Servicev1VclArgs{...}
-//
+//          Servicev1VclArgs{...}
 type Servicev1VclInput interface {
 	pulumi.Input
 
@@ -6089,8 +6020,7 @@ func (i Servicev1VclArgs) ToServicev1VclOutputWithContext(ctx context.Context) S
 // Servicev1VclArrayInput is an input type that accepts Servicev1VclArray and Servicev1VclArrayOutput values.
 // You can construct a concrete instance of `Servicev1VclArrayInput` via:
 //
-// 		 Servicev1VclArray{ Servicev1VclArgs{...} }
-//
+//          Servicev1VclArray{ Servicev1VclArgs{...} }
 type Servicev1VclArrayInput interface {
 	pulumi.Input
 

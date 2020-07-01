@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
  *
  * ## Example Usage
- *
  * ### Basic usage
  *
  * ```typescript
@@ -20,16 +19,16 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const myaclName = config.get("myaclName") || "My ACL";
  * const myservice = new fastly.Servicev1("myservice", {
- *     domain: [{
+ *     domains: [{
  *         name: "demo.notexample.com",
  *         comment: "demo",
  *     }],
- *     backend: [{
+ *     backends: [{
  *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
  *         name: "AWS S3 hosting",
  *         port: 80,
  *     }],
- *     acl: [{
+ *     acls: [{
  *         name: myaclName,
  *     }],
  *     forceDestroy: true,
@@ -37,7 +36,7 @@ import * as utilities from "./utilities";
  * const entries = new fastly.ServiceACLEntriesv1("entries", {
  *     serviceId: myservice.id,
  *     aclId: myservice.acls.apply(acls => acls.reduce((__obj, d) => { ...__obj, [d.name]: d.aclId })[myaclName]),
- *     entry: [{
+ *     entries: [{
  *         ip: "127.0.0.1",
  *         subnet: "24",
  *         negated: false,
@@ -45,39 +44,40 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- *
  * ### Complex object usage
+ *
+ * The following example demonstrates the use of dynamic nested blocks to create ACL entries.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const aclName = "myAcl";
+ * const aclName = "my_acl";
  * const aclEntries = [
  *     {
  *         ip: "1.2.3.4",
- *         comment: "aclEntry1",
+ *         comment: "acl_entry_1",
  *     },
  *     {
  *         ip: "1.2.3.5",
- *         comment: "aclEntry2",
+ *         comment: "acl_entry_2",
  *     },
  *     {
  *         ip: "1.2.3.6",
- *         comment: "aclEntry3",
+ *         comment: "acl_entry_3",
  *     },
  * ];
  * const myservice = new fastly.Servicev1("myservice", {
- *     domain: [{
+ *     domains: [{
  *         name: "demo.notexample.com",
  *         comment: "demo",
  *     }],
- *     backend: [{
+ *     backends: [{
  *         address: "1.2.3.4",
  *         name: "localhost",
  *         port: 80,
  *     }],
- *     acl: [{
+ *     acls: [{
  *         name: aclName,
  *     }],
  *     forceDestroy: true,
