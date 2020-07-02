@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -43,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int> Port { get; set; } = null!;
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }

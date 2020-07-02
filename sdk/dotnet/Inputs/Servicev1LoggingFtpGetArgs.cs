@@ -19,13 +19,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
@@ -49,19 +49,19 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Password { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload log files to. If the path ends in / then it is treated as a directory.
+        /// The path to upload logs to.
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -73,13 +73,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
@@ -91,7 +91,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? TimestampFormat { get; set; }
 
         /// <summary>
-        /// Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+        /// The username for your Cloud Files account.
         /// </summary>
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;

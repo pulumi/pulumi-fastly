@@ -244,8 +244,7 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly directors!: pulumi.Output<outputs.Servicev1Director[] | undefined>;
     /**
-     * If you created the S3 bucket outside of `us-east-1`,
-     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
      */
     public readonly domains!: pulumi.Output<outputs.Servicev1Domain[]>;
     /**
@@ -287,10 +286,20 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly logentries!: pulumi.Output<outputs.Servicev1Logentry[] | undefined>;
     /**
+     * A Rackspace Cloud Files endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingCloudfiles!: pulumi.Output<outputs.Servicev1LoggingCloudfile[] | undefined>;
+    /**
      * A Datadog endpoint to send streaming logs to.
      * Defined below.
      */
     public readonly loggingDatadogs!: pulumi.Output<outputs.Servicev1LoggingDatadog[] | undefined>;
+    /**
+     * A DigitalOcean Spaces endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingDigitaloceans!: pulumi.Output<outputs.Servicev1LoggingDigitalocean[] | undefined>;
     /**
      * An Elasticsearch endpoint to send streaming logs to.
      * Defined below.
@@ -307,6 +316,16 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly loggingGooglepubsubs!: pulumi.Output<outputs.Servicev1LoggingGooglepubsub[] | undefined>;
     /**
+     * A Heroku endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingHeroku!: pulumi.Output<outputs.Servicev1LoggingHeroku[] | undefined>;
+    /**
+     * A Honeycomb endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingHoneycombs!: pulumi.Output<outputs.Servicev1LoggingHoneycomb[] | undefined>;
+    /**
      * A Kafka endpoint to send streaming logs to.
      * Defined below.
      */
@@ -317,10 +336,20 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly loggingLogglies!: pulumi.Output<outputs.Servicev1LoggingLoggly[] | undefined>;
     /**
+     * A Log Shuttle endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingLogshuttles!: pulumi.Output<outputs.Servicev1LoggingLogshuttle[] | undefined>;
+    /**
      * A New Relic endpoint to send streaming logs to.
      * Defined below.
      */
     public readonly loggingNewrelics!: pulumi.Output<outputs.Servicev1LoggingNewrelic[] | undefined>;
+    /**
+     * An OpenStack endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingOpenstacks!: pulumi.Output<outputs.Servicev1LoggingOpenstack[] | undefined>;
     /**
      * A Scalyr endpoint to send streaming logs to.
      * Defined below.
@@ -416,13 +445,19 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["healthchecks"] = state ? state.healthchecks : undefined;
             inputs["httpsloggings"] = state ? state.httpsloggings : undefined;
             inputs["logentries"] = state ? state.logentries : undefined;
+            inputs["loggingCloudfiles"] = state ? state.loggingCloudfiles : undefined;
             inputs["loggingDatadogs"] = state ? state.loggingDatadogs : undefined;
+            inputs["loggingDigitaloceans"] = state ? state.loggingDigitaloceans : undefined;
             inputs["loggingElasticsearches"] = state ? state.loggingElasticsearches : undefined;
             inputs["loggingFtps"] = state ? state.loggingFtps : undefined;
             inputs["loggingGooglepubsubs"] = state ? state.loggingGooglepubsubs : undefined;
+            inputs["loggingHeroku"] = state ? state.loggingHeroku : undefined;
+            inputs["loggingHoneycombs"] = state ? state.loggingHoneycombs : undefined;
             inputs["loggingKafkas"] = state ? state.loggingKafkas : undefined;
             inputs["loggingLogglies"] = state ? state.loggingLogglies : undefined;
+            inputs["loggingLogshuttles"] = state ? state.loggingLogshuttles : undefined;
             inputs["loggingNewrelics"] = state ? state.loggingNewrelics : undefined;
+            inputs["loggingOpenstacks"] = state ? state.loggingOpenstacks : undefined;
             inputs["loggingScalyrs"] = state ? state.loggingScalyrs : undefined;
             inputs["loggingSftps"] = state ? state.loggingSftps : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -462,13 +497,19 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["healthchecks"] = args ? args.healthchecks : undefined;
             inputs["httpsloggings"] = args ? args.httpsloggings : undefined;
             inputs["logentries"] = args ? args.logentries : undefined;
+            inputs["loggingCloudfiles"] = args ? args.loggingCloudfiles : undefined;
             inputs["loggingDatadogs"] = args ? args.loggingDatadogs : undefined;
+            inputs["loggingDigitaloceans"] = args ? args.loggingDigitaloceans : undefined;
             inputs["loggingElasticsearches"] = args ? args.loggingElasticsearches : undefined;
             inputs["loggingFtps"] = args ? args.loggingFtps : undefined;
             inputs["loggingGooglepubsubs"] = args ? args.loggingGooglepubsubs : undefined;
+            inputs["loggingHeroku"] = args ? args.loggingHeroku : undefined;
+            inputs["loggingHoneycombs"] = args ? args.loggingHoneycombs : undefined;
             inputs["loggingKafkas"] = args ? args.loggingKafkas : undefined;
             inputs["loggingLogglies"] = args ? args.loggingLogglies : undefined;
+            inputs["loggingLogshuttles"] = args ? args.loggingLogshuttles : undefined;
             inputs["loggingNewrelics"] = args ? args.loggingNewrelics : undefined;
+            inputs["loggingOpenstacks"] = args ? args.loggingOpenstacks : undefined;
             inputs["loggingScalyrs"] = args ? args.loggingScalyrs : undefined;
             inputs["loggingSftps"] = args ? args.loggingSftps : undefined;
             inputs["name"] = args ? args.name : undefined;
@@ -564,8 +605,7 @@ export interface Servicev1State {
      */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
-     * If you created the S3 bucket outside of `us-east-1`,
-     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
      */
     readonly domains?: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
     /**
@@ -607,10 +647,20 @@ export interface Servicev1State {
      */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
     /**
+     * A Rackspace Cloud Files endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingCloudfile>[]>;
+    /**
      * A Datadog endpoint to send streaming logs to.
      * Defined below.
      */
     readonly loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDatadog>[]>;
+    /**
+     * A DigitalOcean Spaces endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDigitalocean>[]>;
     /**
      * An Elasticsearch endpoint to send streaming logs to.
      * Defined below.
@@ -627,6 +677,16 @@ export interface Servicev1State {
      */
     readonly loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingGooglepubsub>[]>;
     /**
+     * A Heroku endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingHeroku?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHeroku>[]>;
+    /**
+     * A Honeycomb endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHoneycomb>[]>;
+    /**
      * A Kafka endpoint to send streaming logs to.
      * Defined below.
      */
@@ -637,10 +697,20 @@ export interface Servicev1State {
      */
     readonly loggingLogglies?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLoggly>[]>;
     /**
+     * A Log Shuttle endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLogshuttle>[]>;
+    /**
      * A New Relic endpoint to send streaming logs to.
      * Defined below.
      */
     readonly loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingNewrelic>[]>;
+    /**
+     * An OpenStack endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingOpenstack>[]>;
     /**
      * A Scalyr endpoint to send streaming logs to.
      * Defined below.
@@ -762,8 +832,7 @@ export interface Servicev1Args {
      */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
-     * If you created the S3 bucket outside of `us-east-1`,
-     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
      */
     readonly domains: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
     /**
@@ -805,10 +874,20 @@ export interface Servicev1Args {
      */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
     /**
+     * A Rackspace Cloud Files endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingCloudfile>[]>;
+    /**
      * A Datadog endpoint to send streaming logs to.
      * Defined below.
      */
     readonly loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDatadog>[]>;
+    /**
+     * A DigitalOcean Spaces endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDigitalocean>[]>;
     /**
      * An Elasticsearch endpoint to send streaming logs to.
      * Defined below.
@@ -825,6 +904,16 @@ export interface Servicev1Args {
      */
     readonly loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingGooglepubsub>[]>;
     /**
+     * A Heroku endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingHeroku?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHeroku>[]>;
+    /**
+     * A Honeycomb endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHoneycomb>[]>;
+    /**
      * A Kafka endpoint to send streaming logs to.
      * Defined below.
      */
@@ -835,10 +924,20 @@ export interface Servicev1Args {
      */
     readonly loggingLogglies?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLoggly>[]>;
     /**
+     * A Log Shuttle endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLogshuttle>[]>;
+    /**
      * A New Relic endpoint to send streaming logs to.
      * Defined below.
      */
     readonly loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingNewrelic>[]>;
+    /**
+     * An OpenStack endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingOpenstack>[]>;
     /**
      * A Scalyr endpoint to send streaming logs to.
      * Defined below.

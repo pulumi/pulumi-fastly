@@ -147,7 +147,7 @@ export interface Servicev1Backend {
 
 export interface Servicev1Bigquerylogging {
     /**
-     * The ID of your BigQuery dataset.
+     * The Honeycomb Dataset you want to log to.
      */
     dataset: pulumi.Input<string>;
     /**
@@ -155,7 +155,7 @@ export interface Servicev1Bigquerylogging {
      */
     email?: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
@@ -163,7 +163,7 @@ export interface Servicev1Bigquerylogging {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -171,11 +171,11 @@ export interface Servicev1Bigquerylogging {
      */
     projectId: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -198,11 +198,11 @@ export interface Servicev1Blobstoragelogging {
      */
     container: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -218,23 +218,23 @@ export interface Servicev1Blobstoragelogging {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path?: pulumi.Input<string>;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: pulumi.Input<number>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -376,7 +376,7 @@ export interface Servicev1Dynamicsnippet {
 
 export interface Servicev1Gcslogging {
     /**
-     * The name of the bucket in which to store the logs.
+     * The name of your Cloud Files container.
      */
     bucketName: pulumi.Input<string>;
     /**
@@ -384,7 +384,7 @@ export interface Servicev1Gcslogging {
      */
     email?: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
@@ -400,23 +400,23 @@ export interface Servicev1Gcslogging {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path?: pulumi.Input<string>;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: pulumi.Input<number>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -483,7 +483,7 @@ export interface Servicev1Header {
      */
     requestCondition?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -531,7 +531,7 @@ export interface Servicev1Healthcheck {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path: pulumi.Input<string>;
     /**
@@ -554,11 +554,11 @@ export interface Servicev1Httpslogging {
      */
     contentType?: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -586,7 +586,7 @@ export interface Servicev1Httpslogging {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -598,7 +598,7 @@ export interface Servicev1Httpslogging {
      */
     requestMaxEntries?: pulumi.Input<number>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -618,18 +618,18 @@ export interface Servicev1Httpslogging {
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: pulumi.Input<string>;
 }
 
 export interface Servicev1Logentry {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -637,7 +637,7 @@ export interface Servicev1Logentry {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -645,11 +645,11 @@ export interface Servicev1Logentry {
      */
     port?: pulumi.Input<number>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: pulumi.Input<string>;
     /**
@@ -658,13 +658,76 @@ export interface Servicev1Logentry {
     useTls?: pulumi.Input<boolean>;
 }
 
-export interface Servicev1LoggingDatadog {
+export interface Servicev1LoggingCloudfile {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Your Cloud File account access key.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingDatadog {
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -672,30 +735,93 @@ export interface Servicev1LoggingDatadog {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
      */
     region?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingElasticsearch {
+export interface Servicev1LoggingDigitalocean {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Your Cloud File account access key.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingElasticsearch {
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -715,7 +841,7 @@ export interface Servicev1LoggingElasticsearch {
      */
     pipeline?: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -727,7 +853,7 @@ export interface Servicev1LoggingElasticsearch {
      */
     requestMaxEntries?: pulumi.Input<number>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -747,11 +873,11 @@ export interface Servicev1LoggingElasticsearch {
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user?: pulumi.Input<string>;
 }
@@ -762,11 +888,11 @@ export interface Servicev1LoggingFtp {
      */
     address: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -782,15 +908,15 @@ export interface Servicev1LoggingFtp {
      */
     password: pulumi.Input<string>;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path: pulumi.Input<string>;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: pulumi.Input<number>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -798,11 +924,11 @@ export interface Servicev1LoggingFtp {
      */
     port?: pulumi.Input<number>;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -810,18 +936,18 @@ export interface Servicev1LoggingFtp {
      */
     timestampFormat?: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user: pulumi.Input<string>;
 }
 
 export interface Servicev1LoggingGooglepubsub {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -829,7 +955,7 @@ export interface Servicev1LoggingGooglepubsub {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -837,11 +963,11 @@ export interface Servicev1LoggingGooglepubsub {
      */
     projectId: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey: pulumi.Input<string>;
     /**
@@ -849,9 +975,71 @@ export interface Servicev1LoggingGooglepubsub {
      */
     topic: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingHeroku {
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingHoneycomb {
+    /**
+     * The Honeycomb Dataset you want to log to.
+     */
+    dataset: pulumi.Input<string>;
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
 }
 
 export interface Servicev1LoggingKafka {
@@ -864,11 +1052,11 @@ export interface Servicev1LoggingKafka {
      */
     compressionCodec?: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -876,7 +1064,7 @@ export interface Servicev1LoggingKafka {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -884,7 +1072,7 @@ export interface Servicev1LoggingKafka {
      */
     requiredAcks?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -915,11 +1103,11 @@ export interface Servicev1LoggingKafka {
 
 export interface Servicev1LoggingLoggly {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -927,26 +1115,57 @@ export interface Servicev1LoggingLoggly {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingLogshuttle {
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
 }
 
 export interface Servicev1LoggingNewrelic {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -954,26 +1173,89 @@ export interface Servicev1LoggingNewrelic {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingScalyr {
+export interface Servicev1LoggingOpenstack {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Your Cloud File account access key.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface Servicev1LoggingScalyr {
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -981,19 +1263,19 @@ export interface Servicev1LoggingScalyr {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
      */
     region?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: pulumi.Input<string>;
 }
@@ -1004,11 +1286,11 @@ export interface Servicev1LoggingSftp {
      */
     address: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -1028,15 +1310,15 @@ export interface Servicev1LoggingSftp {
      */
     password?: pulumi.Input<string>;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path: pulumi.Input<string>;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: pulumi.Input<number>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1044,15 +1326,15 @@ export interface Servicev1LoggingSftp {
      */
     port?: pulumi.Input<number>;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -1064,7 +1346,7 @@ export interface Servicev1LoggingSftp {
      */
     timestampFormat?: pulumi.Input<string>;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user: pulumi.Input<string>;
 }
@@ -1075,7 +1357,7 @@ export interface Servicev1Papertrail {
      */
     address: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
@@ -1083,7 +1365,7 @@ export interface Servicev1Papertrail {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1091,7 +1373,7 @@ export interface Servicev1Papertrail {
      */
     port: pulumi.Input<number>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
 }
@@ -1189,20 +1471,19 @@ export interface Servicev1ResponseObject {
 
 export interface Servicev1S3logging {
     /**
-     * The name of the bucket in which to store the logs.
+     * The name of your Cloud Files container.
      */
     bucketName: pulumi.Input<string>;
     /**
-     * If you created the S3 bucket outside of `us-east-1`,
-     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
      */
     domain?: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -1218,19 +1499,19 @@ export interface Servicev1S3logging {
      */
     name: pulumi.Input<string>;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path?: pulumi.Input<string>;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: pulumi.Input<number>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: pulumi.Input<string>;
     /**
@@ -1238,7 +1519,7 @@ export interface Servicev1S3logging {
      */
     redundancy?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -1284,11 +1565,11 @@ export interface Servicev1Snippet {
 
 export interface Servicev1Splunk {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -1296,11 +1577,11 @@ export interface Servicev1Splunk {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -1312,22 +1593,22 @@ export interface Servicev1Splunk {
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: pulumi.Input<string>;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: pulumi.Input<string>;
 }
 
 export interface Servicev1Sumologic {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -1339,15 +1620,15 @@ export interface Servicev1Sumologic {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: pulumi.Input<string>;
 }
@@ -1358,11 +1639,11 @@ export interface Servicev1Syslog {
      */
     address: pulumi.Input<string>;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: pulumi.Input<number>;
     /**
@@ -1374,7 +1655,7 @@ export interface Servicev1Syslog {
      */
     name: pulumi.Input<string>;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1382,7 +1663,7 @@ export interface Servicev1Syslog {
      */
     port?: pulumi.Input<number>;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
@@ -1402,7 +1683,7 @@ export interface Servicev1Syslog {
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token?: pulumi.Input<string>;
     /**

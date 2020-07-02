@@ -259,8 +259,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Director>> Directors { get; private set; } = null!;
 
         /// <summary>
-        /// If you created the S3 bucket outside of `us-east-1`,
-        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         /// </summary>
         [Output("domains")]
         public Output<ImmutableArray<Outputs.Servicev1Domain>> Domains { get; private set; } = null!;
@@ -320,11 +319,25 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Logentry>> Logentries { get; private set; } = null!;
 
         /// <summary>
+        /// A Rackspace Cloud Files endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingCloudfiles")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingCloudfile>> LoggingCloudfiles { get; private set; } = null!;
+
+        /// <summary>
         /// A Datadog endpoint to send streaming logs to.
         /// Defined below.
         /// </summary>
         [Output("loggingDatadogs")]
         public Output<ImmutableArray<Outputs.Servicev1LoggingDatadog>> LoggingDatadogs { get; private set; } = null!;
+
+        /// <summary>
+        /// A DigitalOcean Spaces endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingDigitaloceans")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingDigitalocean>> LoggingDigitaloceans { get; private set; } = null!;
 
         /// <summary>
         /// An Elasticsearch endpoint to send streaming logs to.
@@ -348,6 +361,20 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1LoggingGooglepubsub>> LoggingGooglepubsubs { get; private set; } = null!;
 
         /// <summary>
+        /// A Heroku endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingHeroku")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingHeroku>> LoggingHeroku { get; private set; } = null!;
+
+        /// <summary>
+        /// A Honeycomb endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingHoneycombs")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingHoneycomb>> LoggingHoneycombs { get; private set; } = null!;
+
+        /// <summary>
         /// A Kafka endpoint to send streaming logs to.
         /// Defined below.
         /// </summary>
@@ -362,11 +389,25 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1LoggingLoggly>> LoggingLogglies { get; private set; } = null!;
 
         /// <summary>
+        /// A Log Shuttle endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingLogshuttles")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingLogshuttle>> LoggingLogshuttles { get; private set; } = null!;
+
+        /// <summary>
         /// A New Relic endpoint to send streaming logs to.
         /// Defined below.
         /// </summary>
         [Output("loggingNewrelics")]
         public Output<ImmutableArray<Outputs.Servicev1LoggingNewrelic>> LoggingNewrelics { get; private set; } = null!;
+
+        /// <summary>
+        /// An OpenStack endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingOpenstacks")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingOpenstack>> LoggingOpenstacks { get; private set; } = null!;
 
         /// <summary>
         /// A Scalyr endpoint to send streaming logs to.
@@ -630,8 +671,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DomainArgs>? _domains;
 
         /// <summary>
-        /// If you created the S3 bucket outside of `us-east-1`,
-        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         /// </summary>
         public InputList<Inputs.Servicev1DomainArgs> Domains
         {
@@ -735,6 +775,19 @@ namespace Pulumi.Fastly
             set => _logentries = value;
         }
 
+        [Input("loggingCloudfiles")]
+        private InputList<Inputs.Servicev1LoggingCloudfileArgs>? _loggingCloudfiles;
+
+        /// <summary>
+        /// A Rackspace Cloud Files endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingCloudfileArgs> LoggingCloudfiles
+        {
+            get => _loggingCloudfiles ?? (_loggingCloudfiles = new InputList<Inputs.Servicev1LoggingCloudfileArgs>());
+            set => _loggingCloudfiles = value;
+        }
+
         [Input("loggingDatadogs")]
         private InputList<Inputs.Servicev1LoggingDatadogArgs>? _loggingDatadogs;
 
@@ -746,6 +799,19 @@ namespace Pulumi.Fastly
         {
             get => _loggingDatadogs ?? (_loggingDatadogs = new InputList<Inputs.Servicev1LoggingDatadogArgs>());
             set => _loggingDatadogs = value;
+        }
+
+        [Input("loggingDigitaloceans")]
+        private InputList<Inputs.Servicev1LoggingDigitaloceanArgs>? _loggingDigitaloceans;
+
+        /// <summary>
+        /// A DigitalOcean Spaces endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingDigitaloceanArgs> LoggingDigitaloceans
+        {
+            get => _loggingDigitaloceans ?? (_loggingDigitaloceans = new InputList<Inputs.Servicev1LoggingDigitaloceanArgs>());
+            set => _loggingDigitaloceans = value;
         }
 
         [Input("loggingElasticsearches")]
@@ -787,6 +853,32 @@ namespace Pulumi.Fastly
             set => _loggingGooglepubsubs = value;
         }
 
+        [Input("loggingHeroku")]
+        private InputList<Inputs.Servicev1LoggingHerokuArgs>? _loggingHeroku;
+
+        /// <summary>
+        /// A Heroku endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingHerokuArgs> LoggingHeroku
+        {
+            get => _loggingHeroku ?? (_loggingHeroku = new InputList<Inputs.Servicev1LoggingHerokuArgs>());
+            set => _loggingHeroku = value;
+        }
+
+        [Input("loggingHoneycombs")]
+        private InputList<Inputs.Servicev1LoggingHoneycombArgs>? _loggingHoneycombs;
+
+        /// <summary>
+        /// A Honeycomb endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingHoneycombArgs> LoggingHoneycombs
+        {
+            get => _loggingHoneycombs ?? (_loggingHoneycombs = new InputList<Inputs.Servicev1LoggingHoneycombArgs>());
+            set => _loggingHoneycombs = value;
+        }
+
         [Input("loggingKafkas")]
         private InputList<Inputs.Servicev1LoggingKafkaArgs>? _loggingKafkas;
 
@@ -813,6 +905,19 @@ namespace Pulumi.Fastly
             set => _loggingLogglies = value;
         }
 
+        [Input("loggingLogshuttles")]
+        private InputList<Inputs.Servicev1LoggingLogshuttleArgs>? _loggingLogshuttles;
+
+        /// <summary>
+        /// A Log Shuttle endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingLogshuttleArgs> LoggingLogshuttles
+        {
+            get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.Servicev1LoggingLogshuttleArgs>());
+            set => _loggingLogshuttles = value;
+        }
+
         [Input("loggingNewrelics")]
         private InputList<Inputs.Servicev1LoggingNewrelicArgs>? _loggingNewrelics;
 
@@ -824,6 +929,19 @@ namespace Pulumi.Fastly
         {
             get => _loggingNewrelics ?? (_loggingNewrelics = new InputList<Inputs.Servicev1LoggingNewrelicArgs>());
             set => _loggingNewrelics = value;
+        }
+
+        [Input("loggingOpenstacks")]
+        private InputList<Inputs.Servicev1LoggingOpenstackArgs>? _loggingOpenstacks;
+
+        /// <summary>
+        /// An OpenStack endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingOpenstackArgs> LoggingOpenstacks
+        {
+            get => _loggingOpenstacks ?? (_loggingOpenstacks = new InputList<Inputs.Servicev1LoggingOpenstackArgs>());
+            set => _loggingOpenstacks = value;
         }
 
         [Input("loggingScalyrs")]
@@ -1127,8 +1245,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DomainGetArgs>? _domains;
 
         /// <summary>
-        /// If you created the S3 bucket outside of `us-east-1`,
-        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         /// </summary>
         public InputList<Inputs.Servicev1DomainGetArgs> Domains
         {
@@ -1232,6 +1349,19 @@ namespace Pulumi.Fastly
             set => _logentries = value;
         }
 
+        [Input("loggingCloudfiles")]
+        private InputList<Inputs.Servicev1LoggingCloudfileGetArgs>? _loggingCloudfiles;
+
+        /// <summary>
+        /// A Rackspace Cloud Files endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingCloudfileGetArgs> LoggingCloudfiles
+        {
+            get => _loggingCloudfiles ?? (_loggingCloudfiles = new InputList<Inputs.Servicev1LoggingCloudfileGetArgs>());
+            set => _loggingCloudfiles = value;
+        }
+
         [Input("loggingDatadogs")]
         private InputList<Inputs.Servicev1LoggingDatadogGetArgs>? _loggingDatadogs;
 
@@ -1243,6 +1373,19 @@ namespace Pulumi.Fastly
         {
             get => _loggingDatadogs ?? (_loggingDatadogs = new InputList<Inputs.Servicev1LoggingDatadogGetArgs>());
             set => _loggingDatadogs = value;
+        }
+
+        [Input("loggingDigitaloceans")]
+        private InputList<Inputs.Servicev1LoggingDigitaloceanGetArgs>? _loggingDigitaloceans;
+
+        /// <summary>
+        /// A DigitalOcean Spaces endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingDigitaloceanGetArgs> LoggingDigitaloceans
+        {
+            get => _loggingDigitaloceans ?? (_loggingDigitaloceans = new InputList<Inputs.Servicev1LoggingDigitaloceanGetArgs>());
+            set => _loggingDigitaloceans = value;
         }
 
         [Input("loggingElasticsearches")]
@@ -1284,6 +1427,32 @@ namespace Pulumi.Fastly
             set => _loggingGooglepubsubs = value;
         }
 
+        [Input("loggingHeroku")]
+        private InputList<Inputs.Servicev1LoggingHerokuGetArgs>? _loggingHeroku;
+
+        /// <summary>
+        /// A Heroku endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingHerokuGetArgs> LoggingHeroku
+        {
+            get => _loggingHeroku ?? (_loggingHeroku = new InputList<Inputs.Servicev1LoggingHerokuGetArgs>());
+            set => _loggingHeroku = value;
+        }
+
+        [Input("loggingHoneycombs")]
+        private InputList<Inputs.Servicev1LoggingHoneycombGetArgs>? _loggingHoneycombs;
+
+        /// <summary>
+        /// A Honeycomb endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingHoneycombGetArgs> LoggingHoneycombs
+        {
+            get => _loggingHoneycombs ?? (_loggingHoneycombs = new InputList<Inputs.Servicev1LoggingHoneycombGetArgs>());
+            set => _loggingHoneycombs = value;
+        }
+
         [Input("loggingKafkas")]
         private InputList<Inputs.Servicev1LoggingKafkaGetArgs>? _loggingKafkas;
 
@@ -1310,6 +1479,19 @@ namespace Pulumi.Fastly
             set => _loggingLogglies = value;
         }
 
+        [Input("loggingLogshuttles")]
+        private InputList<Inputs.Servicev1LoggingLogshuttleGetArgs>? _loggingLogshuttles;
+
+        /// <summary>
+        /// A Log Shuttle endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingLogshuttleGetArgs> LoggingLogshuttles
+        {
+            get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.Servicev1LoggingLogshuttleGetArgs>());
+            set => _loggingLogshuttles = value;
+        }
+
         [Input("loggingNewrelics")]
         private InputList<Inputs.Servicev1LoggingNewrelicGetArgs>? _loggingNewrelics;
 
@@ -1321,6 +1503,19 @@ namespace Pulumi.Fastly
         {
             get => _loggingNewrelics ?? (_loggingNewrelics = new InputList<Inputs.Servicev1LoggingNewrelicGetArgs>());
             set => _loggingNewrelics = value;
+        }
+
+        [Input("loggingOpenstacks")]
+        private InputList<Inputs.Servicev1LoggingOpenstackGetArgs>? _loggingOpenstacks;
+
+        /// <summary>
+        /// An OpenStack endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingOpenstackGetArgs> LoggingOpenstacks
+        {
+            get => _loggingOpenstacks ?? (_loggingOpenstacks = new InputList<Inputs.Servicev1LoggingOpenstackGetArgs>());
+            set => _loggingOpenstacks = value;
         }
 
         [Input("loggingScalyrs")]

@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Bigquerylogging
     {
         /// <summary>
-        /// The ID of your BigQuery dataset.
+        /// The Honeycomb Dataset you want to log to.
         /// </summary>
         public readonly string Dataset;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Email;
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         public readonly string? Format;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
@@ -38,11 +38,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+        /// Your DigitalOcean Spaces account secret key.
         /// </summary>
         public readonly string? SecretKey;
         /// <summary>

@@ -96,7 +96,14 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"fastly_service_v1":                         {Tok: makeResource(mainMod, "Servicev1")},
+			"fastly_service_v1": {
+				Tok: makeResource(mainMod, "Servicev1"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"logging_heroku": {
+						Name: "loggingHeroku",
+					},
+				},
+			},
 			"fastly_service_acl_entries_v1":             {Tok: makeResource(mainMod, "ServiceACLEntriesv1")},
 			"fastly_service_dictionary_items_v1":        {Tok: makeResource(mainMod, "ServiceDictionaryItemsv1")},
 			"fastly_service_dynamic_snippet_content_v1": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContentv1")},

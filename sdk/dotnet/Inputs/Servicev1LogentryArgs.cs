@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LogentryArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -43,13 +43,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The token to use for authentication (https://www.scalyr.com/keys).
+        /// The data authentication token associated with this endpoint.
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;

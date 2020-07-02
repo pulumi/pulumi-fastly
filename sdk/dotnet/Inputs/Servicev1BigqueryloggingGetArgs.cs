@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1BigqueryloggingGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of your BigQuery dataset.
+        /// The Honeycomb Dataset you want to log to.
         /// </summary>
         [Input("dataset", required: true)]
         public Input<string> Dataset { get; set; } = null!;
@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -49,13 +49,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+        /// Your DigitalOcean Spaces account secret key.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }

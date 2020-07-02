@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingGooglepubsubArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -43,13 +43,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+        /// Your DigitalOcean Spaces account secret key.
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
@@ -61,7 +61,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Topic { get; set; } = null!;
 
         /// <summary>
-        /// Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.
+        /// The username for your Cloud Files account.
         /// </summary>
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;

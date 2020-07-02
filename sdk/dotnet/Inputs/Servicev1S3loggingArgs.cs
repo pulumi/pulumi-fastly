@@ -13,26 +13,25 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1S3loggingArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the bucket in which to store the logs.
+        /// The name of your Cloud Files container.
         /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
-        /// If you created the S3 bucket outside of `us-east-1`,
-        /// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
@@ -56,25 +55,25 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload log files to. If the path ends in / then it is treated as a directory.
+        /// The path to upload logs to.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
@@ -86,7 +85,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Redundancy { get; set; }
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
