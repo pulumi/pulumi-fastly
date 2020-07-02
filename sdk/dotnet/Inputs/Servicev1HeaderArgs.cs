@@ -63,7 +63,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? RequestCondition { get; set; }
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }

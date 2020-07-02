@@ -147,7 +147,7 @@ export interface Servicev1Backend {
 
 export interface Servicev1Bigquerylogging {
     /**
-     * The ID of your BigQuery dataset.
+     * The Honeycomb Dataset you want to log to.
      */
     dataset: string;
     /**
@@ -155,7 +155,7 @@ export interface Servicev1Bigquerylogging {
      */
     email?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
@@ -163,7 +163,7 @@ export interface Servicev1Bigquerylogging {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -171,11 +171,11 @@ export interface Servicev1Bigquerylogging {
      */
     projectId: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey?: string;
     /**
@@ -198,11 +198,11 @@ export interface Servicev1Blobstoragelogging {
      */
     container: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -218,23 +218,23 @@ export interface Servicev1Blobstoragelogging {
      */
     name: string;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -376,7 +376,7 @@ export interface Servicev1Dynamicsnippet {
 
 export interface Servicev1Gcslogging {
     /**
-     * The name of the bucket in which to store the logs.
+     * The name of your Cloud Files container.
      */
     bucketName: string;
     /**
@@ -384,7 +384,7 @@ export interface Servicev1Gcslogging {
      */
     email?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
@@ -400,23 +400,23 @@ export interface Servicev1Gcslogging {
      */
     name: string;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey?: string;
     /**
@@ -483,7 +483,7 @@ export interface Servicev1Header {
      */
     requestCondition?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -531,7 +531,7 @@ export interface Servicev1Healthcheck {
      */
     name: string;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path: string;
     /**
@@ -554,11 +554,11 @@ export interface Servicev1Httpslogging {
      */
     contentType?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -586,7 +586,7 @@ export interface Servicev1Httpslogging {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -598,7 +598,7 @@ export interface Servicev1Httpslogging {
      */
     requestMaxEntries?: number;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -618,18 +618,18 @@ export interface Servicev1Httpslogging {
      */
     tlsHostname?: string;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: string;
 }
 
 export interface Servicev1Logentry {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -637,7 +637,7 @@ export interface Servicev1Logentry {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -645,11 +645,11 @@ export interface Servicev1Logentry {
      */
     port?: number;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: string;
     /**
@@ -658,13 +658,76 @@ export interface Servicev1Logentry {
     useTls?: boolean;
 }
 
-export interface Servicev1LoggingDatadog {
+export interface Servicev1LoggingCloudfile {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Your Cloud File account access key.
+     */
+    accessKey: string;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: string;
+}
+
+export interface Servicev1LoggingDatadog {
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -672,30 +735,93 @@ export interface Servicev1LoggingDatadog {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
      */
     region?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: string;
 }
 
-export interface Servicev1LoggingElasticsearch {
+export interface Servicev1LoggingDigitalocean {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Your Cloud File account access key.
+     */
+    accessKey: string;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     */
+    domain?: string;
+    /**
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+}
+
+export interface Servicev1LoggingElasticsearch {
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -715,7 +841,7 @@ export interface Servicev1LoggingElasticsearch {
      */
     pipeline?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -727,7 +853,7 @@ export interface Servicev1LoggingElasticsearch {
      */
     requestMaxEntries?: number;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -747,11 +873,11 @@ export interface Servicev1LoggingElasticsearch {
      */
     tlsHostname?: string;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: string;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user?: string;
 }
@@ -762,11 +888,11 @@ export interface Servicev1LoggingFtp {
      */
     address: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -782,15 +908,15 @@ export interface Servicev1LoggingFtp {
      */
     password: string;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -798,11 +924,11 @@ export interface Servicev1LoggingFtp {
      */
     port?: number;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -810,18 +936,18 @@ export interface Servicev1LoggingFtp {
      */
     timestampFormat?: string;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user: string;
 }
 
 export interface Servicev1LoggingGooglepubsub {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -829,7 +955,7 @@ export interface Servicev1LoggingGooglepubsub {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -837,11 +963,11 @@ export interface Servicev1LoggingGooglepubsub {
      */
     projectId: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey: string;
     /**
@@ -849,9 +975,71 @@ export interface Servicev1LoggingGooglepubsub {
      */
     topic: string;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user: string;
+}
+
+export interface Servicev1LoggingHeroku {
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+}
+
+export interface Servicev1LoggingHoneycomb {
+    /**
+     * The Honeycomb Dataset you want to log to.
+     */
+    dataset: string;
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
 }
 
 export interface Servicev1LoggingKafka {
@@ -864,11 +1052,11 @@ export interface Servicev1LoggingKafka {
      */
     compressionCodec?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -876,7 +1064,7 @@ export interface Servicev1LoggingKafka {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -884,7 +1072,7 @@ export interface Servicev1LoggingKafka {
      */
     requiredAcks?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -915,11 +1103,11 @@ export interface Servicev1LoggingKafka {
 
 export interface Servicev1LoggingLoggly {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -927,26 +1115,57 @@ export interface Servicev1LoggingLoggly {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: string;
+}
+
+export interface Servicev1LoggingLogshuttle {
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
 }
 
 export interface Servicev1LoggingNewrelic {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -954,26 +1173,89 @@ export interface Servicev1LoggingNewrelic {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: string;
 }
 
-export interface Servicev1LoggingScalyr {
+export interface Servicev1LoggingOpenstack {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Your Cloud File account access key.
+     */
+    accessKey: string;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: string;
+}
+
+export interface Servicev1LoggingScalyr {
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -981,19 +1263,19 @@ export interface Servicev1LoggingScalyr {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The region that log data will be sent to. One of US or EU. Defaults to US if undefined.
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
      */
     region?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: string;
 }
@@ -1004,11 +1286,11 @@ export interface Servicev1LoggingSftp {
      */
     address: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -1028,15 +1310,15 @@ export interface Servicev1LoggingSftp {
      */
     password?: string;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -1044,15 +1326,15 @@ export interface Servicev1LoggingSftp {
      */
     port?: number;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * Your Google Cloud Platform account secret key. The privateKey field in your service account authentication JSON.
+     * Your DigitalOcean Spaces account secret key.
      */
     secretKey?: string;
     /**
@@ -1064,7 +1346,7 @@ export interface Servicev1LoggingSftp {
      */
     timestampFormat?: string;
     /**
-     * Your Google Cloud Platform service account email address. The clientEmail field in your service account authentication JSON.
+     * The username for your Cloud Files account.
      */
     user: string;
 }
@@ -1075,7 +1357,7 @@ export interface Servicev1Papertrail {
      */
     address: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
@@ -1083,7 +1365,7 @@ export interface Servicev1Papertrail {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -1091,7 +1373,7 @@ export interface Servicev1Papertrail {
      */
     port: number;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
 }
@@ -1189,20 +1471,19 @@ export interface Servicev1ResponseObject {
 
 export interface Servicev1S3logging {
     /**
-     * The name of the bucket in which to store the logs.
+     * The name of your Cloud Files container.
      */
     bucketName: string;
     /**
-     * If you created the S3 bucket outside of `us-east-1`,
-     * then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
      */
     domain?: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -1218,19 +1499,19 @@ export interface Servicev1S3logging {
      */
     name: string;
     /**
-     * The path to upload log files to. If the path ends in / then it is treated as a directory.
+     * The path to upload logs to.
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
      */
     period?: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
      */
     publicKey?: string;
     /**
@@ -1238,7 +1519,7 @@ export interface Servicev1S3logging {
      */
     redundancy?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -1284,11 +1565,11 @@ export interface Servicev1Snippet {
 
 export interface Servicev1Splunk {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -1296,11 +1577,11 @@ export interface Servicev1Splunk {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -1312,22 +1593,22 @@ export interface Servicev1Splunk {
      */
     tlsHostname?: string;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token: string;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: string;
 }
 
 export interface Servicev1Sumologic {
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -1339,15 +1620,15 @@ export interface Servicev1Sumologic {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
-     * The Elasticsearch URL to stream logs to.
+     * Your OpenStack auth url.
      */
     url: string;
 }
@@ -1358,11 +1639,11 @@ export interface Servicev1Syslog {
      */
     address: string;
     /**
-     * Apache-style string or VCL variables to use for log formatting.
+     * Apache style log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`. Default `2`.
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
     formatVersion?: number;
     /**
@@ -1374,7 +1655,7 @@ export interface Servicev1Syslog {
      */
     name: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
@@ -1382,7 +1663,7 @@ export interface Servicev1Syslog {
      */
     port?: number;
     /**
-     * The name of the `condition` to apply. If empty, always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
     /**
@@ -1402,7 +1683,7 @@ export interface Servicev1Syslog {
      */
     tlsHostname?: string;
     /**
-     * The token to use for authentication (https://www.scalyr.com/keys).
+     * The data authentication token associated with this endpoint.
      */
     token?: string;
     /**

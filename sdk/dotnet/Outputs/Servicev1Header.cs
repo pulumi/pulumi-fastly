@@ -48,7 +48,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>

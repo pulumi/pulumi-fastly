@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Gcslogging
     {
         /// <summary>
-        /// The name of the bucket in which to store the logs.
+        /// The name of your Cloud Files container.
         /// </summary>
         public readonly string BucketName;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Email;
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         public readonly string? Format;
         /// <summary>
@@ -38,23 +38,23 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The path to upload log files to. If the path ends in / then it is treated as a directory.
+        /// The path to upload logs to.
         /// </summary>
         public readonly string? Path;
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         /// </summary>
         public readonly int? Period;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.
+        /// Your DigitalOcean Spaces account secret key.
         /// </summary>
         public readonly string? SecretKey;
         /// <summary>

@@ -148,8 +148,7 @@ type Servicev1 struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors Servicev1DirectorArrayOutput `pulumi:"directors"`
-	// If you created the S3 bucket outside of `us-east-1`,
-	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains Servicev1DomainArrayOutput `pulumi:"domains"`
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
@@ -173,9 +172,15 @@ type Servicev1 struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayOutput `pulumi:"logentries"`
+	// A Rackspace Cloud Files endpoint to send streaming logs to.
+	// Defined below.
+	LoggingCloudfiles Servicev1LoggingCloudfileArrayOutput `pulumi:"loggingCloudfiles"`
 	// A Datadog endpoint to send streaming logs to.
 	// Defined below.
 	LoggingDatadogs Servicev1LoggingDatadogArrayOutput `pulumi:"loggingDatadogs"`
+	// A DigitalOcean Spaces endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDigitaloceans Servicev1LoggingDigitaloceanArrayOutput `pulumi:"loggingDigitaloceans"`
 	// An Elasticsearch endpoint to send streaming logs to.
 	// Defined below.
 	LoggingElasticsearches Servicev1LoggingElasticsearchArrayOutput `pulumi:"loggingElasticsearches"`
@@ -185,15 +190,27 @@ type Servicev1 struct {
 	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
 	// Defined below.
 	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayOutput `pulumi:"loggingGooglepubsubs"`
+	// A Heroku endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHeroku Servicev1LoggingHerokuArrayOutput `pulumi:"loggingHeroku"`
+	// A Honeycomb endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHoneycombs Servicev1LoggingHoneycombArrayOutput `pulumi:"loggingHoneycombs"`
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas Servicev1LoggingKafkaArrayOutput `pulumi:"loggingKafkas"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies Servicev1LoggingLogglyArrayOutput `pulumi:"loggingLogglies"`
+	// A Log Shuttle endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogshuttles Servicev1LoggingLogshuttleArrayOutput `pulumi:"loggingLogshuttles"`
 	// A New Relic endpoint to send streaming logs to.
 	// Defined below.
 	LoggingNewrelics Servicev1LoggingNewrelicArrayOutput `pulumi:"loggingNewrelics"`
+	// An OpenStack endpoint to send streaming logs to.
+	// Defined below.
+	LoggingOpenstacks Servicev1LoggingOpenstackArrayOutput `pulumi:"loggingOpenstacks"`
 	// A Scalyr endpoint to send streaming logs to.
 	// Defined below.
 	LoggingScalyrs Servicev1LoggingScalyrArrayOutput `pulumi:"loggingScalyrs"`
@@ -295,8 +312,7 @@ type servicev1State struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors []Servicev1Director `pulumi:"directors"`
-	// If you created the S3 bucket outside of `us-east-1`,
-	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains []Servicev1Domain `pulumi:"domains"`
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
@@ -320,9 +336,15 @@ type servicev1State struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
+	// A Rackspace Cloud Files endpoint to send streaming logs to.
+	// Defined below.
+	LoggingCloudfiles []Servicev1LoggingCloudfile `pulumi:"loggingCloudfiles"`
 	// A Datadog endpoint to send streaming logs to.
 	// Defined below.
 	LoggingDatadogs []Servicev1LoggingDatadog `pulumi:"loggingDatadogs"`
+	// A DigitalOcean Spaces endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDigitaloceans []Servicev1LoggingDigitalocean `pulumi:"loggingDigitaloceans"`
 	// An Elasticsearch endpoint to send streaming logs to.
 	// Defined below.
 	LoggingElasticsearches []Servicev1LoggingElasticsearch `pulumi:"loggingElasticsearches"`
@@ -332,15 +354,27 @@ type servicev1State struct {
 	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
 	// Defined below.
 	LoggingGooglepubsubs []Servicev1LoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
+	// A Heroku endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHeroku []Servicev1LoggingHeroku `pulumi:"loggingHeroku"`
+	// A Honeycomb endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHoneycombs []Servicev1LoggingHoneycomb `pulumi:"loggingHoneycombs"`
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
+	// A Log Shuttle endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogshuttles []Servicev1LoggingLogshuttle `pulumi:"loggingLogshuttles"`
 	// A New Relic endpoint to send streaming logs to.
 	// Defined below.
 	LoggingNewrelics []Servicev1LoggingNewrelic `pulumi:"loggingNewrelics"`
+	// An OpenStack endpoint to send streaming logs to.
+	// Defined below.
+	LoggingOpenstacks []Servicev1LoggingOpenstack `pulumi:"loggingOpenstacks"`
 	// A Scalyr endpoint to send streaming logs to.
 	// Defined below.
 	LoggingScalyrs []Servicev1LoggingScalyr `pulumi:"loggingScalyrs"`
@@ -412,8 +446,7 @@ type Servicev1State struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors Servicev1DirectorArrayInput
-	// If you created the S3 bucket outside of `us-east-1`,
-	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains Servicev1DomainArrayInput
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
@@ -437,9 +470,15 @@ type Servicev1State struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput
+	// A Rackspace Cloud Files endpoint to send streaming logs to.
+	// Defined below.
+	LoggingCloudfiles Servicev1LoggingCloudfileArrayInput
 	// A Datadog endpoint to send streaming logs to.
 	// Defined below.
 	LoggingDatadogs Servicev1LoggingDatadogArrayInput
+	// A DigitalOcean Spaces endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDigitaloceans Servicev1LoggingDigitaloceanArrayInput
 	// An Elasticsearch endpoint to send streaming logs to.
 	// Defined below.
 	LoggingElasticsearches Servicev1LoggingElasticsearchArrayInput
@@ -449,15 +488,27 @@ type Servicev1State struct {
 	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
 	// Defined below.
 	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayInput
+	// A Heroku endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHeroku Servicev1LoggingHerokuArrayInput
+	// A Honeycomb endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHoneycombs Servicev1LoggingHoneycombArrayInput
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas Servicev1LoggingKafkaArrayInput
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies Servicev1LoggingLogglyArrayInput
+	// A Log Shuttle endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogshuttles Servicev1LoggingLogshuttleArrayInput
 	// A New Relic endpoint to send streaming logs to.
 	// Defined below.
 	LoggingNewrelics Servicev1LoggingNewrelicArrayInput
+	// An OpenStack endpoint to send streaming logs to.
+	// Defined below.
+	LoggingOpenstacks Servicev1LoggingOpenstackArrayInput
 	// A Scalyr endpoint to send streaming logs to.
 	// Defined below.
 	LoggingScalyrs Servicev1LoggingScalyrArrayInput
@@ -529,8 +580,7 @@ type servicev1Args struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors []Servicev1Director `pulumi:"directors"`
-	// If you created the S3 bucket outside of `us-east-1`,
-	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains []Servicev1Domain `pulumi:"domains"`
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
@@ -554,9 +604,15 @@ type servicev1Args struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries []Servicev1Logentry `pulumi:"logentries"`
+	// A Rackspace Cloud Files endpoint to send streaming logs to.
+	// Defined below.
+	LoggingCloudfiles []Servicev1LoggingCloudfile `pulumi:"loggingCloudfiles"`
 	// A Datadog endpoint to send streaming logs to.
 	// Defined below.
 	LoggingDatadogs []Servicev1LoggingDatadog `pulumi:"loggingDatadogs"`
+	// A DigitalOcean Spaces endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDigitaloceans []Servicev1LoggingDigitalocean `pulumi:"loggingDigitaloceans"`
 	// An Elasticsearch endpoint to send streaming logs to.
 	// Defined below.
 	LoggingElasticsearches []Servicev1LoggingElasticsearch `pulumi:"loggingElasticsearches"`
@@ -566,15 +622,27 @@ type servicev1Args struct {
 	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
 	// Defined below.
 	LoggingGooglepubsubs []Servicev1LoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
+	// A Heroku endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHeroku []Servicev1LoggingHeroku `pulumi:"loggingHeroku"`
+	// A Honeycomb endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHoneycombs []Servicev1LoggingHoneycomb `pulumi:"loggingHoneycombs"`
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
+	// A Log Shuttle endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogshuttles []Servicev1LoggingLogshuttle `pulumi:"loggingLogshuttles"`
 	// A New Relic endpoint to send streaming logs to.
 	// Defined below.
 	LoggingNewrelics []Servicev1LoggingNewrelic `pulumi:"loggingNewrelics"`
+	// An OpenStack endpoint to send streaming logs to.
+	// Defined below.
+	LoggingOpenstacks []Servicev1LoggingOpenstack `pulumi:"loggingOpenstacks"`
 	// A Scalyr endpoint to send streaming logs to.
 	// Defined below.
 	LoggingScalyrs []Servicev1LoggingScalyr `pulumi:"loggingScalyrs"`
@@ -643,8 +711,7 @@ type Servicev1Args struct {
 	// A director to allow more control over balancing traffic over backends.
 	// when an item is not to be cached based on an above `condition`. Defined below
 	Directors Servicev1DirectorArrayInput
-	// If you created the S3 bucket outside of `us-east-1`,
-	// then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains Servicev1DomainArrayInput
 	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
@@ -668,9 +735,15 @@ type Servicev1Args struct {
 	// A logentries endpoint to send streaming logs too.
 	// Defined below.
 	Logentries Servicev1LogentryArrayInput
+	// A Rackspace Cloud Files endpoint to send streaming logs to.
+	// Defined below.
+	LoggingCloudfiles Servicev1LoggingCloudfileArrayInput
 	// A Datadog endpoint to send streaming logs to.
 	// Defined below.
 	LoggingDatadogs Servicev1LoggingDatadogArrayInput
+	// A DigitalOcean Spaces endpoint to send streaming logs to.
+	// Defined below.
+	LoggingDigitaloceans Servicev1LoggingDigitaloceanArrayInput
 	// An Elasticsearch endpoint to send streaming logs to.
 	// Defined below.
 	LoggingElasticsearches Servicev1LoggingElasticsearchArrayInput
@@ -680,15 +753,27 @@ type Servicev1Args struct {
 	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
 	// Defined below.
 	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayInput
+	// A Heroku endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHeroku Servicev1LoggingHerokuArrayInput
+	// A Honeycomb endpoint to send streaming logs to.
+	// Defined below.
+	LoggingHoneycombs Servicev1LoggingHoneycombArrayInput
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas Servicev1LoggingKafkaArrayInput
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies Servicev1LoggingLogglyArrayInput
+	// A Log Shuttle endpoint to send streaming logs to.
+	// Defined below.
+	LoggingLogshuttles Servicev1LoggingLogshuttleArrayInput
 	// A New Relic endpoint to send streaming logs to.
 	// Defined below.
 	LoggingNewrelics Servicev1LoggingNewrelicArrayInput
+	// An OpenStack endpoint to send streaming logs to.
+	// Defined below.
+	LoggingOpenstacks Servicev1LoggingOpenstackArrayInput
 	// A Scalyr endpoint to send streaming logs to.
 	// Defined below.
 	LoggingScalyrs Servicev1LoggingScalyrArrayInput

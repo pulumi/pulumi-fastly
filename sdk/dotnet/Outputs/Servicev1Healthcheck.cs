@@ -42,7 +42,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The path to upload log files to. If the path ends in / then it is treated as a directory.
+        /// The path to upload logs to.
         /// </summary>
         public readonly string Path;
         /// <summary>

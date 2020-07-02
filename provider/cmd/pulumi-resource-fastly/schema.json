@@ -369,7 +369,7 @@
             "properties": {
                 "dataset": {
                     "type": "string",
-                    "description": "The ID of your BigQuery dataset.\n",
+                    "description": "The Honeycomb Dataset you want to log to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -387,7 +387,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -405,7 +405,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -423,7 +423,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -432,7 +432,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -488,7 +488,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -497,7 +497,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -533,7 +533,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "description": "The path to upload logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -542,7 +542,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -551,7 +551,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -560,7 +560,7 @@
                 },
                 "publicKey": {
                     "type": "string",
-                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -569,7 +569,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -913,7 +913,7 @@
             "properties": {
                 "bucketName": {
                     "type": "string",
-                    "description": "The name of the bucket in which to store the logs.\n",
+                    "description": "The name of your Cloud Files container.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -931,7 +931,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -967,7 +967,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "description": "The path to upload logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -976,7 +976,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -985,7 +985,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -994,7 +994,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1003,7 +1003,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1152,7 +1152,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1275,7 +1275,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "description": "The path to upload logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1330,7 +1330,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1339,7 +1339,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1402,7 +1402,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1429,7 +1429,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1474,7 +1474,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "The Elasticsearch URL to stream logs to.\n",
+                    "description": "Your OpenStack auth url.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1492,7 +1492,7 @@
             "properties": {
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1501,7 +1501,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1519,7 +1519,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1537,7 +1537,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1546,7 +1546,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "description": "The data authentication token associated with this endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1569,11 +1569,29 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog": {
+        "fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile": {
             "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "Your Cloud File account access key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1582,7 +1600,135 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "bucketName",
+                "name",
+                "user"
+            ]
+        },
+        "fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1600,7 +1746,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1609,7 +1755,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region that log data will be sent to. One of US or EU. Defaults to US if undefined.\n",
+                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1618,7 +1764,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1627,7 +1773,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "description": "The data authentication token associated with this endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1641,11 +1787,38 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch": {
+        "fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean": {
             "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "Your Cloud File account access key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1654,7 +1827,126 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "bucketName",
+                "name",
+                "secretKey"
+            ]
+        },
+        "fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1699,7 +1991,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1726,7 +2018,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1771,7 +2063,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "The Elasticsearch URL to stream logs to.\n",
+                    "description": "Your OpenStack auth url.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1780,7 +2072,7 @@
                 },
                 "user": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "description": "The username for your Cloud Files account.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1808,7 +2100,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1817,7 +2109,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1853,7 +2145,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "description": "The path to upload logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1862,7 +2154,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1871,7 +2163,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1889,7 +2181,7 @@
                 },
                 "publicKey": {
                     "type": "string",
-                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1898,7 +2190,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1916,7 +2208,7 @@
                 },
                 "user": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "description": "The username for your Cloud Files account.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1937,7 +2229,7 @@
             "properties": {
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1946,7 +2238,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1964,7 +2256,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1982,7 +2274,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1991,7 +2283,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2009,7 +2301,7 @@
                 },
                 "user": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "description": "The username for your Cloud Files account.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2024,6 +2316,152 @@
                 "secretKey",
                 "topic",
                 "user"
+            ]
+        },
+        "fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token",
+                "url"
+            ]
+        },
+        "fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb": {
+            "properties": {
+                "dataset": {
+                    "type": "string",
+                    "description": "The Honeycomb Dataset you want to log to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "dataset",
+                "name",
+                "token"
             ]
         },
         "fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka": {
@@ -2048,7 +2486,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2057,7 +2495,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2075,7 +2513,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2093,7 +2531,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2166,7 +2604,7 @@
             "properties": {
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2175,7 +2613,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2193,7 +2631,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2202,7 +2640,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2211,7 +2649,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "description": "The data authentication token associated with this endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2223,13 +2661,86 @@
             "required": [
                 "name",
                 "token"
+            ]
+        },
+        "fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token",
+                "url"
             ]
         },
         "fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic": {
             "properties": {
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2238,7 +2749,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2256,7 +2767,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2265,7 +2776,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2274,7 +2785,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "description": "The data authentication token associated with this endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2288,11 +2799,29 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr": {
+        "fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack": {
             "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "Your Cloud File account access key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2301,7 +2830,136 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "bucketName",
+                "name",
+                "url",
+                "user"
+            ]
+        },
+        "fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2319,7 +2977,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2328,7 +2986,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region that log data will be sent to. One of US or EU. Defaults to US if undefined.\n",
+                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2337,7 +2995,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2346,7 +3004,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "description": "The data authentication token associated with this endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2373,7 +3031,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2382,7 +3040,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2427,7 +3085,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "description": "The path to upload logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2436,7 +3094,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2445,7 +3103,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2463,7 +3121,7 @@
                 },
                 "publicKey": {
                     "type": "string",
-                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2472,7 +3130,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2481,7 +3139,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.\n",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2508,7 +3166,7 @@
                 },
                 "user": {
                     "type": "string",
-                    "description": "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.\n",
+                    "description": "The username for your Cloud Files account.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2538,7 +3196,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2556,7 +3214,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2574,7 +3232,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2780,7 +3438,7 @@
             "properties": {
                 "bucketName": {
                     "type": "string",
-                    "description": "The name of the bucket in which to store the logs.\n",
+                    "description": "The name of your Cloud Files container.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2789,7 +3447,7 @@
                 },
                 "domain": {
                     "type": "string",
-                    "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n",
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2798,7 +3456,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2807,7 +3465,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2843,7 +3501,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path to upload log files to. If the path ends in / then it is treated as a directory.\n",
+                    "description": "The path to upload logs to.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2852,7 +3510,7 @@
                 },
                 "period": {
                     "type": "integer",
-                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`).\n",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2861,7 +3519,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2870,7 +3528,7 @@
                 },
                 "publicKey": {
                     "type": "string",
-                    "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2888,7 +3546,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2995,7 +3653,7 @@
             "properties": {
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3004,7 +3662,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3022,7 +3680,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3031,7 +3689,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3058,7 +3716,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "description": "The data authentication token associated with this endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3067,7 +3725,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "The Elasticsearch URL to stream logs to.\n",
+                    "description": "Your OpenStack auth url.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3086,7 +3744,7 @@
             "properties": {
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3095,7 +3753,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3122,7 +3780,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3131,7 +3789,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3140,7 +3798,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "The Elasticsearch URL to stream logs to.\n",
+                    "description": "Your OpenStack auth url.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3167,7 +3825,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting.\n",
+                    "description": "Apache style log formatting.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3176,7 +3834,7 @@
                 },
                 "formatVersion": {
                     "type": "integer",
-                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.\n",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3203,7 +3861,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3221,7 +3879,7 @@
                 },
                 "responseCondition": {
                     "type": "string",
-                    "description": "The name of the `condition` to apply. If empty, always execute.\n",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3266,7 +3924,7 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token to use for authentication (https://www.scalyr.com/keys).\n",
+                    "description": "The data authentication token associated with this endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3630,7 +4288,7 @@
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
                     },
-                    "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n"
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                 },
                 "dynamicsnippets": {
                     "type": "array",
@@ -3685,12 +4343,26 @@
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
+                "loggingCloudfiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
+                    },
+                    "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingDatadogs": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
                     },
                     "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingDigitaloceans": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
+                    },
+                    "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingElasticsearches": {
                     "type": "array",
@@ -3713,6 +4385,20 @@
                     },
                     "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                 },
+                "loggingHeroku": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
+                    },
+                    "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingHoneycombs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
+                    },
+                    "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingKafkas": {
                     "type": "array",
                     "items": {
@@ -3727,12 +4413,26 @@
                     },
                     "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                 },
+                "loggingLogshuttles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
+                    },
+                    "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingNewrelics": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
                     },
                     "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingOpenstacks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
+                    },
+                    "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingScalyrs": {
                     "type": "array",
@@ -3905,7 +4605,7 @@
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
                     },
-                    "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n"
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                 },
                 "dynamicsnippets": {
                     "type": "array",
@@ -3960,12 +4660,26 @@
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
+                "loggingCloudfiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
+                    },
+                    "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingDatadogs": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
                     },
                     "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingDigitaloceans": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
+                    },
+                    "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingElasticsearches": {
                     "type": "array",
@@ -3988,6 +4702,20 @@
                     },
                     "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                 },
+                "loggingHeroku": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
+                    },
+                    "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingHoneycombs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
+                    },
+                    "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingKafkas": {
                     "type": "array",
                     "items": {
@@ -4002,12 +4730,26 @@
                     },
                     "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                 },
+                "loggingLogshuttles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
+                    },
+                    "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingNewrelics": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
                     },
                     "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingOpenstacks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
+                    },
+                    "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingScalyrs": {
                     "type": "array",
@@ -4186,7 +4928,7 @@
                         "items": {
                             "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
                         },
-                        "description": "If you created the S3 bucket outside of `us-east-1`,\nthen specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`.\n"
+                        "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                     },
                     "dynamicsnippets": {
                         "type": "array",
@@ -4241,12 +4983,26 @@
                         },
                         "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                     },
+                    "loggingCloudfiles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
+                        },
+                        "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
+                    },
                     "loggingDatadogs": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
                         },
                         "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingDigitaloceans": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
+                        },
+                        "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingElasticsearches": {
                         "type": "array",
@@ -4269,6 +5025,20 @@
                         },
                         "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                     },
+                    "loggingHeroku": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
+                        },
+                        "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingHoneycombs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
+                        },
+                        "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
+                    },
                     "loggingKafkas": {
                         "type": "array",
                         "items": {
@@ -4283,12 +5053,26 @@
                         },
                         "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                     },
+                    "loggingLogshuttles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
+                        },
+                        "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
+                    },
                     "loggingNewrelics": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
                         },
                         "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingOpenstacks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
+                        },
+                        "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingScalyrs": {
                         "type": "array",

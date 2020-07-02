@@ -19,13 +19,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ContentType { get; set; }
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting.
+        /// Apache style log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`. Default `2`.
+        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
@@ -67,7 +67,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
@@ -85,7 +85,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? RequestMaxEntries { get; set; }
 
         /// <summary>
-        /// The name of the `condition` to apply. If empty, always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
@@ -115,7 +115,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The Elasticsearch URL to stream logs to.
+        /// Your OpenStack auth url.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

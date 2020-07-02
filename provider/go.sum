@@ -481,6 +481,8 @@ github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200623103225-1770382a398
 github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200623103225-1770382a3987/go.mod h1:barqJ/flzaRaU5l4NNOs+MLiLEk58B1vSZr8Z0mcpBw=
 github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200624163122-79b59af160ec h1:TB5KJjW3s4ggXYu7Gz2J88AnbpBE1zVWPenaxLBuXcU=
 github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200624163122-79b59af160ec/go.mod h1:barqJ/flzaRaU5l4NNOs+MLiLEk58B1vSZr8Z0mcpBw=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200702142514-d0bf96338d91 h1:fat7q2JCy+nA2u0FSRZAXmAT7b9b6HA0eBGITHsbDY0=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200702142514-d0bf96338d91/go.mod h1:barqJ/flzaRaU5l4NNOs+MLiLEk58B1vSZr8Z0mcpBw=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d h1:1JtzB9Gx0YX2UgKKkqJwTgBXxfg2cbLUEqTJKwKBK7s=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d/go.mod h1:yv9XozKsue9ZELHQbrBGgIaFtE3OX3Q4m7koTzTqgpE=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200528170746-c1234defe2b5 h1:h+pUwgEser1Ole6TMCc66njRPcw7SEVXpeoClG+ihEM=
