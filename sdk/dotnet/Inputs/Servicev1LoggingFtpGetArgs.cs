@@ -37,6 +37,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
+        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// </summary>
+        [Input("messageType")]
+        public Input<string>? MessageType { get; set; }
+
+        /// <summary>
         /// A unique name to identify this dictionary.
         /// </summary>
         [Input("name", required: true)]

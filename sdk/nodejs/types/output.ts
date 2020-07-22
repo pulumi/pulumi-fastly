@@ -25,6 +25,977 @@ export interface ServiceACLEntriesv1Entry {
     subnet?: string;
 }
 
+export interface ServiceComputeBackend {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: string;
+    /**
+     * Denotes if this Backend should be
+     * included in the pool of backends that requests are load balanced against.
+     * Default `true`.
+     */
+    autoLoadbalance?: boolean;
+    /**
+     * How long to wait between bytes in milliseconds. Default `10000`.
+     */
+    betweenBytesTimeout?: number;
+    /**
+     * How long to wait for a timeout in milliseconds.
+     * Default `1000`
+     */
+    connectTimeout?: number;
+    /**
+     * Number of errors to allow before the Backend is marked as down. Default `0`.
+     */
+    errorThreshold?: number;
+    /**
+     * How long to wait for the first bytes in milliseconds. Default `15000`.
+     */
+    firstByteTimeout?: number;
+    /**
+     * Name of a defined `healthcheck` to assign to this backend.
+     */
+    healthcheck?: string;
+    /**
+     * Maximum number of connections for this Backend.
+     * Default `200`.
+     */
+    maxConn?: number;
+    /**
+     * Maximum allowed TLS version on SSL connections to this backend.
+     */
+    maxTlsVersion?: string;
+    /**
+     * Minimum allowed TLS version on SSL connections to this backend.
+     */
+    minTlsVersion?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The hostname to override the Host header.
+     */
+    overrideHost?: string;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: number;
+    /**
+     * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+     */
+    shield?: string;
+    /**
+     * CA certificate attached to origin.
+     */
+    sslCaCert?: string;
+    /**
+     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+     */
+    sslCertHostname?: string;
+    /**
+     * Be strict about checking SSL certs. Default `true`.
+     */
+    sslCheckCert?: boolean;
+    /**
+     * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+     */
+    sslCiphers?: string;
+    /**
+     * Client certificate attached to origin. Used when connecting to the backend.
+     */
+    sslClientCert?: string;
+    /**
+     * Client key attached to origin. Used when connecting to the backend.
+     */
+    sslClientKey?: string;
+    /**
+     * Used for both SNI during the TLS handshake and to validate the cert.
+     *
+     * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
+     */
+    sslHostname?: string;
+    /**
+     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+     */
+    sslSniHostname?: string;
+    /**
+     * Whether or not to use SSL to reach the backend. Default `false`.
+     */
+    useSsl?: boolean;
+    /**
+     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+     */
+    weight?: number;
+}
+
+export interface ServiceComputeBigquerylogging {
+    /**
+     * The Honeycomb Dataset you want to log to.
+     */
+    dataset: string;
+    /**
+     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     */
+    email?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The ID of your Google Cloud Platform project.
+     */
+    projectId: string;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey?: string;
+    /**
+     * The ID of your BigQuery table.
+     */
+    table: string;
+    template?: string;
+}
+
+export interface ServiceComputeBlobstoragelogging {
+    /**
+     * The unique Azure Blob Storage namespace in which your data objects are stored.
+     */
+    accountName: string;
+    /**
+     * The name of the Azure Blob Storage container in which to store logs.
+     */
+    container: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+     */
+    sasToken: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+}
+
+export interface ServiceComputeDomain {
+    /**
+     * An optional comment about the Domain.
+     */
+    comment?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+}
+
+export interface ServiceComputeGcslogging {
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     */
+    email?: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+}
+
+export interface ServiceComputeHealthcheck {
+    /**
+     * How often to run the Healthcheck in milliseconds. Default `5000`.
+     */
+    checkInterval?: number;
+    /**
+     * The status code expected from the host. Default `200`.
+     */
+    expectedResponse?: number;
+    /**
+     * The Host header to send for this Healthcheck.
+     */
+    host: string;
+    /**
+     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+     */
+    httpVersion?: string;
+    /**
+     * When loading a config, the initial number of probes to be seen as OK. Default `2`.
+     */
+    initial?: number;
+    /**
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     */
+    method?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path: string;
+    /**
+     * How many Healthchecks must succeed to be considered healthy. Default `3`.
+     */
+    threshold?: number;
+    /**
+     * Timeout in milliseconds. Default `500`.
+     */
+    timeout?: number;
+    /**
+     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+     */
+    window?: number;
+}
+
+export interface ServiceComputeHttpslogging {
+    /**
+     * Value of the `Content-Type` header sent with the request.
+     */
+    contentType?: string;
+    /**
+     * Custom header sent with the request.
+     */
+    headerName?: string;
+    /**
+     * Value of the custom header sent with the request.
+     */
+    headerValue?: string;
+    /**
+     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+     */
+    jsonFormat?: string;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     */
+    method?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: number;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxEntries?: number;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+}
+
+export interface ServiceComputeLogentry {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: number;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: boolean;
+}
+
+export interface ServiceComputeLoggingCloudfile {
+    /**
+     * Your Cloud File account access key.
+     */
+    accessKey: string;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: string;
+}
+
+export interface ServiceComputeLoggingDatadog {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+}
+
+export interface ServiceComputeLoggingDigitalocean {
+    /**
+     * Your Cloud File account access key.
+     */
+    accessKey: string;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     */
+    domain?: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+}
+
+export interface ServiceComputeLoggingElasticsearch {
+    /**
+     * The name of the Elasticsearch index to send documents (logs) to.
+     */
+    index: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: string;
+    /**
+     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+     */
+    pipeline?: string;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: number;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxEntries?: number;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user?: string;
+}
+
+export interface ServiceComputeLoggingFtp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password: string;
+    /**
+     * The path to upload logs to.
+     */
+    path: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: string;
+}
+
+export interface ServiceComputeLoggingGooglepubsub {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The ID of your Google Cloud Platform project.
+     */
+    projectId: string;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey: string;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: string;
+}
+
+export interface ServiceComputeLoggingHeroku {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+}
+
+export interface ServiceComputeLoggingHoneycomb {
+    /**
+     * The Honeycomb Dataset you want to log to.
+     */
+    dataset: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+}
+
+export interface ServiceComputeLoggingKafka {
+    /**
+     * A comma-separated list of IP addresses or hostnames of Kafka brokers.
+     */
+    brokers: string;
+    /**
+     * The codec used for compression of your logs. One of: gzip, snappy, lz4.
+     */
+    compressionCodec?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+     */
+    requiredAcks?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: string;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: string;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: boolean;
+}
+
+export interface ServiceComputeLoggingLoggly {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+}
+
+export interface ServiceComputeLoggingLogshuttle {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+}
+
+export interface ServiceComputeLoggingNewrelic {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+}
+
+export interface ServiceComputeLoggingOpenstack {
+    /**
+     * Your Cloud File account access key.
+     */
+    accessKey: string;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: string;
+}
+
+export interface ServiceComputeLoggingScalyr {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+}
+
+export interface ServiceComputeLoggingSftp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: string;
+    /**
+     * The path to upload logs to.
+     */
+    path: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey?: string;
+    /**
+     * A list of host keys for all hosts we can connect to over SFTP.
+     */
+    sshKnownHosts: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: string;
+}
+
+export interface ServiceComputePackage {
+    /**
+     * The path to the Wasm deployment package within your local filesystem.
+     */
+    filename: string;
+    sourceCodeHash: string;
+}
+
+export interface ServiceComputePapertrail {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port: number;
+}
+
+export interface ServiceComputeS3logging {
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: string;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     */
+    domain?: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The path to upload logs to.
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: string;
+    /**
+     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+     */
+    redundancy?: string;
+    /**
+     * AWS Access Key of an account with the required
+     * permissions to post logs. It is **strongly** recommended you create a separate
+     * IAM user with permissions to only operate on this Bucket. This key will be
+     * not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+     */
+    s3AccessKey?: string;
+    /**
+     * AWS Secret Key of an account with the required
+     * permissions to post logs. It is **strongly** recommended you create a separate
+     * IAM user with permissions to only operate on this Bucket. This secret will be
+     * not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+     */
+    s3SecretKey?: string;
+    serverSideEncryption?: string;
+    serverSideEncryptionKmsKeyId?: string;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: string;
+}
+
+export interface ServiceComputeSplunk {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+}
+
+export interface ServiceComputeSumologic {
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: string;
+}
+
+export interface ServiceComputeSyslog {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: string;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: string;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: number;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: string;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token?: string;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: boolean;
+}
+
 export interface Servicev1Acl {
     /**
      * The ID of the ACL.
@@ -899,6 +1870,10 @@ export interface Servicev1LoggingFtp {
      * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: string;
     /**
      * A unique name to identify this dictionary.
      */

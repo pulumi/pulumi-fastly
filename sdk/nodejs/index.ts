@@ -5,6 +5,7 @@
 export * from "./getFastlyIpRanges";
 export * from "./provider";
 export * from "./serviceACLEntriesv1";
+export * from "./serviceCompute";
 export * from "./serviceDictionaryItemsv1";
 export * from "./serviceDynamicSnippetContentv1";
 export * from "./servicev1";

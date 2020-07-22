@@ -140,6 +140,4614 @@ func (o ServiceACLEntriesv1EntryArrayOutput) Index(i pulumi.IntInput) ServiceACL
 	}).(ServiceACLEntriesv1EntryOutput)
 }
 
+type ServiceComputeBackend struct {
+	// The SFTP address to stream logs to.
+	Address string `pulumi:"address"`
+	// Denotes if this Backend should be
+	// included in the pool of backends that requests are load balanced against.
+	// Default `true`.
+	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`.
+	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds.
+	// Default `1000`
+	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`.
+	ErrorThreshold *int `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`.
+	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
+	// Name of a defined `healthcheck` to assign to this backend.
+	Healthcheck *string `pulumi:"healthcheck"`
+	// Maximum number of connections for this Backend.
+	// Default `200`.
+	MaxConn *int `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
+	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
+	MinTlsVersion *string `pulumi:"minTlsVersion"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The hostname to override the Host header.
+	OverrideHost *string `pulumi:"overrideHost"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port *int `pulumi:"port"`
+	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+	Shield *string `pulumi:"shield"`
+	// CA certificate attached to origin.
+	SslCaCert *string `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+	SslCertHostname *string `pulumi:"sslCertHostname"`
+	// Be strict about checking SSL certs. Default `true`.
+	SslCheckCert *bool `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+	SslCiphers *string `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend.
+	SslClientCert *string `pulumi:"sslClientCert"`
+	// Client key attached to origin. Used when connecting to the backend.
+	SslClientKey *string `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert.
+	//
+	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
+	SslHostname *string `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+	SslSniHostname *string `pulumi:"sslSniHostname"`
+	// Whether or not to use SSL to reach the backend. Default `false`.
+	UseSsl *bool `pulumi:"useSsl"`
+	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+	Weight *int `pulumi:"weight"`
+}
+
+// ServiceComputeBackendInput is an input type that accepts ServiceComputeBackendArgs and ServiceComputeBackendOutput values.
+// You can construct a concrete instance of `ServiceComputeBackendInput` via:
+//
+//          ServiceComputeBackendArgs{...}
+type ServiceComputeBackendInput interface {
+	pulumi.Input
+
+	ToServiceComputeBackendOutput() ServiceComputeBackendOutput
+	ToServiceComputeBackendOutputWithContext(context.Context) ServiceComputeBackendOutput
+}
+
+type ServiceComputeBackendArgs struct {
+	// The SFTP address to stream logs to.
+	Address pulumi.StringInput `pulumi:"address"`
+	// Denotes if this Backend should be
+	// included in the pool of backends that requests are load balanced against.
+	// Default `true`.
+	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`.
+	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds.
+	// Default `1000`
+	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`.
+	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`.
+	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
+	// Name of a defined `healthcheck` to assign to this backend.
+	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
+	// Maximum number of connections for this Backend.
+	// Default `200`.
+	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
+	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
+	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The hostname to override the Host header.
+	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+	Shield pulumi.StringPtrInput `pulumi:"shield"`
+	// CA certificate attached to origin.
+	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
+	// Be strict about checking SSL certs. Default `true`.
+	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend.
+	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
+	// Client key attached to origin. Used when connecting to the backend.
+	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert.
+	//
+	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
+	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
+	// Whether or not to use SSL to reach the backend. Default `false`.
+	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
+	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+	Weight pulumi.IntPtrInput `pulumi:"weight"`
+}
+
+func (ServiceComputeBackendArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeBackend)(nil)).Elem()
+}
+
+func (i ServiceComputeBackendArgs) ToServiceComputeBackendOutput() ServiceComputeBackendOutput {
+	return i.ToServiceComputeBackendOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeBackendArgs) ToServiceComputeBackendOutputWithContext(ctx context.Context) ServiceComputeBackendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBackendOutput)
+}
+
+// ServiceComputeBackendArrayInput is an input type that accepts ServiceComputeBackendArray and ServiceComputeBackendArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeBackendArrayInput` via:
+//
+//          ServiceComputeBackendArray{ ServiceComputeBackendArgs{...} }
+type ServiceComputeBackendArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeBackendArrayOutput() ServiceComputeBackendArrayOutput
+	ToServiceComputeBackendArrayOutputWithContext(context.Context) ServiceComputeBackendArrayOutput
+}
+
+type ServiceComputeBackendArray []ServiceComputeBackendInput
+
+func (ServiceComputeBackendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeBackend)(nil)).Elem()
+}
+
+func (i ServiceComputeBackendArray) ToServiceComputeBackendArrayOutput() ServiceComputeBackendArrayOutput {
+	return i.ToServiceComputeBackendArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeBackendArray) ToServiceComputeBackendArrayOutputWithContext(ctx context.Context) ServiceComputeBackendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBackendArrayOutput)
+}
+
+type ServiceComputeBackendOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeBackendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeBackend)(nil)).Elem()
+}
+
+func (o ServiceComputeBackendOutput) ToServiceComputeBackendOutput() ServiceComputeBackendOutput {
+	return o
+}
+
+func (o ServiceComputeBackendOutput) ToServiceComputeBackendOutputWithContext(ctx context.Context) ServiceComputeBackendOutput {
+	return o
+}
+
+// The SFTP address to stream logs to.
+func (o ServiceComputeBackendOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// Denotes if this Backend should be
+// included in the pool of backends that requests are load balanced against.
+// Default `true`.
+func (o ServiceComputeBackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
+}
+
+// How long to wait between bytes in milliseconds. Default `10000`.
+func (o ServiceComputeBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
+}
+
+// How long to wait for a timeout in milliseconds.
+// Default `1000`
+func (o ServiceComputeBackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Number of errors to allow before the Backend is marked as down. Default `0`.
+func (o ServiceComputeBackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
+}
+
+// How long to wait for the first bytes in milliseconds. Default `15000`.
+func (o ServiceComputeBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.FirstByteTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Name of a defined `healthcheck` to assign to this backend.
+func (o ServiceComputeBackendOutput) Healthcheck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of connections for this Backend.
+// Default `200`.
+func (o ServiceComputeBackendOutput) MaxConn() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
+}
+
+// Maximum allowed TLS version on SSL connections to this backend.
+func (o ServiceComputeBackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// Minimum allowed TLS version on SSL connections to this backend.
+func (o ServiceComputeBackendOutput) MinTlsVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeBackendOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The hostname to override the Host header.
+func (o ServiceComputeBackendOutput) OverrideHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.OverrideHost }).(pulumi.StringPtrOutput)
+}
+
+// The port the SFTP service listens on. (Default: `22`).
+func (o ServiceComputeBackendOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+func (o ServiceComputeBackendOutput) Shield() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.Shield }).(pulumi.StringPtrOutput)
+}
+
+// CA certificate attached to origin.
+func (o ServiceComputeBackendOutput) SslCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
+}
+
+// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+func (o ServiceComputeBackendOutput) SslCertHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
+}
+
+// Be strict about checking SSL certs. Default `true`.
+func (o ServiceComputeBackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
+}
+
+// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+func (o ServiceComputeBackendOutput) SslCiphers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate attached to origin. Used when connecting to the backend.
+func (o ServiceComputeBackendOutput) SslClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslClientCert }).(pulumi.StringPtrOutput)
+}
+
+// Client key attached to origin. Used when connecting to the backend.
+func (o ServiceComputeBackendOutput) SslClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
+}
+
+// Used for both SNI during the TLS handshake and to validate the cert.
+//
+// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
+func (o ServiceComputeBackendOutput) SslHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
+}
+
+// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+func (o ServiceComputeBackendOutput) SslSniHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
+}
+
+// Whether or not to use SSL to reach the backend. Default `false`.
+func (o ServiceComputeBackendOutput) UseSsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
+}
+
+// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+func (o ServiceComputeBackendOutput) Weight() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.Weight }).(pulumi.IntPtrOutput)
+}
+
+type ServiceComputeBackendArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeBackendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeBackend)(nil)).Elem()
+}
+
+func (o ServiceComputeBackendArrayOutput) ToServiceComputeBackendArrayOutput() ServiceComputeBackendArrayOutput {
+	return o
+}
+
+func (o ServiceComputeBackendArrayOutput) ToServiceComputeBackendArrayOutputWithContext(ctx context.Context) ServiceComputeBackendArrayOutput {
+	return o
+}
+
+func (o ServiceComputeBackendArrayOutput) Index(i pulumi.IntInput) ServiceComputeBackendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeBackend {
+		return vs[0].([]ServiceComputeBackend)[vs[1].(int)]
+	}).(ServiceComputeBackendOutput)
+}
+
+type ServiceComputeBigquerylogging struct {
+	// The Honeycomb Dataset you want to log to.
+	Dataset string `pulumi:"dataset"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	Email *string `pulumi:"email"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The ID of your Google Cloud Platform project.
+	ProjectId string `pulumi:"projectId"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey *string `pulumi:"secretKey"`
+	// The ID of your BigQuery table.
+	Table    string  `pulumi:"table"`
+	Template *string `pulumi:"template"`
+}
+
+// ServiceComputeBigqueryloggingInput is an input type that accepts ServiceComputeBigqueryloggingArgs and ServiceComputeBigqueryloggingOutput values.
+// You can construct a concrete instance of `ServiceComputeBigqueryloggingInput` via:
+//
+//          ServiceComputeBigqueryloggingArgs{...}
+type ServiceComputeBigqueryloggingInput interface {
+	pulumi.Input
+
+	ToServiceComputeBigqueryloggingOutput() ServiceComputeBigqueryloggingOutput
+	ToServiceComputeBigqueryloggingOutputWithContext(context.Context) ServiceComputeBigqueryloggingOutput
+}
+
+type ServiceComputeBigqueryloggingArgs struct {
+	// The Honeycomb Dataset you want to log to.
+	Dataset pulumi.StringInput `pulumi:"dataset"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	Email pulumi.StringPtrInput `pulumi:"email"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of your Google Cloud Platform project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// The ID of your BigQuery table.
+	Table    pulumi.StringInput    `pulumi:"table"`
+	Template pulumi.StringPtrInput `pulumi:"template"`
+}
+
+func (ServiceComputeBigqueryloggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeBigquerylogging)(nil)).Elem()
+}
+
+func (i ServiceComputeBigqueryloggingArgs) ToServiceComputeBigqueryloggingOutput() ServiceComputeBigqueryloggingOutput {
+	return i.ToServiceComputeBigqueryloggingOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeBigqueryloggingArgs) ToServiceComputeBigqueryloggingOutputWithContext(ctx context.Context) ServiceComputeBigqueryloggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBigqueryloggingOutput)
+}
+
+// ServiceComputeBigqueryloggingArrayInput is an input type that accepts ServiceComputeBigqueryloggingArray and ServiceComputeBigqueryloggingArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeBigqueryloggingArrayInput` via:
+//
+//          ServiceComputeBigqueryloggingArray{ ServiceComputeBigqueryloggingArgs{...} }
+type ServiceComputeBigqueryloggingArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeBigqueryloggingArrayOutput() ServiceComputeBigqueryloggingArrayOutput
+	ToServiceComputeBigqueryloggingArrayOutputWithContext(context.Context) ServiceComputeBigqueryloggingArrayOutput
+}
+
+type ServiceComputeBigqueryloggingArray []ServiceComputeBigqueryloggingInput
+
+func (ServiceComputeBigqueryloggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeBigquerylogging)(nil)).Elem()
+}
+
+func (i ServiceComputeBigqueryloggingArray) ToServiceComputeBigqueryloggingArrayOutput() ServiceComputeBigqueryloggingArrayOutput {
+	return i.ToServiceComputeBigqueryloggingArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeBigqueryloggingArray) ToServiceComputeBigqueryloggingArrayOutputWithContext(ctx context.Context) ServiceComputeBigqueryloggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBigqueryloggingArrayOutput)
+}
+
+type ServiceComputeBigqueryloggingOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeBigqueryloggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeBigquerylogging)(nil)).Elem()
+}
+
+func (o ServiceComputeBigqueryloggingOutput) ToServiceComputeBigqueryloggingOutput() ServiceComputeBigqueryloggingOutput {
+	return o
+}
+
+func (o ServiceComputeBigqueryloggingOutput) ToServiceComputeBigqueryloggingOutputWithContext(ctx context.Context) ServiceComputeBigqueryloggingOutput {
+	return o
+}
+
+// The Honeycomb Dataset you want to log to.
+func (o ServiceComputeBigqueryloggingOutput) Dataset() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Dataset }).(pulumi.StringOutput)
+}
+
+// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+func (o ServiceComputeBigqueryloggingOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeBigqueryloggingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of your Google Cloud Platform project.
+func (o ServiceComputeBigqueryloggingOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Your DigitalOcean Spaces account secret key.
+func (o ServiceComputeBigqueryloggingOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// The ID of your BigQuery table.
+func (o ServiceComputeBigqueryloggingOutput) Table() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Table }).(pulumi.StringOutput)
+}
+
+func (o ServiceComputeBigqueryloggingOutput) Template() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) *string { return v.Template }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeBigqueryloggingArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeBigqueryloggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeBigquerylogging)(nil)).Elem()
+}
+
+func (o ServiceComputeBigqueryloggingArrayOutput) ToServiceComputeBigqueryloggingArrayOutput() ServiceComputeBigqueryloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeBigqueryloggingArrayOutput) ToServiceComputeBigqueryloggingArrayOutputWithContext(ctx context.Context) ServiceComputeBigqueryloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeBigqueryloggingArrayOutput) Index(i pulumi.IntInput) ServiceComputeBigqueryloggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeBigquerylogging {
+		return vs[0].([]ServiceComputeBigquerylogging)[vs[1].(int)]
+	}).(ServiceComputeBigqueryloggingOutput)
+}
+
+type ServiceComputeBlobstoragelogging struct {
+	// The unique Azure Blob Storage namespace in which your data objects are stored.
+	AccountName string `pulumi:"accountName"`
+	// The name of the Azure Blob Storage container in which to store logs.
+	Container string `pulumi:"container"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The path to upload logs to.
+	Path *string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey *string `pulumi:"publicKey"`
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+	SasToken string `pulumi:"sasToken"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+}
+
+// ServiceComputeBlobstorageloggingInput is an input type that accepts ServiceComputeBlobstorageloggingArgs and ServiceComputeBlobstorageloggingOutput values.
+// You can construct a concrete instance of `ServiceComputeBlobstorageloggingInput` via:
+//
+//          ServiceComputeBlobstorageloggingArgs{...}
+type ServiceComputeBlobstorageloggingInput interface {
+	pulumi.Input
+
+	ToServiceComputeBlobstorageloggingOutput() ServiceComputeBlobstorageloggingOutput
+	ToServiceComputeBlobstorageloggingOutputWithContext(context.Context) ServiceComputeBlobstorageloggingOutput
+}
+
+type ServiceComputeBlobstorageloggingArgs struct {
+	// The unique Azure Blob Storage namespace in which your data objects are stored.
+	AccountName pulumi.StringInput `pulumi:"accountName"`
+	// The name of the Azure Blob Storage container in which to store logs.
+	Container pulumi.StringInput `pulumi:"container"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+	SasToken pulumi.StringInput `pulumi:"sasToken"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+}
+
+func (ServiceComputeBlobstorageloggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeBlobstoragelogging)(nil)).Elem()
+}
+
+func (i ServiceComputeBlobstorageloggingArgs) ToServiceComputeBlobstorageloggingOutput() ServiceComputeBlobstorageloggingOutput {
+	return i.ToServiceComputeBlobstorageloggingOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeBlobstorageloggingArgs) ToServiceComputeBlobstorageloggingOutputWithContext(ctx context.Context) ServiceComputeBlobstorageloggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBlobstorageloggingOutput)
+}
+
+// ServiceComputeBlobstorageloggingArrayInput is an input type that accepts ServiceComputeBlobstorageloggingArray and ServiceComputeBlobstorageloggingArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeBlobstorageloggingArrayInput` via:
+//
+//          ServiceComputeBlobstorageloggingArray{ ServiceComputeBlobstorageloggingArgs{...} }
+type ServiceComputeBlobstorageloggingArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeBlobstorageloggingArrayOutput() ServiceComputeBlobstorageloggingArrayOutput
+	ToServiceComputeBlobstorageloggingArrayOutputWithContext(context.Context) ServiceComputeBlobstorageloggingArrayOutput
+}
+
+type ServiceComputeBlobstorageloggingArray []ServiceComputeBlobstorageloggingInput
+
+func (ServiceComputeBlobstorageloggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeBlobstoragelogging)(nil)).Elem()
+}
+
+func (i ServiceComputeBlobstorageloggingArray) ToServiceComputeBlobstorageloggingArrayOutput() ServiceComputeBlobstorageloggingArrayOutput {
+	return i.ToServiceComputeBlobstorageloggingArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeBlobstorageloggingArray) ToServiceComputeBlobstorageloggingArrayOutputWithContext(ctx context.Context) ServiceComputeBlobstorageloggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBlobstorageloggingArrayOutput)
+}
+
+type ServiceComputeBlobstorageloggingOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeBlobstorageloggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeBlobstoragelogging)(nil)).Elem()
+}
+
+func (o ServiceComputeBlobstorageloggingOutput) ToServiceComputeBlobstorageloggingOutput() ServiceComputeBlobstorageloggingOutput {
+	return o
+}
+
+func (o ServiceComputeBlobstorageloggingOutput) ToServiceComputeBlobstorageloggingOutputWithContext(ctx context.Context) ServiceComputeBlobstorageloggingOutput {
+	return o
+}
+
+// The unique Azure Blob Storage namespace in which your data objects are stored.
+func (o ServiceComputeBlobstorageloggingOutput) AccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.AccountName }).(pulumi.StringOutput)
+}
+
+// The name of the Azure Blob Storage container in which to store logs.
+func (o ServiceComputeBlobstorageloggingOutput) Container() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.Container }).(pulumi.StringOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeBlobstorageloggingOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeBlobstorageloggingOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeBlobstorageloggingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeBlobstorageloggingOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeBlobstorageloggingOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+func (o ServiceComputeBlobstorageloggingOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+func (o ServiceComputeBlobstorageloggingOutput) SasToken() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.SasToken }).(pulumi.StringOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeBlobstorageloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeBlobstorageloggingArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeBlobstorageloggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeBlobstoragelogging)(nil)).Elem()
+}
+
+func (o ServiceComputeBlobstorageloggingArrayOutput) ToServiceComputeBlobstorageloggingArrayOutput() ServiceComputeBlobstorageloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeBlobstorageloggingArrayOutput) ToServiceComputeBlobstorageloggingArrayOutputWithContext(ctx context.Context) ServiceComputeBlobstorageloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeBlobstorageloggingArrayOutput) Index(i pulumi.IntInput) ServiceComputeBlobstorageloggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeBlobstoragelogging {
+		return vs[0].([]ServiceComputeBlobstoragelogging)[vs[1].(int)]
+	}).(ServiceComputeBlobstorageloggingOutput)
+}
+
+type ServiceComputeDomain struct {
+	// An optional comment about the Domain.
+	Comment *string `pulumi:"comment"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+}
+
+// ServiceComputeDomainInput is an input type that accepts ServiceComputeDomainArgs and ServiceComputeDomainOutput values.
+// You can construct a concrete instance of `ServiceComputeDomainInput` via:
+//
+//          ServiceComputeDomainArgs{...}
+type ServiceComputeDomainInput interface {
+	pulumi.Input
+
+	ToServiceComputeDomainOutput() ServiceComputeDomainOutput
+	ToServiceComputeDomainOutputWithContext(context.Context) ServiceComputeDomainOutput
+}
+
+type ServiceComputeDomainArgs struct {
+	// An optional comment about the Domain.
+	Comment pulumi.StringPtrInput `pulumi:"comment"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (ServiceComputeDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeDomain)(nil)).Elem()
+}
+
+func (i ServiceComputeDomainArgs) ToServiceComputeDomainOutput() ServiceComputeDomainOutput {
+	return i.ToServiceComputeDomainOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeDomainArgs) ToServiceComputeDomainOutputWithContext(ctx context.Context) ServiceComputeDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDomainOutput)
+}
+
+// ServiceComputeDomainArrayInput is an input type that accepts ServiceComputeDomainArray and ServiceComputeDomainArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeDomainArrayInput` via:
+//
+//          ServiceComputeDomainArray{ ServiceComputeDomainArgs{...} }
+type ServiceComputeDomainArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeDomainArrayOutput() ServiceComputeDomainArrayOutput
+	ToServiceComputeDomainArrayOutputWithContext(context.Context) ServiceComputeDomainArrayOutput
+}
+
+type ServiceComputeDomainArray []ServiceComputeDomainInput
+
+func (ServiceComputeDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeDomain)(nil)).Elem()
+}
+
+func (i ServiceComputeDomainArray) ToServiceComputeDomainArrayOutput() ServiceComputeDomainArrayOutput {
+	return i.ToServiceComputeDomainArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeDomainArray) ToServiceComputeDomainArrayOutputWithContext(ctx context.Context) ServiceComputeDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDomainArrayOutput)
+}
+
+type ServiceComputeDomainOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeDomain)(nil)).Elem()
+}
+
+func (o ServiceComputeDomainOutput) ToServiceComputeDomainOutput() ServiceComputeDomainOutput {
+	return o
+}
+
+func (o ServiceComputeDomainOutput) ToServiceComputeDomainOutputWithContext(ctx context.Context) ServiceComputeDomainOutput {
+	return o
+}
+
+// An optional comment about the Domain.
+func (o ServiceComputeDomainOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDomain) *string { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeDomainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeDomain) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type ServiceComputeDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeDomain)(nil)).Elem()
+}
+
+func (o ServiceComputeDomainArrayOutput) ToServiceComputeDomainArrayOutput() ServiceComputeDomainArrayOutput {
+	return o
+}
+
+func (o ServiceComputeDomainArrayOutput) ToServiceComputeDomainArrayOutputWithContext(ctx context.Context) ServiceComputeDomainArrayOutput {
+	return o
+}
+
+func (o ServiceComputeDomainArrayOutput) Index(i pulumi.IntInput) ServiceComputeDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeDomain {
+		return vs[0].([]ServiceComputeDomain)[vs[1].(int)]
+	}).(ServiceComputeDomainOutput)
+}
+
+type ServiceComputeGcslogging struct {
+	// The name of your Cloud Files container.
+	BucketName string `pulumi:"bucketName"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	Email *string `pulumi:"email"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The path to upload logs to.
+	Path *string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey *string `pulumi:"secretKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+}
+
+// ServiceComputeGcsloggingInput is an input type that accepts ServiceComputeGcsloggingArgs and ServiceComputeGcsloggingOutput values.
+// You can construct a concrete instance of `ServiceComputeGcsloggingInput` via:
+//
+//          ServiceComputeGcsloggingArgs{...}
+type ServiceComputeGcsloggingInput interface {
+	pulumi.Input
+
+	ToServiceComputeGcsloggingOutput() ServiceComputeGcsloggingOutput
+	ToServiceComputeGcsloggingOutputWithContext(context.Context) ServiceComputeGcsloggingOutput
+}
+
+type ServiceComputeGcsloggingArgs struct {
+	// The name of your Cloud Files container.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	Email pulumi.StringPtrInput `pulumi:"email"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+}
+
+func (ServiceComputeGcsloggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeGcslogging)(nil)).Elem()
+}
+
+func (i ServiceComputeGcsloggingArgs) ToServiceComputeGcsloggingOutput() ServiceComputeGcsloggingOutput {
+	return i.ToServiceComputeGcsloggingOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeGcsloggingArgs) ToServiceComputeGcsloggingOutputWithContext(ctx context.Context) ServiceComputeGcsloggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeGcsloggingOutput)
+}
+
+// ServiceComputeGcsloggingArrayInput is an input type that accepts ServiceComputeGcsloggingArray and ServiceComputeGcsloggingArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeGcsloggingArrayInput` via:
+//
+//          ServiceComputeGcsloggingArray{ ServiceComputeGcsloggingArgs{...} }
+type ServiceComputeGcsloggingArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeGcsloggingArrayOutput() ServiceComputeGcsloggingArrayOutput
+	ToServiceComputeGcsloggingArrayOutputWithContext(context.Context) ServiceComputeGcsloggingArrayOutput
+}
+
+type ServiceComputeGcsloggingArray []ServiceComputeGcsloggingInput
+
+func (ServiceComputeGcsloggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeGcslogging)(nil)).Elem()
+}
+
+func (i ServiceComputeGcsloggingArray) ToServiceComputeGcsloggingArrayOutput() ServiceComputeGcsloggingArrayOutput {
+	return i.ToServiceComputeGcsloggingArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeGcsloggingArray) ToServiceComputeGcsloggingArrayOutputWithContext(ctx context.Context) ServiceComputeGcsloggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeGcsloggingArrayOutput)
+}
+
+type ServiceComputeGcsloggingOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeGcsloggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeGcslogging)(nil)).Elem()
+}
+
+func (o ServiceComputeGcsloggingOutput) ToServiceComputeGcsloggingOutput() ServiceComputeGcsloggingOutput {
+	return o
+}
+
+func (o ServiceComputeGcsloggingOutput) ToServiceComputeGcsloggingOutputWithContext(ctx context.Context) ServiceComputeGcsloggingOutput {
+	return o
+}
+
+// The name of your Cloud Files container.
+func (o ServiceComputeGcsloggingOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+func (o ServiceComputeGcsloggingOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeGcsloggingOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeGcsloggingOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeGcsloggingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeGcsloggingOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeGcsloggingOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// Your DigitalOcean Spaces account secret key.
+func (o ServiceComputeGcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeGcsloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeGcsloggingArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeGcsloggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeGcslogging)(nil)).Elem()
+}
+
+func (o ServiceComputeGcsloggingArrayOutput) ToServiceComputeGcsloggingArrayOutput() ServiceComputeGcsloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeGcsloggingArrayOutput) ToServiceComputeGcsloggingArrayOutputWithContext(ctx context.Context) ServiceComputeGcsloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeGcsloggingArrayOutput) Index(i pulumi.IntInput) ServiceComputeGcsloggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeGcslogging {
+		return vs[0].([]ServiceComputeGcslogging)[vs[1].(int)]
+	}).(ServiceComputeGcsloggingOutput)
+}
+
+type ServiceComputeHealthcheck struct {
+	// How often to run the Healthcheck in milliseconds. Default `5000`.
+	CheckInterval *int `pulumi:"checkInterval"`
+	// The status code expected from the host. Default `200`.
+	ExpectedResponse *int `pulumi:"expectedResponse"`
+	// The Host header to send for this Healthcheck.
+	Host string `pulumi:"host"`
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+	HttpVersion *string `pulumi:"httpVersion"`
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+	Initial *int `pulumi:"initial"`
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	Method *string `pulumi:"method"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The path to upload logs to.
+	Path string `pulumi:"path"`
+	// How many Healthchecks must succeed to be considered healthy. Default `3`.
+	Threshold *int `pulumi:"threshold"`
+	// Timeout in milliseconds. Default `500`.
+	Timeout *int `pulumi:"timeout"`
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+	Window *int `pulumi:"window"`
+}
+
+// ServiceComputeHealthcheckInput is an input type that accepts ServiceComputeHealthcheckArgs and ServiceComputeHealthcheckOutput values.
+// You can construct a concrete instance of `ServiceComputeHealthcheckInput` via:
+//
+//          ServiceComputeHealthcheckArgs{...}
+type ServiceComputeHealthcheckInput interface {
+	pulumi.Input
+
+	ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput
+	ToServiceComputeHealthcheckOutputWithContext(context.Context) ServiceComputeHealthcheckOutput
+}
+
+type ServiceComputeHealthcheckArgs struct {
+	// How often to run the Healthcheck in milliseconds. Default `5000`.
+	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
+	// The status code expected from the host. Default `200`.
+	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
+	// The Host header to send for this Healthcheck.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+	Initial pulumi.IntPtrInput `pulumi:"initial"`
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to.
+	Path pulumi.StringInput `pulumi:"path"`
+	// How many Healthchecks must succeed to be considered healthy. Default `3`.
+	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
+	// Timeout in milliseconds. Default `500`.
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+	Window pulumi.IntPtrInput `pulumi:"window"`
+}
+
+func (ServiceComputeHealthcheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (i ServiceComputeHealthcheckArgs) ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput {
+	return i.ToServiceComputeHealthcheckOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeHealthcheckArgs) ToServiceComputeHealthcheckOutputWithContext(ctx context.Context) ServiceComputeHealthcheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHealthcheckOutput)
+}
+
+// ServiceComputeHealthcheckArrayInput is an input type that accepts ServiceComputeHealthcheckArray and ServiceComputeHealthcheckArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeHealthcheckArrayInput` via:
+//
+//          ServiceComputeHealthcheckArray{ ServiceComputeHealthcheckArgs{...} }
+type ServiceComputeHealthcheckArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput
+	ToServiceComputeHealthcheckArrayOutputWithContext(context.Context) ServiceComputeHealthcheckArrayOutput
+}
+
+type ServiceComputeHealthcheckArray []ServiceComputeHealthcheckInput
+
+func (ServiceComputeHealthcheckArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (i ServiceComputeHealthcheckArray) ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput {
+	return i.ToServiceComputeHealthcheckArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeHealthcheckArray) ToServiceComputeHealthcheckArrayOutputWithContext(ctx context.Context) ServiceComputeHealthcheckArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHealthcheckArrayOutput)
+}
+
+type ServiceComputeHealthcheckOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeHealthcheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (o ServiceComputeHealthcheckOutput) ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput {
+	return o
+}
+
+func (o ServiceComputeHealthcheckOutput) ToServiceComputeHealthcheckOutputWithContext(ctx context.Context) ServiceComputeHealthcheckOutput {
+	return o
+}
+
+// How often to run the Healthcheck in milliseconds. Default `5000`.
+func (o ServiceComputeHealthcheckOutput) CheckInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
+}
+
+// The status code expected from the host. Default `200`.
+func (o ServiceComputeHealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
+}
+
+// The Host header to send for this Healthcheck.
+func (o ServiceComputeHealthcheckOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+func (o ServiceComputeHealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
+}
+
+// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+func (o ServiceComputeHealthcheckOutput) Initial() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
+}
+
+// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+func (o ServiceComputeHealthcheckOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeHealthcheckOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeHealthcheckOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// How many Healthchecks must succeed to be considered healthy. Default `3`.
+func (o ServiceComputeHealthcheckOutput) Threshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
+}
+
+// Timeout in milliseconds. Default `500`.
+func (o ServiceComputeHealthcheckOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+func (o ServiceComputeHealthcheckOutput) Window() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Window }).(pulumi.IntPtrOutput)
+}
+
+type ServiceComputeHealthcheckArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeHealthcheckArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (o ServiceComputeHealthcheckArrayOutput) ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput {
+	return o
+}
+
+func (o ServiceComputeHealthcheckArrayOutput) ToServiceComputeHealthcheckArrayOutputWithContext(ctx context.Context) ServiceComputeHealthcheckArrayOutput {
+	return o
+}
+
+func (o ServiceComputeHealthcheckArrayOutput) Index(i pulumi.IntInput) ServiceComputeHealthcheckOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeHealthcheck {
+		return vs[0].([]ServiceComputeHealthcheck)[vs[1].(int)]
+	}).(ServiceComputeHealthcheckOutput)
+}
+
+type ServiceComputeHttpslogging struct {
+	// Value of the `Content-Type` header sent with the request.
+	ContentType *string `pulumi:"contentType"`
+	// Custom header sent with the request.
+	HeaderName *string `pulumi:"headerName"`
+	// Value of the custom header sent with the request.
+	HeaderValue *string `pulumi:"headerValue"`
+	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+	JsonFormat *string `pulumi:"jsonFormat"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	Method *string `pulumi:"method"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname *string `pulumi:"tlsHostname"`
+	// Your OpenStack auth url.
+	Url string `pulumi:"url"`
+}
+
+// ServiceComputeHttpsloggingInput is an input type that accepts ServiceComputeHttpsloggingArgs and ServiceComputeHttpsloggingOutput values.
+// You can construct a concrete instance of `ServiceComputeHttpsloggingInput` via:
+//
+//          ServiceComputeHttpsloggingArgs{...}
+type ServiceComputeHttpsloggingInput interface {
+	pulumi.Input
+
+	ToServiceComputeHttpsloggingOutput() ServiceComputeHttpsloggingOutput
+	ToServiceComputeHttpsloggingOutputWithContext(context.Context) ServiceComputeHttpsloggingOutput
+}
+
+type ServiceComputeHttpsloggingArgs struct {
+	// Value of the `Content-Type` header sent with the request.
+	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
+	// Custom header sent with the request.
+	HeaderName pulumi.StringPtrInput `pulumi:"headerName"`
+	// Value of the custom header sent with the request.
+	HeaderValue pulumi.StringPtrInput `pulumi:"headerValue"`
+	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+	JsonFormat pulumi.StringPtrInput `pulumi:"jsonFormat"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
+	// Your OpenStack auth url.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (ServiceComputeHttpsloggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeHttpslogging)(nil)).Elem()
+}
+
+func (i ServiceComputeHttpsloggingArgs) ToServiceComputeHttpsloggingOutput() ServiceComputeHttpsloggingOutput {
+	return i.ToServiceComputeHttpsloggingOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeHttpsloggingArgs) ToServiceComputeHttpsloggingOutputWithContext(ctx context.Context) ServiceComputeHttpsloggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHttpsloggingOutput)
+}
+
+// ServiceComputeHttpsloggingArrayInput is an input type that accepts ServiceComputeHttpsloggingArray and ServiceComputeHttpsloggingArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeHttpsloggingArrayInput` via:
+//
+//          ServiceComputeHttpsloggingArray{ ServiceComputeHttpsloggingArgs{...} }
+type ServiceComputeHttpsloggingArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeHttpsloggingArrayOutput() ServiceComputeHttpsloggingArrayOutput
+	ToServiceComputeHttpsloggingArrayOutputWithContext(context.Context) ServiceComputeHttpsloggingArrayOutput
+}
+
+type ServiceComputeHttpsloggingArray []ServiceComputeHttpsloggingInput
+
+func (ServiceComputeHttpsloggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeHttpslogging)(nil)).Elem()
+}
+
+func (i ServiceComputeHttpsloggingArray) ToServiceComputeHttpsloggingArrayOutput() ServiceComputeHttpsloggingArrayOutput {
+	return i.ToServiceComputeHttpsloggingArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeHttpsloggingArray) ToServiceComputeHttpsloggingArrayOutputWithContext(ctx context.Context) ServiceComputeHttpsloggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHttpsloggingArrayOutput)
+}
+
+type ServiceComputeHttpsloggingOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeHttpsloggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeHttpslogging)(nil)).Elem()
+}
+
+func (o ServiceComputeHttpsloggingOutput) ToServiceComputeHttpsloggingOutput() ServiceComputeHttpsloggingOutput {
+	return o
+}
+
+func (o ServiceComputeHttpsloggingOutput) ToServiceComputeHttpsloggingOutputWithContext(ctx context.Context) ServiceComputeHttpsloggingOutput {
+	return o
+}
+
+// Value of the `Content-Type` header sent with the request.
+func (o ServiceComputeHttpsloggingOutput) ContentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.ContentType }).(pulumi.StringPtrOutput)
+}
+
+// Custom header sent with the request.
+func (o ServiceComputeHttpsloggingOutput) HeaderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.HeaderName }).(pulumi.StringPtrOutput)
+}
+
+// Value of the custom header sent with the request.
+func (o ServiceComputeHttpsloggingOutput) HeaderValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.HeaderValue }).(pulumi.StringPtrOutput)
+}
+
+// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+func (o ServiceComputeHttpsloggingOutput) JsonFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.JsonFormat }).(pulumi.StringPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeHttpsloggingOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+func (o ServiceComputeHttpsloggingOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeHttpsloggingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+func (o ServiceComputeHttpsloggingOutput) RequestMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+func (o ServiceComputeHttpsloggingOutput) RequestMaxEntries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
+}
+
+// A secure certificate to authenticate the server with. Must be in PEM format.
+func (o ServiceComputeHttpsloggingOutput) TlsCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The client certificate used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeHttpsloggingOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The client private key used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeHttpsloggingOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+func (o ServiceComputeHttpsloggingOutput) TlsHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
+}
+
+// Your OpenStack auth url.
+func (o ServiceComputeHttpsloggingOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHttpslogging) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type ServiceComputeHttpsloggingArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeHttpsloggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeHttpslogging)(nil)).Elem()
+}
+
+func (o ServiceComputeHttpsloggingArrayOutput) ToServiceComputeHttpsloggingArrayOutput() ServiceComputeHttpsloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeHttpsloggingArrayOutput) ToServiceComputeHttpsloggingArrayOutputWithContext(ctx context.Context) ServiceComputeHttpsloggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeHttpsloggingArrayOutput) Index(i pulumi.IntInput) ServiceComputeHttpsloggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeHttpslogging {
+		return vs[0].([]ServiceComputeHttpslogging)[vs[1].(int)]
+	}).(ServiceComputeHttpsloggingOutput)
+}
+
+type ServiceComputeLogentry struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port *int `pulumi:"port"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+	// Whether to use TLS for secure logging. Can be either true or false.
+	UseTls *bool `pulumi:"useTls"`
+}
+
+// ServiceComputeLogentryInput is an input type that accepts ServiceComputeLogentryArgs and ServiceComputeLogentryOutput values.
+// You can construct a concrete instance of `ServiceComputeLogentryInput` via:
+//
+//          ServiceComputeLogentryArgs{...}
+type ServiceComputeLogentryInput interface {
+	pulumi.Input
+
+	ToServiceComputeLogentryOutput() ServiceComputeLogentryOutput
+	ToServiceComputeLogentryOutputWithContext(context.Context) ServiceComputeLogentryOutput
+}
+
+type ServiceComputeLogentryArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+	// Whether to use TLS for secure logging. Can be either true or false.
+	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
+}
+
+func (ServiceComputeLogentryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLogentry)(nil)).Elem()
+}
+
+func (i ServiceComputeLogentryArgs) ToServiceComputeLogentryOutput() ServiceComputeLogentryOutput {
+	return i.ToServiceComputeLogentryOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLogentryArgs) ToServiceComputeLogentryOutputWithContext(ctx context.Context) ServiceComputeLogentryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLogentryOutput)
+}
+
+// ServiceComputeLogentryArrayInput is an input type that accepts ServiceComputeLogentryArray and ServiceComputeLogentryArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLogentryArrayInput` via:
+//
+//          ServiceComputeLogentryArray{ ServiceComputeLogentryArgs{...} }
+type ServiceComputeLogentryArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLogentryArrayOutput() ServiceComputeLogentryArrayOutput
+	ToServiceComputeLogentryArrayOutputWithContext(context.Context) ServiceComputeLogentryArrayOutput
+}
+
+type ServiceComputeLogentryArray []ServiceComputeLogentryInput
+
+func (ServiceComputeLogentryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLogentry)(nil)).Elem()
+}
+
+func (i ServiceComputeLogentryArray) ToServiceComputeLogentryArrayOutput() ServiceComputeLogentryArrayOutput {
+	return i.ToServiceComputeLogentryArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLogentryArray) ToServiceComputeLogentryArrayOutputWithContext(ctx context.Context) ServiceComputeLogentryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLogentryArrayOutput)
+}
+
+type ServiceComputeLogentryOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLogentryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLogentry)(nil)).Elem()
+}
+
+func (o ServiceComputeLogentryOutput) ToServiceComputeLogentryOutput() ServiceComputeLogentryOutput {
+	return o
+}
+
+func (o ServiceComputeLogentryOutput) ToServiceComputeLogentryOutputWithContext(ctx context.Context) ServiceComputeLogentryOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLogentryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLogentry) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The port the SFTP service listens on. (Default: `22`).
+func (o ServiceComputeLogentryOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLogentry) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLogentryOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLogentry) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// Whether to use TLS for secure logging. Can be either true or false.
+func (o ServiceComputeLogentryOutput) UseTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLogentry) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
+}
+
+type ServiceComputeLogentryArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLogentryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLogentry)(nil)).Elem()
+}
+
+func (o ServiceComputeLogentryArrayOutput) ToServiceComputeLogentryArrayOutput() ServiceComputeLogentryArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLogentryArrayOutput) ToServiceComputeLogentryArrayOutputWithContext(ctx context.Context) ServiceComputeLogentryArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLogentryArrayOutput) Index(i pulumi.IntInput) ServiceComputeLogentryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLogentry {
+		return vs[0].([]ServiceComputeLogentry)[vs[1].(int)]
+	}).(ServiceComputeLogentryOutput)
+}
+
+type ServiceComputeLoggingCloudfile struct {
+	// Your Cloud File account access key.
+	AccessKey string `pulumi:"accessKey"`
+	// The name of your Cloud Files container.
+	BucketName string `pulumi:"bucketName"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The path to upload logs to.
+	Path *string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey *string `pulumi:"publicKey"`
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	Region *string `pulumi:"region"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+	// The username for your Cloud Files account.
+	User string `pulumi:"user"`
+}
+
+// ServiceComputeLoggingCloudfileInput is an input type that accepts ServiceComputeLoggingCloudfileArgs and ServiceComputeLoggingCloudfileOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingCloudfileInput` via:
+//
+//          ServiceComputeLoggingCloudfileArgs{...}
+type ServiceComputeLoggingCloudfileInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingCloudfileOutput() ServiceComputeLoggingCloudfileOutput
+	ToServiceComputeLoggingCloudfileOutputWithContext(context.Context) ServiceComputeLoggingCloudfileOutput
+}
+
+type ServiceComputeLoggingCloudfileArgs struct {
+	// Your Cloud File account access key.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// The name of your Cloud Files container.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+	// The username for your Cloud Files account.
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (ServiceComputeLoggingCloudfileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingCloudfile)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingCloudfileArgs) ToServiceComputeLoggingCloudfileOutput() ServiceComputeLoggingCloudfileOutput {
+	return i.ToServiceComputeLoggingCloudfileOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingCloudfileArgs) ToServiceComputeLoggingCloudfileOutputWithContext(ctx context.Context) ServiceComputeLoggingCloudfileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingCloudfileOutput)
+}
+
+// ServiceComputeLoggingCloudfileArrayInput is an input type that accepts ServiceComputeLoggingCloudfileArray and ServiceComputeLoggingCloudfileArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingCloudfileArrayInput` via:
+//
+//          ServiceComputeLoggingCloudfileArray{ ServiceComputeLoggingCloudfileArgs{...} }
+type ServiceComputeLoggingCloudfileArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingCloudfileArrayOutput() ServiceComputeLoggingCloudfileArrayOutput
+	ToServiceComputeLoggingCloudfileArrayOutputWithContext(context.Context) ServiceComputeLoggingCloudfileArrayOutput
+}
+
+type ServiceComputeLoggingCloudfileArray []ServiceComputeLoggingCloudfileInput
+
+func (ServiceComputeLoggingCloudfileArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingCloudfile)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingCloudfileArray) ToServiceComputeLoggingCloudfileArrayOutput() ServiceComputeLoggingCloudfileArrayOutput {
+	return i.ToServiceComputeLoggingCloudfileArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingCloudfileArray) ToServiceComputeLoggingCloudfileArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingCloudfileArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingCloudfileArrayOutput)
+}
+
+type ServiceComputeLoggingCloudfileOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingCloudfileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingCloudfile)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingCloudfileOutput) ToServiceComputeLoggingCloudfileOutput() ServiceComputeLoggingCloudfileOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingCloudfileOutput) ToServiceComputeLoggingCloudfileOutputWithContext(ctx context.Context) ServiceComputeLoggingCloudfileOutput {
+	return o
+}
+
+// Your Cloud File account access key.
+func (o ServiceComputeLoggingCloudfileOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// The name of your Cloud Files container.
+func (o ServiceComputeLoggingCloudfileOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeLoggingCloudfileOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeLoggingCloudfileOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingCloudfileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeLoggingCloudfileOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeLoggingCloudfileOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+func (o ServiceComputeLoggingCloudfileOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+func (o ServiceComputeLoggingCloudfileOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeLoggingCloudfileOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+// The username for your Cloud Files account.
+func (o ServiceComputeLoggingCloudfileOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.User }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingCloudfileArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingCloudfileArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingCloudfile)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingCloudfileArrayOutput) ToServiceComputeLoggingCloudfileArrayOutput() ServiceComputeLoggingCloudfileArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingCloudfileArrayOutput) ToServiceComputeLoggingCloudfileArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingCloudfileArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingCloudfileArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingCloudfileOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingCloudfile {
+		return vs[0].([]ServiceComputeLoggingCloudfile)[vs[1].(int)]
+	}).(ServiceComputeLoggingCloudfileOutput)
+}
+
+type ServiceComputeLoggingDatadog struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	Region *string `pulumi:"region"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+}
+
+// ServiceComputeLoggingDatadogInput is an input type that accepts ServiceComputeLoggingDatadogArgs and ServiceComputeLoggingDatadogOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingDatadogInput` via:
+//
+//          ServiceComputeLoggingDatadogArgs{...}
+type ServiceComputeLoggingDatadogInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingDatadogOutput() ServiceComputeLoggingDatadogOutput
+	ToServiceComputeLoggingDatadogOutputWithContext(context.Context) ServiceComputeLoggingDatadogOutput
+}
+
+type ServiceComputeLoggingDatadogArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (ServiceComputeLoggingDatadogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingDatadog)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingDatadogArgs) ToServiceComputeLoggingDatadogOutput() ServiceComputeLoggingDatadogOutput {
+	return i.ToServiceComputeLoggingDatadogOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingDatadogArgs) ToServiceComputeLoggingDatadogOutputWithContext(ctx context.Context) ServiceComputeLoggingDatadogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDatadogOutput)
+}
+
+// ServiceComputeLoggingDatadogArrayInput is an input type that accepts ServiceComputeLoggingDatadogArray and ServiceComputeLoggingDatadogArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingDatadogArrayInput` via:
+//
+//          ServiceComputeLoggingDatadogArray{ ServiceComputeLoggingDatadogArgs{...} }
+type ServiceComputeLoggingDatadogArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingDatadogArrayOutput() ServiceComputeLoggingDatadogArrayOutput
+	ToServiceComputeLoggingDatadogArrayOutputWithContext(context.Context) ServiceComputeLoggingDatadogArrayOutput
+}
+
+type ServiceComputeLoggingDatadogArray []ServiceComputeLoggingDatadogInput
+
+func (ServiceComputeLoggingDatadogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingDatadog)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingDatadogArray) ToServiceComputeLoggingDatadogArrayOutput() ServiceComputeLoggingDatadogArrayOutput {
+	return i.ToServiceComputeLoggingDatadogArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingDatadogArray) ToServiceComputeLoggingDatadogArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingDatadogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDatadogArrayOutput)
+}
+
+type ServiceComputeLoggingDatadogOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingDatadogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingDatadog)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingDatadogOutput) ToServiceComputeLoggingDatadogOutput() ServiceComputeLoggingDatadogOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingDatadogOutput) ToServiceComputeLoggingDatadogOutputWithContext(ctx context.Context) ServiceComputeLoggingDatadogOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingDatadogOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDatadog) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+func (o ServiceComputeLoggingDatadogOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLoggingDatadogOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDatadog) string { return v.Token }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingDatadogArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingDatadogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingDatadog)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingDatadogArrayOutput) ToServiceComputeLoggingDatadogArrayOutput() ServiceComputeLoggingDatadogArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingDatadogArrayOutput) ToServiceComputeLoggingDatadogArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingDatadogArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingDatadogArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingDatadogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingDatadog {
+		return vs[0].([]ServiceComputeLoggingDatadog)[vs[1].(int)]
+	}).(ServiceComputeLoggingDatadogOutput)
+}
+
+type ServiceComputeLoggingDigitalocean struct {
+	// Your Cloud File account access key.
+	AccessKey string `pulumi:"accessKey"`
+	// The name of your Cloud Files container.
+	BucketName string `pulumi:"bucketName"`
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	Domain *string `pulumi:"domain"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The path to upload logs to.
+	Path *string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey *string `pulumi:"publicKey"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey string `pulumi:"secretKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+}
+
+// ServiceComputeLoggingDigitaloceanInput is an input type that accepts ServiceComputeLoggingDigitaloceanArgs and ServiceComputeLoggingDigitaloceanOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingDigitaloceanInput` via:
+//
+//          ServiceComputeLoggingDigitaloceanArgs{...}
+type ServiceComputeLoggingDigitaloceanInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingDigitaloceanOutput() ServiceComputeLoggingDigitaloceanOutput
+	ToServiceComputeLoggingDigitaloceanOutputWithContext(context.Context) ServiceComputeLoggingDigitaloceanOutput
+}
+
+type ServiceComputeLoggingDigitaloceanArgs struct {
+	// Your Cloud File account access key.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// The name of your Cloud Files container.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+}
+
+func (ServiceComputeLoggingDigitaloceanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingDigitalocean)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingDigitaloceanArgs) ToServiceComputeLoggingDigitaloceanOutput() ServiceComputeLoggingDigitaloceanOutput {
+	return i.ToServiceComputeLoggingDigitaloceanOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingDigitaloceanArgs) ToServiceComputeLoggingDigitaloceanOutputWithContext(ctx context.Context) ServiceComputeLoggingDigitaloceanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDigitaloceanOutput)
+}
+
+// ServiceComputeLoggingDigitaloceanArrayInput is an input type that accepts ServiceComputeLoggingDigitaloceanArray and ServiceComputeLoggingDigitaloceanArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingDigitaloceanArrayInput` via:
+//
+//          ServiceComputeLoggingDigitaloceanArray{ ServiceComputeLoggingDigitaloceanArgs{...} }
+type ServiceComputeLoggingDigitaloceanArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingDigitaloceanArrayOutput() ServiceComputeLoggingDigitaloceanArrayOutput
+	ToServiceComputeLoggingDigitaloceanArrayOutputWithContext(context.Context) ServiceComputeLoggingDigitaloceanArrayOutput
+}
+
+type ServiceComputeLoggingDigitaloceanArray []ServiceComputeLoggingDigitaloceanInput
+
+func (ServiceComputeLoggingDigitaloceanArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingDigitalocean)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingDigitaloceanArray) ToServiceComputeLoggingDigitaloceanArrayOutput() ServiceComputeLoggingDigitaloceanArrayOutput {
+	return i.ToServiceComputeLoggingDigitaloceanArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingDigitaloceanArray) ToServiceComputeLoggingDigitaloceanArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingDigitaloceanArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDigitaloceanArrayOutput)
+}
+
+type ServiceComputeLoggingDigitaloceanOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingDigitaloceanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingDigitalocean)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingDigitaloceanOutput) ToServiceComputeLoggingDigitaloceanOutput() ServiceComputeLoggingDigitaloceanOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingDigitaloceanOutput) ToServiceComputeLoggingDigitaloceanOutputWithContext(ctx context.Context) ServiceComputeLoggingDigitaloceanOutput {
+	return o
+}
+
+// Your Cloud File account access key.
+func (o ServiceComputeLoggingDigitaloceanOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// The name of your Cloud Files container.
+func (o ServiceComputeLoggingDigitaloceanOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+func (o ServiceComputeLoggingDigitaloceanOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeLoggingDigitaloceanOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeLoggingDigitaloceanOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingDigitaloceanOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeLoggingDigitaloceanOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeLoggingDigitaloceanOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+func (o ServiceComputeLoggingDigitaloceanOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// Your DigitalOcean Spaces account secret key.
+func (o ServiceComputeLoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeLoggingDigitaloceanOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeLoggingDigitaloceanArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingDigitaloceanArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingDigitalocean)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingDigitaloceanArrayOutput) ToServiceComputeLoggingDigitaloceanArrayOutput() ServiceComputeLoggingDigitaloceanArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingDigitaloceanArrayOutput) ToServiceComputeLoggingDigitaloceanArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingDigitaloceanArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingDigitaloceanArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingDigitaloceanOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingDigitalocean {
+		return vs[0].([]ServiceComputeLoggingDigitalocean)[vs[1].(int)]
+	}).(ServiceComputeLoggingDigitaloceanOutput)
+}
+
+type ServiceComputeLoggingElasticsearch struct {
+	// The name of the Elasticsearch index to send documents (logs) to.
+	Index string `pulumi:"index"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password *string `pulumi:"password"`
+	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+	Pipeline *string `pulumi:"pipeline"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname *string `pulumi:"tlsHostname"`
+	// Your OpenStack auth url.
+	Url string `pulumi:"url"`
+	// The username for your Cloud Files account.
+	User *string `pulumi:"user"`
+}
+
+// ServiceComputeLoggingElasticsearchInput is an input type that accepts ServiceComputeLoggingElasticsearchArgs and ServiceComputeLoggingElasticsearchOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingElasticsearchInput` via:
+//
+//          ServiceComputeLoggingElasticsearchArgs{...}
+type ServiceComputeLoggingElasticsearchInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingElasticsearchOutput() ServiceComputeLoggingElasticsearchOutput
+	ToServiceComputeLoggingElasticsearchOutputWithContext(context.Context) ServiceComputeLoggingElasticsearchOutput
+}
+
+type ServiceComputeLoggingElasticsearchArgs struct {
+	// The name of the Elasticsearch index to send documents (logs) to.
+	Index pulumi.StringInput `pulumi:"index"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
+	// Your OpenStack auth url.
+	Url pulumi.StringInput `pulumi:"url"`
+	// The username for your Cloud Files account.
+	User pulumi.StringPtrInput `pulumi:"user"`
+}
+
+func (ServiceComputeLoggingElasticsearchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingElasticsearch)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingElasticsearchArgs) ToServiceComputeLoggingElasticsearchOutput() ServiceComputeLoggingElasticsearchOutput {
+	return i.ToServiceComputeLoggingElasticsearchOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingElasticsearchArgs) ToServiceComputeLoggingElasticsearchOutputWithContext(ctx context.Context) ServiceComputeLoggingElasticsearchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingElasticsearchOutput)
+}
+
+// ServiceComputeLoggingElasticsearchArrayInput is an input type that accepts ServiceComputeLoggingElasticsearchArray and ServiceComputeLoggingElasticsearchArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingElasticsearchArrayInput` via:
+//
+//          ServiceComputeLoggingElasticsearchArray{ ServiceComputeLoggingElasticsearchArgs{...} }
+type ServiceComputeLoggingElasticsearchArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingElasticsearchArrayOutput() ServiceComputeLoggingElasticsearchArrayOutput
+	ToServiceComputeLoggingElasticsearchArrayOutputWithContext(context.Context) ServiceComputeLoggingElasticsearchArrayOutput
+}
+
+type ServiceComputeLoggingElasticsearchArray []ServiceComputeLoggingElasticsearchInput
+
+func (ServiceComputeLoggingElasticsearchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingElasticsearch)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingElasticsearchArray) ToServiceComputeLoggingElasticsearchArrayOutput() ServiceComputeLoggingElasticsearchArrayOutput {
+	return i.ToServiceComputeLoggingElasticsearchArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingElasticsearchArray) ToServiceComputeLoggingElasticsearchArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingElasticsearchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingElasticsearchArrayOutput)
+}
+
+type ServiceComputeLoggingElasticsearchOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingElasticsearchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingElasticsearch)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingElasticsearchOutput) ToServiceComputeLoggingElasticsearchOutput() ServiceComputeLoggingElasticsearchOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingElasticsearchOutput) ToServiceComputeLoggingElasticsearchOutputWithContext(ctx context.Context) ServiceComputeLoggingElasticsearchOutput {
+	return o
+}
+
+// The name of the Elasticsearch index to send documents (logs) to.
+func (o ServiceComputeLoggingElasticsearchOutput) Index() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Index }).(pulumi.StringOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingElasticsearchOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+func (o ServiceComputeLoggingElasticsearchOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+func (o ServiceComputeLoggingElasticsearchOutput) Pipeline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+func (o ServiceComputeLoggingElasticsearchOutput) RequestMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+func (o ServiceComputeLoggingElasticsearchOutput) RequestMaxEntries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
+}
+
+// A secure certificate to authenticate the server with. Must be in PEM format.
+func (o ServiceComputeLoggingElasticsearchOutput) TlsCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The client certificate used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeLoggingElasticsearchOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The client private key used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeLoggingElasticsearchOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+func (o ServiceComputeLoggingElasticsearchOutput) TlsHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
+}
+
+// Your OpenStack auth url.
+func (o ServiceComputeLoggingElasticsearchOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The username for your Cloud Files account.
+func (o ServiceComputeLoggingElasticsearchOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.User }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeLoggingElasticsearchArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingElasticsearchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingElasticsearch)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingElasticsearchArrayOutput) ToServiceComputeLoggingElasticsearchArrayOutput() ServiceComputeLoggingElasticsearchArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingElasticsearchArrayOutput) ToServiceComputeLoggingElasticsearchArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingElasticsearchArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingElasticsearchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingElasticsearch {
+		return vs[0].([]ServiceComputeLoggingElasticsearch)[vs[1].(int)]
+	}).(ServiceComputeLoggingElasticsearchOutput)
+}
+
+type ServiceComputeLoggingFtp struct {
+	// The SFTP address to stream logs to.
+	Address string `pulumi:"address"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password string `pulumi:"password"`
+	// The path to upload logs to.
+	Path string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port *int `pulumi:"port"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey *string `pulumi:"publicKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+	// The username for your Cloud Files account.
+	User string `pulumi:"user"`
+}
+
+// ServiceComputeLoggingFtpInput is an input type that accepts ServiceComputeLoggingFtpArgs and ServiceComputeLoggingFtpOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingFtpInput` via:
+//
+//          ServiceComputeLoggingFtpArgs{...}
+type ServiceComputeLoggingFtpInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingFtpOutput() ServiceComputeLoggingFtpOutput
+	ToServiceComputeLoggingFtpOutputWithContext(context.Context) ServiceComputeLoggingFtpOutput
+}
+
+type ServiceComputeLoggingFtpArgs struct {
+	// The SFTP address to stream logs to.
+	Address pulumi.StringInput `pulumi:"address"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password pulumi.StringInput `pulumi:"password"`
+	// The path to upload logs to.
+	Path pulumi.StringInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+	// The username for your Cloud Files account.
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (ServiceComputeLoggingFtpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingFtp)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingFtpArgs) ToServiceComputeLoggingFtpOutput() ServiceComputeLoggingFtpOutput {
+	return i.ToServiceComputeLoggingFtpOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingFtpArgs) ToServiceComputeLoggingFtpOutputWithContext(ctx context.Context) ServiceComputeLoggingFtpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingFtpOutput)
+}
+
+// ServiceComputeLoggingFtpArrayInput is an input type that accepts ServiceComputeLoggingFtpArray and ServiceComputeLoggingFtpArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingFtpArrayInput` via:
+//
+//          ServiceComputeLoggingFtpArray{ ServiceComputeLoggingFtpArgs{...} }
+type ServiceComputeLoggingFtpArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingFtpArrayOutput() ServiceComputeLoggingFtpArrayOutput
+	ToServiceComputeLoggingFtpArrayOutputWithContext(context.Context) ServiceComputeLoggingFtpArrayOutput
+}
+
+type ServiceComputeLoggingFtpArray []ServiceComputeLoggingFtpInput
+
+func (ServiceComputeLoggingFtpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingFtp)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingFtpArray) ToServiceComputeLoggingFtpArrayOutput() ServiceComputeLoggingFtpArrayOutput {
+	return i.ToServiceComputeLoggingFtpArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingFtpArray) ToServiceComputeLoggingFtpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingFtpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingFtpArrayOutput)
+}
+
+type ServiceComputeLoggingFtpOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingFtpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingFtp)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingFtpOutput) ToServiceComputeLoggingFtpOutput() ServiceComputeLoggingFtpOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingFtpOutput) ToServiceComputeLoggingFtpOutputWithContext(ctx context.Context) ServiceComputeLoggingFtpOutput {
+	return o
+}
+
+// The SFTP address to stream logs to.
+func (o ServiceComputeLoggingFtpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeLoggingFtpOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeLoggingFtpOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingFtpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+func (o ServiceComputeLoggingFtpOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeLoggingFtpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeLoggingFtpOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The port the SFTP service listens on. (Default: `22`).
+func (o ServiceComputeLoggingFtpOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+func (o ServiceComputeLoggingFtpOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeLoggingFtpOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+// The username for your Cloud Files account.
+func (o ServiceComputeLoggingFtpOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.User }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingFtpArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingFtpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingFtp)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingFtpArrayOutput) ToServiceComputeLoggingFtpArrayOutput() ServiceComputeLoggingFtpArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingFtpArrayOutput) ToServiceComputeLoggingFtpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingFtpArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingFtpArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingFtpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingFtp {
+		return vs[0].([]ServiceComputeLoggingFtp)[vs[1].(int)]
+	}).(ServiceComputeLoggingFtpOutput)
+}
+
+type ServiceComputeLoggingGooglepubsub struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The ID of your Google Cloud Platform project.
+	ProjectId string `pulumi:"projectId"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey string `pulumi:"secretKey"`
+	// The Kafka topic to send logs to.
+	Topic string `pulumi:"topic"`
+	// The username for your Cloud Files account.
+	User string `pulumi:"user"`
+}
+
+// ServiceComputeLoggingGooglepubsubInput is an input type that accepts ServiceComputeLoggingGooglepubsubArgs and ServiceComputeLoggingGooglepubsubOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingGooglepubsubInput` via:
+//
+//          ServiceComputeLoggingGooglepubsubArgs{...}
+type ServiceComputeLoggingGooglepubsubInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingGooglepubsubOutput() ServiceComputeLoggingGooglepubsubOutput
+	ToServiceComputeLoggingGooglepubsubOutputWithContext(context.Context) ServiceComputeLoggingGooglepubsubOutput
+}
+
+type ServiceComputeLoggingGooglepubsubArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of your Google Cloud Platform project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// The Kafka topic to send logs to.
+	Topic pulumi.StringInput `pulumi:"topic"`
+	// The username for your Cloud Files account.
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (ServiceComputeLoggingGooglepubsubArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingGooglepubsub)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingGooglepubsubArgs) ToServiceComputeLoggingGooglepubsubOutput() ServiceComputeLoggingGooglepubsubOutput {
+	return i.ToServiceComputeLoggingGooglepubsubOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingGooglepubsubArgs) ToServiceComputeLoggingGooglepubsubOutputWithContext(ctx context.Context) ServiceComputeLoggingGooglepubsubOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGooglepubsubOutput)
+}
+
+// ServiceComputeLoggingGooglepubsubArrayInput is an input type that accepts ServiceComputeLoggingGooglepubsubArray and ServiceComputeLoggingGooglepubsubArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingGooglepubsubArrayInput` via:
+//
+//          ServiceComputeLoggingGooglepubsubArray{ ServiceComputeLoggingGooglepubsubArgs{...} }
+type ServiceComputeLoggingGooglepubsubArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingGooglepubsubArrayOutput() ServiceComputeLoggingGooglepubsubArrayOutput
+	ToServiceComputeLoggingGooglepubsubArrayOutputWithContext(context.Context) ServiceComputeLoggingGooglepubsubArrayOutput
+}
+
+type ServiceComputeLoggingGooglepubsubArray []ServiceComputeLoggingGooglepubsubInput
+
+func (ServiceComputeLoggingGooglepubsubArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingGooglepubsub)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingGooglepubsubArray) ToServiceComputeLoggingGooglepubsubArrayOutput() ServiceComputeLoggingGooglepubsubArrayOutput {
+	return i.ToServiceComputeLoggingGooglepubsubArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingGooglepubsubArray) ToServiceComputeLoggingGooglepubsubArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingGooglepubsubArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGooglepubsubArrayOutput)
+}
+
+type ServiceComputeLoggingGooglepubsubOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingGooglepubsubOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingGooglepubsub)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepubsubOutput() ServiceComputeLoggingGooglepubsubOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepubsubOutputWithContext(ctx context.Context) ServiceComputeLoggingGooglepubsubOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingGooglepubsubOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of your Google Cloud Platform project.
+func (o ServiceComputeLoggingGooglepubsubOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Your DigitalOcean Spaces account secret key.
+func (o ServiceComputeLoggingGooglepubsubOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The Kafka topic to send logs to.
+func (o ServiceComputeLoggingGooglepubsubOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+// The username for your Cloud Files account.
+func (o ServiceComputeLoggingGooglepubsubOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.User }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingGooglepubsubArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingGooglepubsubArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingGooglepubsub)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingGooglepubsubArrayOutput) ToServiceComputeLoggingGooglepubsubArrayOutput() ServiceComputeLoggingGooglepubsubArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingGooglepubsubArrayOutput) ToServiceComputeLoggingGooglepubsubArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingGooglepubsubArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingGooglepubsubOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingGooglepubsub {
+		return vs[0].([]ServiceComputeLoggingGooglepubsub)[vs[1].(int)]
+	}).(ServiceComputeLoggingGooglepubsubOutput)
+}
+
+type ServiceComputeLoggingHeroku struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+	// Your OpenStack auth url.
+	Url string `pulumi:"url"`
+}
+
+// ServiceComputeLoggingHerokuInput is an input type that accepts ServiceComputeLoggingHerokuArgs and ServiceComputeLoggingHerokuOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingHerokuInput` via:
+//
+//          ServiceComputeLoggingHerokuArgs{...}
+type ServiceComputeLoggingHerokuInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingHerokuOutput() ServiceComputeLoggingHerokuOutput
+	ToServiceComputeLoggingHerokuOutputWithContext(context.Context) ServiceComputeLoggingHerokuOutput
+}
+
+type ServiceComputeLoggingHerokuArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+	// Your OpenStack auth url.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (ServiceComputeLoggingHerokuArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingHeroku)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingHerokuArgs) ToServiceComputeLoggingHerokuOutput() ServiceComputeLoggingHerokuOutput {
+	return i.ToServiceComputeLoggingHerokuOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingHerokuArgs) ToServiceComputeLoggingHerokuOutputWithContext(ctx context.Context) ServiceComputeLoggingHerokuOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHerokuOutput)
+}
+
+// ServiceComputeLoggingHerokuArrayInput is an input type that accepts ServiceComputeLoggingHerokuArray and ServiceComputeLoggingHerokuArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingHerokuArrayInput` via:
+//
+//          ServiceComputeLoggingHerokuArray{ ServiceComputeLoggingHerokuArgs{...} }
+type ServiceComputeLoggingHerokuArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingHerokuArrayOutput() ServiceComputeLoggingHerokuArrayOutput
+	ToServiceComputeLoggingHerokuArrayOutputWithContext(context.Context) ServiceComputeLoggingHerokuArrayOutput
+}
+
+type ServiceComputeLoggingHerokuArray []ServiceComputeLoggingHerokuInput
+
+func (ServiceComputeLoggingHerokuArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingHeroku)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingHerokuArray) ToServiceComputeLoggingHerokuArrayOutput() ServiceComputeLoggingHerokuArrayOutput {
+	return i.ToServiceComputeLoggingHerokuArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingHerokuArray) ToServiceComputeLoggingHerokuArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingHerokuArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHerokuArrayOutput)
+}
+
+type ServiceComputeLoggingHerokuOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingHerokuOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingHeroku)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingHerokuOutput) ToServiceComputeLoggingHerokuOutput() ServiceComputeLoggingHerokuOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingHerokuOutput) ToServiceComputeLoggingHerokuOutputWithContext(ctx context.Context) ServiceComputeLoggingHerokuOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingHerokuOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLoggingHerokuOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// Your OpenStack auth url.
+func (o ServiceComputeLoggingHerokuOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingHerokuArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingHerokuArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingHeroku)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingHerokuArrayOutput) ToServiceComputeLoggingHerokuArrayOutput() ServiceComputeLoggingHerokuArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingHerokuArrayOutput) ToServiceComputeLoggingHerokuArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingHerokuArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingHerokuArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingHerokuOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingHeroku {
+		return vs[0].([]ServiceComputeLoggingHeroku)[vs[1].(int)]
+	}).(ServiceComputeLoggingHerokuOutput)
+}
+
+type ServiceComputeLoggingHoneycomb struct {
+	// The Honeycomb Dataset you want to log to.
+	Dataset string `pulumi:"dataset"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+}
+
+// ServiceComputeLoggingHoneycombInput is an input type that accepts ServiceComputeLoggingHoneycombArgs and ServiceComputeLoggingHoneycombOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingHoneycombInput` via:
+//
+//          ServiceComputeLoggingHoneycombArgs{...}
+type ServiceComputeLoggingHoneycombInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingHoneycombOutput() ServiceComputeLoggingHoneycombOutput
+	ToServiceComputeLoggingHoneycombOutputWithContext(context.Context) ServiceComputeLoggingHoneycombOutput
+}
+
+type ServiceComputeLoggingHoneycombArgs struct {
+	// The Honeycomb Dataset you want to log to.
+	Dataset pulumi.StringInput `pulumi:"dataset"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (ServiceComputeLoggingHoneycombArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingHoneycomb)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingHoneycombArgs) ToServiceComputeLoggingHoneycombOutput() ServiceComputeLoggingHoneycombOutput {
+	return i.ToServiceComputeLoggingHoneycombOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingHoneycombArgs) ToServiceComputeLoggingHoneycombOutputWithContext(ctx context.Context) ServiceComputeLoggingHoneycombOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHoneycombOutput)
+}
+
+// ServiceComputeLoggingHoneycombArrayInput is an input type that accepts ServiceComputeLoggingHoneycombArray and ServiceComputeLoggingHoneycombArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingHoneycombArrayInput` via:
+//
+//          ServiceComputeLoggingHoneycombArray{ ServiceComputeLoggingHoneycombArgs{...} }
+type ServiceComputeLoggingHoneycombArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingHoneycombArrayOutput() ServiceComputeLoggingHoneycombArrayOutput
+	ToServiceComputeLoggingHoneycombArrayOutputWithContext(context.Context) ServiceComputeLoggingHoneycombArrayOutput
+}
+
+type ServiceComputeLoggingHoneycombArray []ServiceComputeLoggingHoneycombInput
+
+func (ServiceComputeLoggingHoneycombArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingHoneycomb)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingHoneycombArray) ToServiceComputeLoggingHoneycombArrayOutput() ServiceComputeLoggingHoneycombArrayOutput {
+	return i.ToServiceComputeLoggingHoneycombArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingHoneycombArray) ToServiceComputeLoggingHoneycombArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingHoneycombArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHoneycombArrayOutput)
+}
+
+type ServiceComputeLoggingHoneycombOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingHoneycombOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingHoneycomb)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingHoneycombOutput) ToServiceComputeLoggingHoneycombOutput() ServiceComputeLoggingHoneycombOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingHoneycombOutput) ToServiceComputeLoggingHoneycombOutputWithContext(ctx context.Context) ServiceComputeLoggingHoneycombOutput {
+	return o
+}
+
+// The Honeycomb Dataset you want to log to.
+func (o ServiceComputeLoggingHoneycombOutput) Dataset() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Dataset }).(pulumi.StringOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingHoneycombOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLoggingHoneycombOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Token }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingHoneycombArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingHoneycombArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingHoneycomb)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingHoneycombArrayOutput) ToServiceComputeLoggingHoneycombArrayOutput() ServiceComputeLoggingHoneycombArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingHoneycombArrayOutput) ToServiceComputeLoggingHoneycombArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingHoneycombArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingHoneycombArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingHoneycombOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingHoneycomb {
+		return vs[0].([]ServiceComputeLoggingHoneycomb)[vs[1].(int)]
+	}).(ServiceComputeLoggingHoneycombOutput)
+}
+
+type ServiceComputeLoggingKafka struct {
+	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+	Brokers string `pulumi:"brokers"`
+	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+	CompressionCodec *string `pulumi:"compressionCodec"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+	RequiredAcks *string `pulumi:"requiredAcks"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname *string `pulumi:"tlsHostname"`
+	// The Kafka topic to send logs to.
+	Topic string `pulumi:"topic"`
+	// Whether to use TLS for secure logging. Can be either true or false.
+	UseTls *bool `pulumi:"useTls"`
+}
+
+// ServiceComputeLoggingKafkaInput is an input type that accepts ServiceComputeLoggingKafkaArgs and ServiceComputeLoggingKafkaOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingKafkaInput` via:
+//
+//          ServiceComputeLoggingKafkaArgs{...}
+type ServiceComputeLoggingKafkaInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingKafkaOutput() ServiceComputeLoggingKafkaOutput
+	ToServiceComputeLoggingKafkaOutputWithContext(context.Context) ServiceComputeLoggingKafkaOutput
+}
+
+type ServiceComputeLoggingKafkaArgs struct {
+	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+	Brokers pulumi.StringInput `pulumi:"brokers"`
+	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
+	// The Kafka topic to send logs to.
+	Topic pulumi.StringInput `pulumi:"topic"`
+	// Whether to use TLS for secure logging. Can be either true or false.
+	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
+}
+
+func (ServiceComputeLoggingKafkaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingKafka)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingKafkaArgs) ToServiceComputeLoggingKafkaOutput() ServiceComputeLoggingKafkaOutput {
+	return i.ToServiceComputeLoggingKafkaOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingKafkaArgs) ToServiceComputeLoggingKafkaOutputWithContext(ctx context.Context) ServiceComputeLoggingKafkaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKafkaOutput)
+}
+
+// ServiceComputeLoggingKafkaArrayInput is an input type that accepts ServiceComputeLoggingKafkaArray and ServiceComputeLoggingKafkaArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingKafkaArrayInput` via:
+//
+//          ServiceComputeLoggingKafkaArray{ ServiceComputeLoggingKafkaArgs{...} }
+type ServiceComputeLoggingKafkaArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingKafkaArrayOutput() ServiceComputeLoggingKafkaArrayOutput
+	ToServiceComputeLoggingKafkaArrayOutputWithContext(context.Context) ServiceComputeLoggingKafkaArrayOutput
+}
+
+type ServiceComputeLoggingKafkaArray []ServiceComputeLoggingKafkaInput
+
+func (ServiceComputeLoggingKafkaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingKafka)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingKafkaArray) ToServiceComputeLoggingKafkaArrayOutput() ServiceComputeLoggingKafkaArrayOutput {
+	return i.ToServiceComputeLoggingKafkaArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingKafkaArray) ToServiceComputeLoggingKafkaArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingKafkaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKafkaArrayOutput)
+}
+
+type ServiceComputeLoggingKafkaOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingKafkaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingKafka)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingKafkaOutput) ToServiceComputeLoggingKafkaOutput() ServiceComputeLoggingKafkaOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingKafkaOutput) ToServiceComputeLoggingKafkaOutputWithContext(ctx context.Context) ServiceComputeLoggingKafkaOutput {
+	return o
+}
+
+// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+func (o ServiceComputeLoggingKafkaOutput) Brokers() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Brokers }).(pulumi.StringOutput)
+}
+
+// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+func (o ServiceComputeLoggingKafkaOutput) CompressionCodec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingKafkaOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+func (o ServiceComputeLoggingKafkaOutput) RequiredAcks() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.RequiredAcks }).(pulumi.StringPtrOutput)
+}
+
+// A secure certificate to authenticate the server with. Must be in PEM format.
+func (o ServiceComputeLoggingKafkaOutput) TlsCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The client certificate used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeLoggingKafkaOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The client private key used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeLoggingKafkaOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+func (o ServiceComputeLoggingKafkaOutput) TlsHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
+}
+
+// The Kafka topic to send logs to.
+func (o ServiceComputeLoggingKafkaOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+// Whether to use TLS for secure logging. Can be either true or false.
+func (o ServiceComputeLoggingKafkaOutput) UseTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
+}
+
+type ServiceComputeLoggingKafkaArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingKafkaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingKafka)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingKafkaArrayOutput) ToServiceComputeLoggingKafkaArrayOutput() ServiceComputeLoggingKafkaArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingKafkaArrayOutput) ToServiceComputeLoggingKafkaArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingKafkaArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingKafkaArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingKafkaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingKafka {
+		return vs[0].([]ServiceComputeLoggingKafka)[vs[1].(int)]
+	}).(ServiceComputeLoggingKafkaOutput)
+}
+
+type ServiceComputeLoggingLoggly struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+}
+
+// ServiceComputeLoggingLogglyInput is an input type that accepts ServiceComputeLoggingLogglyArgs and ServiceComputeLoggingLogglyOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingLogglyInput` via:
+//
+//          ServiceComputeLoggingLogglyArgs{...}
+type ServiceComputeLoggingLogglyInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingLogglyOutput() ServiceComputeLoggingLogglyOutput
+	ToServiceComputeLoggingLogglyOutputWithContext(context.Context) ServiceComputeLoggingLogglyOutput
+}
+
+type ServiceComputeLoggingLogglyArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (ServiceComputeLoggingLogglyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingLoggly)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingLogglyArgs) ToServiceComputeLoggingLogglyOutput() ServiceComputeLoggingLogglyOutput {
+	return i.ToServiceComputeLoggingLogglyOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingLogglyArgs) ToServiceComputeLoggingLogglyOutputWithContext(ctx context.Context) ServiceComputeLoggingLogglyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogglyOutput)
+}
+
+// ServiceComputeLoggingLogglyArrayInput is an input type that accepts ServiceComputeLoggingLogglyArray and ServiceComputeLoggingLogglyArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingLogglyArrayInput` via:
+//
+//          ServiceComputeLoggingLogglyArray{ ServiceComputeLoggingLogglyArgs{...} }
+type ServiceComputeLoggingLogglyArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingLogglyArrayOutput() ServiceComputeLoggingLogglyArrayOutput
+	ToServiceComputeLoggingLogglyArrayOutputWithContext(context.Context) ServiceComputeLoggingLogglyArrayOutput
+}
+
+type ServiceComputeLoggingLogglyArray []ServiceComputeLoggingLogglyInput
+
+func (ServiceComputeLoggingLogglyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingLoggly)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingLogglyArray) ToServiceComputeLoggingLogglyArrayOutput() ServiceComputeLoggingLogglyArrayOutput {
+	return i.ToServiceComputeLoggingLogglyArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingLogglyArray) ToServiceComputeLoggingLogglyArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingLogglyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogglyArrayOutput)
+}
+
+type ServiceComputeLoggingLogglyOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingLogglyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingLoggly)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingLogglyOutput) ToServiceComputeLoggingLogglyOutput() ServiceComputeLoggingLogglyOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingLogglyOutput) ToServiceComputeLoggingLogglyOutputWithContext(ctx context.Context) ServiceComputeLoggingLogglyOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingLogglyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLoggly) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLoggingLogglyOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLoggly) string { return v.Token }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingLogglyArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingLogglyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingLoggly)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingLogglyArrayOutput) ToServiceComputeLoggingLogglyArrayOutput() ServiceComputeLoggingLogglyArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingLogglyArrayOutput) ToServiceComputeLoggingLogglyArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingLogglyArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingLogglyArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingLogglyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingLoggly {
+		return vs[0].([]ServiceComputeLoggingLoggly)[vs[1].(int)]
+	}).(ServiceComputeLoggingLogglyOutput)
+}
+
+type ServiceComputeLoggingLogshuttle struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+	// Your OpenStack auth url.
+	Url string `pulumi:"url"`
+}
+
+// ServiceComputeLoggingLogshuttleInput is an input type that accepts ServiceComputeLoggingLogshuttleArgs and ServiceComputeLoggingLogshuttleOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingLogshuttleInput` via:
+//
+//          ServiceComputeLoggingLogshuttleArgs{...}
+type ServiceComputeLoggingLogshuttleInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingLogshuttleOutput() ServiceComputeLoggingLogshuttleOutput
+	ToServiceComputeLoggingLogshuttleOutputWithContext(context.Context) ServiceComputeLoggingLogshuttleOutput
+}
+
+type ServiceComputeLoggingLogshuttleArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+	// Your OpenStack auth url.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (ServiceComputeLoggingLogshuttleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingLogshuttle)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingLogshuttleArgs) ToServiceComputeLoggingLogshuttleOutput() ServiceComputeLoggingLogshuttleOutput {
+	return i.ToServiceComputeLoggingLogshuttleOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingLogshuttleArgs) ToServiceComputeLoggingLogshuttleOutputWithContext(ctx context.Context) ServiceComputeLoggingLogshuttleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogshuttleOutput)
+}
+
+// ServiceComputeLoggingLogshuttleArrayInput is an input type that accepts ServiceComputeLoggingLogshuttleArray and ServiceComputeLoggingLogshuttleArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingLogshuttleArrayInput` via:
+//
+//          ServiceComputeLoggingLogshuttleArray{ ServiceComputeLoggingLogshuttleArgs{...} }
+type ServiceComputeLoggingLogshuttleArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingLogshuttleArrayOutput() ServiceComputeLoggingLogshuttleArrayOutput
+	ToServiceComputeLoggingLogshuttleArrayOutputWithContext(context.Context) ServiceComputeLoggingLogshuttleArrayOutput
+}
+
+type ServiceComputeLoggingLogshuttleArray []ServiceComputeLoggingLogshuttleInput
+
+func (ServiceComputeLoggingLogshuttleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingLogshuttle)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingLogshuttleArray) ToServiceComputeLoggingLogshuttleArrayOutput() ServiceComputeLoggingLogshuttleArrayOutput {
+	return i.ToServiceComputeLoggingLogshuttleArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingLogshuttleArray) ToServiceComputeLoggingLogshuttleArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingLogshuttleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogshuttleArrayOutput)
+}
+
+type ServiceComputeLoggingLogshuttleOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingLogshuttleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingLogshuttle)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingLogshuttleOutput) ToServiceComputeLoggingLogshuttleOutput() ServiceComputeLoggingLogshuttleOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingLogshuttleOutput) ToServiceComputeLoggingLogshuttleOutputWithContext(ctx context.Context) ServiceComputeLoggingLogshuttleOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingLogshuttleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLoggingLogshuttleOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// Your OpenStack auth url.
+func (o ServiceComputeLoggingLogshuttleOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingLogshuttleArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingLogshuttleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingLogshuttle)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingLogshuttleArrayOutput) ToServiceComputeLoggingLogshuttleArrayOutput() ServiceComputeLoggingLogshuttleArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingLogshuttleArrayOutput) ToServiceComputeLoggingLogshuttleArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingLogshuttleArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingLogshuttleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingLogshuttle {
+		return vs[0].([]ServiceComputeLoggingLogshuttle)[vs[1].(int)]
+	}).(ServiceComputeLoggingLogshuttleOutput)
+}
+
+type ServiceComputeLoggingNewrelic struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+}
+
+// ServiceComputeLoggingNewrelicInput is an input type that accepts ServiceComputeLoggingNewrelicArgs and ServiceComputeLoggingNewrelicOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingNewrelicInput` via:
+//
+//          ServiceComputeLoggingNewrelicArgs{...}
+type ServiceComputeLoggingNewrelicInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingNewrelicOutput() ServiceComputeLoggingNewrelicOutput
+	ToServiceComputeLoggingNewrelicOutputWithContext(context.Context) ServiceComputeLoggingNewrelicOutput
+}
+
+type ServiceComputeLoggingNewrelicArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (ServiceComputeLoggingNewrelicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingNewrelic)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingNewrelicArgs) ToServiceComputeLoggingNewrelicOutput() ServiceComputeLoggingNewrelicOutput {
+	return i.ToServiceComputeLoggingNewrelicOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingNewrelicArgs) ToServiceComputeLoggingNewrelicOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingNewrelicOutput)
+}
+
+// ServiceComputeLoggingNewrelicArrayInput is an input type that accepts ServiceComputeLoggingNewrelicArray and ServiceComputeLoggingNewrelicArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingNewrelicArrayInput` via:
+//
+//          ServiceComputeLoggingNewrelicArray{ ServiceComputeLoggingNewrelicArgs{...} }
+type ServiceComputeLoggingNewrelicArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingNewrelicArrayOutput() ServiceComputeLoggingNewrelicArrayOutput
+	ToServiceComputeLoggingNewrelicArrayOutputWithContext(context.Context) ServiceComputeLoggingNewrelicArrayOutput
+}
+
+type ServiceComputeLoggingNewrelicArray []ServiceComputeLoggingNewrelicInput
+
+func (ServiceComputeLoggingNewrelicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingNewrelic)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingNewrelicArray) ToServiceComputeLoggingNewrelicArrayOutput() ServiceComputeLoggingNewrelicArrayOutput {
+	return i.ToServiceComputeLoggingNewrelicArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingNewrelicArray) ToServiceComputeLoggingNewrelicArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingNewrelicArrayOutput)
+}
+
+type ServiceComputeLoggingNewrelicOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingNewrelicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingNewrelic)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingNewrelicOutput) ToServiceComputeLoggingNewrelicOutput() ServiceComputeLoggingNewrelicOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingNewrelicOutput) ToServiceComputeLoggingNewrelicOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingNewrelicOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLoggingNewrelicOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) string { return v.Token }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingNewrelicArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingNewrelicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingNewrelic)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingNewrelicArrayOutput) ToServiceComputeLoggingNewrelicArrayOutput() ServiceComputeLoggingNewrelicArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingNewrelicArrayOutput) ToServiceComputeLoggingNewrelicArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingNewrelicArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingNewrelicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingNewrelic {
+		return vs[0].([]ServiceComputeLoggingNewrelic)[vs[1].(int)]
+	}).(ServiceComputeLoggingNewrelicOutput)
+}
+
+type ServiceComputeLoggingOpenstack struct {
+	// Your Cloud File account access key.
+	AccessKey string `pulumi:"accessKey"`
+	// The name of your Cloud Files container.
+	BucketName string `pulumi:"bucketName"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The path to upload logs to.
+	Path *string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey *string `pulumi:"publicKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+	// Your OpenStack auth url.
+	Url string `pulumi:"url"`
+	// The username for your Cloud Files account.
+	User string `pulumi:"user"`
+}
+
+// ServiceComputeLoggingOpenstackInput is an input type that accepts ServiceComputeLoggingOpenstackArgs and ServiceComputeLoggingOpenstackOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingOpenstackInput` via:
+//
+//          ServiceComputeLoggingOpenstackArgs{...}
+type ServiceComputeLoggingOpenstackInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingOpenstackOutput() ServiceComputeLoggingOpenstackOutput
+	ToServiceComputeLoggingOpenstackOutputWithContext(context.Context) ServiceComputeLoggingOpenstackOutput
+}
+
+type ServiceComputeLoggingOpenstackArgs struct {
+	// Your Cloud File account access key.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// The name of your Cloud Files container.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+	// Your OpenStack auth url.
+	Url pulumi.StringInput `pulumi:"url"`
+	// The username for your Cloud Files account.
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (ServiceComputeLoggingOpenstackArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingOpenstack)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingOpenstackArgs) ToServiceComputeLoggingOpenstackOutput() ServiceComputeLoggingOpenstackOutput {
+	return i.ToServiceComputeLoggingOpenstackOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingOpenstackArgs) ToServiceComputeLoggingOpenstackOutputWithContext(ctx context.Context) ServiceComputeLoggingOpenstackOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingOpenstackOutput)
+}
+
+// ServiceComputeLoggingOpenstackArrayInput is an input type that accepts ServiceComputeLoggingOpenstackArray and ServiceComputeLoggingOpenstackArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingOpenstackArrayInput` via:
+//
+//          ServiceComputeLoggingOpenstackArray{ ServiceComputeLoggingOpenstackArgs{...} }
+type ServiceComputeLoggingOpenstackArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingOpenstackArrayOutput() ServiceComputeLoggingOpenstackArrayOutput
+	ToServiceComputeLoggingOpenstackArrayOutputWithContext(context.Context) ServiceComputeLoggingOpenstackArrayOutput
+}
+
+type ServiceComputeLoggingOpenstackArray []ServiceComputeLoggingOpenstackInput
+
+func (ServiceComputeLoggingOpenstackArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingOpenstack)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingOpenstackArray) ToServiceComputeLoggingOpenstackArrayOutput() ServiceComputeLoggingOpenstackArrayOutput {
+	return i.ToServiceComputeLoggingOpenstackArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingOpenstackArray) ToServiceComputeLoggingOpenstackArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingOpenstackArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingOpenstackArrayOutput)
+}
+
+type ServiceComputeLoggingOpenstackOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingOpenstackOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingOpenstack)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingOpenstackOutput) ToServiceComputeLoggingOpenstackOutput() ServiceComputeLoggingOpenstackOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingOpenstackOutput) ToServiceComputeLoggingOpenstackOutputWithContext(ctx context.Context) ServiceComputeLoggingOpenstackOutput {
+	return o
+}
+
+// Your Cloud File account access key.
+func (o ServiceComputeLoggingOpenstackOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// The name of your Cloud Files container.
+func (o ServiceComputeLoggingOpenstackOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeLoggingOpenstackOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeLoggingOpenstackOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingOpenstackOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeLoggingOpenstackOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeLoggingOpenstackOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+func (o ServiceComputeLoggingOpenstackOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeLoggingOpenstackOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+// Your OpenStack auth url.
+func (o ServiceComputeLoggingOpenstackOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The username for your Cloud Files account.
+func (o ServiceComputeLoggingOpenstackOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.User }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingOpenstackArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingOpenstackArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingOpenstack)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingOpenstackArrayOutput) ToServiceComputeLoggingOpenstackArrayOutput() ServiceComputeLoggingOpenstackArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingOpenstackArrayOutput) ToServiceComputeLoggingOpenstackArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingOpenstackArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingOpenstackArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingOpenstackOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingOpenstack {
+		return vs[0].([]ServiceComputeLoggingOpenstack)[vs[1].(int)]
+	}).(ServiceComputeLoggingOpenstackOutput)
+}
+
+type ServiceComputeLoggingScalyr struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	Region *string `pulumi:"region"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+}
+
+// ServiceComputeLoggingScalyrInput is an input type that accepts ServiceComputeLoggingScalyrArgs and ServiceComputeLoggingScalyrOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingScalyrInput` via:
+//
+//          ServiceComputeLoggingScalyrArgs{...}
+type ServiceComputeLoggingScalyrInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingScalyrOutput() ServiceComputeLoggingScalyrOutput
+	ToServiceComputeLoggingScalyrOutputWithContext(context.Context) ServiceComputeLoggingScalyrOutput
+}
+
+type ServiceComputeLoggingScalyrArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (ServiceComputeLoggingScalyrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingScalyr)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingScalyrArgs) ToServiceComputeLoggingScalyrOutput() ServiceComputeLoggingScalyrOutput {
+	return i.ToServiceComputeLoggingScalyrOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingScalyrArgs) ToServiceComputeLoggingScalyrOutputWithContext(ctx context.Context) ServiceComputeLoggingScalyrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingScalyrOutput)
+}
+
+// ServiceComputeLoggingScalyrArrayInput is an input type that accepts ServiceComputeLoggingScalyrArray and ServiceComputeLoggingScalyrArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingScalyrArrayInput` via:
+//
+//          ServiceComputeLoggingScalyrArray{ ServiceComputeLoggingScalyrArgs{...} }
+type ServiceComputeLoggingScalyrArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingScalyrArrayOutput() ServiceComputeLoggingScalyrArrayOutput
+	ToServiceComputeLoggingScalyrArrayOutputWithContext(context.Context) ServiceComputeLoggingScalyrArrayOutput
+}
+
+type ServiceComputeLoggingScalyrArray []ServiceComputeLoggingScalyrInput
+
+func (ServiceComputeLoggingScalyrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingScalyr)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingScalyrArray) ToServiceComputeLoggingScalyrArrayOutput() ServiceComputeLoggingScalyrArrayOutput {
+	return i.ToServiceComputeLoggingScalyrArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingScalyrArray) ToServiceComputeLoggingScalyrArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingScalyrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingScalyrArrayOutput)
+}
+
+type ServiceComputeLoggingScalyrOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingScalyrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingScalyr)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingScalyrOutput) ToServiceComputeLoggingScalyrOutput() ServiceComputeLoggingScalyrOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingScalyrOutput) ToServiceComputeLoggingScalyrOutputWithContext(ctx context.Context) ServiceComputeLoggingScalyrOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingScalyrOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+func (o ServiceComputeLoggingScalyrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingScalyr) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeLoggingScalyrOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingScalyr) string { return v.Token }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingScalyrArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingScalyrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingScalyr)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingScalyrArrayOutput) ToServiceComputeLoggingScalyrArrayOutput() ServiceComputeLoggingScalyrArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingScalyrArrayOutput) ToServiceComputeLoggingScalyrArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingScalyrArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingScalyrArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingScalyrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingScalyr {
+		return vs[0].([]ServiceComputeLoggingScalyr)[vs[1].(int)]
+	}).(ServiceComputeLoggingScalyrOutput)
+}
+
+type ServiceComputeLoggingSftp struct {
+	// The SFTP address to stream logs to.
+	Address string `pulumi:"address"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password *string `pulumi:"password"`
+	// The path to upload logs to.
+	Path string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port *int `pulumi:"port"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey *string `pulumi:"publicKey"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey *string `pulumi:"secretKey"`
+	// A list of host keys for all hosts we can connect to over SFTP.
+	SshKnownHosts string `pulumi:"sshKnownHosts"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+	// The username for your Cloud Files account.
+	User string `pulumi:"user"`
+}
+
+// ServiceComputeLoggingSftpInput is an input type that accepts ServiceComputeLoggingSftpArgs and ServiceComputeLoggingSftpOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingSftpInput` via:
+//
+//          ServiceComputeLoggingSftpArgs{...}
+type ServiceComputeLoggingSftpInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingSftpOutput() ServiceComputeLoggingSftpOutput
+	ToServiceComputeLoggingSftpOutputWithContext(context.Context) ServiceComputeLoggingSftpOutput
+}
+
+type ServiceComputeLoggingSftpArgs struct {
+	// The SFTP address to stream logs to.
+	Address pulumi.StringInput `pulumi:"address"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The path to upload logs to.
+	Path pulumi.StringInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// Your DigitalOcean Spaces account secret key.
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// A list of host keys for all hosts we can connect to over SFTP.
+	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+	// The username for your Cloud Files account.
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (ServiceComputeLoggingSftpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingSftp)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingSftpArgs) ToServiceComputeLoggingSftpOutput() ServiceComputeLoggingSftpOutput {
+	return i.ToServiceComputeLoggingSftpOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingSftpArgs) ToServiceComputeLoggingSftpOutputWithContext(ctx context.Context) ServiceComputeLoggingSftpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSftpOutput)
+}
+
+// ServiceComputeLoggingSftpArrayInput is an input type that accepts ServiceComputeLoggingSftpArray and ServiceComputeLoggingSftpArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingSftpArrayInput` via:
+//
+//          ServiceComputeLoggingSftpArray{ ServiceComputeLoggingSftpArgs{...} }
+type ServiceComputeLoggingSftpArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingSftpArrayOutput() ServiceComputeLoggingSftpArrayOutput
+	ToServiceComputeLoggingSftpArrayOutputWithContext(context.Context) ServiceComputeLoggingSftpArrayOutput
+}
+
+type ServiceComputeLoggingSftpArray []ServiceComputeLoggingSftpInput
+
+func (ServiceComputeLoggingSftpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingSftp)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingSftpArray) ToServiceComputeLoggingSftpArrayOutput() ServiceComputeLoggingSftpArrayOutput {
+	return i.ToServiceComputeLoggingSftpArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingSftpArray) ToServiceComputeLoggingSftpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingSftpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSftpArrayOutput)
+}
+
+type ServiceComputeLoggingSftpOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingSftpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingSftp)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingSftpOutput) ToServiceComputeLoggingSftpOutput() ServiceComputeLoggingSftpOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingSftpOutput) ToServiceComputeLoggingSftpOutputWithContext(ctx context.Context) ServiceComputeLoggingSftpOutput {
+	return o
+}
+
+// The SFTP address to stream logs to.
+func (o ServiceComputeLoggingSftpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeLoggingSftpOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeLoggingSftpOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeLoggingSftpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+func (o ServiceComputeLoggingSftpOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeLoggingSftpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeLoggingSftpOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The port the SFTP service listens on. (Default: `22`).
+func (o ServiceComputeLoggingSftpOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+func (o ServiceComputeLoggingSftpOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// Your DigitalOcean Spaces account secret key.
+func (o ServiceComputeLoggingSftpOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// A list of host keys for all hosts we can connect to over SFTP.
+func (o ServiceComputeLoggingSftpOutput) SshKnownHosts() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.SshKnownHosts }).(pulumi.StringOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeLoggingSftpOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+// The username for your Cloud Files account.
+func (o ServiceComputeLoggingSftpOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.User }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingSftpArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingSftpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingSftp)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingSftpArrayOutput) ToServiceComputeLoggingSftpArrayOutput() ServiceComputeLoggingSftpArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingSftpArrayOutput) ToServiceComputeLoggingSftpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingSftpArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingSftpArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingSftpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingSftp {
+		return vs[0].([]ServiceComputeLoggingSftp)[vs[1].(int)]
+	}).(ServiceComputeLoggingSftpOutput)
+}
+
+type ServiceComputePackage struct {
+	// The path to the Wasm deployment package within your local filesystem.
+	Filename       string  `pulumi:"filename"`
+	SourceCodeHash *string `pulumi:"sourceCodeHash"`
+}
+
+// ServiceComputePackageInput is an input type that accepts ServiceComputePackageArgs and ServiceComputePackageOutput values.
+// You can construct a concrete instance of `ServiceComputePackageInput` via:
+//
+//          ServiceComputePackageArgs{...}
+type ServiceComputePackageInput interface {
+	pulumi.Input
+
+	ToServiceComputePackageOutput() ServiceComputePackageOutput
+	ToServiceComputePackageOutputWithContext(context.Context) ServiceComputePackageOutput
+}
+
+type ServiceComputePackageArgs struct {
+	// The path to the Wasm deployment package within your local filesystem.
+	Filename       pulumi.StringInput    `pulumi:"filename"`
+	SourceCodeHash pulumi.StringPtrInput `pulumi:"sourceCodeHash"`
+}
+
+func (ServiceComputePackageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputePackage)(nil)).Elem()
+}
+
+func (i ServiceComputePackageArgs) ToServiceComputePackageOutput() ServiceComputePackageOutput {
+	return i.ToServiceComputePackageOutputWithContext(context.Background())
+}
+
+func (i ServiceComputePackageArgs) ToServiceComputePackageOutputWithContext(ctx context.Context) ServiceComputePackageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePackageOutput)
+}
+
+func (i ServiceComputePackageArgs) ToServiceComputePackagePtrOutput() ServiceComputePackagePtrOutput {
+	return i.ToServiceComputePackagePtrOutputWithContext(context.Background())
+}
+
+func (i ServiceComputePackageArgs) ToServiceComputePackagePtrOutputWithContext(ctx context.Context) ServiceComputePackagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePackageOutput).ToServiceComputePackagePtrOutputWithContext(ctx)
+}
+
+// ServiceComputePackagePtrInput is an input type that accepts ServiceComputePackageArgs, ServiceComputePackagePtr and ServiceComputePackagePtrOutput values.
+// You can construct a concrete instance of `ServiceComputePackagePtrInput` via:
+//
+//          ServiceComputePackageArgs{...}
+//
+//  or:
+//
+//          nil
+type ServiceComputePackagePtrInput interface {
+	pulumi.Input
+
+	ToServiceComputePackagePtrOutput() ServiceComputePackagePtrOutput
+	ToServiceComputePackagePtrOutputWithContext(context.Context) ServiceComputePackagePtrOutput
+}
+
+type serviceComputePackagePtrType ServiceComputePackageArgs
+
+func ServiceComputePackagePtr(v *ServiceComputePackageArgs) ServiceComputePackagePtrInput {
+	return (*serviceComputePackagePtrType)(v)
+}
+
+func (*serviceComputePackagePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputePackage)(nil)).Elem()
+}
+
+func (i *serviceComputePackagePtrType) ToServiceComputePackagePtrOutput() ServiceComputePackagePtrOutput {
+	return i.ToServiceComputePackagePtrOutputWithContext(context.Background())
+}
+
+func (i *serviceComputePackagePtrType) ToServiceComputePackagePtrOutputWithContext(ctx context.Context) ServiceComputePackagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePackagePtrOutput)
+}
+
+type ServiceComputePackageOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputePackageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputePackage)(nil)).Elem()
+}
+
+func (o ServiceComputePackageOutput) ToServiceComputePackageOutput() ServiceComputePackageOutput {
+	return o
+}
+
+func (o ServiceComputePackageOutput) ToServiceComputePackageOutputWithContext(ctx context.Context) ServiceComputePackageOutput {
+	return o
+}
+
+func (o ServiceComputePackageOutput) ToServiceComputePackagePtrOutput() ServiceComputePackagePtrOutput {
+	return o.ToServiceComputePackagePtrOutputWithContext(context.Background())
+}
+
+func (o ServiceComputePackageOutput) ToServiceComputePackagePtrOutputWithContext(ctx context.Context) ServiceComputePackagePtrOutput {
+	return o.ApplyT(func(v ServiceComputePackage) *ServiceComputePackage {
+		return &v
+	}).(ServiceComputePackagePtrOutput)
+}
+
+// The path to the Wasm deployment package within your local filesystem.
+func (o ServiceComputePackageOutput) Filename() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputePackage) string { return v.Filename }).(pulumi.StringOutput)
+}
+
+func (o ServiceComputePackageOutput) SourceCodeHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputePackage) *string { return v.SourceCodeHash }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputePackagePtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputePackagePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputePackage)(nil)).Elem()
+}
+
+func (o ServiceComputePackagePtrOutput) ToServiceComputePackagePtrOutput() ServiceComputePackagePtrOutput {
+	return o
+}
+
+func (o ServiceComputePackagePtrOutput) ToServiceComputePackagePtrOutputWithContext(ctx context.Context) ServiceComputePackagePtrOutput {
+	return o
+}
+
+func (o ServiceComputePackagePtrOutput) Elem() ServiceComputePackageOutput {
+	return o.ApplyT(func(v *ServiceComputePackage) ServiceComputePackage { return *v }).(ServiceComputePackageOutput)
+}
+
+// The path to the Wasm deployment package within your local filesystem.
+func (o ServiceComputePackagePtrOutput) Filename() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputePackage) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Filename
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputePackage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceCodeHash
+	}).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputePapertrail struct {
+	// The SFTP address to stream logs to.
+	Address string `pulumi:"address"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port int `pulumi:"port"`
+}
+
+// ServiceComputePapertrailInput is an input type that accepts ServiceComputePapertrailArgs and ServiceComputePapertrailOutput values.
+// You can construct a concrete instance of `ServiceComputePapertrailInput` via:
+//
+//          ServiceComputePapertrailArgs{...}
+type ServiceComputePapertrailInput interface {
+	pulumi.Input
+
+	ToServiceComputePapertrailOutput() ServiceComputePapertrailOutput
+	ToServiceComputePapertrailOutputWithContext(context.Context) ServiceComputePapertrailOutput
+}
+
+type ServiceComputePapertrailArgs struct {
+	// The SFTP address to stream logs to.
+	Address pulumi.StringInput `pulumi:"address"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (ServiceComputePapertrailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputePapertrail)(nil)).Elem()
+}
+
+func (i ServiceComputePapertrailArgs) ToServiceComputePapertrailOutput() ServiceComputePapertrailOutput {
+	return i.ToServiceComputePapertrailOutputWithContext(context.Background())
+}
+
+func (i ServiceComputePapertrailArgs) ToServiceComputePapertrailOutputWithContext(ctx context.Context) ServiceComputePapertrailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePapertrailOutput)
+}
+
+// ServiceComputePapertrailArrayInput is an input type that accepts ServiceComputePapertrailArray and ServiceComputePapertrailArrayOutput values.
+// You can construct a concrete instance of `ServiceComputePapertrailArrayInput` via:
+//
+//          ServiceComputePapertrailArray{ ServiceComputePapertrailArgs{...} }
+type ServiceComputePapertrailArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputePapertrailArrayOutput() ServiceComputePapertrailArrayOutput
+	ToServiceComputePapertrailArrayOutputWithContext(context.Context) ServiceComputePapertrailArrayOutput
+}
+
+type ServiceComputePapertrailArray []ServiceComputePapertrailInput
+
+func (ServiceComputePapertrailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputePapertrail)(nil)).Elem()
+}
+
+func (i ServiceComputePapertrailArray) ToServiceComputePapertrailArrayOutput() ServiceComputePapertrailArrayOutput {
+	return i.ToServiceComputePapertrailArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputePapertrailArray) ToServiceComputePapertrailArrayOutputWithContext(ctx context.Context) ServiceComputePapertrailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePapertrailArrayOutput)
+}
+
+type ServiceComputePapertrailOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputePapertrailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputePapertrail)(nil)).Elem()
+}
+
+func (o ServiceComputePapertrailOutput) ToServiceComputePapertrailOutput() ServiceComputePapertrailOutput {
+	return o
+}
+
+func (o ServiceComputePapertrailOutput) ToServiceComputePapertrailOutputWithContext(ctx context.Context) ServiceComputePapertrailOutput {
+	return o
+}
+
+// The SFTP address to stream logs to.
+func (o ServiceComputePapertrailOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputePapertrail) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputePapertrailOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputePapertrail) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The port the SFTP service listens on. (Default: `22`).
+func (o ServiceComputePapertrailOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v ServiceComputePapertrail) int { return v.Port }).(pulumi.IntOutput)
+}
+
+type ServiceComputePapertrailArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputePapertrailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputePapertrail)(nil)).Elem()
+}
+
+func (o ServiceComputePapertrailArrayOutput) ToServiceComputePapertrailArrayOutput() ServiceComputePapertrailArrayOutput {
+	return o
+}
+
+func (o ServiceComputePapertrailArrayOutput) ToServiceComputePapertrailArrayOutputWithContext(ctx context.Context) ServiceComputePapertrailArrayOutput {
+	return o
+}
+
+func (o ServiceComputePapertrailArrayOutput) Index(i pulumi.IntInput) ServiceComputePapertrailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputePapertrail {
+		return vs[0].([]ServiceComputePapertrail)[vs[1].(int)]
+	}).(ServiceComputePapertrailOutput)
+}
+
+type ServiceComputeS3logging struct {
+	// The name of your Cloud Files container.
+	BucketName string `pulumi:"bucketName"`
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	Domain *string `pulumi:"domain"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The path to upload logs to.
+	Path *string `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period *int `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey *string `pulumi:"publicKey"`
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+	Redundancy *string `pulumi:"redundancy"`
+	// AWS Access Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This key will be
+	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+	S3AccessKey *string `pulumi:"s3AccessKey"`
+	// AWS Secret Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This secret will be
+	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+	S3SecretKey                  *string `pulumi:"s3SecretKey"`
+	ServerSideEncryption         *string `pulumi:"serverSideEncryption"`
+	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat *string `pulumi:"timestampFormat"`
+}
+
+// ServiceComputeS3loggingInput is an input type that accepts ServiceComputeS3loggingArgs and ServiceComputeS3loggingOutput values.
+// You can construct a concrete instance of `ServiceComputeS3loggingInput` via:
+//
+//          ServiceComputeS3loggingArgs{...}
+type ServiceComputeS3loggingInput interface {
+	pulumi.Input
+
+	ToServiceComputeS3loggingOutput() ServiceComputeS3loggingOutput
+	ToServiceComputeS3loggingOutputWithContext(context.Context) ServiceComputeS3loggingOutput
+}
+
+type ServiceComputeS3loggingArgs struct {
+	// The name of your Cloud Files container.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to upload logs to.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
+	// AWS Access Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This key will be
+	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
+	// AWS Secret Key of an account with the required
+	// permissions to post logs. It is **strongly** recommended you create a separate
+	// IAM user with permissions to only operate on this Bucket. This secret will be
+	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+	S3SecretKey                  pulumi.StringPtrInput `pulumi:"s3SecretKey"`
+	ServerSideEncryption         pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
+	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+}
+
+func (ServiceComputeS3loggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeS3logging)(nil)).Elem()
+}
+
+func (i ServiceComputeS3loggingArgs) ToServiceComputeS3loggingOutput() ServiceComputeS3loggingOutput {
+	return i.ToServiceComputeS3loggingOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeS3loggingArgs) ToServiceComputeS3loggingOutputWithContext(ctx context.Context) ServiceComputeS3loggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeS3loggingOutput)
+}
+
+// ServiceComputeS3loggingArrayInput is an input type that accepts ServiceComputeS3loggingArray and ServiceComputeS3loggingArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeS3loggingArrayInput` via:
+//
+//          ServiceComputeS3loggingArray{ ServiceComputeS3loggingArgs{...} }
+type ServiceComputeS3loggingArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeS3loggingArrayOutput() ServiceComputeS3loggingArrayOutput
+	ToServiceComputeS3loggingArrayOutputWithContext(context.Context) ServiceComputeS3loggingArrayOutput
+}
+
+type ServiceComputeS3loggingArray []ServiceComputeS3loggingInput
+
+func (ServiceComputeS3loggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeS3logging)(nil)).Elem()
+}
+
+func (i ServiceComputeS3loggingArray) ToServiceComputeS3loggingArrayOutput() ServiceComputeS3loggingArrayOutput {
+	return i.ToServiceComputeS3loggingArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeS3loggingArray) ToServiceComputeS3loggingArrayOutputWithContext(ctx context.Context) ServiceComputeS3loggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeS3loggingArrayOutput)
+}
+
+type ServiceComputeS3loggingOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeS3loggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeS3logging)(nil)).Elem()
+}
+
+func (o ServiceComputeS3loggingOutput) ToServiceComputeS3loggingOutput() ServiceComputeS3loggingOutput {
+	return o
+}
+
+func (o ServiceComputeS3loggingOutput) ToServiceComputeS3loggingOutputWithContext(ctx context.Context) ServiceComputeS3loggingOutput {
+	return o
+}
+
+// The name of your Cloud Files container.
+func (o ServiceComputeS3loggingOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+func (o ServiceComputeS3loggingOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+func (o ServiceComputeS3loggingOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeS3loggingOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeS3loggingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to upload logs to.
+func (o ServiceComputeS3loggingOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+func (o ServiceComputeS3loggingOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+func (o ServiceComputeS3loggingOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+func (o ServiceComputeS3loggingOutput) Redundancy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
+}
+
+// AWS Access Key of an account with the required
+// permissions to post logs. It is **strongly** recommended you create a separate
+// IAM user with permissions to only operate on this Bucket. This key will be
+// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+func (o ServiceComputeS3loggingOutput) S3AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.S3AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// AWS Secret Key of an account with the required
+// permissions to post logs. It is **strongly** recommended you create a separate
+// IAM user with permissions to only operate on this Bucket. This secret will be
+// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+func (o ServiceComputeS3loggingOutput) S3SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceComputeS3loggingOutput) ServerSideEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceComputeS3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
+}
+
+// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+func (o ServiceComputeS3loggingOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeS3loggingArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeS3loggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeS3logging)(nil)).Elem()
+}
+
+func (o ServiceComputeS3loggingArrayOutput) ToServiceComputeS3loggingArrayOutput() ServiceComputeS3loggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeS3loggingArrayOutput) ToServiceComputeS3loggingArrayOutputWithContext(ctx context.Context) ServiceComputeS3loggingArrayOutput {
+	return o
+}
+
+func (o ServiceComputeS3loggingArrayOutput) Index(i pulumi.IntInput) ServiceComputeS3loggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeS3logging {
+		return vs[0].([]ServiceComputeS3logging)[vs[1].(int)]
+	}).(ServiceComputeS3loggingOutput)
+}
+
+type ServiceComputeSplunk struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname *string `pulumi:"tlsHostname"`
+	// The data authentication token associated with this endpoint.
+	Token string `pulumi:"token"`
+	// Your OpenStack auth url.
+	Url string `pulumi:"url"`
+}
+
+// ServiceComputeSplunkInput is an input type that accepts ServiceComputeSplunkArgs and ServiceComputeSplunkOutput values.
+// You can construct a concrete instance of `ServiceComputeSplunkInput` via:
+//
+//          ServiceComputeSplunkArgs{...}
+type ServiceComputeSplunkInput interface {
+	pulumi.Input
+
+	ToServiceComputeSplunkOutput() ServiceComputeSplunkOutput
+	ToServiceComputeSplunkOutputWithContext(context.Context) ServiceComputeSplunkOutput
+}
+
+type ServiceComputeSplunkArgs struct {
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringInput `pulumi:"token"`
+	// Your OpenStack auth url.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (ServiceComputeSplunkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeSplunk)(nil)).Elem()
+}
+
+func (i ServiceComputeSplunkArgs) ToServiceComputeSplunkOutput() ServiceComputeSplunkOutput {
+	return i.ToServiceComputeSplunkOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeSplunkArgs) ToServiceComputeSplunkOutputWithContext(ctx context.Context) ServiceComputeSplunkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeSplunkOutput)
+}
+
+// ServiceComputeSplunkArrayInput is an input type that accepts ServiceComputeSplunkArray and ServiceComputeSplunkArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeSplunkArrayInput` via:
+//
+//          ServiceComputeSplunkArray{ ServiceComputeSplunkArgs{...} }
+type ServiceComputeSplunkArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeSplunkArrayOutput() ServiceComputeSplunkArrayOutput
+	ToServiceComputeSplunkArrayOutputWithContext(context.Context) ServiceComputeSplunkArrayOutput
+}
+
+type ServiceComputeSplunkArray []ServiceComputeSplunkInput
+
+func (ServiceComputeSplunkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeSplunk)(nil)).Elem()
+}
+
+func (i ServiceComputeSplunkArray) ToServiceComputeSplunkArrayOutput() ServiceComputeSplunkArrayOutput {
+	return i.ToServiceComputeSplunkArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeSplunkArray) ToServiceComputeSplunkArrayOutputWithContext(ctx context.Context) ServiceComputeSplunkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeSplunkArrayOutput)
+}
+
+type ServiceComputeSplunkOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeSplunkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeSplunk)(nil)).Elem()
+}
+
+func (o ServiceComputeSplunkOutput) ToServiceComputeSplunkOutput() ServiceComputeSplunkOutput {
+	return o
+}
+
+func (o ServiceComputeSplunkOutput) ToServiceComputeSplunkOutputWithContext(ctx context.Context) ServiceComputeSplunkOutput {
+	return o
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeSplunkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A secure certificate to authenticate the server with. Must be in PEM format.
+func (o ServiceComputeSplunkOutput) TlsCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+func (o ServiceComputeSplunkOutput) TlsHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeSplunkOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// Your OpenStack auth url.
+func (o ServiceComputeSplunkOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type ServiceComputeSplunkArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeSplunkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeSplunk)(nil)).Elem()
+}
+
+func (o ServiceComputeSplunkArrayOutput) ToServiceComputeSplunkArrayOutput() ServiceComputeSplunkArrayOutput {
+	return o
+}
+
+func (o ServiceComputeSplunkArrayOutput) ToServiceComputeSplunkArrayOutputWithContext(ctx context.Context) ServiceComputeSplunkArrayOutput {
+	return o
+}
+
+func (o ServiceComputeSplunkArrayOutput) Index(i pulumi.IntInput) ServiceComputeSplunkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeSplunk {
+		return vs[0].([]ServiceComputeSplunk)[vs[1].(int)]
+	}).(ServiceComputeSplunkOutput)
+}
+
+type ServiceComputeSumologic struct {
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// Your OpenStack auth url.
+	Url string `pulumi:"url"`
+}
+
+// ServiceComputeSumologicInput is an input type that accepts ServiceComputeSumologicArgs and ServiceComputeSumologicOutput values.
+// You can construct a concrete instance of `ServiceComputeSumologicInput` via:
+//
+//          ServiceComputeSumologicArgs{...}
+type ServiceComputeSumologicInput interface {
+	pulumi.Input
+
+	ToServiceComputeSumologicOutput() ServiceComputeSumologicOutput
+	ToServiceComputeSumologicOutputWithContext(context.Context) ServiceComputeSumologicOutput
+}
+
+type ServiceComputeSumologicArgs struct {
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Your OpenStack auth url.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (ServiceComputeSumologicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeSumologic)(nil)).Elem()
+}
+
+func (i ServiceComputeSumologicArgs) ToServiceComputeSumologicOutput() ServiceComputeSumologicOutput {
+	return i.ToServiceComputeSumologicOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeSumologicArgs) ToServiceComputeSumologicOutputWithContext(ctx context.Context) ServiceComputeSumologicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeSumologicOutput)
+}
+
+// ServiceComputeSumologicArrayInput is an input type that accepts ServiceComputeSumologicArray and ServiceComputeSumologicArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeSumologicArrayInput` via:
+//
+//          ServiceComputeSumologicArray{ ServiceComputeSumologicArgs{...} }
+type ServiceComputeSumologicArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeSumologicArrayOutput() ServiceComputeSumologicArrayOutput
+	ToServiceComputeSumologicArrayOutputWithContext(context.Context) ServiceComputeSumologicArrayOutput
+}
+
+type ServiceComputeSumologicArray []ServiceComputeSumologicInput
+
+func (ServiceComputeSumologicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeSumologic)(nil)).Elem()
+}
+
+func (i ServiceComputeSumologicArray) ToServiceComputeSumologicArrayOutput() ServiceComputeSumologicArrayOutput {
+	return i.ToServiceComputeSumologicArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeSumologicArray) ToServiceComputeSumologicArrayOutputWithContext(ctx context.Context) ServiceComputeSumologicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeSumologicArrayOutput)
+}
+
+type ServiceComputeSumologicOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeSumologicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeSumologic)(nil)).Elem()
+}
+
+func (o ServiceComputeSumologicOutput) ToServiceComputeSumologicOutput() ServiceComputeSumologicOutput {
+	return o
+}
+
+func (o ServiceComputeSumologicOutput) ToServiceComputeSumologicOutputWithContext(ctx context.Context) ServiceComputeSumologicOutput {
+	return o
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeSumologicOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeSumologicOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeSumologic) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Your OpenStack auth url.
+func (o ServiceComputeSumologicOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeSumologic) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type ServiceComputeSumologicArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeSumologicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeSumologic)(nil)).Elem()
+}
+
+func (o ServiceComputeSumologicArrayOutput) ToServiceComputeSumologicArrayOutput() ServiceComputeSumologicArrayOutput {
+	return o
+}
+
+func (o ServiceComputeSumologicArrayOutput) ToServiceComputeSumologicArrayOutputWithContext(ctx context.Context) ServiceComputeSumologicArrayOutput {
+	return o
+}
+
+func (o ServiceComputeSumologicArrayOutput) Index(i pulumi.IntInput) ServiceComputeSumologicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeSumologic {
+		return vs[0].([]ServiceComputeSumologic)[vs[1].(int)]
+	}).(ServiceComputeSumologicOutput)
+}
+
+type ServiceComputeSyslog struct {
+	// The SFTP address to stream logs to.
+	Address string `pulumi:"address"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name string `pulumi:"name"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port *int `pulumi:"port"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname *string `pulumi:"tlsHostname"`
+	// The data authentication token associated with this endpoint.
+	Token *string `pulumi:"token"`
+	// Whether to use TLS for secure logging. Can be either true or false.
+	UseTls *bool `pulumi:"useTls"`
+}
+
+// ServiceComputeSyslogInput is an input type that accepts ServiceComputeSyslogArgs and ServiceComputeSyslogOutput values.
+// You can construct a concrete instance of `ServiceComputeSyslogInput` via:
+//
+//          ServiceComputeSyslogArgs{...}
+type ServiceComputeSyslogInput interface {
+	pulumi.Input
+
+	ToServiceComputeSyslogOutput() ServiceComputeSyslogOutput
+	ToServiceComputeSyslogOutputWithContext(context.Context) ServiceComputeSyslogOutput
+}
+
+type ServiceComputeSyslogArgs struct {
+	// The SFTP address to stream logs to.
+	Address pulumi.StringInput `pulumi:"address"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Rackspace Cloud Files logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The port the SFTP service listens on. (Default: `22`).
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// A secure certificate to authenticate the server with. Must be in PEM format.
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
+	// The data authentication token associated with this endpoint.
+	Token pulumi.StringPtrInput `pulumi:"token"`
+	// Whether to use TLS for secure logging. Can be either true or false.
+	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
+}
+
+func (ServiceComputeSyslogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeSyslog)(nil)).Elem()
+}
+
+func (i ServiceComputeSyslogArgs) ToServiceComputeSyslogOutput() ServiceComputeSyslogOutput {
+	return i.ToServiceComputeSyslogOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeSyslogArgs) ToServiceComputeSyslogOutputWithContext(ctx context.Context) ServiceComputeSyslogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeSyslogOutput)
+}
+
+// ServiceComputeSyslogArrayInput is an input type that accepts ServiceComputeSyslogArray and ServiceComputeSyslogArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeSyslogArrayInput` via:
+//
+//          ServiceComputeSyslogArray{ ServiceComputeSyslogArgs{...} }
+type ServiceComputeSyslogArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeSyslogArrayOutput() ServiceComputeSyslogArrayOutput
+	ToServiceComputeSyslogArrayOutputWithContext(context.Context) ServiceComputeSyslogArrayOutput
+}
+
+type ServiceComputeSyslogArray []ServiceComputeSyslogInput
+
+func (ServiceComputeSyslogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeSyslog)(nil)).Elem()
+}
+
+func (i ServiceComputeSyslogArray) ToServiceComputeSyslogArrayOutput() ServiceComputeSyslogArrayOutput {
+	return i.ToServiceComputeSyslogArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeSyslogArray) ToServiceComputeSyslogArrayOutputWithContext(ctx context.Context) ServiceComputeSyslogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeSyslogArrayOutput)
+}
+
+type ServiceComputeSyslogOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeSyslogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeSyslog)(nil)).Elem()
+}
+
+func (o ServiceComputeSyslogOutput) ToServiceComputeSyslogOutput() ServiceComputeSyslogOutput {
+	return o
+}
+
+func (o ServiceComputeSyslogOutput) ToServiceComputeSyslogOutputWithContext(ctx context.Context) ServiceComputeSyslogOutput {
+	return o
+}
+
+// The SFTP address to stream logs to.
+func (o ServiceComputeSyslogOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o ServiceComputeSyslogOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Rackspace Cloud Files logging endpoint.
+func (o ServiceComputeSyslogOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The port the SFTP service listens on. (Default: `22`).
+func (o ServiceComputeSyslogOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// A secure certificate to authenticate the server with. Must be in PEM format.
+func (o ServiceComputeSyslogOutput) TlsCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The client certificate used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeSyslogOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The client private key used to make authenticated requests. Must be in PEM format.
+func (o ServiceComputeSyslogOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+func (o ServiceComputeSyslogOutput) TlsHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
+}
+
+// The data authentication token associated with this endpoint.
+func (o ServiceComputeSyslogOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// Whether to use TLS for secure logging. Can be either true or false.
+func (o ServiceComputeSyslogOutput) UseTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSyslog) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
+}
+
+type ServiceComputeSyslogArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeSyslogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeSyslog)(nil)).Elem()
+}
+
+func (o ServiceComputeSyslogArrayOutput) ToServiceComputeSyslogArrayOutput() ServiceComputeSyslogArrayOutput {
+	return o
+}
+
+func (o ServiceComputeSyslogArrayOutput) ToServiceComputeSyslogArrayOutputWithContext(ctx context.Context) ServiceComputeSyslogArrayOutput {
+	return o
+}
+
+func (o ServiceComputeSyslogArrayOutput) Index(i pulumi.IntInput) ServiceComputeSyslogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeSyslog {
+		return vs[0].([]ServiceComputeSyslog)[vs[1].(int)]
+	}).(ServiceComputeSyslogOutput)
+}
+
 type Servicev1Acl struct {
 	// The ID of the ACL.
 	AclId *string `pulumi:"aclId"`
@@ -3715,6 +8323,8 @@ type Servicev1LoggingFtp struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
 	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this dictionary.
 	Name string `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
@@ -3757,6 +8367,8 @@ type Servicev1LoggingFtpArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this dictionary.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
@@ -3848,6 +8460,11 @@ func (o Servicev1LoggingFtpOutput) FormatVersion() pulumi.IntPtrOutput {
 // What level of GZIP encoding to have when dumping logs (default 0, no compression).
 func (o Servicev1LoggingFtpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+func (o Servicev1LoggingFtpOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
 // A unique name to identify this dictionary.
@@ -7215,6 +11832,64 @@ func (o Servicev1VclArrayOutput) Index(i pulumi.IntInput) Servicev1VclOutput {
 func init() {
 	pulumi.RegisterOutputType(ServiceACLEntriesv1EntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesv1EntryArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeBackendOutput{})
+	pulumi.RegisterOutputType(ServiceComputeBackendArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeBigqueryloggingOutput{})
+	pulumi.RegisterOutputType(ServiceComputeBigqueryloggingArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeBlobstorageloggingOutput{})
+	pulumi.RegisterOutputType(ServiceComputeBlobstorageloggingArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeDomainOutput{})
+	pulumi.RegisterOutputType(ServiceComputeDomainArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeGcsloggingOutput{})
+	pulumi.RegisterOutputType(ServiceComputeGcsloggingArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeHealthcheckOutput{})
+	pulumi.RegisterOutputType(ServiceComputeHealthcheckArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeHttpsloggingOutput{})
+	pulumi.RegisterOutputType(ServiceComputeHttpsloggingArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLogentryOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLogentryArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingCloudfileOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingCloudfileArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingDatadogOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingDatadogArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingDigitaloceanOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingDigitaloceanArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingElasticsearchOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingElasticsearchArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingFtpOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingFtpArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingGooglepubsubOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingGooglepubsubArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingHerokuOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingHerokuArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingHoneycombOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingHoneycombArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingKafkaOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingKafkaArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingLogglyOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingLogglyArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingLogshuttleOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingLogshuttleArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingNewrelicOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingNewrelicArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingOpenstackOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingOpenstackArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingScalyrOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingScalyrArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingSftpOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingSftpArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputePackageOutput{})
+	pulumi.RegisterOutputType(ServiceComputePackagePtrOutput{})
+	pulumi.RegisterOutputType(ServiceComputePapertrailOutput{})
+	pulumi.RegisterOutputType(ServiceComputePapertrailArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeS3loggingOutput{})
+	pulumi.RegisterOutputType(ServiceComputeS3loggingArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeSplunkOutput{})
+	pulumi.RegisterOutputType(ServiceComputeSplunkArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeSumologicOutput{})
+	pulumi.RegisterOutputType(ServiceComputeSumologicArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeSyslogOutput{})
+	pulumi.RegisterOutputType(ServiceComputeSyslogArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1AclOutput{})
 	pulumi.RegisterOutputType(Servicev1AclArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1BackendOutput{})
