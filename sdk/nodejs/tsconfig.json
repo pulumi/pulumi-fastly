@@ -19,6 +19,7 @@
         "index.ts",
         "provider.ts",
         "serviceACLEntriesv1.ts",
+        "serviceCompute.ts",
         "serviceDictionaryItemsv1.ts",
         "serviceDynamicSnippetContentv1.ts",
         "servicev1.ts",

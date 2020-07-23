@@ -374,6 +374,7 @@ class Servicev1(pulumi.CustomResource):
       * `format` (`str`) - Apache style log formatting.
       * `formatVersion` (`float`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
       * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
       * `name` (`str`) - A unique name to identify this dictionary.
       * `password` (`str`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
       * `path` (`str`) - The path to upload logs to.
@@ -1152,6 +1153,7 @@ class Servicev1(pulumi.CustomResource):
           * `format` (`pulumi.Input[str]`) - Apache style log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
           * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
           * `path` (`pulumi.Input[str]`) - The path to upload logs to.
@@ -1854,6 +1856,7 @@ class Servicev1(pulumi.CustomResource):
           * `format` (`pulumi.Input[str]`) - Apache style log formatting.
           * `formatVersion` (`pulumi.Input[float]`) - The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
           * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
+          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
           * `name` (`pulumi.Input[str]`) - A unique name to identify this dictionary.
           * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
           * `path` (`pulumi.Input[str]`) - The path to upload logs to.

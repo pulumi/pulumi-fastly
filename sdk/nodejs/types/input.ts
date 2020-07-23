@@ -25,6 +25,977 @@ export interface ServiceACLEntriesv1Entry {
     subnet?: pulumi.Input<string>;
 }
 
+export interface ServiceComputeBackend {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * Denotes if this Backend should be
+     * included in the pool of backends that requests are load balanced against.
+     * Default `true`.
+     */
+    autoLoadbalance?: pulumi.Input<boolean>;
+    /**
+     * How long to wait between bytes in milliseconds. Default `10000`.
+     */
+    betweenBytesTimeout?: pulumi.Input<number>;
+    /**
+     * How long to wait for a timeout in milliseconds.
+     * Default `1000`
+     */
+    connectTimeout?: pulumi.Input<number>;
+    /**
+     * Number of errors to allow before the Backend is marked as down. Default `0`.
+     */
+    errorThreshold?: pulumi.Input<number>;
+    /**
+     * How long to wait for the first bytes in milliseconds. Default `15000`.
+     */
+    firstByteTimeout?: pulumi.Input<number>;
+    /**
+     * Name of a defined `healthcheck` to assign to this backend.
+     */
+    healthcheck?: pulumi.Input<string>;
+    /**
+     * Maximum number of connections for this Backend.
+     * Default `200`.
+     */
+    maxConn?: pulumi.Input<number>;
+    /**
+     * Maximum allowed TLS version on SSL connections to this backend.
+     */
+    maxTlsVersion?: pulumi.Input<string>;
+    /**
+     * Minimum allowed TLS version on SSL connections to this backend.
+     */
+    minTlsVersion?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The hostname to override the Host header.
+     */
+    overrideHost?: pulumi.Input<string>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+     */
+    shield?: pulumi.Input<string>;
+    /**
+     * CA certificate attached to origin.
+     */
+    sslCaCert?: pulumi.Input<string>;
+    /**
+     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+     */
+    sslCertHostname?: pulumi.Input<string>;
+    /**
+     * Be strict about checking SSL certs. Default `true`.
+     */
+    sslCheckCert?: pulumi.Input<boolean>;
+    /**
+     * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+     */
+    sslCiphers?: pulumi.Input<string>;
+    /**
+     * Client certificate attached to origin. Used when connecting to the backend.
+     */
+    sslClientCert?: pulumi.Input<string>;
+    /**
+     * Client key attached to origin. Used when connecting to the backend.
+     */
+    sslClientKey?: pulumi.Input<string>;
+    /**
+     * Used for both SNI during the TLS handshake and to validate the cert.
+     *
+     * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
+     */
+    sslHostname?: pulumi.Input<string>;
+    /**
+     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+     */
+    sslSniHostname?: pulumi.Input<string>;
+    /**
+     * Whether or not to use SSL to reach the backend. Default `false`.
+     */
+    useSsl?: pulumi.Input<boolean>;
+    /**
+     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+     */
+    weight?: pulumi.Input<number>;
+}
+
+export interface ServiceComputeBigquerylogging {
+    /**
+     * The Honeycomb Dataset you want to log to.
+     */
+    dataset: pulumi.Input<string>;
+    /**
+     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     */
+    email?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of your Google Cloud Platform project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * The ID of your BigQuery table.
+     */
+    table: pulumi.Input<string>;
+    template?: pulumi.Input<string>;
+}
+
+export interface ServiceComputeBlobstoragelogging {
+    /**
+     * The unique Azure Blob Storage namespace in which your data objects are stored.
+     */
+    accountName: pulumi.Input<string>;
+    /**
+     * The name of the Azure Blob Storage container in which to store logs.
+     */
+    container: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+     */
+    sasToken: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+}
+
+export interface ServiceComputeDomain {
+    /**
+     * An optional comment about the Domain.
+     */
+    comment?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface ServiceComputeGcslogging {
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     */
+    email?: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+}
+
+export interface ServiceComputeHealthcheck {
+    /**
+     * How often to run the Healthcheck in milliseconds. Default `5000`.
+     */
+    checkInterval?: pulumi.Input<number>;
+    /**
+     * The status code expected from the host. Default `200`.
+     */
+    expectedResponse?: pulumi.Input<number>;
+    /**
+     * The Host header to send for this Healthcheck.
+     */
+    host: pulumi.Input<string>;
+    /**
+     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+     */
+    httpVersion?: pulumi.Input<string>;
+    /**
+     * When loading a config, the initial number of probes to be seen as OK. Default `2`.
+     */
+    initial?: pulumi.Input<number>;
+    /**
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How many Healthchecks must succeed to be considered healthy. Default `3`.
+     */
+    threshold?: pulumi.Input<number>;
+    /**
+     * Timeout in milliseconds. Default `500`.
+     */
+    timeout?: pulumi.Input<number>;
+    /**
+     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+     */
+    window?: pulumi.Input<number>;
+}
+
+export interface ServiceComputeHttpslogging {
+    /**
+     * Value of the `Content-Type` header sent with the request.
+     */
+    contentType?: pulumi.Input<string>;
+    /**
+     * Custom header sent with the request.
+     */
+    headerName?: pulumi.Input<string>;
+    /**
+     * Value of the custom header sent with the request.
+     */
+    headerValue?: pulumi.Input<string>;
+    /**
+     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+     */
+    jsonFormat?: pulumi.Input<string>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: pulumi.Input<number>;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxEntries?: pulumi.Input<number>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLogentry {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: pulumi.Input<boolean>;
+}
+
+export interface ServiceComputeLoggingCloudfile {
+    /**
+     * Your Cloud File account access key.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingDatadog {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingDigitalocean {
+    /**
+     * Your Cloud File account access key.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingElasticsearch {
+    /**
+     * The name of the Elasticsearch index to send documents (logs) to.
+     */
+    index: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+     */
+    pipeline?: pulumi.Input<string>;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: pulumi.Input<number>;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxEntries?: pulumi.Input<number>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user?: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingFtp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingGooglepubsub {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of your Google Cloud Platform project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingHeroku {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingHoneycomb {
+    /**
+     * The Honeycomb Dataset you want to log to.
+     */
+    dataset: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingKafka {
+    /**
+     * A comma-separated list of IP addresses or hostnames of Kafka brokers.
+     */
+    brokers: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. One of: gzip, snappy, lz4.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+     */
+    requiredAcks?: pulumi.Input<string>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * The Kafka topic to send logs to.
+     */
+    topic: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: pulumi.Input<boolean>;
+}
+
+export interface ServiceComputeLoggingLoggly {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingLogshuttle {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingNewrelic {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingOpenstack {
+    /**
+     * Your Cloud File account access key.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingScalyr {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingSftp {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * Your DigitalOcean Spaces account secret key.
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * A list of host keys for all hosts we can connect to over SFTP.
+     */
+    sshKnownHosts: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface ServiceComputePackage {
+    /**
+     * The path to the Wasm deployment package within your local filesystem.
+     */
+    filename: pulumi.Input<string>;
+    sourceCodeHash?: pulumi.Input<string>;
+}
+
+export interface ServiceComputePapertrail {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port: pulumi.Input<number>;
+}
+
+export interface ServiceComputeS3logging {
+    /**
+     * The name of your Cloud Files container.
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+     */
+    redundancy?: pulumi.Input<string>;
+    /**
+     * AWS Access Key of an account with the required
+     * permissions to post logs. It is **strongly** recommended you create a separate
+     * IAM user with permissions to only operate on this Bucket. This key will be
+     * not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+     */
+    s3AccessKey?: pulumi.Input<string>;
+    /**
+     * AWS Secret Key of an account with the required
+     * permissions to post logs. It is **strongly** recommended you create a separate
+     * IAM user with permissions to only operate on this Bucket. This secret will be
+     * not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+     */
+    s3SecretKey?: pulumi.Input<string>;
+    serverSideEncryption?: pulumi.Input<string>;
+    serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
+    /**
+     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     */
+    timestampFormat?: pulumi.Input<string>;
+}
+
+export interface ServiceComputeSplunk {
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface ServiceComputeSumologic {
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Your OpenStack auth url.
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface ServiceComputeSyslog {
+    /**
+     * The SFTP address to stream logs to.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The port the SFTP service listens on. (Default: `22`).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format.
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * The data authentication token associated with this endpoint.
+     */
+    token?: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Can be either true or false.
+     */
+    useTls?: pulumi.Input<boolean>;
+}
+
 export interface Servicev1Acl {
     /**
      * The ID of the ACL.
@@ -899,6 +1870,10 @@ export interface Servicev1LoggingFtp {
      * What level of GZIP encoding to have when dumping logs (default 0, no compression).
      */
     gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     */
+    messageType?: pulumi.Input<string>;
     /**
      * A unique name to identify this dictionary.
      */

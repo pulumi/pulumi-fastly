@@ -96,6 +96,2287 @@
                 }
             }
         },
+        "fastly:/ServiceComputeBackend:ServiceComputeBackend": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "The SFTP address to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "autoLoadbalance": {
+                    "type": "boolean",
+                    "description": "Denotes if this Backend should be\nincluded in the pool of backends that requests are load balanced against.\nDefault `true`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "betweenBytesTimeout": {
+                    "type": "integer",
+                    "description": "How long to wait between bytes in milliseconds. Default `10000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "connectTimeout": {
+                    "type": "integer",
+                    "description": "How long to wait for a timeout in milliseconds.\nDefault `1000`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "errorThreshold": {
+                    "type": "integer",
+                    "description": "Number of errors to allow before the Backend is marked as down. Default `0`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "firstByteTimeout": {
+                    "type": "integer",
+                    "description": "How long to wait for the first bytes in milliseconds. Default `15000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "healthcheck": {
+                    "type": "string",
+                    "description": "Name of a defined `healthcheck` to assign to this backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxConn": {
+                    "type": "integer",
+                    "description": "Maximum number of connections for this Backend.\nDefault `200`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxTlsVersion": {
+                    "type": "string",
+                    "description": "Maximum allowed TLS version on SSL connections to this backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minTlsVersion": {
+                    "type": "string",
+                    "description": "Minimum allowed TLS version on SSL connections to this backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "overrideHost": {
+                    "type": "string",
+                    "description": "The hostname to override the Host header.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "shield": {
+                    "type": "string",
+                    "description": "The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCaCert": {
+                    "type": "string",
+                    "description": "CA certificate attached to origin.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCertHostname": {
+                    "type": "string",
+                    "description": "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCheckCert": {
+                    "type": "boolean",
+                    "description": "Be strict about checking SSL certs. Default `true`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslCiphers": {
+                    "type": "string",
+                    "description": "Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslClientCert": {
+                    "type": "string",
+                    "description": "Client certificate attached to origin. Used when connecting to the backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslClientKey": {
+                    "type": "string",
+                    "description": "Client key attached to origin. Used when connecting to the backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslHostname": {
+                    "type": "string",
+                    "description": "Used for both SNI during the TLS handshake and to validate the cert.\n",
+                    "deprecationMessage": "Use ssl_cert_hostname and ssl_sni_hostname instead.",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sslSniHostname": {
+                    "type": "string",
+                    "description": "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useSsl": {
+                    "type": "boolean",
+                    "description": "Whether or not to use SSL to reach the backend. Default `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "weight": {
+                    "type": "integer",
+                    "description": "The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name"
+            ]
+        },
+        "fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging": {
+            "properties": {
+                "dataset": {
+                    "type": "string",
+                    "description": "The Honeycomb Dataset you want to log to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of your Google Cloud Platform project.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "table": {
+                    "type": "string",
+                    "description": "The ID of your BigQuery table.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "template": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "dataset",
+                "name",
+                "projectId",
+                "table"
+            ]
+        },
+        "fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging": {
+            "properties": {
+                "accountName": {
+                    "type": "string",
+                    "description": "The unique Azure Blob Storage namespace in which your data objects are stored.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "container": {
+                    "type": "string",
+                    "description": "The name of the Azure Blob Storage container in which to store logs.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sasToken": {
+                    "type": "string",
+                    "description": "The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accountName",
+                "container",
+                "name",
+                "sasToken"
+            ]
+        },
+        "fastly:/ServiceComputeDomain:ServiceComputeDomain": {
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment about the Domain.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging": {
+            "properties": {
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "bucketName",
+                "name"
+            ]
+        },
+        "fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck": {
+            "properties": {
+                "checkInterval": {
+                    "type": "integer",
+                    "description": "How often to run the Healthcheck in milliseconds. Default `5000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "expectedResponse": {
+                    "type": "integer",
+                    "description": "The status code expected from the host. Default `200`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The Host header to send for this Healthcheck.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpVersion": {
+                    "type": "string",
+                    "description": "Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "initial": {
+                    "type": "integer",
+                    "description": "When loading a config, the initial number of probes to be seen as OK. Default `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "method": {
+                    "type": "string",
+                    "description": "HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "threshold": {
+                    "type": "integer",
+                    "description": "How many Healthchecks must succeed to be considered healthy. Default `3`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in milliseconds. Default `500`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "window": {
+                    "type": "integer",
+                    "description": "The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "host",
+                "name",
+                "path"
+            ]
+        },
+        "fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging": {
+            "properties": {
+                "contentType": {
+                    "type": "string",
+                    "description": "Value of the `Content-Type` header sent with the request.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "headerName": {
+                    "type": "string",
+                    "description": "Custom header sent with the request.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "headerValue": {
+                    "type": "string",
+                    "description": "Value of the custom header sent with the request.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "jsonFormat": {
+                    "type": "string",
+                    "description": "Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "method": {
+                    "type": "string",
+                    "description": "HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxBytes": {
+                    "type": "integer",
+                    "description": "The maximum number of bytes sent in one request. Defaults to `0` for unbounded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxEntries": {
+                    "type": "integer",
+                    "description": "The maximum number of logs sent in one request. Defaults to `0` for unbounded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "url"
+            ]
+        },
+        "fastly:/ServiceComputeLogentry:ServiceComputeLogentry": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useTls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS for secure logging. Can be either true or false.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile": {
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "Your Cloud File account access key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "bucketName",
+                "name",
+                "user"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean": {
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "Your Cloud File account access key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "bucketName",
+                "name",
+                "secretKey"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch": {
+            "properties": {
+                "index": {
+                    "type": "string",
+                    "description": "The name of the Elasticsearch index to send documents (logs) to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pipeline": {
+                    "type": "string",
+                    "description": "The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxBytes": {
+                    "type": "integer",
+                    "description": "The maximum number of bytes sent in one request. Defaults to `0` for unbounded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requestMaxEntries": {
+                    "type": "integer",
+                    "description": "The maximum number of logs sent in one request. Defaults to `0` for unbounded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "index",
+                "name",
+                "url"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "The SFTP address to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name",
+                "password",
+                "path",
+                "user"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of your Google Cloud Platform project.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "The Kafka topic to send logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "projectId",
+                "secretKey",
+                "topic",
+                "user"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token",
+                "url"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb": {
+            "properties": {
+                "dataset": {
+                    "type": "string",
+                    "description": "The Honeycomb Dataset you want to log to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "dataset",
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka": {
+            "properties": {
+                "brokers": {
+                    "type": "string",
+                    "description": "A comma-separated list of IP addresses or hostnames of Kafka brokers.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "compressionCodec": {
+                    "type": "string",
+                    "description": "The codec used for compression of your logs. One of: gzip, snappy, lz4.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requiredAcks": {
+                    "type": "string",
+                    "description": "The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1\tWait for all in-sync replicas to respond.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "The Kafka topic to send logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useTls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS for secure logging. Can be either true or false.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "brokers",
+                "name",
+                "topic"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token",
+                "url"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack": {
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "Your Cloud File account access key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "bucketName",
+                "name",
+                "url",
+                "user"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
+        "fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "The SFTP address to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sshKnownHosts": {
+                    "type": "string",
+                    "description": "A list of host keys for all hosts we can connect to over SFTP.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for your Cloud Files account.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name",
+                "path",
+                "sshKnownHosts",
+                "user"
+            ]
+        },
+        "fastly:/ServiceComputePackage:ServiceComputePackage": {
+            "properties": {
+                "filename": {
+                    "type": "string",
+                    "description": "The path to the Wasm deployment package within your local filesystem.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceCodeHash": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "filename"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "filename",
+                        "sourceCodeHash"
+                    ]
+                }
+            }
+        },
+        "fastly:/ServiceComputePapertrail:ServiceComputePapertrail": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "The SFTP address to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name",
+                "port"
+            ]
+        },
+        "fastly:/ServiceComputeS3logging:ServiceComputeS3logging": {
+            "properties": {
+                "bucketName": {
+                    "type": "string",
+                    "description": "The name of your Cloud Files container.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gzipLevel": {
+                    "type": "integer",
+                    "description": "What level of GZIP encoding to have when dumping logs (default 0, no compression).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path to upload logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How frequently log files are finalized so they can be available for reading (in seconds, default 3600).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "redundancy": {
+                    "type": "string",
+                    "description": "The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "s3AccessKey": {
+                    "type": "string",
+                    "description": "AWS Access Key of an account with the required\npermissions to post logs. It is **strongly** recommended you create a separate\nIAM user with permissions to only operate on this Bucket. This key will be\nnot be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "s3SecretKey": {
+                    "type": "string",
+                    "description": "AWS Secret Key of an account with the required\npermissions to post logs. It is **strongly** recommended you create a separate\nIAM user with permissions to only operate on this Bucket. This secret will be\nnot be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serverSideEncryption": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serverSideEncryptionKmsKeyId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timestampFormat": {
+                    "type": "string",
+                    "description": "The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "bucketName",
+                "name"
+            ]
+        },
+        "fastly:/ServiceComputeSplunk:ServiceComputeSplunk": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token",
+                "url"
+            ]
+        },
+        "fastly:/ServiceComputeSumologic:ServiceComputeSumologic": {
+            "properties": {
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Your OpenStack auth url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "url"
+            ]
+        },
+        "fastly:/ServiceComputeSyslog:ServiceComputeSyslog": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "The SFTP address to stream logs to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port the SFTP service listens on. (Default: `22`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCaCert": {
+                    "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientCert": {
+                    "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsClientKey": {
+                    "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsHostname": {
+                    "type": "string",
+                    "description": "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The data authentication token associated with this endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useTls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS for secure logging. Can be either true or false.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "name"
+            ]
+        },
         "fastly:/Servicev1Acl:Servicev1Acl": {
             "properties": {
                 "aclId": {
@@ -2125,6 +4406,15 @@
                         }
                     }
                 },
+                "messageType": {
+                    "type": "string",
+                    "description": "How the message should be formatted. One of: classic (default), loggly, logplex or blank.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "name": {
                     "type": "string",
                     "description": "A unique name to identify this dictionary.\n",
@@ -4070,6 +6360,704 @@
                     "serviceId": {
                         "type": "string",
                         "description": "The ID of the Service that the ACL belongs to\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/serviceCompute:ServiceCompute": {
+            "description": "Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n",
+            "properties": {
+                "activate": {
+                    "type": "boolean",
+                    "description": "Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.\n"
+                },
+                "activeVersion": {
+                    "type": "integer",
+                    "description": "The currently active version of your Fastly Service.\n"
+                },
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeBackend:ServiceComputeBackend"
+                    },
+                    "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
+                },
+                "bigqueryloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
+                    },
+                    "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "blobstorageloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
+                    },
+                    "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "clonedVersion": {
+                    "type": "integer"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment about the Domain.\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeDomain:ServiceComputeDomain"
+                    },
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
+                },
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Services that are active cannot be destroyed. In\norder to destroy the Service, set `force_destroy` to `true`. Default `false`.\n"
+                },
+                "gcsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging"
+                    },
+                    "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "healthchecks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
+                    },
+                    "description": "Name of a defined `healthcheck` to assign to this backend.\n"
+                },
+                "httpsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
+                    },
+                    "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "logentries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLogentry:ServiceComputeLogentry"
+                    },
+                    "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "loggingCloudfiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
+                    },
+                    "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingDatadogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
+                    },
+                    "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingDigitaloceans": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
+                    },
+                    "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingElasticsearches": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
+                    },
+                    "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingFtps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
+                    },
+                    "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingGooglepubsubs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                    },
+                    "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingHeroku": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
+                    },
+                    "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingHoneycombs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
+                    },
+                    "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingKafkas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
+                    },
+                    "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingLogglies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
+                    },
+                    "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingLogshuttles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
+                    },
+                    "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingNewrelics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
+                    },
+                    "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingOpenstacks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
+                    },
+                    "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingScalyrs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
+                    },
+                    "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingSftps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
+                    },
+                    "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
+                },
+                "package": {
+                    "$ref": "#/types/fastly:/ServiceComputePackage:ServiceComputePackage",
+                    "description": "A Wasm deployment package to upload. Defined below.\n"
+                },
+                "papertrails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputePapertrail:ServiceComputePapertrail"
+                    },
+                    "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "s3loggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeS3logging:ServiceComputeS3logging"
+                    },
+                    "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
+                },
+                "splunks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeSplunk:ServiceComputeSplunk"
+                    },
+                    "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "sumologics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeSumologic:ServiceComputeSumologic"
+                    },
+                    "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "syslogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeSyslog:ServiceComputeSyslog"
+                    },
+                    "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "versionComment": {
+                    "type": "string",
+                    "description": "Description field for the version.\n"
+                }
+            },
+            "required": [
+                "activeVersion",
+                "clonedVersion",
+                "domains",
+                "name",
+                "package"
+            ],
+            "inputProperties": {
+                "activate": {
+                    "type": "boolean",
+                    "description": "Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.\n"
+                },
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeBackend:ServiceComputeBackend"
+                    },
+                    "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
+                },
+                "bigqueryloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
+                    },
+                    "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "blobstorageloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
+                    },
+                    "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment about the Domain.\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeDomain:ServiceComputeDomain"
+                    },
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
+                },
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Services that are active cannot be destroyed. In\norder to destroy the Service, set `force_destroy` to `true`. Default `false`.\n"
+                },
+                "gcsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging"
+                    },
+                    "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "healthchecks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
+                    },
+                    "description": "Name of a defined `healthcheck` to assign to this backend.\n"
+                },
+                "httpsloggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
+                    },
+                    "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "logentries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLogentry:ServiceComputeLogentry"
+                    },
+                    "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "loggingCloudfiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
+                    },
+                    "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingDatadogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
+                    },
+                    "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingDigitaloceans": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
+                    },
+                    "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingElasticsearches": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
+                    },
+                    "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingFtps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
+                    },
+                    "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingGooglepubsubs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                    },
+                    "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingHeroku": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
+                    },
+                    "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingHoneycombs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
+                    },
+                    "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingKafkas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
+                    },
+                    "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingLogglies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
+                    },
+                    "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingLogshuttles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
+                    },
+                    "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingNewrelics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
+                    },
+                    "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingOpenstacks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
+                    },
+                    "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingScalyrs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
+                    },
+                    "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingSftps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
+                    },
+                    "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
+                },
+                "package": {
+                    "$ref": "#/types/fastly:/ServiceComputePackage:ServiceComputePackage",
+                    "description": "A Wasm deployment package to upload. Defined below.\n"
+                },
+                "papertrails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputePapertrail:ServiceComputePapertrail"
+                    },
+                    "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "s3loggings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeS3logging:ServiceComputeS3logging"
+                    },
+                    "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
+                },
+                "splunks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeSplunk:ServiceComputeSplunk"
+                    },
+                    "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "sumologics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeSumologic:ServiceComputeSumologic"
+                    },
+                    "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "syslogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceComputeSyslog:ServiceComputeSyslog"
+                    },
+                    "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
+                },
+                "versionComment": {
+                    "type": "string",
+                    "description": "Description field for the version.\n"
+                }
+            },
+            "requiredInputs": [
+                "domains",
+                "package"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceCompute resources.\n",
+                "properties": {
+                    "activate": {
+                        "type": "boolean",
+                        "description": "Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.\n"
+                    },
+                    "activeVersion": {
+                        "type": "integer",
+                        "description": "The currently active version of your Fastly Service.\n"
+                    },
+                    "backends": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeBackend:ServiceComputeBackend"
+                        },
+                        "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
+                    },
+                    "bigqueryloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
+                        },
+                        "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "blobstorageloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
+                        },
+                        "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "clonedVersion": {
+                        "type": "integer"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "An optional comment about the Domain.\n"
+                    },
+                    "domains": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeDomain:ServiceComputeDomain"
+                        },
+                        "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
+                    },
+                    "forceDestroy": {
+                        "type": "boolean",
+                        "description": "Services that are active cannot be destroyed. In\norder to destroy the Service, set `force_destroy` to `true`. Default `false`.\n"
+                    },
+                    "gcsloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging"
+                        },
+                        "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "healthchecks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
+                        },
+                        "description": "Name of a defined `healthcheck` to assign to this backend.\n"
+                    },
+                    "httpsloggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
+                        },
+                        "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "logentries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLogentry:ServiceComputeLogentry"
+                        },
+                        "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "loggingCloudfiles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
+                        },
+                        "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingDatadogs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
+                        },
+                        "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingDigitaloceans": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
+                        },
+                        "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingElasticsearches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
+                        },
+                        "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingFtps": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
+                        },
+                        "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingGooglepubsubs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                        },
+                        "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingHeroku": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
+                        },
+                        "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingHoneycombs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
+                        },
+                        "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingKafkas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
+                        },
+                        "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingLogglies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
+                        },
+                        "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingLogshuttles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
+                        },
+                        "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingNewrelics": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
+                        },
+                        "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingOpenstacks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
+                        },
+                        "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingScalyrs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
+                        },
+                        "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingSftps": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
+                        },
+                        "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
+                    },
+                    "package": {
+                        "$ref": "#/types/fastly:/ServiceComputePackage:ServiceComputePackage",
+                        "description": "A Wasm deployment package to upload. Defined below.\n"
+                    },
+                    "papertrails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputePapertrail:ServiceComputePapertrail"
+                        },
+                        "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "s3loggings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeS3logging:ServiceComputeS3logging"
+                        },
+                        "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
+                    },
+                    "splunks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeSplunk:ServiceComputeSplunk"
+                        },
+                        "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "sumologics": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeSumologic:ServiceComputeSumologic"
+                        },
+                        "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "syslogs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceComputeSyslog:ServiceComputeSyslog"
+                        },
+                        "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
+                    },
+                    "versionComment": {
+                        "type": "string",
+                        "description": "Description field for the version.\n"
                     }
                 },
                 "type": "object"

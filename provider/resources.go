@@ -108,6 +108,14 @@ func Provider() tfbridge.ProviderInfo {
 			"fastly_service_dictionary_items_v1":        {Tok: makeResource(mainMod, "ServiceDictionaryItemsv1")},
 			"fastly_service_dynamic_snippet_content_v1": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContentv1")},
 			"fastly_user_v1":                            {Tok: makeResource(mainMod, "Userv1")},
+			"fastly_service_compute": {
+				Tok: makeResource(mainMod, "ServiceCompute"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"logging_heroku": {
+						Name: "loggingHeroku",
+					},
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"fastly_ip_ranges": {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},

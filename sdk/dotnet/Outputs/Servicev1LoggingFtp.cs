@@ -30,6 +30,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
+        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// </summary>
+        public readonly string? MessageType;
+        /// <summary>
         /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
@@ -80,6 +84,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? gzipLevel,
 
+            string? messageType,
+
             string name,
 
             string password,
@@ -104,6 +110,7 @@ namespace Pulumi.Fastly.Outputs
             Format = format;
             FormatVersion = formatVersion;
             GzipLevel = gzipLevel;
+            MessageType = messageType;
             Name = name;
             Password = password;
             Path = path;

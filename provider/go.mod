@@ -11,5 +11,5 @@ require (
 
 replace (
 	github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.4.3+incompatible
-	github.com/terraform-providers/terraform-provider-fastly => github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200702142514-d0bf96338d91
+	github.com/terraform-providers/terraform-provider-fastly => github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200722200456-eec8223c0d29
 )
