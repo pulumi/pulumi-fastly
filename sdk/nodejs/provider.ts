@@ -35,8 +35,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        inputs["apiKey"] = (args ? args.apiKey : undefined) || utilities.getEnv("FASTLY_API_KEY");
-        inputs["baseUrl"] = (args ? args.baseUrl : undefined) || (utilities.getEnv("FASTLY_API_URL") || "https://api.fastly.com");
+        {
+            inputs["apiKey"] = (args ? args.apiKey : undefined) || utilities.getEnv("FASTLY_API_KEY");
+            inputs["baseUrl"] = (args ? args.baseUrl : undefined) || (utilities.getEnv("FASTLY_API_URL") || "https://api.fastly.com");
+        }
         if (!opts) {
             opts = {}
         }

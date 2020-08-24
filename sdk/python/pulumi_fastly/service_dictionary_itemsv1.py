@@ -5,24 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['ServiceDictionaryItemsv1']
 
 
 class ServiceDictionaryItemsv1(pulumi.CustomResource):
-    dictionary_id: pulumi.Output[str]
-    """
-    The ID of the dictionary that the items belong to
-    """
-    items: pulumi.Output[dict]
-    """
-    A map representing an entry in the dictionary, (key/value)
-    """
-    service_id: pulumi.Output[str]
-    """
-    The ID of the service that the dictionary belongs to
-    """
-    def __init__(__self__, resource_name, opts=None, dictionary_id=None, items=None, service_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 dictionary_id: Optional[pulumi.Input[str]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
 
@@ -38,22 +36,22 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         if mydict_name is None:
             mydict_name = "My Dictionary"
         myservice = fastly.Servicev1("myservice",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
-            backends=[{
-                "address": "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
-                "name": "AWS S3 hosting",
-                "port": 80,
-            }],
-            dictionaries=[{
-                "name": mydict_name,
-            }],
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            dictionaries=[fastly.Servicev1DictionaryArgs(
+                name=mydict_name,
+            )],
             force_destroy=True)
         items = fastly.ServiceDictionaryItemsv1("items",
             service_id=myservice.id,
-            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {s["name"]: s["dictionary_id"] for s in dictionaries}[mydict_name]),
+            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {s.name: s.dictionary_id for s in dictionaries}[mydict_name]),
             items={
                 "key1": "value1",
                 "key2": "value2",
@@ -76,29 +74,29 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
                 },
             }
         myservice = fastly.Servicev1("myservice",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
-            backends=[{
-                "address": "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
-                "name": "AWS S3 hosting",
-                "port": 80,
-            }],
-            dictionaries=[{
-                "name": mydict["name"],
-            }],
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            dictionaries=[fastly.Servicev1DictionaryArgs(
+                name=mydict["name"],
+            )],
             force_destroy=True)
         items = fastly.ServiceDictionaryItemsv1("items",
             service_id=myservice.id,
-            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {d["name"]: d["dictionary_id"] for d in dictionaries}[mydict["name"]]),
+            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {d.name: d.dictionary_id for d in dictionaries}[mydict["name"]]),
             items=mydict["items"])
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
-        :param pulumi.Input[dict] items: A map representing an entry in the dictionary, (key/value)
+        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
         """
         if __name__ is not None:
@@ -112,7 +110,7 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -132,16 +130,21 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dictionary_id=None, items=None, service_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            dictionary_id: Optional[pulumi.Input[str]] = None,
+            items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            service_id: Optional[pulumi.Input[str]] = None) -> 'ServiceDictionaryItemsv1':
         """
         Get an existing ServiceDictionaryItemsv1 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
-        :param pulumi.Input[dict] items: A map representing an entry in the dictionary, (key/value)
+        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -153,8 +156,33 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         __props__["service_id"] = service_id
         return ServiceDictionaryItemsv1(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="dictionaryId")
+    def dictionary_id(self) -> str:
+        """
+        The ID of the dictionary that the items belong to
+        """
+        return pulumi.get(self, "dictionary_id")
+
+    @property
+    @pulumi.getter
+    def items(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map representing an entry in the dictionary, (key/value)
+        """
+        return pulumi.get(self, "items")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        """
+        The ID of the service that the dictionary belongs to
+        """
+        return pulumi.get(self, "service_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

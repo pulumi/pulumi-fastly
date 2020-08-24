@@ -1,4 +1,10 @@
-[![Build Status](https://travis-ci.com/pulumi/pulumi-fastly.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-fastly)
+[![Actions Status](https://github.com/pulumi/pulumi-fastly/workflows/master/badge.svg)](https://github.com/pulumi/pulumi-fastly/actions)
+[![Slack](http://www.pulumi.com/images/docs/badges/slack.svg)](https://slack.pulumi.com)
+[![NPM version](https://badge.fury.io/js/%40pulumi%2Ffastly.svg)](https://www.npmjs.com/package/@pulumi/fastly)
+[![Python version](https://badge.fury.io/py/pulumi-fastly.svg)](https://pypi.org/project/pulumi-fastly)
+[![NuGet version](https://badge.fury.io/nu/pulumi.fastly.svg)](https://badge.fury.io/nu/pulumi.fastly)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-fastly/sdk/v2/go)](https://pkg.go.dev/github.com/pulumi/pulumi-fastly/sdk/v2/go)
+[![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-fastly/blob/master/LICENSE)
 
 # Fastly Resource Provider
 
