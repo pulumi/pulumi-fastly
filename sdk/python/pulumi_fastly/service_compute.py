@@ -5,441 +5,55 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ServiceCompute']
 
 
 class ServiceCompute(pulumi.CustomResource):
-    activate: pulumi.Output[bool]
-    """
-    Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
-    """
-    active_version: pulumi.Output[float]
-    """
-    The currently active version of your Fastly Service.
-    """
-    backends: pulumi.Output[list]
-    """
-    A set of Backends to service requests from your Domains.
-    Defined below. Backends must be defined in this argument, or defined in the
-    `vcl` argument below
-
-      * `address` (`str`) - The SFTP address to stream logs to.
-      * `autoLoadbalance` (`bool`) - Denotes if this Backend should be
-        included in the pool of backends that requests are load balanced against.
-        Default `true`.
-      * `betweenBytesTimeout` (`float`) - How long to wait between bytes in milliseconds. Default `10000`.
-      * `connectTimeout` (`float`) - How long to wait for a timeout in milliseconds.
-        Default `1000`
-      * `errorThreshold` (`float`) - Number of errors to allow before the Backend is marked as down. Default `0`.
-      * `firstByteTimeout` (`float`) - How long to wait for the first bytes in milliseconds. Default `15000`.
-      * `healthcheck` (`str`) - Name of a defined `healthcheck` to assign to this backend.
-      * `maxConn` (`float`) - Maximum number of connections for this Backend.
-        Default `200`.
-      * `maxTlsVersion` (`str`) - Maximum allowed TLS version on SSL connections to this backend.
-      * `minTlsVersion` (`str`) - Minimum allowed TLS version on SSL connections to this backend.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `overrideHost` (`str`) - The hostname to override the Host header.
-      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
-      * `shield` (`str`) - The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-      * `sslCaCert` (`str`) - CA certificate attached to origin.
-      * `sslCertHostname` (`str`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
-      * `sslCheckCert` (`bool`) - Be strict about checking SSL certs. Default `true`.
-      * `sslCiphers` (`str`) - Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-      * `sslClientCert` (`str`) - Client certificate attached to origin. Used when connecting to the backend.
-      * `sslClientKey` (`str`) - Client key attached to origin. Used when connecting to the backend.
-      * `sslHostname` (`str`) - Used for both SNI during the TLS handshake and to validate the cert.
-      * `sslSniHostname` (`str`) - Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
-      * `useSsl` (`bool`) - Whether or not to use SSL to reach the backend. Default `false`.
-      * `weight` (`float`) - The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
-    """
-    bigqueryloggings: pulumi.Output[list]
-    """
-    A BigQuery endpoint to send streaming logs too.
-    Defined below.
-
-      * `dataset` (`str`) - The Honeycomb Dataset you want to log to.
-      * `email` (`str`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `projectId` (`str`) - The ID of your Google Cloud Platform project.
-      * `secretKey` (`str`) - Your DigitalOcean Spaces account secret key.
-      * `table` (`str`) - The ID of your BigQuery table.
-      * `template` (`str`)
-    """
-    blobstorageloggings: pulumi.Output[list]
-    """
-    An Azure Blob Storage endpoint to send streaming logs too.
-    Defined below.
-
-      * `accountName` (`str`) - The unique Azure Blob Storage namespace in which your data objects are stored.
-      * `container` (`str`) - The name of the Azure Blob Storage container in which to store logs.
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `publicKey` (`str`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-      * `sasToken` (`str`) - The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-    """
-    cloned_version: pulumi.Output[float]
-    comment: pulumi.Output[str]
-    """
-    An optional comment about the Domain.
-    """
-    domains: pulumi.Output[list]
-    """
-    The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-
-      * `comment` (`str`) - An optional comment about the Domain.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-    """
-    force_destroy: pulumi.Output[bool]
-    """
-    Services that are active cannot be destroyed. In
-    order to destroy the Service, set `force_destroy` to `true`. Default `false`.
-    """
-    gcsloggings: pulumi.Output[list]
-    """
-    A gcs endpoint to send streaming logs too.
-    Defined below.
-
-      * `bucketName` (`str`) - The name of your Cloud Files container.
-      * `email` (`str`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `secretKey` (`str`) - Your DigitalOcean Spaces account secret key.
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-    """
-    healthchecks: pulumi.Output[list]
-    """
-    Name of a defined `healthcheck` to assign to this backend.
-
-      * `checkInterval` (`float`) - How often to run the Healthcheck in milliseconds. Default `5000`.
-      * `expectedResponse` (`float`) - The status code expected from the host. Default `200`.
-      * `host` (`str`) - The Host header to send for this Healthcheck.
-      * `httpVersion` (`str`) - Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
-      * `initial` (`float`) - When loading a config, the initial number of probes to be seen as OK. Default `2`.
-      * `method` (`str`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `path` (`str`) - The path to upload logs to.
-      * `threshold` (`float`) - How many Healthchecks must succeed to be considered healthy. Default `3`.
-      * `timeout` (`float`) - Timeout in milliseconds. Default `500`.
-      * `window` (`float`) - The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
-    """
-    httpsloggings: pulumi.Output[list]
-    """
-    An HTTPS endpoint to send streaming logs to.
-    Defined below.
-
-      * `contentType` (`str`) - Value of the `Content-Type` header sent with the request.
-      * `headerName` (`str`) - Custom header sent with the request.
-      * `headerValue` (`str`) - Value of the custom header sent with the request.
-      * `jsonFormat` (`str`) - Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `method` (`str`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `requestMaxBytes` (`float`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-      * `requestMaxEntries` (`float`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-      * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
-      * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
-      * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
-      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-      * `url` (`str`) - Your OpenStack auth url.
-    """
-    logentries: pulumi.Output[list]
-    """
-    A logentries endpoint to send streaming logs too.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-      * `useTls` (`bool`) - Whether to use TLS for secure logging. Can be either true or false.
-    """
-    logging_cloudfiles: pulumi.Output[list]
-    """
-    A Rackspace Cloud Files endpoint to send streaming logs to.
-    Defined below.
-
-      * `accessKey` (`str`) - Your Cloud File account access key.
-      * `bucketName` (`str`) - The name of your Cloud Files container.
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `publicKey` (`str`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-      * `region` (`str`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-      * `user` (`str`) - The username for your Cloud Files account.
-    """
-    logging_datadogs: pulumi.Output[list]
-    """
-    A Datadog endpoint to send streaming logs to.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `region` (`str`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-    """
-    logging_digitaloceans: pulumi.Output[list]
-    """
-    A DigitalOcean Spaces endpoint to send streaming logs to.
-    Defined below.
-
-      * `accessKey` (`str`) - Your Cloud File account access key.
-      * `bucketName` (`str`) - The name of your Cloud Files container.
-      * `domain` (`str`) - The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `publicKey` (`str`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-      * `secretKey` (`str`) - Your DigitalOcean Spaces account secret key.
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-    """
-    logging_elasticsearches: pulumi.Output[list]
-    """
-    An Elasticsearch endpoint to send streaming logs to.
-    Defined below.
-
-      * `index` (`str`) - The name of the Elasticsearch index to send documents (logs) to.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `password` (`str`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-      * `pipeline` (`str`) - The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-      * `requestMaxBytes` (`float`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-      * `requestMaxEntries` (`float`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-      * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
-      * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
-      * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
-      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-      * `url` (`str`) - Your OpenStack auth url.
-      * `user` (`str`) - The username for your Cloud Files account.
-    """
-    logging_ftps: pulumi.Output[list]
-    """
-    An FTP endpoint to send streaming logs to.
-    Defined below.
-
-      * `address` (`str`) - The SFTP address to stream logs to.
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `password` (`str`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
-      * `publicKey` (`str`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-      * `user` (`str`) - The username for your Cloud Files account.
-    """
-    logging_googlepubsubs: pulumi.Output[list]
-    """
-    A Google Cloud Pub/Sub endpoint to send streaming logs to.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `projectId` (`str`) - The ID of your Google Cloud Platform project.
-      * `secretKey` (`str`) - Your DigitalOcean Spaces account secret key.
-      * `topic` (`str`) - The Kafka topic to send logs to.
-      * `user` (`str`) - The username for your Cloud Files account.
-    """
-    logging_heroku: pulumi.Output[list]
-    """
-    A Heroku endpoint to send streaming logs to.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-      * `url` (`str`) - Your OpenStack auth url.
-    """
-    logging_honeycombs: pulumi.Output[list]
-    """
-    A Honeycomb endpoint to send streaming logs to.
-    Defined below.
-
-      * `dataset` (`str`) - The Honeycomb Dataset you want to log to.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-    """
-    logging_kafkas: pulumi.Output[list]
-    """
-    A Kafka endpoint to send streaming logs to.
-    Defined below.
-
-      * `brokers` (`str`) - A comma-separated list of IP addresses or hostnames of Kafka brokers.
-      * `compressionCodec` (`str`) - The codec used for compression of your logs. One of: gzip, snappy, lz4.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `requiredAcks` (`str`) - The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
-      * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
-      * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
-      * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
-      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-      * `topic` (`str`) - The Kafka topic to send logs to.
-      * `useTls` (`bool`) - Whether to use TLS for secure logging. Can be either true or false.
-    """
-    logging_logglies: pulumi.Output[list]
-    """
-    A Loggly endpoint to send streaming logs to.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-    """
-    logging_logshuttles: pulumi.Output[list]
-    """
-    A Log Shuttle endpoint to send streaming logs to.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-      * `url` (`str`) - Your OpenStack auth url.
-    """
-    logging_newrelics: pulumi.Output[list]
-    """
-    A New Relic endpoint to send streaming logs to.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-    """
-    logging_openstacks: pulumi.Output[list]
-    """
-    An OpenStack endpoint to send streaming logs to.
-    Defined below.
-
-      * `accessKey` (`str`) - Your Cloud File account access key.
-      * `bucketName` (`str`) - The name of your Cloud Files container.
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `publicKey` (`str`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-      * `url` (`str`) - Your OpenStack auth url.
-      * `user` (`str`) - The username for your Cloud Files account.
-    """
-    logging_scalyrs: pulumi.Output[list]
-    """
-    A Scalyr endpoint to send streaming logs to.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `region` (`str`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-    """
-    logging_sftps: pulumi.Output[list]
-    """
-    An SFTP endpoint to send streaming logs to.
-    Defined below.
-
-      * `address` (`str`) - The SFTP address to stream logs to.
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `password` (`str`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
-      * `publicKey` (`str`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-      * `secretKey` (`str`) - Your DigitalOcean Spaces account secret key.
-      * `sshKnownHosts` (`str`) - A list of host keys for all hosts we can connect to over SFTP.
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-      * `user` (`str`) - The username for your Cloud Files account.
-    """
-    name: pulumi.Output[str]
-    """
-    The unique name of the Rackspace Cloud Files logging endpoint.
-    """
-    package: pulumi.Output[dict]
-    """
-    A Wasm deployment package to upload. Defined below.
-
-      * `filename` (`str`) - The path to the Wasm deployment package within your local filesystem.
-      * `sourceCodeHash` (`str`)
-    """
-    papertrails: pulumi.Output[list]
-    """
-    A Papertrail endpoint to send streaming logs too.
-    Defined below.
-
-      * `address` (`str`) - The SFTP address to stream logs to.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
-    """
-    s3loggings: pulumi.Output[list]
-    """
-    A set of S3 Buckets to send streaming logs too.
-    Defined below.
-
-      * `bucketName` (`str`) - The name of your Cloud Files container.
-      * `domain` (`str`) - The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-      * `gzipLevel` (`float`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `path` (`str`) - The path to upload logs to.
-      * `period` (`float`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-      * `publicKey` (`str`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-      * `redundancy` (`str`) - The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
-      * `s3AccessKey` (`str`) - AWS Access Key of an account with the required
-        permissions to post logs. It is **strongly** recommended you create a separate
-        IAM user with permissions to only operate on this Bucket. This key will be
-        not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-      * `s3SecretKey` (`str`) - AWS Secret Key of an account with the required
-        permissions to post logs. It is **strongly** recommended you create a separate
-        IAM user with permissions to only operate on this Bucket. This secret will be
-        not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-      * `serverSideEncryption` (`str`)
-      * `serverSideEncryptionKmsKeyId` (`str`)
-      * `timestampFormat` (`str`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-    """
-    splunks: pulumi.Output[list]
-    """
-    A Splunk endpoint to send streaming logs too.
-    Defined below.
-
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
-      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-      * `url` (`str`) - Your OpenStack auth url.
-    """
-    sumologics: pulumi.Output[list]
-    """
-    A Sumologic endpoint to send streaming logs too.
-    Defined below.
-
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `url` (`str`) - Your OpenStack auth url.
-    """
-    syslogs: pulumi.Output[list]
-    """
-    A syslog endpoint to send streaming logs too.
-    Defined below.
-
-      * `address` (`str`) - The SFTP address to stream logs to.
-      * `messageType` (`str`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-      * `name` (`str`) - The unique name of the Rackspace Cloud Files logging endpoint.
-      * `port` (`float`) - The port the SFTP service listens on. (Default: `22`).
-      * `tlsCaCert` (`str`) - A secure certificate to authenticate the server with. Must be in PEM format.
-      * `tlsClientCert` (`str`) - The client certificate used to make authenticated requests. Must be in PEM format.
-      * `tlsClientKey` (`str`) - The client private key used to make authenticated requests. Must be in PEM format.
-      * `tlsHostname` (`str`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-      * `token` (`str`) - The data authentication token associated with this endpoint.
-      * `useTls` (`bool`) - Whether to use TLS for secure logging. Can be either true or false.
-    """
-    version_comment: pulumi.Output[str]
-    """
-    Description field for the version.
-    """
-    def __init__(__self__, resource_name, opts=None, activate=None, backends=None, bigqueryloggings=None, blobstorageloggings=None, comment=None, domains=None, force_destroy=None, gcsloggings=None, healthchecks=None, httpsloggings=None, logentries=None, logging_cloudfiles=None, logging_datadogs=None, logging_digitaloceans=None, logging_elasticsearches=None, logging_ftps=None, logging_googlepubsubs=None, logging_heroku=None, logging_honeycombs=None, logging_kafkas=None, logging_logglies=None, logging_logshuttles=None, logging_newrelics=None, logging_openstacks=None, logging_scalyrs=None, logging_sftps=None, name=None, package=None, papertrails=None, s3loggings=None, splunks=None, sumologics=None, syslogs=None, version_comment=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 activate: Optional[pulumi.Input[bool]] = None,
+                 backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]]] = None,
+                 bigqueryloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBigqueryloggingArgs']]]]] = None,
+                 blobstorageloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBlobstorageloggingArgs']]]]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
+                 domains: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
+                 force_destroy: Optional[pulumi.Input[bool]] = None,
+                 gcsloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeGcsloggingArgs']]]]] = None,
+                 healthchecks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHealthcheckArgs']]]]] = None,
+                 httpsloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHttpsloggingArgs']]]]] = None,
+                 logentries: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLogentryArgs']]]]] = None,
+                 logging_cloudfiles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
+                 logging_datadogs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDatadogArgs']]]]] = None,
+                 logging_digitaloceans: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDigitaloceanArgs']]]]] = None,
+                 logging_elasticsearches: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingElasticsearchArgs']]]]] = None,
+                 logging_ftps: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingFtpArgs']]]]] = None,
+                 logging_googlepubsubs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingGooglepubsubArgs']]]]] = None,
+                 logging_heroku: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHerokuArgs']]]]] = None,
+                 logging_honeycombs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHoneycombArgs']]]]] = None,
+                 logging_kafkas: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]]] = None,
+                 logging_logglies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]]] = None,
+                 logging_logshuttles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]]] = None,
+                 logging_newrelics: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingNewrelicArgs']]]]] = None,
+                 logging_openstacks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingOpenstackArgs']]]]] = None,
+                 logging_scalyrs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingScalyrArgs']]]]] = None,
+                 logging_sftps: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
+                 papertrails: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]]] = None,
+                 s3loggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeS3loggingArgs']]]]] = None,
+                 splunks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSplunkArgs']]]]] = None,
+                 sumologics: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSumologicArgs']]]]] = None,
+                 syslogs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSyslogArgs']]]]] = None,
+                 version_comment: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
 
@@ -450,385 +64,67 @@ class ServiceCompute(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
-        :param pulumi.Input[list] backends: A set of Backends to service requests from your Domains.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]] backends: A set of Backends to service requests from your Domains.
                Defined below. Backends must be defined in this argument, or defined in the
                `vcl` argument below
-        :param pulumi.Input[list] bigqueryloggings: A BigQuery endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBigqueryloggingArgs']]]] bigqueryloggings: A BigQuery endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBlobstorageloggingArgs']]]] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[str] comment: An optional comment about the Domain.
-        :param pulumi.Input[list] domains: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In
                order to destroy the Service, set `force_destroy` to `true`. Default `false`.
-        :param pulumi.Input[list] gcsloggings: A gcs endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeGcsloggingArgs']]]] gcsloggings: A gcs endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] healthchecks: Name of a defined `healthcheck` to assign to this backend.
-        :param pulumi.Input[list] httpsloggings: An HTTPS endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHealthcheckArgs']]]] healthchecks: Name of a defined `healthcheck` to assign to this backend.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHttpsloggingArgs']]]] httpsloggings: An HTTPS endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logentries: A logentries endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLogentryArgs']]]] logentries: A logentries endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] logging_cloudfiles: A Rackspace Cloud Files endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]] logging_cloudfiles: A Rackspace Cloud Files endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_datadogs: A Datadog endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDatadogArgs']]]] logging_datadogs: A Datadog endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_digitaloceans: A DigitalOcean Spaces endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDigitaloceanArgs']]]] logging_digitaloceans: A DigitalOcean Spaces endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_elasticsearches: An Elasticsearch endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingElasticsearchArgs']]]] logging_elasticsearches: An Elasticsearch endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_ftps: An FTP endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingFtpArgs']]]] logging_ftps: An FTP endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_googlepubsubs: A Google Cloud Pub/Sub endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingGooglepubsubArgs']]]] logging_googlepubsubs: A Google Cloud Pub/Sub endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_heroku: A Heroku endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHerokuArgs']]]] logging_heroku: A Heroku endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_honeycombs: A Honeycomb endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHoneycombArgs']]]] logging_honeycombs: A Honeycomb endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_kafkas: A Kafka endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]] logging_kafkas: A Kafka endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_logglies: A Loggly endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]] logging_logglies: A Loggly endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_newrelics: A New Relic endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingNewrelicArgs']]]] logging_newrelics: A New Relic endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_openstacks: An OpenStack endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingOpenstackArgs']]]] logging_openstacks: An OpenStack endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_scalyrs: A Scalyr endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingScalyrArgs']]]] logging_scalyrs: A Scalyr endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_sftps: An SFTP endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]] logging_sftps: An SFTP endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint.
-        :param pulumi.Input[dict] package: A Wasm deployment package to upload. Defined below.
-        :param pulumi.Input[list] papertrails: A Papertrail endpoint to send streaming logs too.
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload. Defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] s3loggings: A set of S3 Buckets to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeS3loggingArgs']]]] s3loggings: A set of S3 Buckets to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] splunks: A Splunk endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSplunkArgs']]]] splunks: A Splunk endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] sumologics: A Sumologic endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSumologicArgs']]]] sumologics: A Sumologic endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] syslogs: A syslog endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSyslogArgs']]]] syslogs: A syslog endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[str] version_comment: Description field for the version.
-
-        The **backends** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `autoLoadbalance` (`pulumi.Input[bool]`) - Denotes if this Backend should be
-            included in the pool of backends that requests are load balanced against.
-            Default `true`.
-          * `betweenBytesTimeout` (`pulumi.Input[float]`) - How long to wait between bytes in milliseconds. Default `10000`.
-          * `connectTimeout` (`pulumi.Input[float]`) - How long to wait for a timeout in milliseconds.
-            Default `1000`
-          * `errorThreshold` (`pulumi.Input[float]`) - Number of errors to allow before the Backend is marked as down. Default `0`.
-          * `firstByteTimeout` (`pulumi.Input[float]`) - How long to wait for the first bytes in milliseconds. Default `15000`.
-          * `healthcheck` (`pulumi.Input[str]`) - Name of a defined `healthcheck` to assign to this backend.
-          * `maxConn` (`pulumi.Input[float]`) - Maximum number of connections for this Backend.
-            Default `200`.
-          * `maxTlsVersion` (`pulumi.Input[str]`) - Maximum allowed TLS version on SSL connections to this backend.
-          * `minTlsVersion` (`pulumi.Input[str]`) - Minimum allowed TLS version on SSL connections to this backend.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `overrideHost` (`pulumi.Input[str]`) - The hostname to override the Host header.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `shield` (`pulumi.Input[str]`) - The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-          * `sslCaCert` (`pulumi.Input[str]`) - CA certificate attached to origin.
-          * `sslCertHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
-          * `sslCheckCert` (`pulumi.Input[bool]`) - Be strict about checking SSL certs. Default `true`.
-          * `sslCiphers` (`pulumi.Input[str]`) - Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-          * `sslClientCert` (`pulumi.Input[str]`) - Client certificate attached to origin. Used when connecting to the backend.
-          * `sslClientKey` (`pulumi.Input[str]`) - Client key attached to origin. Used when connecting to the backend.
-          * `sslHostname` (`pulumi.Input[str]`) - Used for both SNI during the TLS handshake and to validate the cert.
-          * `sslSniHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
-          * `useSsl` (`pulumi.Input[bool]`) - Whether or not to use SSL to reach the backend. Default `false`.
-          * `weight` (`pulumi.Input[float]`) - The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
-
-        The **bigqueryloggings** object supports the following:
-
-          * `dataset` (`pulumi.Input[str]`) - The Honeycomb Dataset you want to log to.
-          * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `table` (`pulumi.Input[str]`) - The ID of your BigQuery table.
-          * `template` (`pulumi.Input[str]`)
-
-        The **blobstorageloggings** object supports the following:
-
-          * `accountName` (`pulumi.Input[str]`) - The unique Azure Blob Storage namespace in which your data objects are stored.
-          * `container` (`pulumi.Input[str]`) - The name of the Azure Blob Storage container in which to store logs.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `sasToken` (`pulumi.Input[str]`) - The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **domains** object supports the following:
-
-          * `comment` (`pulumi.Input[str]`) - An optional comment about the Domain.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-
-        The **gcsloggings** object supports the following:
-
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **healthchecks** object supports the following:
-
-          * `checkInterval` (`pulumi.Input[float]`) - How often to run the Healthcheck in milliseconds. Default `5000`.
-          * `expectedResponse` (`pulumi.Input[float]`) - The status code expected from the host. Default `200`.
-          * `host` (`pulumi.Input[str]`) - The Host header to send for this Healthcheck.
-          * `httpVersion` (`pulumi.Input[str]`) - Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
-          * `initial` (`pulumi.Input[float]`) - When loading a config, the initial number of probes to be seen as OK. Default `2`.
-          * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `threshold` (`pulumi.Input[float]`) - How many Healthchecks must succeed to be considered healthy. Default `3`.
-          * `timeout` (`pulumi.Input[float]`) - Timeout in milliseconds. Default `500`.
-          * `window` (`pulumi.Input[float]`) - The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
-
-        The **httpsloggings** object supports the following:
-
-          * `contentType` (`pulumi.Input[str]`) - Value of the `Content-Type` header sent with the request.
-          * `headerName` (`pulumi.Input[str]`) - Custom header sent with the request.
-          * `headerValue` (`pulumi.Input[str]`) - Value of the custom header sent with the request.
-          * `jsonFormat` (`pulumi.Input[str]`) - Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **logentries** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
-
-        The **logging_cloudfiles** object supports the following:
-
-          * `accessKey` (`pulumi.Input[str]`) - Your Cloud File account access key.
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `region` (`pulumi.Input[str]`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_datadogs** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `region` (`pulumi.Input[str]`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_digitaloceans** object supports the following:
-
-          * `accessKey` (`pulumi.Input[str]`) - Your Cloud File account access key.
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `domain` (`pulumi.Input[str]`) - The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **logging_elasticsearches** object supports the following:
-
-          * `index` (`pulumi.Input[str]`) - The name of the Elasticsearch index to send documents (logs) to.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-          * `pipeline` (`pulumi.Input[str]`) - The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_ftps** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_googlepubsubs** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_heroku** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **logging_honeycombs** object supports the following:
-
-          * `dataset` (`pulumi.Input[str]`) - The Honeycomb Dataset you want to log to.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_kafkas** object supports the following:
-
-          * `brokers` (`pulumi.Input[str]`) - A comma-separated list of IP addresses or hostnames of Kafka brokers.
-          * `compressionCodec` (`pulumi.Input[str]`) - The codec used for compression of your logs. One of: gzip, snappy, lz4.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `requiredAcks` (`pulumi.Input[str]`) - The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
-
-        The **logging_logglies** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_logshuttles** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **logging_newrelics** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_openstacks** object supports the following:
-
-          * `accessKey` (`pulumi.Input[str]`) - Your Cloud File account access key.
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_scalyrs** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `region` (`pulumi.Input[str]`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_sftps** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `sshKnownHosts` (`pulumi.Input[str]`) - A list of host keys for all hosts we can connect to over SFTP.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **package** object supports the following:
-
-          * `filename` (`pulumi.Input[str]`) - The path to the Wasm deployment package within your local filesystem.
-          * `sourceCodeHash` (`pulumi.Input[str]`)
-
-        The **papertrails** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-
-        The **s3loggings** object supports the following:
-
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `domain` (`pulumi.Input[str]`) - The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `redundancy` (`pulumi.Input[str]`) - The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
-          * `s3AccessKey` (`pulumi.Input[str]`) - AWS Access Key of an account with the required
-            permissions to post logs. It is **strongly** recommended you create a separate
-            IAM user with permissions to only operate on this Bucket. This key will be
-            not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-          * `s3SecretKey` (`pulumi.Input[str]`) - AWS Secret Key of an account with the required
-            permissions to post logs. It is **strongly** recommended you create a separate
-            IAM user with permissions to only operate on this Bucket. This secret will be
-            not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-          * `serverSideEncryption` (`pulumi.Input[str]`)
-          * `serverSideEncryptionKmsKeyId` (`pulumi.Input[str]`)
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **splunks** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **sumologics** object supports the following:
-
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **syslogs** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -841,7 +137,7 @@ class ServiceCompute(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -894,395 +190,115 @@ class ServiceCompute(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, activate=None, active_version=None, backends=None, bigqueryloggings=None, blobstorageloggings=None, cloned_version=None, comment=None, domains=None, force_destroy=None, gcsloggings=None, healthchecks=None, httpsloggings=None, logentries=None, logging_cloudfiles=None, logging_datadogs=None, logging_digitaloceans=None, logging_elasticsearches=None, logging_ftps=None, logging_googlepubsubs=None, logging_heroku=None, logging_honeycombs=None, logging_kafkas=None, logging_logglies=None, logging_logshuttles=None, logging_newrelics=None, logging_openstacks=None, logging_scalyrs=None, logging_sftps=None, name=None, package=None, papertrails=None, s3loggings=None, splunks=None, sumologics=None, syslogs=None, version_comment=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            activate: Optional[pulumi.Input[bool]] = None,
+            active_version: Optional[pulumi.Input[float]] = None,
+            backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]]] = None,
+            bigqueryloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBigqueryloggingArgs']]]]] = None,
+            blobstorageloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBlobstorageloggingArgs']]]]] = None,
+            cloned_version: Optional[pulumi.Input[float]] = None,
+            comment: Optional[pulumi.Input[str]] = None,
+            domains: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
+            force_destroy: Optional[pulumi.Input[bool]] = None,
+            gcsloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeGcsloggingArgs']]]]] = None,
+            healthchecks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHealthcheckArgs']]]]] = None,
+            httpsloggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHttpsloggingArgs']]]]] = None,
+            logentries: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLogentryArgs']]]]] = None,
+            logging_cloudfiles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
+            logging_datadogs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDatadogArgs']]]]] = None,
+            logging_digitaloceans: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDigitaloceanArgs']]]]] = None,
+            logging_elasticsearches: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingElasticsearchArgs']]]]] = None,
+            logging_ftps: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingFtpArgs']]]]] = None,
+            logging_googlepubsubs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingGooglepubsubArgs']]]]] = None,
+            logging_heroku: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHerokuArgs']]]]] = None,
+            logging_honeycombs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHoneycombArgs']]]]] = None,
+            logging_kafkas: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]]] = None,
+            logging_logglies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]]] = None,
+            logging_logshuttles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]]] = None,
+            logging_newrelics: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingNewrelicArgs']]]]] = None,
+            logging_openstacks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingOpenstackArgs']]]]] = None,
+            logging_scalyrs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingScalyrArgs']]]]] = None,
+            logging_sftps: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
+            papertrails: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]]] = None,
+            s3loggings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeS3loggingArgs']]]]] = None,
+            splunks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSplunkArgs']]]]] = None,
+            sumologics: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSumologicArgs']]]]] = None,
+            syslogs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSyslogArgs']]]]] = None,
+            version_comment: Optional[pulumi.Input[str]] = None) -> 'ServiceCompute':
         """
         Get an existing ServiceCompute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
         :param pulumi.Input[float] active_version: The currently active version of your Fastly Service.
-        :param pulumi.Input[list] backends: A set of Backends to service requests from your Domains.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]] backends: A set of Backends to service requests from your Domains.
                Defined below. Backends must be defined in this argument, or defined in the
                `vcl` argument below
-        :param pulumi.Input[list] bigqueryloggings: A BigQuery endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBigqueryloggingArgs']]]] bigqueryloggings: A BigQuery endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBlobstorageloggingArgs']]]] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[str] comment: An optional comment about the Domain.
-        :param pulumi.Input[list] domains: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In
                order to destroy the Service, set `force_destroy` to `true`. Default `false`.
-        :param pulumi.Input[list] gcsloggings: A gcs endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeGcsloggingArgs']]]] gcsloggings: A gcs endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] healthchecks: Name of a defined `healthcheck` to assign to this backend.
-        :param pulumi.Input[list] httpsloggings: An HTTPS endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHealthcheckArgs']]]] healthchecks: Name of a defined `healthcheck` to assign to this backend.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeHttpsloggingArgs']]]] httpsloggings: An HTTPS endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logentries: A logentries endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLogentryArgs']]]] logentries: A logentries endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] logging_cloudfiles: A Rackspace Cloud Files endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]] logging_cloudfiles: A Rackspace Cloud Files endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_datadogs: A Datadog endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDatadogArgs']]]] logging_datadogs: A Datadog endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_digitaloceans: A DigitalOcean Spaces endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingDigitaloceanArgs']]]] logging_digitaloceans: A DigitalOcean Spaces endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_elasticsearches: An Elasticsearch endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingElasticsearchArgs']]]] logging_elasticsearches: An Elasticsearch endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_ftps: An FTP endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingFtpArgs']]]] logging_ftps: An FTP endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_googlepubsubs: A Google Cloud Pub/Sub endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingGooglepubsubArgs']]]] logging_googlepubsubs: A Google Cloud Pub/Sub endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_heroku: A Heroku endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHerokuArgs']]]] logging_heroku: A Heroku endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_honeycombs: A Honeycomb endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHoneycombArgs']]]] logging_honeycombs: A Honeycomb endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_kafkas: A Kafka endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]] logging_kafkas: A Kafka endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_logglies: A Loggly endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]] logging_logglies: A Loggly endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_newrelics: A New Relic endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingNewrelicArgs']]]] logging_newrelics: A New Relic endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_openstacks: An OpenStack endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingOpenstackArgs']]]] logging_openstacks: An OpenStack endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_scalyrs: A Scalyr endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingScalyrArgs']]]] logging_scalyrs: A Scalyr endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[list] logging_sftps: An SFTP endpoint to send streaming logs to.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]] logging_sftps: An SFTP endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint.
-        :param pulumi.Input[dict] package: A Wasm deployment package to upload. Defined below.
-        :param pulumi.Input[list] papertrails: A Papertrail endpoint to send streaming logs too.
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload. Defined below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] s3loggings: A set of S3 Buckets to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeS3loggingArgs']]]] s3loggings: A set of S3 Buckets to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] splunks: A Splunk endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSplunkArgs']]]] splunks: A Splunk endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] sumologics: A Sumologic endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSumologicArgs']]]] sumologics: A Sumologic endpoint to send streaming logs too.
                Defined below.
-        :param pulumi.Input[list] syslogs: A syslog endpoint to send streaming logs too.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeSyslogArgs']]]] syslogs: A syslog endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[str] version_comment: Description field for the version.
-
-        The **backends** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `autoLoadbalance` (`pulumi.Input[bool]`) - Denotes if this Backend should be
-            included in the pool of backends that requests are load balanced against.
-            Default `true`.
-          * `betweenBytesTimeout` (`pulumi.Input[float]`) - How long to wait between bytes in milliseconds. Default `10000`.
-          * `connectTimeout` (`pulumi.Input[float]`) - How long to wait for a timeout in milliseconds.
-            Default `1000`
-          * `errorThreshold` (`pulumi.Input[float]`) - Number of errors to allow before the Backend is marked as down. Default `0`.
-          * `firstByteTimeout` (`pulumi.Input[float]`) - How long to wait for the first bytes in milliseconds. Default `15000`.
-          * `healthcheck` (`pulumi.Input[str]`) - Name of a defined `healthcheck` to assign to this backend.
-          * `maxConn` (`pulumi.Input[float]`) - Maximum number of connections for this Backend.
-            Default `200`.
-          * `maxTlsVersion` (`pulumi.Input[str]`) - Maximum allowed TLS version on SSL connections to this backend.
-          * `minTlsVersion` (`pulumi.Input[str]`) - Minimum allowed TLS version on SSL connections to this backend.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `overrideHost` (`pulumi.Input[str]`) - The hostname to override the Host header.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `shield` (`pulumi.Input[str]`) - The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-          * `sslCaCert` (`pulumi.Input[str]`) - CA certificate attached to origin.
-          * `sslCertHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
-          * `sslCheckCert` (`pulumi.Input[bool]`) - Be strict about checking SSL certs. Default `true`.
-          * `sslCiphers` (`pulumi.Input[str]`) - Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-          * `sslClientCert` (`pulumi.Input[str]`) - Client certificate attached to origin. Used when connecting to the backend.
-          * `sslClientKey` (`pulumi.Input[str]`) - Client key attached to origin. Used when connecting to the backend.
-          * `sslHostname` (`pulumi.Input[str]`) - Used for both SNI during the TLS handshake and to validate the cert.
-          * `sslSniHostname` (`pulumi.Input[str]`) - Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
-          * `useSsl` (`pulumi.Input[bool]`) - Whether or not to use SSL to reach the backend. Default `false`.
-          * `weight` (`pulumi.Input[float]`) - The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
-
-        The **bigqueryloggings** object supports the following:
-
-          * `dataset` (`pulumi.Input[str]`) - The Honeycomb Dataset you want to log to.
-          * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `table` (`pulumi.Input[str]`) - The ID of your BigQuery table.
-          * `template` (`pulumi.Input[str]`)
-
-        The **blobstorageloggings** object supports the following:
-
-          * `accountName` (`pulumi.Input[str]`) - The unique Azure Blob Storage namespace in which your data objects are stored.
-          * `container` (`pulumi.Input[str]`) - The name of the Azure Blob Storage container in which to store logs.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `sasToken` (`pulumi.Input[str]`) - The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **domains** object supports the following:
-
-          * `comment` (`pulumi.Input[str]`) - An optional comment about the Domain.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-
-        The **gcsloggings** object supports the following:
-
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `email` (`pulumi.Input[str]`) - The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **healthchecks** object supports the following:
-
-          * `checkInterval` (`pulumi.Input[float]`) - How often to run the Healthcheck in milliseconds. Default `5000`.
-          * `expectedResponse` (`pulumi.Input[float]`) - The status code expected from the host. Default `200`.
-          * `host` (`pulumi.Input[str]`) - The Host header to send for this Healthcheck.
-          * `httpVersion` (`pulumi.Input[str]`) - Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
-          * `initial` (`pulumi.Input[float]`) - When loading a config, the initial number of probes to be seen as OK. Default `2`.
-          * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `threshold` (`pulumi.Input[float]`) - How many Healthchecks must succeed to be considered healthy. Default `3`.
-          * `timeout` (`pulumi.Input[float]`) - Timeout in milliseconds. Default `500`.
-          * `window` (`pulumi.Input[float]`) - The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
-
-        The **httpsloggings** object supports the following:
-
-          * `contentType` (`pulumi.Input[str]`) - Value of the `Content-Type` header sent with the request.
-          * `headerName` (`pulumi.Input[str]`) - Custom header sent with the request.
-          * `headerValue` (`pulumi.Input[str]`) - Value of the custom header sent with the request.
-          * `jsonFormat` (`pulumi.Input[str]`) - Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `method` (`pulumi.Input[str]`) - HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **logentries** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
-
-        The **logging_cloudfiles** object supports the following:
-
-          * `accessKey` (`pulumi.Input[str]`) - Your Cloud File account access key.
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `region` (`pulumi.Input[str]`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_datadogs** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `region` (`pulumi.Input[str]`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_digitaloceans** object supports the following:
-
-          * `accessKey` (`pulumi.Input[str]`) - Your Cloud File account access key.
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `domain` (`pulumi.Input[str]`) - The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **logging_elasticsearches** object supports the following:
-
-          * `index` (`pulumi.Input[str]`) - The name of the Elasticsearch index to send documents (logs) to.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-          * `pipeline` (`pulumi.Input[str]`) - The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-          * `requestMaxBytes` (`pulumi.Input[float]`) - The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-          * `requestMaxEntries` (`pulumi.Input[float]`) - The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_ftps** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_googlepubsubs** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `projectId` (`pulumi.Input[str]`) - The ID of your Google Cloud Platform project.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_heroku** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **logging_honeycombs** object supports the following:
-
-          * `dataset` (`pulumi.Input[str]`) - The Honeycomb Dataset you want to log to.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_kafkas** object supports the following:
-
-          * `brokers` (`pulumi.Input[str]`) - A comma-separated list of IP addresses or hostnames of Kafka brokers.
-          * `compressionCodec` (`pulumi.Input[str]`) - The codec used for compression of your logs. One of: gzip, snappy, lz4.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `requiredAcks` (`pulumi.Input[str]`) - The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `topic` (`pulumi.Input[str]`) - The Kafka topic to send logs to.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
-
-        The **logging_logglies** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_logshuttles** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **logging_newrelics** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_openstacks** object supports the following:
-
-          * `accessKey` (`pulumi.Input[str]`) - Your Cloud File account access key.
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **logging_scalyrs** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `region` (`pulumi.Input[str]`) - The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-
-        The **logging_sftps** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `password` (`pulumi.Input[str]`) - The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `secretKey` (`pulumi.Input[str]`) - Your DigitalOcean Spaces account secret key.
-          * `sshKnownHosts` (`pulumi.Input[str]`) - A list of host keys for all hosts we can connect to over SFTP.
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-          * `user` (`pulumi.Input[str]`) - The username for your Cloud Files account.
-
-        The **package** object supports the following:
-
-          * `filename` (`pulumi.Input[str]`) - The path to the Wasm deployment package within your local filesystem.
-          * `sourceCodeHash` (`pulumi.Input[str]`)
-
-        The **papertrails** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-
-        The **s3loggings** object supports the following:
-
-          * `bucketName` (`pulumi.Input[str]`) - The name of your Cloud Files container.
-          * `domain` (`pulumi.Input[str]`) - The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-          * `gzipLevel` (`pulumi.Input[float]`) - What level of GZIP encoding to have when dumping logs (default 0, no compression).
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `path` (`pulumi.Input[str]`) - The path to upload logs to.
-          * `period` (`pulumi.Input[float]`) - How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-          * `publicKey` (`pulumi.Input[str]`) - The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-          * `redundancy` (`pulumi.Input[str]`) - The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
-          * `s3AccessKey` (`pulumi.Input[str]`) - AWS Access Key of an account with the required
-            permissions to post logs. It is **strongly** recommended you create a separate
-            IAM user with permissions to only operate on this Bucket. This key will be
-            not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-          * `s3SecretKey` (`pulumi.Input[str]`) - AWS Secret Key of an account with the required
-            permissions to post logs. It is **strongly** recommended you create a separate
-            IAM user with permissions to only operate on this Bucket. This secret will be
-            not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-          * `serverSideEncryption` (`pulumi.Input[str]`)
-          * `serverSideEncryptionKmsKeyId` (`pulumi.Input[str]`)
-          * `timestampFormat` (`pulumi.Input[str]`) - The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-
-        The **splunks** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **sumologics** object supports the following:
-
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `url` (`pulumi.Input[str]`) - Your OpenStack auth url.
-
-        The **syslogs** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - The SFTP address to stream logs to.
-          * `messageType` (`pulumi.Input[str]`) - How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-          * `name` (`pulumi.Input[str]`) - The unique name of the Rackspace Cloud Files logging endpoint.
-          * `port` (`pulumi.Input[float]`) - The port the SFTP service listens on. (Default: `22`).
-          * `tlsCaCert` (`pulumi.Input[str]`) - A secure certificate to authenticate the server with. Must be in PEM format.
-          * `tlsClientCert` (`pulumi.Input[str]`) - The client certificate used to make authenticated requests. Must be in PEM format.
-          * `tlsClientKey` (`pulumi.Input[str]`) - The client private key used to make authenticated requests. Must be in PEM format.
-          * `tlsHostname` (`pulumi.Input[str]`) - The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-          * `token` (`pulumi.Input[str]`) - The data authentication token associated with this endpoint.
-          * `useTls` (`pulumi.Input[bool]`) - Whether to use TLS for secure logging. Can be either true or false.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1326,8 +342,322 @@ class ServiceCompute(pulumi.CustomResource):
         __props__["version_comment"] = version_comment
         return ServiceCompute(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def activate(self) -> Optional[bool]:
+        """
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+        """
+        return pulumi.get(self, "activate")
+
+    @property
+    @pulumi.getter(name="activeVersion")
+    def active_version(self) -> float:
+        """
+        The currently active version of your Fastly Service.
+        """
+        return pulumi.get(self, "active_version")
+
+    @property
+    @pulumi.getter
+    def backends(self) -> Optional[List['outputs.ServiceComputeBackend']]:
+        """
+        A set of Backends to service requests from your Domains.
+        Defined below. Backends must be defined in this argument, or defined in the
+        `vcl` argument below
+        """
+        return pulumi.get(self, "backends")
+
+    @property
+    @pulumi.getter
+    def bigqueryloggings(self) -> Optional[List['outputs.ServiceComputeBigquerylogging']]:
+        """
+        A BigQuery endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "bigqueryloggings")
+
+    @property
+    @pulumi.getter
+    def blobstorageloggings(self) -> Optional[List['outputs.ServiceComputeBlobstoragelogging']]:
+        """
+        An Azure Blob Storage endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "blobstorageloggings")
+
+    @property
+    @pulumi.getter(name="clonedVersion")
+    def cloned_version(self) -> float:
+        return pulumi.get(self, "cloned_version")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        An optional comment about the Domain.
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def domains(self) -> List['outputs.ServiceComputeDomain']:
+        """
+        The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        """
+        return pulumi.get(self, "domains")
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        Services that are active cannot be destroyed. In
+        order to destroy the Service, set `force_destroy` to `true`. Default `false`.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @property
+    @pulumi.getter
+    def gcsloggings(self) -> Optional[List['outputs.ServiceComputeGcslogging']]:
+        """
+        A gcs endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "gcsloggings")
+
+    @property
+    @pulumi.getter
+    def healthchecks(self) -> Optional[List['outputs.ServiceComputeHealthcheck']]:
+        """
+        Name of a defined `healthcheck` to assign to this backend.
+        """
+        return pulumi.get(self, "healthchecks")
+
+    @property
+    @pulumi.getter
+    def httpsloggings(self) -> Optional[List['outputs.ServiceComputeHttpslogging']]:
+        """
+        An HTTPS endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "httpsloggings")
+
+    @property
+    @pulumi.getter
+    def logentries(self) -> Optional[List['outputs.ServiceComputeLogentry']]:
+        """
+        A logentries endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "logentries")
+
+    @property
+    @pulumi.getter(name="loggingCloudfiles")
+    def logging_cloudfiles(self) -> Optional[List['outputs.ServiceComputeLoggingCloudfile']]:
+        """
+        A Rackspace Cloud Files endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_cloudfiles")
+
+    @property
+    @pulumi.getter(name="loggingDatadogs")
+    def logging_datadogs(self) -> Optional[List['outputs.ServiceComputeLoggingDatadog']]:
+        """
+        A Datadog endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_datadogs")
+
+    @property
+    @pulumi.getter(name="loggingDigitaloceans")
+    def logging_digitaloceans(self) -> Optional[List['outputs.ServiceComputeLoggingDigitalocean']]:
+        """
+        A DigitalOcean Spaces endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_digitaloceans")
+
+    @property
+    @pulumi.getter(name="loggingElasticsearches")
+    def logging_elasticsearches(self) -> Optional[List['outputs.ServiceComputeLoggingElasticsearch']]:
+        """
+        An Elasticsearch endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_elasticsearches")
+
+    @property
+    @pulumi.getter(name="loggingFtps")
+    def logging_ftps(self) -> Optional[List['outputs.ServiceComputeLoggingFtp']]:
+        """
+        An FTP endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_ftps")
+
+    @property
+    @pulumi.getter(name="loggingGooglepubsubs")
+    def logging_googlepubsubs(self) -> Optional[List['outputs.ServiceComputeLoggingGooglepubsub']]:
+        """
+        A Google Cloud Pub/Sub endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_googlepubsubs")
+
+    @property
+    @pulumi.getter(name="loggingHeroku")
+    def logging_heroku(self) -> Optional[List['outputs.ServiceComputeLoggingHeroku']]:
+        """
+        A Heroku endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_heroku")
+
+    @property
+    @pulumi.getter(name="loggingHoneycombs")
+    def logging_honeycombs(self) -> Optional[List['outputs.ServiceComputeLoggingHoneycomb']]:
+        """
+        A Honeycomb endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_honeycombs")
+
+    @property
+    @pulumi.getter(name="loggingKafkas")
+    def logging_kafkas(self) -> Optional[List['outputs.ServiceComputeLoggingKafka']]:
+        """
+        A Kafka endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_kafkas")
+
+    @property
+    @pulumi.getter(name="loggingLogglies")
+    def logging_logglies(self) -> Optional[List['outputs.ServiceComputeLoggingLoggly']]:
+        """
+        A Loggly endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_logglies")
+
+    @property
+    @pulumi.getter(name="loggingLogshuttles")
+    def logging_logshuttles(self) -> Optional[List['outputs.ServiceComputeLoggingLogshuttle']]:
+        """
+        A Log Shuttle endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_logshuttles")
+
+    @property
+    @pulumi.getter(name="loggingNewrelics")
+    def logging_newrelics(self) -> Optional[List['outputs.ServiceComputeLoggingNewrelic']]:
+        """
+        A New Relic endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_newrelics")
+
+    @property
+    @pulumi.getter(name="loggingOpenstacks")
+    def logging_openstacks(self) -> Optional[List['outputs.ServiceComputeLoggingOpenstack']]:
+        """
+        An OpenStack endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_openstacks")
+
+    @property
+    @pulumi.getter(name="loggingScalyrs")
+    def logging_scalyrs(self) -> Optional[List['outputs.ServiceComputeLoggingScalyr']]:
+        """
+        A Scalyr endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_scalyrs")
+
+    @property
+    @pulumi.getter(name="loggingSftps")
+    def logging_sftps(self) -> Optional[List['outputs.ServiceComputeLoggingSftp']]:
+        """
+        An SFTP endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_sftps")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the Rackspace Cloud Files logging endpoint.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def package(self) -> 'outputs.ServiceComputePackage':
+        """
+        A Wasm deployment package to upload. Defined below.
+        """
+        return pulumi.get(self, "package")
+
+    @property
+    @pulumi.getter
+    def papertrails(self) -> Optional[List['outputs.ServiceComputePapertrail']]:
+        """
+        A Papertrail endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "papertrails")
+
+    @property
+    @pulumi.getter
+    def s3loggings(self) -> Optional[List['outputs.ServiceComputeS3logging']]:
+        """
+        A set of S3 Buckets to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "s3loggings")
+
+    @property
+    @pulumi.getter
+    def splunks(self) -> Optional[List['outputs.ServiceComputeSplunk']]:
+        """
+        A Splunk endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "splunks")
+
+    @property
+    @pulumi.getter
+    def sumologics(self) -> Optional[List['outputs.ServiceComputeSumologic']]:
+        """
+        A Sumologic endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "sumologics")
+
+    @property
+    @pulumi.getter
+    def syslogs(self) -> Optional[List['outputs.ServiceComputeSyslog']]:
+        """
+        A syslog endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "syslogs")
+
+    @property
+    @pulumi.getter(name="versionComment")
+    def version_comment(self) -> Optional[str]:
+        """
+        Description field for the version.
+        """
+        return pulumi.get(self, "version_comment")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

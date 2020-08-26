@@ -5,24 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['ServiceDynamicSnippetContentv1']
 
 
 class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
-    content: pulumi.Output[str]
-    """
-    The VCL code that specifies exactly what the snippet does.
-    """
-    service_id: pulumi.Output[str]
-    """
-    The ID of the service that the dynamic snippet belongs to
-    """
-    snippet_id: pulumi.Output[str]
-    """
-    The ID of the dynamic snippet that the content belong to
-    """
-    def __init__(__self__, resource_name, opts=None, content=None, service_id=None, snippet_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 content: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
+                 snippet_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
 
@@ -34,25 +32,25 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         myservice = fastly.Servicev1("myservice",
-            domains=[{
-                "name": "snippet.fastlytestdomain.com",
-                "comment": "snippet test",
-            }],
-            backends=[{
-                "address": "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
-                "name": "AWS S3 hosting",
-                "port": 80,
-            }],
-            dynamicsnippets=[{
-                "name": "My Dynamic Snippet",
-                "type": "recv",
-                "priority": 110,
-            }],
+            domains=[fastly.Servicev1DomainArgs(
+                name="snippet.fastlytestdomain.com",
+                comment="snippet test",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            dynamicsnippets=[fastly.Servicev1DynamicsnippetArgs(
+                name="My Dynamic Snippet",
+                type="recv",
+                priority=110,
+            )],
             default_host="tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
             force_destroy=True)
         my_dyn_content = fastly.ServiceDynamicSnippetContentv1("myDynContent",
             service_id=myservice.id,
-            snippet_id=myservice.dynamicsnippets.apply(lambda dynamicsnippets: {s["name"]: s["snippet_id"] for s in dynamicsnippets}["My Dynamic Snippet"]),
+            snippet_id=myservice.dynamicsnippets.apply(lambda dynamicsnippets: {s.name: s.snippet_id for s in dynamicsnippets}["My Dynamic Snippet"]),
             content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header = "true";
         }\"\"\")
@@ -64,38 +62,38 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         myservice = fastly.Servicev1("myservice",
-            domains=[{
-                "name": "snippet.fastlytestdomain.com",
-                "comment": "snippet test",
-            }],
-            backends=[{
-                "address": "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
-                "name": "AWS S3 hosting",
-                "port": 80,
-            }],
+            domains=[fastly.Servicev1DomainArgs(
+                name="snippet.fastlytestdomain.com",
+                comment="snippet test",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
             dynamicsnippets=[
-                {
-                    "name": "My Dynamic Snippet One",
-                    "type": "recv",
-                    "priority": 110,
-                },
-                {
-                    "name": "My Dynamic Snippet Two",
-                    "type": "recv",
-                    "priority": 110,
-                },
+                fastly.Servicev1DynamicsnippetArgs(
+                    name="My Dynamic Snippet One",
+                    type="recv",
+                    priority=110,
+                ),
+                fastly.Servicev1DynamicsnippetArgs(
+                    name="My Dynamic Snippet Two",
+                    type="recv",
+                    priority=110,
+                ),
             ],
             default_host="tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
             force_destroy=True)
         my_dyn_content_one = fastly.ServiceDynamicSnippetContentv1("myDynContentOne",
             service_id=myservice.id,
-            snippet_id=myservice.dynamicsnippets.apply(lambda dynamicsnippets: {s["name"]: s["snippet_id"] for s in dynamicsnippets}["My Dynamic Snippet One"]),
+            snippet_id=myservice.dynamicsnippets.apply(lambda dynamicsnippets: {s.name: s.snippet_id for s in dynamicsnippets}["My Dynamic Snippet One"]),
             content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header-one = "true";
         }\"\"\")
         my_dyn_content_two = fastly.ServiceDynamicSnippetContentv1("myDynContentTwo",
             service_id=myservice.id,
-            snippet_id=myservice.dynamicsnippets.apply(lambda dynamicsnippets: {s["name"]: s["snippet_id"] for s in dynamicsnippets}["My Dynamic Snippet Two"]),
+            snippet_id=myservice.dynamicsnippets.apply(lambda dynamicsnippets: {s.name: s.snippet_id for s in dynamicsnippets}["My Dynamic Snippet Two"]),
             content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header-two = "true";
         }\"\"\")
@@ -118,7 +116,7 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -140,13 +138,18 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, content=None, service_id=None, snippet_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            content: Optional[pulumi.Input[str]] = None,
+            service_id: Optional[pulumi.Input[str]] = None,
+            snippet_id: Optional[pulumi.Input[str]] = None) -> 'ServiceDynamicSnippetContentv1':
         """
         Get an existing ServiceDynamicSnippetContentv1 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does.
         :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
@@ -161,8 +164,33 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
         __props__["snippet_id"] = snippet_id
         return ServiceDynamicSnippetContentv1(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The VCL code that specifies exactly what the snippet does.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        """
+        The ID of the service that the dynamic snippet belongs to
+        """
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="snippetId")
+    def snippet_id(self) -> str:
+        """
+        The ID of the dynamic snippet that the content belong to
+        """
+        return pulumi.get(self, "snippet_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
