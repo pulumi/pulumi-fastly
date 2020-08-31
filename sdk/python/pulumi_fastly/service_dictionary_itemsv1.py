@@ -13,7 +13,7 @@ __all__ = ['ServiceDictionaryItemsv1']
 
 class ServiceDictionaryItemsv1(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dictionary_id: Optional[pulumi.Input[str]] = None,
                  items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -158,7 +158,7 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dictionaryId")
-    def dictionary_id(self) -> str:
+    def dictionary_id(self) -> pulumi.Output[str]:
         """
         The ID of the dictionary that the items belong to
         """
@@ -166,7 +166,7 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def items(self) -> Optional[Mapping[str, Any]]:
+    def items(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         A map representing an entry in the dictionary, (key/value)
         """
@@ -174,7 +174,7 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> str:
+    def service_id(self) -> pulumi.Output[str]:
         """
         The ID of the service that the dictionary belongs to
         """

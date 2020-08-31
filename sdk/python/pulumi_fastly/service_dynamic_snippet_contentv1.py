@@ -13,7 +13,7 @@ __all__ = ['ServiceDynamicSnippetContentv1']
 
 class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content: Optional[pulumi.Input[str]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
@@ -166,7 +166,7 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def content(self) -> str:
+    def content(self) -> pulumi.Output[str]:
         """
         The VCL code that specifies exactly what the snippet does.
         """
@@ -174,7 +174,7 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> str:
+    def service_id(self) -> pulumi.Output[str]:
         """
         The ID of the service that the dynamic snippet belongs to
         """
@@ -182,7 +182,7 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snippetId")
-    def snippet_id(self) -> str:
+    def snippet_id(self) -> pulumi.Output[str]:
         """
         The ID of the dynamic snippet that the content belong to
         """

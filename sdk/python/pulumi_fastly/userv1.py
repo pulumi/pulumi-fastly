@@ -13,7 +13,7 @@ __all__ = ['Userv1']
 
 class Userv1(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  login: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -98,7 +98,7 @@ class Userv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def login(self) -> str:
+    def login(self) -> pulumi.Output[str]:
         """
         The email address, which is the login name, of the User.
         """
@@ -106,7 +106,7 @@ class Userv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The real life name of the user.
         """
@@ -114,7 +114,7 @@ class Userv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def role(self) -> Optional[str]:
+    def role(self) -> pulumi.Output[Optional[str]]:
         """
         The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
         """
