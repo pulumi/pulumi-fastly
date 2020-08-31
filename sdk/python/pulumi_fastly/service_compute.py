@@ -15,7 +15,7 @@ __all__ = ['ServiceCompute']
 
 class ServiceCompute(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  activate: Optional[pulumi.Input[bool]] = None,
                  backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]]] = None,
@@ -344,7 +344,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def activate(self) -> Optional[bool]:
+    def activate(self) -> pulumi.Output[Optional[bool]]:
         """
         Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
         """
@@ -352,7 +352,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="activeVersion")
-    def active_version(self) -> float:
+    def active_version(self) -> pulumi.Output[float]:
         """
         The currently active version of your Fastly Service.
         """
@@ -360,7 +360,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def backends(self) -> Optional[List['outputs.ServiceComputeBackend']]:
+    def backends(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeBackend']]]:
         """
         A set of Backends to service requests from your Domains.
         Defined below. Backends must be defined in this argument, or defined in the
@@ -370,7 +370,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def bigqueryloggings(self) -> Optional[List['outputs.ServiceComputeBigquerylogging']]:
+    def bigqueryloggings(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeBigquerylogging']]]:
         """
         A BigQuery endpoint to send streaming logs too.
         Defined below.
@@ -379,7 +379,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def blobstorageloggings(self) -> Optional[List['outputs.ServiceComputeBlobstoragelogging']]:
+    def blobstorageloggings(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeBlobstoragelogging']]]:
         """
         An Azure Blob Storage endpoint to send streaming logs too.
         Defined below.
@@ -388,12 +388,12 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clonedVersion")
-    def cloned_version(self) -> float:
+    def cloned_version(self) -> pulumi.Output[float]:
         return pulumi.get(self, "cloned_version")
 
     @property
     @pulumi.getter
-    def comment(self) -> Optional[str]:
+    def comment(self) -> pulumi.Output[Optional[str]]:
         """
         An optional comment about the Domain.
         """
@@ -401,7 +401,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def domains(self) -> List['outputs.ServiceComputeDomain']:
+    def domains(self) -> pulumi.Output[List['outputs.ServiceComputeDomain']]:
         """
         The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         """
@@ -409,7 +409,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[bool]:
+    def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
         Services that are active cannot be destroyed. In
         order to destroy the Service, set `force_destroy` to `true`. Default `false`.
@@ -418,7 +418,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def gcsloggings(self) -> Optional[List['outputs.ServiceComputeGcslogging']]:
+    def gcsloggings(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeGcslogging']]]:
         """
         A gcs endpoint to send streaming logs too.
         Defined below.
@@ -427,7 +427,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def healthchecks(self) -> Optional[List['outputs.ServiceComputeHealthcheck']]:
+    def healthchecks(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeHealthcheck']]]:
         """
         Name of a defined `healthcheck` to assign to this backend.
         """
@@ -435,7 +435,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def httpsloggings(self) -> Optional[List['outputs.ServiceComputeHttpslogging']]:
+    def httpsloggings(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeHttpslogging']]]:
         """
         An HTTPS endpoint to send streaming logs to.
         Defined below.
@@ -444,7 +444,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def logentries(self) -> Optional[List['outputs.ServiceComputeLogentry']]:
+    def logentries(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLogentry']]]:
         """
         A logentries endpoint to send streaming logs too.
         Defined below.
@@ -453,7 +453,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingCloudfiles")
-    def logging_cloudfiles(self) -> Optional[List['outputs.ServiceComputeLoggingCloudfile']]:
+    def logging_cloudfiles(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingCloudfile']]]:
         """
         A Rackspace Cloud Files endpoint to send streaming logs to.
         Defined below.
@@ -462,7 +462,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingDatadogs")
-    def logging_datadogs(self) -> Optional[List['outputs.ServiceComputeLoggingDatadog']]:
+    def logging_datadogs(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingDatadog']]]:
         """
         A Datadog endpoint to send streaming logs to.
         Defined below.
@@ -471,7 +471,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingDigitaloceans")
-    def logging_digitaloceans(self) -> Optional[List['outputs.ServiceComputeLoggingDigitalocean']]:
+    def logging_digitaloceans(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingDigitalocean']]]:
         """
         A DigitalOcean Spaces endpoint to send streaming logs to.
         Defined below.
@@ -480,7 +480,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingElasticsearches")
-    def logging_elasticsearches(self) -> Optional[List['outputs.ServiceComputeLoggingElasticsearch']]:
+    def logging_elasticsearches(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingElasticsearch']]]:
         """
         An Elasticsearch endpoint to send streaming logs to.
         Defined below.
@@ -489,7 +489,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingFtps")
-    def logging_ftps(self) -> Optional[List['outputs.ServiceComputeLoggingFtp']]:
+    def logging_ftps(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingFtp']]]:
         """
         An FTP endpoint to send streaming logs to.
         Defined below.
@@ -498,7 +498,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingGooglepubsubs")
-    def logging_googlepubsubs(self) -> Optional[List['outputs.ServiceComputeLoggingGooglepubsub']]:
+    def logging_googlepubsubs(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingGooglepubsub']]]:
         """
         A Google Cloud Pub/Sub endpoint to send streaming logs to.
         Defined below.
@@ -507,7 +507,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingHeroku")
-    def logging_heroku(self) -> Optional[List['outputs.ServiceComputeLoggingHeroku']]:
+    def logging_heroku(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingHeroku']]]:
         """
         A Heroku endpoint to send streaming logs to.
         Defined below.
@@ -516,7 +516,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingHoneycombs")
-    def logging_honeycombs(self) -> Optional[List['outputs.ServiceComputeLoggingHoneycomb']]:
+    def logging_honeycombs(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingHoneycomb']]]:
         """
         A Honeycomb endpoint to send streaming logs to.
         Defined below.
@@ -525,7 +525,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingKafkas")
-    def logging_kafkas(self) -> Optional[List['outputs.ServiceComputeLoggingKafka']]:
+    def logging_kafkas(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingKafka']]]:
         """
         A Kafka endpoint to send streaming logs to.
         Defined below.
@@ -534,7 +534,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingLogglies")
-    def logging_logglies(self) -> Optional[List['outputs.ServiceComputeLoggingLoggly']]:
+    def logging_logglies(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingLoggly']]]:
         """
         A Loggly endpoint to send streaming logs to.
         Defined below.
@@ -543,7 +543,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingLogshuttles")
-    def logging_logshuttles(self) -> Optional[List['outputs.ServiceComputeLoggingLogshuttle']]:
+    def logging_logshuttles(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingLogshuttle']]]:
         """
         A Log Shuttle endpoint to send streaming logs to.
         Defined below.
@@ -552,7 +552,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingNewrelics")
-    def logging_newrelics(self) -> Optional[List['outputs.ServiceComputeLoggingNewrelic']]:
+    def logging_newrelics(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingNewrelic']]]:
         """
         A New Relic endpoint to send streaming logs to.
         Defined below.
@@ -561,7 +561,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingOpenstacks")
-    def logging_openstacks(self) -> Optional[List['outputs.ServiceComputeLoggingOpenstack']]:
+    def logging_openstacks(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingOpenstack']]]:
         """
         An OpenStack endpoint to send streaming logs to.
         Defined below.
@@ -570,7 +570,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingScalyrs")
-    def logging_scalyrs(self) -> Optional[List['outputs.ServiceComputeLoggingScalyr']]:
+    def logging_scalyrs(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingScalyr']]]:
         """
         A Scalyr endpoint to send streaming logs to.
         Defined below.
@@ -579,7 +579,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingSftps")
-    def logging_sftps(self) -> Optional[List['outputs.ServiceComputeLoggingSftp']]:
+    def logging_sftps(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeLoggingSftp']]]:
         """
         An SFTP endpoint to send streaming logs to.
         Defined below.
@@ -588,7 +588,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The unique name of the Rackspace Cloud Files logging endpoint.
         """
@@ -596,7 +596,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def package(self) -> 'outputs.ServiceComputePackage':
+    def package(self) -> pulumi.Output['outputs.ServiceComputePackage']:
         """
         A Wasm deployment package to upload. Defined below.
         """
@@ -604,7 +604,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def papertrails(self) -> Optional[List['outputs.ServiceComputePapertrail']]:
+    def papertrails(self) -> pulumi.Output[Optional[List['outputs.ServiceComputePapertrail']]]:
         """
         A Papertrail endpoint to send streaming logs too.
         Defined below.
@@ -613,7 +613,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def s3loggings(self) -> Optional[List['outputs.ServiceComputeS3logging']]:
+    def s3loggings(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeS3logging']]]:
         """
         A set of S3 Buckets to send streaming logs too.
         Defined below.
@@ -622,7 +622,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def splunks(self) -> Optional[List['outputs.ServiceComputeSplunk']]:
+    def splunks(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeSplunk']]]:
         """
         A Splunk endpoint to send streaming logs too.
         Defined below.
@@ -631,7 +631,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def sumologics(self) -> Optional[List['outputs.ServiceComputeSumologic']]:
+    def sumologics(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeSumologic']]]:
         """
         A Sumologic endpoint to send streaming logs too.
         Defined below.
@@ -640,7 +640,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def syslogs(self) -> Optional[List['outputs.ServiceComputeSyslog']]:
+    def syslogs(self) -> pulumi.Output[Optional[List['outputs.ServiceComputeSyslog']]]:
         """
         A syslog endpoint to send streaming logs too.
         Defined below.
@@ -649,7 +649,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="versionComment")
-    def version_comment(self) -> Optional[str]:
+    def version_comment(self) -> pulumi.Output[Optional[str]]:
         """
         Description field for the version.
         """

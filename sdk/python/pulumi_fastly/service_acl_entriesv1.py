@@ -15,7 +15,7 @@ __all__ = ['ServiceACLEntriesv1']
 
 class ServiceACLEntriesv1(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl_id: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]]] = None,
@@ -127,7 +127,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="aclId")
-    def acl_id(self) -> str:
+    def acl_id(self) -> pulumi.Output[str]:
         """
         The ID of the ACL that the items belong to
         """
@@ -135,7 +135,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def entries(self) -> Optional[List['outputs.ServiceACLEntriesv1Entry']]:
+    def entries(self) -> pulumi.Output[Optional[List['outputs.ServiceACLEntriesv1Entry']]]:
         """
         A Set ACL entries that are applied to the service. Defined below
         """
@@ -143,7 +143,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> str:
+    def service_id(self) -> pulumi.Output[str]:
         """
         The ID of the Service that the ACL belongs to
         """

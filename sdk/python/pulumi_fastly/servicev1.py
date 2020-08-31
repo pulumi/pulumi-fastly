@@ -15,7 +15,7 @@ __all__ = ['Servicev1']
 
 class Servicev1(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acls: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1AclArgs']]]]] = None,
                  activate: Optional[pulumi.Input[bool]] = None,
@@ -521,7 +521,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def acls(self) -> Optional[List['outputs.Servicev1Acl']]:
+    def acls(self) -> pulumi.Output[Optional[List['outputs.Servicev1Acl']]]:
         """
         A set of ACL configuration blocks.  Defined below.
         """
@@ -529,7 +529,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def activate(self) -> Optional[bool]:
+    def activate(self) -> pulumi.Output[Optional[bool]]:
         """
         Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
         """
@@ -537,7 +537,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="activeVersion")
-    def active_version(self) -> float:
+    def active_version(self) -> pulumi.Output[float]:
         """
         The currently active version of your Fastly Service.
         """
@@ -545,7 +545,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def backends(self) -> Optional[List['outputs.Servicev1Backend']]:
+    def backends(self) -> pulumi.Output[Optional[List['outputs.Servicev1Backend']]]:
         """
         A set of Backends to service requests from your Domains.
         Defined below. Backends must be defined in this argument, or defined in the
@@ -555,7 +555,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def bigqueryloggings(self) -> Optional[List['outputs.Servicev1Bigquerylogging']]:
+    def bigqueryloggings(self) -> pulumi.Output[Optional[List['outputs.Servicev1Bigquerylogging']]]:
         """
         A BigQuery endpoint to send streaming logs too.
         Defined below.
@@ -564,7 +564,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def blobstorageloggings(self) -> Optional[List['outputs.Servicev1Blobstoragelogging']]:
+    def blobstorageloggings(self) -> pulumi.Output[Optional[List['outputs.Servicev1Blobstoragelogging']]]:
         """
         An Azure Blob Storage endpoint to send streaming logs too.
         Defined below.
@@ -573,7 +573,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cacheSettings")
-    def cache_settings(self) -> Optional[List['outputs.Servicev1CacheSetting']]:
+    def cache_settings(self) -> pulumi.Output[Optional[List['outputs.Servicev1CacheSetting']]]:
         """
         A set of Cache Settings, allowing you to override
         """
@@ -581,7 +581,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clonedVersion")
-    def cloned_version(self) -> float:
+    def cloned_version(self) -> pulumi.Output[float]:
         """
         The latest cloned version by the provider. The value gets only set after running `pulumi up`.
         """
@@ -589,7 +589,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def comment(self) -> Optional[str]:
+    def comment(self) -> pulumi.Output[Optional[str]]:
         """
         An optional comment about the Director.
         """
@@ -597,7 +597,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[List['outputs.Servicev1Condition']]:
+    def conditions(self) -> pulumi.Output[Optional[List['outputs.Servicev1Condition']]]:
         """
         A set of conditions to add logic to any basic
         configuration object in this service. Defined below.
@@ -606,7 +606,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultHost")
-    def default_host(self) -> str:
+    def default_host(self) -> pulumi.Output[str]:
         """
         Sets the host header.
         """
@@ -614,7 +614,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[float]:
+    def default_ttl(self) -> pulumi.Output[Optional[float]]:
         """
         The default Time-to-live (TTL) for
         requests.
@@ -623,7 +623,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def dictionaries(self) -> Optional[List['outputs.Servicev1Dictionary']]:
+    def dictionaries(self) -> pulumi.Output[Optional[List['outputs.Servicev1Dictionary']]]:
         """
         A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
         """
@@ -631,7 +631,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def directors(self) -> Optional[List['outputs.Servicev1Director']]:
+    def directors(self) -> pulumi.Output[Optional[List['outputs.Servicev1Director']]]:
         """
         A director to allow more control over balancing traffic over backends.
         when an item is not to be cached based on an above `condition`. Defined below
@@ -640,7 +640,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def domains(self) -> List['outputs.Servicev1Domain']:
+    def domains(self) -> pulumi.Output[List['outputs.Servicev1Domain']]:
         """
         The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         """
@@ -648,7 +648,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def dynamicsnippets(self) -> Optional[List['outputs.Servicev1Dynamicsnippet']]:
+    def dynamicsnippets(self) -> pulumi.Output[Optional[List['outputs.Servicev1Dynamicsnippet']]]:
         """
         A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
         """
@@ -656,7 +656,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[bool]:
+    def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
         Services that are active cannot be destroyed. In
         order to destroy the Service, set `force_destroy` to `true`. Default `false`.
@@ -665,7 +665,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def gcsloggings(self) -> Optional[List['outputs.Servicev1Gcslogging']]:
+    def gcsloggings(self) -> pulumi.Output[Optional[List['outputs.Servicev1Gcslogging']]]:
         """
         A gcs endpoint to send streaming logs too.
         Defined below.
@@ -674,7 +674,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def gzips(self) -> Optional[List['outputs.Servicev1Gzip']]:
+    def gzips(self) -> pulumi.Output[Optional[List['outputs.Servicev1Gzip']]]:
         """
         A set of gzip rules to control automatic gzipping of
         content. Defined below.
@@ -683,7 +683,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def headers(self) -> Optional[List['outputs.Servicev1Header']]:
+    def headers(self) -> pulumi.Output[Optional[List['outputs.Servicev1Header']]]:
         """
         A set of Headers to manipulate for each request. Defined
         below.
@@ -692,7 +692,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def healthchecks(self) -> Optional[List['outputs.Servicev1Healthcheck']]:
+    def healthchecks(self) -> pulumi.Output[Optional[List['outputs.Servicev1Healthcheck']]]:
         """
         Name of a defined `healthcheck` to assign to this backend.
         """
@@ -700,7 +700,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def httpsloggings(self) -> Optional[List['outputs.Servicev1Httpslogging']]:
+    def httpsloggings(self) -> pulumi.Output[Optional[List['outputs.Servicev1Httpslogging']]]:
         """
         An HTTPS endpoint to send streaming logs to.
         Defined below.
@@ -709,7 +709,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def logentries(self) -> Optional[List['outputs.Servicev1Logentry']]:
+    def logentries(self) -> pulumi.Output[Optional[List['outputs.Servicev1Logentry']]]:
         """
         A logentries endpoint to send streaming logs too.
         Defined below.
@@ -718,7 +718,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingCloudfiles")
-    def logging_cloudfiles(self) -> Optional[List['outputs.Servicev1LoggingCloudfile']]:
+    def logging_cloudfiles(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingCloudfile']]]:
         """
         A Rackspace Cloud Files endpoint to send streaming logs to.
         Defined below.
@@ -727,7 +727,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingDatadogs")
-    def logging_datadogs(self) -> Optional[List['outputs.Servicev1LoggingDatadog']]:
+    def logging_datadogs(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingDatadog']]]:
         """
         A Datadog endpoint to send streaming logs to.
         Defined below.
@@ -736,7 +736,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingDigitaloceans")
-    def logging_digitaloceans(self) -> Optional[List['outputs.Servicev1LoggingDigitalocean']]:
+    def logging_digitaloceans(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingDigitalocean']]]:
         """
         A DigitalOcean Spaces endpoint to send streaming logs to.
         Defined below.
@@ -745,7 +745,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingElasticsearches")
-    def logging_elasticsearches(self) -> Optional[List['outputs.Servicev1LoggingElasticsearch']]:
+    def logging_elasticsearches(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingElasticsearch']]]:
         """
         An Elasticsearch endpoint to send streaming logs to.
         Defined below.
@@ -754,7 +754,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingFtps")
-    def logging_ftps(self) -> Optional[List['outputs.Servicev1LoggingFtp']]:
+    def logging_ftps(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingFtp']]]:
         """
         An FTP endpoint to send streaming logs to.
         Defined below.
@@ -763,7 +763,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingGooglepubsubs")
-    def logging_googlepubsubs(self) -> Optional[List['outputs.Servicev1LoggingGooglepubsub']]:
+    def logging_googlepubsubs(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingGooglepubsub']]]:
         """
         A Google Cloud Pub/Sub endpoint to send streaming logs to.
         Defined below.
@@ -772,7 +772,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingHeroku")
-    def logging_heroku(self) -> Optional[List['outputs.Servicev1LoggingHeroku']]:
+    def logging_heroku(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingHeroku']]]:
         """
         A Heroku endpoint to send streaming logs to.
         Defined below.
@@ -781,7 +781,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingHoneycombs")
-    def logging_honeycombs(self) -> Optional[List['outputs.Servicev1LoggingHoneycomb']]:
+    def logging_honeycombs(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingHoneycomb']]]:
         """
         A Honeycomb endpoint to send streaming logs to.
         Defined below.
@@ -790,7 +790,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingKafkas")
-    def logging_kafkas(self) -> Optional[List['outputs.Servicev1LoggingKafka']]:
+    def logging_kafkas(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingKafka']]]:
         """
         A Kafka endpoint to send streaming logs to.
         Defined below.
@@ -799,7 +799,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingLogglies")
-    def logging_logglies(self) -> Optional[List['outputs.Servicev1LoggingLoggly']]:
+    def logging_logglies(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingLoggly']]]:
         """
         A Loggly endpoint to send streaming logs to.
         Defined below.
@@ -808,7 +808,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingLogshuttles")
-    def logging_logshuttles(self) -> Optional[List['outputs.Servicev1LoggingLogshuttle']]:
+    def logging_logshuttles(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingLogshuttle']]]:
         """
         A Log Shuttle endpoint to send streaming logs to.
         Defined below.
@@ -817,7 +817,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingNewrelics")
-    def logging_newrelics(self) -> Optional[List['outputs.Servicev1LoggingNewrelic']]:
+    def logging_newrelics(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingNewrelic']]]:
         """
         A New Relic endpoint to send streaming logs to.
         Defined below.
@@ -826,7 +826,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingOpenstacks")
-    def logging_openstacks(self) -> Optional[List['outputs.Servicev1LoggingOpenstack']]:
+    def logging_openstacks(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingOpenstack']]]:
         """
         An OpenStack endpoint to send streaming logs to.
         Defined below.
@@ -835,7 +835,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingScalyrs")
-    def logging_scalyrs(self) -> Optional[List['outputs.Servicev1LoggingScalyr']]:
+    def logging_scalyrs(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingScalyr']]]:
         """
         A Scalyr endpoint to send streaming logs to.
         Defined below.
@@ -844,7 +844,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="loggingSftps")
-    def logging_sftps(self) -> Optional[List['outputs.Servicev1LoggingSftp']]:
+    def logging_sftps(self) -> pulumi.Output[Optional[List['outputs.Servicev1LoggingSftp']]]:
         """
         An SFTP endpoint to send streaming logs to.
         Defined below.
@@ -853,7 +853,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         A unique name to identify this dictionary.
         """
@@ -861,7 +861,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def papertrails(self) -> Optional[List['outputs.Servicev1Papertrail']]:
+    def papertrails(self) -> pulumi.Output[Optional[List['outputs.Servicev1Papertrail']]]:
         """
         A Papertrail endpoint to send streaming logs too.
         Defined below.
@@ -870,7 +870,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="requestSettings")
-    def request_settings(self) -> Optional[List['outputs.Servicev1RequestSetting']]:
+    def request_settings(self) -> pulumi.Output[Optional[List['outputs.Servicev1RequestSetting']]]:
         """
         A set of Request modifiers. Defined below
         """
@@ -878,7 +878,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="responseObjects")
-    def response_objects(self) -> Optional[List['outputs.Servicev1ResponseObject']]:
+    def response_objects(self) -> pulumi.Output[Optional[List['outputs.Servicev1ResponseObject']]]:
         """
         Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
         """
@@ -886,7 +886,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def s3loggings(self) -> Optional[List['outputs.Servicev1S3logging']]:
+    def s3loggings(self) -> pulumi.Output[Optional[List['outputs.Servicev1S3logging']]]:
         """
         A set of S3 Buckets to send streaming logs too.
         Defined below.
@@ -895,7 +895,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def snippets(self) -> Optional[List['outputs.Servicev1Snippet']]:
+    def snippets(self) -> pulumi.Output[Optional[List['outputs.Servicev1Snippet']]]:
         """
         A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
         """
@@ -903,7 +903,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def splunks(self) -> Optional[List['outputs.Servicev1Splunk']]:
+    def splunks(self) -> pulumi.Output[Optional[List['outputs.Servicev1Splunk']]]:
         """
         A Splunk endpoint to send streaming logs too.
         Defined below.
@@ -912,7 +912,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def sumologics(self) -> Optional[List['outputs.Servicev1Sumologic']]:
+    def sumologics(self) -> pulumi.Output[Optional[List['outputs.Servicev1Sumologic']]]:
         """
         A Sumologic endpoint to send streaming logs too.
         Defined below.
@@ -921,7 +921,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def syslogs(self) -> Optional[List['outputs.Servicev1Syslog']]:
+    def syslogs(self) -> pulumi.Output[Optional[List['outputs.Servicev1Syslog']]]:
         """
         A syslog endpoint to send streaming logs too.
         Defined below.
@@ -930,7 +930,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vcls(self) -> Optional[List['outputs.Servicev1Vcl']]:
+    def vcls(self) -> pulumi.Output[Optional[List['outputs.Servicev1Vcl']]]:
         """
         A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         """
@@ -938,7 +938,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="versionComment")
-    def version_comment(self) -> Optional[str]:
+    def version_comment(self) -> pulumi.Output[Optional[str]]:
         """
         Description field for the version.
         """
