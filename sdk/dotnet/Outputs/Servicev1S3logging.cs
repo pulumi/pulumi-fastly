@@ -79,7 +79,13 @@ namespace Pulumi.Fastly.Outputs
         /// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
         /// </summary>
         public readonly string? S3SecretKey;
+        /// <summary>
+        /// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+        /// </summary>
         public readonly string? ServerSideEncryption;
+        /// <summary>
+        /// Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
+        /// </summary>
         public readonly string? ServerSideEncryptionKmsKeyId;
         /// <summary>
         /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).

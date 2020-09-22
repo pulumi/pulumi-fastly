@@ -9,162 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Fastly
 {
-    /// <summary>
-    /// Provides a Fastly Service, representing the configuration for a website, app,
-    /// API, or anything else to be served through Fastly. A Service encompasses Domains
-    /// and Backends.
-    /// 
-    /// The Service resource requires a domain name that is correctly set up to direct
-    /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
-    /// on their documentation site for guidance.
-    /// 
-    /// ## Example Usage
-    /// ### Basic usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Fastly = Pulumi.Fastly;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var demo = new Fastly.Servicev1("demo", new Fastly.Servicev1Args
-    ///         {
-    ///             Backends = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1BackendArgs
-    ///                 {
-    ///                     Address = "127.0.0.1",
-    ///                     Name = "localhost",
-    ///                     Port = 80,
-    ///                 },
-    ///             },
-    ///             Domains = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1DomainArgs
-    ///                 {
-    ///                     Comment = "demo",
-    ///                     Name = "demo.notexample.com",
-    ///                 },
-    ///             },
-    ///             ForceDestroy = true,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// ### Basic usage with custom VCL:
-    /// 
-    /// ```csharp
-    /// using System.IO;
-    /// using Pulumi;
-    /// using Fastly = Pulumi.Fastly;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var demo = new Fastly.Servicev1("demo", new Fastly.Servicev1Args
-    ///         {
-    ///             Backends = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1BackendArgs
-    ///                 {
-    ///                     Address = "127.0.0.1",
-    ///                     Name = "localhost",
-    ///                     Port = 80,
-    ///                 },
-    ///             },
-    ///             Domains = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1DomainArgs
-    ///                 {
-    ///                     Comment = "demo",
-    ///                     Name = "demo.notexample.com",
-    ///                 },
-    ///             },
-    ///             ForceDestroy = true,
-    ///             Vcls = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1VclArgs
-    ///                 {
-    ///                     Content = File.ReadAllText($"{path.Module}/my_custom_main.vcl"),
-    ///                     Main = true,
-    ///                     Name = "my_custom_main_vcl",
-    ///                 },
-    ///                 new Fastly.Inputs.Servicev1VclArgs
-    ///                 {
-    ///                     Content = File.ReadAllText($"{path.Module}/my_custom_library.vcl"),
-    ///                     Name = "my_custom_library_vcl",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// ### Basic usage with custom Director
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Fastly = Pulumi.Fastly;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var demo = new Fastly.Servicev1("demo", new Fastly.Servicev1Args
-    ///         {
-    ///             Backends = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1BackendArgs
-    ///                 {
-    ///                     Address = "127.0.0.1",
-    ///                     Name = "origin1",
-    ///                     Port = 80,
-    ///                 },
-    ///                 new Fastly.Inputs.Servicev1BackendArgs
-    ///                 {
-    ///                     Address = "127.0.0.2",
-    ///                     Name = "origin2",
-    ///                     Port = 80,
-    ///                 },
-    ///             },
-    ///             Directors = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1DirectorArgs
-    ///                 {
-    ///                     Backends = 
-    ///                     {
-    ///                         "origin1",
-    ///                         "origin2",
-    ///                     },
-    ///                     Name = "mydirector",
-    ///                     Quorum = 0,
-    ///                     Type = 3,
-    ///                 },
-    ///             },
-    ///             Domains = 
-    ///             {
-    ///                 new Fastly.Inputs.Servicev1DomainArgs
-    ///                 {
-    ///                     Comment = "demo",
-    ///                     Name = "demo.notexample.com",
-    ///                 },
-    ///             },
-    ///             ForceDestroy = true,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// &gt; **Note:** For an AWS S3 Bucket, the Backend address is
-    /// `&lt;domain&gt;.s3-website-&lt;region&gt;.amazonaws.com`. The `default_host` attribute
-    /// should be set to `&lt;bucket_name&gt;.s3-website-&lt;region&gt;.amazonaws.com`. See the
-    /// Fastly documentation on [Amazon S3][fastly-s3].
-    /// </summary>
     public partial class Servicev1 : Pulumi.CustomResource
     {
         /// <summary>
@@ -443,7 +287,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1RequestSetting>> RequestSettings { get; private set; } = null!;
 
         /// <summary>
-        /// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+        /// The name of the response object used by the Web Application Firewall.
         /// </summary>
         [Output("responseObjects")]
         public Output<ImmutableArray<Outputs.Servicev1ResponseObject>> ResponseObjects { get; private set; } = null!;
@@ -493,6 +337,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("versionComment")]
         public Output<string?> VersionComment { get; private set; } = null!;
+
+        /// <summary>
+        /// A WAF configuration block.  Defined below.
+        /// </summary>
+        [Output("waf")]
+        public Output<Outputs.Servicev1Waf?> Waf { get; private set; } = null!;
 
 
         /// <summary>
@@ -1005,7 +855,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1ResponseObjectArgs>? _responseObjects;
 
         /// <summary>
-        /// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+        /// The name of the response object used by the Web Application Firewall.
         /// </summary>
         public InputList<Inputs.Servicev1ResponseObjectArgs> ResponseObjects
         {
@@ -1094,6 +944,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("versionComment")]
         public Input<string>? VersionComment { get; set; }
+
+        /// <summary>
+        /// A WAF configuration block.  Defined below.
+        /// </summary>
+        [Input("waf")]
+        public Input<Inputs.Servicev1WafArgs>? Waf { get; set; }
 
         public Servicev1Args()
         {
@@ -1579,7 +1435,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1ResponseObjectGetArgs>? _responseObjects;
 
         /// <summary>
-        /// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+        /// The name of the response object used by the Web Application Firewall.
         /// </summary>
         public InputList<Inputs.Servicev1ResponseObjectGetArgs> ResponseObjects
         {
@@ -1668,6 +1524,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("versionComment")]
         public Input<string>? VersionComment { get; set; }
+
+        /// <summary>
+        /// A WAF configuration block.  Defined below.
+        /// </summary>
+        [Input("waf")]
+        public Input<Inputs.Servicev1WafGetArgs>? Waf { get; set; }
 
         public Servicev1State()
         {

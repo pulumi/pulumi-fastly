@@ -39,6 +39,7 @@ __all__ = [
     'ServiceComputeSplunkArgs',
     'ServiceComputeSumologicArgs',
     'ServiceComputeSyslogArgs',
+    'ServiceWafConfigurationRuleArgs',
     'Servicev1AclArgs',
     'Servicev1BackendArgs',
     'Servicev1BigqueryloggingArgs',
@@ -79,6 +80,7 @@ __all__ = [
     'Servicev1SumologicArgs',
     'Servicev1SyslogArgs',
     'Servicev1VclArgs',
+    'Servicev1WafArgs',
 ]
 
 @pulumi.input_type
@@ -3823,6 +3825,59 @@ class ServiceComputeSyslogArgs:
     @use_tls.setter
     def use_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_tls", value)
+
+
+@pulumi.input_type
+class ServiceWafConfigurationRuleArgs:
+    def __init__(__self__, *,
+                 modsec_rule_id: pulumi.Input[float],
+                 status: pulumi.Input[str],
+                 revision: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] modsec_rule_id: The Web Application Firewall rule's modsecurity ID.
+        :param pulumi.Input[str] status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+        :param pulumi.Input[float] revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        """
+        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
+        pulumi.set(__self__, "status", status)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+
+    @property
+    @pulumi.getter(name="modsecRuleId")
+    def modsec_rule_id(self) -> pulumi.Input[float]:
+        """
+        The Web Application Firewall rule's modsecurity ID.
+        """
+        return pulumi.get(self, "modsec_rule_id")
+
+    @modsec_rule_id.setter
+    def modsec_rule_id(self, value: pulumi.Input[float]):
+        pulumi.set(self, "modsec_rule_id", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> pulumi.Input[str]:
+        """
+        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: pulumi.Input[str]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[pulumi.Input[float]]:
+        """
+        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "revision", value)
 
 
 @pulumi.input_type
@@ -9346,6 +9401,8 @@ class Servicev1S3loggingArgs:
                permissions to post logs. It is **strongly** recommended you create a separate
                IAM user with permissions to only operate on this Bucket. This secret will be
                not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+        :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+        :param pulumi.Input[str] server_side_encryption_kms_key_id: Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
         :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -9572,6 +9629,9 @@ class Servicev1S3loggingArgs:
     @property
     @pulumi.getter(name="serverSideEncryption")
     def server_side_encryption(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+        """
         return pulumi.get(self, "server_side_encryption")
 
     @server_side_encryption.setter
@@ -9581,6 +9641,9 @@ class Servicev1S3loggingArgs:
     @property
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
+        """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
     @server_side_encryption_kms_key_id.setter
@@ -10217,5 +10280,59 @@ class Servicev1VclArgs:
     @main.setter
     def main(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "main", value)
+
+
+@pulumi.input_type
+class Servicev1WafArgs:
+    def __init__(__self__, *,
+                 response_object: pulumi.Input[str],
+                 prefetch_condition: Optional[pulumi.Input[str]] = None,
+                 waf_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] response_object: The name of the response object used by the Web Application Firewall.
+        :param pulumi.Input[str] prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        :param pulumi.Input[str] waf_id: The ID of the WAF.
+        """
+        pulumi.set(__self__, "response_object", response_object)
+        if prefetch_condition is not None:
+            pulumi.set(__self__, "prefetch_condition", prefetch_condition)
+        if waf_id is not None:
+            pulumi.set(__self__, "waf_id", waf_id)
+
+    @property
+    @pulumi.getter(name="responseObject")
+    def response_object(self) -> pulumi.Input[str]:
+        """
+        The name of the response object used by the Web Application Firewall.
+        """
+        return pulumi.get(self, "response_object")
+
+    @response_object.setter
+    def response_object(self, value: pulumi.Input[str]):
+        pulumi.set(self, "response_object", value)
+
+    @property
+    @pulumi.getter(name="prefetchCondition")
+    def prefetch_condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        """
+        return pulumi.get(self, "prefetch_condition")
+
+    @prefetch_condition.setter
+    def prefetch_condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefetch_condition", value)
+
+    @property
+    @pulumi.getter(name="wafId")
+    def waf_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the WAF.
+        """
+        return pulumi.get(self, "waf_id")
+
+    @waf_id.setter
+    def waf_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_id", value)
 
 

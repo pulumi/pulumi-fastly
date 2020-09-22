@@ -64,106 +64,12 @@ class Servicev1(pulumi.CustomResource):
                  syslogs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1SyslogArgs']]]]] = None,
                  vcls: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
+                 waf: Optional[pulumi.Input[pulumi.InputType['Servicev1WafArgs']]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Fastly Service, representing the configuration for a website, app,
-        API, or anything else to be served through Fastly. A Service encompasses Domains
-        and Backends.
-
-        The Service resource requires a domain name that is correctly set up to direct
-        traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
-        on their documentation site for guidance.
-
-        ## Example Usage
-        ### Basic usage
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo = fastly.Servicev1("demo",
-            backends=[fastly.Servicev1BackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-                port=80,
-            )],
-            domains=[fastly.Servicev1DomainArgs(
-                comment="demo",
-                name="demo.notexample.com",
-            )],
-            force_destroy=True)
-        ```
-        ### Basic usage with custom VCL:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo = fastly.Servicev1("demo",
-            backends=[fastly.Servicev1BackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-                port=80,
-            )],
-            domains=[fastly.Servicev1DomainArgs(
-                comment="demo",
-                name="demo.notexample.com",
-            )],
-            force_destroy=True,
-            vcls=[
-                fastly.Servicev1VclArgs(
-                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_main.vcl"),
-                    main=True,
-                    name="my_custom_main_vcl",
-                ),
-                fastly.Servicev1VclArgs(
-                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_library.vcl"),
-                    name="my_custom_library_vcl",
-                ),
-            ])
-        ```
-        ### Basic usage with custom Director
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo = fastly.Servicev1("demo",
-            backends=[
-                fastly.Servicev1BackendArgs(
-                    address="127.0.0.1",
-                    name="origin1",
-                    port=80,
-                ),
-                fastly.Servicev1BackendArgs(
-                    address="127.0.0.2",
-                    name="origin2",
-                    port=80,
-                ),
-            ],
-            directors=[fastly.Servicev1DirectorArgs(
-                backends=[
-                    "origin1",
-                    "origin2",
-                ],
-                name="mydirector",
-                quorum=0,
-                type=3,
-            )],
-            domains=[fastly.Servicev1DomainArgs(
-                comment="demo",
-                name="demo.notexample.com",
-            )],
-            force_destroy=True)
-        ```
-
-        > **Note:** For an AWS S3 Bucket, the Backend address is
-        `<domain>.s3-website-<region>.amazonaws.com`. The `default_host` attribute
-        should be set to `<bucket_name>.s3-website-<region>.amazonaws.com`. See the
-        Fastly documentation on [Amazon S3][fastly-s3].
-
+        Create a Servicev1 resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1AclArgs']]]] acls: A set of ACL configuration blocks.  Defined below.
@@ -234,7 +140,7 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1PapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1RequestSettingArgs']]]] request_settings: A set of Request modifiers. Defined below
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1ResponseObjectArgs']]]] response_objects: Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1ResponseObjectArgs']]]] response_objects: The name of the response object used by the Web Application Firewall.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1S3loggingArgs']]]] s3loggings: A set of S3 Buckets to send streaming logs too.
                Defined below.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1SnippetArgs']]]] snippets: A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
@@ -246,6 +152,7 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]] vcls: A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         :param pulumi.Input[str] version_comment: Description field for the version.
+        :param pulumi.Input[pulumi.InputType['Servicev1WafArgs']] waf: A WAF configuration block.  Defined below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -313,6 +220,7 @@ class Servicev1(pulumi.CustomResource):
             __props__['syslogs'] = syslogs
             __props__['vcls'] = vcls
             __props__['version_comment'] = version_comment
+            __props__['waf'] = waf
             __props__['active_version'] = None
             __props__['cloned_version'] = None
         super(Servicev1, __self__).__init__(
@@ -373,7 +281,8 @@ class Servicev1(pulumi.CustomResource):
             sumologics: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1SumologicArgs']]]]] = None,
             syslogs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1SyslogArgs']]]]] = None,
             vcls: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]]] = None,
-            version_comment: Optional[pulumi.Input[str]] = None) -> 'Servicev1':
+            version_comment: Optional[pulumi.Input[str]] = None,
+            waf: Optional[pulumi.Input[pulumi.InputType['Servicev1WafArgs']]] = None) -> 'Servicev1':
         """
         Get an existing Servicev1 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -451,7 +360,7 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1PapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1RequestSettingArgs']]]] request_settings: A set of Request modifiers. Defined below
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1ResponseObjectArgs']]]] response_objects: Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1ResponseObjectArgs']]]] response_objects: The name of the response object used by the Web Application Firewall.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1S3loggingArgs']]]] s3loggings: A set of S3 Buckets to send streaming logs too.
                Defined below.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1SnippetArgs']]]] snippets: A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
@@ -463,6 +372,7 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]] vcls: A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         :param pulumi.Input[str] version_comment: Description field for the version.
+        :param pulumi.Input[pulumi.InputType['Servicev1WafArgs']] waf: A WAF configuration block.  Defined below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -517,6 +427,7 @@ class Servicev1(pulumi.CustomResource):
         __props__["syslogs"] = syslogs
         __props__["vcls"] = vcls
         __props__["version_comment"] = version_comment
+        __props__["waf"] = waf
         return Servicev1(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -880,7 +791,7 @@ class Servicev1(pulumi.CustomResource):
     @pulumi.getter(name="responseObjects")
     def response_objects(self) -> pulumi.Output[Optional[List['outputs.Servicev1ResponseObject']]]:
         """
-        Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+        The name of the response object used by the Web Application Firewall.
         """
         return pulumi.get(self, "response_objects")
 
@@ -943,6 +854,14 @@ class Servicev1(pulumi.CustomResource):
         Description field for the version.
         """
         return pulumi.get(self, "version_comment")
+
+    @property
+    @pulumi.getter
+    def waf(self) -> pulumi.Output[Optional['outputs.Servicev1Waf']]:
+        """
+        A WAF configuration block.  Defined below.
+        """
+        return pulumi.get(self, "waf")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

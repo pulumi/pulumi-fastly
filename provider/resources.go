@@ -17,12 +17,12 @@ package fastly
 import (
 	"unicode"
 
+	"github.com/fastly/terraform-provider-fastly/fastly"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-fastly/fastly"
 )
 
 // all of the token components used below.
@@ -81,6 +81,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-fastly",
+		GitHubOrg:   "fastly",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"api_key": {
 				Default: &tfbridge.DefaultInfo{
@@ -116,9 +117,11 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"fastly_service_waf_configuration": {Tok: makeResource(mainMod, "ServiceWafConfiguration")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"fastly_ip_ranges": {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
+			"fastly_waf_rules": {Tok: makeDataSource(mainMod, "getWafRules")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

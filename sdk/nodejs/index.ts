@@ -3,11 +3,13 @@
 
 // Export members:
 export * from "./getFastlyIpRanges";
+export * from "./getWafRules";
 export * from "./provider";
 export * from "./serviceACLEntriesv1";
 export * from "./serviceCompute";
 export * from "./serviceDictionaryItemsv1";
 export * from "./serviceDynamicSnippetContentv1";
+export * from "./serviceWafConfiguration";
 export * from "./servicev1";
 export * from "./userv1";
 
