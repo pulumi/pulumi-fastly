@@ -466,13 +466,13 @@ type ServiceComputeBigquerylogging struct {
 	// The Honeycomb Dataset you want to log to.
 	Dataset string `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-	Email *string `pulumi:"email"`
+	Email string `pulumi:"email"`
 	// The unique name of the Rackspace Cloud Files logging endpoint.
 	Name string `pulumi:"name"`
 	// The ID of your Google Cloud Platform project.
 	ProjectId string `pulumi:"projectId"`
 	// Your DigitalOcean Spaces account secret key.
-	SecretKey *string `pulumi:"secretKey"`
+	SecretKey string `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table    string  `pulumi:"table"`
 	Template *string `pulumi:"template"`
@@ -493,13 +493,13 @@ type ServiceComputeBigqueryloggingArgs struct {
 	// The Honeycomb Dataset you want to log to.
 	Dataset pulumi.StringInput `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-	Email pulumi.StringPtrInput `pulumi:"email"`
+	Email pulumi.StringInput `pulumi:"email"`
 	// The unique name of the Rackspace Cloud Files logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of your Google Cloud Platform project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Your DigitalOcean Spaces account secret key.
-	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table    pulumi.StringInput    `pulumi:"table"`
 	Template pulumi.StringPtrInput `pulumi:"template"`
@@ -562,8 +562,8 @@ func (o ServiceComputeBigqueryloggingOutput) Dataset() pulumi.StringOutput {
 }
 
 // The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-func (o ServiceComputeBigqueryloggingOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceComputeBigquerylogging) *string { return v.Email }).(pulumi.StringPtrOutput)
+func (o ServiceComputeBigqueryloggingOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Email }).(pulumi.StringOutput)
 }
 
 // The unique name of the Rackspace Cloud Files logging endpoint.
@@ -577,8 +577,8 @@ func (o ServiceComputeBigqueryloggingOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Your DigitalOcean Spaces account secret key.
-func (o ServiceComputeBigqueryloggingOutput) SecretKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceComputeBigquerylogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+func (o ServiceComputeBigqueryloggingOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
 // The ID of your BigQuery table.
@@ -5304,7 +5304,7 @@ type Servicev1Bigquerylogging struct {
 	// The Honeycomb Dataset you want to log to.
 	Dataset string `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-	Email *string `pulumi:"email"`
+	Email string `pulumi:"email"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
 	// A unique name to identify this dictionary.
@@ -5316,7 +5316,7 @@ type Servicev1Bigquerylogging struct {
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// Your DigitalOcean Spaces account secret key.
-	SecretKey *string `pulumi:"secretKey"`
+	SecretKey string `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table string `pulumi:"table"`
 	// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
@@ -5338,7 +5338,7 @@ type Servicev1BigqueryloggingArgs struct {
 	// The Honeycomb Dataset you want to log to.
 	Dataset pulumi.StringInput `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-	Email pulumi.StringPtrInput `pulumi:"email"`
+	Email pulumi.StringInput `pulumi:"email"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// A unique name to identify this dictionary.
@@ -5350,7 +5350,7 @@ type Servicev1BigqueryloggingArgs struct {
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// Your DigitalOcean Spaces account secret key.
-	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table pulumi.StringInput `pulumi:"table"`
 	// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
@@ -5414,8 +5414,8 @@ func (o Servicev1BigqueryloggingOutput) Dataset() pulumi.StringOutput {
 }
 
 // The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-func (o Servicev1BigqueryloggingOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Email }).(pulumi.StringPtrOutput)
+func (o Servicev1BigqueryloggingOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Email }).(pulumi.StringOutput)
 }
 
 // Apache style log formatting.
@@ -5444,8 +5444,8 @@ func (o Servicev1BigqueryloggingOutput) ResponseCondition() pulumi.StringPtrOutp
 }
 
 // Your DigitalOcean Spaces account secret key.
-func (o Servicev1BigqueryloggingOutput) SecretKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
+func (o Servicev1BigqueryloggingOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
 // The ID of your BigQuery table.

@@ -457,28 +457,26 @@ class ServiceComputeBackend(dict):
 class ServiceComputeBigquerylogging(dict):
     def __init__(__self__, *,
                  dataset: str,
+                 email: str,
                  name: str,
                  project_id: str,
+                 secret_key: str,
                  table: str,
-                 email: Optional[str] = None,
-                 secret_key: Optional[str] = None,
                  template: Optional[str] = None):
         """
         :param str dataset: The Honeycomb Dataset you want to log to.
+        :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str project_id: The ID of your Google Cloud Platform project.
-        :param str table: The ID of your BigQuery table.
-        :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str table: The ID of your BigQuery table.
         """
         pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "table", table)
-        if email is not None:
-            pulumi.set(__self__, "email", email)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -489,6 +487,14 @@ class ServiceComputeBigquerylogging(dict):
         The Honeycomb Dataset you want to log to.
         """
         return pulumi.get(self, "dataset")
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        """
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -507,28 +513,20 @@ class ServiceComputeBigquerylogging(dict):
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
+        """
+        Your DigitalOcean Spaces account secret key.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
     @pulumi.getter
     def table(self) -> str:
         """
         The ID of your BigQuery table.
         """
         return pulumi.get(self, "table")
-
-    @property
-    @pulumi.getter
-    def email(self) -> Optional[str]:
-        """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        """
-        return pulumi.get(self, "email")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[str]:
-        """
-        Your DigitalOcean Spaces account secret key.
-        """
-        return pulumi.get(self, "secret_key")
 
     @property
     @pulumi.getter
@@ -3408,41 +3406,39 @@ class Servicev1Backend(dict):
 class Servicev1Bigquerylogging(dict):
     def __init__(__self__, *,
                  dataset: str,
+                 email: str,
                  name: str,
                  project_id: str,
+                 secret_key: str,
                  table: str,
-                 email: Optional[str] = None,
                  format: Optional[str] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None,
-                 secret_key: Optional[str] = None,
                  template: Optional[str] = None):
         """
         :param str dataset: The Honeycomb Dataset you want to log to.
+        :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param str name: A unique name to identify this dictionary.
         :param str project_id: The ID of your Google Cloud Platform project.
+        :param str secret_key: Your DigitalOcean Spaces account secret key.
         :param str table: The ID of your BigQuery table.
-        :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param str format: Apache style log formatting.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
         :param str template: Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
         """
         pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "table", table)
-        if email is not None:
-            pulumi.set(__self__, "email", email)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -3453,6 +3449,14 @@ class Servicev1Bigquerylogging(dict):
         The Honeycomb Dataset you want to log to.
         """
         return pulumi.get(self, "dataset")
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        """
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -3471,20 +3475,20 @@ class Servicev1Bigquerylogging(dict):
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
+        """
+        Your DigitalOcean Spaces account secret key.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
     @pulumi.getter
     def table(self) -> str:
         """
         The ID of your BigQuery table.
         """
         return pulumi.get(self, "table")
-
-    @property
-    @pulumi.getter
-    def email(self) -> Optional[str]:
-        """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        """
-        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -3509,14 +3513,6 @@ class Servicev1Bigquerylogging(dict):
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[str]:
-        """
-        Your DigitalOcean Spaces account secret key.
-        """
-        return pulumi.get(self, "secret_key")
 
     @property
     @pulumi.getter
