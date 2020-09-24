@@ -39,6 +39,7 @@ __all__ = [
     'ServiceComputeSplunk',
     'ServiceComputeSumologic',
     'ServiceComputeSyslog',
+    'ServiceWafConfigurationRule',
     'Servicev1Acl',
     'Servicev1Backend',
     'Servicev1Bigquerylogging',
@@ -79,6 +80,8 @@ __all__ = [
     'Servicev1Sumologic',
     'Servicev1Syslog',
     'Servicev1Vcl',
+    'Servicev1Waf',
+    'GetWafRulesRuleResult',
 ]
 
 @pulumi.output_type
@@ -3003,6 +3006,50 @@ class ServiceComputeSyslog(dict):
         Whether to use TLS for secure logging. Can be either true or false.
         """
         return pulumi.get(self, "use_tls")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ServiceWafConfigurationRule(dict):
+    def __init__(__self__, *,
+                 modsec_rule_id: float,
+                 status: str,
+                 revision: Optional[float] = None):
+        """
+        :param float modsec_rule_id: The Web Application Firewall rule's modsecurity ID.
+        :param str status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+        :param float revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        """
+        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
+        pulumi.set(__self__, "status", status)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+
+    @property
+    @pulumi.getter(name="modsecRuleId")
+    def modsec_rule_id(self) -> float:
+        """
+        The Web Application Firewall rule's modsecurity ID.
+        """
+        return pulumi.get(self, "modsec_rule_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[float]:
+        """
+        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        """
+        return pulumi.get(self, "revision")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7308,6 +7355,8 @@ class Servicev1S3logging(dict):
                permissions to post logs. It is **strongly** recommended you create a separate
                IAM user with permissions to only operate on this Bucket. This secret will be
                not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+        :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+        :param str server_side_encryption_kms_key_id: Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -7474,11 +7523,17 @@ class Servicev1S3logging(dict):
     @property
     @pulumi.getter(name="serverSideEncryption")
     def server_side_encryption(self) -> Optional[str]:
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+        """
         return pulumi.get(self, "server_side_encryption")
 
     @property
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[str]:
+        """
+        Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
+        """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
     @property
@@ -7977,5 +8032,90 @@ class Servicev1Vcl(dict):
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class Servicev1Waf(dict):
+    def __init__(__self__, *,
+                 response_object: str,
+                 prefetch_condition: Optional[str] = None,
+                 waf_id: Optional[str] = None):
+        """
+        :param str response_object: The name of the response object used by the Web Application Firewall.
+        :param str prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        :param str waf_id: The ID of the WAF.
+        """
+        pulumi.set(__self__, "response_object", response_object)
+        if prefetch_condition is not None:
+            pulumi.set(__self__, "prefetch_condition", prefetch_condition)
+        if waf_id is not None:
+            pulumi.set(__self__, "waf_id", waf_id)
+
+    @property
+    @pulumi.getter(name="responseObject")
+    def response_object(self) -> str:
+        """
+        The name of the response object used by the Web Application Firewall.
+        """
+        return pulumi.get(self, "response_object")
+
+    @property
+    @pulumi.getter(name="prefetchCondition")
+    def prefetch_condition(self) -> Optional[str]:
+        """
+        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        """
+        return pulumi.get(self, "prefetch_condition")
+
+    @property
+    @pulumi.getter(name="wafId")
+    def waf_id(self) -> Optional[str]:
+        """
+        The ID of the WAF.
+        """
+        return pulumi.get(self, "waf_id")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class GetWafRulesRuleResult(dict):
+    def __init__(__self__, *,
+                 latest_revision_number: float,
+                 modsec_rule_id: float,
+                 type: str):
+        """
+        :param float latest_revision_number: The rule's latest revision.
+        :param float modsec_rule_id: The rule's modsecurity ID.
+        :param str type: The rule's type.
+        """
+        pulumi.set(__self__, "latest_revision_number", latest_revision_number)
+        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="latestRevisionNumber")
+    def latest_revision_number(self) -> float:
+        """
+        The rule's latest revision.
+        """
+        return pulumi.get(self, "latest_revision_number")
+
+    @property
+    @pulumi.getter(name="modsecRuleId")
+    def modsec_rule_id(self) -> float:
+        """
+        The rule's modsecurity ID.
+        """
+        return pulumi.get(self, "modsec_rule_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The rule's type.
+        """
+        return pulumi.get(self, "type")
 
 

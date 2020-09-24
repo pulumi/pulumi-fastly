@@ -6,152 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Provides a Fastly Service, representing the configuration for a website, app,
- * API, or anything else to be served through Fastly. A Service encompasses Domains
- * and Backends.
- *
- * The Service resource requires a domain name that is correctly set up to direct
- * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
- * on their documentation site for guidance.
- *
- * ## Example Usage
- * ### Basic usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const demo = new fastly.Servicev1("demo", {
- *     backends: [{
- *         address: "127.0.0.1",
- *         name: "localhost",
- *         port: 80,
- *     }],
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- * });
- * ```
- * ### Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fastly from "@pulumi/fastly";
- *
- * const website = new aws.s3.Bucket("website", {
- *     acl: "public-read",
- *     website: {
- *         errorDocument: "error.html",
- *         indexDocument: "index.html",
- *     },
- * });
- * const demo = new fastly.Servicev1("demo", {
- *     backends: [{
- *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
- *         name: "AWS S3 hosting",
- *         port: 80,
- *     }],
- *     defaultHost: pulumi.interpolate`${website.name}.s3-website-us-west-2.amazonaws.com`,
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- *     gzips: [{
- *         contentTypes: [
- *             "text/html",
- *             "text/css",
- *         ],
- *         extensions: [
- *             "css",
- *             "js",
- *         ],
- *         name: "file extensions and content types",
- *     }],
- *     headers: [{
- *         action: "delete",
- *         destination: "http.x-amz-request-id",
- *         name: "remove x-amz-request-id",
- *         type: "cache",
- *     }],
- * });
- * ```
- * ### Basic usage with custom VCL:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- * import * as fs from "fs";
- *
- * const demo = new fastly.Servicev1("demo", {
- *     backends: [{
- *         address: "127.0.0.1",
- *         name: "localhost",
- *         port: 80,
- *     }],
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- *     vcls: [
- *         {
- *             content: fs.readFileSync(`./my_custom_main.vcl`, "utf-8"),
- *             main: true,
- *             name: "my_custom_main_vcl",
- *         },
- *         {
- *             content: fs.readFileSync(`./my_custom_library.vcl`, "utf-8"),
- *             name: "my_custom_library_vcl",
- *         },
- *     ],
- * });
- * ```
- * ### Basic usage with custom Director
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const demo = new fastly.Servicev1("demo", {
- *     backends: [
- *         {
- *             address: "127.0.0.1",
- *             name: "origin1",
- *             port: 80,
- *         },
- *         {
- *             address: "127.0.0.2",
- *             name: "origin2",
- *             port: 80,
- *         },
- *     ],
- *     directors: [{
- *         backends: [
- *             "origin1",
- *             "origin2",
- *         ],
- *         name: "mydirector",
- *         quorum: 0,
- *         type: 3,
- *     }],
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- * });
- * ```
- *
- * > **Note:** For an AWS S3 Bucket, the Backend address is
- * `<domain>.s3-website-<region>.amazonaws.com`. The `defaultHost` attribute
- * should be set to `<bucket_name>.s3-website-<region>.amazonaws.com`. See the
- * Fastly documentation on [Amazon S3][fastly-s3].
- */
 export class Servicev1 extends pulumi.CustomResource {
     /**
      * Get an existing Servicev1 resource's state with the given name, ID, and optional extra
@@ -374,7 +228,7 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly requestSettings!: pulumi.Output<outputs.Servicev1RequestSetting[] | undefined>;
     /**
-     * Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+     * The name of the response object used by the Web Application Firewall.
      */
     public readonly responseObjects!: pulumi.Output<outputs.Servicev1ResponseObject[] | undefined>;
     /**
@@ -409,6 +263,10 @@ export class Servicev1 extends pulumi.CustomResource {
      * Description field for the version.
      */
     public readonly versionComment!: pulumi.Output<string | undefined>;
+    /**
+     * A WAF configuration block.  Defined below.
+     */
+    public readonly waf!: pulumi.Output<outputs.Servicev1Waf | undefined>;
 
     /**
      * Create a Servicev1 resource with the given unique name, arguments, and options.
@@ -471,6 +329,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["syslogs"] = state ? state.syslogs : undefined;
             inputs["vcls"] = state ? state.vcls : undefined;
             inputs["versionComment"] = state ? state.versionComment : undefined;
+            inputs["waf"] = state ? state.waf : undefined;
         } else {
             const args = argsOrState as Servicev1Args | undefined;
             if (!args || args.domains === undefined) {
@@ -523,6 +382,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["syslogs"] = args ? args.syslogs : undefined;
             inputs["vcls"] = args ? args.vcls : undefined;
             inputs["versionComment"] = args ? args.versionComment : undefined;
+            inputs["waf"] = args ? args.waf : undefined;
             inputs["activeVersion"] = undefined /*out*/;
             inputs["clonedVersion"] = undefined /*out*/;
         }
@@ -735,7 +595,7 @@ export interface Servicev1State {
      */
     readonly requestSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1RequestSetting>[]>;
     /**
-     * Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+     * The name of the response object used by the Web Application Firewall.
      */
     readonly responseObjects?: pulumi.Input<pulumi.Input<inputs.Servicev1ResponseObject>[]>;
     /**
@@ -770,6 +630,10 @@ export interface Servicev1State {
      * Description field for the version.
      */
     readonly versionComment?: pulumi.Input<string>;
+    /**
+     * A WAF configuration block.  Defined below.
+     */
+    readonly waf?: pulumi.Input<inputs.Servicev1Waf>;
 }
 
 /**
@@ -962,7 +826,7 @@ export interface Servicev1Args {
      */
     readonly requestSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1RequestSetting>[]>;
     /**
-     * Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+     * The name of the response object used by the Web Application Firewall.
      */
     readonly responseObjects?: pulumi.Input<pulumi.Input<inputs.Servicev1ResponseObject>[]>;
     /**
@@ -997,4 +861,8 @@ export interface Servicev1Args {
      * Description field for the version.
      */
     readonly versionComment?: pulumi.Input<string>;
+    /**
+     * A WAF configuration block.  Defined below.
+     */
+    readonly waf?: pulumi.Input<inputs.Servicev1Waf>;
 }

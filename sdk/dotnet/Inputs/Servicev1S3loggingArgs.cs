@@ -108,9 +108,15 @@ namespace Pulumi.Fastly.Inputs
         [Input("s3SecretKey")]
         public Input<string>? S3SecretKey { get; set; }
 
+        /// <summary>
+        /// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+        /// </summary>
         [Input("serverSideEncryption")]
         public Input<string>? ServerSideEncryption { get; set; }
 
+        /// <summary>
+        /// Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
+        /// </summary>
         [Input("serverSideEncryptionKmsKeyId")]
         public Input<string>? ServerSideEncryptionKmsKeyId { get; set; }
 

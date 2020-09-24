@@ -186,6 +186,8 @@ github.com/fastly/go-fastly v1.15.0 h1:t7f0ZnQy0rKYN8FCql4wHkfZNHajxDs1hT/phazOp
 github.com/fastly/go-fastly v1.15.0/go.mod h1:jILbTQnU/K/7XHQNzQWd1O7hbXIcp6dKrxfRWqU6xfk=
 github.com/fastly/go-fastly v1.16.2 h1:FYGntYrQHgRXPZKRwHFDplsy6euhUcfICpnGSUoDLNM=
 github.com/fastly/go-fastly v1.16.2/go.mod h1:fwYSSnZ6zEClwRS65T0f57Yh83Tc4gL12GgttQwJZfA=
+github.com/fastly/go-fastly v1.17.1-0.20200722130017-30838762a8c1 h1:32hMPybZbFHvGTmPT21NaFSBvndkY+X8q1WHVyKV2lA=
+github.com/fastly/go-fastly v1.17.1-0.20200722130017-30838762a8c1/go.mod h1:fwYSSnZ6zEClwRS65T0f57Yh83Tc4gL12GgttQwJZfA=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.9.0 h1:8xPHl4/q1VyqGIPif1F+1V3Y3lSmrq01EabUW3CoW5s=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=
@@ -552,6 +554,8 @@ github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200702142514-d0bf96338d9
 github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200702142514-d0bf96338d91/go.mod h1:barqJ/flzaRaU5l4NNOs+MLiLEk58B1vSZr8Z0mcpBw=
 github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200722200456-eec8223c0d29 h1:3xusXpbk8eqMWUOF6nzp6CCcDBy6UIN7amQNEnqzPn4=
 github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200722200456-eec8223c0d29/go.mod h1:7GcoJbLHPr3908ptQflj34YsMmz0YqyByryMr/RK6GE=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200922105020-5dc58b7cb677 h1:rSPhJKXvhJBpghK/c38HoR+e7KO7P9mlmk1VJ6sHNAw=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20200922105020-5dc58b7cb677/go.mod h1:WFquAmxJ0qakdrv6TJu/q/kxlJvf90KWtrU++Ou8PRw=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d h1:1JtzB9Gx0YX2UgKKkqJwTgBXxfg2cbLUEqTJKwKBK7s=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d/go.mod h1:yv9XozKsue9ZELHQbrBGgIaFtE3OX3Q4m7koTzTqgpE=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200528170746-c1234defe2b5 h1:h+pUwgEser1Ole6TMCc66njRPcw7SEVXpeoClG+ihEM=

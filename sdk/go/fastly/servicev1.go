@@ -10,106 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a Fastly Service, representing the configuration for a website, app,
-// API, or anything else to be served through Fastly. A Service encompasses Domains
-// and Backends.
-//
-// The Service resource requires a domain name that is correctly set up to direct
-// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
-// on their documentation site for guidance.
-//
-// ## Example Usage
-// ### Basic usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
-// 			Backends: fastly.Servicev1BackendArray{
-// 				&fastly.Servicev1BackendArgs{
-// 					Address: pulumi.String("127.0.0.1"),
-// 					Name:    pulumi.String("localhost"),
-// 					Port:    pulumi.Int(80),
-// 				},
-// 			},
-// 			Domains: fastly.Servicev1DomainArray{
-// 				&fastly.Servicev1DomainArgs{
-// 					Comment: pulumi.String("demo"),
-// 					Name:    pulumi.String("demo.notexample.com"),
-// 				},
-// 			},
-// 			ForceDestroy: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Basic usage with custom Director
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
-// 			Backends: fastly.Servicev1BackendArray{
-// 				&fastly.Servicev1BackendArgs{
-// 					Address: pulumi.String("127.0.0.1"),
-// 					Name:    pulumi.String("origin1"),
-// 					Port:    pulumi.Int(80),
-// 				},
-// 				&fastly.Servicev1BackendArgs{
-// 					Address: pulumi.String("127.0.0.2"),
-// 					Name:    pulumi.String("origin2"),
-// 					Port:    pulumi.Int(80),
-// 				},
-// 			},
-// 			Directors: fastly.Servicev1DirectorArray{
-// 				&fastly.Servicev1DirectorArgs{
-// 					Backends: pulumi.StringArray{
-// 						pulumi.String("origin1"),
-// 						pulumi.String("origin2"),
-// 					},
-// 					Name:   pulumi.String("mydirector"),
-// 					Quorum: pulumi.Int(0),
-// 					Type:   pulumi.Int(3),
-// 				},
-// 			},
-// 			Domains: fastly.Servicev1DomainArray{
-// 				&fastly.Servicev1DomainArgs{
-// 					Comment: pulumi.String("demo"),
-// 					Name:    pulumi.String("demo.notexample.com"),
-// 				},
-// 			},
-// 			ForceDestroy: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// > **Note:** For an AWS S3 Bucket, the Backend address is
-// `<domain>.s3-website-<region>.amazonaws.com`. The `defaultHost` attribute
-// should be set to `<bucket_name>.s3-website-<region>.amazonaws.com`. See the
-// Fastly documentation on [Amazon S3][fastly-s3].
 type Servicev1 struct {
 	pulumi.CustomResourceState
 
@@ -224,7 +124,7 @@ type Servicev1 struct {
 	Papertrails Servicev1PapertrailArrayOutput `pulumi:"papertrails"`
 	// A set of Request modifiers. Defined below
 	RequestSettings Servicev1RequestSettingArrayOutput `pulumi:"requestSettings"`
-	// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayOutput `pulumi:"responseObjects"`
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
@@ -244,6 +144,8 @@ type Servicev1 struct {
 	Vcls Servicev1VclArrayOutput `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
+	// A WAF configuration block.  Defined below.
+	Waf Servicev1WafPtrOutput `pulumi:"waf"`
 }
 
 // NewServicev1 registers a new resource with the given unique name, arguments, and options.
@@ -388,7 +290,7 @@ type servicev1State struct {
 	Papertrails []Servicev1Papertrail `pulumi:"papertrails"`
 	// A set of Request modifiers. Defined below
 	RequestSettings []Servicev1RequestSetting `pulumi:"requestSettings"`
-	// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects []Servicev1ResponseObject `pulumi:"responseObjects"`
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
@@ -408,6 +310,8 @@ type servicev1State struct {
 	Vcls []Servicev1Vcl `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment *string `pulumi:"versionComment"`
+	// A WAF configuration block.  Defined below.
+	Waf *Servicev1Waf `pulumi:"waf"`
 }
 
 type Servicev1State struct {
@@ -522,7 +426,7 @@ type Servicev1State struct {
 	Papertrails Servicev1PapertrailArrayInput
 	// A set of Request modifiers. Defined below
 	RequestSettings Servicev1RequestSettingArrayInput
-	// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayInput
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
@@ -542,6 +446,8 @@ type Servicev1State struct {
 	Vcls Servicev1VclArrayInput
 	// Description field for the version.
 	VersionComment pulumi.StringPtrInput
+	// A WAF configuration block.  Defined below.
+	Waf Servicev1WafPtrInput
 }
 
 func (Servicev1State) ElementType() reflect.Type {
@@ -656,7 +562,7 @@ type servicev1Args struct {
 	Papertrails []Servicev1Papertrail `pulumi:"papertrails"`
 	// A set of Request modifiers. Defined below
 	RequestSettings []Servicev1RequestSetting `pulumi:"requestSettings"`
-	// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects []Servicev1ResponseObject `pulumi:"responseObjects"`
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
@@ -676,6 +582,8 @@ type servicev1Args struct {
 	Vcls []Servicev1Vcl `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment *string `pulumi:"versionComment"`
+	// A WAF configuration block.  Defined below.
+	Waf *Servicev1Waf `pulumi:"waf"`
 }
 
 // The set of arguments for constructing a Servicev1 resource.
@@ -787,7 +695,7 @@ type Servicev1Args struct {
 	Papertrails Servicev1PapertrailArrayInput
 	// A set of Request modifiers. Defined below
 	RequestSettings Servicev1RequestSettingArrayInput
-	// Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.
+	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayInput
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
@@ -807,6 +715,8 @@ type Servicev1Args struct {
 	Vcls Servicev1VclArrayInput
 	// Description field for the version.
 	VersionComment pulumi.StringPtrInput
+	// A WAF configuration block.  Defined below.
+	Waf Servicev1WafPtrInput
 }
 
 func (Servicev1Args) ElementType() reflect.Type {

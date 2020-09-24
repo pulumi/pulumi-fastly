@@ -996,6 +996,21 @@ export interface ServiceComputeSyslog {
     useTls?: pulumi.Input<boolean>;
 }
 
+export interface ServiceWafConfigurationRule {
+    /**
+     * The Web Application Firewall rule's modsecurity ID.
+     */
+    modsecRuleId: pulumi.Input<number>;
+    /**
+     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+     */
+    revision?: pulumi.Input<number>;
+    /**
+     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+     */
+    status: pulumi.Input<string>;
+}
+
 export interface Servicev1Acl {
     /**
      * The ID of the ACL.
@@ -2511,7 +2526,13 @@ export interface Servicev1S3logging {
      * not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
      */
     s3SecretKey?: pulumi.Input<string>;
+    /**
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+     */
     serverSideEncryption?: pulumi.Input<string>;
+    /**
+     * Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
+     */
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
      * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
@@ -2682,4 +2703,19 @@ export interface Servicev1Vcl {
      * A unique name to identify this dictionary.
      */
     name: pulumi.Input<string>;
+}
+
+export interface Servicev1Waf {
+    /**
+     * The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+     */
+    prefetchCondition?: pulumi.Input<string>;
+    /**
+     * The name of the response object used by the Web Application Firewall.
+     */
+    responseObject: pulumi.Input<string>;
+    /**
+     * The ID of the WAF.
+     */
+    wafId?: pulumi.Input<string>;
 }

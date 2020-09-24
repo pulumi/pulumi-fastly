@@ -7,7 +7,7 @@
     ],
     "homepage": "https://pulumi.io",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`fastly` Terraform Provider](https://github.com/terraform-providers/terraform-provider-fastly).",
+    "attribution": "This Pulumi package is based on the [`fastly` Terraform Provider](https://github.com/fastly/terraform-provider-fastly).",
     "repository": "https://github.com/pulumi/pulumi-fastly",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
@@ -2376,6 +2376,51 @@
                 "address",
                 "name"
             ]
+        },
+        "fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule": {
+            "properties": {
+                "modsecRuleId": {
+                    "type": "integer",
+                    "description": "The Web Application Firewall rule's modsecurity ID.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "revision": {
+                    "type": "integer",
+                    "description": "The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "modsecRuleId",
+                "status"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "modsecRuleId",
+                        "revision",
+                        "status"
+                    ]
+                }
+            }
         },
         "fastly:/Servicev1Acl:Servicev1Acl": {
             "properties": {
@@ -5863,6 +5908,7 @@
                 },
                 "serverSideEncryption": {
                     "type": "string",
+                    "description": "Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5871,6 +5917,7 @@
                 },
                 "serverSideEncryptionKmsKeyId": {
                     "type": "string",
+                    "description": "Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6272,6 +6319,91 @@
                 "content",
                 "name"
             ]
+        },
+        "fastly:/Servicev1Waf:Servicev1Waf": {
+            "properties": {
+                "prefetchCondition": {
+                    "type": "string",
+                    "description": "The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseObject": {
+                    "type": "string",
+                    "description": "The name of the response object used by the Web Application Firewall.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "wafId": {
+                    "type": "string",
+                    "description": "The ID of the WAF.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "responseObject"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "responseObject",
+                        "wafId"
+                    ]
+                }
+            }
+        },
+        "fastly:/getWafRulesRule:getWafRulesRule": {
+            "properties": {
+                "latestRevisionNumber": {
+                    "type": "integer",
+                    "description": "The rule's latest revision.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "modsecRuleId": {
+                    "type": "integer",
+                    "description": "The rule's modsecurity ID.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The rule's type.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "latestRevisionNumber",
+                "modsecRuleId",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -7188,8 +7320,422 @@
                 "type": "object"
             }
         },
+        "fastly:index/serviceWafConfiguration:ServiceWafConfiguration": {
+            "properties": {
+                "allowedHttpVersions": {
+                    "type": "string",
+                    "description": "Allowed HTTP versions.\n"
+                },
+                "allowedMethods": {
+                    "type": "string",
+                    "description": "A space-separated list of HTTP method names.\n"
+                },
+                "allowedRequestContentType": {
+                    "type": "string",
+                    "description": "Allowed request content types.\n"
+                },
+                "allowedRequestContentTypeCharset": {
+                    "type": "string",
+                    "description": "Allowed request content type charset.\n"
+                },
+                "argLength": {
+                    "type": "integer",
+                    "description": "The maximum number of arguments allowed.\n"
+                },
+                "argNameLength": {
+                    "type": "integer",
+                    "description": "The maximum allowed argument name length.\n"
+                },
+                "combinedFileSizes": {
+                    "type": "integer",
+                    "description": "The maximum allowed size of all files.\n"
+                },
+                "criticalAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for critical anomalies.\n"
+                },
+                "crsValidateUtf8Encoding": {
+                    "type": "boolean",
+                    "description": "CRS validate UTF8 encoding.\n"
+                },
+                "errorAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for error anomalies.\n"
+                },
+                "highRiskCountryCodes": {
+                    "type": "string",
+                    "description": "A space-separated list of country codes in ISO 3166-1 (two-letter) format.\n"
+                },
+                "httpViolationScoreThreshold": {
+                    "type": "integer",
+                    "description": "HTTP violation threshold.\n"
+                },
+                "inboundAnomalyScoreThreshold": {
+                    "type": "integer",
+                    "description": "Inbound anomaly threshold.\n"
+                },
+                "lfiScoreThreshold": {
+                    "type": "integer",
+                    "description": "Local file inclusion attack threshold.\n"
+                },
+                "maxFileSize": {
+                    "type": "integer",
+                    "description": "The maximum allowed file size, in bytes.\n"
+                },
+                "maxNumArgs": {
+                    "type": "integer",
+                    "description": "The maximum number of arguments allowed.\n"
+                },
+                "noticeAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for notice anomalies.\n"
+                },
+                "paranoiaLevel": {
+                    "type": "integer",
+                    "description": "The configured paranoia level.\n"
+                },
+                "phpInjectionScoreThreshold": {
+                    "type": "integer",
+                    "description": "PHP injection threshold.\n"
+                },
+                "rceScoreThreshold": {
+                    "type": "integer",
+                    "description": "Remote code execution threshold.\n"
+                },
+                "restrictedExtensions": {
+                    "type": "string",
+                    "description": "A space-separated list of allowed file extensions.\n"
+                },
+                "restrictedHeaders": {
+                    "type": "string",
+                    "description": "A space-separated list of allowed header names.\n"
+                },
+                "rfiScoreThreshold": {
+                    "type": "integer",
+                    "description": "Remote file inclusion attack threshold.\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
+                    },
+                    "description": "The Web Application Firewall's active rules.\n"
+                },
+                "sessionFixationScoreThreshold": {
+                    "type": "integer",
+                    "description": "Session fixation attack threshold.\n"
+                },
+                "sqlInjectionScoreThreshold": {
+                    "type": "integer",
+                    "description": "SQL injection attack threshold.\n"
+                },
+                "totalArgLength": {
+                    "type": "integer",
+                    "description": "The maximum size of argument names and values.\n"
+                },
+                "wafId": {
+                    "type": "string",
+                    "description": "The ID of the Web Application Firewall that the configuration belongs to.\n"
+                },
+                "warningAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for warning anomalies.\n"
+                },
+                "xssScoreThreshold": {
+                    "type": "integer",
+                    "description": "XSS attack threshold.\n"
+                }
+            },
+            "required": [
+                "allowedHttpVersions",
+                "allowedMethods",
+                "allowedRequestContentType",
+                "allowedRequestContentTypeCharset",
+                "argLength",
+                "argNameLength",
+                "combinedFileSizes",
+                "criticalAnomalyScore",
+                "crsValidateUtf8Encoding",
+                "errorAnomalyScore",
+                "highRiskCountryCodes",
+                "httpViolationScoreThreshold",
+                "inboundAnomalyScoreThreshold",
+                "lfiScoreThreshold",
+                "maxFileSize",
+                "maxNumArgs",
+                "noticeAnomalyScore",
+                "paranoiaLevel",
+                "phpInjectionScoreThreshold",
+                "rceScoreThreshold",
+                "restrictedExtensions",
+                "restrictedHeaders",
+                "rfiScoreThreshold",
+                "sessionFixationScoreThreshold",
+                "sqlInjectionScoreThreshold",
+                "totalArgLength",
+                "wafId",
+                "warningAnomalyScore",
+                "xssScoreThreshold"
+            ],
+            "inputProperties": {
+                "allowedHttpVersions": {
+                    "type": "string",
+                    "description": "Allowed HTTP versions.\n"
+                },
+                "allowedMethods": {
+                    "type": "string",
+                    "description": "A space-separated list of HTTP method names.\n"
+                },
+                "allowedRequestContentType": {
+                    "type": "string",
+                    "description": "Allowed request content types.\n"
+                },
+                "allowedRequestContentTypeCharset": {
+                    "type": "string",
+                    "description": "Allowed request content type charset.\n"
+                },
+                "argLength": {
+                    "type": "integer",
+                    "description": "The maximum number of arguments allowed.\n"
+                },
+                "argNameLength": {
+                    "type": "integer",
+                    "description": "The maximum allowed argument name length.\n"
+                },
+                "combinedFileSizes": {
+                    "type": "integer",
+                    "description": "The maximum allowed size of all files.\n"
+                },
+                "criticalAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for critical anomalies.\n"
+                },
+                "crsValidateUtf8Encoding": {
+                    "type": "boolean",
+                    "description": "CRS validate UTF8 encoding.\n"
+                },
+                "errorAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for error anomalies.\n"
+                },
+                "highRiskCountryCodes": {
+                    "type": "string",
+                    "description": "A space-separated list of country codes in ISO 3166-1 (two-letter) format.\n"
+                },
+                "httpViolationScoreThreshold": {
+                    "type": "integer",
+                    "description": "HTTP violation threshold.\n"
+                },
+                "inboundAnomalyScoreThreshold": {
+                    "type": "integer",
+                    "description": "Inbound anomaly threshold.\n"
+                },
+                "lfiScoreThreshold": {
+                    "type": "integer",
+                    "description": "Local file inclusion attack threshold.\n"
+                },
+                "maxFileSize": {
+                    "type": "integer",
+                    "description": "The maximum allowed file size, in bytes.\n"
+                },
+                "maxNumArgs": {
+                    "type": "integer",
+                    "description": "The maximum number of arguments allowed.\n"
+                },
+                "noticeAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for notice anomalies.\n"
+                },
+                "paranoiaLevel": {
+                    "type": "integer",
+                    "description": "The configured paranoia level.\n"
+                },
+                "phpInjectionScoreThreshold": {
+                    "type": "integer",
+                    "description": "PHP injection threshold.\n"
+                },
+                "rceScoreThreshold": {
+                    "type": "integer",
+                    "description": "Remote code execution threshold.\n"
+                },
+                "restrictedExtensions": {
+                    "type": "string",
+                    "description": "A space-separated list of allowed file extensions.\n"
+                },
+                "restrictedHeaders": {
+                    "type": "string",
+                    "description": "A space-separated list of allowed header names.\n"
+                },
+                "rfiScoreThreshold": {
+                    "type": "integer",
+                    "description": "Remote file inclusion attack threshold.\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
+                    },
+                    "description": "The Web Application Firewall's active rules.\n"
+                },
+                "sessionFixationScoreThreshold": {
+                    "type": "integer",
+                    "description": "Session fixation attack threshold.\n"
+                },
+                "sqlInjectionScoreThreshold": {
+                    "type": "integer",
+                    "description": "SQL injection attack threshold.\n"
+                },
+                "totalArgLength": {
+                    "type": "integer",
+                    "description": "The maximum size of argument names and values.\n"
+                },
+                "wafId": {
+                    "type": "string",
+                    "description": "The ID of the Web Application Firewall that the configuration belongs to.\n"
+                },
+                "warningAnomalyScore": {
+                    "type": "integer",
+                    "description": "Score value to add for warning anomalies.\n"
+                },
+                "xssScoreThreshold": {
+                    "type": "integer",
+                    "description": "XSS attack threshold.\n"
+                }
+            },
+            "requiredInputs": [
+                "wafId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceWafConfiguration resources.\n",
+                "properties": {
+                    "allowedHttpVersions": {
+                        "type": "string",
+                        "description": "Allowed HTTP versions.\n"
+                    },
+                    "allowedMethods": {
+                        "type": "string",
+                        "description": "A space-separated list of HTTP method names.\n"
+                    },
+                    "allowedRequestContentType": {
+                        "type": "string",
+                        "description": "Allowed request content types.\n"
+                    },
+                    "allowedRequestContentTypeCharset": {
+                        "type": "string",
+                        "description": "Allowed request content type charset.\n"
+                    },
+                    "argLength": {
+                        "type": "integer",
+                        "description": "The maximum number of arguments allowed.\n"
+                    },
+                    "argNameLength": {
+                        "type": "integer",
+                        "description": "The maximum allowed argument name length.\n"
+                    },
+                    "combinedFileSizes": {
+                        "type": "integer",
+                        "description": "The maximum allowed size of all files.\n"
+                    },
+                    "criticalAnomalyScore": {
+                        "type": "integer",
+                        "description": "Score value to add for critical anomalies.\n"
+                    },
+                    "crsValidateUtf8Encoding": {
+                        "type": "boolean",
+                        "description": "CRS validate UTF8 encoding.\n"
+                    },
+                    "errorAnomalyScore": {
+                        "type": "integer",
+                        "description": "Score value to add for error anomalies.\n"
+                    },
+                    "highRiskCountryCodes": {
+                        "type": "string",
+                        "description": "A space-separated list of country codes in ISO 3166-1 (two-letter) format.\n"
+                    },
+                    "httpViolationScoreThreshold": {
+                        "type": "integer",
+                        "description": "HTTP violation threshold.\n"
+                    },
+                    "inboundAnomalyScoreThreshold": {
+                        "type": "integer",
+                        "description": "Inbound anomaly threshold.\n"
+                    },
+                    "lfiScoreThreshold": {
+                        "type": "integer",
+                        "description": "Local file inclusion attack threshold.\n"
+                    },
+                    "maxFileSize": {
+                        "type": "integer",
+                        "description": "The maximum allowed file size, in bytes.\n"
+                    },
+                    "maxNumArgs": {
+                        "type": "integer",
+                        "description": "The maximum number of arguments allowed.\n"
+                    },
+                    "noticeAnomalyScore": {
+                        "type": "integer",
+                        "description": "Score value to add for notice anomalies.\n"
+                    },
+                    "paranoiaLevel": {
+                        "type": "integer",
+                        "description": "The configured paranoia level.\n"
+                    },
+                    "phpInjectionScoreThreshold": {
+                        "type": "integer",
+                        "description": "PHP injection threshold.\n"
+                    },
+                    "rceScoreThreshold": {
+                        "type": "integer",
+                        "description": "Remote code execution threshold.\n"
+                    },
+                    "restrictedExtensions": {
+                        "type": "string",
+                        "description": "A space-separated list of allowed file extensions.\n"
+                    },
+                    "restrictedHeaders": {
+                        "type": "string",
+                        "description": "A space-separated list of allowed header names.\n"
+                    },
+                    "rfiScoreThreshold": {
+                        "type": "integer",
+                        "description": "Remote file inclusion attack threshold.\n"
+                    },
+                    "rules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
+                        },
+                        "description": "The Web Application Firewall's active rules.\n"
+                    },
+                    "sessionFixationScoreThreshold": {
+                        "type": "integer",
+                        "description": "Session fixation attack threshold.\n"
+                    },
+                    "sqlInjectionScoreThreshold": {
+                        "type": "integer",
+                        "description": "SQL injection attack threshold.\n"
+                    },
+                    "totalArgLength": {
+                        "type": "integer",
+                        "description": "The maximum size of argument names and values.\n"
+                    },
+                    "wafId": {
+                        "type": "string",
+                        "description": "The ID of the Web Application Firewall that the configuration belongs to.\n"
+                    },
+                    "warningAnomalyScore": {
+                        "type": "integer",
+                        "description": "Score value to add for warning anomalies.\n"
+                    },
+                    "xssScoreThreshold": {
+                        "type": "integer",
+                        "description": "XSS attack threshold.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "fastly:index/servicev1:Servicev1": {
-            "description": "Provides a Fastly Service, representing the configuration for a website, app,\nAPI, or anything else to be served through Fastly. A Service encompasses Domains\nand Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Servicev1(\"demo\", {\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n        port: 80,\n    }],\n    domains: [{\n        comment: \"demo\",\n        name: \"demo.notexample.com\",\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Servicev1(\"demo\",\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n        port=80,\n    )],\n    domains=[fastly.Servicev1DomainArgs(\n        comment=\"demo\",\n        name=\"demo.notexample.com\",\n    )],\n    force_destroy=True)\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Servicev1(\"demo\", new Fastly.Servicev1Args\n        {\n            Backends = \n            {\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.1\",\n                    Name = \"localhost\",\n                    Port = 80,\n                },\n            },\n            Domains = \n            {\n                new Fastly.Inputs.Servicev1DomainArgs\n                {\n                    Comment = \"demo\",\n                    Name = \"demo.notexample.com\",\n                },\n            },\n            ForceDestroy = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewServicev1(ctx, \"demo\", \u0026fastly.Servicev1Args{\n\t\t\tBackends: fastly.Servicev1BackendArray{\n\t\t\t\t\u0026fastly.Servicev1BackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"127.0.0.1\"),\n\t\t\t\t\tName:    pulumi.String(\"localhost\"),\n\t\t\t\t\tPort:    pulumi.Int(80),\n\t\t\t\t},\n\t\t\t},\n\t\t\tDomains: fastly.Servicev1DomainArray{\n\t\t\t\t\u0026fastly.Servicev1DomainArgs{\n\t\t\t\t\tComment: pulumi.String(\"demo\"),\n\t\t\t\t\tName:    pulumi.String(\"demo.notexample.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst website = new aws.s3.Bucket(\"website\", {\n    acl: \"public-read\",\n    website: {\n        errorDocument: \"error.html\",\n        indexDocument: \"index.html\",\n    },\n});\nconst demo = new fastly.Servicev1(\"demo\", {\n    backends: [{\n        address: \"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name: \"AWS S3 hosting\",\n        port: 80,\n    }],\n    defaultHost: pulumi.interpolate`${website.name}.s3-website-us-west-2.amazonaws.com`,\n    domains: [{\n        comment: \"demo\",\n        name: \"demo.notexample.com\",\n    }],\n    forceDestroy: true,\n    gzips: [{\n        contentTypes: [\n            \"text/html\",\n            \"text/css\",\n        ],\n        extensions: [\n            \"css\",\n            \"js\",\n        ],\n        name: \"file extensions and content types\",\n    }],\n    headers: [{\n        action: \"delete\",\n        destination: \"http.x-amz-request-id\",\n        name: \"remove x-amz-request-id\",\n        type: \"cache\",\n    }],\n});\n```\n{{% /example %}}\n{{% example %}}\n### Basic usage with custom VCL:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\nimport * as fs from \"fs\";\n\nconst demo = new fastly.Servicev1(\"demo\", {\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n        port: 80,\n    }],\n    domains: [{\n        comment: \"demo\",\n        name: \"demo.notexample.com\",\n    }],\n    forceDestroy: true,\n    vcls: [\n        {\n            content: fs.readFileSync(`./my_custom_main.vcl`, \"utf-8\"),\n            main: true,\n            name: \"my_custom_main_vcl\",\n        },\n        {\n            content: fs.readFileSync(`./my_custom_library.vcl`, \"utf-8\"),\n            name: \"my_custom_library_vcl\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Servicev1(\"demo\",\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n        port=80,\n    )],\n    domains=[fastly.Servicev1DomainArgs(\n        comment=\"demo\",\n        name=\"demo.notexample.com\",\n    )],\n    force_destroy=True,\n    vcls=[\n        fastly.Servicev1VclArgs(\n            content=(lambda path: open(path).read())(f\"{path['module']}/my_custom_main.vcl\"),\n            main=True,\n            name=\"my_custom_main_vcl\",\n        ),\n        fastly.Servicev1VclArgs(\n            content=(lambda path: open(path).read())(f\"{path['module']}/my_custom_library.vcl\"),\n            name=\"my_custom_library_vcl\",\n        ),\n    ])\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Servicev1(\"demo\", new Fastly.Servicev1Args\n        {\n            Backends = \n            {\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.1\",\n                    Name = \"localhost\",\n                    Port = 80,\n                },\n            },\n            Domains = \n            {\n                new Fastly.Inputs.Servicev1DomainArgs\n                {\n                    Comment = \"demo\",\n                    Name = \"demo.notexample.com\",\n                },\n            },\n            ForceDestroy = true,\n            Vcls = \n            {\n                new Fastly.Inputs.Servicev1VclArgs\n                {\n                    Content = File.ReadAllText($\"{path.Module}/my_custom_main.vcl\"),\n                    Main = true,\n                    Name = \"my_custom_main_vcl\",\n                },\n                new Fastly.Inputs.Servicev1VclArgs\n                {\n                    Content = File.ReadAllText($\"{path.Module}/my_custom_library.vcl\"),\n                    Name = \"my_custom_library_vcl\",\n                },\n            },\n        });\n    }\n\n}\n```\n{{% /example %}}\n{{% example %}}\n### Basic usage with custom Director\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Servicev1(\"demo\", {\n    backends: [\n        {\n            address: \"127.0.0.1\",\n            name: \"origin1\",\n            port: 80,\n        },\n        {\n            address: \"127.0.0.2\",\n            name: \"origin2\",\n            port: 80,\n        },\n    ],\n    directors: [{\n        backends: [\n            \"origin1\",\n            \"origin2\",\n        ],\n        name: \"mydirector\",\n        quorum: 0,\n        type: 3,\n    }],\n    domains: [{\n        comment: \"demo\",\n        name: \"demo.notexample.com\",\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Servicev1(\"demo\",\n    backends=[\n        fastly.Servicev1BackendArgs(\n            address=\"127.0.0.1\",\n            name=\"origin1\",\n            port=80,\n        ),\n        fastly.Servicev1BackendArgs(\n            address=\"127.0.0.2\",\n            name=\"origin2\",\n            port=80,\n        ),\n    ],\n    directors=[fastly.Servicev1DirectorArgs(\n        backends=[\n            \"origin1\",\n            \"origin2\",\n        ],\n        name=\"mydirector\",\n        quorum=0,\n        type=3,\n    )],\n    domains=[fastly.Servicev1DomainArgs(\n        comment=\"demo\",\n        name=\"demo.notexample.com\",\n    )],\n    force_destroy=True)\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Servicev1(\"demo\", new Fastly.Servicev1Args\n        {\n            Backends = \n            {\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.1\",\n                    Name = \"origin1\",\n                    Port = 80,\n                },\n                new Fastly.Inputs.Servicev1BackendArgs\n                {\n                    Address = \"127.0.0.2\",\n                    Name = \"origin2\",\n                    Port = 80,\n                },\n            },\n            Directors = \n            {\n                new Fastly.Inputs.Servicev1DirectorArgs\n                {\n                    Backends = \n                    {\n                        \"origin1\",\n                        \"origin2\",\n                    },\n                    Name = \"mydirector\",\n                    Quorum = 0,\n                    Type = 3,\n                },\n            },\n            Domains = \n            {\n                new Fastly.Inputs.Servicev1DomainArgs\n                {\n                    Comment = \"demo\",\n                    Name = \"demo.notexample.com\",\n                },\n            },\n            ForceDestroy = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewServicev1(ctx, \"demo\", \u0026fastly.Servicev1Args{\n\t\t\tBackends: fastly.Servicev1BackendArray{\n\t\t\t\t\u0026fastly.Servicev1BackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"127.0.0.1\"),\n\t\t\t\t\tName:    pulumi.String(\"origin1\"),\n\t\t\t\t\tPort:    pulumi.Int(80),\n\t\t\t\t},\n\t\t\t\t\u0026fastly.Servicev1BackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"127.0.0.2\"),\n\t\t\t\t\tName:    pulumi.String(\"origin2\"),\n\t\t\t\t\tPort:    pulumi.Int(80),\n\t\t\t\t},\n\t\t\t},\n\t\t\tDirectors: fastly.Servicev1DirectorArray{\n\t\t\t\t\u0026fastly.Servicev1DirectorArgs{\n\t\t\t\t\tBackends: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"origin1\"),\n\t\t\t\t\t\tpulumi.String(\"origin2\"),\n\t\t\t\t\t},\n\t\t\t\t\tName:   pulumi.String(\"mydirector\"),\n\t\t\t\t\tQuorum: pulumi.Int(0),\n\t\t\t\t\tType:   pulumi.Int(3),\n\t\t\t\t},\n\t\t\t},\n\t\t\tDomains: fastly.Servicev1DomainArray{\n\t\t\t\t\u0026fastly.Servicev1DomainArgs{\n\t\t\t\t\tComment: pulumi.String(\"demo\"),\n\t\t\t\t\tName:    pulumi.String(\"demo.notexample.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003e **Note:** For an AWS S3 Bucket, the Backend address is\n`\u003cdomain\u003e.s3-website-\u003cregion\u003e.amazonaws.com`. The `default_host` attribute\nshould be set to `\u003cbucket_name\u003e.s3-website-\u003cregion\u003e.amazonaws.com`. See the\nFastly documentation on [Amazon S3][fastly-s3].\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "acls": {
                     "type": "array",
@@ -7459,7 +8005,7 @@
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
                     },
-                    "description": "Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.\n"
+                    "description": "The name of the response object used by the Web Application Firewall.\n"
                 },
                 "s3loggings": {
                     "type": "array",
@@ -7506,6 +8052,10 @@
                 "versionComment": {
                     "type": "string",
                     "description": "Description field for the version.\n"
+                },
+                "waf": {
+                    "$ref": "#/types/fastly:/Servicev1Waf:Servicev1Waf",
+                    "description": "A WAF configuration block.  Defined below.\n"
                 }
             },
             "required": [
@@ -7776,7 +8326,7 @@
                     "items": {
                         "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
                     },
-                    "description": "Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.\n"
+                    "description": "The name of the response object used by the Web Application Firewall.\n"
                 },
                 "s3loggings": {
                     "type": "array",
@@ -7823,6 +8373,10 @@
                 "versionComment": {
                     "type": "string",
                     "description": "Description field for the version.\n"
+                },
+                "waf": {
+                    "$ref": "#/types/fastly:/Servicev1Waf:Servicev1Waf",
+                    "description": "A WAF configuration block.  Defined below.\n"
                 }
             },
             "requiredInputs": [
@@ -8099,7 +8653,7 @@
                         "items": {
                             "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
                         },
-                        "description": "Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.\n"
+                        "description": "The name of the response object used by the Web Application Firewall.\n"
                     },
                     "s3loggings": {
                         "type": "array",
@@ -8146,6 +8700,10 @@
                     "versionComment": {
                         "type": "string",
                         "description": "Description field for the version.\n"
+                    },
+                    "waf": {
+                        "$ref": "#/types/fastly:/Servicev1Waf:Servicev1Waf",
+                        "description": "A WAF configuration block.  Defined below.\n"
                     }
                 },
                 "type": "object"
@@ -8240,6 +8798,74 @@
                     "id"
                 ]
             }
+        },
+        "fastly:index/getWafRules:getWafRules": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getWafRules.\n",
+                "properties": {
+                    "excludeModsecRuleIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "Exclusion filter by WAF rule's ModSecurity ID.\n"
+                    },
+                    "publishers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Inclusion filter by WAF rule's publishers.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Inclusion filter by WAF rule's tags.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getWafRules.\n",
+                "properties": {
+                    "excludeModsecRuleIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "publishers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "rules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:/getWafRulesRule:getWafRulesRule"
+                        },
+                        "description": "The Web Application Firewall's rules result set.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "rules",
+                    "id"
+                ]
+            }
         }
     },
     "language": {
@@ -8263,11 +8889,11 @@
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing fastly cloud resources.",
             "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-fastly` repo](https://github.com/terraform-providers/terraform-provider-fastly/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fastly/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`fastly/terraform-provider-fastly` repo](https://github.com/fastly/terraform-provider-fastly/issues).",
             "typescriptVersion": ""
         },
         "python": {
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-fastly` repo](https://github.com/terraform-providers/terraform-provider-fastly/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fastly/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`fastly/terraform-provider-fastly` repo](https://github.com/fastly/terraform-provider-fastly/issues).",
             "requires": {
                 "pulumi": "\u003e=2.9.0,\u003c3.0.0"
             },

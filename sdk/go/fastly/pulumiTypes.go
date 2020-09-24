@@ -4748,6 +4748,121 @@ func (o ServiceComputeSyslogArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 	}).(ServiceComputeSyslogOutput)
 }
 
+type ServiceWafConfigurationRule struct {
+	// The Web Application Firewall rule's modsecurity ID.
+	ModsecRuleId int `pulumi:"modsecRuleId"`
+	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+	Revision *int `pulumi:"revision"`
+	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+	Status string `pulumi:"status"`
+}
+
+// ServiceWafConfigurationRuleInput is an input type that accepts ServiceWafConfigurationRuleArgs and ServiceWafConfigurationRuleOutput values.
+// You can construct a concrete instance of `ServiceWafConfigurationRuleInput` via:
+//
+//          ServiceWafConfigurationRuleArgs{...}
+type ServiceWafConfigurationRuleInput interface {
+	pulumi.Input
+
+	ToServiceWafConfigurationRuleOutput() ServiceWafConfigurationRuleOutput
+	ToServiceWafConfigurationRuleOutputWithContext(context.Context) ServiceWafConfigurationRuleOutput
+}
+
+type ServiceWafConfigurationRuleArgs struct {
+	// The Web Application Firewall rule's modsecurity ID.
+	ModsecRuleId pulumi.IntInput `pulumi:"modsecRuleId"`
+	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+	Revision pulumi.IntPtrInput `pulumi:"revision"`
+	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (ServiceWafConfigurationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceWafConfigurationRule)(nil)).Elem()
+}
+
+func (i ServiceWafConfigurationRuleArgs) ToServiceWafConfigurationRuleOutput() ServiceWafConfigurationRuleOutput {
+	return i.ToServiceWafConfigurationRuleOutputWithContext(context.Background())
+}
+
+func (i ServiceWafConfigurationRuleArgs) ToServiceWafConfigurationRuleOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleOutput)
+}
+
+// ServiceWafConfigurationRuleArrayInput is an input type that accepts ServiceWafConfigurationRuleArray and ServiceWafConfigurationRuleArrayOutput values.
+// You can construct a concrete instance of `ServiceWafConfigurationRuleArrayInput` via:
+//
+//          ServiceWafConfigurationRuleArray{ ServiceWafConfigurationRuleArgs{...} }
+type ServiceWafConfigurationRuleArrayInput interface {
+	pulumi.Input
+
+	ToServiceWafConfigurationRuleArrayOutput() ServiceWafConfigurationRuleArrayOutput
+	ToServiceWafConfigurationRuleArrayOutputWithContext(context.Context) ServiceWafConfigurationRuleArrayOutput
+}
+
+type ServiceWafConfigurationRuleArray []ServiceWafConfigurationRuleInput
+
+func (ServiceWafConfigurationRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceWafConfigurationRule)(nil)).Elem()
+}
+
+func (i ServiceWafConfigurationRuleArray) ToServiceWafConfigurationRuleArrayOutput() ServiceWafConfigurationRuleArrayOutput {
+	return i.ToServiceWafConfigurationRuleArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceWafConfigurationRuleArray) ToServiceWafConfigurationRuleArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleArrayOutput)
+}
+
+type ServiceWafConfigurationRuleOutput struct{ *pulumi.OutputState }
+
+func (ServiceWafConfigurationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceWafConfigurationRule)(nil)).Elem()
+}
+
+func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutput() ServiceWafConfigurationRuleOutput {
+	return o
+}
+
+func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleOutput {
+	return o
+}
+
+// The Web Application Firewall rule's modsecurity ID.
+func (o ServiceWafConfigurationRuleOutput) ModsecRuleId() pulumi.IntOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRule) int { return v.ModsecRuleId }).(pulumi.IntOutput)
+}
+
+// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+func (o ServiceWafConfigurationRuleOutput) Revision() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRule) *int { return v.Revision }).(pulumi.IntPtrOutput)
+}
+
+// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+func (o ServiceWafConfigurationRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type ServiceWafConfigurationRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceWafConfigurationRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceWafConfigurationRule)(nil)).Elem()
+}
+
+func (o ServiceWafConfigurationRuleArrayOutput) ToServiceWafConfigurationRuleArrayOutput() ServiceWafConfigurationRuleArrayOutput {
+	return o
+}
+
+func (o ServiceWafConfigurationRuleArrayOutput) ToServiceWafConfigurationRuleArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleArrayOutput {
+	return o
+}
+
+func (o ServiceWafConfigurationRuleArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceWafConfigurationRule {
+		return vs[0].([]ServiceWafConfigurationRule)[vs[1].(int)]
+	}).(ServiceWafConfigurationRuleOutput)
+}
+
 type Servicev1Acl struct {
 	// The ID of the ACL.
 	AclId *string `pulumi:"aclId"`
@@ -10824,8 +10939,10 @@ type Servicev1S3logging struct {
 	// permissions to post logs. It is **strongly** recommended you create a separate
 	// IAM user with permissions to only operate on this Bucket. This secret will be
 	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-	S3SecretKey                  *string `pulumi:"s3SecretKey"`
-	ServerSideEncryption         *string `pulumi:"serverSideEncryption"`
+	S3SecretKey *string `pulumi:"s3SecretKey"`
+	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
+	// Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -10878,8 +10995,10 @@ type Servicev1S3loggingArgs struct {
 	// permissions to post logs. It is **strongly** recommended you create a separate
 	// IAM user with permissions to only operate on this Bucket. This secret will be
 	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-	S3SecretKey                  pulumi.StringPtrInput `pulumi:"s3SecretKey"`
-	ServerSideEncryption         pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	S3SecretKey pulumi.StringPtrInput `pulumi:"s3SecretKey"`
+	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	// Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -11017,10 +11136,12 @@ func (o Servicev1S3loggingOutput) S3SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
 func (o Servicev1S3loggingOutput) ServerSideEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
 }
 
+// Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
 func (o Servicev1S3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
@@ -11829,6 +11950,290 @@ func (o Servicev1VclArrayOutput) Index(i pulumi.IntInput) Servicev1VclOutput {
 	}).(Servicev1VclOutput)
 }
 
+type Servicev1Waf struct {
+	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	PrefetchCondition *string `pulumi:"prefetchCondition"`
+	// The name of the response object used by the Web Application Firewall.
+	ResponseObject string `pulumi:"responseObject"`
+	// The ID of the WAF.
+	WafId *string `pulumi:"wafId"`
+}
+
+// Servicev1WafInput is an input type that accepts Servicev1WafArgs and Servicev1WafOutput values.
+// You can construct a concrete instance of `Servicev1WafInput` via:
+//
+//          Servicev1WafArgs{...}
+type Servicev1WafInput interface {
+	pulumi.Input
+
+	ToServicev1WafOutput() Servicev1WafOutput
+	ToServicev1WafOutputWithContext(context.Context) Servicev1WafOutput
+}
+
+type Servicev1WafArgs struct {
+	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	PrefetchCondition pulumi.StringPtrInput `pulumi:"prefetchCondition"`
+	// The name of the response object used by the Web Application Firewall.
+	ResponseObject pulumi.StringInput `pulumi:"responseObject"`
+	// The ID of the WAF.
+	WafId pulumi.StringPtrInput `pulumi:"wafId"`
+}
+
+func (Servicev1WafArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Servicev1Waf)(nil)).Elem()
+}
+
+func (i Servicev1WafArgs) ToServicev1WafOutput() Servicev1WafOutput {
+	return i.ToServicev1WafOutputWithContext(context.Background())
+}
+
+func (i Servicev1WafArgs) ToServicev1WafOutputWithContext(ctx context.Context) Servicev1WafOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Servicev1WafOutput)
+}
+
+func (i Servicev1WafArgs) ToServicev1WafPtrOutput() Servicev1WafPtrOutput {
+	return i.ToServicev1WafPtrOutputWithContext(context.Background())
+}
+
+func (i Servicev1WafArgs) ToServicev1WafPtrOutputWithContext(ctx context.Context) Servicev1WafPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Servicev1WafOutput).ToServicev1WafPtrOutputWithContext(ctx)
+}
+
+// Servicev1WafPtrInput is an input type that accepts Servicev1WafArgs, Servicev1WafPtr and Servicev1WafPtrOutput values.
+// You can construct a concrete instance of `Servicev1WafPtrInput` via:
+//
+//          Servicev1WafArgs{...}
+//
+//  or:
+//
+//          nil
+type Servicev1WafPtrInput interface {
+	pulumi.Input
+
+	ToServicev1WafPtrOutput() Servicev1WafPtrOutput
+	ToServicev1WafPtrOutputWithContext(context.Context) Servicev1WafPtrOutput
+}
+
+type servicev1WafPtrType Servicev1WafArgs
+
+func Servicev1WafPtr(v *Servicev1WafArgs) Servicev1WafPtrInput {
+	return (*servicev1WafPtrType)(v)
+}
+
+func (*servicev1WafPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Servicev1Waf)(nil)).Elem()
+}
+
+func (i *servicev1WafPtrType) ToServicev1WafPtrOutput() Servicev1WafPtrOutput {
+	return i.ToServicev1WafPtrOutputWithContext(context.Background())
+}
+
+func (i *servicev1WafPtrType) ToServicev1WafPtrOutputWithContext(ctx context.Context) Servicev1WafPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Servicev1WafPtrOutput)
+}
+
+type Servicev1WafOutput struct{ *pulumi.OutputState }
+
+func (Servicev1WafOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Servicev1Waf)(nil)).Elem()
+}
+
+func (o Servicev1WafOutput) ToServicev1WafOutput() Servicev1WafOutput {
+	return o
+}
+
+func (o Servicev1WafOutput) ToServicev1WafOutputWithContext(ctx context.Context) Servicev1WafOutput {
+	return o
+}
+
+func (o Servicev1WafOutput) ToServicev1WafPtrOutput() Servicev1WafPtrOutput {
+	return o.ToServicev1WafPtrOutputWithContext(context.Background())
+}
+
+func (o Servicev1WafOutput) ToServicev1WafPtrOutputWithContext(ctx context.Context) Servicev1WafPtrOutput {
+	return o.ApplyT(func(v Servicev1Waf) *Servicev1Waf {
+		return &v
+	}).(Servicev1WafPtrOutput)
+}
+
+// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+func (o Servicev1WafOutput) PrefetchCondition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1Waf) *string { return v.PrefetchCondition }).(pulumi.StringPtrOutput)
+}
+
+// The name of the response object used by the Web Application Firewall.
+func (o Servicev1WafOutput) ResponseObject() pulumi.StringOutput {
+	return o.ApplyT(func(v Servicev1Waf) string { return v.ResponseObject }).(pulumi.StringOutput)
+}
+
+// The ID of the WAF.
+func (o Servicev1WafOutput) WafId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1Waf) *string { return v.WafId }).(pulumi.StringPtrOutput)
+}
+
+type Servicev1WafPtrOutput struct{ *pulumi.OutputState }
+
+func (Servicev1WafPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Servicev1Waf)(nil)).Elem()
+}
+
+func (o Servicev1WafPtrOutput) ToServicev1WafPtrOutput() Servicev1WafPtrOutput {
+	return o
+}
+
+func (o Servicev1WafPtrOutput) ToServicev1WafPtrOutputWithContext(ctx context.Context) Servicev1WafPtrOutput {
+	return o
+}
+
+func (o Servicev1WafPtrOutput) Elem() Servicev1WafOutput {
+	return o.ApplyT(func(v *Servicev1Waf) Servicev1Waf { return *v }).(Servicev1WafOutput)
+}
+
+// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+func (o Servicev1WafPtrOutput) PrefetchCondition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Servicev1Waf) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrefetchCondition
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the response object used by the Web Application Firewall.
+func (o Servicev1WafPtrOutput) ResponseObject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Servicev1Waf) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ResponseObject
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the WAF.
+func (o Servicev1WafPtrOutput) WafId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Servicev1Waf) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WafId
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetWafRulesRule struct {
+	// The rule's latest revision.
+	LatestRevisionNumber int `pulumi:"latestRevisionNumber"`
+	// The rule's modsecurity ID.
+	ModsecRuleId int `pulumi:"modsecRuleId"`
+	// The rule's type.
+	Type string `pulumi:"type"`
+}
+
+// GetWafRulesRuleInput is an input type that accepts GetWafRulesRuleArgs and GetWafRulesRuleOutput values.
+// You can construct a concrete instance of `GetWafRulesRuleInput` via:
+//
+//          GetWafRulesRuleArgs{...}
+type GetWafRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetWafRulesRuleOutput() GetWafRulesRuleOutput
+	ToGetWafRulesRuleOutputWithContext(context.Context) GetWafRulesRuleOutput
+}
+
+type GetWafRulesRuleArgs struct {
+	// The rule's latest revision.
+	LatestRevisionNumber pulumi.IntInput `pulumi:"latestRevisionNumber"`
+	// The rule's modsecurity ID.
+	ModsecRuleId pulumi.IntInput `pulumi:"modsecRuleId"`
+	// The rule's type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetWafRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWafRulesRule)(nil)).Elem()
+}
+
+func (i GetWafRulesRuleArgs) ToGetWafRulesRuleOutput() GetWafRulesRuleOutput {
+	return i.ToGetWafRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetWafRulesRuleArgs) ToGetWafRulesRuleOutputWithContext(ctx context.Context) GetWafRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWafRulesRuleOutput)
+}
+
+// GetWafRulesRuleArrayInput is an input type that accepts GetWafRulesRuleArray and GetWafRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetWafRulesRuleArrayInput` via:
+//
+//          GetWafRulesRuleArray{ GetWafRulesRuleArgs{...} }
+type GetWafRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetWafRulesRuleArrayOutput() GetWafRulesRuleArrayOutput
+	ToGetWafRulesRuleArrayOutputWithContext(context.Context) GetWafRulesRuleArrayOutput
+}
+
+type GetWafRulesRuleArray []GetWafRulesRuleInput
+
+func (GetWafRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWafRulesRule)(nil)).Elem()
+}
+
+func (i GetWafRulesRuleArray) ToGetWafRulesRuleArrayOutput() GetWafRulesRuleArrayOutput {
+	return i.ToGetWafRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetWafRulesRuleArray) ToGetWafRulesRuleArrayOutputWithContext(ctx context.Context) GetWafRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWafRulesRuleArrayOutput)
+}
+
+type GetWafRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetWafRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWafRulesRule)(nil)).Elem()
+}
+
+func (o GetWafRulesRuleOutput) ToGetWafRulesRuleOutput() GetWafRulesRuleOutput {
+	return o
+}
+
+func (o GetWafRulesRuleOutput) ToGetWafRulesRuleOutputWithContext(ctx context.Context) GetWafRulesRuleOutput {
+	return o
+}
+
+// The rule's latest revision.
+func (o GetWafRulesRuleOutput) LatestRevisionNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWafRulesRule) int { return v.LatestRevisionNumber }).(pulumi.IntOutput)
+}
+
+// The rule's modsecurity ID.
+func (o GetWafRulesRuleOutput) ModsecRuleId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWafRulesRule) int { return v.ModsecRuleId }).(pulumi.IntOutput)
+}
+
+// The rule's type.
+func (o GetWafRulesRuleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWafRulesRule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetWafRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWafRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWafRulesRule)(nil)).Elem()
+}
+
+func (o GetWafRulesRuleArrayOutput) ToGetWafRulesRuleArrayOutput() GetWafRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetWafRulesRuleArrayOutput) ToGetWafRulesRuleArrayOutputWithContext(ctx context.Context) GetWafRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetWafRulesRuleArrayOutput) Index(i pulumi.IntInput) GetWafRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWafRulesRule {
+		return vs[0].([]GetWafRulesRule)[vs[1].(int)]
+	}).(GetWafRulesRuleOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceACLEntriesv1EntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesv1EntryArrayOutput{})
@@ -11890,6 +12295,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeSumologicArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeSyslogOutput{})
 	pulumi.RegisterOutputType(ServiceComputeSyslogArrayOutput{})
+	pulumi.RegisterOutputType(ServiceWafConfigurationRuleOutput{})
+	pulumi.RegisterOutputType(ServiceWafConfigurationRuleArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1AclOutput{})
 	pulumi.RegisterOutputType(Servicev1AclArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1BackendOutput{})
@@ -11970,4 +12377,8 @@ func init() {
 	pulumi.RegisterOutputType(Servicev1SyslogArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1VclOutput{})
 	pulumi.RegisterOutputType(Servicev1VclArrayOutput{})
+	pulumi.RegisterOutputType(Servicev1WafOutput{})
+	pulumi.RegisterOutputType(Servicev1WafPtrOutput{})
+	pulumi.RegisterOutputType(GetWafRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetWafRulesRuleArrayOutput{})
 }

@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetWafRulesRule {
+    /**
+     * The rule's latest revision.
+     */
+    latestRevisionNumber: number;
+    /**
+     * The rule's modsecurity ID.
+     */
+    modsecRuleId: number;
+    /**
+     * The rule's type.
+     */
+    type: string;
+}
+
 export interface ServiceACLEntriesv1Entry {
     /**
      * A personal freeform descriptive note
@@ -994,6 +1009,21 @@ export interface ServiceComputeSyslog {
      * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: boolean;
+}
+
+export interface ServiceWafConfigurationRule {
+    /**
+     * The Web Application Firewall rule's modsecurity ID.
+     */
+    modsecRuleId: number;
+    /**
+     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+     */
+    revision: number;
+    /**
+     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+     */
+    status: string;
 }
 
 export interface Servicev1Acl {
@@ -2511,7 +2541,13 @@ export interface Servicev1S3logging {
      * not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
      */
     s3SecretKey?: string;
+    /**
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+     */
     serverSideEncryption?: string;
+    /**
+     * Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
+     */
     serverSideEncryptionKmsKeyId?: string;
     /**
      * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
@@ -2682,4 +2718,19 @@ export interface Servicev1Vcl {
      * A unique name to identify this dictionary.
      */
     name: string;
+}
+
+export interface Servicev1Waf {
+    /**
+     * The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+     */
+    prefetchCondition?: string;
+    /**
+     * The name of the response object used by the Web Application Firewall.
+     */
+    responseObject: string;
+    /**
+     * The ID of the WAF.
+     */
+    wafId: string;
 }
