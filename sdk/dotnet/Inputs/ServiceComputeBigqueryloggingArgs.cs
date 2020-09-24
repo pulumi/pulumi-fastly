@@ -21,8 +21,8 @@ namespace Pulumi.Fastly.Inputs
         /// <summary>
         /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         /// </summary>
-        [Input("email")]
-        public Input<string>? Email { get; set; }
+        [Input("email", required: true)]
+        public Input<string> Email { get; set; } = null!;
 
         /// <summary>
         /// The unique name of the Rackspace Cloud Files logging endpoint.
@@ -39,8 +39,8 @@ namespace Pulumi.Fastly.Inputs
         /// <summary>
         /// Your DigitalOcean Spaces account secret key.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        [Input("secretKey", required: true)]
+        public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
         /// The ID of your BigQuery table.

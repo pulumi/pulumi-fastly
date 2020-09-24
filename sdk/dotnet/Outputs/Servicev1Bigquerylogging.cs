@@ -20,7 +20,7 @@ namespace Pulumi.Fastly.Outputs
         /// <summary>
         /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         /// </summary>
-        public readonly string? Email;
+        public readonly string Email;
         /// <summary>
         /// Apache style log formatting.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Pulumi.Fastly.Outputs
         /// <summary>
         /// Your DigitalOcean Spaces account secret key.
         /// </summary>
-        public readonly string? SecretKey;
+        public readonly string SecretKey;
         /// <summary>
         /// The ID of your BigQuery table.
         /// </summary>
@@ -58,7 +58,7 @@ namespace Pulumi.Fastly.Outputs
         private Servicev1Bigquerylogging(
             string dataset,
 
-            string? email,
+            string email,
 
             string? format,
 
@@ -70,7 +70,7 @@ namespace Pulumi.Fastly.Outputs
 
             string? responseCondition,
 
-            string? secretKey,
+            string secretKey,
 
             string table,
 

@@ -569,28 +569,26 @@ class ServiceComputeBackendArgs:
 class ServiceComputeBigqueryloggingArgs:
     def __init__(__self__, *,
                  dataset: pulumi.Input[str],
+                 email: pulumi.Input[str],
                  name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
+                 secret_key: pulumi.Input[str],
                  table: pulumi.Input[str],
-                 email: Optional[pulumi.Input[str]] = None,
-                 secret_key: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to.
+        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project.
-        :param pulumi.Input[str] table: The ID of your BigQuery table.
-        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param pulumi.Input[str] secret_key: Your DigitalOcean Spaces account secret key.
+        :param pulumi.Input[str] table: The ID of your BigQuery table.
         """
         pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "table", table)
-        if email is not None:
-            pulumi.set(__self__, "email", email)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -605,6 +603,18 @@ class ServiceComputeBigqueryloggingArgs:
     @dataset.setter
     def dataset(self, value: pulumi.Input[str]):
         pulumi.set(self, "dataset", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> pulumi.Input[str]:
+        """
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: pulumi.Input[str]):
+        pulumi.set(self, "email", value)
 
     @property
     @pulumi.getter
@@ -631,6 +641,18 @@ class ServiceComputeBigqueryloggingArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> pulumi.Input[str]:
+        """
+        Your DigitalOcean Spaces account secret key.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @secret_key.setter
+    def secret_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "secret_key", value)
+
+    @property
     @pulumi.getter
     def table(self) -> pulumi.Input[str]:
         """
@@ -641,30 +663,6 @@ class ServiceComputeBigqueryloggingArgs:
     @table.setter
     def table(self, value: pulumi.Input[str]):
         pulumi.set(self, "table", value)
-
-    @property
-    @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[str]]:
-        """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        """
-        return pulumi.get(self, "email")
-
-    @email.setter
-    def email(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "email", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your DigitalOcean Spaces account secret key.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_key", value)
 
     @property
     @pulumi.getter
@@ -4338,41 +4336,39 @@ class Servicev1BackendArgs:
 class Servicev1BigqueryloggingArgs:
     def __init__(__self__, *,
                  dataset: pulumi.Input[str],
+                 email: pulumi.Input[str],
                  name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
+                 secret_key: pulumi.Input[str],
                  table: pulumi.Input[str],
-                 email: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None,
-                 secret_key: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to.
+        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param pulumi.Input[str] name: A unique name to identify this dictionary.
         :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project.
+        :param pulumi.Input[str] secret_key: Your DigitalOcean Spaces account secret key.
         :param pulumi.Input[str] table: The ID of your BigQuery table.
-        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] secret_key: Your DigitalOcean Spaces account secret key.
         :param pulumi.Input[str] template: Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
         """
         pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "table", table)
-        if email is not None:
-            pulumi.set(__self__, "email", email)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -4387,6 +4383,18 @@ class Servicev1BigqueryloggingArgs:
     @dataset.setter
     def dataset(self, value: pulumi.Input[str]):
         pulumi.set(self, "dataset", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> pulumi.Input[str]:
+        """
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: pulumi.Input[str]):
+        pulumi.set(self, "email", value)
 
     @property
     @pulumi.getter
@@ -4413,6 +4421,18 @@ class Servicev1BigqueryloggingArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> pulumi.Input[str]:
+        """
+        Your DigitalOcean Spaces account secret key.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @secret_key.setter
+    def secret_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "secret_key", value)
+
+    @property
     @pulumi.getter
     def table(self) -> pulumi.Input[str]:
         """
@@ -4423,18 +4443,6 @@ class Servicev1BigqueryloggingArgs:
     @table.setter
     def table(self, value: pulumi.Input[str]):
         pulumi.set(self, "table", value)
-
-    @property
-    @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[str]]:
-        """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        """
-        return pulumi.get(self, "email")
-
-    @email.setter
-    def email(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "email", value)
 
     @property
     @pulumi.getter
@@ -4471,18 +4479,6 @@ class Servicev1BigqueryloggingArgs:
     @response_condition.setter
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your DigitalOcean Spaces account secret key.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_key", value)
 
     @property
     @pulumi.getter

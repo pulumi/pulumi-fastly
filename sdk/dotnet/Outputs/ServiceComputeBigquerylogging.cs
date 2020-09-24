@@ -20,7 +20,7 @@ namespace Pulumi.Fastly.Outputs
         /// <summary>
         /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         /// </summary>
-        public readonly string? Email;
+        public readonly string Email;
         /// <summary>
         /// The unique name of the Rackspace Cloud Files logging endpoint.
         /// </summary>
@@ -32,7 +32,7 @@ namespace Pulumi.Fastly.Outputs
         /// <summary>
         /// Your DigitalOcean Spaces account secret key.
         /// </summary>
-        public readonly string? SecretKey;
+        public readonly string SecretKey;
         /// <summary>
         /// The ID of your BigQuery table.
         /// </summary>
@@ -43,13 +43,13 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeBigquerylogging(
             string dataset,
 
-            string? email,
+            string email,
 
             string name,
 
             string projectId,
 
-            string? secretKey,
+            string secretKey,
 
             string table,
 

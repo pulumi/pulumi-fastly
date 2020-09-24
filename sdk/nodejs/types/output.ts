@@ -153,7 +153,7 @@ export interface ServiceComputeBigquerylogging {
     /**
      * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
      */
-    email?: string;
+    email: string;
     /**
      * The unique name of the Rackspace Cloud Files logging endpoint.
      */
@@ -165,7 +165,7 @@ export interface ServiceComputeBigquerylogging {
     /**
      * Your DigitalOcean Spaces account secret key.
      */
-    secretKey?: string;
+    secretKey: string;
     /**
      * The ID of your BigQuery table.
      */
@@ -1154,7 +1154,7 @@ export interface Servicev1Bigquerylogging {
     /**
      * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
      */
-    email?: string;
+    email: string;
     /**
      * Apache style log formatting.
      */
@@ -1178,7 +1178,7 @@ export interface Servicev1Bigquerylogging {
     /**
      * Your DigitalOcean Spaces account secret key.
      */
-    secretKey?: string;
+    secretKey: string;
     /**
      * The ID of your BigQuery table.
      */
