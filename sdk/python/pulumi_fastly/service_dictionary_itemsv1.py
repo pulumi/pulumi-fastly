@@ -22,77 +22,7 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
-
-        ## Example Usage
-        ### Basic usage
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        config = pulumi.Config()
-        mydict_name = config.get("mydictName")
-        if mydict_name is None:
-            mydict_name = "My Dictionary"
-        myservice = fastly.Servicev1("myservice",
-            domains=[fastly.Servicev1DomainArgs(
-                name="demo.notexample.com",
-                comment="demo",
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
-                name="AWS S3 hosting",
-                port=80,
-            )],
-            dictionaries=[fastly.Servicev1DictionaryArgs(
-                name=mydict_name,
-            )],
-            force_destroy=True)
-        items = fastly.ServiceDictionaryItemsv1("items",
-            service_id=myservice.id,
-            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {s.name: s.dictionary_id for s in dictionaries}[mydict_name]),
-            items={
-                "key1": "value1",
-                "key2": "value2",
-            })
-        ```
-        ### Complex object usage
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        config = pulumi.Config()
-        mydict = config.get_object("mydict")
-        if mydict is None:
-            mydict = {
-                "name": "My Dictionary",
-                "items": {
-                    "key1": "value1x",
-                    "key2": "value2x",
-                },
-            }
-        myservice = fastly.Servicev1("myservice",
-            domains=[fastly.Servicev1DomainArgs(
-                name="demo.notexample.com",
-                comment="demo",
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
-                name="AWS S3 hosting",
-                port=80,
-            )],
-            dictionaries=[fastly.Servicev1DictionaryArgs(
-                name=mydict["name"],
-            )],
-            force_destroy=True)
-        items = fastly.ServiceDictionaryItemsv1("items",
-            service_id=myservice.id,
-            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {d.name: d.dictionary_id for d in dictionaries}[mydict["name"]]),
-            items=mydict["items"])
-        ```
-
+        Create a ServiceDictionaryItemsv1 resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
