@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.20.4 of the Fastly Terraform Provider
+_(none)_
 
 ---
+
+## 2.8.2 (2020-10-01)
+* Upgrade to v0.20.4 of the Fastly Terraform Provider
 
 ## 2.8.1 (2020-09-25)
 * Upgrade to v0.20.3 of the Fastly Terraform Provider
