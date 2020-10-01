@@ -10,9 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
-//
-// ## Example Usage
 type ServiceACLEntriesv1 struct {
 	pulumi.CustomResourceState
 
