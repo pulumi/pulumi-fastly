@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -21,32 +21,32 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                  allowed_methods: Optional[pulumi.Input[str]] = None,
                  allowed_request_content_type: Optional[pulumi.Input[str]] = None,
                  allowed_request_content_type_charset: Optional[pulumi.Input[str]] = None,
-                 arg_length: Optional[pulumi.Input[float]] = None,
-                 arg_name_length: Optional[pulumi.Input[float]] = None,
-                 combined_file_sizes: Optional[pulumi.Input[float]] = None,
-                 critical_anomaly_score: Optional[pulumi.Input[float]] = None,
+                 arg_length: Optional[pulumi.Input[int]] = None,
+                 arg_name_length: Optional[pulumi.Input[int]] = None,
+                 combined_file_sizes: Optional[pulumi.Input[int]] = None,
+                 critical_anomaly_score: Optional[pulumi.Input[int]] = None,
                  crs_validate_utf8_encoding: Optional[pulumi.Input[bool]] = None,
-                 error_anomaly_score: Optional[pulumi.Input[float]] = None,
+                 error_anomaly_score: Optional[pulumi.Input[int]] = None,
                  high_risk_country_codes: Optional[pulumi.Input[str]] = None,
-                 http_violation_score_threshold: Optional[pulumi.Input[float]] = None,
-                 inbound_anomaly_score_threshold: Optional[pulumi.Input[float]] = None,
-                 lfi_score_threshold: Optional[pulumi.Input[float]] = None,
-                 max_file_size: Optional[pulumi.Input[float]] = None,
-                 max_num_args: Optional[pulumi.Input[float]] = None,
-                 notice_anomaly_score: Optional[pulumi.Input[float]] = None,
-                 paranoia_level: Optional[pulumi.Input[float]] = None,
-                 php_injection_score_threshold: Optional[pulumi.Input[float]] = None,
-                 rce_score_threshold: Optional[pulumi.Input[float]] = None,
+                 http_violation_score_threshold: Optional[pulumi.Input[int]] = None,
+                 inbound_anomaly_score_threshold: Optional[pulumi.Input[int]] = None,
+                 lfi_score_threshold: Optional[pulumi.Input[int]] = None,
+                 max_file_size: Optional[pulumi.Input[int]] = None,
+                 max_num_args: Optional[pulumi.Input[int]] = None,
+                 notice_anomaly_score: Optional[pulumi.Input[int]] = None,
+                 paranoia_level: Optional[pulumi.Input[int]] = None,
+                 php_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+                 rce_score_threshold: Optional[pulumi.Input[int]] = None,
                  restricted_extensions: Optional[pulumi.Input[str]] = None,
                  restricted_headers: Optional[pulumi.Input[str]] = None,
-                 rfi_score_threshold: Optional[pulumi.Input[float]] = None,
-                 rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
-                 session_fixation_score_threshold: Optional[pulumi.Input[float]] = None,
-                 sql_injection_score_threshold: Optional[pulumi.Input[float]] = None,
-                 total_arg_length: Optional[pulumi.Input[float]] = None,
+                 rfi_score_threshold: Optional[pulumi.Input[int]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
+                 session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
+                 sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+                 total_arg_length: Optional[pulumi.Input[int]] = None,
                  waf_id: Optional[pulumi.Input[str]] = None,
-                 warning_anomaly_score: Optional[pulumi.Input[float]] = None,
-                 xss_score_threshold: Optional[pulumi.Input[float]] = None,
+                 warning_anomaly_score: Optional[pulumi.Input[int]] = None,
+                 xss_score_threshold: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -58,32 +58,32 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] allowed_methods: A space-separated list of HTTP method names.
         :param pulumi.Input[str] allowed_request_content_type: Allowed request content types.
         :param pulumi.Input[str] allowed_request_content_type_charset: Allowed request content type charset.
-        :param pulumi.Input[float] arg_length: The maximum number of arguments allowed.
-        :param pulumi.Input[float] arg_name_length: The maximum allowed argument name length.
-        :param pulumi.Input[float] combined_file_sizes: The maximum allowed size of all files.
-        :param pulumi.Input[float] critical_anomaly_score: Score value to add for critical anomalies.
+        :param pulumi.Input[int] arg_length: The maximum number of arguments allowed.
+        :param pulumi.Input[int] arg_name_length: The maximum allowed argument name length.
+        :param pulumi.Input[int] combined_file_sizes: The maximum allowed size of all files.
+        :param pulumi.Input[int] critical_anomaly_score: Score value to add for critical anomalies.
         :param pulumi.Input[bool] crs_validate_utf8_encoding: CRS validate UTF8 encoding.
-        :param pulumi.Input[float] error_anomaly_score: Score value to add for error anomalies.
+        :param pulumi.Input[int] error_anomaly_score: Score value to add for error anomalies.
         :param pulumi.Input[str] high_risk_country_codes: A space-separated list of country codes in ISO 3166-1 (two-letter) format.
-        :param pulumi.Input[float] http_violation_score_threshold: HTTP violation threshold.
-        :param pulumi.Input[float] inbound_anomaly_score_threshold: Inbound anomaly threshold.
-        :param pulumi.Input[float] lfi_score_threshold: Local file inclusion attack threshold.
-        :param pulumi.Input[float] max_file_size: The maximum allowed file size, in bytes.
-        :param pulumi.Input[float] max_num_args: The maximum number of arguments allowed.
-        :param pulumi.Input[float] notice_anomaly_score: Score value to add for notice anomalies.
-        :param pulumi.Input[float] paranoia_level: The configured paranoia level.
-        :param pulumi.Input[float] php_injection_score_threshold: PHP injection threshold.
-        :param pulumi.Input[float] rce_score_threshold: Remote code execution threshold.
+        :param pulumi.Input[int] http_violation_score_threshold: HTTP violation threshold.
+        :param pulumi.Input[int] inbound_anomaly_score_threshold: Inbound anomaly threshold.
+        :param pulumi.Input[int] lfi_score_threshold: Local file inclusion attack threshold.
+        :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes.
+        :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed.
+        :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies.
+        :param pulumi.Input[int] paranoia_level: The configured paranoia level.
+        :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold.
+        :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold.
         :param pulumi.Input[str] restricted_extensions: A space-separated list of allowed file extensions.
         :param pulumi.Input[str] restricted_headers: A space-separated list of allowed header names.
-        :param pulumi.Input[float] rfi_score_threshold: Remote file inclusion attack threshold.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
-        :param pulumi.Input[float] session_fixation_score_threshold: Session fixation attack threshold.
-        :param pulumi.Input[float] sql_injection_score_threshold: SQL injection attack threshold.
-        :param pulumi.Input[float] total_arg_length: The maximum size of argument names and values.
+        :param pulumi.Input[int] rfi_score_threshold: Remote file inclusion attack threshold.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
+        :param pulumi.Input[int] session_fixation_score_threshold: Session fixation attack threshold.
+        :param pulumi.Input[int] sql_injection_score_threshold: SQL injection attack threshold.
+        :param pulumi.Input[int] total_arg_length: The maximum size of argument names and values.
         :param pulumi.Input[str] waf_id: The ID of the Web Application Firewall that the configuration belongs to.
-        :param pulumi.Input[float] warning_anomaly_score: Score value to add for warning anomalies.
-        :param pulumi.Input[float] xss_score_threshold: XSS attack threshold.
+        :param pulumi.Input[int] warning_anomaly_score: Score value to add for warning anomalies.
+        :param pulumi.Input[int] xss_score_threshold: XSS attack threshold.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -148,32 +148,32 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             allowed_methods: Optional[pulumi.Input[str]] = None,
             allowed_request_content_type: Optional[pulumi.Input[str]] = None,
             allowed_request_content_type_charset: Optional[pulumi.Input[str]] = None,
-            arg_length: Optional[pulumi.Input[float]] = None,
-            arg_name_length: Optional[pulumi.Input[float]] = None,
-            combined_file_sizes: Optional[pulumi.Input[float]] = None,
-            critical_anomaly_score: Optional[pulumi.Input[float]] = None,
+            arg_length: Optional[pulumi.Input[int]] = None,
+            arg_name_length: Optional[pulumi.Input[int]] = None,
+            combined_file_sizes: Optional[pulumi.Input[int]] = None,
+            critical_anomaly_score: Optional[pulumi.Input[int]] = None,
             crs_validate_utf8_encoding: Optional[pulumi.Input[bool]] = None,
-            error_anomaly_score: Optional[pulumi.Input[float]] = None,
+            error_anomaly_score: Optional[pulumi.Input[int]] = None,
             high_risk_country_codes: Optional[pulumi.Input[str]] = None,
-            http_violation_score_threshold: Optional[pulumi.Input[float]] = None,
-            inbound_anomaly_score_threshold: Optional[pulumi.Input[float]] = None,
-            lfi_score_threshold: Optional[pulumi.Input[float]] = None,
-            max_file_size: Optional[pulumi.Input[float]] = None,
-            max_num_args: Optional[pulumi.Input[float]] = None,
-            notice_anomaly_score: Optional[pulumi.Input[float]] = None,
-            paranoia_level: Optional[pulumi.Input[float]] = None,
-            php_injection_score_threshold: Optional[pulumi.Input[float]] = None,
-            rce_score_threshold: Optional[pulumi.Input[float]] = None,
+            http_violation_score_threshold: Optional[pulumi.Input[int]] = None,
+            inbound_anomaly_score_threshold: Optional[pulumi.Input[int]] = None,
+            lfi_score_threshold: Optional[pulumi.Input[int]] = None,
+            max_file_size: Optional[pulumi.Input[int]] = None,
+            max_num_args: Optional[pulumi.Input[int]] = None,
+            notice_anomaly_score: Optional[pulumi.Input[int]] = None,
+            paranoia_level: Optional[pulumi.Input[int]] = None,
+            php_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+            rce_score_threshold: Optional[pulumi.Input[int]] = None,
             restricted_extensions: Optional[pulumi.Input[str]] = None,
             restricted_headers: Optional[pulumi.Input[str]] = None,
-            rfi_score_threshold: Optional[pulumi.Input[float]] = None,
-            rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
-            session_fixation_score_threshold: Optional[pulumi.Input[float]] = None,
-            sql_injection_score_threshold: Optional[pulumi.Input[float]] = None,
-            total_arg_length: Optional[pulumi.Input[float]] = None,
+            rfi_score_threshold: Optional[pulumi.Input[int]] = None,
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
+            session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
+            sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+            total_arg_length: Optional[pulumi.Input[int]] = None,
             waf_id: Optional[pulumi.Input[str]] = None,
-            warning_anomaly_score: Optional[pulumi.Input[float]] = None,
-            xss_score_threshold: Optional[pulumi.Input[float]] = None) -> 'ServiceWafConfiguration':
+            warning_anomaly_score: Optional[pulumi.Input[int]] = None,
+            xss_score_threshold: Optional[pulumi.Input[int]] = None) -> 'ServiceWafConfiguration':
         """
         Get an existing ServiceWafConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -185,32 +185,32 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] allowed_methods: A space-separated list of HTTP method names.
         :param pulumi.Input[str] allowed_request_content_type: Allowed request content types.
         :param pulumi.Input[str] allowed_request_content_type_charset: Allowed request content type charset.
-        :param pulumi.Input[float] arg_length: The maximum number of arguments allowed.
-        :param pulumi.Input[float] arg_name_length: The maximum allowed argument name length.
-        :param pulumi.Input[float] combined_file_sizes: The maximum allowed size of all files.
-        :param pulumi.Input[float] critical_anomaly_score: Score value to add for critical anomalies.
+        :param pulumi.Input[int] arg_length: The maximum number of arguments allowed.
+        :param pulumi.Input[int] arg_name_length: The maximum allowed argument name length.
+        :param pulumi.Input[int] combined_file_sizes: The maximum allowed size of all files.
+        :param pulumi.Input[int] critical_anomaly_score: Score value to add for critical anomalies.
         :param pulumi.Input[bool] crs_validate_utf8_encoding: CRS validate UTF8 encoding.
-        :param pulumi.Input[float] error_anomaly_score: Score value to add for error anomalies.
+        :param pulumi.Input[int] error_anomaly_score: Score value to add for error anomalies.
         :param pulumi.Input[str] high_risk_country_codes: A space-separated list of country codes in ISO 3166-1 (two-letter) format.
-        :param pulumi.Input[float] http_violation_score_threshold: HTTP violation threshold.
-        :param pulumi.Input[float] inbound_anomaly_score_threshold: Inbound anomaly threshold.
-        :param pulumi.Input[float] lfi_score_threshold: Local file inclusion attack threshold.
-        :param pulumi.Input[float] max_file_size: The maximum allowed file size, in bytes.
-        :param pulumi.Input[float] max_num_args: The maximum number of arguments allowed.
-        :param pulumi.Input[float] notice_anomaly_score: Score value to add for notice anomalies.
-        :param pulumi.Input[float] paranoia_level: The configured paranoia level.
-        :param pulumi.Input[float] php_injection_score_threshold: PHP injection threshold.
-        :param pulumi.Input[float] rce_score_threshold: Remote code execution threshold.
+        :param pulumi.Input[int] http_violation_score_threshold: HTTP violation threshold.
+        :param pulumi.Input[int] inbound_anomaly_score_threshold: Inbound anomaly threshold.
+        :param pulumi.Input[int] lfi_score_threshold: Local file inclusion attack threshold.
+        :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes.
+        :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed.
+        :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies.
+        :param pulumi.Input[int] paranoia_level: The configured paranoia level.
+        :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold.
+        :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold.
         :param pulumi.Input[str] restricted_extensions: A space-separated list of allowed file extensions.
         :param pulumi.Input[str] restricted_headers: A space-separated list of allowed header names.
-        :param pulumi.Input[float] rfi_score_threshold: Remote file inclusion attack threshold.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
-        :param pulumi.Input[float] session_fixation_score_threshold: Session fixation attack threshold.
-        :param pulumi.Input[float] sql_injection_score_threshold: SQL injection attack threshold.
-        :param pulumi.Input[float] total_arg_length: The maximum size of argument names and values.
+        :param pulumi.Input[int] rfi_score_threshold: Remote file inclusion attack threshold.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
+        :param pulumi.Input[int] session_fixation_score_threshold: Session fixation attack threshold.
+        :param pulumi.Input[int] sql_injection_score_threshold: SQL injection attack threshold.
+        :param pulumi.Input[int] total_arg_length: The maximum size of argument names and values.
         :param pulumi.Input[str] waf_id: The ID of the Web Application Firewall that the configuration belongs to.
-        :param pulumi.Input[float] warning_anomaly_score: Score value to add for warning anomalies.
-        :param pulumi.Input[float] xss_score_threshold: XSS attack threshold.
+        :param pulumi.Input[int] warning_anomaly_score: Score value to add for warning anomalies.
+        :param pulumi.Input[int] xss_score_threshold: XSS attack threshold.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -282,7 +282,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="argLength")
-    def arg_length(self) -> pulumi.Output[float]:
+    def arg_length(self) -> pulumi.Output[int]:
         """
         The maximum number of arguments allowed.
         """
@@ -290,7 +290,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="argNameLength")
-    def arg_name_length(self) -> pulumi.Output[float]:
+    def arg_name_length(self) -> pulumi.Output[int]:
         """
         The maximum allowed argument name length.
         """
@@ -298,7 +298,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="combinedFileSizes")
-    def combined_file_sizes(self) -> pulumi.Output[float]:
+    def combined_file_sizes(self) -> pulumi.Output[int]:
         """
         The maximum allowed size of all files.
         """
@@ -306,7 +306,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="criticalAnomalyScore")
-    def critical_anomaly_score(self) -> pulumi.Output[float]:
+    def critical_anomaly_score(self) -> pulumi.Output[int]:
         """
         Score value to add for critical anomalies.
         """
@@ -322,7 +322,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="errorAnomalyScore")
-    def error_anomaly_score(self) -> pulumi.Output[float]:
+    def error_anomaly_score(self) -> pulumi.Output[int]:
         """
         Score value to add for error anomalies.
         """
@@ -338,7 +338,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="httpViolationScoreThreshold")
-    def http_violation_score_threshold(self) -> pulumi.Output[float]:
+    def http_violation_score_threshold(self) -> pulumi.Output[int]:
         """
         HTTP violation threshold.
         """
@@ -346,7 +346,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="inboundAnomalyScoreThreshold")
-    def inbound_anomaly_score_threshold(self) -> pulumi.Output[float]:
+    def inbound_anomaly_score_threshold(self) -> pulumi.Output[int]:
         """
         Inbound anomaly threshold.
         """
@@ -354,7 +354,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="lfiScoreThreshold")
-    def lfi_score_threshold(self) -> pulumi.Output[float]:
+    def lfi_score_threshold(self) -> pulumi.Output[int]:
         """
         Local file inclusion attack threshold.
         """
@@ -362,7 +362,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxFileSize")
-    def max_file_size(self) -> pulumi.Output[float]:
+    def max_file_size(self) -> pulumi.Output[int]:
         """
         The maximum allowed file size, in bytes.
         """
@@ -370,7 +370,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxNumArgs")
-    def max_num_args(self) -> pulumi.Output[float]:
+    def max_num_args(self) -> pulumi.Output[int]:
         """
         The maximum number of arguments allowed.
         """
@@ -378,7 +378,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="noticeAnomalyScore")
-    def notice_anomaly_score(self) -> pulumi.Output[float]:
+    def notice_anomaly_score(self) -> pulumi.Output[int]:
         """
         Score value to add for notice anomalies.
         """
@@ -386,7 +386,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="paranoiaLevel")
-    def paranoia_level(self) -> pulumi.Output[float]:
+    def paranoia_level(self) -> pulumi.Output[int]:
         """
         The configured paranoia level.
         """
@@ -394,7 +394,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="phpInjectionScoreThreshold")
-    def php_injection_score_threshold(self) -> pulumi.Output[float]:
+    def php_injection_score_threshold(self) -> pulumi.Output[int]:
         """
         PHP injection threshold.
         """
@@ -402,7 +402,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rceScoreThreshold")
-    def rce_score_threshold(self) -> pulumi.Output[float]:
+    def rce_score_threshold(self) -> pulumi.Output[int]:
         """
         Remote code execution threshold.
         """
@@ -426,7 +426,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rfiScoreThreshold")
-    def rfi_score_threshold(self) -> pulumi.Output[float]:
+    def rfi_score_threshold(self) -> pulumi.Output[int]:
         """
         Remote file inclusion attack threshold.
         """
@@ -434,7 +434,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def rules(self) -> pulumi.Output[Optional[List['outputs.ServiceWafConfigurationRule']]]:
+    def rules(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceWafConfigurationRule']]]:
         """
         The Web Application Firewall's active rules.
         """
@@ -442,7 +442,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sessionFixationScoreThreshold")
-    def session_fixation_score_threshold(self) -> pulumi.Output[float]:
+    def session_fixation_score_threshold(self) -> pulumi.Output[int]:
         """
         Session fixation attack threshold.
         """
@@ -450,7 +450,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sqlInjectionScoreThreshold")
-    def sql_injection_score_threshold(self) -> pulumi.Output[float]:
+    def sql_injection_score_threshold(self) -> pulumi.Output[int]:
         """
         SQL injection attack threshold.
         """
@@ -458,7 +458,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="totalArgLength")
-    def total_arg_length(self) -> pulumi.Output[float]:
+    def total_arg_length(self) -> pulumi.Output[int]:
         """
         The maximum size of argument names and values.
         """
@@ -474,7 +474,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="warningAnomalyScore")
-    def warning_anomaly_score(self) -> pulumi.Output[float]:
+    def warning_anomaly_score(self) -> pulumi.Output[int]:
         """
         Score value to add for warning anomalies.
         """
@@ -482,7 +482,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="xssScoreThreshold")
-    def xss_score_threshold(self) -> pulumi.Output[float]:
+    def xss_score_threshold(self) -> pulumi.Output[int]:
         """
         XSS attack threshold.
         """

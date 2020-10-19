@@ -36,7 +36,7 @@
         }
     },
     "types": {
-        "fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry": {
+        "fastly:index/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry": {
             "properties": {
                 "comment": {
                     "type": "string",
@@ -96,7 +96,7 @@
                 }
             }
         },
-        "fastly:/ServiceComputeBackend:ServiceComputeBackend": {
+        "fastly:index/ServiceComputeBackend:ServiceComputeBackend": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -322,7 +322,7 @@
                 "name"
             ]
         },
-        "fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging": {
+        "fastly:index/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging": {
             "properties": {
                 "dataset": {
                     "type": "string",
@@ -397,7 +397,7 @@
                 "table"
             ]
         },
-        "fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging": {
+        "fastly:index/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging": {
             "properties": {
                 "accountName": {
                     "type": "string",
@@ -498,7 +498,7 @@
                 "sasToken"
             ]
         },
-        "fastly:/ServiceComputeDomain:ServiceComputeDomain": {
+        "fastly:index/ServiceComputeDomain:ServiceComputeDomain": {
             "properties": {
                 "comment": {
                     "type": "string",
@@ -524,7 +524,7 @@
                 "name"
             ]
         },
-        "fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging": {
+        "fastly:index/ServiceComputeGcslogging:ServiceComputeGcslogging": {
             "properties": {
                 "bucketName": {
                     "type": "string",
@@ -614,7 +614,7 @@
                 "name"
             ]
         },
-        "fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck": {
+        "fastly:index/ServiceComputeHealthcheck:ServiceComputeHealthcheck": {
             "properties": {
                 "checkInterval": {
                     "type": "integer",
@@ -723,7 +723,7 @@
                 "path"
             ]
         },
-        "fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging": {
+        "fastly:index/ServiceComputeHttpslogging:ServiceComputeHttpslogging": {
             "properties": {
                 "contentType": {
                     "type": "string",
@@ -858,7 +858,7 @@
                 "url"
             ]
         },
-        "fastly:/ServiceComputeLogentry:ServiceComputeLogentry": {
+        "fastly:index/ServiceComputeLogentry:ServiceComputeLogentry": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -903,7 +903,7 @@
                 "token"
             ]
         },
-        "fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile": {
+        "fastly:index/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile": {
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -1013,7 +1013,7 @@
                 "user"
             ]
         },
-        "fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog": {
+        "fastly:index/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1049,7 +1049,7 @@
                 "token"
             ]
         },
-        "fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean": {
+        "fastly:index/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean": {
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -1159,7 +1159,7 @@
                 "secretKey"
             ]
         },
-        "fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch": {
+        "fastly:index/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch": {
             "properties": {
                 "index": {
                     "type": "string",
@@ -1277,7 +1277,7 @@
                 "url"
             ]
         },
-        "fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp": {
+        "fastly:index/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -1388,7 +1388,7 @@
                 "user"
             ]
         },
-        "fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub": {
+        "fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1445,7 +1445,7 @@
                 "user"
             ]
         },
-        "fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku": {
+        "fastly:index/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1482,7 +1482,7 @@
                 "url"
             ]
         },
-        "fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb": {
+        "fastly:index/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb": {
             "properties": {
                 "dataset": {
                     "type": "string",
@@ -1519,7 +1519,7 @@
                 "token"
             ]
         },
-        "fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka": {
+        "fastly:index/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka": {
             "properties": {
                 "brokers": {
                     "type": "string",
@@ -1619,7 +1619,7 @@
                 "topic"
             ]
         },
-        "fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly": {
+        "fastly:index/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1646,7 +1646,7 @@
                 "token"
             ]
         },
-        "fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle": {
+        "fastly:index/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1683,7 +1683,7 @@
                 "url"
             ]
         },
-        "fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic": {
+        "fastly:index/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1710,7 +1710,7 @@
                 "token"
             ]
         },
-        "fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack": {
+        "fastly:index/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack": {
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -1821,7 +1821,7 @@
                 "user"
             ]
         },
-        "fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr": {
+        "fastly:index/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1857,7 +1857,7 @@
                 "token"
             ]
         },
-        "fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp": {
+        "fastly:index/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -1986,7 +1986,7 @@
                 "user"
             ]
         },
-        "fastly:/ServiceComputePackage:ServiceComputePackage": {
+        "fastly:index/ServiceComputePackage:ServiceComputePackage": {
             "properties": {
                 "filename": {
                     "type": "string",
@@ -2019,7 +2019,7 @@
                 }
             }
         },
-        "fastly:/ServiceComputePapertrail:ServiceComputePapertrail": {
+        "fastly:index/ServiceComputePapertrail:ServiceComputePapertrail": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -2056,7 +2056,7 @@
                 "port"
             ]
         },
-        "fastly:/ServiceComputeS3logging:ServiceComputeS3logging": {
+        "fastly:index/ServiceComputeS3logging:ServiceComputeS3logging": {
             "properties": {
                 "bucketName": {
                     "type": "string",
@@ -2189,7 +2189,7 @@
                 "name"
             ]
         },
-        "fastly:/ServiceComputeSplunk:ServiceComputeSplunk": {
+        "fastly:index/ServiceComputeSplunk:ServiceComputeSplunk": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -2244,7 +2244,7 @@
                 "url"
             ]
         },
-        "fastly:/ServiceComputeSumologic:ServiceComputeSumologic": {
+        "fastly:index/ServiceComputeSumologic:ServiceComputeSumologic": {
             "properties": {
                 "messageType": {
                     "type": "string",
@@ -2280,7 +2280,7 @@
                 "url"
             ]
         },
-        "fastly:/ServiceComputeSyslog:ServiceComputeSyslog": {
+        "fastly:index/ServiceComputeSyslog:ServiceComputeSyslog": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -2379,7 +2379,7 @@
                 "name"
             ]
         },
-        "fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule": {
+        "fastly:index/ServiceWafConfigurationRule:ServiceWafConfigurationRule": {
             "properties": {
                 "modsecRuleId": {
                     "type": "integer",
@@ -2424,7 +2424,7 @@
                 }
             }
         },
-        "fastly:/Servicev1Acl:Servicev1Acl": {
+        "fastly:index/Servicev1Acl:Servicev1Acl": {
             "properties": {
                 "aclId": {
                     "type": "string",
@@ -2458,7 +2458,7 @@
                 }
             }
         },
-        "fastly:/Servicev1Backend:Servicev1Backend": {
+        "fastly:index/Servicev1Backend:Servicev1Backend": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -2693,7 +2693,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging": {
+        "fastly:index/Servicev1Bigquerylogging:Servicev1Bigquerylogging": {
             "properties": {
                 "dataset": {
                     "type": "string",
@@ -2796,7 +2796,7 @@
                 "table"
             ]
         },
-        "fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging": {
+        "fastly:index/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging": {
             "properties": {
                 "accountName": {
                     "type": "string",
@@ -2933,7 +2933,7 @@
                 "sasToken"
             ]
         },
-        "fastly:/Servicev1CacheSetting:Servicev1CacheSetting": {
+        "fastly:index/Servicev1CacheSetting:Servicev1CacheSetting": {
             "properties": {
                 "action": {
                     "type": "string",
@@ -2986,7 +2986,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Condition:Servicev1Condition": {
+        "fastly:index/Servicev1Condition:Servicev1Condition": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -3032,7 +3032,7 @@
                 "type"
             ]
         },
-        "fastly:/Servicev1Dictionary:Servicev1Dictionary": {
+        "fastly:index/Servicev1Dictionary:Servicev1Dictionary": {
             "properties": {
                 "dictionaryId": {
                     "type": "string",
@@ -3075,7 +3075,7 @@
                 }
             }
         },
-        "fastly:/Servicev1Director:Servicev1Director": {
+        "fastly:index/Servicev1Director:Servicev1Director": {
             "properties": {
                 "backends": {
                     "type": "array",
@@ -3159,7 +3159,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Domain:Servicev1Domain": {
+        "fastly:index/Servicev1Domain:Servicev1Domain": {
             "properties": {
                 "comment": {
                     "type": "string",
@@ -3185,7 +3185,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet": {
+        "fastly:index/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -3239,7 +3239,7 @@
                 }
             }
         },
-        "fastly:/Servicev1Gcslogging:Servicev1Gcslogging": {
+        "fastly:index/Servicev1Gcslogging:Servicev1Gcslogging": {
             "properties": {
                 "bucketName": {
                     "type": "string",
@@ -3356,7 +3356,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Gzip:Servicev1Gzip": {
+        "fastly:index/Servicev1Gzip:Servicev1Gzip": {
             "properties": {
                 "cacheCondition": {
                     "type": "string",
@@ -3406,7 +3406,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Header:Servicev1Header": {
+        "fastly:index/Servicev1Header:Servicev1Header": {
             "properties": {
                 "action": {
                     "type": "string",
@@ -3538,7 +3538,7 @@
                 }
             }
         },
-        "fastly:/Servicev1Healthcheck:Servicev1Healthcheck": {
+        "fastly:index/Servicev1Healthcheck:Servicev1Healthcheck": {
             "properties": {
                 "checkInterval": {
                     "type": "integer",
@@ -3647,7 +3647,7 @@
                 "path"
             ]
         },
-        "fastly:/Servicev1Httpslogging:Servicev1Httpslogging": {
+        "fastly:index/Servicev1Httpslogging:Servicev1Httpslogging": {
             "properties": {
                 "contentType": {
                     "type": "string",
@@ -3818,7 +3818,7 @@
                 "url"
             ]
         },
-        "fastly:/Servicev1Logentry:Servicev1Logentry": {
+        "fastly:index/Servicev1Logentry:Servicev1Logentry": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -3899,7 +3899,7 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile": {
+        "fastly:index/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile": {
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -4045,7 +4045,7 @@
                 "user"
             ]
         },
-        "fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog": {
+        "fastly:index/Servicev1LoggingDatadog:Servicev1LoggingDatadog": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -4117,7 +4117,7 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean": {
+        "fastly:index/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean": {
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -4263,7 +4263,7 @@
                 "secretKey"
             ]
         },
-        "fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch": {
+        "fastly:index/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -4417,7 +4417,7 @@
                 "url"
             ]
         },
-        "fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp": {
+        "fastly:index/Servicev1LoggingFtp:Servicev1LoggingFtp": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -4564,7 +4564,7 @@
                 "user"
             ]
         },
-        "fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub": {
+        "fastly:index/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -4657,7 +4657,7 @@
                 "user"
             ]
         },
-        "fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku": {
+        "fastly:index/Servicev1LoggingHeroku:Servicev1LoggingHeroku": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -4730,7 +4730,7 @@
                 "url"
             ]
         },
-        "fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb": {
+        "fastly:index/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb": {
             "properties": {
                 "dataset": {
                     "type": "string",
@@ -4803,7 +4803,7 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka": {
+        "fastly:index/Servicev1LoggingKafka:Servicev1LoggingKafka": {
             "properties": {
                 "brokers": {
                     "type": "string",
@@ -4939,7 +4939,7 @@
                 "topic"
             ]
         },
-        "fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly": {
+        "fastly:index/Servicev1LoggingLoggly:Servicev1LoggingLoggly": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -5002,7 +5002,7 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle": {
+        "fastly:index/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -5075,7 +5075,7 @@
                 "url"
             ]
         },
-        "fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic": {
+        "fastly:index/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -5138,7 +5138,7 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack": {
+        "fastly:index/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack": {
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -5285,7 +5285,7 @@
                 "user"
             ]
         },
-        "fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr": {
+        "fastly:index/Servicev1LoggingScalyr:Servicev1LoggingScalyr": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -5357,7 +5357,7 @@
                 "token"
             ]
         },
-        "fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp": {
+        "fastly:index/Servicev1LoggingSftp:Servicev1LoggingSftp": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -5522,7 +5522,7 @@
                 "user"
             ]
         },
-        "fastly:/Servicev1Papertrail:Servicev1Papertrail": {
+        "fastly:index/Servicev1Papertrail:Servicev1Papertrail": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -5586,7 +5586,7 @@
                 "port"
             ]
         },
-        "fastly:/Servicev1RequestSetting:Servicev1RequestSetting": {
+        "fastly:index/Servicev1RequestSetting:Servicev1RequestSetting": {
             "properties": {
                 "action": {
                     "type": "string",
@@ -5702,7 +5702,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1ResponseObject:Servicev1ResponseObject": {
+        "fastly:index/Servicev1ResponseObject:Servicev1ResponseObject": {
             "properties": {
                 "cacheCondition": {
                     "type": "string",
@@ -5773,7 +5773,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1S3logging:Servicev1S3logging": {
+        "fastly:index/Servicev1S3logging:Servicev1S3logging": {
             "properties": {
                 "bucketName": {
                     "type": "string",
@@ -5944,7 +5944,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Snippet:Servicev1Snippet": {
+        "fastly:index/Servicev1Snippet:Servicev1Snippet": {
             "properties": {
                 "content": {
                     "type": "string",
@@ -5990,7 +5990,7 @@
                 "type"
             ]
         },
-        "fastly:/Servicev1Splunk:Servicev1Splunk": {
+        "fastly:index/Servicev1Splunk:Servicev1Splunk": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -6081,7 +6081,7 @@
                 "url"
             ]
         },
-        "fastly:/Servicev1Sumologic:Servicev1Sumologic": {
+        "fastly:index/Servicev1Sumologic:Servicev1Sumologic": {
             "properties": {
                 "format": {
                     "type": "string",
@@ -6153,7 +6153,7 @@
                 "url"
             ]
         },
-        "fastly:/Servicev1Syslog:Servicev1Syslog": {
+        "fastly:index/Servicev1Syslog:Servicev1Syslog": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -6288,7 +6288,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Vcl:Servicev1Vcl": {
+        "fastly:index/Servicev1Vcl:Servicev1Vcl": {
             "properties": {
                 "content": {
                     "type": "string",
@@ -6324,7 +6324,7 @@
                 "name"
             ]
         },
-        "fastly:/Servicev1Waf:Servicev1Waf": {
+        "fastly:index/Servicev1Waf:Servicev1Waf": {
             "properties": {
                 "prefetchCondition": {
                     "type": "string",
@@ -6367,7 +6367,7 @@
                 }
             }
         },
-        "fastly:/getWafRulesRule:getWafRulesRule": {
+        "fastly:index/getWafRulesRule:getWafRulesRule": {
             "properties": {
                 "latestRevisionNumber": {
                     "type": "integer",
@@ -6444,7 +6444,7 @@
                 "entries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
+                        "$ref": "#/types/fastly:index/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
                     },
                     "description": "A Set ACL entries that are applied to the service. Defined below\n"
                 },
@@ -6465,7 +6465,7 @@
                 "entries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
+                        "$ref": "#/types/fastly:index/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
                     },
                     "description": "A Set ACL entries that are applied to the service. Defined below\n"
                 },
@@ -6488,7 +6488,7 @@
                     "entries": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
+                            "$ref": "#/types/fastly:index/ServiceACLEntriesv1Entry:ServiceACLEntriesv1Entry"
                         },
                         "description": "A Set ACL entries that are applied to the service. Defined below\n"
                     },
@@ -6514,21 +6514,21 @@
                 "backends": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeBackend:ServiceComputeBackend"
+                        "$ref": "#/types/fastly:index/ServiceComputeBackend:ServiceComputeBackend"
                     },
                     "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
                 },
                 "bigqueryloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
                     },
                     "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "blobstorageloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
                     },
                     "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
                 },
@@ -6542,7 +6542,7 @@
                 "domains": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeDomain:ServiceComputeDomain"
+                        "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                     },
                     "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                 },
@@ -6553,133 +6553,133 @@
                 "gcsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeGcslogging:ServiceComputeGcslogging"
                     },
                     "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "healthchecks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
+                        "$ref": "#/types/fastly:index/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
                     },
                     "description": "Name of a defined `healthcheck` to assign to this backend.\n"
                 },
                 "httpsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
                     },
                     "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "logentries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLogentry:ServiceComputeLogentry"
+                        "$ref": "#/types/fastly:index/ServiceComputeLogentry:ServiceComputeLogentry"
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "loggingCloudfiles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
                     },
                     "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDatadogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
                     },
                     "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDigitaloceans": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
                     },
                     "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingElasticsearches": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
                     },
                     "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingFtps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
                     },
                     "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingGooglepubsubs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
                     },
                     "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHeroku": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
                     },
                     "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHoneycombs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
                     },
                     "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingKafkas": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogglies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
                     },
                     "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogshuttles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
                     },
                     "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingNewrelics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
                     },
                     "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingOpenstacks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
                     },
                     "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingScalyrs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
                     },
                     "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingSftps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
                     },
                     "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
@@ -6688,41 +6688,41 @@
                     "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
                 },
                 "package": {
-                    "$ref": "#/types/fastly:/ServiceComputePackage:ServiceComputePackage",
+                    "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
                     "description": "A Wasm deployment package to upload. Defined below.\n"
                 },
                 "papertrails": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputePapertrail:ServiceComputePapertrail"
+                        "$ref": "#/types/fastly:index/ServiceComputePapertrail:ServiceComputePapertrail"
                     },
                     "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "s3loggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeS3logging:ServiceComputeS3logging"
+                        "$ref": "#/types/fastly:index/ServiceComputeS3logging:ServiceComputeS3logging"
                     },
                     "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
                 },
                 "splunks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeSplunk:ServiceComputeSplunk"
+                        "$ref": "#/types/fastly:index/ServiceComputeSplunk:ServiceComputeSplunk"
                     },
                     "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "sumologics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeSumologic:ServiceComputeSumologic"
+                        "$ref": "#/types/fastly:index/ServiceComputeSumologic:ServiceComputeSumologic"
                     },
                     "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "syslogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeSyslog:ServiceComputeSyslog"
+                        "$ref": "#/types/fastly:index/ServiceComputeSyslog:ServiceComputeSyslog"
                     },
                     "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
                 },
@@ -6746,21 +6746,21 @@
                 "backends": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeBackend:ServiceComputeBackend"
+                        "$ref": "#/types/fastly:index/ServiceComputeBackend:ServiceComputeBackend"
                     },
                     "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
                 },
                 "bigqueryloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
                     },
                     "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "blobstorageloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
                     },
                     "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
                 },
@@ -6771,7 +6771,7 @@
                 "domains": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeDomain:ServiceComputeDomain"
+                        "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                     },
                     "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                 },
@@ -6782,133 +6782,133 @@
                 "gcsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeGcslogging:ServiceComputeGcslogging"
                     },
                     "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "healthchecks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
+                        "$ref": "#/types/fastly:index/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
                     },
                     "description": "Name of a defined `healthcheck` to assign to this backend.\n"
                 },
                 "httpsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
+                        "$ref": "#/types/fastly:index/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
                     },
                     "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "logentries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLogentry:ServiceComputeLogentry"
+                        "$ref": "#/types/fastly:index/ServiceComputeLogentry:ServiceComputeLogentry"
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "loggingCloudfiles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
                     },
                     "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDatadogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
                     },
                     "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDigitaloceans": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
                     },
                     "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingElasticsearches": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
                     },
                     "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingFtps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
                     },
                     "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingGooglepubsubs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
                     },
                     "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHeroku": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
                     },
                     "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHoneycombs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
                     },
                     "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingKafkas": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogglies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
                     },
                     "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogshuttles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
                     },
                     "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingNewrelics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
                     },
                     "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingOpenstacks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
                     },
                     "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingScalyrs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
                     },
                     "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingSftps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
                     },
                     "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
@@ -6917,41 +6917,41 @@
                     "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
                 },
                 "package": {
-                    "$ref": "#/types/fastly:/ServiceComputePackage:ServiceComputePackage",
+                    "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
                     "description": "A Wasm deployment package to upload. Defined below.\n"
                 },
                 "papertrails": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputePapertrail:ServiceComputePapertrail"
+                        "$ref": "#/types/fastly:index/ServiceComputePapertrail:ServiceComputePapertrail"
                     },
                     "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "s3loggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeS3logging:ServiceComputeS3logging"
+                        "$ref": "#/types/fastly:index/ServiceComputeS3logging:ServiceComputeS3logging"
                     },
                     "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
                 },
                 "splunks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeSplunk:ServiceComputeSplunk"
+                        "$ref": "#/types/fastly:index/ServiceComputeSplunk:ServiceComputeSplunk"
                     },
                     "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "sumologics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeSumologic:ServiceComputeSumologic"
+                        "$ref": "#/types/fastly:index/ServiceComputeSumologic:ServiceComputeSumologic"
                     },
                     "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "syslogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceComputeSyslog:ServiceComputeSyslog"
+                        "$ref": "#/types/fastly:index/ServiceComputeSyslog:ServiceComputeSyslog"
                     },
                     "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
                 },
@@ -6978,21 +6978,21 @@
                     "backends": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeBackend:ServiceComputeBackend"
+                            "$ref": "#/types/fastly:index/ServiceComputeBackend:ServiceComputeBackend"
                         },
                         "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
                     },
                     "bigqueryloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
+                            "$ref": "#/types/fastly:index/ServiceComputeBigquerylogging:ServiceComputeBigquerylogging"
                         },
                         "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "blobstorageloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
+                            "$ref": "#/types/fastly:index/ServiceComputeBlobstoragelogging:ServiceComputeBlobstoragelogging"
                         },
                         "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
                     },
@@ -7006,7 +7006,7 @@
                     "domains": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeDomain:ServiceComputeDomain"
+                            "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                         },
                         "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                     },
@@ -7017,133 +7017,133 @@
                     "gcsloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeGcslogging:ServiceComputeGcslogging"
+                            "$ref": "#/types/fastly:index/ServiceComputeGcslogging:ServiceComputeGcslogging"
                         },
                         "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "healthchecks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
+                            "$ref": "#/types/fastly:index/ServiceComputeHealthcheck:ServiceComputeHealthcheck"
                         },
                         "description": "Name of a defined `healthcheck` to assign to this backend.\n"
                     },
                     "httpsloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
+                            "$ref": "#/types/fastly:index/ServiceComputeHttpslogging:ServiceComputeHttpslogging"
                         },
                         "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "logentries": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLogentry:ServiceComputeLogentry"
+                            "$ref": "#/types/fastly:index/ServiceComputeLogentry:ServiceComputeLogentry"
                         },
                         "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "loggingCloudfiles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingCloudfile:ServiceComputeLoggingCloudfile"
                         },
                         "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingDatadogs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingDatadog:ServiceComputeLoggingDatadog"
                         },
                         "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingDigitaloceans": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingDigitalocean:ServiceComputeLoggingDigitalocean"
                         },
                         "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingElasticsearches": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingElasticsearch:ServiceComputeLoggingElasticsearch"
                         },
                         "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingFtps": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingFtp:ServiceComputeLoggingFtp"
                         },
                         "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingGooglepubsubs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
                         },
                         "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingHeroku": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku"
                         },
                         "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingHoneycombs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingHoneycomb:ServiceComputeLoggingHoneycomb"
                         },
                         "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingKafkas": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingKafka:ServiceComputeLoggingKafka"
                         },
                         "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingLogglies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly"
                         },
                         "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingLogshuttles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingLogshuttle:ServiceComputeLoggingLogshuttle"
                         },
                         "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingNewrelics": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingNewrelic:ServiceComputeLoggingNewrelic"
                         },
                         "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingOpenstacks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingOpenstack:ServiceComputeLoggingOpenstack"
                         },
                         "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingScalyrs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingScalyr:ServiceComputeLoggingScalyr"
                         },
                         "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingSftps": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingSftp:ServiceComputeLoggingSftp"
                         },
                         "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
                     },
@@ -7152,41 +7152,41 @@
                         "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
                     },
                     "package": {
-                        "$ref": "#/types/fastly:/ServiceComputePackage:ServiceComputePackage",
+                        "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
                         "description": "A Wasm deployment package to upload. Defined below.\n"
                     },
                     "papertrails": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputePapertrail:ServiceComputePapertrail"
+                            "$ref": "#/types/fastly:index/ServiceComputePapertrail:ServiceComputePapertrail"
                         },
                         "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "s3loggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeS3logging:ServiceComputeS3logging"
+                            "$ref": "#/types/fastly:index/ServiceComputeS3logging:ServiceComputeS3logging"
                         },
                         "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
                     },
                     "splunks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeSplunk:ServiceComputeSplunk"
+                            "$ref": "#/types/fastly:index/ServiceComputeSplunk:ServiceComputeSplunk"
                         },
                         "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "sumologics": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeSumologic:ServiceComputeSumologic"
+                            "$ref": "#/types/fastly:index/ServiceComputeSumologic:ServiceComputeSumologic"
                         },
                         "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "syslogs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceComputeSyslog:ServiceComputeSyslog"
+                            "$ref": "#/types/fastly:index/ServiceComputeSyslog:ServiceComputeSyslog"
                         },
                         "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
                     },
@@ -7418,7 +7418,7 @@
                 "rules": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
+                        "$ref": "#/types/fastly:index/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
                     },
                     "description": "The Web Application Firewall's active rules.\n"
                 },
@@ -7574,7 +7574,7 @@
                 "rules": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
+                        "$ref": "#/types/fastly:index/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
                     },
                     "description": "The Web Application Firewall's active rules.\n"
                 },
@@ -7704,7 +7704,7 @@
                     "rules": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
+                            "$ref": "#/types/fastly:index/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
                         },
                         "description": "The Web Application Firewall's active rules.\n"
                     },
@@ -7741,7 +7741,7 @@
                 "acls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Acl:Servicev1Acl"
+                        "$ref": "#/types/fastly:index/Servicev1Acl:Servicev1Acl"
                     },
                     "description": "A set of ACL configuration blocks.  Defined below.\n"
                 },
@@ -7756,28 +7756,28 @@
                 "backends": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Backend:Servicev1Backend"
+                        "$ref": "#/types/fastly:index/Servicev1Backend:Servicev1Backend"
                     },
                     "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
                 },
                 "bigqueryloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
+                        "$ref": "#/types/fastly:index/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
                     },
                     "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "blobstorageloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
+                        "$ref": "#/types/fastly:index/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
                     },
                     "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "cacheSettings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1CacheSetting:Servicev1CacheSetting"
+                        "$ref": "#/types/fastly:index/Servicev1CacheSetting:Servicev1CacheSetting"
                     },
                     "description": "A set of Cache Settings, allowing you to override\n"
                 },
@@ -7792,7 +7792,7 @@
                 "conditions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Condition:Servicev1Condition"
+                        "$ref": "#/types/fastly:index/Servicev1Condition:Servicev1Condition"
                     },
                     "description": "A set of conditions to add logic to any basic\nconfiguration object in this service. Defined below.\n"
                 },
@@ -7807,28 +7807,28 @@
                 "dictionaries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Dictionary:Servicev1Dictionary"
+                        "$ref": "#/types/fastly:index/Servicev1Dictionary:Servicev1Dictionary"
                     },
                     "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
                 },
                 "directors": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Director:Servicev1Director"
+                        "$ref": "#/types/fastly:index/Servicev1Director:Servicev1Director"
                     },
                     "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
                 },
                 "domains": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
+                        "$ref": "#/types/fastly:index/Servicev1Domain:Servicev1Domain"
                     },
                     "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                 },
                 "dynamicsnippets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
+                        "$ref": "#/types/fastly:index/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
                     },
                     "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
                 },
@@ -7839,147 +7839,147 @@
                 "gcsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Gcslogging:Servicev1Gcslogging"
+                        "$ref": "#/types/fastly:index/Servicev1Gcslogging:Servicev1Gcslogging"
                     },
                     "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "gzips": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Gzip:Servicev1Gzip"
+                        "$ref": "#/types/fastly:index/Servicev1Gzip:Servicev1Gzip"
                     },
                     "description": "A set of gzip rules to control automatic gzipping of\ncontent. Defined below.\n"
                 },
                 "headers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Header:Servicev1Header"
+                        "$ref": "#/types/fastly:index/Servicev1Header:Servicev1Header"
                     },
                     "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
                 },
                 "healthchecks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Healthcheck:Servicev1Healthcheck"
+                        "$ref": "#/types/fastly:index/Servicev1Healthcheck:Servicev1Healthcheck"
                     },
                     "description": "Name of a defined `healthcheck` to assign to this backend.\n"
                 },
                 "httpsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Httpslogging:Servicev1Httpslogging"
+                        "$ref": "#/types/fastly:index/Servicev1Httpslogging:Servicev1Httpslogging"
                     },
                     "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "logentries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Logentry:Servicev1Logentry"
+                        "$ref": "#/types/fastly:index/Servicev1Logentry:Servicev1Logentry"
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "loggingCloudfiles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
                     },
                     "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDatadogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
                     },
                     "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDigitaloceans": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
                     },
                     "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingElasticsearches": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
                     },
                     "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingFtps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingFtp:Servicev1LoggingFtp"
                     },
                     "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingGooglepubsubs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
                     },
                     "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHeroku": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
                     },
                     "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHoneycombs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
                     },
                     "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingKafkas": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingKafka:Servicev1LoggingKafka"
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogglies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
                     },
                     "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogshuttles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
                     },
                     "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingNewrelics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
                     },
                     "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingOpenstacks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
                     },
                     "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingScalyrs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
                     },
                     "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingSftps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingSftp:Servicev1LoggingSftp"
                     },
                     "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
@@ -7990,63 +7990,63 @@
                 "papertrails": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Papertrail:Servicev1Papertrail"
+                        "$ref": "#/types/fastly:index/Servicev1Papertrail:Servicev1Papertrail"
                     },
                     "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "requestSettings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1RequestSetting:Servicev1RequestSetting"
+                        "$ref": "#/types/fastly:index/Servicev1RequestSetting:Servicev1RequestSetting"
                     },
                     "description": "A set of Request modifiers. Defined below\n"
                 },
                 "responseObjects": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
+                        "$ref": "#/types/fastly:index/Servicev1ResponseObject:Servicev1ResponseObject"
                     },
                     "description": "The name of the response object used by the Web Application Firewall.\n"
                 },
                 "s3loggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1S3logging:Servicev1S3logging"
+                        "$ref": "#/types/fastly:index/Servicev1S3logging:Servicev1S3logging"
                     },
                     "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
                 },
                 "snippets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Snippet:Servicev1Snippet"
+                        "$ref": "#/types/fastly:index/Servicev1Snippet:Servicev1Snippet"
                     },
                     "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
                 },
                 "splunks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Splunk:Servicev1Splunk"
+                        "$ref": "#/types/fastly:index/Servicev1Splunk:Servicev1Splunk"
                     },
                     "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "sumologics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Sumologic:Servicev1Sumologic"
+                        "$ref": "#/types/fastly:index/Servicev1Sumologic:Servicev1Sumologic"
                     },
                     "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "syslogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Syslog:Servicev1Syslog"
+                        "$ref": "#/types/fastly:index/Servicev1Syslog:Servicev1Syslog"
                     },
                     "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "vcls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
+                        "$ref": "#/types/fastly:index/Servicev1Vcl:Servicev1Vcl"
                     },
                     "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                 },
@@ -8055,7 +8055,7 @@
                     "description": "Description field for the version.\n"
                 },
                 "waf": {
-                    "$ref": "#/types/fastly:/Servicev1Waf:Servicev1Waf",
+                    "$ref": "#/types/fastly:index/Servicev1Waf:Servicev1Waf",
                     "description": "A WAF configuration block.  Defined below.\n"
                 }
             },
@@ -8070,7 +8070,7 @@
                 "acls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Acl:Servicev1Acl"
+                        "$ref": "#/types/fastly:index/Servicev1Acl:Servicev1Acl"
                     },
                     "description": "A set of ACL configuration blocks.  Defined below.\n"
                 },
@@ -8081,28 +8081,28 @@
                 "backends": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Backend:Servicev1Backend"
+                        "$ref": "#/types/fastly:index/Servicev1Backend:Servicev1Backend"
                     },
                     "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
                 },
                 "bigqueryloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
+                        "$ref": "#/types/fastly:index/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
                     },
                     "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "blobstorageloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
+                        "$ref": "#/types/fastly:index/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
                     },
                     "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "cacheSettings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1CacheSetting:Servicev1CacheSetting"
+                        "$ref": "#/types/fastly:index/Servicev1CacheSetting:Servicev1CacheSetting"
                     },
                     "description": "A set of Cache Settings, allowing you to override\n"
                 },
@@ -8113,7 +8113,7 @@
                 "conditions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Condition:Servicev1Condition"
+                        "$ref": "#/types/fastly:index/Servicev1Condition:Servicev1Condition"
                     },
                     "description": "A set of conditions to add logic to any basic\nconfiguration object in this service. Defined below.\n"
                 },
@@ -8128,28 +8128,28 @@
                 "dictionaries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Dictionary:Servicev1Dictionary"
+                        "$ref": "#/types/fastly:index/Servicev1Dictionary:Servicev1Dictionary"
                     },
                     "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
                 },
                 "directors": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Director:Servicev1Director"
+                        "$ref": "#/types/fastly:index/Servicev1Director:Servicev1Director"
                     },
                     "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
                 },
                 "domains": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
+                        "$ref": "#/types/fastly:index/Servicev1Domain:Servicev1Domain"
                     },
                     "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                 },
                 "dynamicsnippets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
+                        "$ref": "#/types/fastly:index/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
                     },
                     "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
                 },
@@ -8160,147 +8160,147 @@
                 "gcsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Gcslogging:Servicev1Gcslogging"
+                        "$ref": "#/types/fastly:index/Servicev1Gcslogging:Servicev1Gcslogging"
                     },
                     "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "gzips": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Gzip:Servicev1Gzip"
+                        "$ref": "#/types/fastly:index/Servicev1Gzip:Servicev1Gzip"
                     },
                     "description": "A set of gzip rules to control automatic gzipping of\ncontent. Defined below.\n"
                 },
                 "headers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Header:Servicev1Header"
+                        "$ref": "#/types/fastly:index/Servicev1Header:Servicev1Header"
                     },
                     "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
                 },
                 "healthchecks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Healthcheck:Servicev1Healthcheck"
+                        "$ref": "#/types/fastly:index/Servicev1Healthcheck:Servicev1Healthcheck"
                     },
                     "description": "Name of a defined `healthcheck` to assign to this backend.\n"
                 },
                 "httpsloggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Httpslogging:Servicev1Httpslogging"
+                        "$ref": "#/types/fastly:index/Servicev1Httpslogging:Servicev1Httpslogging"
                     },
                     "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "logentries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Logentry:Servicev1Logentry"
+                        "$ref": "#/types/fastly:index/Servicev1Logentry:Servicev1Logentry"
                     },
                     "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "loggingCloudfiles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
                     },
                     "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDatadogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
                     },
                     "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingDigitaloceans": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
                     },
                     "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingElasticsearches": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
                     },
                     "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingFtps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingFtp:Servicev1LoggingFtp"
                     },
                     "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingGooglepubsubs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
                     },
                     "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHeroku": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
                     },
                     "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingHoneycombs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
                     },
                     "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingKafkas": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingKafka:Servicev1LoggingKafka"
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogglies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
                     },
                     "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogshuttles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
                     },
                     "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingNewrelics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
                     },
                     "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingOpenstacks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
                     },
                     "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingScalyrs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
                     },
                     "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingSftps": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp"
+                        "$ref": "#/types/fastly:index/Servicev1LoggingSftp:Servicev1LoggingSftp"
                     },
                     "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
                 },
@@ -8311,63 +8311,63 @@
                 "papertrails": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Papertrail:Servicev1Papertrail"
+                        "$ref": "#/types/fastly:index/Servicev1Papertrail:Servicev1Papertrail"
                     },
                     "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "requestSettings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1RequestSetting:Servicev1RequestSetting"
+                        "$ref": "#/types/fastly:index/Servicev1RequestSetting:Servicev1RequestSetting"
                     },
                     "description": "A set of Request modifiers. Defined below\n"
                 },
                 "responseObjects": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
+                        "$ref": "#/types/fastly:index/Servicev1ResponseObject:Servicev1ResponseObject"
                     },
                     "description": "The name of the response object used by the Web Application Firewall.\n"
                 },
                 "s3loggings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1S3logging:Servicev1S3logging"
+                        "$ref": "#/types/fastly:index/Servicev1S3logging:Servicev1S3logging"
                     },
                     "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
                 },
                 "snippets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Snippet:Servicev1Snippet"
+                        "$ref": "#/types/fastly:index/Servicev1Snippet:Servicev1Snippet"
                     },
                     "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
                 },
                 "splunks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Splunk:Servicev1Splunk"
+                        "$ref": "#/types/fastly:index/Servicev1Splunk:Servicev1Splunk"
                     },
                     "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "sumologics": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Sumologic:Servicev1Sumologic"
+                        "$ref": "#/types/fastly:index/Servicev1Sumologic:Servicev1Sumologic"
                     },
                     "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "syslogs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Syslog:Servicev1Syslog"
+                        "$ref": "#/types/fastly:index/Servicev1Syslog:Servicev1Syslog"
                     },
                     "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
                 },
                 "vcls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
+                        "$ref": "#/types/fastly:index/Servicev1Vcl:Servicev1Vcl"
                     },
                     "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                 },
@@ -8376,7 +8376,7 @@
                     "description": "Description field for the version.\n"
                 },
                 "waf": {
-                    "$ref": "#/types/fastly:/Servicev1Waf:Servicev1Waf",
+                    "$ref": "#/types/fastly:index/Servicev1Waf:Servicev1Waf",
                     "description": "A WAF configuration block.  Defined below.\n"
                 }
             },
@@ -8389,7 +8389,7 @@
                     "acls": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Acl:Servicev1Acl"
+                            "$ref": "#/types/fastly:index/Servicev1Acl:Servicev1Acl"
                         },
                         "description": "A set of ACL configuration blocks.  Defined below.\n"
                     },
@@ -8404,28 +8404,28 @@
                     "backends": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Backend:Servicev1Backend"
+                            "$ref": "#/types/fastly:index/Servicev1Backend:Servicev1Backend"
                         },
                         "description": "A set of Backends to service requests from your Domains.\nDefined below. Backends must be defined in this argument, or defined in the\n`vcl` argument below\n"
                     },
                     "bigqueryloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
+                            "$ref": "#/types/fastly:index/Servicev1Bigquerylogging:Servicev1Bigquerylogging"
                         },
                         "description": "A BigQuery endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "blobstorageloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
+                            "$ref": "#/types/fastly:index/Servicev1Blobstoragelogging:Servicev1Blobstoragelogging"
                         },
                         "description": "An Azure Blob Storage endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "cacheSettings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1CacheSetting:Servicev1CacheSetting"
+                            "$ref": "#/types/fastly:index/Servicev1CacheSetting:Servicev1CacheSetting"
                         },
                         "description": "A set of Cache Settings, allowing you to override\n"
                     },
@@ -8440,7 +8440,7 @@
                     "conditions": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Condition:Servicev1Condition"
+                            "$ref": "#/types/fastly:index/Servicev1Condition:Servicev1Condition"
                         },
                         "description": "A set of conditions to add logic to any basic\nconfiguration object in this service. Defined below.\n"
                     },
@@ -8455,28 +8455,28 @@
                     "dictionaries": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Dictionary:Servicev1Dictionary"
+                            "$ref": "#/types/fastly:index/Servicev1Dictionary:Servicev1Dictionary"
                         },
                         "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
                     },
                     "directors": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Director:Servicev1Director"
+                            "$ref": "#/types/fastly:index/Servicev1Director:Servicev1Director"
                         },
                         "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
                     },
                     "domains": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Domain:Servicev1Domain"
+                            "$ref": "#/types/fastly:index/Servicev1Domain:Servicev1Domain"
                         },
                         "description": "The domain of the DigitalOcean Spaces endpoint (default \"nyc3.digitaloceanspaces.com\").\n"
                     },
                     "dynamicsnippets": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
+                            "$ref": "#/types/fastly:index/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
                         },
                         "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
                     },
@@ -8487,147 +8487,147 @@
                     "gcsloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Gcslogging:Servicev1Gcslogging"
+                            "$ref": "#/types/fastly:index/Servicev1Gcslogging:Servicev1Gcslogging"
                         },
                         "description": "A gcs endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "gzips": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Gzip:Servicev1Gzip"
+                            "$ref": "#/types/fastly:index/Servicev1Gzip:Servicev1Gzip"
                         },
                         "description": "A set of gzip rules to control automatic gzipping of\ncontent. Defined below.\n"
                     },
                     "headers": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Header:Servicev1Header"
+                            "$ref": "#/types/fastly:index/Servicev1Header:Servicev1Header"
                         },
                         "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
                     },
                     "healthchecks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Healthcheck:Servicev1Healthcheck"
+                            "$ref": "#/types/fastly:index/Servicev1Healthcheck:Servicev1Healthcheck"
                         },
                         "description": "Name of a defined `healthcheck` to assign to this backend.\n"
                     },
                     "httpsloggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Httpslogging:Servicev1Httpslogging"
+                            "$ref": "#/types/fastly:index/Servicev1Httpslogging:Servicev1Httpslogging"
                         },
                         "description": "An HTTPS endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "logentries": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Logentry:Servicev1Logentry"
+                            "$ref": "#/types/fastly:index/Servicev1Logentry:Servicev1Logentry"
                         },
                         "description": "A logentries endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "loggingCloudfiles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingCloudfile:Servicev1LoggingCloudfile"
                         },
                         "description": "A Rackspace Cloud Files endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingDatadogs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingDatadog:Servicev1LoggingDatadog"
                         },
                         "description": "A Datadog endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingDigitaloceans": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingDigitalocean:Servicev1LoggingDigitalocean"
                         },
                         "description": "A DigitalOcean Spaces endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingElasticsearches": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingElasticsearch:Servicev1LoggingElasticsearch"
                         },
                         "description": "An Elasticsearch endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingFtps": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingFtp:Servicev1LoggingFtp"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingFtp:Servicev1LoggingFtp"
                         },
                         "description": "An FTP endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingGooglepubsubs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingGooglepubsub:Servicev1LoggingGooglepubsub"
                         },
                         "description": "A Google Cloud Pub/Sub endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingHeroku": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingHeroku:Servicev1LoggingHeroku"
                         },
                         "description": "A Heroku endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingHoneycombs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingHoneycomb:Servicev1LoggingHoneycomb"
                         },
                         "description": "A Honeycomb endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingKafkas": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingKafka:Servicev1LoggingKafka"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingKafka:Servicev1LoggingKafka"
                         },
                         "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingLogglies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingLoggly:Servicev1LoggingLoggly"
                         },
                         "description": "A Loggly endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingLogshuttles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingLogshuttle:Servicev1LoggingLogshuttle"
                         },
                         "description": "A Log Shuttle endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingNewrelics": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingNewrelic:Servicev1LoggingNewrelic"
                         },
                         "description": "A New Relic endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingOpenstacks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingOpenstack:Servicev1LoggingOpenstack"
                         },
                         "description": "An OpenStack endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingScalyrs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingScalyr:Servicev1LoggingScalyr"
                         },
                         "description": "A Scalyr endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingSftps": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1LoggingSftp:Servicev1LoggingSftp"
+                            "$ref": "#/types/fastly:index/Servicev1LoggingSftp:Servicev1LoggingSftp"
                         },
                         "description": "An SFTP endpoint to send streaming logs to.\nDefined below.\n"
                     },
@@ -8638,63 +8638,63 @@
                     "papertrails": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Papertrail:Servicev1Papertrail"
+                            "$ref": "#/types/fastly:index/Servicev1Papertrail:Servicev1Papertrail"
                         },
                         "description": "A Papertrail endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "requestSettings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1RequestSetting:Servicev1RequestSetting"
+                            "$ref": "#/types/fastly:index/Servicev1RequestSetting:Servicev1RequestSetting"
                         },
                         "description": "A set of Request modifiers. Defined below\n"
                     },
                     "responseObjects": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1ResponseObject:Servicev1ResponseObject"
+                            "$ref": "#/types/fastly:index/Servicev1ResponseObject:Servicev1ResponseObject"
                         },
                         "description": "The name of the response object used by the Web Application Firewall.\n"
                     },
                     "s3loggings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1S3logging:Servicev1S3logging"
+                            "$ref": "#/types/fastly:index/Servicev1S3logging:Servicev1S3logging"
                         },
                         "description": "A set of S3 Buckets to send streaming logs too.\nDefined below.\n"
                     },
                     "snippets": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Snippet:Servicev1Snippet"
+                            "$ref": "#/types/fastly:index/Servicev1Snippet:Servicev1Snippet"
                         },
                         "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
                     },
                     "splunks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Splunk:Servicev1Splunk"
+                            "$ref": "#/types/fastly:index/Servicev1Splunk:Servicev1Splunk"
                         },
                         "description": "A Splunk endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "sumologics": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Sumologic:Servicev1Sumologic"
+                            "$ref": "#/types/fastly:index/Servicev1Sumologic:Servicev1Sumologic"
                         },
                         "description": "A Sumologic endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "syslogs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Syslog:Servicev1Syslog"
+                            "$ref": "#/types/fastly:index/Servicev1Syslog:Servicev1Syslog"
                         },
                         "description": "A syslog endpoint to send streaming logs too.\nDefined below.\n"
                     },
                     "vcls": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/Servicev1Vcl:Servicev1Vcl"
+                            "$ref": "#/types/fastly:index/Servicev1Vcl:Servicev1Vcl"
                         },
                         "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                     },
@@ -8703,7 +8703,7 @@
                         "description": "Description field for the version.\n"
                     },
                     "waf": {
-                        "$ref": "#/types/fastly:/Servicev1Waf:Servicev1Waf",
+                        "$ref": "#/types/fastly:index/Servicev1Waf:Servicev1Waf",
                         "description": "A WAF configuration block.  Defined below.\n"
                     }
                 },
@@ -8850,7 +8850,7 @@
                     "rules": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/fastly:/getWafRulesRule:getWafRulesRule"
+                            "$ref": "#/types/fastly:index/getWafRulesRule:getWafRulesRule"
                         },
                         "description": "The Web Application Firewall's rules result set.\n"
                     },
