@@ -4863,6 +4863,139 @@ func (o ServiceWafConfigurationRuleArrayOutput) Index(i pulumi.IntInput) Service
 	}).(ServiceWafConfigurationRuleOutput)
 }
 
+type ServiceWafConfigurationRuleExclusion struct {
+	// A conditional expression in VCL used to determine if the condition is met.
+	Condition string `pulumi:"condition"`
+	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+	ExclusionType string `pulumi:"exclusionType"`
+	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+	ModsecRuleIds []int `pulumi:"modsecRuleIds"`
+	// The name of rule exclusion.
+	Name string `pulumi:"name"`
+	// The numeric ID assigned to the WAF Rule Exclusion.
+	Number *int `pulumi:"number"`
+}
+
+// ServiceWafConfigurationRuleExclusionInput is an input type that accepts ServiceWafConfigurationRuleExclusionArgs and ServiceWafConfigurationRuleExclusionOutput values.
+// You can construct a concrete instance of `ServiceWafConfigurationRuleExclusionInput` via:
+//
+//          ServiceWafConfigurationRuleExclusionArgs{...}
+type ServiceWafConfigurationRuleExclusionInput interface {
+	pulumi.Input
+
+	ToServiceWafConfigurationRuleExclusionOutput() ServiceWafConfigurationRuleExclusionOutput
+	ToServiceWafConfigurationRuleExclusionOutputWithContext(context.Context) ServiceWafConfigurationRuleExclusionOutput
+}
+
+type ServiceWafConfigurationRuleExclusionArgs struct {
+	// A conditional expression in VCL used to determine if the condition is met.
+	Condition pulumi.StringInput `pulumi:"condition"`
+	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+	ExclusionType pulumi.StringInput `pulumi:"exclusionType"`
+	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+	ModsecRuleIds pulumi.IntArrayInput `pulumi:"modsecRuleIds"`
+	// The name of rule exclusion.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The numeric ID assigned to the WAF Rule Exclusion.
+	Number pulumi.IntPtrInput `pulumi:"number"`
+}
+
+func (ServiceWafConfigurationRuleExclusionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceWafConfigurationRuleExclusion)(nil)).Elem()
+}
+
+func (i ServiceWafConfigurationRuleExclusionArgs) ToServiceWafConfigurationRuleExclusionOutput() ServiceWafConfigurationRuleExclusionOutput {
+	return i.ToServiceWafConfigurationRuleExclusionOutputWithContext(context.Background())
+}
+
+func (i ServiceWafConfigurationRuleExclusionArgs) ToServiceWafConfigurationRuleExclusionOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleExclusionOutput)
+}
+
+// ServiceWafConfigurationRuleExclusionArrayInput is an input type that accepts ServiceWafConfigurationRuleExclusionArray and ServiceWafConfigurationRuleExclusionArrayOutput values.
+// You can construct a concrete instance of `ServiceWafConfigurationRuleExclusionArrayInput` via:
+//
+//          ServiceWafConfigurationRuleExclusionArray{ ServiceWafConfigurationRuleExclusionArgs{...} }
+type ServiceWafConfigurationRuleExclusionArrayInput interface {
+	pulumi.Input
+
+	ToServiceWafConfigurationRuleExclusionArrayOutput() ServiceWafConfigurationRuleExclusionArrayOutput
+	ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(context.Context) ServiceWafConfigurationRuleExclusionArrayOutput
+}
+
+type ServiceWafConfigurationRuleExclusionArray []ServiceWafConfigurationRuleExclusionInput
+
+func (ServiceWafConfigurationRuleExclusionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceWafConfigurationRuleExclusion)(nil)).Elem()
+}
+
+func (i ServiceWafConfigurationRuleExclusionArray) ToServiceWafConfigurationRuleExclusionArrayOutput() ServiceWafConfigurationRuleExclusionArrayOutput {
+	return i.ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceWafConfigurationRuleExclusionArray) ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleExclusionArrayOutput)
+}
+
+type ServiceWafConfigurationRuleExclusionOutput struct{ *pulumi.OutputState }
+
+func (ServiceWafConfigurationRuleExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceWafConfigurationRuleExclusion)(nil)).Elem()
+}
+
+func (o ServiceWafConfigurationRuleExclusionOutput) ToServiceWafConfigurationRuleExclusionOutput() ServiceWafConfigurationRuleExclusionOutput {
+	return o
+}
+
+func (o ServiceWafConfigurationRuleExclusionOutput) ToServiceWafConfigurationRuleExclusionOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionOutput {
+	return o
+}
+
+// A conditional expression in VCL used to determine if the condition is met.
+func (o ServiceWafConfigurationRuleExclusionOutput) Condition() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.Condition }).(pulumi.StringOutput)
+}
+
+// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+func (o ServiceWafConfigurationRuleExclusionOutput) ExclusionType() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.ExclusionType }).(pulumi.StringOutput)
+}
+
+// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+func (o ServiceWafConfigurationRuleExclusionOutput) ModsecRuleIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) []int { return v.ModsecRuleIds }).(pulumi.IntArrayOutput)
+}
+
+// The name of rule exclusion.
+func (o ServiceWafConfigurationRuleExclusionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The numeric ID assigned to the WAF Rule Exclusion.
+func (o ServiceWafConfigurationRuleExclusionOutput) Number() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) *int { return v.Number }).(pulumi.IntPtrOutput)
+}
+
+type ServiceWafConfigurationRuleExclusionArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceWafConfigurationRuleExclusionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceWafConfigurationRuleExclusion)(nil)).Elem()
+}
+
+func (o ServiceWafConfigurationRuleExclusionArrayOutput) ToServiceWafConfigurationRuleExclusionArrayOutput() ServiceWafConfigurationRuleExclusionArrayOutput {
+	return o
+}
+
+func (o ServiceWafConfigurationRuleExclusionArrayOutput) ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionArrayOutput {
+	return o
+}
+
+func (o ServiceWafConfigurationRuleExclusionArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationRuleExclusionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceWafConfigurationRuleExclusion {
+		return vs[0].([]ServiceWafConfigurationRuleExclusion)[vs[1].(int)]
+	}).(ServiceWafConfigurationRuleExclusionOutput)
+}
+
 type Servicev1Acl struct {
 	// The ID of the ACL.
 	AclId *string `pulumi:"aclId"`
@@ -12297,6 +12430,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeSyslogArrayOutput{})
 	pulumi.RegisterOutputType(ServiceWafConfigurationRuleOutput{})
 	pulumi.RegisterOutputType(ServiceWafConfigurationRuleArrayOutput{})
+	pulumi.RegisterOutputType(ServiceWafConfigurationRuleExclusionOutput{})
+	pulumi.RegisterOutputType(ServiceWafConfigurationRuleExclusionArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1AclOutput{})
 	pulumi.RegisterOutputType(Servicev1AclArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1BackendOutput{})

@@ -2424,6 +2424,74 @@
                 }
             }
         },
+        "fastly:index/ServiceWafConfigurationRuleExclusion:ServiceWafConfigurationRuleExclusion": {
+            "properties": {
+                "condition": {
+                    "type": "string",
+                    "description": "A conditional expression in VCL used to determine if the condition is met.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "exclusionType": {
+                    "type": "string",
+                    "description": "The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "modsecRuleIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of rule exclusion.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "number": {
+                    "type": "integer",
+                    "description": "The numeric ID assigned to the WAF Rule Exclusion.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "condition",
+                "exclusionType",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "condition",
+                        "exclusionType",
+                        "name",
+                        "number"
+                    ]
+                }
+            }
+        },
         "fastly:index/Servicev1Acl:Servicev1Acl": {
             "properties": {
                 "aclId": {
@@ -7415,6 +7483,13 @@
                     "type": "integer",
                     "description": "Remote file inclusion attack threshold.\n"
                 },
+                "ruleExclusions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceWafConfigurationRuleExclusion:ServiceWafConfigurationRuleExclusion"
+                    },
+                    "description": "The Web Application Firewall's rule exclusions.\n"
+                },
                 "rules": {
                     "type": "array",
                     "items": {
@@ -7571,6 +7646,13 @@
                     "type": "integer",
                     "description": "Remote file inclusion attack threshold.\n"
                 },
+                "ruleExclusions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceWafConfigurationRuleExclusion:ServiceWafConfigurationRuleExclusion"
+                    },
+                    "description": "The Web Application Firewall's rule exclusions.\n"
+                },
                 "rules": {
                     "type": "array",
                     "items": {
@@ -7700,6 +7782,13 @@
                     "rfiScoreThreshold": {
                         "type": "integer",
                         "description": "Remote file inclusion attack threshold.\n"
+                    },
+                    "ruleExclusions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/ServiceWafConfigurationRuleExclusion:ServiceWafConfigurationRuleExclusion"
+                        },
+                        "description": "The Web Application Firewall's rule exclusions.\n"
                     },
                     "rules": {
                         "type": "array",

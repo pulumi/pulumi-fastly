@@ -1011,6 +1011,29 @@ export interface ServiceWafConfigurationRule {
     status: pulumi.Input<string>;
 }
 
+export interface ServiceWafConfigurationRuleExclusion {
+    /**
+     * A conditional expression in VCL used to determine if the condition is met.
+     */
+    condition: pulumi.Input<string>;
+    /**
+     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+     */
+    exclusionType: pulumi.Input<string>;
+    /**
+     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+     */
+    modsecRuleIds?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * The name of rule exclusion.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The numeric ID assigned to the WAF Rule Exclusion.
+     */
+    number?: pulumi.Input<number>;
+}
+
 export interface Servicev1Acl {
     /**
      * The ID of the ACL.

@@ -40,6 +40,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                  restricted_extensions: Optional[pulumi.Input[str]] = None,
                  restricted_headers: Optional[pulumi.Input[str]] = None,
                  rfi_score_threshold: Optional[pulumi.Input[int]] = None,
+                 rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
                  session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
                  sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
@@ -77,6 +78,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] restricted_extensions: A space-separated list of allowed file extensions.
         :param pulumi.Input[str] restricted_headers: A space-separated list of allowed header names.
         :param pulumi.Input[int] rfi_score_threshold: Remote file inclusion attack threshold.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]] rule_exclusions: The Web Application Firewall's rule exclusions.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
         :param pulumi.Input[int] session_fixation_score_threshold: Session fixation attack threshold.
         :param pulumi.Input[int] sql_injection_score_threshold: SQL injection attack threshold.
@@ -125,6 +127,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             __props__['restricted_extensions'] = restricted_extensions
             __props__['restricted_headers'] = restricted_headers
             __props__['rfi_score_threshold'] = rfi_score_threshold
+            __props__['rule_exclusions'] = rule_exclusions
             __props__['rules'] = rules
             __props__['session_fixation_score_threshold'] = session_fixation_score_threshold
             __props__['sql_injection_score_threshold'] = sql_injection_score_threshold
@@ -167,6 +170,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             restricted_extensions: Optional[pulumi.Input[str]] = None,
             restricted_headers: Optional[pulumi.Input[str]] = None,
             rfi_score_threshold: Optional[pulumi.Input[int]] = None,
+            rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]]] = None,
             rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
             session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
             sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
@@ -204,6 +208,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] restricted_extensions: A space-separated list of allowed file extensions.
         :param pulumi.Input[str] restricted_headers: A space-separated list of allowed header names.
         :param pulumi.Input[int] rfi_score_threshold: Remote file inclusion attack threshold.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]] rule_exclusions: The Web Application Firewall's rule exclusions.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
         :param pulumi.Input[int] session_fixation_score_threshold: Session fixation attack threshold.
         :param pulumi.Input[int] sql_injection_score_threshold: SQL injection attack threshold.
@@ -239,6 +244,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         __props__["restricted_extensions"] = restricted_extensions
         __props__["restricted_headers"] = restricted_headers
         __props__["rfi_score_threshold"] = rfi_score_threshold
+        __props__["rule_exclusions"] = rule_exclusions
         __props__["rules"] = rules
         __props__["session_fixation_score_threshold"] = session_fixation_score_threshold
         __props__["sql_injection_score_threshold"] = sql_injection_score_threshold
@@ -431,6 +437,14 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         Remote file inclusion attack threshold.
         """
         return pulumi.get(self, "rfi_score_threshold")
+
+    @property
+    @pulumi.getter(name="ruleExclusions")
+    def rule_exclusions(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceWafConfigurationRuleExclusion']]]:
+        """
+        The Web Application Firewall's rule exclusions.
+        """
+        return pulumi.get(self, "rule_exclusions")
 
     @property
     @pulumi.getter

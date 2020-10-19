@@ -40,6 +40,7 @@ __all__ = [
     'ServiceComputeSumologicArgs',
     'ServiceComputeSyslogArgs',
     'ServiceWafConfigurationRuleArgs',
+    'ServiceWafConfigurationRuleExclusionArgs',
     'Servicev1AclArgs',
     'Servicev1BackendArgs',
     'Servicev1BigqueryloggingArgs',
@@ -3876,6 +3877,90 @@ class ServiceWafConfigurationRuleArgs:
     @revision.setter
     def revision(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "revision", value)
+
+
+@pulumi.input_type
+class ServiceWafConfigurationRuleExclusionArgs:
+    def __init__(__self__, *,
+                 condition: pulumi.Input[str],
+                 exclusion_type: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 modsec_rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 number: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] condition: A conditional expression in VCL used to determine if the condition is met.
+        :param pulumi.Input[str] exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+        :param pulumi.Input[str] name: The name of rule exclusion.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "exclusion_type", exclusion_type)
+        pulumi.set(__self__, "name", name)
+        if modsec_rule_ids is not None:
+            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> pulumi.Input[str]:
+        """
+        A conditional expression in VCL used to determine if the condition is met.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: pulumi.Input[str]):
+        pulumi.set(self, "condition", value)
+
+    @property
+    @pulumi.getter(name="exclusionType")
+    def exclusion_type(self) -> pulumi.Input[str]:
+        """
+        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+        """
+        return pulumi.get(self, "exclusion_type")
+
+    @exclusion_type.setter
+    def exclusion_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "exclusion_type", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of rule exclusion.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="modsecRuleIds")
+    def modsec_rule_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+        """
+        return pulumi.get(self, "modsec_rule_ids")
+
+    @modsec_rule_ids.setter
+    def modsec_rule_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
+        pulumi.set(self, "modsec_rule_ids", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[pulumi.Input[int]]:
+        """
+        The numeric ID assigned to the WAF Rule Exclusion.
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "number", value)
 
 
 @pulumi.input_type

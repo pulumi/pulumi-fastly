@@ -1026,6 +1026,29 @@ export interface ServiceWafConfigurationRule {
     status: string;
 }
 
+export interface ServiceWafConfigurationRuleExclusion {
+    /**
+     * A conditional expression in VCL used to determine if the condition is met.
+     */
+    condition: string;
+    /**
+     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+     */
+    exclusionType: string;
+    /**
+     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+     */
+    modsecRuleIds?: number[];
+    /**
+     * The name of rule exclusion.
+     */
+    name: string;
+    /**
+     * The numeric ID assigned to the WAF Rule Exclusion.
+     */
+    number: number;
+}
+
 export interface Servicev1Acl {
     /**
      * The ID of the ACL.
