@@ -40,6 +40,7 @@ __all__ = [
     'ServiceComputeSumologic',
     'ServiceComputeSyslog',
     'ServiceWafConfigurationRule',
+    'ServiceWafConfigurationRuleExclusion',
     'Servicev1Acl',
     'Servicev1Backend',
     'Servicev1Bigquerylogging',
@@ -3048,6 +3049,73 @@ class ServiceWafConfigurationRule(dict):
         The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
         """
         return pulumi.get(self, "revision")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ServiceWafConfigurationRuleExclusion(dict):
+    def __init__(__self__, *,
+                 condition: str,
+                 exclusion_type: str,
+                 name: str,
+                 modsec_rule_ids: Optional[Sequence[int]] = None,
+                 number: Optional[int] = None):
+        """
+        :param str condition: A conditional expression in VCL used to determine if the condition is met.
+        :param str exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+        :param str name: The name of rule exclusion.
+        :param Sequence[int] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+        :param int number: The numeric ID assigned to the WAF Rule Exclusion.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "exclusion_type", exclusion_type)
+        pulumi.set(__self__, "name", name)
+        if modsec_rule_ids is not None:
+            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> str:
+        """
+        A conditional expression in VCL used to determine if the condition is met.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="exclusionType")
+    def exclusion_type(self) -> str:
+        """
+        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+        """
+        return pulumi.get(self, "exclusion_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of rule exclusion.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="modsecRuleIds")
+    def modsec_rule_ids(self) -> Optional[Sequence[int]]:
+        """
+        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+        """
+        return pulumi.get(self, "modsec_rule_ids")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        The numeric ID assigned to the WAF Rule Exclusion.
+        """
+        return pulumi.get(self, "number")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -127,6 +127,10 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
      */
     public readonly rfiScoreThreshold!: pulumi.Output<number>;
     /**
+     * The Web Application Firewall's rule exclusions.
+     */
+    public readonly ruleExclusions!: pulumi.Output<outputs.ServiceWafConfigurationRuleExclusion[] | undefined>;
+    /**
      * The Web Application Firewall's active rules.
      */
     public readonly rules!: pulumi.Output<outputs.ServiceWafConfigurationRule[] | undefined>;
@@ -190,6 +194,7 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             inputs["restrictedExtensions"] = state ? state.restrictedExtensions : undefined;
             inputs["restrictedHeaders"] = state ? state.restrictedHeaders : undefined;
             inputs["rfiScoreThreshold"] = state ? state.rfiScoreThreshold : undefined;
+            inputs["ruleExclusions"] = state ? state.ruleExclusions : undefined;
             inputs["rules"] = state ? state.rules : undefined;
             inputs["sessionFixationScoreThreshold"] = state ? state.sessionFixationScoreThreshold : undefined;
             inputs["sqlInjectionScoreThreshold"] = state ? state.sqlInjectionScoreThreshold : undefined;
@@ -225,6 +230,7 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             inputs["restrictedExtensions"] = args ? args.restrictedExtensions : undefined;
             inputs["restrictedHeaders"] = args ? args.restrictedHeaders : undefined;
             inputs["rfiScoreThreshold"] = args ? args.rfiScoreThreshold : undefined;
+            inputs["ruleExclusions"] = args ? args.ruleExclusions : undefined;
             inputs["rules"] = args ? args.rules : undefined;
             inputs["sessionFixationScoreThreshold"] = args ? args.sessionFixationScoreThreshold : undefined;
             inputs["sqlInjectionScoreThreshold"] = args ? args.sqlInjectionScoreThreshold : undefined;
@@ -340,6 +346,10 @@ export interface ServiceWafConfigurationState {
      * Remote file inclusion attack threshold.
      */
     readonly rfiScoreThreshold?: pulumi.Input<number>;
+    /**
+     * The Web Application Firewall's rule exclusions.
+     */
+    readonly ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
     /**
      * The Web Application Firewall's active rules.
      */
@@ -466,6 +476,10 @@ export interface ServiceWafConfigurationArgs {
      * Remote file inclusion attack threshold.
      */
     readonly rfiScoreThreshold?: pulumi.Input<number>;
+    /**
+     * The Web Application Firewall's rule exclusions.
+     */
+    readonly ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
     /**
      * The Web Application Firewall's active rules.
      */

@@ -150,6 +150,12 @@ namespace Pulumi.Fastly
         public Output<int> RfiScoreThreshold { get; private set; } = null!;
 
         /// <summary>
+        /// The Web Application Firewall's rule exclusions.
+        /// </summary>
+        [Output("ruleExclusions")]
+        public Output<ImmutableArray<Outputs.ServiceWafConfigurationRuleExclusion>> RuleExclusions { get; private set; } = null!;
+
+        /// <summary>
         /// The Web Application Firewall's active rules.
         /// </summary>
         [Output("rules")]
@@ -375,6 +381,18 @@ namespace Pulumi.Fastly
         [Input("rfiScoreThreshold")]
         public Input<int>? RfiScoreThreshold { get; set; }
 
+        [Input("ruleExclusions")]
+        private InputList<Inputs.ServiceWafConfigurationRuleExclusionArgs>? _ruleExclusions;
+
+        /// <summary>
+        /// The Web Application Firewall's rule exclusions.
+        /// </summary>
+        public InputList<Inputs.ServiceWafConfigurationRuleExclusionArgs> RuleExclusions
+        {
+            get => _ruleExclusions ?? (_ruleExclusions = new InputList<Inputs.ServiceWafConfigurationRuleExclusionArgs>());
+            set => _ruleExclusions = value;
+        }
+
         [Input("rules")]
         private InputList<Inputs.ServiceWafConfigurationRuleArgs>? _rules;
 
@@ -567,6 +585,18 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("rfiScoreThreshold")]
         public Input<int>? RfiScoreThreshold { get; set; }
+
+        [Input("ruleExclusions")]
+        private InputList<Inputs.ServiceWafConfigurationRuleExclusionGetArgs>? _ruleExclusions;
+
+        /// <summary>
+        /// The Web Application Firewall's rule exclusions.
+        /// </summary>
+        public InputList<Inputs.ServiceWafConfigurationRuleExclusionGetArgs> RuleExclusions
+        {
+            get => _ruleExclusions ?? (_ruleExclusions = new InputList<Inputs.ServiceWafConfigurationRuleExclusionGetArgs>());
+            set => _ruleExclusions = value;
+        }
 
         [Input("rules")]
         private InputList<Inputs.ServiceWafConfigurationRuleGetArgs>? _rules;
