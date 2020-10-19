@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -39,7 +39,7 @@ class GetWafRulesResult:
 
     @property
     @pulumi.getter(name="excludeModsecRuleIds")
-    def exclude_modsec_rule_ids(self) -> Optional[List[float]]:
+    def exclude_modsec_rule_ids(self) -> Optional[Sequence[int]]:
         return pulumi.get(self, "exclude_modsec_rule_ids")
 
     @property
@@ -52,12 +52,12 @@ class GetWafRulesResult:
 
     @property
     @pulumi.getter
-    def publishers(self) -> Optional[List[str]]:
+    def publishers(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "publishers")
 
     @property
     @pulumi.getter
-    def rules(self) -> List['outputs.GetWafRulesRuleResult']:
+    def rules(self) -> Sequence['outputs.GetWafRulesRuleResult']:
         """
         The Web Application Firewall's rules result set.
         """
@@ -65,7 +65,7 @@ class GetWafRulesResult:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "tags")
 
 
@@ -82,16 +82,16 @@ class AwaitableGetWafRulesResult(GetWafRulesResult):
             tags=self.tags)
 
 
-def get_waf_rules(exclude_modsec_rule_ids: Optional[List[float]] = None,
-                  publishers: Optional[List[str]] = None,
-                  tags: Optional[List[str]] = None,
+def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
+                  publishers: Optional[Sequence[str]] = None,
+                  tags: Optional[Sequence[str]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWafRulesResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param List[float] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
-    :param List[str] publishers: Inclusion filter by WAF rule's publishers.
-    :param List[str] tags: Inclusion filter by WAF rule's tags.
+    :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
+    :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.
+    :param Sequence[str] tags: Inclusion filter by WAF rule's tags.
     """
     __args__ = dict()
     __args__['excludeModsecRuleIds'] = exclude_modsec_rule_ids

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -155,16 +155,16 @@ class ServiceComputeBackend(dict):
                  address: str,
                  name: str,
                  auto_loadbalance: Optional[bool] = None,
-                 between_bytes_timeout: Optional[float] = None,
-                 connect_timeout: Optional[float] = None,
-                 error_threshold: Optional[float] = None,
-                 first_byte_timeout: Optional[float] = None,
+                 between_bytes_timeout: Optional[int] = None,
+                 connect_timeout: Optional[int] = None,
+                 error_threshold: Optional[int] = None,
+                 first_byte_timeout: Optional[int] = None,
                  healthcheck: Optional[str] = None,
-                 max_conn: Optional[float] = None,
+                 max_conn: Optional[int] = None,
                  max_tls_version: Optional[str] = None,
                  min_tls_version: Optional[str] = None,
                  override_host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  shield: Optional[str] = None,
                  ssl_ca_cert: Optional[str] = None,
                  ssl_cert_hostname: Optional[str] = None,
@@ -175,25 +175,25 @@ class ServiceComputeBackend(dict):
                  ssl_hostname: Optional[str] = None,
                  ssl_sni_hostname: Optional[str] = None,
                  use_ssl: Optional[bool] = None,
-                 weight: Optional[float] = None):
+                 weight: Optional[int] = None):
         """
         :param str address: The SFTP address to stream logs to.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param bool auto_loadbalance: Denotes if this Backend should be
                included in the pool of backends that requests are load balanced against.
                Default `true`.
-        :param float between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`.
-        :param float connect_timeout: How long to wait for a timeout in milliseconds.
+        :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`.
+        :param int connect_timeout: How long to wait for a timeout in milliseconds.
                Default `1000`
-        :param float error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`.
-        :param float first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`.
+        :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`.
+        :param int first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`.
         :param str healthcheck: Name of a defined `healthcheck` to assign to this backend.
-        :param float max_conn: Maximum number of connections for this Backend.
+        :param int max_conn: Maximum number of connections for this Backend.
                Default `200`.
         :param str max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
         :param str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param str override_host: The hostname to override the Host header.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
         :param str ssl_ca_cert: CA certificate attached to origin.
         :param str ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
@@ -204,7 +204,7 @@ class ServiceComputeBackend(dict):
         :param str ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert.
         :param str ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
         :param bool use_ssl: Whether or not to use SSL to reach the backend. Default `false`.
-        :param float weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        :param int weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -281,7 +281,7 @@ class ServiceComputeBackend(dict):
 
     @property
     @pulumi.getter(name="betweenBytesTimeout")
-    def between_bytes_timeout(self) -> Optional[float]:
+    def between_bytes_timeout(self) -> Optional[int]:
         """
         How long to wait between bytes in milliseconds. Default `10000`.
         """
@@ -289,7 +289,7 @@ class ServiceComputeBackend(dict):
 
     @property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[float]:
+    def connect_timeout(self) -> Optional[int]:
         """
         How long to wait for a timeout in milliseconds.
         Default `1000`
@@ -298,7 +298,7 @@ class ServiceComputeBackend(dict):
 
     @property
     @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[float]:
+    def error_threshold(self) -> Optional[int]:
         """
         Number of errors to allow before the Backend is marked as down. Default `0`.
         """
@@ -306,7 +306,7 @@ class ServiceComputeBackend(dict):
 
     @property
     @pulumi.getter(name="firstByteTimeout")
-    def first_byte_timeout(self) -> Optional[float]:
+    def first_byte_timeout(self) -> Optional[int]:
         """
         How long to wait for the first bytes in milliseconds. Default `15000`.
         """
@@ -322,7 +322,7 @@ class ServiceComputeBackend(dict):
 
     @property
     @pulumi.getter(name="maxConn")
-    def max_conn(self) -> Optional[float]:
+    def max_conn(self) -> Optional[int]:
         """
         Maximum number of connections for this Backend.
         Default `200`.
@@ -355,7 +355,7 @@ class ServiceComputeBackend(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -443,7 +443,7 @@ class ServiceComputeBackend(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[float]:
+    def weight(self) -> Optional[int]:
         """
         The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
         """
@@ -544,10 +544,10 @@ class ServiceComputeBlobstoragelogging(dict):
                  container: str,
                  name: str,
                  sas_token: str,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  public_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
@@ -555,10 +555,10 @@ class ServiceComputeBlobstoragelogging(dict):
         :param str container: The name of the Azure Blob Storage container in which to store logs.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
@@ -613,7 +613,7 @@ class ServiceComputeBlobstoragelogging(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -637,7 +637,7 @@ class ServiceComputeBlobstoragelogging(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -702,20 +702,20 @@ class ServiceComputeGcslogging(dict):
                  bucket_name: str,
                  name: str,
                  email: Optional[str] = None,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  secret_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
         :param str bucket_name: The name of your Cloud Files container.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str secret_key: Your DigitalOcean Spaces account secret key.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
@@ -762,7 +762,7 @@ class ServiceComputeGcslogging(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -786,7 +786,7 @@ class ServiceComputeGcslogging(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -818,26 +818,26 @@ class ServiceComputeHealthcheck(dict):
                  host: str,
                  name: str,
                  path: str,
-                 check_interval: Optional[float] = None,
-                 expected_response: Optional[float] = None,
+                 check_interval: Optional[int] = None,
+                 expected_response: Optional[int] = None,
                  http_version: Optional[str] = None,
-                 initial: Optional[float] = None,
+                 initial: Optional[int] = None,
                  method: Optional[str] = None,
-                 threshold: Optional[float] = None,
-                 timeout: Optional[float] = None,
-                 window: Optional[float] = None):
+                 threshold: Optional[int] = None,
+                 timeout: Optional[int] = None,
+                 window: Optional[int] = None):
         """
         :param str host: The Host header to send for this Healthcheck.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str path: The path to upload logs to.
-        :param float check_interval: How often to run the Healthcheck in milliseconds. Default `5000`.
-        :param float expected_response: The status code expected from the host. Default `200`.
+        :param int check_interval: How often to run the Healthcheck in milliseconds. Default `5000`.
+        :param int expected_response: The status code expected from the host. Default `200`.
         :param str http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
-        :param float initial: When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        :param int initial: When loading a config, the initial number of probes to be seen as OK. Default `2`.
         :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-        :param float threshold: How many Healthchecks must succeed to be considered healthy. Default `3`.
-        :param float timeout: Timeout in milliseconds. Default `500`.
-        :param float window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        :param int threshold: How many Healthchecks must succeed to be considered healthy. Default `3`.
+        :param int timeout: Timeout in milliseconds. Default `500`.
+        :param int window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
         """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "name", name)
@@ -885,7 +885,7 @@ class ServiceComputeHealthcheck(dict):
 
     @property
     @pulumi.getter(name="checkInterval")
-    def check_interval(self) -> Optional[float]:
+    def check_interval(self) -> Optional[int]:
         """
         How often to run the Healthcheck in milliseconds. Default `5000`.
         """
@@ -893,7 +893,7 @@ class ServiceComputeHealthcheck(dict):
 
     @property
     @pulumi.getter(name="expectedResponse")
-    def expected_response(self) -> Optional[float]:
+    def expected_response(self) -> Optional[int]:
         """
         The status code expected from the host. Default `200`.
         """
@@ -909,7 +909,7 @@ class ServiceComputeHealthcheck(dict):
 
     @property
     @pulumi.getter
-    def initial(self) -> Optional[float]:
+    def initial(self) -> Optional[int]:
         """
         When loading a config, the initial number of probes to be seen as OK. Default `2`.
         """
@@ -925,7 +925,7 @@ class ServiceComputeHealthcheck(dict):
 
     @property
     @pulumi.getter
-    def threshold(self) -> Optional[float]:
+    def threshold(self) -> Optional[int]:
         """
         How many Healthchecks must succeed to be considered healthy. Default `3`.
         """
@@ -933,7 +933,7 @@ class ServiceComputeHealthcheck(dict):
 
     @property
     @pulumi.getter
-    def timeout(self) -> Optional[float]:
+    def timeout(self) -> Optional[int]:
         """
         Timeout in milliseconds. Default `500`.
         """
@@ -941,7 +941,7 @@ class ServiceComputeHealthcheck(dict):
 
     @property
     @pulumi.getter
-    def window(self) -> Optional[float]:
+    def window(self) -> Optional[int]:
         """
         The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
         """
@@ -962,8 +962,8 @@ class ServiceComputeHttpslogging(dict):
                  json_format: Optional[str] = None,
                  message_type: Optional[str] = None,
                  method: Optional[str] = None,
-                 request_max_bytes: Optional[float] = None,
-                 request_max_entries: Optional[float] = None,
+                 request_max_bytes: Optional[int] = None,
+                 request_max_entries: Optional[int] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
                  tls_client_key: Optional[str] = None,
@@ -977,8 +977,8 @@ class ServiceComputeHttpslogging(dict):
         :param str json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-        :param float request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param float request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
@@ -1077,7 +1077,7 @@ class ServiceComputeHttpslogging(dict):
 
     @property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[float]:
+    def request_max_bytes(self) -> Optional[int]:
         """
         The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         """
@@ -1085,7 +1085,7 @@ class ServiceComputeHttpslogging(dict):
 
     @property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[float]:
+    def request_max_entries(self) -> Optional[int]:
         """
         The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         """
@@ -1132,12 +1132,12 @@ class ServiceComputeLogentry(dict):
     def __init__(__self__, *,
                  name: str,
                  token: str,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  use_tls: Optional[bool] = None):
         """
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param bool use_tls: Whether to use TLS for secure logging. Can be either true or false.
         """
         pulumi.set(__self__, "name", name)
@@ -1165,7 +1165,7 @@ class ServiceComputeLogentry(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -1190,10 +1190,10 @@ class ServiceComputeLoggingCloudfile(dict):
                  bucket_name: str,
                  name: str,
                  user: str,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  public_key: Optional[str] = None,
                  region: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
@@ -1202,10 +1202,10 @@ class ServiceComputeLoggingCloudfile(dict):
         :param str bucket_name: The name of your Cloud Files container.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str user: The username for your Cloud Files account.
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
@@ -1263,7 +1263,7 @@ class ServiceComputeLoggingCloudfile(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -1287,7 +1287,7 @@ class ServiceComputeLoggingCloudfile(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -1373,10 +1373,10 @@ class ServiceComputeLoggingDigitalocean(dict):
                  name: str,
                  secret_key: str,
                  domain: Optional[str] = None,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  public_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
@@ -1385,10 +1385,10 @@ class ServiceComputeLoggingDigitalocean(dict):
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str secret_key: Your DigitalOcean Spaces account secret key.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
@@ -1453,7 +1453,7 @@ class ServiceComputeLoggingDigitalocean(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -1477,7 +1477,7 @@ class ServiceComputeLoggingDigitalocean(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -1511,8 +1511,8 @@ class ServiceComputeLoggingElasticsearch(dict):
                  url: str,
                  password: Optional[str] = None,
                  pipeline: Optional[str] = None,
-                 request_max_bytes: Optional[float] = None,
-                 request_max_entries: Optional[float] = None,
+                 request_max_bytes: Optional[int] = None,
+                 request_max_entries: Optional[int] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
                  tls_client_key: Optional[str] = None,
@@ -1524,8 +1524,8 @@ class ServiceComputeLoggingElasticsearch(dict):
         :param str url: Your OpenStack auth url.
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
         :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-        :param float request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param float request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
@@ -1596,7 +1596,7 @@ class ServiceComputeLoggingElasticsearch(dict):
 
     @property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[float]:
+    def request_max_bytes(self) -> Optional[int]:
         """
         The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         """
@@ -1604,7 +1604,7 @@ class ServiceComputeLoggingElasticsearch(dict):
 
     @property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[float]:
+    def request_max_entries(self) -> Optional[int]:
         """
         The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         """
@@ -1662,10 +1662,10 @@ class ServiceComputeLoggingFtp(dict):
                  password: str,
                  path: str,
                  user: str,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
-                 period: Optional[float] = None,
-                 port: Optional[float] = None,
+                 period: Optional[int] = None,
+                 port: Optional[int] = None,
                  public_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
@@ -1674,10 +1674,10 @@ class ServiceComputeLoggingFtp(dict):
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
         :param str path: The path to upload logs to.
         :param str user: The username for your Cloud Files account.
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
@@ -1741,7 +1741,7 @@ class ServiceComputeLoggingFtp(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -1757,7 +1757,7 @@ class ServiceComputeLoggingFtp(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -1765,7 +1765,7 @@ class ServiceComputeLoggingFtp(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -2184,10 +2184,10 @@ class ServiceComputeLoggingOpenstack(dict):
                  name: str,
                  url: str,
                  user: str,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  public_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
@@ -2196,10 +2196,10 @@ class ServiceComputeLoggingOpenstack(dict):
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str url: Your OpenStack auth url.
         :param str user: The username for your Cloud Files account.
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
@@ -2263,7 +2263,7 @@ class ServiceComputeLoggingOpenstack(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -2287,7 +2287,7 @@ class ServiceComputeLoggingOpenstack(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -2365,11 +2365,11 @@ class ServiceComputeLoggingSftp(dict):
                  path: str,
                  ssh_known_hosts: str,
                  user: str,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  password: Optional[str] = None,
-                 period: Optional[float] = None,
-                 port: Optional[float] = None,
+                 period: Optional[int] = None,
+                 port: Optional[int] = None,
                  public_key: Optional[str] = None,
                  secret_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
@@ -2379,11 +2379,11 @@ class ServiceComputeLoggingSftp(dict):
         :param str path: The path to upload logs to.
         :param str ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP.
         :param str user: The username for your Cloud Files account.
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str secret_key: Your DigitalOcean Spaces account secret key.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
@@ -2452,7 +2452,7 @@ class ServiceComputeLoggingSftp(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -2476,7 +2476,7 @@ class ServiceComputeLoggingSftp(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -2484,7 +2484,7 @@ class ServiceComputeLoggingSftp(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -2552,11 +2552,11 @@ class ServiceComputePapertrail(dict):
     def __init__(__self__, *,
                  address: str,
                  name: str,
-                 port: float):
+                 port: int):
         """
         :param str address: The SFTP address to stream logs to.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -2580,7 +2580,7 @@ class ServiceComputePapertrail(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -2596,10 +2596,10 @@ class ServiceComputeS3logging(dict):
                  bucket_name: str,
                  name: str,
                  domain: Optional[str] = None,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  public_key: Optional[str] = None,
                  redundancy: Optional[str] = None,
                  s3_access_key: Optional[str] = None,
@@ -2611,10 +2611,10 @@ class ServiceComputeS3logging(dict):
         :param str bucket_name: The name of your Cloud Files container.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
         :param str s3_access_key: AWS Access Key of an account with the required
@@ -2680,7 +2680,7 @@ class ServiceComputeS3logging(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -2704,7 +2704,7 @@ class ServiceComputeS3logging(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -2887,7 +2887,7 @@ class ServiceComputeSyslog(dict):
                  address: str,
                  name: str,
                  message_type: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
                  tls_client_key: Optional[str] = None,
@@ -2898,7 +2898,7 @@ class ServiceComputeSyslog(dict):
         :param str address: The SFTP address to stream logs to.
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
@@ -2951,7 +2951,7 @@ class ServiceComputeSyslog(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -3012,13 +3012,13 @@ class ServiceComputeSyslog(dict):
 @pulumi.output_type
 class ServiceWafConfigurationRule(dict):
     def __init__(__self__, *,
-                 modsec_rule_id: float,
+                 modsec_rule_id: int,
                  status: str,
-                 revision: Optional[float] = None):
+                 revision: Optional[int] = None):
         """
-        :param float modsec_rule_id: The Web Application Firewall rule's modsecurity ID.
+        :param int modsec_rule_id: The Web Application Firewall rule's modsecurity ID.
         :param str status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
-        :param float revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        :param int revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
         """
         pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
         pulumi.set(__self__, "status", status)
@@ -3027,7 +3027,7 @@ class ServiceWafConfigurationRule(dict):
 
     @property
     @pulumi.getter(name="modsecRuleId")
-    def modsec_rule_id(self) -> float:
+    def modsec_rule_id(self) -> int:
         """
         The Web Application Firewall rule's modsecurity ID.
         """
@@ -3043,7 +3043,7 @@ class ServiceWafConfigurationRule(dict):
 
     @property
     @pulumi.getter
-    def revision(self) -> Optional[float]:
+    def revision(self) -> Optional[int]:
         """
         The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
         """
@@ -3092,16 +3092,16 @@ class Servicev1Backend(dict):
                  address: str,
                  name: str,
                  auto_loadbalance: Optional[bool] = None,
-                 between_bytes_timeout: Optional[float] = None,
-                 connect_timeout: Optional[float] = None,
-                 error_threshold: Optional[float] = None,
-                 first_byte_timeout: Optional[float] = None,
+                 between_bytes_timeout: Optional[int] = None,
+                 connect_timeout: Optional[int] = None,
+                 error_threshold: Optional[int] = None,
+                 first_byte_timeout: Optional[int] = None,
                  healthcheck: Optional[str] = None,
-                 max_conn: Optional[float] = None,
+                 max_conn: Optional[int] = None,
                  max_tls_version: Optional[str] = None,
                  min_tls_version: Optional[str] = None,
                  override_host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  request_condition: Optional[str] = None,
                  shield: Optional[str] = None,
                  ssl_ca_cert: Optional[str] = None,
@@ -3113,25 +3113,25 @@ class Servicev1Backend(dict):
                  ssl_hostname: Optional[str] = None,
                  ssl_sni_hostname: Optional[str] = None,
                  use_ssl: Optional[bool] = None,
-                 weight: Optional[float] = None):
+                 weight: Optional[int] = None):
         """
         :param str address: The SFTP address to stream logs to.
         :param str name: A unique name to identify this dictionary.
         :param bool auto_loadbalance: Denotes if this Backend should be
                included in the pool of backends that requests are load balanced against.
                Default `true`.
-        :param float between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`.
-        :param float connect_timeout: How long to wait for a timeout in milliseconds.
+        :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`.
+        :param int connect_timeout: How long to wait for a timeout in milliseconds.
                Default `1000`
-        :param float error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`.
-        :param float first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`.
+        :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`.
+        :param int first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`.
         :param str healthcheck: Name of a defined `healthcheck` to assign to this backend.
-        :param float max_conn: Maximum number of connections for this Backend.
+        :param int max_conn: Maximum number of connections for this Backend.
                Default `200`.
         :param str max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
         :param str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param str override_host: The hostname to override the Host header.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
         :param str shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
         :param str ssl_ca_cert: CA certificate attached to origin.
@@ -3143,7 +3143,7 @@ class Servicev1Backend(dict):
         :param str ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert.
         :param str ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
         :param bool use_ssl: Whether or not to use SSL to reach the backend. Default `false`.
-        :param float weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        :param int weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -3222,7 +3222,7 @@ class Servicev1Backend(dict):
 
     @property
     @pulumi.getter(name="betweenBytesTimeout")
-    def between_bytes_timeout(self) -> Optional[float]:
+    def between_bytes_timeout(self) -> Optional[int]:
         """
         How long to wait between bytes in milliseconds. Default `10000`.
         """
@@ -3230,7 +3230,7 @@ class Servicev1Backend(dict):
 
     @property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[float]:
+    def connect_timeout(self) -> Optional[int]:
         """
         How long to wait for a timeout in milliseconds.
         Default `1000`
@@ -3239,7 +3239,7 @@ class Servicev1Backend(dict):
 
     @property
     @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[float]:
+    def error_threshold(self) -> Optional[int]:
         """
         Number of errors to allow before the Backend is marked as down. Default `0`.
         """
@@ -3247,7 +3247,7 @@ class Servicev1Backend(dict):
 
     @property
     @pulumi.getter(name="firstByteTimeout")
-    def first_byte_timeout(self) -> Optional[float]:
+    def first_byte_timeout(self) -> Optional[int]:
         """
         How long to wait for the first bytes in milliseconds. Default `15000`.
         """
@@ -3263,7 +3263,7 @@ class Servicev1Backend(dict):
 
     @property
     @pulumi.getter(name="maxConn")
-    def max_conn(self) -> Optional[float]:
+    def max_conn(self) -> Optional[int]:
         """
         Maximum number of connections for this Backend.
         Default `200`.
@@ -3296,7 +3296,7 @@ class Servicev1Backend(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -3392,7 +3392,7 @@ class Servicev1Backend(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[float]:
+    def weight(self) -> Optional[int]:
         """
         The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
         """
@@ -3534,11 +3534,11 @@ class Servicev1Blobstoragelogging(dict):
                  name: str,
                  sas_token: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
-                 gzip_level: Optional[float] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
                  public_key: Optional[str] = None,
                  response_condition: Optional[str] = None,
@@ -3549,11 +3549,11 @@ class Servicev1Blobstoragelogging(dict):
         :param str name: A unique name to identify this dictionary.
         :param str sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -3626,7 +3626,7 @@ class Servicev1Blobstoragelogging(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -3634,7 +3634,7 @@ class Servicev1Blobstoragelogging(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -3658,7 +3658,7 @@ class Servicev1Blobstoragelogging(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -3706,16 +3706,16 @@ class Servicev1CacheSetting(dict):
                  name: str,
                  action: Optional[str] = None,
                  cache_condition: Optional[str] = None,
-                 stale_ttl: Optional[float] = None,
-                 ttl: Optional[float] = None):
+                 stale_ttl: Optional[int] = None,
+                 ttl: Optional[int] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str action: Allows you to terminate request handling and immediately
                perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
         :param str cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
                see [Fastly's Documentation on Conditionals][fastly-conditionals].
-        :param float stale_ttl: Max "Time To Live" for stale (unreachable) objects.
-        :param float ttl: The Time-To-Live (TTL) for the object.
+        :param int stale_ttl: Max "Time To Live" for stale (unreachable) objects.
+        :param int ttl: The Time-To-Live (TTL) for the object.
         """
         pulumi.set(__self__, "name", name)
         if action is not None:
@@ -3755,7 +3755,7 @@ class Servicev1CacheSetting(dict):
 
     @property
     @pulumi.getter(name="staleTtl")
-    def stale_ttl(self) -> Optional[float]:
+    def stale_ttl(self) -> Optional[int]:
         """
         Max "Time To Live" for stale (unreachable) objects.
         """
@@ -3763,7 +3763,7 @@ class Servicev1CacheSetting(dict):
 
     @property
     @pulumi.getter
-    def ttl(self) -> Optional[float]:
+    def ttl(self) -> Optional[int]:
         """
         The Time-To-Live (TTL) for the object.
         """
@@ -3779,12 +3779,12 @@ class Servicev1Condition(dict):
                  name: str,
                  statement: str,
                  type: str,
-                 priority: Optional[float] = None):
+                 priority: Optional[int] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str statement: The statement used to determine if the condition is met.
         :param str type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
-        :param float priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "statement", statement)
@@ -3818,7 +3818,7 @@ class Servicev1Condition(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[float]:
+    def priority(self) -> Optional[int]:
         """
         Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         """
@@ -3882,23 +3882,23 @@ class Servicev1Dictionary(dict):
 @pulumi.output_type
 class Servicev1Director(dict):
     def __init__(__self__, *,
-                 backends: List[str],
+                 backends: Sequence[str],
                  name: str,
-                 capacity: Optional[float] = None,
+                 capacity: Optional[int] = None,
                  comment: Optional[str] = None,
-                 quorum: Optional[float] = None,
-                 retries: Optional[float] = None,
+                 quorum: Optional[int] = None,
+                 retries: Optional[int] = None,
                  shield: Optional[str] = None,
-                 type: Optional[float] = None):
+                 type: Optional[int] = None):
         """
-        :param List[str] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        :param Sequence[str] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
         :param str name: A unique name to identify this dictionary.
-        :param float capacity: Load balancing weight for the backends. Default `100`.
+        :param int capacity: Load balancing weight for the backends. Default `100`.
         :param str comment: An optional comment about the Director.
-        :param float quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
-        :param float retries: How many backends to search if it fails. Default `5`.
+        :param int quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+        :param int retries: How many backends to search if it fails. Default `5`.
         :param str shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-        :param float type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        :param int type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
         """
         pulumi.set(__self__, "backends", backends)
         pulumi.set(__self__, "name", name)
@@ -3917,7 +3917,7 @@ class Servicev1Director(dict):
 
     @property
     @pulumi.getter
-    def backends(self) -> List[str]:
+    def backends(self) -> Sequence[str]:
         """
         Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
         """
@@ -3933,7 +3933,7 @@ class Servicev1Director(dict):
 
     @property
     @pulumi.getter
-    def capacity(self) -> Optional[float]:
+    def capacity(self) -> Optional[int]:
         """
         Load balancing weight for the backends. Default `100`.
         """
@@ -3949,7 +3949,7 @@ class Servicev1Director(dict):
 
     @property
     @pulumi.getter
-    def quorum(self) -> Optional[float]:
+    def quorum(self) -> Optional[int]:
         """
         Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
         """
@@ -3957,7 +3957,7 @@ class Servicev1Director(dict):
 
     @property
     @pulumi.getter
-    def retries(self) -> Optional[float]:
+    def retries(self) -> Optional[int]:
         """
         How many backends to search if it fails. Default `5`.
         """
@@ -3973,7 +3973,7 @@ class Servicev1Director(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[float]:
+    def type(self) -> Optional[int]:
         """
         The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
         """
@@ -4021,12 +4021,12 @@ class Servicev1Dynamicsnippet(dict):
     def __init__(__self__, *,
                  name: str,
                  type: str,
-                 priority: Optional[float] = None,
+                 priority: Optional[int] = None,
                  snippet_id: Optional[str] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
-        :param float priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         :param str snippet_id: The ID of the dynamic snippet.
         """
         pulumi.set(__self__, "name", name)
@@ -4054,7 +4054,7 @@ class Servicev1Dynamicsnippet(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[float]:
+    def priority(self) -> Optional[int]:
         """
         Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         """
@@ -4079,10 +4079,10 @@ class Servicev1Gcslogging(dict):
                  name: str,
                  email: Optional[str] = None,
                  format: Optional[str] = None,
-                 gzip_level: Optional[float] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None,
                  secret_key: Optional[str] = None,
@@ -4092,10 +4092,10 @@ class Servicev1Gcslogging(dict):
         :param str name: A unique name to identify this dictionary.
         :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param str format: Apache style log formatting.
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str secret_key: Your DigitalOcean Spaces account secret key.
@@ -4158,7 +4158,7 @@ class Servicev1Gcslogging(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -4182,7 +4182,7 @@ class Servicev1Gcslogging(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -4229,15 +4229,15 @@ class Servicev1Gzip(dict):
     def __init__(__self__, *,
                  name: str,
                  cache_condition: Optional[str] = None,
-                 content_types: Optional[List[str]] = None,
-                 extensions: Optional[List[str]] = None):
+                 content_types: Optional[Sequence[str]] = None,
+                 extensions: Optional[Sequence[str]] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
                see [Fastly's Documentation on Conditionals][fastly-conditionals].
-        :param List[str] content_types: The content-type for each type of content you wish to
+        :param Sequence[str] content_types: The content-type for each type of content you wish to
                have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
-        :param List[str] extensions: File extensions for each file type to dynamically
+        :param Sequence[str] extensions: File extensions for each file type to dynamically
                gzip. Example: `["css", "js"]`.
         """
         pulumi.set(__self__, "name", name)
@@ -4267,7 +4267,7 @@ class Servicev1Gzip(dict):
 
     @property
     @pulumi.getter(name="contentTypes")
-    def content_types(self) -> Optional[List[str]]:
+    def content_types(self) -> Optional[Sequence[str]]:
         """
         The content-type for each type of content you wish to
         have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
@@ -4276,7 +4276,7 @@ class Servicev1Gzip(dict):
 
     @property
     @pulumi.getter
-    def extensions(self) -> Optional[List[str]]:
+    def extensions(self) -> Optional[Sequence[str]]:
         """
         File extensions for each file type to dynamically
         gzip. Example: `["css", "js"]`.
@@ -4296,7 +4296,7 @@ class Servicev1Header(dict):
                  type: str,
                  cache_condition: Optional[str] = None,
                  ignore_if_set: Optional[bool] = None,
-                 priority: Optional[float] = None,
+                 priority: Optional[int] = None,
                  regex: Optional[str] = None,
                  request_condition: Optional[str] = None,
                  response_condition: Optional[str] = None,
@@ -4311,7 +4311,7 @@ class Servicev1Header(dict):
         :param str cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
                see [Fastly's Documentation on Conditionals][fastly-conditionals].
         :param bool ignore_if_set: Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
-        :param float priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         :param str regex: Regular expression to use (Only applies to the `regex` and `regex_repeat` actions.)
         :param str request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -4392,7 +4392,7 @@ class Servicev1Header(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[float]:
+    def priority(self) -> Optional[int]:
         """
         Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         """
@@ -4449,26 +4449,26 @@ class Servicev1Healthcheck(dict):
                  host: str,
                  name: str,
                  path: str,
-                 check_interval: Optional[float] = None,
-                 expected_response: Optional[float] = None,
+                 check_interval: Optional[int] = None,
+                 expected_response: Optional[int] = None,
                  http_version: Optional[str] = None,
-                 initial: Optional[float] = None,
+                 initial: Optional[int] = None,
                  method: Optional[str] = None,
-                 threshold: Optional[float] = None,
-                 timeout: Optional[float] = None,
-                 window: Optional[float] = None):
+                 threshold: Optional[int] = None,
+                 timeout: Optional[int] = None,
+                 window: Optional[int] = None):
         """
         :param str host: The Host header to send for this Healthcheck.
         :param str name: A unique name to identify this dictionary.
         :param str path: The path to upload logs to.
-        :param float check_interval: How often to run the Healthcheck in milliseconds. Default `5000`.
-        :param float expected_response: The status code expected from the host. Default `200`.
+        :param int check_interval: How often to run the Healthcheck in milliseconds. Default `5000`.
+        :param int expected_response: The status code expected from the host. Default `200`.
         :param str http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
-        :param float initial: When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        :param int initial: When loading a config, the initial number of probes to be seen as OK. Default `2`.
         :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-        :param float threshold: How many Healthchecks must succeed to be considered healthy. Default `3`.
-        :param float timeout: Timeout in milliseconds. Default `500`.
-        :param float window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        :param int threshold: How many Healthchecks must succeed to be considered healthy. Default `3`.
+        :param int timeout: Timeout in milliseconds. Default `500`.
+        :param int window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
         """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "name", name)
@@ -4516,7 +4516,7 @@ class Servicev1Healthcheck(dict):
 
     @property
     @pulumi.getter(name="checkInterval")
-    def check_interval(self) -> Optional[float]:
+    def check_interval(self) -> Optional[int]:
         """
         How often to run the Healthcheck in milliseconds. Default `5000`.
         """
@@ -4524,7 +4524,7 @@ class Servicev1Healthcheck(dict):
 
     @property
     @pulumi.getter(name="expectedResponse")
-    def expected_response(self) -> Optional[float]:
+    def expected_response(self) -> Optional[int]:
         """
         The status code expected from the host. Default `200`.
         """
@@ -4540,7 +4540,7 @@ class Servicev1Healthcheck(dict):
 
     @property
     @pulumi.getter
-    def initial(self) -> Optional[float]:
+    def initial(self) -> Optional[int]:
         """
         When loading a config, the initial number of probes to be seen as OK. Default `2`.
         """
@@ -4556,7 +4556,7 @@ class Servicev1Healthcheck(dict):
 
     @property
     @pulumi.getter
-    def threshold(self) -> Optional[float]:
+    def threshold(self) -> Optional[int]:
         """
         How many Healthchecks must succeed to be considered healthy. Default `3`.
         """
@@ -4564,7 +4564,7 @@ class Servicev1Healthcheck(dict):
 
     @property
     @pulumi.getter
-    def timeout(self) -> Optional[float]:
+    def timeout(self) -> Optional[int]:
         """
         Timeout in milliseconds. Default `500`.
         """
@@ -4572,7 +4572,7 @@ class Servicev1Healthcheck(dict):
 
     @property
     @pulumi.getter
-    def window(self) -> Optional[float]:
+    def window(self) -> Optional[int]:
         """
         The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
         """
@@ -4589,15 +4589,15 @@ class Servicev1Httpslogging(dict):
                  url: str,
                  content_type: Optional[str] = None,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  header_name: Optional[str] = None,
                  header_value: Optional[str] = None,
                  json_format: Optional[str] = None,
                  message_type: Optional[str] = None,
                  method: Optional[str] = None,
                  placement: Optional[str] = None,
-                 request_max_bytes: Optional[float] = None,
-                 request_max_entries: Optional[float] = None,
+                 request_max_bytes: Optional[int] = None,
+                 request_max_entries: Optional[int] = None,
                  response_condition: Optional[str] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
@@ -4608,15 +4608,15 @@ class Servicev1Httpslogging(dict):
         :param str url: Your OpenStack auth url.
         :param str content_type: The MIME type of the content.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str header_name: Custom header sent with the request.
         :param str header_value: Value of the custom header sent with the request.
         :param str json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param float request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param float request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
@@ -4692,7 +4692,7 @@ class Servicev1Httpslogging(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -4748,7 +4748,7 @@ class Servicev1Httpslogging(dict):
 
     @property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[float]:
+    def request_max_bytes(self) -> Optional[int]:
         """
         The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         """
@@ -4756,7 +4756,7 @@ class Servicev1Httpslogging(dict):
 
     @property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[float]:
+    def request_max_entries(self) -> Optional[int]:
         """
         The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         """
@@ -4812,18 +4812,18 @@ class Servicev1Logentry(dict):
                  name: str,
                  token: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  response_condition: Optional[str] = None,
                  use_tls: Optional[bool] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str token: The data authentication token associated with this endpoint.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param bool use_tls: Whether to use TLS for secure logging. Can be either true or false.
         """
@@ -4868,7 +4868,7 @@ class Servicev1Logentry(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -4884,7 +4884,7 @@ class Servicev1Logentry(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -4918,11 +4918,11 @@ class Servicev1LoggingCloudfile(dict):
                  name: str,
                  user: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
-                 gzip_level: Optional[float] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
                  public_key: Optional[str] = None,
                  region: Optional[str] = None,
@@ -4934,11 +4934,11 @@ class Servicev1LoggingCloudfile(dict):
         :param str name: A unique name to identify this dictionary.
         :param str user: The username for your Cloud Files account.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
@@ -5014,7 +5014,7 @@ class Servicev1LoggingCloudfile(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -5022,7 +5022,7 @@ class Servicev1LoggingCloudfile(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -5046,7 +5046,7 @@ class Servicev1LoggingCloudfile(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -5102,7 +5102,7 @@ class Servicev1LoggingDatadog(dict):
                  name: str,
                  token: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  region: Optional[str] = None,
                  response_condition: Optional[str] = None):
@@ -5110,7 +5110,7 @@ class Servicev1LoggingDatadog(dict):
         :param str name: A unique name to identify this dictionary.
         :param str token: The data authentication token associated with this endpoint.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -5154,7 +5154,7 @@ class Servicev1LoggingDatadog(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -5197,11 +5197,11 @@ class Servicev1LoggingDigitalocean(dict):
                  secret_key: str,
                  domain: Optional[str] = None,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
-                 gzip_level: Optional[float] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
                  public_key: Optional[str] = None,
                  response_condition: Optional[str] = None,
@@ -5213,11 +5213,11 @@ class Servicev1LoggingDigitalocean(dict):
         :param str secret_key: Your DigitalOcean Spaces account secret key.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -5300,7 +5300,7 @@ class Servicev1LoggingDigitalocean(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -5308,7 +5308,7 @@ class Servicev1LoggingDigitalocean(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -5332,7 +5332,7 @@ class Servicev1LoggingDigitalocean(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -5381,12 +5381,12 @@ class Servicev1LoggingElasticsearch(dict):
                  name: str,
                  url: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  password: Optional[str] = None,
                  pipeline: Optional[str] = None,
                  placement: Optional[str] = None,
-                 request_max_bytes: Optional[float] = None,
-                 request_max_entries: Optional[float] = None,
+                 request_max_bytes: Optional[int] = None,
+                 request_max_entries: Optional[int] = None,
                  response_condition: Optional[str] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
@@ -5398,12 +5398,12 @@ class Servicev1LoggingElasticsearch(dict):
         :param str name: A unique name to identify this dictionary.
         :param str url: Your OpenStack auth url.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
         :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param float request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param float request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        :param int request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
@@ -5475,7 +5475,7 @@ class Servicev1LoggingElasticsearch(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -5507,7 +5507,7 @@ class Servicev1LoggingElasticsearch(dict):
 
     @property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[float]:
+    def request_max_bytes(self) -> Optional[int]:
         """
         The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         """
@@ -5515,7 +5515,7 @@ class Servicev1LoggingElasticsearch(dict):
 
     @property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[float]:
+    def request_max_entries(self) -> Optional[int]:
         """
         The maximum number of logs sent in one request. Defaults to `0` for unbounded.
         """
@@ -5582,12 +5582,12 @@ class Servicev1LoggingFtp(dict):
                  path: str,
                  user: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
-                 gzip_level: Optional[float] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  public_key: Optional[str] = None,
                  response_condition: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
@@ -5598,12 +5598,12 @@ class Servicev1LoggingFtp(dict):
         :param str path: The path to upload logs to.
         :param str user: The username for your Cloud Files account.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
@@ -5684,7 +5684,7 @@ class Servicev1LoggingFtp(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -5692,7 +5692,7 @@ class Servicev1LoggingFtp(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -5708,7 +5708,7 @@ class Servicev1LoggingFtp(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -5724,7 +5724,7 @@ class Servicev1LoggingFtp(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -5767,7 +5767,7 @@ class Servicev1LoggingGooglepubsub(dict):
                  topic: str,
                  user: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
@@ -5777,7 +5777,7 @@ class Servicev1LoggingGooglepubsub(dict):
         :param str topic: The Kafka topic to send logs to.
         :param str user: The username for your Cloud Files account.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -5845,7 +5845,7 @@ class Servicev1LoggingGooglepubsub(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -5878,7 +5878,7 @@ class Servicev1LoggingHeroku(dict):
                  token: str,
                  url: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
@@ -5886,7 +5886,7 @@ class Servicev1LoggingHeroku(dict):
         :param str token: The data authentication token associated with this endpoint.
         :param str url: Your OpenStack auth url.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -5936,7 +5936,7 @@ class Servicev1LoggingHeroku(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -5969,7 +5969,7 @@ class Servicev1LoggingHoneycomb(dict):
                  name: str,
                  token: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
@@ -5977,7 +5977,7 @@ class Servicev1LoggingHoneycomb(dict):
         :param str name: A unique name to identify this dictionary.
         :param str token: The data authentication token associated with this endpoint.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -6027,7 +6027,7 @@ class Servicev1LoggingHoneycomb(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6061,7 +6061,7 @@ class Servicev1LoggingKafka(dict):
                  topic: str,
                  compression_codec: Optional[str] = None,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  required_acks: Optional[str] = None,
                  response_condition: Optional[str] = None,
@@ -6076,7 +6076,7 @@ class Servicev1LoggingKafka(dict):
         :param str topic: The Kafka topic to send logs to.
         :param str compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -6154,7 +6154,7 @@ class Servicev1LoggingKafka(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6234,14 +6234,14 @@ class Servicev1LoggingLoggly(dict):
                  name: str,
                  token: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str token: The data authentication token associated with this endpoint.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -6282,7 +6282,7 @@ class Servicev1LoggingLoggly(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6315,7 +6315,7 @@ class Servicev1LoggingLogshuttle(dict):
                  token: str,
                  url: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
@@ -6323,7 +6323,7 @@ class Servicev1LoggingLogshuttle(dict):
         :param str token: The data authentication token associated with this endpoint.
         :param str url: Your OpenStack auth url.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -6373,7 +6373,7 @@ class Servicev1LoggingLogshuttle(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6405,14 +6405,14 @@ class Servicev1LoggingNewrelic(dict):
                  name: str,
                  token: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str token: The data authentication token associated with this endpoint.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -6453,7 +6453,7 @@ class Servicev1LoggingNewrelic(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6488,11 +6488,11 @@ class Servicev1LoggingOpenstack(dict):
                  url: str,
                  user: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
-                 gzip_level: Optional[float] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
                  public_key: Optional[str] = None,
                  response_condition: Optional[str] = None,
@@ -6504,11 +6504,11 @@ class Servicev1LoggingOpenstack(dict):
         :param str url: Your OpenStack auth url.
         :param str user: The username for your Cloud Files account.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -6590,7 +6590,7 @@ class Servicev1LoggingOpenstack(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6598,7 +6598,7 @@ class Servicev1LoggingOpenstack(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -6622,7 +6622,7 @@ class Servicev1LoggingOpenstack(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -6670,7 +6670,7 @@ class Servicev1LoggingScalyr(dict):
                  name: str,
                  token: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  region: Optional[str] = None,
                  response_condition: Optional[str] = None):
@@ -6678,7 +6678,7 @@ class Servicev1LoggingScalyr(dict):
         :param str name: A unique name to identify this dictionary.
         :param str token: The data authentication token associated with this endpoint.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -6722,7 +6722,7 @@ class Servicev1LoggingScalyr(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6765,13 +6765,13 @@ class Servicev1LoggingSftp(dict):
                  ssh_known_hosts: str,
                  user: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
-                 gzip_level: Optional[float] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  password: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  public_key: Optional[str] = None,
                  response_condition: Optional[str] = None,
                  secret_key: Optional[str] = None,
@@ -6783,13 +6783,13 @@ class Servicev1LoggingSftp(dict):
         :param str ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP.
         :param str user: The username for your Cloud Files account.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str secret_key: Your DigitalOcean Spaces account secret key.
@@ -6875,7 +6875,7 @@ class Servicev1LoggingSftp(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -6883,7 +6883,7 @@ class Servicev1LoggingSftp(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -6907,7 +6907,7 @@ class Servicev1LoggingSftp(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -6923,7 +6923,7 @@ class Servicev1LoggingSftp(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -6970,14 +6970,14 @@ class Servicev1Papertrail(dict):
     def __init__(__self__, *,
                  address: str,
                  name: str,
-                 port: float,
+                 port: int,
                  format: Optional[str] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
         :param str address: The SFTP address to stream logs to.
         :param str name: A unique name to identify this dictionary.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str format: Apache style log formatting.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -7010,7 +7010,7 @@ class Servicev1Papertrail(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -7055,7 +7055,7 @@ class Servicev1RequestSetting(dict):
                  force_ssl: Optional[bool] = None,
                  geo_headers: Optional[bool] = None,
                  hash_keys: Optional[str] = None,
-                 max_stale_age: Optional[float] = None,
+                 max_stale_age: Optional[int] = None,
                  request_condition: Optional[str] = None,
                  timer_support: Optional[bool] = None,
                  xff: Optional[str] = None):
@@ -7073,7 +7073,7 @@ class Servicev1RequestSetting(dict):
                Fastly-Geo-Region into the request headers.
         :param str hash_keys: Comma separated list of varnish request object fields
                that should be in the hash key.
-        :param float max_stale_age: How old an object is allowed to be to serve
+        :param int max_stale_age: How old an object is allowed to be to serve
                `stale-if-error` or `stale-while-revalidate`, in seconds.
         :param str request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
         :param bool timer_support: Injects the X-Timer info into the request for
@@ -7176,7 +7176,7 @@ class Servicev1RequestSetting(dict):
 
     @property
     @pulumi.getter(name="maxStaleAge")
-    def max_stale_age(self) -> Optional[float]:
+    def max_stale_age(self) -> Optional[int]:
         """
         How old an object is allowed to be to serve
         `stale-if-error` or `stale-while-revalidate`, in seconds.
@@ -7222,7 +7222,7 @@ class Servicev1ResponseObject(dict):
                  content_type: Optional[str] = None,
                  request_condition: Optional[str] = None,
                  response: Optional[str] = None,
-                 status: Optional[float] = None):
+                 status: Optional[int] = None):
         """
         :param str name: A unique name to identify this dictionary.
         :param str cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
@@ -7231,7 +7231,7 @@ class Servicev1ResponseObject(dict):
         :param str content_type: The MIME type of the content.
         :param str request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
         :param str response: The HTTP Response. Default `Ok`.
-        :param float status: The HTTP Status Code. Default `200`.
+        :param int status: The HTTP Status Code. Default `200`.
         """
         pulumi.set(__self__, "name", name)
         if cache_condition is not None:
@@ -7298,7 +7298,7 @@ class Servicev1ResponseObject(dict):
 
     @property
     @pulumi.getter
-    def status(self) -> Optional[float]:
+    def status(self) -> Optional[int]:
         """
         The HTTP Status Code. Default `200`.
         """
@@ -7315,11 +7315,11 @@ class Servicev1S3logging(dict):
                  name: str,
                  domain: Optional[str] = None,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
-                 gzip_level: Optional[float] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
-                 period: Optional[float] = None,
+                 period: Optional[int] = None,
                  placement: Optional[str] = None,
                  public_key: Optional[str] = None,
                  redundancy: Optional[str] = None,
@@ -7334,11 +7334,11 @@ class Servicev1S3logging(dict):
         :param str name: A unique name to identify this dictionary.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param float gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
-        :param float period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
@@ -7424,7 +7424,7 @@ class Servicev1S3logging(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -7432,7 +7432,7 @@ class Servicev1S3logging(dict):
 
     @property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[float]:
+    def gzip_level(self) -> Optional[int]:
         """
         What level of GZIP encoding to have when dumping logs (default 0, no compression).
         """
@@ -7456,7 +7456,7 @@ class Servicev1S3logging(dict):
 
     @property
     @pulumi.getter
-    def period(self) -> Optional[float]:
+    def period(self) -> Optional[int]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         """
@@ -7550,12 +7550,12 @@ class Servicev1Snippet(dict):
                  content: str,
                  name: str,
                  type: str,
-                 priority: Optional[float] = None):
+                 priority: Optional[int] = None):
         """
         :param str content: The custom VCL code to upload.
         :param str name: A unique name to identify this dictionary.
         :param str type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
-        :param float priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         """
         pulumi.set(__self__, "content", content)
         pulumi.set(__self__, "name", name)
@@ -7589,7 +7589,7 @@ class Servicev1Snippet(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[float]:
+    def priority(self) -> Optional[int]:
         """
         Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
         """
@@ -7606,7 +7606,7 @@ class Servicev1Splunk(dict):
                  token: str,
                  url: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None,
                  tls_ca_cert: Optional[str] = None,
@@ -7616,7 +7616,7 @@ class Servicev1Splunk(dict):
         :param str token: The data authentication token associated with this endpoint.
         :param str url: Your OpenStack auth url.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
@@ -7672,7 +7672,7 @@ class Servicev1Splunk(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -7720,7 +7720,7 @@ class Servicev1Sumologic(dict):
                  name: str,
                  url: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  message_type: Optional[str] = None,
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None):
@@ -7728,7 +7728,7 @@ class Servicev1Sumologic(dict):
         :param str name: A unique name to identify this dictionary.
         :param str url: Your OpenStack auth url.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -7772,7 +7772,7 @@ class Servicev1Sumologic(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -7812,10 +7812,10 @@ class Servicev1Syslog(dict):
                  address: str,
                  name: str,
                  format: Optional[str] = None,
-                 format_version: Optional[float] = None,
+                 format_version: Optional[int] = None,
                  message_type: Optional[str] = None,
                  placement: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  response_condition: Optional[str] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
@@ -7827,10 +7827,10 @@ class Servicev1Syslog(dict):
         :param str address: The SFTP address to stream logs to.
         :param str name: A unique name to identify this dictionary.
         :param str format: Apache style log formatting.
-        :param float format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param float port: The port the SFTP service listens on. (Default: `22`).
+        :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
@@ -7892,7 +7892,7 @@ class Servicev1Syslog(dict):
 
     @property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[float]:
+    def format_version(self) -> Optional[int]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
@@ -7916,7 +7916,7 @@ class Servicev1Syslog(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port the SFTP service listens on. (Default: `22`).
         """
@@ -8078,12 +8078,12 @@ class Servicev1Waf(dict):
 @pulumi.output_type
 class GetWafRulesRuleResult(dict):
     def __init__(__self__, *,
-                 latest_revision_number: float,
-                 modsec_rule_id: float,
+                 latest_revision_number: int,
+                 modsec_rule_id: int,
                  type: str):
         """
-        :param float latest_revision_number: The rule's latest revision.
-        :param float modsec_rule_id: The rule's modsecurity ID.
+        :param int latest_revision_number: The rule's latest revision.
+        :param int modsec_rule_id: The rule's modsecurity ID.
         :param str type: The rule's type.
         """
         pulumi.set(__self__, "latest_revision_number", latest_revision_number)
@@ -8092,7 +8092,7 @@ class GetWafRulesRuleResult(dict):
 
     @property
     @pulumi.getter(name="latestRevisionNumber")
-    def latest_revision_number(self) -> float:
+    def latest_revision_number(self) -> int:
         """
         The rule's latest revision.
         """
@@ -8100,7 +8100,7 @@ class GetWafRulesRuleResult(dict):
 
     @property
     @pulumi.getter(name="modsecRuleId")
-    def modsec_rule_id(self) -> float:
+    def modsec_rule_id(self) -> int:
         """
         The rule's modsecurity ID.
         """
