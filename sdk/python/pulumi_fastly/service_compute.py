@@ -61,6 +61,14 @@ class ServiceCompute(pulumi.CustomResource):
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
 
+        ## Import
+
+        Fastly Service can be imported using their service ID, e.g.
+
+        ```sh
+         $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.

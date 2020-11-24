@@ -9,6 +9,19 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Fastly
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
+    /// 
+    /// ```sh
+    ///  $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+    /// ```
+    /// 
+    ///  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+    /// 
+    ///  The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
+    /// </summary>
     public partial class ServiceACLEntriesv1 : Pulumi.CustomResource
     {
         /// <summary>

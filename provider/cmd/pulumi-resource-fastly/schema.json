@@ -6504,6 +6504,7 @@
     },
     "resources": {
         "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1": {
+            "description": "\n\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.\n\n The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries ",
             "properties": {
                 "aclId": {
                     "type": "string",
@@ -6569,7 +6570,7 @@
             }
         },
         "fastly:index/serviceCompute:ServiceCompute": {
-            "description": "Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n",
+            "description": "Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n\n\n## Import\n\nFastly Service can be imported using their service ID, e.g.\n\n```sh\n $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "activate": {
                     "type": "boolean",
@@ -7267,6 +7268,7 @@
             }
         },
         "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1": {
+            "description": "\n\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.\n\n The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items ",
             "properties": {
                 "dictionaryId": {
                     "type": "string",
@@ -7332,6 +7334,7 @@
             }
         },
         "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1": {
+            "description": "\n\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content_v1.content` The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1 content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content_v1.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content_v1.content ",
             "properties": {
                 "content": {
                     "type": "string",
@@ -7390,6 +7393,7 @@
             }
         },
         "fastly:index/serviceWafConfiguration:ServiceWafConfiguration": {
+            "description": "\n\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf` The resource ID should be the WAF ID.\n\n```sh\n $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx\n```\n\n If Terraform is already managing a remote WAF configurations against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_waf_configuration.waf` from the Terraform state file. $ terraform state rm fastly_service_waf_configuration.waf ",
             "properties": {
                 "allowedHttpVersions": {
                     "type": "string",
@@ -7826,6 +7830,7 @@
             }
         },
         "fastly:index/servicev1:Servicev1": {
+            "description": "\n\n\n## Import\n\nFastly Service can be imported using their service ID, e.g.\n\n```sh\n $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "acls": {
                     "type": "array",
@@ -8800,7 +8805,7 @@
             }
         },
         "fastly:index/userv1:Userv1": {
-            "description": "Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.\n\nThe User resource requires a login and name, and optionally a role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Userv1(\"demo\", {\n    login: \"demo@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Userv1(\"demo\", login=\"demo@example.com\")\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Userv1(\"demo\", new Fastly.Userv1Args\n        {\n            Login = \"demo@example.com\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewUserv1(ctx, \"demo\", \u0026fastly.Userv1Args{\n\t\t\tLogin: pulumi.String(\"demo@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.\n\nThe User resource requires a login and name, and optionally a role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.Userv1(\"demo\", {\n    login: \"demo@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.Userv1(\"demo\", login=\"demo@example.com\")\n```\n```csharp\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var demo = new Fastly.Userv1(\"demo\", new Fastly.Userv1Args\n        {\n            Login = \"demo@example.com\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewUserv1(ctx, \"demo\", \u0026fastly.Userv1Args{\n\t\t\tLogin: pulumi.String(\"demo@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA Fastly User can be imported using their user ID, e.g.\n\n```sh\n $ pulumi import fastly:index/userv1:Userv1 demo xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "login": {
                     "type": "string",

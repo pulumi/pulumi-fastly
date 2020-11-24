@@ -4,12 +4,22 @@
 package fastly
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf` The resource ID should be the WAF ID.
+//
+// ```sh
+//  $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
+// ```
+//
+//  If Terraform is already managing a remote WAF configurations against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_waf_configuration.waf` from the Terraform state file. $ terraform state rm fastly_service_waf_configuration.waf
 type ServiceWafConfiguration struct {
 	pulumi.CustomResourceState
 
@@ -374,4 +384,43 @@ type ServiceWafConfigurationArgs struct {
 
 func (ServiceWafConfigurationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceWafConfigurationArgs)(nil)).Elem()
+}
+
+type ServiceWafConfigurationInput interface {
+	pulumi.Input
+
+	ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput
+	ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput
+}
+
+func (ServiceWafConfiguration) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceWafConfiguration)(nil)).Elem()
+}
+
+func (i ServiceWafConfiguration) ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput {
+	return i.ToServiceWafConfigurationOutputWithContext(context.Background())
+}
+
+func (i ServiceWafConfiguration) ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationOutput)
+}
+
+type ServiceWafConfigurationOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceWafConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceWafConfigurationOutput)(nil)).Elem()
+}
+
+func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput {
+	return o
+}
+
+func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceWafConfigurationOutput{})
 }

@@ -4,6 +4,19 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * This is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
+ *
+ * ```sh
+ *  $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+ * ```
+ *
+ *  If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+ *
+ *  The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
+ */
 export class ServiceDictionaryItemsv1 extends pulumi.CustomResource {
     /**
      * Get an existing ServiceDictionaryItemsv1 resource's state with the given name, ID, and optional extra

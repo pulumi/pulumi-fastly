@@ -4,6 +4,17 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content_v1.content` The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
+ *
+ * ```sh
+ *  $ pulumi import fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1 content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+ * ```
+ *
+ *  If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content_v1.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content_v1.content
+ */
 export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
     /**
      * Get an existing ServiceDynamicSnippetContentv1 resource's state with the given name, ID, and optional extra

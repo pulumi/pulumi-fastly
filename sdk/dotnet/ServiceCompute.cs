@@ -15,6 +15,14 @@ namespace Pulumi.Fastly
     /// The Service resource requires a domain name that is correctly set up to direct
     /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
     /// on their documentation site for guidance.
+    /// 
+    /// ## Import
+    /// 
+    /// Fastly Service can be imported using their service ID, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
+    /// ```
     /// </summary>
     public partial class ServiceCompute : Pulumi.CustomResource
     {

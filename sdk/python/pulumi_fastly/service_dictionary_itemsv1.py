@@ -22,7 +22,18 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ServiceDictionaryItemsv1 resource with the given unique name, props, and options.
+        ## Import
+
+        This is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
+
+        ```sh
+         $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+        ```
+
+         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+
+         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to

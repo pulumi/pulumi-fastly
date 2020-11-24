@@ -24,7 +24,18 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ServiceACLEntriesv1 resource with the given unique name, props, and options.
+        ## Import
+
+        This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
+
+        ```sh
+         $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+        ```
+
+         If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+
+         The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to

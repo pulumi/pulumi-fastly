@@ -4,12 +4,22 @@
 package fastly
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content_v1.content` The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
+//
+// ```sh
+//  $ pulumi import fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1 content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+// ```
+//
+//  If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content_v1.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content_v1.content
 type ServiceDynamicSnippetContentv1 struct {
 	pulumi.CustomResourceState
 
@@ -100,4 +110,43 @@ type ServiceDynamicSnippetContentv1Args struct {
 
 func (ServiceDynamicSnippetContentv1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceDynamicSnippetContentv1Args)(nil)).Elem()
+}
+
+type ServiceDynamicSnippetContentv1Input interface {
+	pulumi.Input
+
+	ToServiceDynamicSnippetContentv1Output() ServiceDynamicSnippetContentv1Output
+	ToServiceDynamicSnippetContentv1OutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1Output
+}
+
+func (ServiceDynamicSnippetContentv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDynamicSnippetContentv1)(nil)).Elem()
+}
+
+func (i ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1Output() ServiceDynamicSnippetContentv1Output {
+	return i.ToServiceDynamicSnippetContentv1OutputWithContext(context.Background())
+}
+
+func (i ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1OutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentv1Output)
+}
+
+type ServiceDynamicSnippetContentv1Output struct {
+	*pulumi.OutputState
+}
+
+func (ServiceDynamicSnippetContentv1Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDynamicSnippetContentv1Output)(nil)).Elem()
+}
+
+func (o ServiceDynamicSnippetContentv1Output) ToServiceDynamicSnippetContentv1Output() ServiceDynamicSnippetContentv1Output {
+	return o
+}
+
+func (o ServiceDynamicSnippetContentv1Output) ToServiceDynamicSnippetContentv1OutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1Output {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceDynamicSnippetContentv1Output{})
 }

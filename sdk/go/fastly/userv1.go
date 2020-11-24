@@ -4,6 +4,7 @@
 package fastly
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,6 +36,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// A Fastly User can be imported using their user ID, e.g.
+//
+// ```sh
+//  $ pulumi import fastly:index/userv1:Userv1 demo xxxxxxxxxxxxxxxxxxxx
 // ```
 type Userv1 struct {
 	pulumi.CustomResourceState
@@ -120,4 +129,43 @@ type Userv1Args struct {
 
 func (Userv1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*userv1Args)(nil)).Elem()
+}
+
+type Userv1Input interface {
+	pulumi.Input
+
+	ToUserv1Output() Userv1Output
+	ToUserv1OutputWithContext(ctx context.Context) Userv1Output
+}
+
+func (Userv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*Userv1)(nil)).Elem()
+}
+
+func (i Userv1) ToUserv1Output() Userv1Output {
+	return i.ToUserv1OutputWithContext(context.Background())
+}
+
+func (i Userv1) ToUserv1OutputWithContext(ctx context.Context) Userv1Output {
+	return pulumi.ToOutputWithContext(ctx, i).(Userv1Output)
+}
+
+type Userv1Output struct {
+	*pulumi.OutputState
+}
+
+func (Userv1Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*Userv1Output)(nil)).Elem()
+}
+
+func (o Userv1Output) ToUserv1Output() Userv1Output {
+	return o
+}
+
+func (o Userv1Output) ToUserv1OutputWithContext(ctx context.Context) Userv1Output {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Userv1Output{})
 }

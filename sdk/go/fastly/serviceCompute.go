@@ -4,6 +4,7 @@
 package fastly
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -15,6 +16,14 @@ import (
 // The Service resource requires a domain name that is correctly set up to direct
 // traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
 // on their documentation site for guidance.
+//
+// ## Import
+//
+// Fastly Service can be imported using their service ID, e.g.
+//
+// ```sh
+//  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
+// ```
 type ServiceCompute struct {
 	pulumi.CustomResourceState
 
@@ -561,4 +570,43 @@ type ServiceComputeArgs struct {
 
 func (ServiceComputeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceComputeArgs)(nil)).Elem()
+}
+
+type ServiceComputeInput interface {
+	pulumi.Input
+
+	ToServiceComputeOutput() ServiceComputeOutput
+	ToServiceComputeOutputWithContext(ctx context.Context) ServiceComputeOutput
+}
+
+func (ServiceCompute) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceCompute)(nil)).Elem()
+}
+
+func (i ServiceCompute) ToServiceComputeOutput() ServiceComputeOutput {
+	return i.ToServiceComputeOutputWithContext(context.Background())
+}
+
+func (i ServiceCompute) ToServiceComputeOutputWithContext(ctx context.Context) ServiceComputeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeOutput)
+}
+
+type ServiceComputeOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceComputeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeOutput)(nil)).Elem()
+}
+
+func (o ServiceComputeOutput) ToServiceComputeOutput() ServiceComputeOutput {
+	return o
+}
+
+func (o ServiceComputeOutput) ToServiceComputeOutputWithContext(ctx context.Context) ServiceComputeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceComputeOutput{})
 }
