@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Fastly
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Fastly Service can be imported using their service ID, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
+    /// ```
+    /// </summary>
     public partial class Servicev1 : Pulumi.CustomResource
     {
         /// <summary>

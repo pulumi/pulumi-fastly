@@ -35,6 +35,14 @@ class Userv1(pulumi.CustomResource):
         demo = fastly.Userv1("demo", login="demo@example.com")
         ```
 
+        ## Import
+
+        A Fastly User can be imported using their user ID, e.g.
+
+        ```sh
+         $ pulumi import fastly:index/userv1:Userv1 demo xxxxxxxxxxxxxxxxxxxx
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] login: The email address, which is the login name, of the User.

@@ -32,6 +32,14 @@ namespace Pulumi.Fastly
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A Fastly User can be imported using their user ID, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import fastly:index/userv1:Userv1 demo xxxxxxxxxxxxxxxxxxxx
+    /// ```
     /// </summary>
     public partial class Userv1 : Pulumi.CustomResource
     {

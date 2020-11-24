@@ -4,12 +4,20 @@
 package fastly
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Fastly Service can be imported using their service ID, e.g.
+//
+// ```sh
+//  $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
+// ```
 type Servicev1 struct {
 	pulumi.CustomResourceState
 
@@ -721,4 +729,43 @@ type Servicev1Args struct {
 
 func (Servicev1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*servicev1Args)(nil)).Elem()
+}
+
+type Servicev1Input interface {
+	pulumi.Input
+
+	ToServicev1Output() Servicev1Output
+	ToServicev1OutputWithContext(ctx context.Context) Servicev1Output
+}
+
+func (Servicev1) ElementType() reflect.Type {
+	return reflect.TypeOf((*Servicev1)(nil)).Elem()
+}
+
+func (i Servicev1) ToServicev1Output() Servicev1Output {
+	return i.ToServicev1OutputWithContext(context.Background())
+}
+
+func (i Servicev1) ToServicev1OutputWithContext(ctx context.Context) Servicev1Output {
+	return pulumi.ToOutputWithContext(ctx, i).(Servicev1Output)
+}
+
+type Servicev1Output struct {
+	*pulumi.OutputState
+}
+
+func (Servicev1Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*Servicev1Output)(nil)).Elem()
+}
+
+func (o Servicev1Output) ToServicev1Output() Servicev1Output {
+	return o
+}
+
+func (o Servicev1Output) ToServicev1OutputWithContext(ctx context.Context) Servicev1Output {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Servicev1Output{})
 }

@@ -5,8 +5,9 @@ go 1.14
 require (
 	github.com/fastly/terraform-provider-fastly v0.20.2
 	github.com/hashicorp/terraform-plugin-sdk v1.7.0
-	github.com/pulumi/pulumi-terraform-bridge/v2 v2.11.1-0.20201020163502-64cff1e50894
-	github.com/pulumi/pulumi/sdk/v2 v2.12.0
+	github.com/pulumi/pulumi-terraform-bridge/v2 v2.13.2
+	github.com/pulumi/pulumi/sdk/v2 v2.13.3-0.20201109230029-a6f8b9b205cd
+	github.com/satori/go.uuid v1.2.0 // indirect
 )
 
 replace (

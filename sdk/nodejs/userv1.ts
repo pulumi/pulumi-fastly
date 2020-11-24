@@ -19,6 +19,14 @@ import * as utilities from "./utilities";
  *     login: "demo@example.com",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * A Fastly User can be imported using their user ID, e.g.
+ *
+ * ```sh
+ *  $ pulumi import fastly:index/userv1:Userv1 demo xxxxxxxxxxxxxxxxxxxx
+ * ```
  */
 export class Userv1 extends pulumi.CustomResource {
     /**

@@ -4,12 +4,24 @@
 package fastly
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
+//
+// ```sh
+//  $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+// ```
+//
+//  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+//
+//  The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
 type ServiceACLEntriesv1 struct {
 	pulumi.CustomResourceState
 
@@ -97,4 +109,43 @@ type ServiceACLEntriesv1Args struct {
 
 func (ServiceACLEntriesv1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceACLEntriesv1Args)(nil)).Elem()
+}
+
+type ServiceACLEntriesv1Input interface {
+	pulumi.Input
+
+	ToServiceACLEntriesv1Output() ServiceACLEntriesv1Output
+	ToServiceACLEntriesv1OutputWithContext(ctx context.Context) ServiceACLEntriesv1Output
+}
+
+func (ServiceACLEntriesv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceACLEntriesv1)(nil)).Elem()
+}
+
+func (i ServiceACLEntriesv1) ToServiceACLEntriesv1Output() ServiceACLEntriesv1Output {
+	return i.ToServiceACLEntriesv1OutputWithContext(context.Background())
+}
+
+func (i ServiceACLEntriesv1) ToServiceACLEntriesv1OutputWithContext(ctx context.Context) ServiceACLEntriesv1Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1Output)
+}
+
+type ServiceACLEntriesv1Output struct {
+	*pulumi.OutputState
+}
+
+func (ServiceACLEntriesv1Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceACLEntriesv1Output)(nil)).Elem()
+}
+
+func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1Output() ServiceACLEntriesv1Output {
+	return o
+}
+
+func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1OutputWithContext(ctx context.Context) ServiceACLEntriesv1Output {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceACLEntriesv1Output{})
 }

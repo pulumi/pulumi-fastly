@@ -69,7 +69,14 @@ class Servicev1(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Servicev1 resource with the given unique name, props, and options.
+        ## Import
+
+        Fastly Service can be imported using their service ID, e.g.
+
+        ```sh
+         $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1AclArgs']]]] acls: A set of ACL configuration blocks.  Defined below.

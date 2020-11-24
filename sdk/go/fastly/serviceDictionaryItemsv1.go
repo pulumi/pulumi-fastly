@@ -4,12 +4,24 @@
 package fastly
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
+//
+// ```sh
+//  $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+// ```
+//
+//  If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+//
+//  The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
 type ServiceDictionaryItemsv1 struct {
 	pulumi.CustomResourceState
 
@@ -97,4 +109,43 @@ type ServiceDictionaryItemsv1Args struct {
 
 func (ServiceDictionaryItemsv1Args) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceDictionaryItemsv1Args)(nil)).Elem()
+}
+
+type ServiceDictionaryItemsv1Input interface {
+	pulumi.Input
+
+	ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output
+	ToServiceDictionaryItemsv1OutputWithContext(ctx context.Context) ServiceDictionaryItemsv1Output
+}
+
+func (ServiceDictionaryItemsv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDictionaryItemsv1)(nil)).Elem()
+}
+
+func (i ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output {
+	return i.ToServiceDictionaryItemsv1OutputWithContext(context.Background())
+}
+
+func (i ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1OutputWithContext(ctx context.Context) ServiceDictionaryItemsv1Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1Output)
+}
+
+type ServiceDictionaryItemsv1Output struct {
+	*pulumi.OutputState
+}
+
+func (ServiceDictionaryItemsv1Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDictionaryItemsv1Output)(nil)).Elem()
+}
+
+func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output {
+	return o
+}
+
+func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1OutputWithContext(ctx context.Context) ServiceDictionaryItemsv1Output {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceDictionaryItemsv1Output{})
 }

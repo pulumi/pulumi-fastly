@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -12,6 +11,14 @@ import * as utilities from "./utilities";
  * The Service resource requires a domain name that is correctly set up to direct
  * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
  * on their documentation site for guidance.
+ *
+ * ## Import
+ *
+ * Fastly Service can be imported using their service ID, e.g.
+ *
+ * ```sh
+ *  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
+ * ```
  */
 export class ServiceCompute extends pulumi.CustomResource {
     /**

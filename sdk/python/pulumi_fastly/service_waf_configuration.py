@@ -52,7 +52,16 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ServiceWafConfiguration resource with the given unique name, props, and options.
+        ## Import
+
+        This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf` The resource ID should be the WAF ID.
+
+        ```sh
+         $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
+        ```
+
+         If Terraform is already managing a remote WAF configurations against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_waf_configuration.waf` from the Terraform state file. $ terraform state rm fastly_service_waf_configuration.waf
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allowed_http_versions: Allowed HTTP versions.
