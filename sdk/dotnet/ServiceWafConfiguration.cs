@@ -161,13 +161,13 @@ namespace Pulumi.Fastly
         public Output<int> RfiScoreThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// The Web Application Firewall's rule exclusions.
+        /// The Web Application Firewall's rule exclusions. Defined below
         /// </summary>
         [Output("ruleExclusions")]
         public Output<ImmutableArray<Outputs.ServiceWafConfigurationRuleExclusion>> RuleExclusions { get; private set; } = null!;
 
         /// <summary>
-        /// The Web Application Firewall's active rules.
+        /// The Web Application Firewall's active rules. Defined below
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.ServiceWafConfigurationRule>> Rules { get; private set; } = null!;
@@ -396,7 +396,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceWafConfigurationRuleExclusionArgs>? _ruleExclusions;
 
         /// <summary>
-        /// The Web Application Firewall's rule exclusions.
+        /// The Web Application Firewall's rule exclusions. Defined below
         /// </summary>
         public InputList<Inputs.ServiceWafConfigurationRuleExclusionArgs> RuleExclusions
         {
@@ -408,7 +408,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceWafConfigurationRuleArgs>? _rules;
 
         /// <summary>
-        /// The Web Application Firewall's active rules.
+        /// The Web Application Firewall's active rules. Defined below
         /// </summary>
         public InputList<Inputs.ServiceWafConfigurationRuleArgs> Rules
         {
@@ -601,7 +601,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceWafConfigurationRuleExclusionGetArgs>? _ruleExclusions;
 
         /// <summary>
-        /// The Web Application Firewall's rule exclusions.
+        /// The Web Application Firewall's rule exclusions. Defined below
         /// </summary>
         public InputList<Inputs.ServiceWafConfigurationRuleExclusionGetArgs> RuleExclusions
         {
@@ -613,7 +613,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceWafConfigurationRuleGetArgs>? _rules;
 
         /// <summary>
-        /// The Web Application Firewall's active rules.
+        /// The Web Application Firewall's active rules. Defined below
         /// </summary>
         public InputList<Inputs.ServiceWafConfigurationRuleGetArgs> Rules
         {

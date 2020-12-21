@@ -107,7 +107,8 @@ type ServiceCompute struct {
 	LoggingSftps ServiceComputeLoggingSftpArrayOutput `pulumi:"loggingSftps"`
 	// The unique name of the Rackspace Cloud Files logging endpoint.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// A Wasm deployment package to upload. Defined below.
+	// A Wasm deployment package to upload.
+	// Defined below.
 	Package ServiceComputePackageOutput `pulumi:"package"`
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -242,7 +243,8 @@ type serviceComputeState struct {
 	LoggingSftps []ServiceComputeLoggingSftp `pulumi:"loggingSftps"`
 	// The unique name of the Rackspace Cloud Files logging endpoint.
 	Name *string `pulumi:"name"`
-	// A Wasm deployment package to upload. Defined below.
+	// A Wasm deployment package to upload.
+	// Defined below.
 	Package *ServiceComputePackage `pulumi:"package"`
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -344,7 +346,8 @@ type ServiceComputeState struct {
 	LoggingSftps ServiceComputeLoggingSftpArrayInput
 	// The unique name of the Rackspace Cloud Files logging endpoint.
 	Name pulumi.StringPtrInput
-	// A Wasm deployment package to upload. Defined below.
+	// A Wasm deployment package to upload.
+	// Defined below.
 	Package ServiceComputePackagePtrInput
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -447,7 +450,8 @@ type serviceComputeArgs struct {
 	LoggingSftps []ServiceComputeLoggingSftp `pulumi:"loggingSftps"`
 	// The unique name of the Rackspace Cloud Files logging endpoint.
 	Name *string `pulumi:"name"`
-	// A Wasm deployment package to upload. Defined below.
+	// A Wasm deployment package to upload.
+	// Defined below.
 	Package ServiceComputePackage `pulumi:"package"`
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
@@ -547,7 +551,8 @@ type ServiceComputeArgs struct {
 	LoggingSftps ServiceComputeLoggingSftpArrayInput
 	// The unique name of the Rackspace Cloud Files logging endpoint.
 	Name pulumi.StringPtrInput
-	// A Wasm deployment package to upload. Defined below.
+	// A Wasm deployment package to upload.
+	// Defined below.
 	Package ServiceComputePackageInput
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.

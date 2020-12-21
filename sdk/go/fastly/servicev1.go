@@ -21,7 +21,8 @@ import (
 type Servicev1 struct {
 	pulumi.CustomResourceState
 
-	// A set of ACL configuration blocks.  Defined below.
+	// A set of ACL configuration blocks.
+	// Defined below.
 	Acls Servicev1AclArrayOutput `pulumi:"acls"`
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
@@ -37,7 +38,8 @@ type Servicev1 struct {
 	// An Azure Blob Storage endpoint to send streaming logs too.
 	// Defined below.
 	Blobstorageloggings Servicev1BlobstorageloggingArrayOutput `pulumi:"blobstorageloggings"`
-	// A set of Cache Settings, allowing you to override
+	// A set of Cache Settings, allowing you to override.
+	// Defined below.
 	CacheSettings Servicev1CacheSettingArrayOutput `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
@@ -51,14 +53,17 @@ type Servicev1 struct {
 	// The default Time-to-live (TTL) for
 	// requests.
 	DefaultTtl pulumi.IntPtrOutput `pulumi:"defaultTtl"`
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+	// Defined below.
 	Dictionaries Servicev1DictionaryArrayOutput `pulumi:"dictionaries"`
 	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`. Defined below
+	// when an item is not to be cached based on an above `condition`.
+	// Defined below
 	Directors Servicev1DirectorArrayOutput `pulumi:"directors"`
 	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains Servicev1DomainArrayOutput `pulumi:"domains"`
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "dynamic" VCL Snippet configuration blocks.
+	// Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In
 	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
@@ -69,8 +74,8 @@ type Servicev1 struct {
 	// A set of gzip rules to control automatic gzipping of
 	// content. Defined below.
 	Gzips Servicev1GzipArrayOutput `pulumi:"gzips"`
-	// A set of Headers to manipulate for each request. Defined
-	// below.
+	// A set of Headers to manipulate for each request.
+	// Defined below.
 	Headers Servicev1HeaderArrayOutput `pulumi:"headers"`
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayOutput `pulumi:"healthchecks"`
@@ -130,14 +135,16 @@ type Servicev1 struct {
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
 	Papertrails Servicev1PapertrailArrayOutput `pulumi:"papertrails"`
-	// A set of Request modifiers. Defined below
+	// A set of Request modifiers.
+	// Defined below
 	RequestSettings Servicev1RequestSettingArrayOutput `pulumi:"requestSettings"`
 	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayOutput `pulumi:"responseObjects"`
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
 	S3loggings Servicev1S3loggingArrayOutput `pulumi:"s3loggings"`
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+	// Defined below.
 	Snippets Servicev1SnippetArrayOutput `pulumi:"snippets"`
 	// A Splunk endpoint to send streaming logs too.
 	// Defined below.
@@ -148,11 +155,13 @@ type Servicev1 struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs Servicev1SyslogArrayOutput `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+	// A set of custom VCL configuration blocks.
+	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls Servicev1VclArrayOutput `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
-	// A WAF configuration block.  Defined below.
+	// A WAF configuration block.
+	// Defined below.
 	Waf Servicev1WafPtrOutput `pulumi:"waf"`
 }
 
@@ -187,7 +196,8 @@ func GetServicev1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Servicev1 resources.
 type servicev1State struct {
-	// A set of ACL configuration blocks.  Defined below.
+	// A set of ACL configuration blocks.
+	// Defined below.
 	Acls []Servicev1Acl `pulumi:"acls"`
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
 	Activate *bool `pulumi:"activate"`
@@ -203,7 +213,8 @@ type servicev1State struct {
 	// An Azure Blob Storage endpoint to send streaming logs too.
 	// Defined below.
 	Blobstorageloggings []Servicev1Blobstoragelogging `pulumi:"blobstorageloggings"`
-	// A set of Cache Settings, allowing you to override
+	// A set of Cache Settings, allowing you to override.
+	// Defined below.
 	CacheSettings []Servicev1CacheSetting `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
 	ClonedVersion *int `pulumi:"clonedVersion"`
@@ -217,14 +228,17 @@ type servicev1State struct {
 	// The default Time-to-live (TTL) for
 	// requests.
 	DefaultTtl *int `pulumi:"defaultTtl"`
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+	// Defined below.
 	Dictionaries []Servicev1Dictionary `pulumi:"dictionaries"`
 	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`. Defined below
+	// when an item is not to be cached based on an above `condition`.
+	// Defined below
 	Directors []Servicev1Director `pulumi:"directors"`
 	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains []Servicev1Domain `pulumi:"domains"`
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "dynamic" VCL Snippet configuration blocks.
+	// Defined below.
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In
 	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
@@ -235,8 +249,8 @@ type servicev1State struct {
 	// A set of gzip rules to control automatic gzipping of
 	// content. Defined below.
 	Gzips []Servicev1Gzip `pulumi:"gzips"`
-	// A set of Headers to manipulate for each request. Defined
-	// below.
+	// A set of Headers to manipulate for each request.
+	// Defined below.
 	Headers []Servicev1Header `pulumi:"headers"`
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
@@ -296,14 +310,16 @@ type servicev1State struct {
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
 	Papertrails []Servicev1Papertrail `pulumi:"papertrails"`
-	// A set of Request modifiers. Defined below
+	// A set of Request modifiers.
+	// Defined below
 	RequestSettings []Servicev1RequestSetting `pulumi:"requestSettings"`
 	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects []Servicev1ResponseObject `pulumi:"responseObjects"`
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
 	S3loggings []Servicev1S3logging `pulumi:"s3loggings"`
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+	// Defined below.
 	Snippets []Servicev1Snippet `pulumi:"snippets"`
 	// A Splunk endpoint to send streaming logs too.
 	// Defined below.
@@ -314,16 +330,19 @@ type servicev1State struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs []Servicev1Syslog `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+	// A set of custom VCL configuration blocks.
+	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls []Servicev1Vcl `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment *string `pulumi:"versionComment"`
-	// A WAF configuration block.  Defined below.
+	// A WAF configuration block.
+	// Defined below.
 	Waf *Servicev1Waf `pulumi:"waf"`
 }
 
 type Servicev1State struct {
-	// A set of ACL configuration blocks.  Defined below.
+	// A set of ACL configuration blocks.
+	// Defined below.
 	Acls Servicev1AclArrayInput
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
 	Activate pulumi.BoolPtrInput
@@ -339,7 +358,8 @@ type Servicev1State struct {
 	// An Azure Blob Storage endpoint to send streaming logs too.
 	// Defined below.
 	Blobstorageloggings Servicev1BlobstorageloggingArrayInput
-	// A set of Cache Settings, allowing you to override
+	// A set of Cache Settings, allowing you to override.
+	// Defined below.
 	CacheSettings Servicev1CacheSettingArrayInput
 	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
 	ClonedVersion pulumi.IntPtrInput
@@ -353,14 +373,17 @@ type Servicev1State struct {
 	// The default Time-to-live (TTL) for
 	// requests.
 	DefaultTtl pulumi.IntPtrInput
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+	// Defined below.
 	Dictionaries Servicev1DictionaryArrayInput
 	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`. Defined below
+	// when an item is not to be cached based on an above `condition`.
+	// Defined below
 	Directors Servicev1DirectorArrayInput
 	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains Servicev1DomainArrayInput
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "dynamic" VCL Snippet configuration blocks.
+	// Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In
 	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
@@ -371,8 +394,8 @@ type Servicev1State struct {
 	// A set of gzip rules to control automatic gzipping of
 	// content. Defined below.
 	Gzips Servicev1GzipArrayInput
-	// A set of Headers to manipulate for each request. Defined
-	// below.
+	// A set of Headers to manipulate for each request.
+	// Defined below.
 	Headers Servicev1HeaderArrayInput
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayInput
@@ -432,14 +455,16 @@ type Servicev1State struct {
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
 	Papertrails Servicev1PapertrailArrayInput
-	// A set of Request modifiers. Defined below
+	// A set of Request modifiers.
+	// Defined below
 	RequestSettings Servicev1RequestSettingArrayInput
 	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayInput
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
 	S3loggings Servicev1S3loggingArrayInput
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+	// Defined below.
 	Snippets Servicev1SnippetArrayInput
 	// A Splunk endpoint to send streaming logs too.
 	// Defined below.
@@ -450,11 +475,13 @@ type Servicev1State struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs Servicev1SyslogArrayInput
-	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+	// A set of custom VCL configuration blocks.
+	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls Servicev1VclArrayInput
 	// Description field for the version.
 	VersionComment pulumi.StringPtrInput
-	// A WAF configuration block.  Defined below.
+	// A WAF configuration block.
+	// Defined below.
 	Waf Servicev1WafPtrInput
 }
 
@@ -463,7 +490,8 @@ func (Servicev1State) ElementType() reflect.Type {
 }
 
 type servicev1Args struct {
-	// A set of ACL configuration blocks.  Defined below.
+	// A set of ACL configuration blocks.
+	// Defined below.
 	Acls []Servicev1Acl `pulumi:"acls"`
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
 	Activate *bool `pulumi:"activate"`
@@ -477,7 +505,8 @@ type servicev1Args struct {
 	// An Azure Blob Storage endpoint to send streaming logs too.
 	// Defined below.
 	Blobstorageloggings []Servicev1Blobstoragelogging `pulumi:"blobstorageloggings"`
-	// A set of Cache Settings, allowing you to override
+	// A set of Cache Settings, allowing you to override.
+	// Defined below.
 	CacheSettings []Servicev1CacheSetting `pulumi:"cacheSettings"`
 	// An optional comment about the Director.
 	Comment *string `pulumi:"comment"`
@@ -489,14 +518,17 @@ type servicev1Args struct {
 	// The default Time-to-live (TTL) for
 	// requests.
 	DefaultTtl *int `pulumi:"defaultTtl"`
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+	// Defined below.
 	Dictionaries []Servicev1Dictionary `pulumi:"dictionaries"`
 	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`. Defined below
+	// when an item is not to be cached based on an above `condition`.
+	// Defined below
 	Directors []Servicev1Director `pulumi:"directors"`
 	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains []Servicev1Domain `pulumi:"domains"`
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "dynamic" VCL Snippet configuration blocks.
+	// Defined below.
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In
 	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
@@ -507,8 +539,8 @@ type servicev1Args struct {
 	// A set of gzip rules to control automatic gzipping of
 	// content. Defined below.
 	Gzips []Servicev1Gzip `pulumi:"gzips"`
-	// A set of Headers to manipulate for each request. Defined
-	// below.
+	// A set of Headers to manipulate for each request.
+	// Defined below.
 	Headers []Servicev1Header `pulumi:"headers"`
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
@@ -568,14 +600,16 @@ type servicev1Args struct {
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
 	Papertrails []Servicev1Papertrail `pulumi:"papertrails"`
-	// A set of Request modifiers. Defined below
+	// A set of Request modifiers.
+	// Defined below
 	RequestSettings []Servicev1RequestSetting `pulumi:"requestSettings"`
 	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects []Servicev1ResponseObject `pulumi:"responseObjects"`
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
 	S3loggings []Servicev1S3logging `pulumi:"s3loggings"`
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+	// Defined below.
 	Snippets []Servicev1Snippet `pulumi:"snippets"`
 	// A Splunk endpoint to send streaming logs too.
 	// Defined below.
@@ -586,17 +620,20 @@ type servicev1Args struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs []Servicev1Syslog `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+	// A set of custom VCL configuration blocks.
+	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls []Servicev1Vcl `pulumi:"vcls"`
 	// Description field for the version.
 	VersionComment *string `pulumi:"versionComment"`
-	// A WAF configuration block.  Defined below.
+	// A WAF configuration block.
+	// Defined below.
 	Waf *Servicev1Waf `pulumi:"waf"`
 }
 
 // The set of arguments for constructing a Servicev1 resource.
 type Servicev1Args struct {
-	// A set of ACL configuration blocks.  Defined below.
+	// A set of ACL configuration blocks.
+	// Defined below.
 	Acls Servicev1AclArrayInput
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
 	Activate pulumi.BoolPtrInput
@@ -610,7 +647,8 @@ type Servicev1Args struct {
 	// An Azure Blob Storage endpoint to send streaming logs too.
 	// Defined below.
 	Blobstorageloggings Servicev1BlobstorageloggingArrayInput
-	// A set of Cache Settings, allowing you to override
+	// A set of Cache Settings, allowing you to override.
+	// Defined below.
 	CacheSettings Servicev1CacheSettingArrayInput
 	// An optional comment about the Director.
 	Comment pulumi.StringPtrInput
@@ -622,14 +660,17 @@ type Servicev1Args struct {
 	// The default Time-to-live (TTL) for
 	// requests.
 	DefaultTtl pulumi.IntPtrInput
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+	// Defined below.
 	Dictionaries Servicev1DictionaryArrayInput
 	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`. Defined below
+	// when an item is not to be cached based on an above `condition`.
+	// Defined below
 	Directors Servicev1DirectorArrayInput
 	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
 	Domains Servicev1DomainArrayInput
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "dynamic" VCL Snippet configuration blocks.
+	// Defined below.
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In
 	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
@@ -640,8 +681,8 @@ type Servicev1Args struct {
 	// A set of gzip rules to control automatic gzipping of
 	// content. Defined below.
 	Gzips Servicev1GzipArrayInput
-	// A set of Headers to manipulate for each request. Defined
-	// below.
+	// A set of Headers to manipulate for each request.
+	// Defined below.
 	Headers Servicev1HeaderArrayInput
 	// Name of a defined `healthcheck` to assign to this backend.
 	Healthchecks Servicev1HealthcheckArrayInput
@@ -701,14 +742,16 @@ type Servicev1Args struct {
 	// A Papertrail endpoint to send streaming logs too.
 	// Defined below.
 	Papertrails Servicev1PapertrailArrayInput
-	// A set of Request modifiers. Defined below
+	// A set of Request modifiers.
+	// Defined below
 	RequestSettings Servicev1RequestSettingArrayInput
 	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayInput
 	// A set of S3 Buckets to send streaming logs too.
 	// Defined below.
 	S3loggings Servicev1S3loggingArrayInput
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+	// Defined below.
 	Snippets Servicev1SnippetArrayInput
 	// A Splunk endpoint to send streaming logs too.
 	// Defined below.
@@ -719,11 +762,13 @@ type Servicev1Args struct {
 	// A syslog endpoint to send streaming logs too.
 	// Defined below.
 	Syslogs Servicev1SyslogArrayInput
-	// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+	// A set of custom VCL configuration blocks.
+	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
 	Vcls Servicev1VclArrayInput
 	// Description field for the version.
 	VersionComment pulumi.StringPtrInput
-	// A WAF configuration block.  Defined below.
+	// A WAF configuration block.
+	// Defined below.
 	Waf Servicev1WafPtrInput
 }
 

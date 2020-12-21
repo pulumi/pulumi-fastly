@@ -6758,7 +6758,7 @@
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                    "description": "A Wasm deployment package to upload. Defined below.\n"
+                    "description": "A Wasm deployment package to upload.\nDefined below.\n"
                 },
                 "papertrails": {
                     "type": "array",
@@ -6987,7 +6987,7 @@
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                    "description": "A Wasm deployment package to upload. Defined below.\n"
+                    "description": "A Wasm deployment package to upload.\nDefined below.\n"
                 },
                 "papertrails": {
                     "type": "array",
@@ -7222,7 +7222,7 @@
                     },
                     "package": {
                         "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                        "description": "A Wasm deployment package to upload. Defined below.\n"
+                        "description": "A Wasm deployment package to upload.\nDefined below.\n"
                     },
                     "papertrails": {
                         "type": "array",
@@ -7492,14 +7492,14 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceWafConfigurationRuleExclusion:ServiceWafConfigurationRuleExclusion"
                     },
-                    "description": "The Web Application Firewall's rule exclusions.\n"
+                    "description": "The Web Application Firewall's rule exclusions. Defined below\n"
                 },
                 "rules": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
                     },
-                    "description": "The Web Application Firewall's active rules.\n"
+                    "description": "The Web Application Firewall's active rules. Defined below\n"
                 },
                 "sessionFixationScoreThreshold": {
                     "type": "integer",
@@ -7655,14 +7655,14 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceWafConfigurationRuleExclusion:ServiceWafConfigurationRuleExclusion"
                     },
-                    "description": "The Web Application Firewall's rule exclusions.\n"
+                    "description": "The Web Application Firewall's rule exclusions. Defined below\n"
                 },
                 "rules": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
                     },
-                    "description": "The Web Application Firewall's active rules.\n"
+                    "description": "The Web Application Firewall's active rules. Defined below\n"
                 },
                 "sessionFixationScoreThreshold": {
                     "type": "integer",
@@ -7792,14 +7792,14 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceWafConfigurationRuleExclusion:ServiceWafConfigurationRuleExclusion"
                         },
-                        "description": "The Web Application Firewall's rule exclusions.\n"
+                        "description": "The Web Application Firewall's rule exclusions. Defined below\n"
                     },
                     "rules": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceWafConfigurationRule:ServiceWafConfigurationRule"
                         },
-                        "description": "The Web Application Firewall's active rules.\n"
+                        "description": "The Web Application Firewall's active rules. Defined below\n"
                     },
                     "sessionFixationScoreThreshold": {
                         "type": "integer",
@@ -7837,7 +7837,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Acl:Servicev1Acl"
                     },
-                    "description": "A set of ACL configuration blocks.  Defined below.\n"
+                    "description": "A set of ACL configuration blocks.\nDefined below.\n"
                 },
                 "activate": {
                     "type": "boolean",
@@ -7873,7 +7873,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1CacheSetting:Servicev1CacheSetting"
                     },
-                    "description": "A set of Cache Settings, allowing you to override\n"
+                    "description": "A set of Cache Settings, allowing you to override.\nDefined below.\n"
                 },
                 "clonedVersion": {
                     "type": "integer",
@@ -7903,14 +7903,14 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Dictionary:Servicev1Dictionary"
                     },
-                    "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
+                    "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions.\nDefined below.\n"
                 },
                 "directors": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Director:Servicev1Director"
                     },
-                    "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
+                    "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`.\nDefined below\n"
                 },
                 "domains": {
                     "type": "array",
@@ -7924,7 +7924,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
                     },
-                    "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
+                    "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.\nDefined below.\n"
                 },
                 "forceDestroy": {
                     "type": "boolean",
@@ -7949,7 +7949,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Header:Servicev1Header"
                     },
-                    "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
+                    "description": "A set of Headers to manipulate for each request.\nDefined below.\n"
                 },
                 "healthchecks": {
                     "type": "array",
@@ -8093,7 +8093,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1RequestSetting:Servicev1RequestSetting"
                     },
-                    "description": "A set of Request modifiers. Defined below\n"
+                    "description": "A set of Request modifiers.\nDefined below\n"
                 },
                 "responseObjects": {
                     "type": "array",
@@ -8114,7 +8114,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Snippet:Servicev1Snippet"
                     },
-                    "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
+                    "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.\nDefined below.\n"
                 },
                 "splunks": {
                     "type": "array",
@@ -8142,7 +8142,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Vcl:Servicev1Vcl"
                     },
-                    "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
+                    "description": "A set of custom VCL configuration blocks.\nDefined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                 },
                 "versionComment": {
                     "type": "string",
@@ -8150,7 +8150,7 @@
                 },
                 "waf": {
                     "$ref": "#/types/fastly:index/Servicev1Waf:Servicev1Waf",
-                    "description": "A WAF configuration block.  Defined below.\n"
+                    "description": "A WAF configuration block.\nDefined below.\n"
                 }
             },
             "required": [
@@ -8166,7 +8166,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Acl:Servicev1Acl"
                     },
-                    "description": "A set of ACL configuration blocks.  Defined below.\n"
+                    "description": "A set of ACL configuration blocks.\nDefined below.\n"
                 },
                 "activate": {
                     "type": "boolean",
@@ -8198,7 +8198,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1CacheSetting:Servicev1CacheSetting"
                     },
-                    "description": "A set of Cache Settings, allowing you to override\n"
+                    "description": "A set of Cache Settings, allowing you to override.\nDefined below.\n"
                 },
                 "comment": {
                     "type": "string",
@@ -8224,14 +8224,14 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Dictionary:Servicev1Dictionary"
                     },
-                    "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
+                    "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions.\nDefined below.\n"
                 },
                 "directors": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Director:Servicev1Director"
                     },
-                    "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
+                    "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`.\nDefined below\n"
                 },
                 "domains": {
                     "type": "array",
@@ -8245,7 +8245,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
                     },
-                    "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
+                    "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.\nDefined below.\n"
                 },
                 "forceDestroy": {
                     "type": "boolean",
@@ -8270,7 +8270,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Header:Servicev1Header"
                     },
-                    "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
+                    "description": "A set of Headers to manipulate for each request.\nDefined below.\n"
                 },
                 "healthchecks": {
                     "type": "array",
@@ -8414,7 +8414,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1RequestSetting:Servicev1RequestSetting"
                     },
-                    "description": "A set of Request modifiers. Defined below\n"
+                    "description": "A set of Request modifiers.\nDefined below\n"
                 },
                 "responseObjects": {
                     "type": "array",
@@ -8435,7 +8435,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Snippet:Servicev1Snippet"
                     },
-                    "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
+                    "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.\nDefined below.\n"
                 },
                 "splunks": {
                     "type": "array",
@@ -8463,7 +8463,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Vcl:Servicev1Vcl"
                     },
-                    "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
+                    "description": "A set of custom VCL configuration blocks.\nDefined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                 },
                 "versionComment": {
                     "type": "string",
@@ -8471,7 +8471,7 @@
                 },
                 "waf": {
                     "$ref": "#/types/fastly:index/Servicev1Waf:Servicev1Waf",
-                    "description": "A WAF configuration block.  Defined below.\n"
+                    "description": "A WAF configuration block.\nDefined below.\n"
                 }
             },
             "requiredInputs": [
@@ -8485,7 +8485,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Acl:Servicev1Acl"
                         },
-                        "description": "A set of ACL configuration blocks.  Defined below.\n"
+                        "description": "A set of ACL configuration blocks.\nDefined below.\n"
                     },
                     "activate": {
                         "type": "boolean",
@@ -8521,7 +8521,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1CacheSetting:Servicev1CacheSetting"
                         },
-                        "description": "A set of Cache Settings, allowing you to override\n"
+                        "description": "A set of Cache Settings, allowing you to override.\nDefined below.\n"
                     },
                     "clonedVersion": {
                         "type": "integer",
@@ -8551,14 +8551,14 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Dictionary:Servicev1Dictionary"
                         },
-                        "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.\n"
+                        "description": "A set of dictionaries that allow the storing of key values pair for use within VCL functions.\nDefined below.\n"
                     },
                     "directors": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Director:Servicev1Director"
                         },
-                        "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`. Defined below\n"
+                        "description": "A director to allow more control over balancing traffic over backends.\nwhen an item is not to be cached based on an above `condition`.\nDefined below\n"
                     },
                     "domains": {
                         "type": "array",
@@ -8572,7 +8572,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Dynamicsnippet:Servicev1Dynamicsnippet"
                         },
-                        "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.  Defined below.\n"
+                        "description": "A set of custom, \"dynamic\" VCL Snippet configuration blocks.\nDefined below.\n"
                     },
                     "forceDestroy": {
                         "type": "boolean",
@@ -8597,7 +8597,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Header:Servicev1Header"
                         },
-                        "description": "A set of Headers to manipulate for each request. Defined\nbelow.\n"
+                        "description": "A set of Headers to manipulate for each request.\nDefined below.\n"
                     },
                     "healthchecks": {
                         "type": "array",
@@ -8741,7 +8741,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1RequestSetting:Servicev1RequestSetting"
                         },
-                        "description": "A set of Request modifiers. Defined below\n"
+                        "description": "A set of Request modifiers.\nDefined below\n"
                     },
                     "responseObjects": {
                         "type": "array",
@@ -8762,7 +8762,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Snippet:Servicev1Snippet"
                         },
-                        "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.\n"
+                        "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.\nDefined below.\n"
                     },
                     "splunks": {
                         "type": "array",
@@ -8790,7 +8790,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Vcl:Servicev1Vcl"
                         },
-                        "description": "A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
+                        "description": "A set of custom VCL configuration blocks.\nDefined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.\n"
                     },
                     "versionComment": {
                         "type": "string",
@@ -8798,7 +8798,7 @@
                     },
                     "waf": {
                         "$ref": "#/types/fastly:index/Servicev1Waf:Servicev1Waf",
-                        "description": "A WAF configuration block.  Defined below.\n"
+                        "description": "A WAF configuration block.\nDefined below.\n"
                     }
                 },
                 "type": "object"
@@ -8863,7 +8863,7 @@
     },
     "functions": {
         "fastly:index/getFastlyIpRanges:getFastlyIpRanges": {
-            "description": "Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));\nconst fromFastly = new aws.ec2.SecurityGroup(\"from_fastly\", {\n    ingress: [{\n        cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,\n        fromPort: 443,\n        ipv6CidrBlocks: fastlyFastlyIpRanges.ipv6CidrBlocks,\n        protocol: \"tcp\",\n        toPort: 443,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\nfastly = fastly.get_fastly_ip_ranges()\nfrom_fastly = aws.ec2.SecurityGroup(\"fromFastly\", ingress=[aws.ec2.SecurityGroupIngressArgs(\n    cidr_blocks=fastly.cidr_blocks,\n    from_port=\"443\",\n    ipv6_cidr_blocks=fastly.ipv6_cidr_blocks,\n    protocol=\"tcp\",\n    to_port=\"443\",\n)])\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var fastly = Output.Create(Fastly.GetFastlyIpRanges.InvokeAsync());\n        var fromFastly = new Aws.Ec2.SecurityGroup(\"fromFastly\", new Aws.Ec2.SecurityGroupArgs\n        {\n            Ingress = \n            {\n                new Aws.Ec2.Inputs.SecurityGroupIngressArgs\n                {\n                    CidrBlocks = fastly.Apply(fastly =\u003e fastly.CidrBlocks),\n                    FromPort = 443,\n                    Ipv6CidrBlocks = fastly.Apply(fastly =\u003e fastly.Ipv6CidrBlocks),\n                    Protocol = \"tcp\",\n                    ToPort = 443,\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tfastly, err := fastly.GetFastlyIpRanges(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewSecurityGroup(ctx, \"fromFastly\", \u0026ec2.SecurityGroupArgs{\n\t\t\tIngress: ec2.SecurityGroupIngressArray{\n\t\t\t\t\u0026ec2.SecurityGroupIngressArgs{\n\t\t\t\t\tCidrBlocks:     toPulumiStringArray(fastly.CidrBlocks),\n\t\t\t\t\tFromPort:       pulumi.Int(443),\n\t\t\t\t\tIpv6CidrBlocks: toPulumiStringArray(fastly.Ipv6CidrBlocks),\n\t\t\t\t\tProtocol:       pulumi.String(\"tcp\"),\n\t\t\t\t\tToPort:         pulumi.Int(443),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\nfunc toPulumiStringArray(arr []string) pulumi.StringArray {\n\tvar pulumiArr pulumi.StringArray\n\tfor _, v := range arr {\n\t\tpulumiArr = append(pulumiArr, pulumi.String(v))\n\t}\n\treturn pulumiArr\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst fastly = fastly.getFastlyIpRanges({});\nconst fromFastly = new aws.ec2.SecurityGroup(\"fromFastly\", {ingress: [{\n    fromPort: \"443\",\n    toPort: \"443\",\n    protocol: \"tcp\",\n    cidrBlocks: fastly.then(fastly =\u003e fastly.cidrBlocks),\n    ipv6CidrBlocks: fastly.then(fastly =\u003e fastly.ipv6CidrBlocks),\n}]});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\nfastly = fastly.get_fastly_ip_ranges()\nfrom_fastly = aws.ec2.SecurityGroup(\"fromFastly\", ingress=[aws.ec2.SecurityGroupIngressArgs(\n    from_port=\"443\",\n    to_port=\"443\",\n    protocol=\"tcp\",\n    cidr_blocks=fastly.cidr_blocks,\n    ipv6_cidr_blocks=fastly.ipv6_cidr_blocks,\n)])\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Fastly = Pulumi.Fastly;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var fastly = Output.Create(Fastly.GetFastlyIpRanges.InvokeAsync());\n        var fromFastly = new Aws.Ec2.SecurityGroup(\"fromFastly\", new Aws.Ec2.SecurityGroupArgs\n        {\n            Ingress = \n            {\n                new Aws.Ec2.Inputs.SecurityGroupIngressArgs\n                {\n                    FromPort = 443,\n                    ToPort = 443,\n                    Protocol = \"tcp\",\n                    CidrBlocks = fastly.Apply(fastly =\u003e fastly.CidrBlocks),\n                    Ipv6CidrBlocks = fastly.Apply(fastly =\u003e fastly.Ipv6CidrBlocks),\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tfastly, err := fastly.GetFastlyIpRanges(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewSecurityGroup(ctx, \"fromFastly\", \u0026ec2.SecurityGroupArgs{\n\t\t\tIngress: ec2.SecurityGroupIngressArray{\n\t\t\t\t\u0026ec2.SecurityGroupIngressArgs{\n\t\t\t\t\tFromPort:       pulumi.Int(443),\n\t\t\t\t\tToPort:         pulumi.Int(443),\n\t\t\t\t\tProtocol:       pulumi.String(\"tcp\"),\n\t\t\t\t\tCidrBlocks:     toPulumiStringArray(fastly.CidrBlocks),\n\t\t\t\t\tIpv6CidrBlocks: toPulumiStringArray(fastly.Ipv6CidrBlocks),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\nfunc toPulumiStringArray(arr []string) pulumi.StringArray {\n\tvar pulumiArr pulumi.StringArray\n\tfor _, v := range arr {\n\t\tpulumiArr = append(pulumiArr, pulumi.String(v))\n\t}\n\treturn pulumiArr\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getFastlyIpRanges.\n",
                 "properties": {

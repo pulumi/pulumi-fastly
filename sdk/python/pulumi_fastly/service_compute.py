@@ -121,7 +121,8 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]] logging_sftps: An SFTP endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint.
-        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload. Defined below.
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload.
+               Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeS3loggingArgs']]]] s3loggings: A set of S3 Buckets to send streaming logs too.
@@ -295,7 +296,8 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]] logging_sftps: An SFTP endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint.
-        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload. Defined below.
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload.
+               Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeS3loggingArgs']]]] s3loggings: A set of S3 Buckets to send streaming logs too.
@@ -606,7 +608,8 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def package(self) -> pulumi.Output['outputs.ServiceComputePackage']:
         """
-        A Wasm deployment package to upload. Defined below.
+        A Wasm deployment package to upload.
+        Defined below.
         """
         return pulumi.get(self, "package")
 

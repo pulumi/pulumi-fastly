@@ -87,8 +87,8 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] restricted_extensions: A space-separated list of allowed file extensions.
         :param pulumi.Input[str] restricted_headers: A space-separated list of allowed header names.
         :param pulumi.Input[int] rfi_score_threshold: Remote file inclusion attack threshold.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]] rule_exclusions: The Web Application Firewall's rule exclusions.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]] rule_exclusions: The Web Application Firewall's rule exclusions. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules. Defined below
         :param pulumi.Input[int] session_fixation_score_threshold: Session fixation attack threshold.
         :param pulumi.Input[int] sql_injection_score_threshold: SQL injection attack threshold.
         :param pulumi.Input[int] total_arg_length: The maximum size of argument names and values.
@@ -217,8 +217,8 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] restricted_extensions: A space-separated list of allowed file extensions.
         :param pulumi.Input[str] restricted_headers: A space-separated list of allowed header names.
         :param pulumi.Input[int] rfi_score_threshold: Remote file inclusion attack threshold.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]] rule_exclusions: The Web Application Firewall's rule exclusions.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]] rule_exclusions: The Web Application Firewall's rule exclusions. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]] rules: The Web Application Firewall's active rules. Defined below
         :param pulumi.Input[int] session_fixation_score_threshold: Session fixation attack threshold.
         :param pulumi.Input[int] sql_injection_score_threshold: SQL injection attack threshold.
         :param pulumi.Input[int] total_arg_length: The maximum size of argument names and values.
@@ -451,7 +451,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="ruleExclusions")
     def rule_exclusions(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceWafConfigurationRuleExclusion']]]:
         """
-        The Web Application Firewall's rule exclusions.
+        The Web Application Firewall's rule exclusions. Defined below
         """
         return pulumi.get(self, "rule_exclusions")
 
@@ -459,7 +459,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def rules(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceWafConfigurationRule']]]:
         """
-        The Web Application Firewall's active rules.
+        The Web Application Firewall's active rules. Defined below
         """
         return pulumi.get(self, "rules")
 

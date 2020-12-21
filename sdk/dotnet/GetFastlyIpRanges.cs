@@ -34,11 +34,11 @@ namespace Pulumi.Fastly
         ///             {
         ///                 new Aws.Ec2.Inputs.SecurityGroupIngressArgs
         ///                 {
-        ///                     CidrBlocks = fastly.Apply(fastly =&gt; fastly.CidrBlocks),
         ///                     FromPort = 443,
-        ///                     Ipv6CidrBlocks = fastly.Apply(fastly =&gt; fastly.Ipv6CidrBlocks),
-        ///                     Protocol = "tcp",
         ///                     ToPort = 443,
+        ///                     Protocol = "tcp",
+        ///                     CidrBlocks = fastly.Apply(fastly =&gt; fastly.CidrBlocks),
+        ///                     Ipv6CidrBlocks = fastly.Apply(fastly =&gt; fastly.Ipv6CidrBlocks),
         ///                 },
         ///             },
         ///         });
