@@ -21,7 +21,8 @@ namespace Pulumi.Fastly
     public partial class Servicev1 : Pulumi.CustomResource
     {
         /// <summary>
-        /// A set of ACL configuration blocks.  Defined below.
+        /// A set of ACL configuration blocks.
+        /// Defined below.
         /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.Servicev1Acl>> Acls { get; private set; } = null!;
@@ -61,7 +62,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Blobstoragelogging>> Blobstorageloggings { get; private set; } = null!;
 
         /// <summary>
-        /// A set of Cache Settings, allowing you to override
+        /// A set of Cache Settings, allowing you to override.
+        /// Defined below.
         /// </summary>
         [Output("cacheSettings")]
         public Output<ImmutableArray<Outputs.Servicev1CacheSetting>> CacheSettings { get; private set; } = null!;
@@ -99,14 +101,16 @@ namespace Pulumi.Fastly
         public Output<int?> DefaultTtl { get; private set; } = null!;
 
         /// <summary>
-        /// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+        /// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+        /// Defined below.
         /// </summary>
         [Output("dictionaries")]
         public Output<ImmutableArray<Outputs.Servicev1Dictionary>> Dictionaries { get; private set; } = null!;
 
         /// <summary>
         /// A director to allow more control over balancing traffic over backends.
-        /// when an item is not to be cached based on an above `condition`. Defined below
+        /// when an item is not to be cached based on an above `condition`.
+        /// Defined below
         /// </summary>
         [Output("directors")]
         public Output<ImmutableArray<Outputs.Servicev1Director>> Directors { get; private set; } = null!;
@@ -118,7 +122,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Domain>> Domains { get; private set; } = null!;
 
         /// <summary>
-        /// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+        /// A set of custom, "dynamic" VCL Snippet configuration blocks.
+        /// Defined below.
         /// </summary>
         [Output("dynamicsnippets")]
         public Output<ImmutableArray<Outputs.Servicev1Dynamicsnippet>> Dynamicsnippets { get; private set; } = null!;
@@ -145,8 +150,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Gzip>> Gzips { get; private set; } = null!;
 
         /// <summary>
-        /// A set of Headers to manipulate for each request. Defined
-        /// below.
+        /// A set of Headers to manipulate for each request.
+        /// Defined below.
         /// </summary>
         [Output("headers")]
         public Output<ImmutableArray<Outputs.Servicev1Header>> Headers { get; private set; } = null!;
@@ -290,7 +295,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Papertrail>> Papertrails { get; private set; } = null!;
 
         /// <summary>
-        /// A set of Request modifiers. Defined below
+        /// A set of Request modifiers.
+        /// Defined below
         /// </summary>
         [Output("requestSettings")]
         public Output<ImmutableArray<Outputs.Servicev1RequestSetting>> RequestSettings { get; private set; } = null!;
@@ -309,7 +315,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1S3logging>> S3loggings { get; private set; } = null!;
 
         /// <summary>
-        /// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+        /// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+        /// Defined below.
         /// </summary>
         [Output("snippets")]
         public Output<ImmutableArray<Outputs.Servicev1Snippet>> Snippets { get; private set; } = null!;
@@ -336,7 +343,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1Syslog>> Syslogs { get; private set; } = null!;
 
         /// <summary>
-        /// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+        /// A set of custom VCL configuration blocks.
+        /// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         /// </summary>
         [Output("vcls")]
         public Output<ImmutableArray<Outputs.Servicev1Vcl>> Vcls { get; private set; } = null!;
@@ -348,7 +356,8 @@ namespace Pulumi.Fastly
         public Output<string?> VersionComment { get; private set; } = null!;
 
         /// <summary>
-        /// A WAF configuration block.  Defined below.
+        /// A WAF configuration block.
+        /// Defined below.
         /// </summary>
         [Output("waf")]
         public Output<Outputs.Servicev1Waf?> Waf { get; private set; } = null!;
@@ -403,7 +412,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1AclArgs>? _acls;
 
         /// <summary>
-        /// A set of ACL configuration blocks.  Defined below.
+        /// A set of ACL configuration blocks.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1AclArgs> Acls
         {
@@ -461,7 +471,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1CacheSettingArgs>? _cacheSettings;
 
         /// <summary>
-        /// A set of Cache Settings, allowing you to override
+        /// A set of Cache Settings, allowing you to override.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1CacheSettingArgs> CacheSettings
         {
@@ -505,7 +516,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DictionaryArgs>? _dictionaries;
 
         /// <summary>
-        /// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+        /// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1DictionaryArgs> Dictionaries
         {
@@ -518,7 +530,8 @@ namespace Pulumi.Fastly
 
         /// <summary>
         /// A director to allow more control over balancing traffic over backends.
-        /// when an item is not to be cached based on an above `condition`. Defined below
+        /// when an item is not to be cached based on an above `condition`.
+        /// Defined below
         /// </summary>
         public InputList<Inputs.Servicev1DirectorArgs> Directors
         {
@@ -542,7 +555,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DynamicsnippetArgs>? _dynamicsnippets;
 
         /// <summary>
-        /// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+        /// A set of custom, "dynamic" VCL Snippet configuration blocks.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1DynamicsnippetArgs> Dynamicsnippets
         {
@@ -587,8 +601,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1HeaderArgs>? _headers;
 
         /// <summary>
-        /// A set of Headers to manipulate for each request. Defined
-        /// below.
+        /// A set of Headers to manipulate for each request.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1HeaderArgs> Headers
         {
@@ -852,7 +866,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1RequestSettingArgs>? _requestSettings;
 
         /// <summary>
-        /// A set of Request modifiers. Defined below
+        /// A set of Request modifiers.
+        /// Defined below
         /// </summary>
         public InputList<Inputs.Servicev1RequestSettingArgs> RequestSettings
         {
@@ -889,7 +904,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1SnippetArgs>? _snippets;
 
         /// <summary>
-        /// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+        /// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1SnippetArgs> Snippets
         {
@@ -940,7 +956,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1VclArgs>? _vcls;
 
         /// <summary>
-        /// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+        /// A set of custom VCL configuration blocks.
+        /// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         /// </summary>
         public InputList<Inputs.Servicev1VclArgs> Vcls
         {
@@ -955,7 +972,8 @@ namespace Pulumi.Fastly
         public Input<string>? VersionComment { get; set; }
 
         /// <summary>
-        /// A WAF configuration block.  Defined below.
+        /// A WAF configuration block.
+        /// Defined below.
         /// </summary>
         [Input("waf")]
         public Input<Inputs.Servicev1WafArgs>? Waf { get; set; }
@@ -971,7 +989,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1AclGetArgs>? _acls;
 
         /// <summary>
-        /// A set of ACL configuration blocks.  Defined below.
+        /// A set of ACL configuration blocks.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1AclGetArgs> Acls
         {
@@ -1035,7 +1054,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1CacheSettingGetArgs>? _cacheSettings;
 
         /// <summary>
-        /// A set of Cache Settings, allowing you to override
+        /// A set of Cache Settings, allowing you to override.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1CacheSettingGetArgs> CacheSettings
         {
@@ -1085,7 +1105,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DictionaryGetArgs>? _dictionaries;
 
         /// <summary>
-        /// A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+        /// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1DictionaryGetArgs> Dictionaries
         {
@@ -1098,7 +1119,8 @@ namespace Pulumi.Fastly
 
         /// <summary>
         /// A director to allow more control over balancing traffic over backends.
-        /// when an item is not to be cached based on an above `condition`. Defined below
+        /// when an item is not to be cached based on an above `condition`.
+        /// Defined below
         /// </summary>
         public InputList<Inputs.Servicev1DirectorGetArgs> Directors
         {
@@ -1122,7 +1144,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1DynamicsnippetGetArgs>? _dynamicsnippets;
 
         /// <summary>
-        /// A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+        /// A set of custom, "dynamic" VCL Snippet configuration blocks.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1DynamicsnippetGetArgs> Dynamicsnippets
         {
@@ -1167,8 +1190,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1HeaderGetArgs>? _headers;
 
         /// <summary>
-        /// A set of Headers to manipulate for each request. Defined
-        /// below.
+        /// A set of Headers to manipulate for each request.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1HeaderGetArgs> Headers
         {
@@ -1432,7 +1455,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1RequestSettingGetArgs>? _requestSettings;
 
         /// <summary>
-        /// A set of Request modifiers. Defined below
+        /// A set of Request modifiers.
+        /// Defined below
         /// </summary>
         public InputList<Inputs.Servicev1RequestSettingGetArgs> RequestSettings
         {
@@ -1469,7 +1493,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1SnippetGetArgs>? _snippets;
 
         /// <summary>
-        /// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+        /// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+        /// Defined below.
         /// </summary>
         public InputList<Inputs.Servicev1SnippetGetArgs> Snippets
         {
@@ -1520,7 +1545,8 @@ namespace Pulumi.Fastly
         private InputList<Inputs.Servicev1VclGetArgs>? _vcls;
 
         /// <summary>
-        /// A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+        /// A set of custom VCL configuration blocks.
+        /// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
         /// </summary>
         public InputList<Inputs.Servicev1VclGetArgs> Vcls
         {
@@ -1535,7 +1561,8 @@ namespace Pulumi.Fastly
         public Input<string>? VersionComment { get; set; }
 
         /// <summary>
-        /// A WAF configuration block.  Defined below.
+        /// A WAF configuration block.
+        /// Defined below.
         /// </summary>
         [Input("waf")]
         public Input<Inputs.Servicev1WafGetArgs>? Waf { get; set; }

@@ -185,7 +185,8 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * A Wasm deployment package to upload. Defined below.
+     * A Wasm deployment package to upload.
+     * Defined below.
      */
     public readonly package!: pulumi.Output<outputs.ServiceComputePackage>;
     /**
@@ -463,7 +464,8 @@ export interface ServiceComputeState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * A Wasm deployment package to upload. Defined below.
+     * A Wasm deployment package to upload.
+     * Defined below.
      */
     readonly package?: pulumi.Input<inputs.ServiceComputePackage>;
     /**
@@ -633,7 +635,8 @@ export interface ServiceComputeArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * A Wasm deployment package to upload. Defined below.
+     * A Wasm deployment package to upload.
+     * Defined below.
      */
     readonly package: pulumi.Input<inputs.ServiceComputePackage>;
     /**

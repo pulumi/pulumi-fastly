@@ -221,7 +221,8 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A Wasm deployment package to upload. Defined below.
+        /// A Wasm deployment package to upload.
+        /// Defined below.
         /// </summary>
         [Output("package")]
         public Output<Outputs.ServiceComputePackage> Package { get; private set; } = null!;
@@ -637,7 +638,8 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A Wasm deployment package to upload. Defined below.
+        /// A Wasm deployment package to upload.
+        /// Defined below.
         /// </summary>
         [Input("package", required: true)]
         public Input<Inputs.ServiceComputePackageArgs> Package { get; set; } = null!;
@@ -1053,7 +1055,8 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A Wasm deployment package to upload. Defined below.
+        /// A Wasm deployment package to upload.
+        /// Defined below.
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }

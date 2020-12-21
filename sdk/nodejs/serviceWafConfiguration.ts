@@ -137,11 +137,11 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
      */
     public readonly rfiScoreThreshold!: pulumi.Output<number>;
     /**
-     * The Web Application Firewall's rule exclusions.
+     * The Web Application Firewall's rule exclusions. Defined below
      */
     public readonly ruleExclusions!: pulumi.Output<outputs.ServiceWafConfigurationRuleExclusion[] | undefined>;
     /**
-     * The Web Application Firewall's active rules.
+     * The Web Application Firewall's active rules. Defined below
      */
     public readonly rules!: pulumi.Output<outputs.ServiceWafConfigurationRule[] | undefined>;
     /**
@@ -357,11 +357,11 @@ export interface ServiceWafConfigurationState {
      */
     readonly rfiScoreThreshold?: pulumi.Input<number>;
     /**
-     * The Web Application Firewall's rule exclusions.
+     * The Web Application Firewall's rule exclusions. Defined below
      */
     readonly ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
     /**
-     * The Web Application Firewall's active rules.
+     * The Web Application Firewall's active rules. Defined below
      */
     readonly rules?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRule>[]>;
     /**
@@ -487,11 +487,11 @@ export interface ServiceWafConfigurationArgs {
      */
     readonly rfiScoreThreshold?: pulumi.Input<number>;
     /**
-     * The Web Application Firewall's rule exclusions.
+     * The Web Application Firewall's rule exclusions. Defined below
      */
     readonly ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
     /**
-     * The Web Application Firewall's active rules.
+     * The Web Application Firewall's active rules. Defined below
      */
     readonly rules?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRule>[]>;
     /**

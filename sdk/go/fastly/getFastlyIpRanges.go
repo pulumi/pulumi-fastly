@@ -29,11 +29,11 @@ import (
 // 		_, err = ec2.NewSecurityGroup(ctx, "fromFastly", &ec2.SecurityGroupArgs{
 // 			Ingress: ec2.SecurityGroupIngressArray{
 // 				&ec2.SecurityGroupIngressArgs{
-// 					CidrBlocks:     toPulumiStringArray(fastly.CidrBlocks),
 // 					FromPort:       pulumi.Int(443),
-// 					Ipv6CidrBlocks: toPulumiStringArray(fastly.Ipv6CidrBlocks),
-// 					Protocol:       pulumi.String("tcp"),
 // 					ToPort:         pulumi.Int(443),
+// 					Protocol:       pulumi.String("tcp"),
+// 					CidrBlocks:     toPulumiStringArray(fastly.CidrBlocks),
+// 					Ipv6CidrBlocks: toPulumiStringArray(fastly.Ipv6CidrBlocks),
 // 				},
 // 			},
 // 		})

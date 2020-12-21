@@ -69,9 +69,9 @@ type ServiceWafConfiguration struct {
 	RestrictedHeaders pulumi.StringOutput `pulumi:"restrictedHeaders"`
 	// Remote file inclusion attack threshold.
 	RfiScoreThreshold pulumi.IntOutput `pulumi:"rfiScoreThreshold"`
-	// The Web Application Firewall's rule exclusions.
+	// The Web Application Firewall's rule exclusions. Defined below
 	RuleExclusions ServiceWafConfigurationRuleExclusionArrayOutput `pulumi:"ruleExclusions"`
-	// The Web Application Firewall's active rules.
+	// The Web Application Firewall's active rules. Defined below
 	Rules ServiceWafConfigurationRuleArrayOutput `pulumi:"rules"`
 	// Session fixation attack threshold.
 	SessionFixationScoreThreshold pulumi.IntOutput `pulumi:"sessionFixationScoreThreshold"`
@@ -164,9 +164,9 @@ type serviceWafConfigurationState struct {
 	RestrictedHeaders *string `pulumi:"restrictedHeaders"`
 	// Remote file inclusion attack threshold.
 	RfiScoreThreshold *int `pulumi:"rfiScoreThreshold"`
-	// The Web Application Firewall's rule exclusions.
+	// The Web Application Firewall's rule exclusions. Defined below
 	RuleExclusions []ServiceWafConfigurationRuleExclusion `pulumi:"ruleExclusions"`
-	// The Web Application Firewall's active rules.
+	// The Web Application Firewall's active rules. Defined below
 	Rules []ServiceWafConfigurationRule `pulumi:"rules"`
 	// Session fixation attack threshold.
 	SessionFixationScoreThreshold *int `pulumi:"sessionFixationScoreThreshold"`
@@ -229,9 +229,9 @@ type ServiceWafConfigurationState struct {
 	RestrictedHeaders pulumi.StringPtrInput
 	// Remote file inclusion attack threshold.
 	RfiScoreThreshold pulumi.IntPtrInput
-	// The Web Application Firewall's rule exclusions.
+	// The Web Application Firewall's rule exclusions. Defined below
 	RuleExclusions ServiceWafConfigurationRuleExclusionArrayInput
-	// The Web Application Firewall's active rules.
+	// The Web Application Firewall's active rules. Defined below
 	Rules ServiceWafConfigurationRuleArrayInput
 	// Session fixation attack threshold.
 	SessionFixationScoreThreshold pulumi.IntPtrInput
@@ -298,9 +298,9 @@ type serviceWafConfigurationArgs struct {
 	RestrictedHeaders *string `pulumi:"restrictedHeaders"`
 	// Remote file inclusion attack threshold.
 	RfiScoreThreshold *int `pulumi:"rfiScoreThreshold"`
-	// The Web Application Firewall's rule exclusions.
+	// The Web Application Firewall's rule exclusions. Defined below
 	RuleExclusions []ServiceWafConfigurationRuleExclusion `pulumi:"ruleExclusions"`
-	// The Web Application Firewall's active rules.
+	// The Web Application Firewall's active rules. Defined below
 	Rules []ServiceWafConfigurationRule `pulumi:"rules"`
 	// Session fixation attack threshold.
 	SessionFixationScoreThreshold *int `pulumi:"sessionFixationScoreThreshold"`
@@ -364,9 +364,9 @@ type ServiceWafConfigurationArgs struct {
 	RestrictedHeaders pulumi.StringPtrInput
 	// Remote file inclusion attack threshold.
 	RfiScoreThreshold pulumi.IntPtrInput
-	// The Web Application Firewall's rule exclusions.
+	// The Web Application Firewall's rule exclusions. Defined below
 	RuleExclusions ServiceWafConfigurationRuleExclusionArrayInput
-	// The Web Application Firewall's active rules.
+	// The Web Application Firewall's active rules. Defined below
 	Rules ServiceWafConfigurationRuleArrayInput
 	// Session fixation attack threshold.
 	SessionFixationScoreThreshold pulumi.IntPtrInput

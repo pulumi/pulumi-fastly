@@ -43,7 +43,8 @@ export class Servicev1 extends pulumi.CustomResource {
     }
 
     /**
-     * A set of ACL configuration blocks.  Defined below.
+     * A set of ACL configuration blocks.
+     * Defined below.
      */
     public readonly acls!: pulumi.Output<outputs.Servicev1Acl[] | undefined>;
     /**
@@ -71,7 +72,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly blobstorageloggings!: pulumi.Output<outputs.Servicev1Blobstoragelogging[] | undefined>;
     /**
-     * A set of Cache Settings, allowing you to override
+     * A set of Cache Settings, allowing you to override.
+     * Defined below.
      */
     public readonly cacheSettings!: pulumi.Output<outputs.Servicev1CacheSetting[] | undefined>;
     /**
@@ -97,12 +99,14 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly defaultTtl!: pulumi.Output<number | undefined>;
     /**
-     * A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+     * A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+     * Defined below.
      */
     public readonly dictionaries!: pulumi.Output<outputs.Servicev1Dictionary[] | undefined>;
     /**
      * A director to allow more control over balancing traffic over backends.
-     * when an item is not to be cached based on an above `condition`. Defined below
+     * when an item is not to be cached based on an above `condition`.
+     * Defined below
      */
     public readonly directors!: pulumi.Output<outputs.Servicev1Director[] | undefined>;
     /**
@@ -110,7 +114,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly domains!: pulumi.Output<outputs.Servicev1Domain[]>;
     /**
-     * A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+     * A set of custom, "dynamic" VCL Snippet configuration blocks.
+     * Defined below.
      */
     public readonly dynamicsnippets!: pulumi.Output<outputs.Servicev1Dynamicsnippet[] | undefined>;
     /**
@@ -129,8 +134,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly gzips!: pulumi.Output<outputs.Servicev1Gzip[] | undefined>;
     /**
-     * A set of Headers to manipulate for each request. Defined
-     * below.
+     * A set of Headers to manipulate for each request.
+     * Defined below.
      */
     public readonly headers!: pulumi.Output<outputs.Servicev1Header[] | undefined>;
     /**
@@ -232,7 +237,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly papertrails!: pulumi.Output<outputs.Servicev1Papertrail[] | undefined>;
     /**
-     * A set of Request modifiers. Defined below
+     * A set of Request modifiers.
+     * Defined below
      */
     public readonly requestSettings!: pulumi.Output<outputs.Servicev1RequestSetting[] | undefined>;
     /**
@@ -245,7 +251,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly s3loggings!: pulumi.Output<outputs.Servicev1S3logging[] | undefined>;
     /**
-     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+     * Defined below.
      */
     public readonly snippets!: pulumi.Output<outputs.Servicev1Snippet[] | undefined>;
     /**
@@ -264,7 +271,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly syslogs!: pulumi.Output<outputs.Servicev1Syslog[] | undefined>;
     /**
-     * A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+     * A set of custom VCL configuration blocks.
+     * Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
      */
     public readonly vcls!: pulumi.Output<outputs.Servicev1Vcl[] | undefined>;
     /**
@@ -272,7 +280,8 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly versionComment!: pulumi.Output<string | undefined>;
     /**
-     * A WAF configuration block.  Defined below.
+     * A WAF configuration block.
+     * Defined below.
      */
     public readonly waf!: pulumi.Output<outputs.Servicev1Waf | undefined>;
 
@@ -410,7 +419,8 @@ export class Servicev1 extends pulumi.CustomResource {
  */
 export interface Servicev1State {
     /**
-     * A set of ACL configuration blocks.  Defined below.
+     * A set of ACL configuration blocks.
+     * Defined below.
      */
     readonly acls?: pulumi.Input<pulumi.Input<inputs.Servicev1Acl>[]>;
     /**
@@ -438,7 +448,8 @@ export interface Servicev1State {
      */
     readonly blobstorageloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Blobstoragelogging>[]>;
     /**
-     * A set of Cache Settings, allowing you to override
+     * A set of Cache Settings, allowing you to override.
+     * Defined below.
      */
     readonly cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;
     /**
@@ -464,12 +475,14 @@ export interface Servicev1State {
      */
     readonly defaultTtl?: pulumi.Input<number>;
     /**
-     * A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+     * A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+     * Defined below.
      */
     readonly dictionaries?: pulumi.Input<pulumi.Input<inputs.Servicev1Dictionary>[]>;
     /**
      * A director to allow more control over balancing traffic over backends.
-     * when an item is not to be cached based on an above `condition`. Defined below
+     * when an item is not to be cached based on an above `condition`.
+     * Defined below
      */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
@@ -477,7 +490,8 @@ export interface Servicev1State {
      */
     readonly domains?: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
     /**
-     * A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+     * A set of custom, "dynamic" VCL Snippet configuration blocks.
+     * Defined below.
      */
     readonly dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Dynamicsnippet>[]>;
     /**
@@ -496,8 +510,8 @@ export interface Servicev1State {
      */
     readonly gzips?: pulumi.Input<pulumi.Input<inputs.Servicev1Gzip>[]>;
     /**
-     * A set of Headers to manipulate for each request. Defined
-     * below.
+     * A set of Headers to manipulate for each request.
+     * Defined below.
      */
     readonly headers?: pulumi.Input<pulumi.Input<inputs.Servicev1Header>[]>;
     /**
@@ -599,7 +613,8 @@ export interface Servicev1State {
      */
     readonly papertrails?: pulumi.Input<pulumi.Input<inputs.Servicev1Papertrail>[]>;
     /**
-     * A set of Request modifiers. Defined below
+     * A set of Request modifiers.
+     * Defined below
      */
     readonly requestSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1RequestSetting>[]>;
     /**
@@ -612,7 +627,8 @@ export interface Servicev1State {
      */
     readonly s3loggings?: pulumi.Input<pulumi.Input<inputs.Servicev1S3logging>[]>;
     /**
-     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+     * Defined below.
      */
     readonly snippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Snippet>[]>;
     /**
@@ -631,7 +647,8 @@ export interface Servicev1State {
      */
     readonly syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
     /**
-     * A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+     * A set of custom VCL configuration blocks.
+     * Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
      */
     readonly vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;
     /**
@@ -639,7 +656,8 @@ export interface Servicev1State {
      */
     readonly versionComment?: pulumi.Input<string>;
     /**
-     * A WAF configuration block.  Defined below.
+     * A WAF configuration block.
+     * Defined below.
      */
     readonly waf?: pulumi.Input<inputs.Servicev1Waf>;
 }
@@ -649,7 +667,8 @@ export interface Servicev1State {
  */
 export interface Servicev1Args {
     /**
-     * A set of ACL configuration blocks.  Defined below.
+     * A set of ACL configuration blocks.
+     * Defined below.
      */
     readonly acls?: pulumi.Input<pulumi.Input<inputs.Servicev1Acl>[]>;
     /**
@@ -673,7 +692,8 @@ export interface Servicev1Args {
      */
     readonly blobstorageloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Blobstoragelogging>[]>;
     /**
-     * A set of Cache Settings, allowing you to override
+     * A set of Cache Settings, allowing you to override.
+     * Defined below.
      */
     readonly cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;
     /**
@@ -695,12 +715,14 @@ export interface Servicev1Args {
      */
     readonly defaultTtl?: pulumi.Input<number>;
     /**
-     * A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below.
+     * A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+     * Defined below.
      */
     readonly dictionaries?: pulumi.Input<pulumi.Input<inputs.Servicev1Dictionary>[]>;
     /**
      * A director to allow more control over balancing traffic over backends.
-     * when an item is not to be cached based on an above `condition`. Defined below
+     * when an item is not to be cached based on an above `condition`.
+     * Defined below
      */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
@@ -708,7 +730,8 @@ export interface Servicev1Args {
      */
     readonly domains: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
     /**
-     * A set of custom, "dynamic" VCL Snippet configuration blocks.  Defined below.
+     * A set of custom, "dynamic" VCL Snippet configuration blocks.
+     * Defined below.
      */
     readonly dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Dynamicsnippet>[]>;
     /**
@@ -727,8 +750,8 @@ export interface Servicev1Args {
      */
     readonly gzips?: pulumi.Input<pulumi.Input<inputs.Servicev1Gzip>[]>;
     /**
-     * A set of Headers to manipulate for each request. Defined
-     * below.
+     * A set of Headers to manipulate for each request.
+     * Defined below.
      */
     readonly headers?: pulumi.Input<pulumi.Input<inputs.Servicev1Header>[]>;
     /**
@@ -830,7 +853,8 @@ export interface Servicev1Args {
      */
     readonly papertrails?: pulumi.Input<pulumi.Input<inputs.Servicev1Papertrail>[]>;
     /**
-     * A set of Request modifiers. Defined below
+     * A set of Request modifiers.
+     * Defined below
      */
     readonly requestSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1RequestSetting>[]>;
     /**
@@ -843,7 +867,8 @@ export interface Servicev1Args {
      */
     readonly s3loggings?: pulumi.Input<pulumi.Input<inputs.Servicev1S3logging>[]>;
     /**
-     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.  Defined below.
+     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+     * Defined below.
      */
     readonly snippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Snippet>[]>;
     /**
@@ -862,7 +887,8 @@ export interface Servicev1Args {
      */
     readonly syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
     /**
-     * A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+     * A set of custom VCL configuration blocks.
+     * Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
      */
     readonly vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;
     /**
@@ -870,7 +896,8 @@ export interface Servicev1Args {
      */
     readonly versionComment?: pulumi.Input<string>;
     /**
-     * A WAF configuration block.  Defined below.
+     * A WAF configuration block.
+     * Defined below.
      */
     readonly waf?: pulumi.Input<inputs.Servicev1Waf>;
 }

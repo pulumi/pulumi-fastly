@@ -79,11 +79,11 @@ def get_fastly_ip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
 
     fastly = fastly.get_fastly_ip_ranges()
     from_fastly = aws.ec2.SecurityGroup("fromFastly", ingress=[aws.ec2.SecurityGroupIngressArgs(
-        cidr_blocks=fastly.cidr_blocks,
         from_port="443",
-        ipv6_cidr_blocks=fastly.ipv6_cidr_blocks,
-        protocol="tcp",
         to_port="443",
+        protocol="tcp",
+        cidr_blocks=fastly.cidr_blocks,
+        ipv6_cidr_blocks=fastly.ipv6_cidr_blocks,
     )])
     ```
     """

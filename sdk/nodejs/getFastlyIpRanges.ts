@@ -15,16 +15,14 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as fastly from "@pulumi/fastly";
  *
- * const fastlyFastlyIpRanges = pulumi.output(fastly.getFastlyIpRanges({ async: true }));
- * const fromFastly = new aws.ec2.SecurityGroup("from_fastly", {
- *     ingress: [{
- *         cidrBlocks: fastlyFastlyIpRanges.cidrBlocks,
- *         fromPort: 443,
- *         ipv6CidrBlocks: fastlyFastlyIpRanges.ipv6CidrBlocks,
- *         protocol: "tcp",
- *         toPort: 443,
- *     }],
- * });
+ * const fastly = fastly.getFastlyIpRanges({});
+ * const fromFastly = new aws.ec2.SecurityGroup("fromFastly", {ingress: [{
+ *     fromPort: "443",
+ *     toPort: "443",
+ *     protocol: "tcp",
+ *     cidrBlocks: fastly.then(fastly => fastly.cidrBlocks),
+ *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
+ * }]});
  * ```
  */
 export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
