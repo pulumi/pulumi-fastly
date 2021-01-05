@@ -8102,6 +8102,7 @@ class Servicev1Vcl(dict):
 class Servicev1Waf(dict):
     def __init__(__self__, *,
                  response_object: str,
+                 disabled: Optional[bool] = None,
                  prefetch_condition: Optional[str] = None,
                  waf_id: Optional[str] = None):
         """
@@ -8110,6 +8111,8 @@ class Servicev1Waf(dict):
         :param str waf_id: The ID of the WAF.
         """
         pulumi.set(__self__, "response_object", response_object)
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
         if prefetch_condition is not None:
             pulumi.set(__self__, "prefetch_condition", prefetch_condition)
         if waf_id is not None:
@@ -8122,6 +8125,11 @@ class Servicev1Waf(dict):
         The name of the response object used by the Web Application Firewall.
         """
         return pulumi.get(self, "response_object")
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[bool]:
+        return pulumi.get(self, "disabled")
 
     @property
     @pulumi.getter(name="prefetchCondition")

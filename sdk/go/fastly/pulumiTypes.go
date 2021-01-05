@@ -12084,6 +12084,7 @@ func (o Servicev1VclArrayOutput) Index(i pulumi.IntInput) Servicev1VclOutput {
 }
 
 type Servicev1Waf struct {
+	Disabled *bool `pulumi:"disabled"`
 	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	PrefetchCondition *string `pulumi:"prefetchCondition"`
 	// The name of the response object used by the Web Application Firewall.
@@ -12104,6 +12105,7 @@ type Servicev1WafInput interface {
 }
 
 type Servicev1WafArgs struct {
+	Disabled pulumi.BoolPtrInput `pulumi:"disabled"`
 	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
 	PrefetchCondition pulumi.StringPtrInput `pulumi:"prefetchCondition"`
 	// The name of the response object used by the Web Application Firewall.
@@ -12188,6 +12190,9 @@ func (o Servicev1WafOutput) ToServicev1WafPtrOutputWithContext(ctx context.Conte
 		return &v
 	}).(Servicev1WafPtrOutput)
 }
+func (o Servicev1WafOutput) Disabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v Servicev1Waf) *bool { return v.Disabled }).(pulumi.BoolPtrOutput)
+}
 
 // The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
 func (o Servicev1WafOutput) PrefetchCondition() pulumi.StringPtrOutput {
@@ -12220,6 +12225,15 @@ func (o Servicev1WafPtrOutput) ToServicev1WafPtrOutputWithContext(ctx context.Co
 
 func (o Servicev1WafPtrOutput) Elem() Servicev1WafOutput {
 	return o.ApplyT(func(v *Servicev1Waf) Servicev1Waf { return *v }).(Servicev1WafOutput)
+}
+
+func (o Servicev1WafPtrOutput) Disabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Servicev1Waf) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Disabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].

@@ -10367,6 +10367,7 @@ class Servicev1VclArgs:
 class Servicev1WafArgs:
     def __init__(__self__, *,
                  response_object: pulumi.Input[str],
+                 disabled: Optional[pulumi.Input[bool]] = None,
                  prefetch_condition: Optional[pulumi.Input[str]] = None,
                  waf_id: Optional[pulumi.Input[str]] = None):
         """
@@ -10375,6 +10376,8 @@ class Servicev1WafArgs:
         :param pulumi.Input[str] waf_id: The ID of the WAF.
         """
         pulumi.set(__self__, "response_object", response_object)
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
         if prefetch_condition is not None:
             pulumi.set(__self__, "prefetch_condition", prefetch_condition)
         if waf_id is not None:
@@ -10391,6 +10394,15 @@ class Servicev1WafArgs:
     @response_object.setter
     def response_object(self, value: pulumi.Input[str]):
         pulumi.set(self, "response_object", value)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disabled")
+
+    @disabled.setter
+    def disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disabled", value)
 
     @property
     @pulumi.getter(name="prefetchCondition")

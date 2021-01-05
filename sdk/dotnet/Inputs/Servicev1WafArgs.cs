@@ -12,6 +12,9 @@ namespace Pulumi.Fastly.Inputs
 
     public sealed class Servicev1WafArgs : Pulumi.ResourceArgs
     {
+        [Input("disabled")]
+        public Input<bool>? Disabled { get; set; }
+
         /// <summary>
         /// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
         /// </summary>

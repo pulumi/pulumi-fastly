@@ -13,6 +13,7 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class Servicev1Waf
     {
+        public readonly bool? Disabled;
         /// <summary>
         /// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
         /// </summary>
@@ -28,12 +29,15 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private Servicev1Waf(
+            bool? disabled,
+
             string? prefetchCondition,
 
             string responseObject,
 
             string? wafId)
         {
+            Disabled = disabled;
             PrefetchCondition = prefetchCondition;
             ResponseObject = responseObject;
             WafId = wafId;

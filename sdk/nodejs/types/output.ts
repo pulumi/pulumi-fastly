@@ -2743,6 +2743,7 @@ export interface Servicev1Vcl {
 }
 
 export interface Servicev1Waf {
+    disabled?: boolean;
     /**
      * The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
      */
