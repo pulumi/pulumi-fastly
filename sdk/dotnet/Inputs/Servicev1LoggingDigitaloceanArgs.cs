@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingDigitaloceanArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Your Cloud File account access key.
+        /// The AWS access key to be used to write to the stream.
         /// </summary>
         [Input("accessKey", required: true)]
         public Input<string> AccessKey { get; set; } = null!;
@@ -91,7 +91,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// Your DigitalOcean Spaces account secret key.
+        /// The AWS secret access key to authenticate with.
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;

@@ -10,8 +10,14 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingDatadogArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingKineseArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The AWS access key to be used to write to the stream.
+        /// </summary>
+        [Input("accessKey", required: true)]
+        public Input<string> AccessKey { get; set; } = null!;
+
         /// <summary>
         /// The unique name of the Kinesis logging endpoint.
         /// </summary>
@@ -25,12 +31,18 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The AWS secret access key to authenticate with.
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        [Input("secretKey", required: true)]
+        public Input<string> SecretKey { get; set; } = null!;
 
-        public ServiceComputeLoggingDatadogArgs()
+        /// <summary>
+        /// The Kinesis stream name.
+        /// </summary>
+        [Input("topic", required: true)]
+        public Input<string> Topic { get; set; } = null!;
+
+        public ServiceComputeLoggingKineseArgs()
         {
         }
     }

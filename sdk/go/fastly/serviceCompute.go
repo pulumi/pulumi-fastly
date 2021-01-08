@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
+// Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is run at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
 //
 // The Service resource requires a domain name that is correctly set up to direct
 // traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
@@ -87,6 +87,9 @@ type ServiceCompute struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas ServiceComputeLoggingKafkaArrayOutput `pulumi:"loggingKafkas"`
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses ServiceComputeLoggingKineseArrayOutput `pulumi:"loggingKineses"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies ServiceComputeLoggingLogglyArrayOutput `pulumi:"loggingLogglies"`
@@ -105,7 +108,7 @@ type ServiceCompute struct {
 	// An SFTP endpoint to send streaming logs to.
 	// Defined below.
 	LoggingSftps ServiceComputeLoggingSftpArrayOutput `pulumi:"loggingSftps"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A Wasm deployment package to upload.
 	// Defined below.
@@ -223,6 +226,9 @@ type serviceComputeState struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas []ServiceComputeLoggingKafka `pulumi:"loggingKafkas"`
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses []ServiceComputeLoggingKinese `pulumi:"loggingKineses"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies []ServiceComputeLoggingLoggly `pulumi:"loggingLogglies"`
@@ -241,7 +247,7 @@ type serviceComputeState struct {
 	// An SFTP endpoint to send streaming logs to.
 	// Defined below.
 	LoggingSftps []ServiceComputeLoggingSftp `pulumi:"loggingSftps"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name *string `pulumi:"name"`
 	// A Wasm deployment package to upload.
 	// Defined below.
@@ -326,6 +332,9 @@ type ServiceComputeState struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas ServiceComputeLoggingKafkaArrayInput
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses ServiceComputeLoggingKineseArrayInput
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies ServiceComputeLoggingLogglyArrayInput
@@ -344,7 +353,7 @@ type ServiceComputeState struct {
 	// An SFTP endpoint to send streaming logs to.
 	// Defined below.
 	LoggingSftps ServiceComputeLoggingSftpArrayInput
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringPtrInput
 	// A Wasm deployment package to upload.
 	// Defined below.
@@ -430,6 +439,9 @@ type serviceComputeArgs struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas []ServiceComputeLoggingKafka `pulumi:"loggingKafkas"`
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses []ServiceComputeLoggingKinese `pulumi:"loggingKineses"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies []ServiceComputeLoggingLoggly `pulumi:"loggingLogglies"`
@@ -448,7 +460,7 @@ type serviceComputeArgs struct {
 	// An SFTP endpoint to send streaming logs to.
 	// Defined below.
 	LoggingSftps []ServiceComputeLoggingSftp `pulumi:"loggingSftps"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name *string `pulumi:"name"`
 	// A Wasm deployment package to upload.
 	// Defined below.
@@ -531,6 +543,9 @@ type ServiceComputeArgs struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas ServiceComputeLoggingKafkaArrayInput
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses ServiceComputeLoggingKineseArrayInput
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies ServiceComputeLoggingLogglyArrayInput
@@ -549,7 +564,7 @@ type ServiceComputeArgs struct {
 	// An SFTP endpoint to send streaming logs to.
 	// Defined below.
 	LoggingSftps ServiceComputeLoggingSftpArrayInput
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringPtrInput
 	// A Wasm deployment package to upload.
 	// Defined below.

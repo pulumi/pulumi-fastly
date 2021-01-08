@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingCloudfileGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Your Cloud File account access key.
+        /// The AWS access key to be used to write to the stream.
         /// </summary>
         [Input("accessKey", required: true)]
         public Input<string> AccessKey { get; set; } = null!;
@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -61,7 +61,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        /// The AWS region the stream resides in. (Default: `us-east-1`).
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

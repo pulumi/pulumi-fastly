@@ -11,57 +11,46 @@ namespace Pulumi.Fastly.Outputs
 {
 
     [OutputType]
-    public sealed class ServiceComputeBigquerylogging
+    public sealed class ServiceComputeLoggingKinese
     {
         /// <summary>
-        /// The Honeycomb Dataset you want to log to.
+        /// The AWS access key to be used to write to the stream.
         /// </summary>
-        public readonly string Dataset;
-        /// <summary>
-        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        /// </summary>
-        public readonly string Email;
+        public readonly string AccessKey;
         /// <summary>
         /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The ID of your Google Cloud Platform project.
+        /// The AWS region the stream resides in. (Default: `us-east-1`).
         /// </summary>
-        public readonly string ProjectId;
+        public readonly string? Region;
         /// <summary>
         /// The AWS secret access key to authenticate with.
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// The ID of your BigQuery table.
+        /// The Kinesis stream name.
         /// </summary>
-        public readonly string Table;
-        public readonly string? Template;
+        public readonly string Topic;
 
         [OutputConstructor]
-        private ServiceComputeBigquerylogging(
-            string dataset,
-
-            string email,
+        private ServiceComputeLoggingKinese(
+            string accessKey,
 
             string name,
 
-            string projectId,
+            string? region,
 
             string secretKey,
 
-            string table,
-
-            string? template)
+            string topic)
         {
-            Dataset = dataset;
-            Email = email;
+            AccessKey = accessKey;
             Name = name;
-            ProjectId = projectId;
+            Region = region;
             SecretKey = secretKey;
-            Table = table;
-            Template = template;
+            Topic = topic;
         }
     }
 }

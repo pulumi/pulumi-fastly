@@ -11,20 +11,12 @@ namespace Pulumi.Fastly.Outputs
 {
 
     [OutputType]
-    public sealed class Servicev1LoggingDigitalocean
+    public sealed class Servicev1LoggingKinese
     {
         /// <summary>
         /// The AWS access key to be used to write to the stream.
         /// </summary>
         public readonly string AccessKey;
-        /// <summary>
-        /// The name of your Cloud Files container.
-        /// </summary>
-        public readonly string BucketName;
-        /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-        /// </summary>
-        public readonly string? Domain;
         /// <summary>
         /// Apache style log formatting.
         /// </summary>
@@ -34,33 +26,17 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        /// </summary>
-        public readonly int? GzipLevel;
-        /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        /// </summary>
-        public readonly string? MessageType;
-        /// <summary>
         /// A unique name to identify this dictionary.
         /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The path to upload logs to.
-        /// </summary>
-        public readonly string? Path;
-        /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        /// </summary>
-        public readonly int? Period;
         /// <summary>
         /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// The AWS region the stream resides in. (Default: `us-east-1`).
         /// </summary>
-        public readonly string? PublicKey;
+        public readonly string? Region;
         /// <summary>
         /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
@@ -70,57 +46,39 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// The Kinesis stream name.
         /// </summary>
-        public readonly string? TimestampFormat;
+        public readonly string Topic;
 
         [OutputConstructor]
-        private Servicev1LoggingDigitalocean(
+        private Servicev1LoggingKinese(
             string accessKey,
-
-            string bucketName,
-
-            string? domain,
 
             string? format,
 
             int? formatVersion,
 
-            int? gzipLevel,
-
-            string? messageType,
-
             string name,
-
-            string? path,
-
-            int? period,
 
             string? placement,
 
-            string? publicKey,
+            string? region,
 
             string? responseCondition,
 
             string secretKey,
 
-            string? timestampFormat)
+            string topic)
         {
             AccessKey = accessKey;
-            BucketName = bucketName;
-            Domain = domain;
             Format = format;
             FormatVersion = formatVersion;
-            GzipLevel = gzipLevel;
-            MessageType = messageType;
             Name = name;
-            Path = path;
-            Period = period;
             Placement = placement;
-            PublicKey = publicKey;
+            Region = region;
             ResponseCondition = responseCondition;
             SecretKey = secretKey;
-            TimestampFormat = timestampFormat;
+            Topic = topic;
         }
     }
 }

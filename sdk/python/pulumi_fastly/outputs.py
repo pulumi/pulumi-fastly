@@ -27,6 +27,7 @@ __all__ = [
     'ServiceComputeLoggingHeroku',
     'ServiceComputeLoggingHoneycomb',
     'ServiceComputeLoggingKafka',
+    'ServiceComputeLoggingKinese',
     'ServiceComputeLoggingLoggly',
     'ServiceComputeLoggingLogshuttle',
     'ServiceComputeLoggingNewrelic',
@@ -66,6 +67,7 @@ __all__ = [
     'Servicev1LoggingHeroku',
     'Servicev1LoggingHoneycomb',
     'Servicev1LoggingKafka',
+    'Servicev1LoggingKinese',
     'Servicev1LoggingLoggly',
     'Servicev1LoggingLogshuttle',
     'Servicev1LoggingNewrelic',
@@ -179,7 +181,7 @@ class ServiceComputeBackend(dict):
                  weight: Optional[int] = None):
         """
         :param str address: The SFTP address to stream logs to.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param bool auto_loadbalance: Denotes if this Backend should be
                included in the pool of backends that requests are load balanced against.
                Default `true`.
@@ -266,7 +268,7 @@ class ServiceComputeBackend(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -467,9 +469,9 @@ class ServiceComputeBigquerylogging(dict):
         """
         :param str dataset: The Honeycomb Dataset you want to log to.
         :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str project_id: The ID of your Google Cloud Platform project.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str table: The ID of your BigQuery table.
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -501,7 +503,7 @@ class ServiceComputeBigquerylogging(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -517,7 +519,7 @@ class ServiceComputeBigquerylogging(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -554,7 +556,7 @@ class ServiceComputeBlobstoragelogging(dict):
         """
         :param str account_name: The unique Azure Blob Storage namespace in which your data objects are stored.
         :param str container: The name of the Azure Blob Storage container in which to store logs.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
         :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
@@ -600,7 +602,7 @@ class ServiceComputeBlobstoragelogging(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -670,7 +672,7 @@ class ServiceComputeDomain(dict):
                  name: str,
                  comment: Optional[str] = None):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str comment: An optional comment about the Domain.
         """
         pulumi.set(__self__, "name", name)
@@ -681,7 +683,7 @@ class ServiceComputeDomain(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -711,13 +713,13 @@ class ServiceComputeGcslogging(dict):
                  timestamp_format: Optional[str] = None):
         """
         :param str bucket_name: The name of your Cloud Files container.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -749,7 +751,7 @@ class ServiceComputeGcslogging(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -797,7 +799,7 @@ class ServiceComputeGcslogging(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[str]:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -829,7 +831,7 @@ class ServiceComputeHealthcheck(dict):
                  window: Optional[int] = None):
         """
         :param str host: The Host header to send for this Healthcheck.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str path: The path to upload logs to.
         :param int check_interval: How often to run the Healthcheck in milliseconds. Default `5000`.
         :param int expected_response: The status code expected from the host. Default `200`.
@@ -872,7 +874,7 @@ class ServiceComputeHealthcheck(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -970,7 +972,7 @@ class ServiceComputeHttpslogging(dict):
                  tls_client_key: Optional[str] = None,
                  tls_hostname: Optional[str] = None):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str url: Your OpenStack auth url.
         :param str content_type: Value of the `Content-Type` header sent with the request.
         :param str header_name: Custom header sent with the request.
@@ -1016,7 +1018,7 @@ class ServiceComputeHttpslogging(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1136,7 +1138,7 @@ class ServiceComputeLogentry(dict):
                  port: Optional[int] = None,
                  use_tls: Optional[bool] = None):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
         :param int port: The port the SFTP service listens on. (Default: `22`).
         :param bool use_tls: Whether to use TLS for secure logging. Can be either true or false.
@@ -1152,7 +1154,7 @@ class ServiceComputeLogentry(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1199,16 +1201,16 @@ class ServiceComputeLoggingCloudfile(dict):
                  region: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
-        :param str access_key: Your Cloud File account access key.
+        :param str access_key: The AWS access key to be used to write to the stream.
         :param str bucket_name: The name of your Cloud Files container.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str user: The username for your Cloud Files account.
         :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param str path: The path to upload logs to.
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
         pulumi.set(__self__, "access_key", access_key)
@@ -1234,7 +1236,7 @@ class ServiceComputeLoggingCloudfile(dict):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> str:
         """
-        Your Cloud File account access key.
+        The AWS access key to be used to write to the stream.
         """
         return pulumi.get(self, "access_key")
 
@@ -1250,7 +1252,7 @@ class ServiceComputeLoggingCloudfile(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1306,7 +1308,7 @@ class ServiceComputeLoggingCloudfile(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        The AWS region the stream resides in. (Default: `us-east-1`).
         """
         return pulumi.get(self, "region")
 
@@ -1329,9 +1331,9 @@ class ServiceComputeLoggingDatadog(dict):
                  token: str,
                  region: Optional[str] = None):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
-        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -1342,7 +1344,7 @@ class ServiceComputeLoggingDatadog(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1358,7 +1360,7 @@ class ServiceComputeLoggingDatadog(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        The AWS region the stream resides in. (Default: `us-east-1`).
         """
         return pulumi.get(self, "region")
 
@@ -1381,10 +1383,10 @@ class ServiceComputeLoggingDigitalocean(dict):
                  public_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
-        :param str access_key: Your Cloud File account access key.
+        :param str access_key: The AWS access key to be used to write to the stream.
         :param str bucket_name: The name of your Cloud Files container.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str name: The unique name of the Kinesis logging endpoint.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
@@ -1416,7 +1418,7 @@ class ServiceComputeLoggingDigitalocean(dict):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> str:
         """
-        Your Cloud File account access key.
+        The AWS access key to be used to write to the stream.
         """
         return pulumi.get(self, "access_key")
 
@@ -1432,7 +1434,7 @@ class ServiceComputeLoggingDigitalocean(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1440,7 +1442,7 @@ class ServiceComputeLoggingDigitalocean(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -1521,7 +1523,7 @@ class ServiceComputeLoggingElasticsearch(dict):
                  user: Optional[str] = None):
         """
         :param str index: The name of the Elasticsearch index to send documents (logs) to.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str url: Your OpenStack auth url.
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
         :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
@@ -1567,7 +1569,7 @@ class ServiceComputeLoggingElasticsearch(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1671,7 +1673,7 @@ class ServiceComputeLoggingFtp(dict):
                  timestamp_format: Optional[str] = None):
         """
         :param str address: The SFTP address to stream logs to.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
         :param str path: The path to upload logs to.
         :param str user: The username for your Cloud Files account.
@@ -1712,7 +1714,7 @@ class ServiceComputeLoggingFtp(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1801,10 +1803,10 @@ class ServiceComputeLoggingGooglepubsub(dict):
                  topic: str,
                  user: str):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str project_id: The ID of your Google Cloud Platform project.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
-        :param str topic: The Kafka topic to send logs to.
+        :param str secret_key: The AWS secret access key to authenticate with.
+        :param str topic: The Kinesis stream name.
         :param str user: The username for your Cloud Files account.
         """
         pulumi.set(__self__, "name", name)
@@ -1817,7 +1819,7 @@ class ServiceComputeLoggingGooglepubsub(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1833,7 +1835,7 @@ class ServiceComputeLoggingGooglepubsub(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -1841,7 +1843,7 @@ class ServiceComputeLoggingGooglepubsub(dict):
     @pulumi.getter
     def topic(self) -> str:
         """
-        The Kafka topic to send logs to.
+        The Kinesis stream name.
         """
         return pulumi.get(self, "topic")
 
@@ -1864,7 +1866,7 @@ class ServiceComputeLoggingHeroku(dict):
                  token: str,
                  url: str):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
         :param str url: Your OpenStack auth url.
         """
@@ -1876,7 +1878,7 @@ class ServiceComputeLoggingHeroku(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1908,7 +1910,7 @@ class ServiceComputeLoggingHoneycomb(dict):
                  token: str):
         """
         :param str dataset: The Honeycomb Dataset you want to log to.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -1927,7 +1929,7 @@ class ServiceComputeLoggingHoneycomb(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -1958,8 +1960,8 @@ class ServiceComputeLoggingKafka(dict):
                  use_tls: Optional[bool] = None):
         """
         :param str brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
-        :param str topic: The Kafka topic to send logs to.
+        :param str name: The unique name of the Kinesis logging endpoint.
+        :param str topic: The Kinesis stream name.
         :param str compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
         :param str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
@@ -1998,7 +2000,7 @@ class ServiceComputeLoggingKafka(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2006,7 +2008,7 @@ class ServiceComputeLoggingKafka(dict):
     @pulumi.getter
     def topic(self) -> str:
         """
-        The Kafka topic to send logs to.
+        The Kinesis stream name.
         """
         return pulumi.get(self, "topic")
 
@@ -2071,12 +2073,78 @@ class ServiceComputeLoggingKafka(dict):
 
 
 @pulumi.output_type
+class ServiceComputeLoggingKinese(dict):
+    def __init__(__self__, *,
+                 access_key: str,
+                 name: str,
+                 secret_key: str,
+                 topic: str,
+                 region: Optional[str] = None):
+        """
+        :param str access_key: The AWS access key to be used to write to the stream.
+        :param str name: The unique name of the Kinesis logging endpoint.
+        :param str secret_key: The AWS secret access key to authenticate with.
+        :param str topic: The Kinesis stream name.
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
+        """
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "topic", topic)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> str:
+        """
+        The AWS access key to be used to write to the stream.
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the Kinesis logging endpoint.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
+        """
+        The AWS secret access key to authenticate with.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
+    @pulumi.getter
+    def topic(self) -> str:
+        """
+        The Kinesis stream name.
+        """
+        return pulumi.get(self, "topic")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The AWS region the stream resides in. (Default: `us-east-1`).
+        """
+        return pulumi.get(self, "region")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
 class ServiceComputeLoggingLoggly(dict):
     def __init__(__self__, *,
                  name: str,
                  token: str):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
         """
         pulumi.set(__self__, "name", name)
@@ -2086,7 +2154,7 @@ class ServiceComputeLoggingLoggly(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2109,7 +2177,7 @@ class ServiceComputeLoggingLogshuttle(dict):
                  token: str,
                  url: str):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
         :param str url: Your OpenStack auth url.
         """
@@ -2121,7 +2189,7 @@ class ServiceComputeLoggingLogshuttle(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2151,7 +2219,7 @@ class ServiceComputeLoggingNewrelic(dict):
                  name: str,
                  token: str):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
         """
         pulumi.set(__self__, "name", name)
@@ -2161,7 +2229,7 @@ class ServiceComputeLoggingNewrelic(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2192,9 +2260,9 @@ class ServiceComputeLoggingOpenstack(dict):
                  public_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
-        :param str access_key: Your Cloud File account access key.
+        :param str access_key: The AWS access key to be used to write to the stream.
         :param str bucket_name: The name of your Cloud Files container.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str url: Your OpenStack auth url.
         :param str user: The username for your Cloud Files account.
         :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
@@ -2226,7 +2294,7 @@ class ServiceComputeLoggingOpenstack(dict):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> str:
         """
-        Your Cloud File account access key.
+        The AWS access key to be used to write to the stream.
         """
         return pulumi.get(self, "access_key")
 
@@ -2242,7 +2310,7 @@ class ServiceComputeLoggingOpenstack(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2321,9 +2389,9 @@ class ServiceComputeLoggingScalyr(dict):
                  token: str,
                  region: Optional[str] = None):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
-        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -2334,7 +2402,7 @@ class ServiceComputeLoggingScalyr(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2350,7 +2418,7 @@ class ServiceComputeLoggingScalyr(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        The AWS region the stream resides in. (Default: `us-east-1`).
         """
         return pulumi.get(self, "region")
 
@@ -2376,7 +2444,7 @@ class ServiceComputeLoggingSftp(dict):
                  timestamp_format: Optional[str] = None):
         """
         :param str address: The SFTP address to stream logs to.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str path: The path to upload logs to.
         :param str ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP.
         :param str user: The username for your Cloud Files account.
@@ -2386,7 +2454,7 @@ class ServiceComputeLoggingSftp(dict):
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
         pulumi.set(__self__, "address", address)
@@ -2423,7 +2491,7 @@ class ServiceComputeLoggingSftp(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2503,7 +2571,7 @@ class ServiceComputeLoggingSftp(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[str]:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -2556,7 +2624,7 @@ class ServiceComputePapertrail(dict):
                  port: int):
         """
         :param str address: The SFTP address to stream logs to.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param int port: The port the SFTP service listens on. (Default: `22`).
         """
         pulumi.set(__self__, "address", address)
@@ -2575,7 +2643,7 @@ class ServiceComputePapertrail(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2610,7 +2678,7 @@ class ServiceComputeS3logging(dict):
                  timestamp_format: Optional[str] = None):
         """
         :param str bucket_name: The name of your Cloud Files container.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         :param int gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
@@ -2667,7 +2735,7 @@ class ServiceComputeS3logging(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2780,7 +2848,7 @@ class ServiceComputeSplunk(dict):
                  tls_ca_cert: Optional[str] = None,
                  tls_hostname: Optional[str] = None):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str token: The data authentication token associated with this endpoint.
         :param str url: Your OpenStack auth url.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
@@ -2798,7 +2866,7 @@ class ServiceComputeSplunk(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2845,7 +2913,7 @@ class ServiceComputeSumologic(dict):
                  url: str,
                  message_type: Optional[str] = None):
         """
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str url: Your OpenStack auth url.
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         """
@@ -2858,7 +2926,7 @@ class ServiceComputeSumologic(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -2897,7 +2965,7 @@ class ServiceComputeSyslog(dict):
                  use_tls: Optional[bool] = None):
         """
         :param str address: The SFTP address to stream logs to.
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param str name: The unique name of the Kinesis logging endpoint.
         :param str message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
         :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
@@ -2938,7 +3006,7 @@ class ServiceComputeSyslog(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -3488,7 +3556,7 @@ class Servicev1Bigquerylogging(dict):
         :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
         :param str name: A unique name to identify this dictionary.
         :param str project_id: The ID of your Google Cloud Platform project.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str table: The ID of your BigQuery table.
         :param str format: Apache style log formatting.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
@@ -3546,7 +3614,7 @@ class Servicev1Bigquerylogging(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -4166,7 +4234,7 @@ class Servicev1Gcslogging(dict):
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -4276,7 +4344,7 @@ class Servicev1Gcslogging(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[str]:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -4997,7 +5065,7 @@ class Servicev1LoggingCloudfile(dict):
                  response_condition: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
-        :param str access_key: Your Cloud File account access key.
+        :param str access_key: The AWS access key to be used to write to the stream.
         :param str bucket_name: The name of your Cloud Files container.
         :param str name: A unique name to identify this dictionary.
         :param str user: The username for your Cloud Files account.
@@ -5009,7 +5077,7 @@ class Servicev1LoggingCloudfile(dict):
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
@@ -5044,7 +5112,7 @@ class Servicev1LoggingCloudfile(dict):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> str:
         """
-        Your Cloud File account access key.
+        The AWS access key to be used to write to the stream.
         """
         return pulumi.get(self, "access_key")
 
@@ -5140,7 +5208,7 @@ class Servicev1LoggingCloudfile(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        The AWS region the stream resides in. (Default: `us-east-1`).
         """
         return pulumi.get(self, "region")
 
@@ -5180,7 +5248,7 @@ class Servicev1LoggingDatadog(dict):
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -5240,7 +5308,7 @@ class Servicev1LoggingDatadog(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        The AWS region the stream resides in. (Default: `us-east-1`).
         """
         return pulumi.get(self, "region")
 
@@ -5275,10 +5343,10 @@ class Servicev1LoggingDigitalocean(dict):
                  response_condition: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
-        :param str access_key: Your Cloud File account access key.
+        :param str access_key: The AWS access key to be used to write to the stream.
         :param str bucket_name: The name of your Cloud Files container.
         :param str name: A unique name to identify this dictionary.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
@@ -5322,7 +5390,7 @@ class Servicev1LoggingDigitalocean(dict):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> str:
         """
-        Your Cloud File account access key.
+        The AWS access key to be used to write to the stream.
         """
         return pulumi.get(self, "access_key")
 
@@ -5346,7 +5414,7 @@ class Servicev1LoggingDigitalocean(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -5841,8 +5909,8 @@ class Servicev1LoggingGooglepubsub(dict):
         """
         :param str name: A unique name to identify this dictionary.
         :param str project_id: The ID of your Google Cloud Platform project.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
-        :param str topic: The Kafka topic to send logs to.
+        :param str secret_key: The AWS secret access key to authenticate with.
+        :param str topic: The Kinesis stream name.
         :param str user: The username for your Cloud Files account.
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
@@ -5883,7 +5951,7 @@ class Servicev1LoggingGooglepubsub(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 
@@ -5891,7 +5959,7 @@ class Servicev1LoggingGooglepubsub(dict):
     @pulumi.getter
     def topic(self) -> str:
         """
-        The Kafka topic to send logs to.
+        The Kinesis stream name.
         """
         return pulumi.get(self, "topic")
 
@@ -6141,7 +6209,7 @@ class Servicev1LoggingKafka(dict):
         """
         :param str brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
         :param str name: A unique name to identify this dictionary.
-        :param str topic: The Kafka topic to send logs to.
+        :param str topic: The Kinesis stream name.
         :param str compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
@@ -6200,7 +6268,7 @@ class Servicev1LoggingKafka(dict):
     @pulumi.getter
     def topic(self) -> str:
         """
-        The Kafka topic to send logs to.
+        The Kinesis stream name.
         """
         return pulumi.get(self, "topic")
 
@@ -6291,6 +6359,120 @@ class Servicev1LoggingKafka(dict):
         Whether to use TLS for secure logging. Can be either true or false.
         """
         return pulumi.get(self, "use_tls")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class Servicev1LoggingKinese(dict):
+    def __init__(__self__, *,
+                 access_key: str,
+                 name: str,
+                 secret_key: str,
+                 topic: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 region: Optional[str] = None,
+                 response_condition: Optional[str] = None):
+        """
+        :param str access_key: The AWS access key to be used to write to the stream.
+        :param str name: A unique name to identify this dictionary.
+        :param str secret_key: The AWS secret access key to authenticate with.
+        :param str topic: The Kinesis stream name.
+        :param str format: Apache style log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
+        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "topic", topic)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> str:
+        """
+        The AWS access key to be used to write to the stream.
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this dictionary.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
+        """
+        The AWS secret access key to authenticate with.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
+    @pulumi.getter
+    def topic(self) -> str:
+        """
+        The Kinesis stream name.
+        """
+        return pulumi.get(self, "topic")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache style log formatting.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The AWS region the stream resides in. (Default: `us-east-1`).
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        return pulumi.get(self, "response_condition")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6566,7 +6748,7 @@ class Servicev1LoggingOpenstack(dict):
                  response_condition: Optional[str] = None,
                  timestamp_format: Optional[str] = None):
         """
-        :param str access_key: Your Cloud File account access key.
+        :param str access_key: The AWS access key to be used to write to the stream.
         :param str bucket_name: The name of your Cloud Files container.
         :param str name: A unique name to identify this dictionary.
         :param str url: Your OpenStack auth url.
@@ -6612,7 +6794,7 @@ class Servicev1LoggingOpenstack(dict):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> str:
         """
-        Your Cloud File account access key.
+        The AWS access key to be used to write to the stream.
         """
         return pulumi.get(self, "access_key")
 
@@ -6748,7 +6930,7 @@ class Servicev1LoggingScalyr(dict):
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        :param str region: The AWS region the stream resides in. (Default: `us-east-1`).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -6808,7 +6990,7 @@ class Servicev1LoggingScalyr(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        The AWS region the stream resides in. (Default: `us-east-1`).
         """
         return pulumi.get(self, "region")
 
@@ -6860,7 +7042,7 @@ class Servicev1LoggingSftp(dict):
         :param int port: The port the SFTP service listens on. (Default: `22`).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param str secret_key: Your DigitalOcean Spaces account secret key.
+        :param str secret_key: The AWS secret access key to authenticate with.
         :param str timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
         """
         pulumi.set(__self__, "address", address)
@@ -7017,7 +7199,7 @@ class Servicev1LoggingSftp(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[str]:
         """
-        Your DigitalOcean Spaces account secret key.
+        The AWS secret access key to authenticate with.
         """
         return pulumi.get(self, "secret_key")
 

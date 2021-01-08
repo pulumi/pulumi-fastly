@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingLogshuttle
     {
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         public readonly string Name;
         /// <summary>

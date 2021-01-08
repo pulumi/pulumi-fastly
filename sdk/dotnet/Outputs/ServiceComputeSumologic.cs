@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         public readonly string Name;
         /// <summary>

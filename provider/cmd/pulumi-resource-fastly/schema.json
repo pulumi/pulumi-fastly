@@ -190,7 +190,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -344,7 +344,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -362,7 +362,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -437,7 +437,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -511,7 +511,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -564,7 +564,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -591,7 +591,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -672,7 +672,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -781,7 +781,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -862,7 +862,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -907,7 +907,7 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
-                    "description": "Your Cloud File account access key.\n",
+                    "description": "The AWS access key to be used to write to the stream.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -943,7 +943,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -979,7 +979,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1017,7 +1017,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1026,7 +1026,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1053,7 +1053,7 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
-                    "description": "Your Cloud File account access key.\n",
+                    "description": "The AWS access key to be used to write to the stream.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1098,7 +1098,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1134,7 +1134,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1172,7 +1172,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1308,7 +1308,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1392,7 +1392,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1410,7 +1410,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1419,7 +1419,7 @@
                 },
                 "topic": {
                     "type": "string",
-                    "description": "The Kafka topic to send logs to.\n",
+                    "description": "The Kinesis stream name.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1449,7 +1449,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1495,7 +1495,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1541,7 +1541,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1595,7 +1595,7 @@
                 },
                 "topic": {
                     "type": "string",
-                    "description": "The Kafka topic to send logs to.\n",
+                    "description": "The Kinesis stream name.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1619,11 +1619,67 @@
                 "topic"
             ]
         },
+        "fastly:index/ServiceComputeLoggingKinese:ServiceComputeLoggingKinese": {
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "The AWS access key to be used to write to the stream.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The AWS secret access key to authenticate with.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "The Kinesis stream name.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "name",
+                "secretKey",
+                "topic"
+            ]
+        },
         "fastly:index/ServiceComputeLoggingLoggly:ServiceComputeLoggingLoggly": {
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1650,7 +1706,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1687,7 +1743,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1714,7 +1770,7 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
-                    "description": "Your Cloud File account access key.\n",
+                    "description": "The AWS access key to be used to write to the stream.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1750,7 +1806,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1825,7 +1881,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1834,7 +1890,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1888,7 +1944,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1942,7 +1998,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2032,7 +2088,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2096,7 +2152,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2193,7 +2249,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2257,7 +2313,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2302,7 +2358,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n",
+                    "description": "The unique name of the Kinesis logging endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2828,7 +2884,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3401,7 +3457,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3971,7 +4027,7 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
-                    "description": "Your Cloud File account access key.\n",
+                    "description": "The AWS access key to be used to write to the stream.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4070,7 +4126,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4153,7 +4209,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4189,7 +4245,7 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
-                    "description": "Your Cloud File account access key.\n",
+                    "description": "The AWS access key to be used to write to the stream.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4306,7 +4362,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4690,7 +4746,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4699,7 +4755,7 @@
                 },
                 "topic": {
                     "type": "string",
-                    "description": "The Kafka topic to send logs to.\n",
+                    "description": "The Kinesis stream name.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4983,7 +5039,7 @@
                 },
                 "topic": {
                     "type": "string",
-                    "description": "The Kafka topic to send logs to.\n",
+                    "description": "The Kinesis stream name.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5004,6 +5060,98 @@
             "required": [
                 "brokers",
                 "name",
+                "topic"
+            ]
+        },
+        "fastly:index/Servicev1LoggingKinese:Servicev1LoggingKinese": {
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "The AWS access key to be used to write to the stream.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify this dictionary.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The AWS secret access key to authenticate with.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "The Kinesis stream name.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessKey",
+                "name",
+                "secretKey",
                 "topic"
             ]
         },
@@ -5210,7 +5358,7 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
-                    "description": "Your Cloud File account access key.\n",
+                    "description": "The AWS access key to be used to write to the stream.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5393,7 +5541,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).\n",
+                    "description": "The AWS region the stream resides in. (Default: `us-east-1`).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5546,7 +5694,7 @@
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "Your DigitalOcean Spaces account secret key.\n",
+                    "description": "The AWS secret access key to authenticate with.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6578,7 +6726,7 @@
             }
         },
         "fastly:index/serviceCompute:ServiceCompute": {
-            "description": "Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n\n\n## Import\n\nFastly Service can be imported using their service ID, e.g.\n\n```sh\n $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
+            "description": "Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is run at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.\n\nThe Service resource requires a domain name that is correctly set up to direct\ntraffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]\non their documentation site for guidance.\n\n\n## Import\n\nFastly Service can be imported using their service ID, e.g.\n\n```sh\n $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "activate": {
                     "type": "boolean",
@@ -6718,6 +6866,13 @@
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                 },
+                "loggingKineses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingKinese:ServiceComputeLoggingKinese"
+                    },
+                    "description": "A Kinesis endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingLogglies": {
                     "type": "array",
                     "items": {
@@ -6762,7 +6917,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
+                    "description": "The unique name of the Kinesis logging endpoint.\n"
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
@@ -6947,6 +7102,13 @@
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                 },
+                "loggingKineses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingKinese:ServiceComputeLoggingKinese"
+                    },
+                    "description": "A Kinesis endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingLogglies": {
                     "type": "array",
                     "items": {
@@ -6991,7 +7153,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
+                    "description": "The unique name of the Kinesis logging endpoint.\n"
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
@@ -7182,6 +7344,13 @@
                         },
                         "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                     },
+                    "loggingKineses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingKinese:ServiceComputeLoggingKinese"
+                        },
+                        "description": "A Kinesis endpoint to send streaming logs to.\nDefined below.\n"
+                    },
                     "loggingLogglies": {
                         "type": "array",
                         "items": {
@@ -7226,7 +7395,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The unique name of the Rackspace Cloud Files logging endpoint.\n"
+                        "description": "The unique name of the Kinesis logging endpoint.\n"
                     },
                     "package": {
                         "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
@@ -8043,6 +8212,13 @@
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
                 },
+                "loggingKineses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/Servicev1LoggingKinese:Servicev1LoggingKinese"
+                    },
+                    "description": "A Kinesis endpoint to send streaming logs to.\nDefined below.\n"
+                },
                 "loggingLogglies": {
                     "type": "array",
                     "items": {
@@ -8363,6 +8539,13 @@
                         "$ref": "#/types/fastly:index/Servicev1LoggingKafka:Servicev1LoggingKafka"
                     },
                     "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                },
+                "loggingKineses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/Servicev1LoggingKinese:Servicev1LoggingKinese"
+                    },
+                    "description": "A Kinesis endpoint to send streaming logs to.\nDefined below.\n"
                 },
                 "loggingLogglies": {
                     "type": "array",
@@ -8690,6 +8873,13 @@
                             "$ref": "#/types/fastly:index/Servicev1LoggingKafka:Servicev1LoggingKafka"
                         },
                         "description": "A Kafka endpoint to send streaming logs to.\nDefined below.\n"
+                    },
+                    "loggingKineses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/Servicev1LoggingKinese:Servicev1LoggingKinese"
+                        },
+                        "description": "A Kinesis endpoint to send streaming logs to.\nDefined below.\n"
                     },
                     "loggingLogglies": {
                         "type": "array",

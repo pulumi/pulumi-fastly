@@ -198,6 +198,11 @@ export class Servicev1 extends pulumi.CustomResource {
      */
     public readonly loggingKafkas!: pulumi.Output<outputs.Servicev1LoggingKafka[] | undefined>;
     /**
+     * A Kinesis endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingKineses!: pulumi.Output<outputs.Servicev1LoggingKinese[] | undefined>;
+    /**
      * A Loggly endpoint to send streaming logs to.
      * Defined below.
      */
@@ -329,6 +334,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["loggingHeroku"] = state ? state.loggingHeroku : undefined;
             inputs["loggingHoneycombs"] = state ? state.loggingHoneycombs : undefined;
             inputs["loggingKafkas"] = state ? state.loggingKafkas : undefined;
+            inputs["loggingKineses"] = state ? state.loggingKineses : undefined;
             inputs["loggingLogglies"] = state ? state.loggingLogglies : undefined;
             inputs["loggingLogshuttles"] = state ? state.loggingLogshuttles : undefined;
             inputs["loggingNewrelics"] = state ? state.loggingNewrelics : undefined;
@@ -382,6 +388,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["loggingHeroku"] = args ? args.loggingHeroku : undefined;
             inputs["loggingHoneycombs"] = args ? args.loggingHoneycombs : undefined;
             inputs["loggingKafkas"] = args ? args.loggingKafkas : undefined;
+            inputs["loggingKineses"] = args ? args.loggingKineses : undefined;
             inputs["loggingLogglies"] = args ? args.loggingLogglies : undefined;
             inputs["loggingLogshuttles"] = args ? args.loggingLogshuttles : undefined;
             inputs["loggingNewrelics"] = args ? args.loggingNewrelics : undefined;
@@ -573,6 +580,11 @@ export interface Servicev1State {
      * Defined below.
      */
     readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKafka>[]>;
+    /**
+     * A Kinesis endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingKineses?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKinese>[]>;
     /**
      * A Loggly endpoint to send streaming logs to.
      * Defined below.
@@ -813,6 +825,11 @@ export interface Servicev1Args {
      * Defined below.
      */
     readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKafka>[]>;
+    /**
+     * A Kinesis endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingKineses?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKinese>[]>;
     /**
      * A Loggly endpoint to send streaming logs to.
      * Defined below.

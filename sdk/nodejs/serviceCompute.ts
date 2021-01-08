@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
+ * Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is run at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
  *
  * The Service resource requires a domain name that is correctly set up to direct
  * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
@@ -151,6 +151,11 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly loggingKafkas!: pulumi.Output<outputs.ServiceComputeLoggingKafka[] | undefined>;
     /**
+     * A Kinesis endpoint to send streaming logs to.
+     * Defined below.
+     */
+    public readonly loggingKineses!: pulumi.Output<outputs.ServiceComputeLoggingKinese[] | undefined>;
+    /**
      * A Loggly endpoint to send streaming logs to.
      * Defined below.
      */
@@ -181,7 +186,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly loggingSftps!: pulumi.Output<outputs.ServiceComputeLoggingSftp[] | undefined>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -253,6 +258,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["loggingHeroku"] = state ? state.loggingHeroku : undefined;
             inputs["loggingHoneycombs"] = state ? state.loggingHoneycombs : undefined;
             inputs["loggingKafkas"] = state ? state.loggingKafkas : undefined;
+            inputs["loggingKineses"] = state ? state.loggingKineses : undefined;
             inputs["loggingLogglies"] = state ? state.loggingLogglies : undefined;
             inputs["loggingLogshuttles"] = state ? state.loggingLogshuttles : undefined;
             inputs["loggingNewrelics"] = state ? state.loggingNewrelics : undefined;
@@ -295,6 +301,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["loggingHeroku"] = args ? args.loggingHeroku : undefined;
             inputs["loggingHoneycombs"] = args ? args.loggingHoneycombs : undefined;
             inputs["loggingKafkas"] = args ? args.loggingKafkas : undefined;
+            inputs["loggingKineses"] = args ? args.loggingKineses : undefined;
             inputs["loggingLogglies"] = args ? args.loggingLogglies : undefined;
             inputs["loggingLogshuttles"] = args ? args.loggingLogshuttles : undefined;
             inputs["loggingNewrelics"] = args ? args.loggingNewrelics : undefined;
@@ -430,6 +437,11 @@ export interface ServiceComputeState {
      */
     readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingKafka>[]>;
     /**
+     * A Kinesis endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingKineses?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingKinese>[]>;
+    /**
      * A Loggly endpoint to send streaming logs to.
      * Defined below.
      */
@@ -460,7 +472,7 @@ export interface ServiceComputeState {
      */
     readonly loggingSftps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSftp>[]>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -601,6 +613,11 @@ export interface ServiceComputeArgs {
      */
     readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingKafka>[]>;
     /**
+     * A Kinesis endpoint to send streaming logs to.
+     * Defined below.
+     */
+    readonly loggingKineses?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingKinese>[]>;
+    /**
      * A Loggly endpoint to send streaming logs to.
      * Defined below.
      */
@@ -631,7 +648,7 @@ export interface ServiceComputeArgs {
      */
     readonly loggingSftps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSftp>[]>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     readonly name?: pulumi.Input<string>;
     /**

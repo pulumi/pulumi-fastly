@@ -240,6 +240,13 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.Servicev1LoggingKafka>> LoggingKafkas { get; private set; } = null!;
 
         /// <summary>
+        /// A Kinesis endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingKineses")]
+        public Output<ImmutableArray<Outputs.Servicev1LoggingKinese>> LoggingKineses { get; private set; } = null!;
+
+        /// <summary>
         /// A Loggly endpoint to send streaming logs to.
         /// Defined below.
         /// </summary>
@@ -763,6 +770,19 @@ namespace Pulumi.Fastly
         {
             get => _loggingKafkas ?? (_loggingKafkas = new InputList<Inputs.Servicev1LoggingKafkaArgs>());
             set => _loggingKafkas = value;
+        }
+
+        [Input("loggingKineses")]
+        private InputList<Inputs.Servicev1LoggingKineseArgs>? _loggingKineses;
+
+        /// <summary>
+        /// A Kinesis endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingKineseArgs> LoggingKineses
+        {
+            get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.Servicev1LoggingKineseArgs>());
+            set => _loggingKineses = value;
         }
 
         [Input("loggingLogglies")]
@@ -1352,6 +1372,19 @@ namespace Pulumi.Fastly
         {
             get => _loggingKafkas ?? (_loggingKafkas = new InputList<Inputs.Servicev1LoggingKafkaGetArgs>());
             set => _loggingKafkas = value;
+        }
+
+        [Input("loggingKineses")]
+        private InputList<Inputs.Servicev1LoggingKineseGetArgs>? _loggingKineses;
+
+        /// <summary>
+        /// A Kinesis endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.Servicev1LoggingKineseGetArgs> LoggingKineses
+        {
+            get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.Servicev1LoggingKineseGetArgs>());
+            set => _loggingKineses = value;
         }
 
         [Input("loggingLogglies")]

@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? CompressionCodec;
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The Kafka topic to send logs to.
+        /// The Kinesis stream name.
         /// </summary>
         public readonly string Topic;
         /// <summary>
