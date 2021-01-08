@@ -62,7 +62,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The Kafka topic to send logs to.
+        /// The Kinesis stream name.
         /// </summary>
         public readonly string Topic;
         /// <summary>

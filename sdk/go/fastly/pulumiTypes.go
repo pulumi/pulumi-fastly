@@ -165,7 +165,7 @@ type ServiceComputeBackend struct {
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The hostname to override the Host header.
 	OverrideHost *string `pulumi:"overrideHost"`
@@ -233,7 +233,7 @@ type ServiceComputeBackendArgs struct {
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The hostname to override the Host header.
 	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
@@ -370,7 +370,7 @@ func (o ServiceComputeBackendOutput) MinTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeBackendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -467,11 +467,11 @@ type ServiceComputeBigquerylogging struct {
 	Dataset string `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 	Email string `pulumi:"email"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The ID of your Google Cloud Platform project.
 	ProjectId string `pulumi:"projectId"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey string `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table    string  `pulumi:"table"`
@@ -494,11 +494,11 @@ type ServiceComputeBigqueryloggingArgs struct {
 	Dataset pulumi.StringInput `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
 	Email pulumi.StringInput `pulumi:"email"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of your Google Cloud Platform project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table    pulumi.StringInput    `pulumi:"table"`
@@ -566,7 +566,7 @@ func (o ServiceComputeBigqueryloggingOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Email }).(pulumi.StringOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeBigqueryloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -576,7 +576,7 @@ func (o ServiceComputeBigqueryloggingOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o ServiceComputeBigqueryloggingOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.SecretKey }).(pulumi.StringOutput)
 }
@@ -619,7 +619,7 @@ type ServiceComputeBlobstoragelogging struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The path to upload logs to.
 	Path *string `pulumi:"path"`
@@ -653,7 +653,7 @@ type ServiceComputeBlobstorageloggingArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The path to upload logs to.
 	Path pulumi.StringPtrInput `pulumi:"path"`
@@ -738,7 +738,7 @@ func (o ServiceComputeBlobstorageloggingOutput) MessageType() pulumi.StringPtrOu
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeBlobstorageloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -791,7 +791,7 @@ func (o ServiceComputeBlobstorageloggingArrayOutput) Index(i pulumi.IntInput) Se
 type ServiceComputeDomain struct {
 	// An optional comment about the Domain.
 	Comment *string `pulumi:"comment"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 }
 
@@ -809,7 +809,7 @@ type ServiceComputeDomainInput interface {
 type ServiceComputeDomainArgs struct {
 	// An optional comment about the Domain.
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -869,7 +869,7 @@ func (o ServiceComputeDomainOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeDomain) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeDomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeDomain) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -903,13 +903,13 @@ type ServiceComputeGcslogging struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The path to upload logs to.
 	Path *string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
 	Period *int `pulumi:"period"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey *string `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -935,13 +935,13 @@ type ServiceComputeGcsloggingArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The path to upload logs to.
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -1018,7 +1018,7 @@ func (o ServiceComputeGcsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeGcsloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1033,7 +1033,7 @@ func (o ServiceComputeGcsloggingOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o ServiceComputeGcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
@@ -1076,7 +1076,7 @@ type ServiceComputeHealthcheck struct {
 	Initial *int `pulumi:"initial"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
 	Method *string `pulumi:"method"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The path to upload logs to.
 	Path string `pulumi:"path"`
@@ -1112,7 +1112,7 @@ type ServiceComputeHealthcheckArgs struct {
 	Initial pulumi.IntPtrInput `pulumi:"initial"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The path to upload logs to.
 	Path pulumi.StringInput `pulumi:"path"`
@@ -1205,7 +1205,7 @@ func (o ServiceComputeHealthcheckOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeHealthcheckOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1263,7 +1263,7 @@ type ServiceComputeHttpslogging struct {
 	MessageType *string `pulumi:"messageType"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
 	Method *string `pulumi:"method"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
@@ -1305,7 +1305,7 @@ type ServiceComputeHttpsloggingArgs struct {
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
@@ -1404,7 +1404,7 @@ func (o ServiceComputeHttpsloggingOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeHttpsloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1465,7 +1465,7 @@ func (o ServiceComputeHttpsloggingArrayOutput) Index(i pulumi.IntInput) ServiceC
 }
 
 type ServiceComputeLogentry struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The port the SFTP service listens on. (Default: `22`).
 	Port *int `pulumi:"port"`
@@ -1487,7 +1487,7 @@ type ServiceComputeLogentryInput interface {
 }
 
 type ServiceComputeLogentryArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port the SFTP service listens on. (Default: `22`).
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -1548,7 +1548,7 @@ func (o ServiceComputeLogentryOutput) ToServiceComputeLogentryOutputWithContext(
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLogentryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLogentry) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1589,7 +1589,7 @@ func (o ServiceComputeLogentryArrayOutput) Index(i pulumi.IntInput) ServiceCompu
 }
 
 type ServiceComputeLoggingCloudfile struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName string `pulumi:"bucketName"`
@@ -1597,7 +1597,7 @@ type ServiceComputeLoggingCloudfile struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The path to upload logs to.
 	Path *string `pulumi:"path"`
@@ -1605,7 +1605,7 @@ type ServiceComputeLoggingCloudfile struct {
 	Period *int `pulumi:"period"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey *string `pulumi:"publicKey"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region *string `pulumi:"region"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -1625,7 +1625,7 @@ type ServiceComputeLoggingCloudfileInput interface {
 }
 
 type ServiceComputeLoggingCloudfileArgs struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
@@ -1633,7 +1633,7 @@ type ServiceComputeLoggingCloudfileArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The path to upload logs to.
 	Path pulumi.StringPtrInput `pulumi:"path"`
@@ -1641,7 +1641,7 @@ type ServiceComputeLoggingCloudfileArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -1700,7 +1700,7 @@ func (o ServiceComputeLoggingCloudfileOutput) ToServiceComputeLoggingCloudfileOu
 	return o
 }
 
-// Your Cloud File account access key.
+// The AWS access key to be used to write to the stream.
 func (o ServiceComputeLoggingCloudfileOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -1720,7 +1720,7 @@ func (o ServiceComputeLoggingCloudfileOutput) MessageType() pulumi.StringPtrOutp
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingCloudfileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1740,7 +1740,7 @@ func (o ServiceComputeLoggingCloudfileOutput) PublicKey() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+// The AWS region the stream resides in. (Default: `us-east-1`).
 func (o ServiceComputeLoggingCloudfileOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -1776,9 +1776,9 @@ func (o ServiceComputeLoggingCloudfileArrayOutput) Index(i pulumi.IntInput) Serv
 }
 
 type ServiceComputeLoggingDatadog struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region *string `pulumi:"region"`
 	// The data authentication token associated with this endpoint.
 	Token string `pulumi:"token"`
@@ -1796,9 +1796,9 @@ type ServiceComputeLoggingDatadogInput interface {
 }
 
 type ServiceComputeLoggingDatadogArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The data authentication token associated with this endpoint.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -1855,12 +1855,12 @@ func (o ServiceComputeLoggingDatadogOutput) ToServiceComputeLoggingDatadogOutput
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingDatadogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+// The AWS region the stream resides in. (Default: `us-east-1`).
 func (o ServiceComputeLoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -1891,7 +1891,7 @@ func (o ServiceComputeLoggingDatadogArrayOutput) Index(i pulumi.IntInput) Servic
 }
 
 type ServiceComputeLoggingDigitalocean struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName string `pulumi:"bucketName"`
@@ -1901,7 +1901,7 @@ type ServiceComputeLoggingDigitalocean struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The path to upload logs to.
 	Path *string `pulumi:"path"`
@@ -1909,7 +1909,7 @@ type ServiceComputeLoggingDigitalocean struct {
 	Period *int `pulumi:"period"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey *string `pulumi:"publicKey"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey string `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -1927,7 +1927,7 @@ type ServiceComputeLoggingDigitaloceanInput interface {
 }
 
 type ServiceComputeLoggingDigitaloceanArgs struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
@@ -1937,7 +1937,7 @@ type ServiceComputeLoggingDigitaloceanArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The path to upload logs to.
 	Path pulumi.StringPtrInput `pulumi:"path"`
@@ -1945,7 +1945,7 @@ type ServiceComputeLoggingDigitaloceanArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -2002,7 +2002,7 @@ func (o ServiceComputeLoggingDigitaloceanOutput) ToServiceComputeLoggingDigitalo
 	return o
 }
 
-// Your Cloud File account access key.
+// The AWS access key to be used to write to the stream.
 func (o ServiceComputeLoggingDigitaloceanOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -2027,7 +2027,7 @@ func (o ServiceComputeLoggingDigitaloceanOutput) MessageType() pulumi.StringPtrO
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingDigitaloceanOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2047,7 +2047,7 @@ func (o ServiceComputeLoggingDigitaloceanOutput) PublicKey() pulumi.StringPtrOut
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o ServiceComputeLoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
@@ -2080,7 +2080,7 @@ func (o ServiceComputeLoggingDigitaloceanArrayOutput) Index(i pulumi.IntInput) S
 type ServiceComputeLoggingElasticsearch struct {
 	// The name of the Elasticsearch index to send documents (logs) to.
 	Index string `pulumi:"index"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
 	Password *string `pulumi:"password"`
@@ -2118,7 +2118,7 @@ type ServiceComputeLoggingElasticsearchInput interface {
 type ServiceComputeLoggingElasticsearchArgs struct {
 	// The name of the Elasticsearch index to send documents (logs) to.
 	Index pulumi.StringInput `pulumi:"index"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
 	Password pulumi.StringPtrInput `pulumi:"password"`
@@ -2198,7 +2198,7 @@ func (o ServiceComputeLoggingElasticsearchOutput) Index() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Index }).(pulumi.StringOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingElasticsearchOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2280,7 +2280,7 @@ type ServiceComputeLoggingFtp struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
 	Password string `pulumi:"password"`
@@ -2316,7 +2316,7 @@ type ServiceComputeLoggingFtpArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
 	Password pulumi.StringInput `pulumi:"password"`
@@ -2400,7 +2400,7 @@ func (o ServiceComputeLoggingFtpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingFtpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2461,13 +2461,13 @@ func (o ServiceComputeLoggingFtpArrayOutput) Index(i pulumi.IntInput) ServiceCom
 }
 
 type ServiceComputeLoggingGooglepubsub struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The ID of your Google Cloud Platform project.
 	ProjectId string `pulumi:"projectId"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey string `pulumi:"secretKey"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic string `pulumi:"topic"`
 	// The username for your Cloud Files account.
 	User string `pulumi:"user"`
@@ -2485,13 +2485,13 @@ type ServiceComputeLoggingGooglepubsubInput interface {
 }
 
 type ServiceComputeLoggingGooglepubsubArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of your Google Cloud Platform project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic pulumi.StringInput `pulumi:"topic"`
 	// The username for your Cloud Files account.
 	User pulumi.StringInput `pulumi:"user"`
@@ -2548,7 +2548,7 @@ func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepu
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingGooglepubsubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2558,12 +2558,12 @@ func (o ServiceComputeLoggingGooglepubsubOutput) ProjectId() pulumi.StringOutput
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o ServiceComputeLoggingGooglepubsubOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The Kafka topic to send logs to.
+// The Kinesis stream name.
 func (o ServiceComputeLoggingGooglepubsubOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.Topic }).(pulumi.StringOutput)
 }
@@ -2594,7 +2594,7 @@ func (o ServiceComputeLoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) S
 }
 
 type ServiceComputeLoggingHeroku struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token string `pulumi:"token"`
@@ -2614,7 +2614,7 @@ type ServiceComputeLoggingHerokuInput interface {
 }
 
 type ServiceComputeLoggingHerokuArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -2673,7 +2673,7 @@ func (o ServiceComputeLoggingHerokuOutput) ToServiceComputeLoggingHerokuOutputWi
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingHerokuOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2711,7 +2711,7 @@ func (o ServiceComputeLoggingHerokuArrayOutput) Index(i pulumi.IntInput) Service
 type ServiceComputeLoggingHoneycomb struct {
 	// The Honeycomb Dataset you want to log to.
 	Dataset string `pulumi:"dataset"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token string `pulumi:"token"`
@@ -2731,7 +2731,7 @@ type ServiceComputeLoggingHoneycombInput interface {
 type ServiceComputeLoggingHoneycombArgs struct {
 	// The Honeycomb Dataset you want to log to.
 	Dataset pulumi.StringInput `pulumi:"dataset"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -2793,7 +2793,7 @@ func (o ServiceComputeLoggingHoneycombOutput) Dataset() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Dataset }).(pulumi.StringOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingHoneycombOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2828,7 +2828,7 @@ type ServiceComputeLoggingKafka struct {
 	Brokers string `pulumi:"brokers"`
 	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
 	CompressionCodec *string `pulumi:"compressionCodec"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
 	RequiredAcks *string `pulumi:"requiredAcks"`
@@ -2840,7 +2840,7 @@ type ServiceComputeLoggingKafka struct {
 	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic string `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls *bool `pulumi:"useTls"`
@@ -2862,7 +2862,7 @@ type ServiceComputeLoggingKafkaArgs struct {
 	Brokers pulumi.StringInput `pulumi:"brokers"`
 	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
 	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
@@ -2874,7 +2874,7 @@ type ServiceComputeLoggingKafkaArgs struct {
 	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic pulumi.StringInput `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
@@ -2941,7 +2941,7 @@ func (o ServiceComputeLoggingKafkaOutput) CompressionCodec() pulumi.StringPtrOut
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingKafkaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2971,7 +2971,7 @@ func (o ServiceComputeLoggingKafkaOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The Kafka topic to send logs to.
+// The Kinesis stream name.
 func (o ServiceComputeLoggingKafkaOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Topic }).(pulumi.StringOutput)
 }
@@ -3001,8 +3001,141 @@ func (o ServiceComputeLoggingKafkaArrayOutput) Index(i pulumi.IntInput) ServiceC
 	}).(ServiceComputeLoggingKafkaOutput)
 }
 
+type ServiceComputeLoggingKinese struct {
+	// The AWS access key to be used to write to the stream.
+	AccessKey string `pulumi:"accessKey"`
+	// The unique name of the Kinesis logging endpoint.
+	Name string `pulumi:"name"`
+	// The AWS region the stream resides in. (Default: `us-east-1`).
+	Region *string `pulumi:"region"`
+	// The AWS secret access key to authenticate with.
+	SecretKey string `pulumi:"secretKey"`
+	// The Kinesis stream name.
+	Topic string `pulumi:"topic"`
+}
+
+// ServiceComputeLoggingKineseInput is an input type that accepts ServiceComputeLoggingKineseArgs and ServiceComputeLoggingKineseOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingKineseInput` via:
+//
+//          ServiceComputeLoggingKineseArgs{...}
+type ServiceComputeLoggingKineseInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingKineseOutput() ServiceComputeLoggingKineseOutput
+	ToServiceComputeLoggingKineseOutputWithContext(context.Context) ServiceComputeLoggingKineseOutput
+}
+
+type ServiceComputeLoggingKineseArgs struct {
+	// The AWS access key to be used to write to the stream.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// The unique name of the Kinesis logging endpoint.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The AWS region the stream resides in. (Default: `us-east-1`).
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The AWS secret access key to authenticate with.
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// The Kinesis stream name.
+	Topic pulumi.StringInput `pulumi:"topic"`
+}
+
+func (ServiceComputeLoggingKineseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingKinese)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingKineseArgs) ToServiceComputeLoggingKineseOutput() ServiceComputeLoggingKineseOutput {
+	return i.ToServiceComputeLoggingKineseOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingKineseArgs) ToServiceComputeLoggingKineseOutputWithContext(ctx context.Context) ServiceComputeLoggingKineseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKineseOutput)
+}
+
+// ServiceComputeLoggingKineseArrayInput is an input type that accepts ServiceComputeLoggingKineseArray and ServiceComputeLoggingKineseArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingKineseArrayInput` via:
+//
+//          ServiceComputeLoggingKineseArray{ ServiceComputeLoggingKineseArgs{...} }
+type ServiceComputeLoggingKineseArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingKineseArrayOutput() ServiceComputeLoggingKineseArrayOutput
+	ToServiceComputeLoggingKineseArrayOutputWithContext(context.Context) ServiceComputeLoggingKineseArrayOutput
+}
+
+type ServiceComputeLoggingKineseArray []ServiceComputeLoggingKineseInput
+
+func (ServiceComputeLoggingKineseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingKinese)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingKineseArray) ToServiceComputeLoggingKineseArrayOutput() ServiceComputeLoggingKineseArrayOutput {
+	return i.ToServiceComputeLoggingKineseArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingKineseArray) ToServiceComputeLoggingKineseArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingKineseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKineseArrayOutput)
+}
+
+type ServiceComputeLoggingKineseOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingKineseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingKinese)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingKineseOutput) ToServiceComputeLoggingKineseOutput() ServiceComputeLoggingKineseOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingKineseOutput) ToServiceComputeLoggingKineseOutputWithContext(ctx context.Context) ServiceComputeLoggingKineseOutput {
+	return o
+}
+
+// The AWS access key to be used to write to the stream.
+func (o ServiceComputeLoggingKineseOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// The unique name of the Kinesis logging endpoint.
+func (o ServiceComputeLoggingKineseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The AWS region the stream resides in. (Default: `us-east-1`).
+func (o ServiceComputeLoggingKineseOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKinese) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The AWS secret access key to authenticate with.
+func (o ServiceComputeLoggingKineseOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The Kinesis stream name.
+func (o ServiceComputeLoggingKineseOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingKineseArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingKineseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingKinese)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingKineseArrayOutput) ToServiceComputeLoggingKineseArrayOutput() ServiceComputeLoggingKineseArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingKineseArrayOutput) ToServiceComputeLoggingKineseArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingKineseArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingKineseArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingKineseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingKinese {
+		return vs[0].([]ServiceComputeLoggingKinese)[vs[1].(int)]
+	}).(ServiceComputeLoggingKineseOutput)
+}
+
 type ServiceComputeLoggingLoggly struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token string `pulumi:"token"`
@@ -3020,7 +3153,7 @@ type ServiceComputeLoggingLogglyInput interface {
 }
 
 type ServiceComputeLoggingLogglyArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -3077,7 +3210,7 @@ func (o ServiceComputeLoggingLogglyOutput) ToServiceComputeLoggingLogglyOutputWi
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingLogglyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLoggly) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3108,7 +3241,7 @@ func (o ServiceComputeLoggingLogglyArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type ServiceComputeLoggingLogshuttle struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token string `pulumi:"token"`
@@ -3128,7 +3261,7 @@ type ServiceComputeLoggingLogshuttleInput interface {
 }
 
 type ServiceComputeLoggingLogshuttleArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -3187,7 +3320,7 @@ func (o ServiceComputeLoggingLogshuttleOutput) ToServiceComputeLoggingLogshuttle
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingLogshuttleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3223,7 +3356,7 @@ func (o ServiceComputeLoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) Ser
 }
 
 type ServiceComputeLoggingNewrelic struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token string `pulumi:"token"`
@@ -3241,7 +3374,7 @@ type ServiceComputeLoggingNewrelicInput interface {
 }
 
 type ServiceComputeLoggingNewrelicArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The data authentication token associated with this endpoint.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -3298,7 +3431,7 @@ func (o ServiceComputeLoggingNewrelicOutput) ToServiceComputeLoggingNewrelicOutp
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingNewrelicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3329,7 +3462,7 @@ func (o ServiceComputeLoggingNewrelicArrayOutput) Index(i pulumi.IntInput) Servi
 }
 
 type ServiceComputeLoggingOpenstack struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName string `pulumi:"bucketName"`
@@ -3337,7 +3470,7 @@ type ServiceComputeLoggingOpenstack struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The path to upload logs to.
 	Path *string `pulumi:"path"`
@@ -3365,7 +3498,7 @@ type ServiceComputeLoggingOpenstackInput interface {
 }
 
 type ServiceComputeLoggingOpenstackArgs struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
@@ -3373,7 +3506,7 @@ type ServiceComputeLoggingOpenstackArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The path to upload logs to.
 	Path pulumi.StringPtrInput `pulumi:"path"`
@@ -3440,7 +3573,7 @@ func (o ServiceComputeLoggingOpenstackOutput) ToServiceComputeLoggingOpenstackOu
 	return o
 }
 
-// Your Cloud File account access key.
+// The AWS access key to be used to write to the stream.
 func (o ServiceComputeLoggingOpenstackOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -3460,7 +3593,7 @@ func (o ServiceComputeLoggingOpenstackOutput) MessageType() pulumi.StringPtrOutp
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingOpenstackOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3516,9 +3649,9 @@ func (o ServiceComputeLoggingOpenstackArrayOutput) Index(i pulumi.IntInput) Serv
 }
 
 type ServiceComputeLoggingScalyr struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region *string `pulumi:"region"`
 	// The data authentication token associated with this endpoint.
 	Token string `pulumi:"token"`
@@ -3536,9 +3669,9 @@ type ServiceComputeLoggingScalyrInput interface {
 }
 
 type ServiceComputeLoggingScalyrArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The data authentication token associated with this endpoint.
 	Token pulumi.StringInput `pulumi:"token"`
@@ -3595,12 +3728,12 @@ func (o ServiceComputeLoggingScalyrOutput) ToServiceComputeLoggingScalyrOutputWi
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingScalyrOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+// The AWS region the stream resides in. (Default: `us-east-1`).
 func (o ServiceComputeLoggingScalyrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -3637,7 +3770,7 @@ type ServiceComputeLoggingSftp struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
 	Password *string `pulumi:"password"`
@@ -3649,7 +3782,7 @@ type ServiceComputeLoggingSftp struct {
 	Port *int `pulumi:"port"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey *string `pulumi:"publicKey"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey *string `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP.
 	SshKnownHosts string `pulumi:"sshKnownHosts"`
@@ -3677,7 +3810,7 @@ type ServiceComputeLoggingSftpArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
 	Password pulumi.StringPtrInput `pulumi:"password"`
@@ -3689,7 +3822,7 @@ type ServiceComputeLoggingSftpArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP.
 	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
@@ -3765,7 +3898,7 @@ func (o ServiceComputeLoggingSftpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingSftpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3795,7 +3928,7 @@ func (o ServiceComputeLoggingSftpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o ServiceComputeLoggingSftpOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
@@ -3984,7 +4117,7 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 type ServiceComputePapertrail struct {
 	// The SFTP address to stream logs to.
 	Address string `pulumi:"address"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The port the SFTP service listens on. (Default: `22`).
 	Port int `pulumi:"port"`
@@ -4004,7 +4137,7 @@ type ServiceComputePapertrailInput interface {
 type ServiceComputePapertrailArgs struct {
 	// The SFTP address to stream logs to.
 	Address pulumi.StringInput `pulumi:"address"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port the SFTP service listens on. (Default: `22`).
 	Port pulumi.IntInput `pulumi:"port"`
@@ -4066,7 +4199,7 @@ func (o ServiceComputePapertrailOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputePapertrail) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputePapertrailOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputePapertrail) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4105,7 +4238,7 @@ type ServiceComputeS3logging struct {
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The path to upload logs to.
 	Path *string `pulumi:"path"`
@@ -4151,7 +4284,7 @@ type ServiceComputeS3loggingArgs struct {
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The path to upload logs to.
 	Path pulumi.StringPtrInput `pulumi:"path"`
@@ -4248,7 +4381,7 @@ func (o ServiceComputeS3loggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeS3loggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4323,7 +4456,7 @@ func (o ServiceComputeS3loggingArrayOutput) Index(i pulumi.IntInput) ServiceComp
 }
 
 type ServiceComputeSplunk struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// A secure certificate to authenticate the server with. Must be in PEM format.
 	TlsCaCert *string `pulumi:"tlsCaCert"`
@@ -4347,7 +4480,7 @@ type ServiceComputeSplunkInput interface {
 }
 
 type ServiceComputeSplunkArgs struct {
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// A secure certificate to authenticate the server with. Must be in PEM format.
 	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
@@ -4410,7 +4543,7 @@ func (o ServiceComputeSplunkOutput) ToServiceComputeSplunkOutputWithContext(ctx 
 	return o
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeSplunkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4458,7 +4591,7 @@ func (o ServiceComputeSplunkArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 type ServiceComputeSumologic struct {
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// Your OpenStack auth url.
 	Url string `pulumi:"url"`
@@ -4478,7 +4611,7 @@ type ServiceComputeSumologicInput interface {
 type ServiceComputeSumologicArgs struct {
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Your OpenStack auth url.
 	Url pulumi.StringInput `pulumi:"url"`
@@ -4540,7 +4673,7 @@ func (o ServiceComputeSumologicOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeSumologicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSumologic) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4575,7 +4708,7 @@ type ServiceComputeSyslog struct {
 	Address string `pulumi:"address"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name string `pulumi:"name"`
 	// The port the SFTP service listens on. (Default: `22`).
 	Port *int `pulumi:"port"`
@@ -4609,7 +4742,7 @@ type ServiceComputeSyslogArgs struct {
 	Address pulumi.StringInput `pulumi:"address"`
 	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Rackspace Cloud Files logging endpoint.
+	// The unique name of the Kinesis logging endpoint.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port the SFTP service listens on. (Default: `22`).
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -4688,7 +4821,7 @@ func (o ServiceComputeSyslogOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Rackspace Cloud Files logging endpoint.
+// The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeSyslogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -5448,7 +5581,7 @@ type Servicev1Bigquerylogging struct {
 	ProjectId string `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey string `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table string `pulumi:"table"`
@@ -5482,7 +5615,7 @@ type Servicev1BigqueryloggingArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 	// The ID of your BigQuery table.
 	Table pulumi.StringInput `pulumi:"table"`
@@ -5576,7 +5709,7 @@ func (o Servicev1BigqueryloggingOutput) ResponseCondition() pulumi.StringPtrOutp
 	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o Servicev1BigqueryloggingOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.SecretKey }).(pulumi.StringOutput)
 }
@@ -6623,7 +6756,7 @@ type Servicev1Gcslogging struct {
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey *string `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -6661,7 +6794,7 @@ type Servicev1GcsloggingArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -6768,7 +6901,7 @@ func (o Servicev1GcsloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o Servicev1GcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
@@ -7734,7 +7867,7 @@ func (o Servicev1LogentryArrayOutput) Index(i pulumi.IntInput) Servicev1Logentry
 }
 
 type Servicev1LoggingCloudfile struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName string `pulumi:"bucketName"`
@@ -7756,7 +7889,7 @@ type Servicev1LoggingCloudfile struct {
 	Placement *string `pulumi:"placement"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey *string `pulumi:"publicKey"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -7778,7 +7911,7 @@ type Servicev1LoggingCloudfileInput interface {
 }
 
 type Servicev1LoggingCloudfileArgs struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
@@ -7800,7 +7933,7 @@ type Servicev1LoggingCloudfileArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -7861,7 +7994,7 @@ func (o Servicev1LoggingCloudfileOutput) ToServicev1LoggingCloudfileOutputWithCo
 	return o
 }
 
-// Your Cloud File account access key.
+// The AWS access key to be used to write to the stream.
 func (o Servicev1LoggingCloudfileOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -7916,7 +8049,7 @@ func (o Servicev1LoggingCloudfileOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+// The AWS region the stream resides in. (Default: `us-east-1`).
 func (o Servicev1LoggingCloudfileOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -7965,7 +8098,7 @@ type Servicev1LoggingDatadog struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -7993,7 +8126,7 @@ type Servicev1LoggingDatadogArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -8072,7 +8205,7 @@ func (o Servicev1LoggingDatadogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+// The AWS region the stream resides in. (Default: `us-east-1`).
 func (o Servicev1LoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -8108,7 +8241,7 @@ func (o Servicev1LoggingDatadogArrayOutput) Index(i pulumi.IntInput) Servicev1Lo
 }
 
 type Servicev1LoggingDigitalocean struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName string `pulumi:"bucketName"`
@@ -8134,7 +8267,7 @@ type Servicev1LoggingDigitalocean struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey string `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -8152,7 +8285,7 @@ type Servicev1LoggingDigitaloceanInput interface {
 }
 
 type Servicev1LoggingDigitaloceanArgs struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
@@ -8178,7 +8311,7 @@ type Servicev1LoggingDigitaloceanArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -8235,7 +8368,7 @@ func (o Servicev1LoggingDigitaloceanOutput) ToServicev1LoggingDigitaloceanOutput
 	return o
 }
 
-// Your Cloud File account access key.
+// The AWS access key to be used to write to the stream.
 func (o Servicev1LoggingDigitaloceanOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -8300,7 +8433,7 @@ func (o Servicev1LoggingDigitaloceanOutput) ResponseCondition() pulumi.StringPtr
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o Servicev1LoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
@@ -8798,9 +8931,9 @@ type Servicev1LoggingGooglepubsub struct {
 	ProjectId string `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey string `pulumi:"secretKey"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic string `pulumi:"topic"`
 	// The username for your Cloud Files account.
 	User string `pulumi:"user"`
@@ -8830,9 +8963,9 @@ type Servicev1LoggingGooglepubsubArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic pulumi.StringInput `pulumi:"topic"`
 	// The username for your Cloud Files account.
 	User pulumi.StringInput `pulumi:"user"`
@@ -8919,12 +9052,12 @@ func (o Servicev1LoggingGooglepubsubOutput) ResponseCondition() pulumi.StringPtr
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o Servicev1LoggingGooglepubsubOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The Kafka topic to send logs to.
+// The Kinesis stream name.
 func (o Servicev1LoggingGooglepubsubOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) string { return v.Topic }).(pulumi.StringOutput)
 }
@@ -9281,7 +9414,7 @@ type Servicev1LoggingKafka struct {
 	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic string `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls *bool `pulumi:"useTls"`
@@ -9323,7 +9456,7 @@ type Servicev1LoggingKafkaArgs struct {
 	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The Kafka topic to send logs to.
+	// The Kinesis stream name.
 	Topic pulumi.StringInput `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
@@ -9440,7 +9573,7 @@ func (o Servicev1LoggingKafkaOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The Kafka topic to send logs to.
+// The Kinesis stream name.
 func (o Servicev1LoggingKafkaOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) string { return v.Topic }).(pulumi.StringOutput)
 }
@@ -9468,6 +9601,175 @@ func (o Servicev1LoggingKafkaArrayOutput) Index(i pulumi.IntInput) Servicev1Logg
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1LoggingKafka {
 		return vs[0].([]Servicev1LoggingKafka)[vs[1].(int)]
 	}).(Servicev1LoggingKafkaOutput)
+}
+
+type Servicev1LoggingKinese struct {
+	// The AWS access key to be used to write to the stream.
+	AccessKey string `pulumi:"accessKey"`
+	// Apache style log formatting.
+	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion *int `pulumi:"formatVersion"`
+	// A unique name to identify this dictionary.
+	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	Placement *string `pulumi:"placement"`
+	// The AWS region the stream resides in. (Default: `us-east-1`).
+	Region *string `pulumi:"region"`
+	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	ResponseCondition *string `pulumi:"responseCondition"`
+	// The AWS secret access key to authenticate with.
+	SecretKey string `pulumi:"secretKey"`
+	// The Kinesis stream name.
+	Topic string `pulumi:"topic"`
+}
+
+// Servicev1LoggingKineseInput is an input type that accepts Servicev1LoggingKineseArgs and Servicev1LoggingKineseOutput values.
+// You can construct a concrete instance of `Servicev1LoggingKineseInput` via:
+//
+//          Servicev1LoggingKineseArgs{...}
+type Servicev1LoggingKineseInput interface {
+	pulumi.Input
+
+	ToServicev1LoggingKineseOutput() Servicev1LoggingKineseOutput
+	ToServicev1LoggingKineseOutputWithContext(context.Context) Servicev1LoggingKineseOutput
+}
+
+type Servicev1LoggingKineseArgs struct {
+	// The AWS access key to be used to write to the stream.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// Apache style log formatting.
+	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// A unique name to identify this dictionary.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The AWS region the stream resides in. (Default: `us-east-1`).
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The AWS secret access key to authenticate with.
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// The Kinesis stream name.
+	Topic pulumi.StringInput `pulumi:"topic"`
+}
+
+func (Servicev1LoggingKineseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Servicev1LoggingKinese)(nil)).Elem()
+}
+
+func (i Servicev1LoggingKineseArgs) ToServicev1LoggingKineseOutput() Servicev1LoggingKineseOutput {
+	return i.ToServicev1LoggingKineseOutputWithContext(context.Background())
+}
+
+func (i Servicev1LoggingKineseArgs) ToServicev1LoggingKineseOutputWithContext(ctx context.Context) Servicev1LoggingKineseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Servicev1LoggingKineseOutput)
+}
+
+// Servicev1LoggingKineseArrayInput is an input type that accepts Servicev1LoggingKineseArray and Servicev1LoggingKineseArrayOutput values.
+// You can construct a concrete instance of `Servicev1LoggingKineseArrayInput` via:
+//
+//          Servicev1LoggingKineseArray{ Servicev1LoggingKineseArgs{...} }
+type Servicev1LoggingKineseArrayInput interface {
+	pulumi.Input
+
+	ToServicev1LoggingKineseArrayOutput() Servicev1LoggingKineseArrayOutput
+	ToServicev1LoggingKineseArrayOutputWithContext(context.Context) Servicev1LoggingKineseArrayOutput
+}
+
+type Servicev1LoggingKineseArray []Servicev1LoggingKineseInput
+
+func (Servicev1LoggingKineseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Servicev1LoggingKinese)(nil)).Elem()
+}
+
+func (i Servicev1LoggingKineseArray) ToServicev1LoggingKineseArrayOutput() Servicev1LoggingKineseArrayOutput {
+	return i.ToServicev1LoggingKineseArrayOutputWithContext(context.Background())
+}
+
+func (i Servicev1LoggingKineseArray) ToServicev1LoggingKineseArrayOutputWithContext(ctx context.Context) Servicev1LoggingKineseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Servicev1LoggingKineseArrayOutput)
+}
+
+type Servicev1LoggingKineseOutput struct{ *pulumi.OutputState }
+
+func (Servicev1LoggingKineseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Servicev1LoggingKinese)(nil)).Elem()
+}
+
+func (o Servicev1LoggingKineseOutput) ToServicev1LoggingKineseOutput() Servicev1LoggingKineseOutput {
+	return o
+}
+
+func (o Servicev1LoggingKineseOutput) ToServicev1LoggingKineseOutputWithContext(ctx context.Context) Servicev1LoggingKineseOutput {
+	return o
+}
+
+// The AWS access key to be used to write to the stream.
+func (o Servicev1LoggingKineseOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// Apache style log formatting.
+func (o Servicev1LoggingKineseOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) *string { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+func (o Servicev1LoggingKineseOutput) FormatVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+}
+
+// A unique name to identify this dictionary.
+func (o Servicev1LoggingKineseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+func (o Servicev1LoggingKineseOutput) Placement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// The AWS region the stream resides in. (Default: `us-east-1`).
+func (o Servicev1LoggingKineseOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+func (o Servicev1LoggingKineseOutput) ResponseCondition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+}
+
+// The AWS secret access key to authenticate with.
+func (o Servicev1LoggingKineseOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The Kinesis stream name.
+func (o Servicev1LoggingKineseOutput) Topic() pulumi.StringOutput {
+	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.Topic }).(pulumi.StringOutput)
+}
+
+type Servicev1LoggingKineseArrayOutput struct{ *pulumi.OutputState }
+
+func (Servicev1LoggingKineseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Servicev1LoggingKinese)(nil)).Elem()
+}
+
+func (o Servicev1LoggingKineseArrayOutput) ToServicev1LoggingKineseArrayOutput() Servicev1LoggingKineseArrayOutput {
+	return o
+}
+
+func (o Servicev1LoggingKineseArrayOutput) ToServicev1LoggingKineseArrayOutputWithContext(ctx context.Context) Servicev1LoggingKineseArrayOutput {
+	return o
+}
+
+func (o Servicev1LoggingKineseArrayOutput) Index(i pulumi.IntInput) Servicev1LoggingKineseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1LoggingKinese {
+		return vs[0].([]Servicev1LoggingKinese)[vs[1].(int)]
+	}).(Servicev1LoggingKineseOutput)
 }
 
 type Servicev1LoggingLoggly struct {
@@ -9906,7 +10208,7 @@ func (o Servicev1LoggingNewrelicArrayOutput) Index(i pulumi.IntInput) Servicev1L
 }
 
 type Servicev1LoggingOpenstack struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName string `pulumi:"bucketName"`
@@ -9950,7 +10252,7 @@ type Servicev1LoggingOpenstackInput interface {
 }
 
 type Servicev1LoggingOpenstackArgs struct {
-	// Your Cloud File account access key.
+	// The AWS access key to be used to write to the stream.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
@@ -10033,7 +10335,7 @@ func (o Servicev1LoggingOpenstackOutput) ToServicev1LoggingOpenstackOutputWithCo
 	return o
 }
 
-// Your Cloud File account access key.
+// The AWS access key to be used to write to the stream.
 func (o Servicev1LoggingOpenstackOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -10137,7 +10439,7 @@ type Servicev1LoggingScalyr struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -10165,7 +10467,7 @@ type Servicev1LoggingScalyrArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+	// The AWS region the stream resides in. (Default: `us-east-1`).
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -10244,7 +10546,7 @@ func (o Servicev1LoggingScalyrOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+// The AWS region the stream resides in. (Default: `us-east-1`).
 func (o Servicev1LoggingScalyrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -10306,7 +10608,7 @@ type Servicev1LoggingSftp struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey *string `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP.
 	SshKnownHosts string `pulumi:"sshKnownHosts"`
@@ -10354,7 +10656,7 @@ type Servicev1LoggingSftpArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// Your DigitalOcean Spaces account secret key.
+	// The AWS secret access key to authenticate with.
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP.
 	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
@@ -10480,7 +10782,7 @@ func (o Servicev1LoggingSftpOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// Your DigitalOcean Spaces account secret key.
+// The AWS secret access key to authenticate with.
 func (o Servicev1LoggingSftpOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
@@ -12418,6 +12720,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeLoggingHoneycombArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingKafkaOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingKafkaArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingKineseOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingKineseArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingLogglyOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingLogglyArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingLogshuttleOutput{})
@@ -12496,6 +12800,8 @@ func init() {
 	pulumi.RegisterOutputType(Servicev1LoggingHoneycombArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1LoggingKafkaOutput{})
 	pulumi.RegisterOutputType(Servicev1LoggingKafkaArrayOutput{})
+	pulumi.RegisterOutputType(Servicev1LoggingKineseOutput{})
+	pulumi.RegisterOutputType(Servicev1LoggingKineseArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1LoggingLogglyOutput{})
 	pulumi.RegisterOutputType(Servicev1LoggingLogglyArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1LoggingLogshuttleOutput{})

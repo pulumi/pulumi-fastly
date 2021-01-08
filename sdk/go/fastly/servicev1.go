@@ -112,6 +112,9 @@ type Servicev1 struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas Servicev1LoggingKafkaArrayOutput `pulumi:"loggingKafkas"`
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses Servicev1LoggingKineseArrayOutput `pulumi:"loggingKineses"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies Servicev1LoggingLogglyArrayOutput `pulumi:"loggingLogglies"`
@@ -287,6 +290,9 @@ type servicev1State struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses []Servicev1LoggingKinese `pulumi:"loggingKineses"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
@@ -432,6 +438,9 @@ type Servicev1State struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas Servicev1LoggingKafkaArrayInput
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses Servicev1LoggingKineseArrayInput
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies Servicev1LoggingLogglyArrayInput
@@ -577,6 +586,9 @@ type servicev1Args struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses []Servicev1LoggingKinese `pulumi:"loggingKineses"`
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
@@ -719,6 +731,9 @@ type Servicev1Args struct {
 	// A Kafka endpoint to send streaming logs to.
 	// Defined below.
 	LoggingKafkas Servicev1LoggingKafkaArrayInput
+	// A Kinesis endpoint to send streaming logs to.
+	// Defined below.
+	LoggingKineses Servicev1LoggingKineseArrayInput
 	// A Loggly endpoint to send streaming logs to.
 	// Defined below.
 	LoggingLogglies Servicev1LoggingLogglyArrayInput

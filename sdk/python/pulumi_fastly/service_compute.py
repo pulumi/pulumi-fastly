@@ -37,6 +37,7 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHerokuArgs']]]]] = None,
                  logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHoneycombArgs']]]]] = None,
                  logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]]] = None,
+                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKineseArgs']]]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingNewrelicArgs']]]]] = None,
@@ -55,7 +56,7 @@ class ServiceCompute(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
+        Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is run at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
 
         The Service resource requires a domain name that is correctly set up to direct
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
@@ -108,6 +109,8 @@ class ServiceCompute(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]] logging_kafkas: A Kafka endpoint to send streaming logs to.
                Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKineseArgs']]]] logging_kineses: A Kinesis endpoint to send streaming logs to.
+               Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]] logging_logglies: A Loggly endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
@@ -120,7 +123,7 @@ class ServiceCompute(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]] logging_sftps: An SFTP endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
@@ -174,6 +177,7 @@ class ServiceCompute(pulumi.CustomResource):
             __props__['logging_heroku'] = logging_heroku
             __props__['logging_honeycombs'] = logging_honeycombs
             __props__['logging_kafkas'] = logging_kafkas
+            __props__['logging_kineses'] = logging_kineses
             __props__['logging_logglies'] = logging_logglies
             __props__['logging_logshuttles'] = logging_logshuttles
             __props__['logging_newrelics'] = logging_newrelics
@@ -224,6 +228,7 @@ class ServiceCompute(pulumi.CustomResource):
             logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHerokuArgs']]]]] = None,
             logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingHoneycombArgs']]]]] = None,
             logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]]] = None,
+            logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKineseArgs']]]]] = None,
             logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]]] = None,
             logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]]] = None,
             logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingNewrelicArgs']]]]] = None,
@@ -283,6 +288,8 @@ class ServiceCompute(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKafkaArgs']]]] logging_kafkas: A Kafka endpoint to send streaming logs to.
                Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingKineseArgs']]]] logging_kineses: A Kinesis endpoint to send streaming logs to.
+               Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogglyArgs']]]] logging_logglies: A Loggly endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingLogshuttleArgs']]]] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
@@ -295,7 +302,7 @@ class ServiceCompute(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSftpArgs']]]] logging_sftps: An SFTP endpoint to send streaming logs to.
                Defined below.
-        :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint.
+        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: A Wasm deployment package to upload.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputePapertrailArgs']]]] papertrails: A Papertrail endpoint to send streaming logs too.
@@ -336,6 +343,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__["logging_heroku"] = logging_heroku
         __props__["logging_honeycombs"] = logging_honeycombs
         __props__["logging_kafkas"] = logging_kafkas
+        __props__["logging_kineses"] = logging_kineses
         __props__["logging_logglies"] = logging_logglies
         __props__["logging_logshuttles"] = logging_logshuttles
         __props__["logging_newrelics"] = logging_newrelics
@@ -543,6 +551,15 @@ class ServiceCompute(pulumi.CustomResource):
         return pulumi.get(self, "logging_kafkas")
 
     @property
+    @pulumi.getter(name="loggingKineses")
+    def logging_kineses(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeLoggingKinese']]]:
+        """
+        A Kinesis endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_kineses")
+
+    @property
     @pulumi.getter(name="loggingLogglies")
     def logging_logglies(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeLoggingLoggly']]]:
         """
@@ -600,7 +617,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the Rackspace Cloud Files logging endpoint.
+        The unique name of the Kinesis logging endpoint.
         """
         return pulumi.get(self, "name")
 

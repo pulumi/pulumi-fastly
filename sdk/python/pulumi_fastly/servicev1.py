@@ -47,6 +47,7 @@ class Servicev1(pulumi.CustomResource):
                  logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingHerokuArgs']]]]] = None,
                  logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingHoneycombArgs']]]]] = None,
                  logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKafkaArgs']]]]] = None,
+                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKineseArgs']]]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogglyArgs']]]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogshuttleArgs']]]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingNewrelicArgs']]]]] = None,
@@ -136,6 +137,8 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKafkaArgs']]]] logging_kafkas: A Kafka endpoint to send streaming logs to.
                Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKineseArgs']]]] logging_kineses: A Kinesis endpoint to send streaming logs to.
+               Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogglyArgs']]]] logging_logglies: A Loggly endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogshuttleArgs']]]] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
@@ -219,6 +222,7 @@ class Servicev1(pulumi.CustomResource):
             __props__['logging_heroku'] = logging_heroku
             __props__['logging_honeycombs'] = logging_honeycombs
             __props__['logging_kafkas'] = logging_kafkas
+            __props__['logging_kineses'] = logging_kineses
             __props__['logging_logglies'] = logging_logglies
             __props__['logging_logshuttles'] = logging_logshuttles
             __props__['logging_newrelics'] = logging_newrelics
@@ -281,6 +285,7 @@ class Servicev1(pulumi.CustomResource):
             logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingHerokuArgs']]]]] = None,
             logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingHoneycombArgs']]]]] = None,
             logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKafkaArgs']]]]] = None,
+            logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKineseArgs']]]]] = None,
             logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogglyArgs']]]]] = None,
             logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogshuttleArgs']]]]] = None,
             logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingNewrelicArgs']]]]] = None,
@@ -365,6 +370,8 @@ class Servicev1(pulumi.CustomResource):
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKafkaArgs']]]] logging_kafkas: A Kafka endpoint to send streaming logs to.
                Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKineseArgs']]]] logging_kineses: A Kinesis endpoint to send streaming logs to.
+               Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogglyArgs']]]] logging_logglies: A Loggly endpoint to send streaming logs to.
                Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogshuttleArgs']]]] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
@@ -435,6 +442,7 @@ class Servicev1(pulumi.CustomResource):
         __props__["logging_heroku"] = logging_heroku
         __props__["logging_honeycombs"] = logging_honeycombs
         __props__["logging_kafkas"] = logging_kafkas
+        __props__["logging_kineses"] = logging_kineses
         __props__["logging_logglies"] = logging_logglies
         __props__["logging_logshuttles"] = logging_logshuttles
         __props__["logging_newrelics"] = logging_newrelics
@@ -737,6 +745,15 @@ class Servicev1(pulumi.CustomResource):
         Defined below.
         """
         return pulumi.get(self, "logging_kafkas")
+
+    @property
+    @pulumi.getter(name="loggingKineses")
+    def logging_kineses(self) -> pulumi.Output[Optional[Sequence['outputs.Servicev1LoggingKinese']]]:
+        """
+        A Kinesis endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_kineses")
 
     @property
     @pulumi.getter(name="loggingLogglies")

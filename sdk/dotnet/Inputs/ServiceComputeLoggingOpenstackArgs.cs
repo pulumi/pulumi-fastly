@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingOpenstackArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Your Cloud File account access key.
+        /// The AWS access key to be used to write to the stream.
         /// </summary>
         [Input("accessKey", required: true)]
         public Input<string> AccessKey { get; set; } = null!;
@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

@@ -38,11 +38,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// Your DigitalOcean Spaces account secret key.
+        /// The AWS secret access key to authenticate with.
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// The Kafka topic to send logs to.
+        /// The Kinesis stream name.
         /// </summary>
         public readonly string Topic;
         /// <summary>

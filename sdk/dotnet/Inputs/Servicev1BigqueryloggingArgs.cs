@@ -55,7 +55,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// Your DigitalOcean Spaces account secret key.
+        /// The AWS secret access key to authenticate with.
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;

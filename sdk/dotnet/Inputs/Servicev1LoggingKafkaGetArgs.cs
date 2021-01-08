@@ -85,7 +85,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The Kafka topic to send logs to.
+        /// The Kinesis stream name.
         /// </summary>
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;

@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? CompressionCodec { get; set; }
 
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -61,7 +61,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The Kafka topic to send logs to.
+        /// The Kinesis stream name.
         /// </summary>
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;

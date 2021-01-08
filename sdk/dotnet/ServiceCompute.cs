@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
-    /// Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is ran at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
+    /// Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is run at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
     /// 
     /// The Service resource requires a domain name that is correctly set up to direct
     /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
@@ -173,6 +173,13 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingKafka>> LoggingKafkas { get; private set; } = null!;
 
         /// <summary>
+        /// A Kinesis endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        [Output("loggingKineses")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingKinese>> LoggingKineses { get; private set; } = null!;
+
+        /// <summary>
         /// A Loggly endpoint to send streaming logs to.
         /// Defined below.
         /// </summary>
@@ -215,7 +222,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingSftp>> LoggingSftps { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -553,6 +560,19 @@ namespace Pulumi.Fastly
             set => _loggingKafkas = value;
         }
 
+        [Input("loggingKineses")]
+        private InputList<Inputs.ServiceComputeLoggingKineseArgs>? _loggingKineses;
+
+        /// <summary>
+        /// A Kinesis endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.ServiceComputeLoggingKineseArgs> LoggingKineses
+        {
+            get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.ServiceComputeLoggingKineseArgs>());
+            set => _loggingKineses = value;
+        }
+
         [Input("loggingLogglies")]
         private InputList<Inputs.ServiceComputeLoggingLogglyArgs>? _loggingLogglies;
 
@@ -632,7 +652,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -970,6 +990,19 @@ namespace Pulumi.Fastly
             set => _loggingKafkas = value;
         }
 
+        [Input("loggingKineses")]
+        private InputList<Inputs.ServiceComputeLoggingKineseGetArgs>? _loggingKineses;
+
+        /// <summary>
+        /// A Kinesis endpoint to send streaming logs to.
+        /// Defined below.
+        /// </summary>
+        public InputList<Inputs.ServiceComputeLoggingKineseGetArgs> LoggingKineses
+        {
+            get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.ServiceComputeLoggingKineseGetArgs>());
+            set => _loggingKineses = value;
+        }
+
         [Input("loggingLogglies")]
         private InputList<Inputs.ServiceComputeLoggingLogglyGetArgs>? _loggingLogglies;
 
@@ -1049,7 +1082,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

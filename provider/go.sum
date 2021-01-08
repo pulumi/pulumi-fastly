@@ -173,8 +173,8 @@ github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymF
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
-github.com/fastly/go-fastly/v2 v2.0.0 h1:dCPOEbTXy8ic5CGj6YibPNvRYG01y15H7kHTlC4d57k=
-github.com/fastly/go-fastly/v2 v2.0.0/go.mod h1:+gom+YR+9Q5I4biSk/ZjHQGWXxqpRxC3YDVYQcRpZwQ=
+github.com/fastly/go-fastly/v2 v2.1.0 h1:VQWCFiUZyCcknyxyhiQwU0MjLYzeK4g1mLo/US2r/P0=
+github.com/fastly/go-fastly/v2 v2.1.0/go.mod h1:+gom+YR+9Q5I4biSk/ZjHQGWXxqpRxC3YDVYQcRpZwQ=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.9.0 h1:8xPHl4/q1VyqGIPif1F+1V3Y3lSmrq01EabUW3CoW5s=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=
@@ -536,8 +536,8 @@ github.com/pulumi/pulumi/pkg/v2 v2.13.3-0.20201109230029-a6f8b9b205cd/go.mod h1:
 github.com/pulumi/pulumi/sdk/v2 v2.2.1/go.mod h1:QNbWpL4gvf3X0lUFT7TXA2Jo1ff/Ti2l97AyFGYwvW4=
 github.com/pulumi/pulumi/sdk/v2 v2.13.3-0.20201109230029-a6f8b9b205cd h1:acvoTtWZHySIlANIlR5LSfRyjYSUadeJcdUZhyx9y4o=
 github.com/pulumi/pulumi/sdk/v2 v2.13.3-0.20201109230029-a6f8b9b205cd/go.mod h1:Z9ifPo/Q0+hUpAyguVx2gp5Sx+CBumnWvYQDhrM8l3E=
-github.com/pulumi/terraform-provider-fastly v0.16.1-0.20210105134605-7f7af0e0e4ff h1:Z238+D/UplvDqRmKy16Uz/DT/sSxHBWzlbRLVDK8XEI=
-github.com/pulumi/terraform-provider-fastly v0.16.1-0.20210105134605-7f7af0e0e4ff/go.mod h1:4S5h1VtQ7uJhmdgsoRT2WOe85wOSPBJQQv8k0xDPYHc=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20210108142456-c21029fd2551 h1:B5p7/XqiTKSt/f9tXxLgltXqG4lm7BxPDFUqgqymMyw=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20210108142456-c21029fd2551/go.mod h1:x/QtmIPQHtcrj9gsMaDG2Sp+T7F+HUcnUSOU/yminGw=
 github.com/rjeczalik/notify v0.9.2/go.mod h1:aErll2f0sUX9PXZnVNyeiObbmTlk5jnMoCa4QEjJeqM=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=

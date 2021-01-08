@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingGooglepubsubGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -25,13 +25,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Your DigitalOcean Spaces account secret key.
+        /// The AWS secret access key to authenticate with.
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
-        /// The Kafka topic to send logs to.
+        /// The Kinesis stream name.
         /// </summary>
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;

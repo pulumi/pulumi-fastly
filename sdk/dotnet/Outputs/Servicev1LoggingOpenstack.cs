@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1LoggingOpenstack
     {
         /// <summary>
-        /// Your Cloud File account access key.
+        /// The AWS access key to be used to write to the stream.
         /// </summary>
         public readonly string AccessKey;
         /// <summary>

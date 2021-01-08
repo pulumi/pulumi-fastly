@@ -70,7 +70,7 @@ export interface ServiceComputeBackend {
      */
     minTlsVersion?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -139,7 +139,7 @@ export interface ServiceComputeBigquerylogging {
      */
     email: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -147,7 +147,7 @@ export interface ServiceComputeBigquerylogging {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey: pulumi.Input<string>;
     /**
@@ -175,7 +175,7 @@ export interface ServiceComputeBlobstoragelogging {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -206,7 +206,7 @@ export interface ServiceComputeDomain {
      */
     comment?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
 }
@@ -229,7 +229,7 @@ export interface ServiceComputeGcslogging {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -241,7 +241,7 @@ export interface ServiceComputeGcslogging {
      */
     period?: pulumi.Input<number>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -276,7 +276,7 @@ export interface ServiceComputeHealthcheck {
      */
     method?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -323,7 +323,7 @@ export interface ServiceComputeHttpslogging {
      */
     method?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -358,7 +358,7 @@ export interface ServiceComputeHttpslogging {
 
 export interface ServiceComputeLogentry {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -377,7 +377,7 @@ export interface ServiceComputeLogentry {
 
 export interface ServiceComputeLoggingCloudfile {
     /**
-     * Your Cloud File account access key.
+     * The AWS access key to be used to write to the stream.
      */
     accessKey: pulumi.Input<string>;
     /**
@@ -393,7 +393,7 @@ export interface ServiceComputeLoggingCloudfile {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -409,7 +409,7 @@ export interface ServiceComputeLoggingCloudfile {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     * The AWS region the stream resides in. (Default: `us-east-1`).
      */
     region?: pulumi.Input<string>;
     /**
@@ -424,11 +424,11 @@ export interface ServiceComputeLoggingCloudfile {
 
 export interface ServiceComputeLoggingDatadog {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
-     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     * The AWS region the stream resides in. (Default: `us-east-1`).
      */
     region?: pulumi.Input<string>;
     /**
@@ -439,7 +439,7 @@ export interface ServiceComputeLoggingDatadog {
 
 export interface ServiceComputeLoggingDigitalocean {
     /**
-     * Your Cloud File account access key.
+     * The AWS access key to be used to write to the stream.
      */
     accessKey: pulumi.Input<string>;
     /**
@@ -459,7 +459,7 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -475,7 +475,7 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey: pulumi.Input<string>;
     /**
@@ -490,7 +490,7 @@ export interface ServiceComputeLoggingElasticsearch {
      */
     index: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -549,7 +549,7 @@ export interface ServiceComputeLoggingFtp {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -584,7 +584,7 @@ export interface ServiceComputeLoggingFtp {
 
 export interface ServiceComputeLoggingGooglepubsub {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -592,11 +592,11 @@ export interface ServiceComputeLoggingGooglepubsub {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey: pulumi.Input<string>;
     /**
-     * The Kafka topic to send logs to.
+     * The Kinesis stream name.
      */
     topic: pulumi.Input<string>;
     /**
@@ -607,7 +607,7 @@ export interface ServiceComputeLoggingGooglepubsub {
 
 export interface ServiceComputeLoggingHeroku {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -626,7 +626,7 @@ export interface ServiceComputeLoggingHoneycomb {
      */
     dataset: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -645,7 +645,7 @@ export interface ServiceComputeLoggingKafka {
      */
     compressionCodec?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -669,7 +669,7 @@ export interface ServiceComputeLoggingKafka {
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The Kafka topic to send logs to.
+     * The Kinesis stream name.
      */
     topic: pulumi.Input<string>;
     /**
@@ -678,9 +678,32 @@ export interface ServiceComputeLoggingKafka {
     useTls?: pulumi.Input<boolean>;
 }
 
+export interface ServiceComputeLoggingKinese {
+    /**
+     * The AWS access key to be used to write to the stream.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * The unique name of the Kinesis logging endpoint.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The AWS region the stream resides in. (Default: `us-east-1`).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The AWS secret access key to authenticate with.
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The Kinesis stream name.
+     */
+    topic: pulumi.Input<string>;
+}
+
 export interface ServiceComputeLoggingLoggly {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -691,7 +714,7 @@ export interface ServiceComputeLoggingLoggly {
 
 export interface ServiceComputeLoggingLogshuttle {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -706,7 +729,7 @@ export interface ServiceComputeLoggingLogshuttle {
 
 export interface ServiceComputeLoggingNewrelic {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -717,7 +740,7 @@ export interface ServiceComputeLoggingNewrelic {
 
 export interface ServiceComputeLoggingOpenstack {
     /**
-     * Your Cloud File account access key.
+     * The AWS access key to be used to write to the stream.
      */
     accessKey: pulumi.Input<string>;
     /**
@@ -733,7 +756,7 @@ export interface ServiceComputeLoggingOpenstack {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -764,11 +787,11 @@ export interface ServiceComputeLoggingOpenstack {
 
 export interface ServiceComputeLoggingScalyr {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
-     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     * The AWS region the stream resides in. (Default: `us-east-1`).
      */
     region?: pulumi.Input<string>;
     /**
@@ -791,7 +814,7 @@ export interface ServiceComputeLoggingSftp {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -815,7 +838,7 @@ export interface ServiceComputeLoggingSftp {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -846,7 +869,7 @@ export interface ServiceComputePapertrail {
      */
     address: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -873,7 +896,7 @@ export interface ServiceComputeS3logging {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -916,7 +939,7 @@ export interface ServiceComputeS3logging {
 
 export interface ServiceComputeSplunk {
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -943,7 +966,7 @@ export interface ServiceComputeSumologic {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -962,7 +985,7 @@ export interface ServiceComputeSyslog {
      */
     messageType?: pulumi.Input<string>;
     /**
-     * The unique name of the Rackspace Cloud Files logging endpoint.
+     * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
     /**
@@ -1183,7 +1206,7 @@ export interface Servicev1Bigquerylogging {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey: pulumi.Input<string>;
     /**
@@ -1424,7 +1447,7 @@ export interface Servicev1Gcslogging {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -1668,7 +1691,7 @@ export interface Servicev1Logentry {
 
 export interface Servicev1LoggingCloudfile {
     /**
-     * Your Cloud File account access key.
+     * The AWS access key to be used to write to the stream.
      */
     accessKey: pulumi.Input<string>;
     /**
@@ -1712,7 +1735,7 @@ export interface Servicev1LoggingCloudfile {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     * The AWS region the stream resides in. (Default: `us-east-1`).
      */
     region?: pulumi.Input<string>;
     /**
@@ -1747,7 +1770,7 @@ export interface Servicev1LoggingDatadog {
      */
     placement?: pulumi.Input<string>;
     /**
-     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     * The AWS region the stream resides in. (Default: `us-east-1`).
      */
     region?: pulumi.Input<string>;
     /**
@@ -1762,7 +1785,7 @@ export interface Servicev1LoggingDatadog {
 
 export interface Servicev1LoggingDigitalocean {
     /**
-     * Your Cloud File account access key.
+     * The AWS access key to be used to write to the stream.
      */
     accessKey: pulumi.Input<string>;
     /**
@@ -1814,7 +1837,7 @@ export interface Servicev1LoggingDigitalocean {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey: pulumi.Input<string>;
     /**
@@ -1979,11 +2002,11 @@ export interface Servicev1LoggingGooglepubsub {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey: pulumi.Input<string>;
     /**
-     * The Kafka topic to send logs to.
+     * The Kinesis stream name.
      */
     topic: pulumi.Input<string>;
     /**
@@ -2104,13 +2127,52 @@ export interface Servicev1LoggingKafka {
      */
     tlsHostname?: pulumi.Input<string>;
     /**
-     * The Kafka topic to send logs to.
+     * The Kinesis stream name.
      */
     topic: pulumi.Input<string>;
     /**
      * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: pulumi.Input<boolean>;
+}
+
+export interface Servicev1LoggingKinese {
+    /**
+     * The AWS access key to be used to write to the stream.
+     */
+    accessKey: pulumi.Input<string>;
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this dictionary.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The AWS region the stream resides in. (Default: `us-east-1`).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The AWS secret access key to authenticate with.
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The Kinesis stream name.
+     */
+    topic: pulumi.Input<string>;
 }
 
 export interface Servicev1LoggingLoggly {
@@ -2200,7 +2262,7 @@ export interface Servicev1LoggingNewrelic {
 
 export interface Servicev1LoggingOpenstack {
     /**
-     * Your Cloud File account access key.
+     * The AWS access key to be used to write to the stream.
      */
     accessKey: pulumi.Input<string>;
     /**
@@ -2279,7 +2341,7 @@ export interface Servicev1LoggingScalyr {
      */
     placement?: pulumi.Input<string>;
     /**
-     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+     * The AWS region the stream resides in. (Default: `us-east-1`).
      */
     region?: pulumi.Input<string>;
     /**
@@ -2346,7 +2408,7 @@ export interface Servicev1LoggingSftp {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Your DigitalOcean Spaces account secret key.
+     * The AWS secret access key to authenticate with.
      */
     secretKey?: pulumi.Input<string>;
     /**

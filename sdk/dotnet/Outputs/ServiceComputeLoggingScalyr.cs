@@ -14,11 +14,11 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingScalyr
     {
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).
+        /// The AWS region the stream resides in. (Default: `us-east-1`).
         /// </summary>
         public readonly string? Region;
         /// <summary>

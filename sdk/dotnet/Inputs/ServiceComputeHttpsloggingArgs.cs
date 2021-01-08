@@ -49,7 +49,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// The unique name of the Rackspace Cloud Files logging endpoint.
+        /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
