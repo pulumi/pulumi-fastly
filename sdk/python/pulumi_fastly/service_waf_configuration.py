@@ -141,7 +141,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             __props__['session_fixation_score_threshold'] = session_fixation_score_threshold
             __props__['sql_injection_score_threshold'] = sql_injection_score_threshold
             __props__['total_arg_length'] = total_arg_length
-            if waf_id is None:
+            if waf_id is None and not opts.urn:
                 raise TypeError("Missing required property 'waf_id'")
             __props__['waf_id'] = waf_id
             __props__['warning_anomaly_score'] = warning_anomaly_score

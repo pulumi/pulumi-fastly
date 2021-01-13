@@ -66,7 +66,7 @@ class Userv1(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if login is None:
+            if login is None and not opts.urn:
                 raise TypeError("Missing required property 'login'")
             __props__['login'] = login
             __props__['name'] = name

@@ -20,3 +20,59 @@ from . import outputs
 from . import (
     config,
 )
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1":
+                return ServiceACLEntriesv1(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/serviceCompute:ServiceCompute":
+                return ServiceCompute(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1":
+                return ServiceDictionaryItemsv1(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1":
+                return ServiceDynamicSnippetContentv1(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/serviceWafConfiguration:ServiceWafConfiguration":
+                return ServiceWafConfiguration(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/servicev1:Servicev1":
+                return Servicev1(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/userv1:Userv1":
+                return Userv1(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("fastly", "index/serviceACLEntriesv1", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/serviceCompute", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/serviceDictionaryItemsv1", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/serviceDynamicSnippetContentv1", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/serviceWafConfiguration", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/servicev1", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/userv1", _module_instance)
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:fastly":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("fastly", Package())
+
+_register_module()

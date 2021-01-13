@@ -160,7 +160,7 @@ class ServiceCompute(pulumi.CustomResource):
             __props__['bigqueryloggings'] = bigqueryloggings
             __props__['blobstorageloggings'] = blobstorageloggings
             __props__['comment'] = comment
-            if domains is None:
+            if domains is None and not opts.urn:
                 raise TypeError("Missing required property 'domains'")
             __props__['domains'] = domains
             __props__['force_destroy'] = force_destroy
@@ -185,7 +185,7 @@ class ServiceCompute(pulumi.CustomResource):
             __props__['logging_scalyrs'] = logging_scalyrs
             __props__['logging_sftps'] = logging_sftps
             __props__['name'] = name
-            if package is None:
+            if package is None and not opts.urn:
                 raise TypeError("Missing required property 'package'")
             __props__['package'] = package
             __props__['papertrails'] = papertrails

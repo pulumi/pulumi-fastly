@@ -59,11 +59,12 @@ type Userv1 struct {
 // NewUserv1 registers a new resource with the given unique name, arguments, and options.
 func NewUserv1(ctx *pulumi.Context,
 	name string, args *Userv1Args, opts ...pulumi.ResourceOption) (*Userv1, error) {
-	if args == nil || args.Login == nil {
-		return nil, errors.New("missing required argument 'Login'")
-	}
 	if args == nil {
-		args = &Userv1Args{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Login == nil {
+		return nil, errors.New("invalid value for required argument 'Login'")
 	}
 	var resource Userv1
 	err := ctx.RegisterResource("fastly:index/userv1:Userv1", name, args, &resource, opts...)

@@ -75,10 +75,10 @@ export class ServiceDictionaryItemsv1 extends pulumi.CustomResource {
             inputs["serviceId"] = state ? state.serviceId : undefined;
         } else {
             const args = argsOrState as ServiceDictionaryItemsv1Args | undefined;
-            if (!args || args.dictionaryId === undefined) {
+            if ((!args || args.dictionaryId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'dictionaryId'");
             }
-            if (!args || args.serviceId === undefined) {
+            if ((!args || args.serviceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'serviceId'");
             }
             inputs["dictionaryId"] = args ? args.dictionaryId : undefined;

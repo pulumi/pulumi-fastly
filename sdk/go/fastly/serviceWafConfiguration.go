@@ -90,11 +90,12 @@ type ServiceWafConfiguration struct {
 // NewServiceWafConfiguration registers a new resource with the given unique name, arguments, and options.
 func NewServiceWafConfiguration(ctx *pulumi.Context,
 	name string, args *ServiceWafConfigurationArgs, opts ...pulumi.ResourceOption) (*ServiceWafConfiguration, error) {
-	if args == nil || args.WafId == nil {
-		return nil, errors.New("missing required argument 'WafId'")
-	}
 	if args == nil {
-		args = &ServiceWafConfigurationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.WafId == nil {
+		return nil, errors.New("invalid value for required argument 'WafId'")
 	}
 	var resource ServiceWafConfiguration
 	err := ctx.RegisterResource("fastly:index/serviceWafConfiguration:ServiceWafConfiguration", name, args, &resource, opts...)

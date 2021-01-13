@@ -275,10 +275,10 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
-            if (!args || args.domains === undefined) {
+            if ((!args || args.domains === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'domains'");
             }
-            if (!args || args.package === undefined) {
+            if ((!args || args.package === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'package'");
             }
             inputs["activate"] = args ? args.activate : undefined;

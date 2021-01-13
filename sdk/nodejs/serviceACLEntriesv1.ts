@@ -76,10 +76,10 @@ export class ServiceACLEntriesv1 extends pulumi.CustomResource {
             inputs["serviceId"] = state ? state.serviceId : undefined;
         } else {
             const args = argsOrState as ServiceACLEntriesv1Args | undefined;
-            if (!args || args.aclId === undefined) {
+            if ((!args || args.aclId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'aclId'");
             }
-            if (!args || args.serviceId === undefined) {
+            if ((!args || args.serviceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'serviceId'");
             }
             inputs["aclId"] = args ? args.aclId : undefined;
