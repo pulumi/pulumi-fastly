@@ -73,13 +73,13 @@ export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
             inputs["snippetId"] = state ? state.snippetId : undefined;
         } else {
             const args = argsOrState as ServiceDynamicSnippetContentv1Args | undefined;
-            if (!args || args.content === undefined) {
+            if ((!args || args.content === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'content'");
             }
-            if (!args || args.serviceId === undefined) {
+            if ((!args || args.serviceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            if (!args || args.snippetId === undefined) {
+            if ((!args || args.snippetId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'snippetId'");
             }
             inputs["content"] = args ? args.content : undefined;

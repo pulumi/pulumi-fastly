@@ -55,13 +55,13 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if content is None:
+            if content is None and not opts.urn:
                 raise TypeError("Missing required property 'content'")
             __props__['content'] = content
-            if service_id is None:
+            if service_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_id'")
             __props__['service_id'] = service_id
-            if snippet_id is None:
+            if snippet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'snippet_id'")
             __props__['snippet_id'] = snippet_id
         super(ServiceDynamicSnippetContentv1, __self__).__init__(

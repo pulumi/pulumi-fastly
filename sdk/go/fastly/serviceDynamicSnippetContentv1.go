@@ -34,17 +34,18 @@ type ServiceDynamicSnippetContentv1 struct {
 // NewServiceDynamicSnippetContentv1 registers a new resource with the given unique name, arguments, and options.
 func NewServiceDynamicSnippetContentv1(ctx *pulumi.Context,
 	name string, args *ServiceDynamicSnippetContentv1Args, opts ...pulumi.ResourceOption) (*ServiceDynamicSnippetContentv1, error) {
-	if args == nil || args.Content == nil {
-		return nil, errors.New("missing required argument 'Content'")
-	}
-	if args == nil || args.ServiceId == nil {
-		return nil, errors.New("missing required argument 'ServiceId'")
-	}
-	if args == nil || args.SnippetId == nil {
-		return nil, errors.New("missing required argument 'SnippetId'")
-	}
 	if args == nil {
-		args = &ServiceDynamicSnippetContentv1Args{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Content == nil {
+		return nil, errors.New("invalid value for required argument 'Content'")
+	}
+	if args.ServiceId == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceId'")
+	}
+	if args.SnippetId == nil {
+		return nil, errors.New("invalid value for required argument 'SnippetId'")
 	}
 	var resource ServiceDynamicSnippetContentv1
 	err := ctx.RegisterResource("fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1", name, args, &resource, opts...)

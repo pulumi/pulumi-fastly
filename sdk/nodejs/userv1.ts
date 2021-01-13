@@ -86,7 +86,7 @@ export class Userv1 extends pulumi.CustomResource {
             inputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as Userv1Args | undefined;
-            if (!args || args.login === undefined) {
+            if ((!args || args.login === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'login'");
             }
             inputs["login"] = args ? args.login : undefined;

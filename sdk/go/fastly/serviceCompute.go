@@ -135,14 +135,15 @@ type ServiceCompute struct {
 // NewServiceCompute registers a new resource with the given unique name, arguments, and options.
 func NewServiceCompute(ctx *pulumi.Context,
 	name string, args *ServiceComputeArgs, opts ...pulumi.ResourceOption) (*ServiceCompute, error) {
-	if args == nil || args.Domains == nil {
-		return nil, errors.New("missing required argument 'Domains'")
-	}
-	if args == nil || args.Package == nil {
-		return nil, errors.New("missing required argument 'Package'")
-	}
 	if args == nil {
-		args = &ServiceComputeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Domains == nil {
+		return nil, errors.New("invalid value for required argument 'Domains'")
+	}
+	if args.Package == nil {
+		return nil, errors.New("invalid value for required argument 'Package'")
 	}
 	var resource ServiceCompute
 	err := ctx.RegisterResource("fastly:index/serviceCompute:ServiceCompute", name, args, &resource, opts...)

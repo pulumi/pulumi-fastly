@@ -171,11 +171,12 @@ type Servicev1 struct {
 // NewServicev1 registers a new resource with the given unique name, arguments, and options.
 func NewServicev1(ctx *pulumi.Context,
 	name string, args *Servicev1Args, opts ...pulumi.ResourceOption) (*Servicev1, error) {
-	if args == nil || args.Domains == nil {
-		return nil, errors.New("missing required argument 'Domains'")
-	}
 	if args == nil {
-		args = &Servicev1Args{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Domains == nil {
+		return nil, errors.New("invalid value for required argument 'Domains'")
 	}
 	var resource Servicev1
 	err := ctx.RegisterResource("fastly:index/servicev1:Servicev1", name, args, &resource, opts...)

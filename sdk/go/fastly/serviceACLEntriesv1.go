@@ -36,14 +36,15 @@ type ServiceACLEntriesv1 struct {
 // NewServiceACLEntriesv1 registers a new resource with the given unique name, arguments, and options.
 func NewServiceACLEntriesv1(ctx *pulumi.Context,
 	name string, args *ServiceACLEntriesv1Args, opts ...pulumi.ResourceOption) (*ServiceACLEntriesv1, error) {
-	if args == nil || args.AclId == nil {
-		return nil, errors.New("missing required argument 'AclId'")
-	}
-	if args == nil || args.ServiceId == nil {
-		return nil, errors.New("missing required argument 'ServiceId'")
-	}
 	if args == nil {
-		args = &ServiceACLEntriesv1Args{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AclId == nil {
+		return nil, errors.New("invalid value for required argument 'AclId'")
+	}
+	if args.ServiceId == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceId'")
 	}
 	var resource ServiceACLEntriesv1
 	err := ctx.RegisterResource("fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1", name, args, &resource, opts...)

@@ -57,11 +57,11 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if dictionary_id is None:
+            if dictionary_id is None and not opts.urn:
                 raise TypeError("Missing required property 'dictionary_id'")
             __props__['dictionary_id'] = dictionary_id
             __props__['items'] = items
-            if service_id is None:
+            if service_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_id'")
             __props__['service_id'] = service_id
         super(ServiceDictionaryItemsv1, __self__).__init__(

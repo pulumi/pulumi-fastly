@@ -202,7 +202,7 @@ class Servicev1(pulumi.CustomResource):
             __props__['default_ttl'] = default_ttl
             __props__['dictionaries'] = dictionaries
             __props__['directors'] = directors
-            if domains is None:
+            if domains is None and not opts.urn:
                 raise TypeError("Missing required property 'domains'")
             __props__['domains'] = domains
             __props__['dynamicsnippets'] = dynamicsnippets

@@ -36,14 +36,15 @@ type ServiceDictionaryItemsv1 struct {
 // NewServiceDictionaryItemsv1 registers a new resource with the given unique name, arguments, and options.
 func NewServiceDictionaryItemsv1(ctx *pulumi.Context,
 	name string, args *ServiceDictionaryItemsv1Args, opts ...pulumi.ResourceOption) (*ServiceDictionaryItemsv1, error) {
-	if args == nil || args.DictionaryId == nil {
-		return nil, errors.New("missing required argument 'DictionaryId'")
-	}
-	if args == nil || args.ServiceId == nil {
-		return nil, errors.New("missing required argument 'ServiceId'")
-	}
 	if args == nil {
-		args = &ServiceDictionaryItemsv1Args{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DictionaryId == nil {
+		return nil, errors.New("invalid value for required argument 'DictionaryId'")
+	}
+	if args.ServiceId == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceId'")
 	}
 	var resource ServiceDictionaryItemsv1
 	err := ctx.RegisterResource("fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1", name, args, &resource, opts...)

@@ -214,7 +214,7 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             inputs["xssScoreThreshold"] = state ? state.xssScoreThreshold : undefined;
         } else {
             const args = argsOrState as ServiceWafConfigurationArgs | undefined;
-            if (!args || args.wafId === undefined) {
+            if ((!args || args.wafId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'wafId'");
             }
             inputs["allowedHttpVersions"] = args ? args.allowedHttpVersions : undefined;

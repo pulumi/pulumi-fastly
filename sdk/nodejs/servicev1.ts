@@ -355,7 +355,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["waf"] = state ? state.waf : undefined;
         } else {
             const args = argsOrState as Servicev1Args | undefined;
-            if (!args || args.domains === undefined) {
+            if ((!args || args.domains === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'domains'");
             }
             inputs["acls"] = args ? args.acls : undefined;
