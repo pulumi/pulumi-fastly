@@ -12,6 +12,9 @@ namespace Pulumi.Fastly.Inputs
 
     public sealed class Servicev1LoggingKafkaArgs : Pulumi.ResourceArgs
     {
+        [Input("authMethod")]
+        public Input<string>? AuthMethod { get; set; }
+
         /// <summary>
         /// A comma-separated list of IP addresses or hostnames of Kafka brokers.
         /// </summary>
@@ -42,11 +45,26 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("parseLogKeyvals")]
+        public Input<bool>? ParseLogKeyvals { get; set; }
+
+        /// <summary>
+        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
+
         /// <summary>
         /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
+
+        /// <summary>
+        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        /// </summary>
+        [Input("requestMaxBytes")]
+        public Input<int>? RequestMaxBytes { get; set; }
 
         /// <summary>
         /// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
@@ -95,6 +113,12 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
+
+        /// <summary>
+        /// The username for your Cloud Files account.
+        /// </summary>
+        [Input("user")]
+        public Input<string>? User { get; set; }
 
         public Servicev1LoggingKafkaArgs()
         {

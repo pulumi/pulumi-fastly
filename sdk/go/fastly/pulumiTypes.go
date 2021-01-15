@@ -2824,12 +2824,18 @@ func (o ServiceComputeLoggingHoneycombArrayOutput) Index(i pulumi.IntInput) Serv
 }
 
 type ServiceComputeLoggingKafka struct {
+	AuthMethod *string `pulumi:"authMethod"`
 	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
 	Brokers string `pulumi:"brokers"`
 	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The unique name of the Kinesis logging endpoint.
-	Name string `pulumi:"name"`
+	Name            string `pulumi:"name"`
+	ParseLogKeyvals *bool  `pulumi:"parseLogKeyvals"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password *string `pulumi:"password"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
 	RequiredAcks *string `pulumi:"requiredAcks"`
 	// A secure certificate to authenticate the server with. Must be in PEM format.
@@ -2844,6 +2850,8 @@ type ServiceComputeLoggingKafka struct {
 	Topic string `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls *bool `pulumi:"useTls"`
+	// The username for your Cloud Files account.
+	User *string `pulumi:"user"`
 }
 
 // ServiceComputeLoggingKafkaInput is an input type that accepts ServiceComputeLoggingKafkaArgs and ServiceComputeLoggingKafkaOutput values.
@@ -2858,12 +2866,18 @@ type ServiceComputeLoggingKafkaInput interface {
 }
 
 type ServiceComputeLoggingKafkaArgs struct {
+	AuthMethod pulumi.StringPtrInput `pulumi:"authMethod"`
 	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
 	Brokers pulumi.StringInput `pulumi:"brokers"`
 	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The unique name of the Kinesis logging endpoint.
-	Name pulumi.StringInput `pulumi:"name"`
+	Name            pulumi.StringInput  `pulumi:"name"`
+	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
 	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
 	// A secure certificate to authenticate the server with. Must be in PEM format.
@@ -2878,6 +2892,8 @@ type ServiceComputeLoggingKafkaArgs struct {
 	Topic pulumi.StringInput `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
+	// The username for your Cloud Files account.
+	User pulumi.StringPtrInput `pulumi:"user"`
 }
 
 func (ServiceComputeLoggingKafkaArgs) ElementType() reflect.Type {
@@ -2931,6 +2947,10 @@ func (o ServiceComputeLoggingKafkaOutput) ToServiceComputeLoggingKafkaOutputWith
 	return o
 }
 
+func (o ServiceComputeLoggingKafkaOutput) AuthMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.AuthMethod }).(pulumi.StringPtrOutput)
+}
+
 // A comma-separated list of IP addresses or hostnames of Kafka brokers.
 func (o ServiceComputeLoggingKafkaOutput) Brokers() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Brokers }).(pulumi.StringOutput)
@@ -2944,6 +2964,20 @@ func (o ServiceComputeLoggingKafkaOutput) CompressionCodec() pulumi.StringPtrOut
 // The unique name of the Kinesis logging endpoint.
 func (o ServiceComputeLoggingKafkaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ServiceComputeLoggingKafkaOutput) ParseLogKeyvals() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *bool { return v.ParseLogKeyvals }).(pulumi.BoolPtrOutput)
+}
+
+// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+func (o ServiceComputeLoggingKafkaOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+func (o ServiceComputeLoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
 // The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
@@ -2979,6 +3013,11 @@ func (o ServiceComputeLoggingKafkaOutput) Topic() pulumi.StringOutput {
 // Whether to use TLS for secure logging. Can be either true or false.
 func (o ServiceComputeLoggingKafkaOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
+}
+
+// The username for your Cloud Files account.
+func (o ServiceComputeLoggingKafkaOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.User }).(pulumi.StringPtrOutput)
 }
 
 type ServiceComputeLoggingKafkaArrayOutput struct{ *pulumi.OutputState }
@@ -9390,6 +9429,7 @@ func (o Servicev1LoggingHoneycombArrayOutput) Index(i pulumi.IntInput) Servicev1
 }
 
 type Servicev1LoggingKafka struct {
+	AuthMethod *string `pulumi:"authMethod"`
 	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
 	Brokers string `pulumi:"brokers"`
 	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
@@ -9399,9 +9439,14 @@ type Servicev1LoggingKafka struct {
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
 	// A unique name to identify this dictionary.
-	Name string `pulumi:"name"`
+	Name            string `pulumi:"name"`
+	ParseLogKeyvals *bool  `pulumi:"parseLogKeyvals"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password *string `pulumi:"password"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
 	RequiredAcks *string `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -9418,6 +9463,8 @@ type Servicev1LoggingKafka struct {
 	Topic string `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls *bool `pulumi:"useTls"`
+	// The username for your Cloud Files account.
+	User *string `pulumi:"user"`
 }
 
 // Servicev1LoggingKafkaInput is an input type that accepts Servicev1LoggingKafkaArgs and Servicev1LoggingKafkaOutput values.
@@ -9432,6 +9479,7 @@ type Servicev1LoggingKafkaInput interface {
 }
 
 type Servicev1LoggingKafkaArgs struct {
+	AuthMethod pulumi.StringPtrInput `pulumi:"authMethod"`
 	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
 	Brokers pulumi.StringInput `pulumi:"brokers"`
 	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
@@ -9441,9 +9489,14 @@ type Servicev1LoggingKafkaArgs struct {
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// A unique name to identify this dictionary.
-	Name pulumi.StringInput `pulumi:"name"`
+	Name            pulumi.StringInput  `pulumi:"name"`
+	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
 	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -9460,6 +9513,8 @@ type Servicev1LoggingKafkaArgs struct {
 	Topic pulumi.StringInput `pulumi:"topic"`
 	// Whether to use TLS for secure logging. Can be either true or false.
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
+	// The username for your Cloud Files account.
+	User pulumi.StringPtrInput `pulumi:"user"`
 }
 
 func (Servicev1LoggingKafkaArgs) ElementType() reflect.Type {
@@ -9513,6 +9568,10 @@ func (o Servicev1LoggingKafkaOutput) ToServicev1LoggingKafkaOutputWithContext(ct
 	return o
 }
 
+func (o Servicev1LoggingKafkaOutput) AuthMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.AuthMethod }).(pulumi.StringPtrOutput)
+}
+
 // A comma-separated list of IP addresses or hostnames of Kafka brokers.
 func (o Servicev1LoggingKafkaOutput) Brokers() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) string { return v.Brokers }).(pulumi.StringOutput)
@@ -9538,9 +9597,23 @@ func (o Servicev1LoggingKafkaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) string { return v.Name }).(pulumi.StringOutput)
 }
 
+func (o Servicev1LoggingKafkaOutput) ParseLogKeyvals() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKafka) *bool { return v.ParseLogKeyvals }).(pulumi.BoolPtrOutput)
+}
+
+// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+func (o Servicev1LoggingKafkaOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
 // Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 func (o Servicev1LoggingKafkaOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+func (o Servicev1LoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
 // The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
@@ -9581,6 +9654,11 @@ func (o Servicev1LoggingKafkaOutput) Topic() pulumi.StringOutput {
 // Whether to use TLS for secure logging. Can be either true or false.
 func (o Servicev1LoggingKafkaOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
+}
+
+// The username for your Cloud Files account.
+func (o Servicev1LoggingKafkaOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.User }).(pulumi.StringPtrOutput)
 }
 
 type Servicev1LoggingKafkaArrayOutput struct{ *pulumi.OutputState }

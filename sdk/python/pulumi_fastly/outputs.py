@@ -1951,30 +1951,46 @@ class ServiceComputeLoggingKafka(dict):
                  brokers: str,
                  name: str,
                  topic: str,
+                 auth_method: Optional[str] = None,
                  compression_codec: Optional[str] = None,
+                 parse_log_keyvals: Optional[bool] = None,
+                 password: Optional[str] = None,
+                 request_max_bytes: Optional[int] = None,
                  required_acks: Optional[str] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
                  tls_client_key: Optional[str] = None,
                  tls_hostname: Optional[str] = None,
-                 use_tls: Optional[bool] = None):
+                 use_tls: Optional[bool] = None,
+                 user: Optional[str] = None):
         """
         :param str brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
         :param str name: The unique name of the Kinesis logging endpoint.
         :param str topic: The Kinesis stream name.
         :param str compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
+        :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        :param int request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         :param str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         :param bool use_tls: Whether to use TLS for secure logging. Can be either true or false.
+        :param str user: The username for your Cloud Files account.
         """
         pulumi.set(__self__, "brokers", brokers)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "topic", topic)
+        if auth_method is not None:
+            pulumi.set(__self__, "auth_method", auth_method)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
+        if parse_log_keyvals is not None:
+            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if request_max_bytes is not None:
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
             pulumi.set(__self__, "required_acks", required_acks)
         if tls_ca_cert is not None:
@@ -1987,6 +2003,8 @@ class ServiceComputeLoggingKafka(dict):
             pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
             pulumi.set(__self__, "use_tls", use_tls)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -2013,12 +2031,38 @@ class ServiceComputeLoggingKafka(dict):
         return pulumi.get(self, "topic")
 
     @property
+    @pulumi.getter(name="authMethod")
+    def auth_method(self) -> Optional[str]:
+        return pulumi.get(self, "auth_method")
+
+    @property
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
         The codec used for compression of your logs. One of: gzip, snappy, lz4.
         """
         return pulumi.get(self, "compression_codec")
+
+    @property
+    @pulumi.getter(name="parseLogKeyvals")
+    def parse_log_keyvals(self) -> Optional[bool]:
+        return pulumi.get(self, "parse_log_keyvals")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="requestMaxBytes")
+    def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        """
+        return pulumi.get(self, "request_max_bytes")
 
     @property
     @pulumi.getter(name="requiredAcks")
@@ -2067,6 +2111,14 @@ class ServiceComputeLoggingKafka(dict):
         Whether to use TLS for secure logging. Can be either true or false.
         """
         return pulumi.get(self, "use_tls")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[str]:
+        """
+        The username for your Cloud Files account.
+        """
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6195,17 +6247,22 @@ class Servicev1LoggingKafka(dict):
                  brokers: str,
                  name: str,
                  topic: str,
+                 auth_method: Optional[str] = None,
                  compression_codec: Optional[str] = None,
                  format: Optional[str] = None,
                  format_version: Optional[int] = None,
+                 parse_log_keyvals: Optional[bool] = None,
+                 password: Optional[str] = None,
                  placement: Optional[str] = None,
+                 request_max_bytes: Optional[int] = None,
                  required_acks: Optional[str] = None,
                  response_condition: Optional[str] = None,
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
                  tls_client_key: Optional[str] = None,
                  tls_hostname: Optional[str] = None,
-                 use_tls: Optional[bool] = None):
+                 use_tls: Optional[bool] = None,
+                 user: Optional[str] = None):
         """
         :param str brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
         :param str name: A unique name to identify this dictionary.
@@ -6213,7 +6270,9 @@ class Servicev1LoggingKafka(dict):
         :param str compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param int request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         :param str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
@@ -6221,18 +6280,27 @@ class Servicev1LoggingKafka(dict):
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         :param bool use_tls: Whether to use TLS for secure logging. Can be either true or false.
+        :param str user: The username for your Cloud Files account.
         """
         pulumi.set(__self__, "brokers", brokers)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "topic", topic)
+        if auth_method is not None:
+            pulumi.set(__self__, "auth_method", auth_method)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if format_version is not None:
             pulumi.set(__self__, "format_version", format_version)
+        if parse_log_keyvals is not None:
+            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if request_max_bytes is not None:
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
             pulumi.set(__self__, "required_acks", required_acks)
         if response_condition is not None:
@@ -6247,6 +6315,8 @@ class Servicev1LoggingKafka(dict):
             pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
             pulumi.set(__self__, "use_tls", use_tls)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -6273,6 +6343,11 @@ class Servicev1LoggingKafka(dict):
         return pulumi.get(self, "topic")
 
     @property
+    @pulumi.getter(name="authMethod")
+    def auth_method(self) -> Optional[str]:
+        return pulumi.get(self, "auth_method")
+
+    @property
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
@@ -6297,12 +6372,33 @@ class Servicev1LoggingKafka(dict):
         return pulumi.get(self, "format_version")
 
     @property
+    @pulumi.getter(name="parseLogKeyvals")
+    def parse_log_keyvals(self) -> Optional[bool]:
+        return pulumi.get(self, "parse_log_keyvals")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        """
+        return pulumi.get(self, "password")
+
+    @property
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         """
         return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="requestMaxBytes")
+    def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        """
+        return pulumi.get(self, "request_max_bytes")
 
     @property
     @pulumi.getter(name="requiredAcks")
@@ -6359,6 +6455,14 @@ class Servicev1LoggingKafka(dict):
         Whether to use TLS for secure logging. Can be either true or false.
         """
         return pulumi.get(self, "use_tls")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[str]:
+        """
+        The username for your Cloud Files account.
+        """
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -13,6 +13,7 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class ServiceComputeLoggingKafka
     {
+        public readonly string? AuthMethod;
         /// <summary>
         /// A comma-separated list of IP addresses or hostnames of Kafka brokers.
         /// </summary>
@@ -25,6 +26,15 @@ namespace Pulumi.Fastly.Outputs
         /// The unique name of the Kinesis logging endpoint.
         /// </summary>
         public readonly string Name;
+        public readonly bool? ParseLogKeyvals;
+        /// <summary>
+        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// </summary>
+        public readonly string? Password;
+        /// <summary>
+        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        /// </summary>
+        public readonly int? RequestMaxBytes;
         /// <summary>
         /// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
         /// </summary>
@@ -53,14 +63,26 @@ namespace Pulumi.Fastly.Outputs
         /// Whether to use TLS for secure logging. Can be either true or false.
         /// </summary>
         public readonly bool? UseTls;
+        /// <summary>
+        /// The username for your Cloud Files account.
+        /// </summary>
+        public readonly string? User;
 
         [OutputConstructor]
         private ServiceComputeLoggingKafka(
+            string? authMethod,
+
             string brokers,
 
             string? compressionCodec,
 
             string name,
+
+            bool? parseLogKeyvals,
+
+            string? password,
+
+            int? requestMaxBytes,
 
             string? requiredAcks,
 
@@ -74,11 +96,17 @@ namespace Pulumi.Fastly.Outputs
 
             string topic,
 
-            bool? useTls)
+            bool? useTls,
+
+            string? user)
         {
+            AuthMethod = authMethod;
             Brokers = brokers;
             CompressionCodec = compressionCodec;
             Name = name;
+            ParseLogKeyvals = parseLogKeyvals;
+            Password = password;
+            RequestMaxBytes = requestMaxBytes;
             RequiredAcks = requiredAcks;
             TlsCaCert = tlsCaCert;
             TlsClientCert = tlsClientCert;
@@ -86,6 +114,7 @@ namespace Pulumi.Fastly.Outputs
             TlsHostname = tlsHostname;
             Topic = topic;
             UseTls = useTls;
+            User = user;
         }
     }
 }
