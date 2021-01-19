@@ -636,6 +636,7 @@ export interface ServiceComputeLoggingHoneycomb {
 }
 
 export interface ServiceComputeLoggingKafka {
+    authMethod?: pulumi.Input<string>;
     /**
      * A comma-separated list of IP addresses or hostnames of Kafka brokers.
      */
@@ -648,6 +649,15 @@ export interface ServiceComputeLoggingKafka {
      * The unique name of the Kinesis logging endpoint.
      */
     name: pulumi.Input<string>;
+    parseLogKeyvals?: pulumi.Input<boolean>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: pulumi.Input<number>;
     /**
      * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
      */
@@ -676,6 +686,10 @@ export interface ServiceComputeLoggingKafka {
      * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: pulumi.Input<boolean>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user?: pulumi.Input<string>;
 }
 
 export interface ServiceComputeLoggingKinese {
@@ -2078,6 +2092,7 @@ export interface Servicev1LoggingHoneycomb {
 }
 
 export interface Servicev1LoggingKafka {
+    authMethod?: pulumi.Input<string>;
     /**
      * A comma-separated list of IP addresses or hostnames of Kafka brokers.
      */
@@ -2098,10 +2113,19 @@ export interface Servicev1LoggingKafka {
      * A unique name to identify this dictionary.
      */
     name: pulumi.Input<string>;
+    parseLogKeyvals?: pulumi.Input<boolean>;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: pulumi.Input<string>;
     /**
      * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: pulumi.Input<number>;
     /**
      * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
      */
@@ -2134,6 +2158,10 @@ export interface Servicev1LoggingKafka {
      * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: pulumi.Input<boolean>;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user?: pulumi.Input<string>;
 }
 
 export interface Servicev1LoggingKinese {

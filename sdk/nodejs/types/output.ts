@@ -651,6 +651,7 @@ export interface ServiceComputeLoggingHoneycomb {
 }
 
 export interface ServiceComputeLoggingKafka {
+    authMethod?: string;
     /**
      * A comma-separated list of IP addresses or hostnames of Kafka brokers.
      */
@@ -663,6 +664,15 @@ export interface ServiceComputeLoggingKafka {
      * The unique name of the Kinesis logging endpoint.
      */
     name: string;
+    parseLogKeyvals?: boolean;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: string;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: number;
     /**
      * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
      */
@@ -691,6 +701,10 @@ export interface ServiceComputeLoggingKafka {
      * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: boolean;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user?: string;
 }
 
 export interface ServiceComputeLoggingKinese {
@@ -2093,6 +2107,7 @@ export interface Servicev1LoggingHoneycomb {
 }
 
 export interface Servicev1LoggingKafka {
+    authMethod?: string;
     /**
      * A comma-separated list of IP addresses or hostnames of Kafka brokers.
      */
@@ -2113,10 +2128,19 @@ export interface Servicev1LoggingKafka {
      * A unique name to identify this dictionary.
      */
     name: string;
+    parseLogKeyvals?: boolean;
+    /**
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     */
+    password?: string;
     /**
      * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     */
+    requestMaxBytes?: number;
     /**
      * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
      */
@@ -2149,6 +2173,10 @@ export interface Servicev1LoggingKafka {
      * Whether to use TLS for secure logging. Can be either true or false.
      */
     useTls?: boolean;
+    /**
+     * The username for your Cloud Files account.
+     */
+    user?: string;
 }
 
 export interface Servicev1LoggingKinese {

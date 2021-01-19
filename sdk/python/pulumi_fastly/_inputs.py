@@ -2482,30 +2482,46 @@ class ServiceComputeLoggingKafkaArgs:
                  brokers: pulumi.Input[str],
                  name: pulumi.Input[str],
                  topic: pulumi.Input[str],
+                 auth_method: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
+                 parse_log_keyvals: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 request_max_bytes: Optional[pulumi.Input[int]] = None,
                  required_acks: Optional[pulumi.Input[str]] = None,
                  tls_ca_cert: Optional[pulumi.Input[str]] = None,
                  tls_client_cert: Optional[pulumi.Input[str]] = None,
                  tls_client_key: Optional[pulumi.Input[str]] = None,
                  tls_hostname: Optional[pulumi.Input[str]] = None,
-                 use_tls: Optional[pulumi.Input[bool]] = None):
+                 use_tls: Optional[pulumi.Input[bool]] = None,
+                 user: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
         :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
         :param pulumi.Input[str] topic: The Kinesis stream name.
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
+        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
         :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
         :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
+        :param pulumi.Input[str] user: The username for your Cloud Files account.
         """
         pulumi.set(__self__, "brokers", brokers)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "topic", topic)
+        if auth_method is not None:
+            pulumi.set(__self__, "auth_method", auth_method)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
+        if parse_log_keyvals is not None:
+            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if request_max_bytes is not None:
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
             pulumi.set(__self__, "required_acks", required_acks)
         if tls_ca_cert is not None:
@@ -2518,6 +2534,8 @@ class ServiceComputeLoggingKafkaArgs:
             pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
             pulumi.set(__self__, "use_tls", use_tls)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -2556,6 +2574,15 @@ class ServiceComputeLoggingKafkaArgs:
         pulumi.set(self, "topic", value)
 
     @property
+    @pulumi.getter(name="authMethod")
+    def auth_method(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auth_method")
+
+    @auth_method.setter
+    def auth_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_method", value)
+
+    @property
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2566,6 +2593,39 @@ class ServiceComputeLoggingKafkaArgs:
     @compression_codec.setter
     def compression_codec(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "compression_codec", value)
+
+    @property
+    @pulumi.getter(name="parseLogKeyvals")
+    def parse_log_keyvals(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "parse_log_keyvals")
+
+    @parse_log_keyvals.setter
+    def parse_log_keyvals(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "parse_log_keyvals", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="requestMaxBytes")
+    def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        """
+        return pulumi.get(self, "request_max_bytes")
+
+    @request_max_bytes.setter
+    def request_max_bytes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "request_max_bytes", value)
 
     @property
     @pulumi.getter(name="requiredAcks")
@@ -2638,6 +2698,18 @@ class ServiceComputeLoggingKafkaArgs:
     @use_tls.setter
     def use_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_tls", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username for your Cloud Files account.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user", value)
 
 
 @pulumi.input_type
@@ -7917,17 +7989,22 @@ class Servicev1LoggingKafkaArgs:
                  brokers: pulumi.Input[str],
                  name: pulumi.Input[str],
                  topic: pulumi.Input[str],
+                 auth_method: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  format_version: Optional[pulumi.Input[int]] = None,
+                 parse_log_keyvals: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  placement: Optional[pulumi.Input[str]] = None,
+                 request_max_bytes: Optional[pulumi.Input[int]] = None,
                  required_acks: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None,
                  tls_ca_cert: Optional[pulumi.Input[str]] = None,
                  tls_client_cert: Optional[pulumi.Input[str]] = None,
                  tls_client_key: Optional[pulumi.Input[str]] = None,
                  tls_hostname: Optional[pulumi.Input[str]] = None,
-                 use_tls: Optional[pulumi.Input[bool]] = None):
+                 use_tls: Optional[pulumi.Input[bool]] = None,
+                 user: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
         :param pulumi.Input[str] name: A unique name to identify this dictionary.
@@ -7935,7 +8012,9 @@ class Servicev1LoggingKafkaArgs:
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
         :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
@@ -7943,18 +8022,27 @@ class Servicev1LoggingKafkaArgs:
         :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
+        :param pulumi.Input[str] user: The username for your Cloud Files account.
         """
         pulumi.set(__self__, "brokers", brokers)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "topic", topic)
+        if auth_method is not None:
+            pulumi.set(__self__, "auth_method", auth_method)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if format_version is not None:
             pulumi.set(__self__, "format_version", format_version)
+        if parse_log_keyvals is not None:
+            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if request_max_bytes is not None:
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
             pulumi.set(__self__, "required_acks", required_acks)
         if response_condition is not None:
@@ -7969,6 +8057,8 @@ class Servicev1LoggingKafkaArgs:
             pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
             pulumi.set(__self__, "use_tls", use_tls)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -8007,6 +8097,15 @@ class Servicev1LoggingKafkaArgs:
         pulumi.set(self, "topic", value)
 
     @property
+    @pulumi.getter(name="authMethod")
+    def auth_method(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auth_method")
+
+    @auth_method.setter
+    def auth_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_method", value)
+
+    @property
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[pulumi.Input[str]]:
         """
@@ -8043,6 +8142,27 @@ class Servicev1LoggingKafkaArgs:
         pulumi.set(self, "format_version", value)
 
     @property
+    @pulumi.getter(name="parseLogKeyvals")
+    def parse_log_keyvals(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "parse_log_keyvals")
+
+    @parse_log_keyvals.setter
+    def parse_log_keyvals(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "parse_log_keyvals", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
@@ -8053,6 +8173,18 @@ class Servicev1LoggingKafkaArgs:
     @placement.setter
     def placement(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "placement", value)
+
+    @property
+    @pulumi.getter(name="requestMaxBytes")
+    def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        """
+        return pulumi.get(self, "request_max_bytes")
+
+    @request_max_bytes.setter
+    def request_max_bytes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "request_max_bytes", value)
 
     @property
     @pulumi.getter(name="requiredAcks")
@@ -8137,6 +8269,18 @@ class Servicev1LoggingKafkaArgs:
     @use_tls.setter
     def use_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_tls", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username for your Cloud Files account.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user", value)
 
 
 @pulumi.input_type
