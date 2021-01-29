@@ -119,15 +119,15 @@ type ServiceDictionaryItemsv1Input interface {
 	ToServiceDictionaryItemsv1OutputWithContext(ctx context.Context) ServiceDictionaryItemsv1Output
 }
 
-func (ServiceDictionaryItemsv1) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDictionaryItemsv1)(nil)).Elem()
+func (*ServiceDictionaryItemsv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDictionaryItemsv1)(nil))
 }
 
-func (i ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output {
+func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output {
 	return i.ToServiceDictionaryItemsv1OutputWithContext(context.Background())
 }
 
-func (i ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1OutputWithContext(ctx context.Context) ServiceDictionaryItemsv1Output {
+func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1OutputWithContext(ctx context.Context) ServiceDictionaryItemsv1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1Output)
 }
 
@@ -136,7 +136,7 @@ type ServiceDictionaryItemsv1Output struct {
 }
 
 func (ServiceDictionaryItemsv1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDictionaryItemsv1Output)(nil)).Elem()
+	return reflect.TypeOf((*ServiceDictionaryItemsv1)(nil))
 }
 
 func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output {

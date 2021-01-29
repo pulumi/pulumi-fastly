@@ -119,15 +119,15 @@ type ServiceACLEntriesv1Input interface {
 	ToServiceACLEntriesv1OutputWithContext(ctx context.Context) ServiceACLEntriesv1Output
 }
 
-func (ServiceACLEntriesv1) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceACLEntriesv1)(nil)).Elem()
+func (*ServiceACLEntriesv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceACLEntriesv1)(nil))
 }
 
-func (i ServiceACLEntriesv1) ToServiceACLEntriesv1Output() ServiceACLEntriesv1Output {
+func (i *ServiceACLEntriesv1) ToServiceACLEntriesv1Output() ServiceACLEntriesv1Output {
 	return i.ToServiceACLEntriesv1OutputWithContext(context.Background())
 }
 
-func (i ServiceACLEntriesv1) ToServiceACLEntriesv1OutputWithContext(ctx context.Context) ServiceACLEntriesv1Output {
+func (i *ServiceACLEntriesv1) ToServiceACLEntriesv1OutputWithContext(ctx context.Context) ServiceACLEntriesv1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1Output)
 }
 
@@ -136,7 +136,7 @@ type ServiceACLEntriesv1Output struct {
 }
 
 func (ServiceACLEntriesv1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceACLEntriesv1Output)(nil)).Elem()
+	return reflect.TypeOf((*ServiceACLEntriesv1)(nil))
 }
 
 func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1Output() ServiceACLEntriesv1Output {

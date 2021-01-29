@@ -18,6 +18,7 @@ namespace Pulumi.Fastly
     ///  $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// </summary>
+    [FastlyResourceType("fastly:index/servicev1:Servicev1")]
     public partial class Servicev1 : Pulumi.CustomResource
     {
         /// <summary>

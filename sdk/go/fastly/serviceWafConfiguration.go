@@ -394,15 +394,15 @@ type ServiceWafConfigurationInput interface {
 	ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput
 }
 
-func (ServiceWafConfiguration) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfiguration)(nil)).Elem()
+func (*ServiceWafConfiguration) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceWafConfiguration)(nil))
 }
 
-func (i ServiceWafConfiguration) ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput {
+func (i *ServiceWafConfiguration) ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput {
 	return i.ToServiceWafConfigurationOutputWithContext(context.Background())
 }
 
-func (i ServiceWafConfiguration) ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput {
+func (i *ServiceWafConfiguration) ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationOutput)
 }
 
@@ -411,7 +411,7 @@ type ServiceWafConfigurationOutput struct {
 }
 
 func (ServiceWafConfigurationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfigurationOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServiceWafConfiguration)(nil))
 }
 
 func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput {

@@ -799,15 +799,15 @@ type Servicev1Input interface {
 	ToServicev1OutputWithContext(ctx context.Context) Servicev1Output
 }
 
-func (Servicev1) ElementType() reflect.Type {
-	return reflect.TypeOf((*Servicev1)(nil)).Elem()
+func (*Servicev1) ElementType() reflect.Type {
+	return reflect.TypeOf((*Servicev1)(nil))
 }
 
-func (i Servicev1) ToServicev1Output() Servicev1Output {
+func (i *Servicev1) ToServicev1Output() Servicev1Output {
 	return i.ToServicev1OutputWithContext(context.Background())
 }
 
-func (i Servicev1) ToServicev1OutputWithContext(ctx context.Context) Servicev1Output {
+func (i *Servicev1) ToServicev1OutputWithContext(ctx context.Context) Servicev1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1Output)
 }
 
@@ -816,7 +816,7 @@ type Servicev1Output struct {
 }
 
 func (Servicev1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*Servicev1Output)(nil)).Elem()
+	return reflect.TypeOf((*Servicev1)(nil))
 }
 
 func (o Servicev1Output) ToServicev1Output() Servicev1Output {
