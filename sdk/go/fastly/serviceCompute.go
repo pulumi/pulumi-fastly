@@ -600,15 +600,15 @@ type ServiceComputeInput interface {
 	ToServiceComputeOutputWithContext(ctx context.Context) ServiceComputeOutput
 }
 
-func (ServiceCompute) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceCompute)(nil)).Elem()
+func (*ServiceCompute) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceCompute)(nil))
 }
 
-func (i ServiceCompute) ToServiceComputeOutput() ServiceComputeOutput {
+func (i *ServiceCompute) ToServiceComputeOutput() ServiceComputeOutput {
 	return i.ToServiceComputeOutputWithContext(context.Background())
 }
 
-func (i ServiceCompute) ToServiceComputeOutputWithContext(ctx context.Context) ServiceComputeOutput {
+func (i *ServiceCompute) ToServiceComputeOutputWithContext(ctx context.Context) ServiceComputeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeOutput)
 }
 
@@ -617,7 +617,7 @@ type ServiceComputeOutput struct {
 }
 
 func (ServiceComputeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceComputeOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServiceCompute)(nil))
 }
 
 func (o ServiceComputeOutput) ToServiceComputeOutput() ServiceComputeOutput {

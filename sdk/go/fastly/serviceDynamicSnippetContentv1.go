@@ -120,15 +120,15 @@ type ServiceDynamicSnippetContentv1Input interface {
 	ToServiceDynamicSnippetContentv1OutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1Output
 }
 
-func (ServiceDynamicSnippetContentv1) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDynamicSnippetContentv1)(nil)).Elem()
+func (*ServiceDynamicSnippetContentv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDynamicSnippetContentv1)(nil))
 }
 
-func (i ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1Output() ServiceDynamicSnippetContentv1Output {
+func (i *ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1Output() ServiceDynamicSnippetContentv1Output {
 	return i.ToServiceDynamicSnippetContentv1OutputWithContext(context.Background())
 }
 
-func (i ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1OutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1Output {
+func (i *ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1OutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentv1Output)
 }
 
@@ -137,7 +137,7 @@ type ServiceDynamicSnippetContentv1Output struct {
 }
 
 func (ServiceDynamicSnippetContentv1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDynamicSnippetContentv1Output)(nil)).Elem()
+	return reflect.TypeOf((*ServiceDynamicSnippetContentv1)(nil))
 }
 
 func (o ServiceDynamicSnippetContentv1Output) ToServiceDynamicSnippetContentv1Output() ServiceDynamicSnippetContentv1Output {

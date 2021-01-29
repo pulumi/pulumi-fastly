@@ -24,6 +24,7 @@ namespace Pulumi.Fastly
     ///  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// </summary>
+    [FastlyResourceType("fastly:index/serviceCompute:ServiceCompute")]
     public partial class ServiceCompute : Pulumi.CustomResource
     {
         /// <summary>

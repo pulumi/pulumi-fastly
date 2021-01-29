@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly"
+// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -139,15 +139,15 @@ type Userv1Input interface {
 	ToUserv1OutputWithContext(ctx context.Context) Userv1Output
 }
 
-func (Userv1) ElementType() reflect.Type {
-	return reflect.TypeOf((*Userv1)(nil)).Elem()
+func (*Userv1) ElementType() reflect.Type {
+	return reflect.TypeOf((*Userv1)(nil))
 }
 
-func (i Userv1) ToUserv1Output() Userv1Output {
+func (i *Userv1) ToUserv1Output() Userv1Output {
 	return i.ToUserv1OutputWithContext(context.Background())
 }
 
-func (i Userv1) ToUserv1OutputWithContext(ctx context.Context) Userv1Output {
+func (i *Userv1) ToUserv1OutputWithContext(ctx context.Context) Userv1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(Userv1Output)
 }
 
@@ -156,7 +156,7 @@ type Userv1Output struct {
 }
 
 func (Userv1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*Userv1Output)(nil)).Elem()
+	return reflect.TypeOf((*Userv1)(nil))
 }
 
 func (o Userv1Output) ToUserv1Output() Userv1Output {

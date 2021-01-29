@@ -22,6 +22,7 @@ namespace Pulumi.Fastly
     /// 
     ///  The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
     /// </summary>
+    [FastlyResourceType("fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1")]
     public partial class ServiceACLEntriesv1 : Pulumi.CustomResource
     {
         /// <summary>

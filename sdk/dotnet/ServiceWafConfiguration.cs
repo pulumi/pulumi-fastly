@@ -20,6 +20,7 @@ namespace Pulumi.Fastly
     /// 
     ///  If Terraform is already managing a remote WAF configurations against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_waf_configuration.waf` from the Terraform state file. $ terraform state rm fastly_service_waf_configuration.waf
     /// </summary>
+    [FastlyResourceType("fastly:index/serviceWafConfiguration:ServiceWafConfiguration")]
     public partial class ServiceWafConfiguration : Pulumi.CustomResource
     {
         /// <summary>

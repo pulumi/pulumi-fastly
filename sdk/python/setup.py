@@ -48,7 +48,7 @@ setup(name='pulumi_fastly',
       packages=find_packages(),
       package_data={
           'pulumi_fastly': [
-              'py.typed'
+              'py.typed',
           ]
       },
       install_requires=[

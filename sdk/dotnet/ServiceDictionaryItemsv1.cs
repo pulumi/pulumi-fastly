@@ -22,6 +22,7 @@ namespace Pulumi.Fastly
     /// 
     ///  The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
     /// </summary>
+    [FastlyResourceType("fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1")]
     public partial class ServiceDictionaryItemsv1 : Pulumi.CustomResource
     {
         /// <summary>
