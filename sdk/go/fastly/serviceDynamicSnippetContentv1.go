@@ -132,6 +132,85 @@ func (i *ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1OutputW
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentv1Output)
 }
 
+func (i *ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1PtrOutput() ServiceDynamicSnippetContentv1PtrOutput {
+	return i.ToServiceDynamicSnippetContentv1PtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceDynamicSnippetContentv1) ToServiceDynamicSnippetContentv1PtrOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentv1PtrOutput)
+}
+
+type ServiceDynamicSnippetContentv1PtrInput interface {
+	pulumi.Input
+
+	ToServiceDynamicSnippetContentv1PtrOutput() ServiceDynamicSnippetContentv1PtrOutput
+	ToServiceDynamicSnippetContentv1PtrOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1PtrOutput
+}
+
+type serviceDynamicSnippetContentv1PtrType ServiceDynamicSnippetContentv1Args
+
+func (*serviceDynamicSnippetContentv1PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDynamicSnippetContentv1)(nil))
+}
+
+func (i *serviceDynamicSnippetContentv1PtrType) ToServiceDynamicSnippetContentv1PtrOutput() ServiceDynamicSnippetContentv1PtrOutput {
+	return i.ToServiceDynamicSnippetContentv1PtrOutputWithContext(context.Background())
+}
+
+func (i *serviceDynamicSnippetContentv1PtrType) ToServiceDynamicSnippetContentv1PtrOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentv1PtrOutput)
+}
+
+// ServiceDynamicSnippetContentv1ArrayInput is an input type that accepts ServiceDynamicSnippetContentv1Array and ServiceDynamicSnippetContentv1ArrayOutput values.
+// You can construct a concrete instance of `ServiceDynamicSnippetContentv1ArrayInput` via:
+//
+//          ServiceDynamicSnippetContentv1Array{ ServiceDynamicSnippetContentv1Args{...} }
+type ServiceDynamicSnippetContentv1ArrayInput interface {
+	pulumi.Input
+
+	ToServiceDynamicSnippetContentv1ArrayOutput() ServiceDynamicSnippetContentv1ArrayOutput
+	ToServiceDynamicSnippetContentv1ArrayOutputWithContext(context.Context) ServiceDynamicSnippetContentv1ArrayOutput
+}
+
+type ServiceDynamicSnippetContentv1Array []ServiceDynamicSnippetContentv1Input
+
+func (ServiceDynamicSnippetContentv1Array) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ServiceDynamicSnippetContentv1)(nil))
+}
+
+func (i ServiceDynamicSnippetContentv1Array) ToServiceDynamicSnippetContentv1ArrayOutput() ServiceDynamicSnippetContentv1ArrayOutput {
+	return i.ToServiceDynamicSnippetContentv1ArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceDynamicSnippetContentv1Array) ToServiceDynamicSnippetContentv1ArrayOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentv1ArrayOutput)
+}
+
+// ServiceDynamicSnippetContentv1MapInput is an input type that accepts ServiceDynamicSnippetContentv1Map and ServiceDynamicSnippetContentv1MapOutput values.
+// You can construct a concrete instance of `ServiceDynamicSnippetContentv1MapInput` via:
+//
+//          ServiceDynamicSnippetContentv1Map{ "key": ServiceDynamicSnippetContentv1Args{...} }
+type ServiceDynamicSnippetContentv1MapInput interface {
+	pulumi.Input
+
+	ToServiceDynamicSnippetContentv1MapOutput() ServiceDynamicSnippetContentv1MapOutput
+	ToServiceDynamicSnippetContentv1MapOutputWithContext(context.Context) ServiceDynamicSnippetContentv1MapOutput
+}
+
+type ServiceDynamicSnippetContentv1Map map[string]ServiceDynamicSnippetContentv1Input
+
+func (ServiceDynamicSnippetContentv1Map) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ServiceDynamicSnippetContentv1)(nil))
+}
+
+func (i ServiceDynamicSnippetContentv1Map) ToServiceDynamicSnippetContentv1MapOutput() ServiceDynamicSnippetContentv1MapOutput {
+	return i.ToServiceDynamicSnippetContentv1MapOutputWithContext(context.Background())
+}
+
+func (i ServiceDynamicSnippetContentv1Map) ToServiceDynamicSnippetContentv1MapOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentv1MapOutput)
+}
+
 type ServiceDynamicSnippetContentv1Output struct {
 	*pulumi.OutputState
 }
@@ -148,6 +227,75 @@ func (o ServiceDynamicSnippetContentv1Output) ToServiceDynamicSnippetContentv1Ou
 	return o
 }
 
+func (o ServiceDynamicSnippetContentv1Output) ToServiceDynamicSnippetContentv1PtrOutput() ServiceDynamicSnippetContentv1PtrOutput {
+	return o.ToServiceDynamicSnippetContentv1PtrOutputWithContext(context.Background())
+}
+
+func (o ServiceDynamicSnippetContentv1Output) ToServiceDynamicSnippetContentv1PtrOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1PtrOutput {
+	return o.ApplyT(func(v ServiceDynamicSnippetContentv1) *ServiceDynamicSnippetContentv1 {
+		return &v
+	}).(ServiceDynamicSnippetContentv1PtrOutput)
+}
+
+type ServiceDynamicSnippetContentv1PtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceDynamicSnippetContentv1PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDynamicSnippetContentv1)(nil))
+}
+
+func (o ServiceDynamicSnippetContentv1PtrOutput) ToServiceDynamicSnippetContentv1PtrOutput() ServiceDynamicSnippetContentv1PtrOutput {
+	return o
+}
+
+func (o ServiceDynamicSnippetContentv1PtrOutput) ToServiceDynamicSnippetContentv1PtrOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1PtrOutput {
+	return o
+}
+
+type ServiceDynamicSnippetContentv1ArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceDynamicSnippetContentv1ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceDynamicSnippetContentv1)(nil))
+}
+
+func (o ServiceDynamicSnippetContentv1ArrayOutput) ToServiceDynamicSnippetContentv1ArrayOutput() ServiceDynamicSnippetContentv1ArrayOutput {
+	return o
+}
+
+func (o ServiceDynamicSnippetContentv1ArrayOutput) ToServiceDynamicSnippetContentv1ArrayOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1ArrayOutput {
+	return o
+}
+
+func (o ServiceDynamicSnippetContentv1ArrayOutput) Index(i pulumi.IntInput) ServiceDynamicSnippetContentv1Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceDynamicSnippetContentv1 {
+		return vs[0].([]ServiceDynamicSnippetContentv1)[vs[1].(int)]
+	}).(ServiceDynamicSnippetContentv1Output)
+}
+
+type ServiceDynamicSnippetContentv1MapOutput struct{ *pulumi.OutputState }
+
+func (ServiceDynamicSnippetContentv1MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ServiceDynamicSnippetContentv1)(nil))
+}
+
+func (o ServiceDynamicSnippetContentv1MapOutput) ToServiceDynamicSnippetContentv1MapOutput() ServiceDynamicSnippetContentv1MapOutput {
+	return o
+}
+
+func (o ServiceDynamicSnippetContentv1MapOutput) ToServiceDynamicSnippetContentv1MapOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentv1MapOutput {
+	return o
+}
+
+func (o ServiceDynamicSnippetContentv1MapOutput) MapIndex(k pulumi.StringInput) ServiceDynamicSnippetContentv1Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ServiceDynamicSnippetContentv1 {
+		return vs[0].(map[string]ServiceDynamicSnippetContentv1)[vs[1].(string)]
+	}).(ServiceDynamicSnippetContentv1Output)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceDynamicSnippetContentv1Output{})
+	pulumi.RegisterOutputType(ServiceDynamicSnippetContentv1PtrOutput{})
+	pulumi.RegisterOutputType(ServiceDynamicSnippetContentv1ArrayOutput{})
+	pulumi.RegisterOutputType(ServiceDynamicSnippetContentv1MapOutput{})
 }

@@ -612,6 +612,85 @@ func (i *ServiceCompute) ToServiceComputeOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeOutput)
 }
 
+func (i *ServiceCompute) ToServiceComputePtrOutput() ServiceComputePtrOutput {
+	return i.ToServiceComputePtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceCompute) ToServiceComputePtrOutputWithContext(ctx context.Context) ServiceComputePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePtrOutput)
+}
+
+type ServiceComputePtrInput interface {
+	pulumi.Input
+
+	ToServiceComputePtrOutput() ServiceComputePtrOutput
+	ToServiceComputePtrOutputWithContext(ctx context.Context) ServiceComputePtrOutput
+}
+
+type serviceComputePtrType ServiceComputeArgs
+
+func (*serviceComputePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceCompute)(nil))
+}
+
+func (i *serviceComputePtrType) ToServiceComputePtrOutput() ServiceComputePtrOutput {
+	return i.ToServiceComputePtrOutputWithContext(context.Background())
+}
+
+func (i *serviceComputePtrType) ToServiceComputePtrOutputWithContext(ctx context.Context) ServiceComputePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePtrOutput)
+}
+
+// ServiceComputeArrayInput is an input type that accepts ServiceComputeArray and ServiceComputeArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeArrayInput` via:
+//
+//          ServiceComputeArray{ ServiceComputeArgs{...} }
+type ServiceComputeArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeArrayOutput() ServiceComputeArrayOutput
+	ToServiceComputeArrayOutputWithContext(context.Context) ServiceComputeArrayOutput
+}
+
+type ServiceComputeArray []ServiceComputeInput
+
+func (ServiceComputeArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ServiceCompute)(nil))
+}
+
+func (i ServiceComputeArray) ToServiceComputeArrayOutput() ServiceComputeArrayOutput {
+	return i.ToServiceComputeArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeArray) ToServiceComputeArrayOutputWithContext(ctx context.Context) ServiceComputeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeArrayOutput)
+}
+
+// ServiceComputeMapInput is an input type that accepts ServiceComputeMap and ServiceComputeMapOutput values.
+// You can construct a concrete instance of `ServiceComputeMapInput` via:
+//
+//          ServiceComputeMap{ "key": ServiceComputeArgs{...} }
+type ServiceComputeMapInput interface {
+	pulumi.Input
+
+	ToServiceComputeMapOutput() ServiceComputeMapOutput
+	ToServiceComputeMapOutputWithContext(context.Context) ServiceComputeMapOutput
+}
+
+type ServiceComputeMap map[string]ServiceComputeInput
+
+func (ServiceComputeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ServiceCompute)(nil))
+}
+
+func (i ServiceComputeMap) ToServiceComputeMapOutput() ServiceComputeMapOutput {
+	return i.ToServiceComputeMapOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeMap) ToServiceComputeMapOutputWithContext(ctx context.Context) ServiceComputeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeMapOutput)
+}
+
 type ServiceComputeOutput struct {
 	*pulumi.OutputState
 }
@@ -628,6 +707,75 @@ func (o ServiceComputeOutput) ToServiceComputeOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o ServiceComputeOutput) ToServiceComputePtrOutput() ServiceComputePtrOutput {
+	return o.ToServiceComputePtrOutputWithContext(context.Background())
+}
+
+func (o ServiceComputeOutput) ToServiceComputePtrOutputWithContext(ctx context.Context) ServiceComputePtrOutput {
+	return o.ApplyT(func(v ServiceCompute) *ServiceCompute {
+		return &v
+	}).(ServiceComputePtrOutput)
+}
+
+type ServiceComputePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceComputePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceCompute)(nil))
+}
+
+func (o ServiceComputePtrOutput) ToServiceComputePtrOutput() ServiceComputePtrOutput {
+	return o
+}
+
+func (o ServiceComputePtrOutput) ToServiceComputePtrOutputWithContext(ctx context.Context) ServiceComputePtrOutput {
+	return o
+}
+
+type ServiceComputeArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceCompute)(nil))
+}
+
+func (o ServiceComputeArrayOutput) ToServiceComputeArrayOutput() ServiceComputeArrayOutput {
+	return o
+}
+
+func (o ServiceComputeArrayOutput) ToServiceComputeArrayOutputWithContext(ctx context.Context) ServiceComputeArrayOutput {
+	return o
+}
+
+func (o ServiceComputeArrayOutput) Index(i pulumi.IntInput) ServiceComputeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceCompute {
+		return vs[0].([]ServiceCompute)[vs[1].(int)]
+	}).(ServiceComputeOutput)
+}
+
+type ServiceComputeMapOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ServiceCompute)(nil))
+}
+
+func (o ServiceComputeMapOutput) ToServiceComputeMapOutput() ServiceComputeMapOutput {
+	return o
+}
+
+func (o ServiceComputeMapOutput) ToServiceComputeMapOutputWithContext(ctx context.Context) ServiceComputeMapOutput {
+	return o
+}
+
+func (o ServiceComputeMapOutput) MapIndex(k pulumi.StringInput) ServiceComputeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ServiceCompute {
+		return vs[0].(map[string]ServiceCompute)[vs[1].(string)]
+	}).(ServiceComputeOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceComputeOutput{})
+	pulumi.RegisterOutputType(ServiceComputePtrOutput{})
+	pulumi.RegisterOutputType(ServiceComputeArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeMapOutput{})
 }

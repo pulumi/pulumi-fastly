@@ -11,12 +11,12 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Fastly API Key from https://app.fastly.com/#account
         /// </summary>
-        public static string? ApiKey { get; set; } = __config.Get("apiKey") ?? Utilities.GetEnv("FASTLY_API_KEY");
+        public static string? ApiKey { get; set; } = __config.Get("apiKey");
 
         /// <summary>
         /// Fastly API URL
         /// </summary>
-        public static string? BaseUrl { get; set; } = __config.Get("baseUrl") ?? Utilities.GetEnv("FASTLY_API_URL") ?? "https://api.fastly.com";
+        public static string? BaseUrl { get; set; } = __config.Get("baseUrl");
 
     }
 }

@@ -179,7 +179,8 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
     constructor(name: string, args: ServiceWafConfigurationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceWafConfigurationArgs | ServiceWafConfigurationState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ServiceWafConfigurationState | undefined;
             inputs["allowedHttpVersions"] = state ? state.allowedHttpVersions : undefined;
             inputs["allowedMethods"] = state ? state.allowedMethods : undefined;
@@ -214,7 +215,7 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             inputs["xssScoreThreshold"] = state ? state.xssScoreThreshold : undefined;
         } else {
             const args = argsOrState as ServiceWafConfigurationArgs | undefined;
-            if ((!args || args.wafId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.wafId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'wafId'");
             }
             inputs["allowedHttpVersions"] = args ? args.allowedHttpVersions : undefined;
@@ -249,12 +250,8 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             inputs["warningAnomalyScore"] = args ? args.warningAnomalyScore : undefined;
             inputs["xssScoreThreshold"] = args ? args.xssScoreThreshold : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ServiceWafConfiguration.__pulumiType, name, inputs, opts);
     }

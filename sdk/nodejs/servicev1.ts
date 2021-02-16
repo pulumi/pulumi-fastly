@@ -300,7 +300,8 @@ export class Servicev1 extends pulumi.CustomResource {
     constructor(name: string, args: Servicev1Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: Servicev1Args | Servicev1State, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as Servicev1State | undefined;
             inputs["acls"] = state ? state.acls : undefined;
             inputs["activate"] = state ? state.activate : undefined;
@@ -355,7 +356,7 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["waf"] = state ? state.waf : undefined;
         } else {
             const args = argsOrState as Servicev1Args | undefined;
-            if ((!args || args.domains === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
             inputs["acls"] = args ? args.acls : undefined;
@@ -410,12 +411,8 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["activeVersion"] = undefined /*out*/;
             inputs["clonedVersion"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Servicev1.__pulumiType, name, inputs, opts);
     }

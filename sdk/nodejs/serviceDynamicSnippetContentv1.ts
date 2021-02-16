@@ -66,32 +66,29 @@ export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
     constructor(name: string, args: ServiceDynamicSnippetContentv1Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceDynamicSnippetContentv1Args | ServiceDynamicSnippetContentv1State, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ServiceDynamicSnippetContentv1State | undefined;
             inputs["content"] = state ? state.content : undefined;
             inputs["serviceId"] = state ? state.serviceId : undefined;
             inputs["snippetId"] = state ? state.snippetId : undefined;
         } else {
             const args = argsOrState as ServiceDynamicSnippetContentv1Args | undefined;
-            if ((!args || args.content === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.content === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'content'");
             }
-            if ((!args || args.serviceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.serviceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            if ((!args || args.snippetId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.snippetId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'snippetId'");
             }
             inputs["content"] = args ? args.content : undefined;
             inputs["serviceId"] = args ? args.serviceId : undefined;
             inputs["snippetId"] = args ? args.snippetId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ServiceDynamicSnippetContentv1.__pulumiType, name, inputs, opts);
     }
