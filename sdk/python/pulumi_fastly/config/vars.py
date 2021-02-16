@@ -15,12 +15,12 @@ __all__ = [
 
 __config__ = pulumi.Config('fastly')
 
-api_key = __config__.get('apiKey') or _utilities.get_env('FASTLY_API_KEY')
+api_key = __config__.get('apiKey')
 """
 Fastly API Key from https://app.fastly.com/#account
 """
 
-base_url = __config__.get('baseUrl') or (_utilities.get_env('FASTLY_API_URL') or 'https://api.fastly.com')
+base_url = __config__.get('baseUrl')
 """
 Fastly API URL
 """

@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly/"
+// 	"github.com/pulumi/pulumi-fastly/sdk/v2/go/fastly"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -151,6 +151,85 @@ func (i *Userv1) ToUserv1OutputWithContext(ctx context.Context) Userv1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(Userv1Output)
 }
 
+func (i *Userv1) ToUserv1PtrOutput() Userv1PtrOutput {
+	return i.ToUserv1PtrOutputWithContext(context.Background())
+}
+
+func (i *Userv1) ToUserv1PtrOutputWithContext(ctx context.Context) Userv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Userv1PtrOutput)
+}
+
+type Userv1PtrInput interface {
+	pulumi.Input
+
+	ToUserv1PtrOutput() Userv1PtrOutput
+	ToUserv1PtrOutputWithContext(ctx context.Context) Userv1PtrOutput
+}
+
+type userv1PtrType Userv1Args
+
+func (*userv1PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Userv1)(nil))
+}
+
+func (i *userv1PtrType) ToUserv1PtrOutput() Userv1PtrOutput {
+	return i.ToUserv1PtrOutputWithContext(context.Background())
+}
+
+func (i *userv1PtrType) ToUserv1PtrOutputWithContext(ctx context.Context) Userv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Userv1PtrOutput)
+}
+
+// Userv1ArrayInput is an input type that accepts Userv1Array and Userv1ArrayOutput values.
+// You can construct a concrete instance of `Userv1ArrayInput` via:
+//
+//          Userv1Array{ Userv1Args{...} }
+type Userv1ArrayInput interface {
+	pulumi.Input
+
+	ToUserv1ArrayOutput() Userv1ArrayOutput
+	ToUserv1ArrayOutputWithContext(context.Context) Userv1ArrayOutput
+}
+
+type Userv1Array []Userv1Input
+
+func (Userv1Array) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*Userv1)(nil))
+}
+
+func (i Userv1Array) ToUserv1ArrayOutput() Userv1ArrayOutput {
+	return i.ToUserv1ArrayOutputWithContext(context.Background())
+}
+
+func (i Userv1Array) ToUserv1ArrayOutputWithContext(ctx context.Context) Userv1ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Userv1ArrayOutput)
+}
+
+// Userv1MapInput is an input type that accepts Userv1Map and Userv1MapOutput values.
+// You can construct a concrete instance of `Userv1MapInput` via:
+//
+//          Userv1Map{ "key": Userv1Args{...} }
+type Userv1MapInput interface {
+	pulumi.Input
+
+	ToUserv1MapOutput() Userv1MapOutput
+	ToUserv1MapOutputWithContext(context.Context) Userv1MapOutput
+}
+
+type Userv1Map map[string]Userv1Input
+
+func (Userv1Map) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*Userv1)(nil))
+}
+
+func (i Userv1Map) ToUserv1MapOutput() Userv1MapOutput {
+	return i.ToUserv1MapOutputWithContext(context.Background())
+}
+
+func (i Userv1Map) ToUserv1MapOutputWithContext(ctx context.Context) Userv1MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Userv1MapOutput)
+}
+
 type Userv1Output struct {
 	*pulumi.OutputState
 }
@@ -167,6 +246,75 @@ func (o Userv1Output) ToUserv1OutputWithContext(ctx context.Context) Userv1Outpu
 	return o
 }
 
+func (o Userv1Output) ToUserv1PtrOutput() Userv1PtrOutput {
+	return o.ToUserv1PtrOutputWithContext(context.Background())
+}
+
+func (o Userv1Output) ToUserv1PtrOutputWithContext(ctx context.Context) Userv1PtrOutput {
+	return o.ApplyT(func(v Userv1) *Userv1 {
+		return &v
+	}).(Userv1PtrOutput)
+}
+
+type Userv1PtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (Userv1PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Userv1)(nil))
+}
+
+func (o Userv1PtrOutput) ToUserv1PtrOutput() Userv1PtrOutput {
+	return o
+}
+
+func (o Userv1PtrOutput) ToUserv1PtrOutputWithContext(ctx context.Context) Userv1PtrOutput {
+	return o
+}
+
+type Userv1ArrayOutput struct{ *pulumi.OutputState }
+
+func (Userv1ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Userv1)(nil))
+}
+
+func (o Userv1ArrayOutput) ToUserv1ArrayOutput() Userv1ArrayOutput {
+	return o
+}
+
+func (o Userv1ArrayOutput) ToUserv1ArrayOutputWithContext(ctx context.Context) Userv1ArrayOutput {
+	return o
+}
+
+func (o Userv1ArrayOutput) Index(i pulumi.IntInput) Userv1Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Userv1 {
+		return vs[0].([]Userv1)[vs[1].(int)]
+	}).(Userv1Output)
+}
+
+type Userv1MapOutput struct{ *pulumi.OutputState }
+
+func (Userv1MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]Userv1)(nil))
+}
+
+func (o Userv1MapOutput) ToUserv1MapOutput() Userv1MapOutput {
+	return o
+}
+
+func (o Userv1MapOutput) ToUserv1MapOutputWithContext(ctx context.Context) Userv1MapOutput {
+	return o
+}
+
+func (o Userv1MapOutput) MapIndex(k pulumi.StringInput) Userv1Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Userv1 {
+		return vs[0].(map[string]Userv1)[vs[1].(string)]
+	}).(Userv1Output)
+}
+
 func init() {
 	pulumi.RegisterOutputType(Userv1Output{})
+	pulumi.RegisterOutputType(Userv1PtrOutput{})
+	pulumi.RegisterOutputType(Userv1ArrayOutput{})
+	pulumi.RegisterOutputType(Userv1MapOutput{})
 }

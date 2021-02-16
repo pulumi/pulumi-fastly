@@ -131,6 +131,85 @@ func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1OutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1Output)
 }
 
+func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
+	return i.ToServiceDictionaryItemsv1PtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1PtrOutput)
+}
+
+type ServiceDictionaryItemsv1PtrInput interface {
+	pulumi.Input
+
+	ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput
+	ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput
+}
+
+type serviceDictionaryItemsv1PtrType ServiceDictionaryItemsv1Args
+
+func (*serviceDictionaryItemsv1PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDictionaryItemsv1)(nil))
+}
+
+func (i *serviceDictionaryItemsv1PtrType) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
+	return i.ToServiceDictionaryItemsv1PtrOutputWithContext(context.Background())
+}
+
+func (i *serviceDictionaryItemsv1PtrType) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1PtrOutput)
+}
+
+// ServiceDictionaryItemsv1ArrayInput is an input type that accepts ServiceDictionaryItemsv1Array and ServiceDictionaryItemsv1ArrayOutput values.
+// You can construct a concrete instance of `ServiceDictionaryItemsv1ArrayInput` via:
+//
+//          ServiceDictionaryItemsv1Array{ ServiceDictionaryItemsv1Args{...} }
+type ServiceDictionaryItemsv1ArrayInput interface {
+	pulumi.Input
+
+	ToServiceDictionaryItemsv1ArrayOutput() ServiceDictionaryItemsv1ArrayOutput
+	ToServiceDictionaryItemsv1ArrayOutputWithContext(context.Context) ServiceDictionaryItemsv1ArrayOutput
+}
+
+type ServiceDictionaryItemsv1Array []ServiceDictionaryItemsv1Input
+
+func (ServiceDictionaryItemsv1Array) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ServiceDictionaryItemsv1)(nil))
+}
+
+func (i ServiceDictionaryItemsv1Array) ToServiceDictionaryItemsv1ArrayOutput() ServiceDictionaryItemsv1ArrayOutput {
+	return i.ToServiceDictionaryItemsv1ArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceDictionaryItemsv1Array) ToServiceDictionaryItemsv1ArrayOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1ArrayOutput)
+}
+
+// ServiceDictionaryItemsv1MapInput is an input type that accepts ServiceDictionaryItemsv1Map and ServiceDictionaryItemsv1MapOutput values.
+// You can construct a concrete instance of `ServiceDictionaryItemsv1MapInput` via:
+//
+//          ServiceDictionaryItemsv1Map{ "key": ServiceDictionaryItemsv1Args{...} }
+type ServiceDictionaryItemsv1MapInput interface {
+	pulumi.Input
+
+	ToServiceDictionaryItemsv1MapOutput() ServiceDictionaryItemsv1MapOutput
+	ToServiceDictionaryItemsv1MapOutputWithContext(context.Context) ServiceDictionaryItemsv1MapOutput
+}
+
+type ServiceDictionaryItemsv1Map map[string]ServiceDictionaryItemsv1Input
+
+func (ServiceDictionaryItemsv1Map) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ServiceDictionaryItemsv1)(nil))
+}
+
+func (i ServiceDictionaryItemsv1Map) ToServiceDictionaryItemsv1MapOutput() ServiceDictionaryItemsv1MapOutput {
+	return i.ToServiceDictionaryItemsv1MapOutputWithContext(context.Background())
+}
+
+func (i ServiceDictionaryItemsv1Map) ToServiceDictionaryItemsv1MapOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1MapOutput)
+}
+
 type ServiceDictionaryItemsv1Output struct {
 	*pulumi.OutputState
 }
@@ -147,6 +226,75 @@ func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1OutputWithCont
 	return o
 }
 
+func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
+	return o.ToServiceDictionaryItemsv1PtrOutputWithContext(context.Background())
+}
+
+func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
+	return o.ApplyT(func(v ServiceDictionaryItemsv1) *ServiceDictionaryItemsv1 {
+		return &v
+	}).(ServiceDictionaryItemsv1PtrOutput)
+}
+
+type ServiceDictionaryItemsv1PtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceDictionaryItemsv1PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDictionaryItemsv1)(nil))
+}
+
+func (o ServiceDictionaryItemsv1PtrOutput) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
+	return o
+}
+
+func (o ServiceDictionaryItemsv1PtrOutput) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
+	return o
+}
+
+type ServiceDictionaryItemsv1ArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceDictionaryItemsv1ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceDictionaryItemsv1)(nil))
+}
+
+func (o ServiceDictionaryItemsv1ArrayOutput) ToServiceDictionaryItemsv1ArrayOutput() ServiceDictionaryItemsv1ArrayOutput {
+	return o
+}
+
+func (o ServiceDictionaryItemsv1ArrayOutput) ToServiceDictionaryItemsv1ArrayOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1ArrayOutput {
+	return o
+}
+
+func (o ServiceDictionaryItemsv1ArrayOutput) Index(i pulumi.IntInput) ServiceDictionaryItemsv1Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceDictionaryItemsv1 {
+		return vs[0].([]ServiceDictionaryItemsv1)[vs[1].(int)]
+	}).(ServiceDictionaryItemsv1Output)
+}
+
+type ServiceDictionaryItemsv1MapOutput struct{ *pulumi.OutputState }
+
+func (ServiceDictionaryItemsv1MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ServiceDictionaryItemsv1)(nil))
+}
+
+func (o ServiceDictionaryItemsv1MapOutput) ToServiceDictionaryItemsv1MapOutput() ServiceDictionaryItemsv1MapOutput {
+	return o
+}
+
+func (o ServiceDictionaryItemsv1MapOutput) ToServiceDictionaryItemsv1MapOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1MapOutput {
+	return o
+}
+
+func (o ServiceDictionaryItemsv1MapOutput) MapIndex(k pulumi.StringInput) ServiceDictionaryItemsv1Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ServiceDictionaryItemsv1 {
+		return vs[0].(map[string]ServiceDictionaryItemsv1)[vs[1].(string)]
+	}).(ServiceDictionaryItemsv1Output)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceDictionaryItemsv1Output{})
+	pulumi.RegisterOutputType(ServiceDictionaryItemsv1PtrOutput{})
+	pulumi.RegisterOutputType(ServiceDictionaryItemsv1ArrayOutput{})
+	pulumi.RegisterOutputType(ServiceDictionaryItemsv1MapOutput{})
 }

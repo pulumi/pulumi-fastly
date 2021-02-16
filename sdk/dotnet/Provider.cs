@@ -59,8 +59,6 @@ namespace Pulumi.Fastly
 
         public ProviderArgs()
         {
-            ApiKey = Utilities.GetEnv("FASTLY_API_KEY");
-            BaseUrl = Utilities.GetEnv("FASTLY_API_URL") ?? "https://api.fastly.com";
         }
     }
 }

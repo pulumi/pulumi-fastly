@@ -9,8 +9,8 @@ let __config = new pulumi.Config("fastly");
 /**
  * Fastly API Key from https://app.fastly.com/#account
  */
-export let apiKey: string | undefined = __config.get("apiKey") || utilities.getEnv("FASTLY_API_KEY");
+export let apiKey: string | undefined = __config.get("apiKey");
 /**
  * Fastly API URL
  */
-export let baseUrl: string | undefined = __config.get("baseUrl") || (utilities.getEnv("FASTLY_API_URL") || "https://api.fastly.com");
+export let baseUrl: string | undefined = __config.get("baseUrl");

@@ -10,18 +10,10 @@ import (
 
 // Fastly API Key from https://app.fastly.com/#account
 func GetApiKey(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "fastly:apiKey")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "FASTLY_API_KEY").(string)
+	return config.Get(ctx, "fastly:apiKey")
 }
 
 // Fastly API URL
 func GetBaseUrl(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "fastly:baseUrl")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("https://api.fastly.com", nil, "FASTLY_API_URL").(string)
+	return config.Get(ctx, "fastly:baseUrl")
 }

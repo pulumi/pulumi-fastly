@@ -234,7 +234,8 @@ export class ServiceCompute extends pulumi.CustomResource {
     constructor(name: string, args: ServiceComputeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceComputeArgs | ServiceComputeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ServiceComputeState | undefined;
             inputs["activate"] = state ? state.activate : undefined;
             inputs["activeVersion"] = state ? state.activeVersion : undefined;
@@ -275,10 +276,10 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
-            if ((!args || args.domains === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
-            if ((!args || args.package === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.package === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'package'");
             }
             inputs["activate"] = args ? args.activate : undefined;
@@ -319,12 +320,8 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["activeVersion"] = undefined /*out*/;
             inputs["clonedVersion"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ServiceCompute.__pulumiType, name, inputs, opts);
     }

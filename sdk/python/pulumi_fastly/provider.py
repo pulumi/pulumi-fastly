@@ -48,11 +48,7 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if api_key is None:
-                api_key = _utilities.get_env('FASTLY_API_KEY')
             __props__['api_key'] = api_key
-            if base_url is None:
-                base_url = (_utilities.get_env('FASTLY_API_URL') or 'https://api.fastly.com')
             __props__['base_url'] = base_url
         super(Provider, __self__).__init__(
             'fastly',

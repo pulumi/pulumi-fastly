@@ -131,6 +131,85 @@ func (i *ServiceACLEntriesv1) ToServiceACLEntriesv1OutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1Output)
 }
 
+func (i *ServiceACLEntriesv1) ToServiceACLEntriesv1PtrOutput() ServiceACLEntriesv1PtrOutput {
+	return i.ToServiceACLEntriesv1PtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceACLEntriesv1) ToServiceACLEntriesv1PtrOutputWithContext(ctx context.Context) ServiceACLEntriesv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1PtrOutput)
+}
+
+type ServiceACLEntriesv1PtrInput interface {
+	pulumi.Input
+
+	ToServiceACLEntriesv1PtrOutput() ServiceACLEntriesv1PtrOutput
+	ToServiceACLEntriesv1PtrOutputWithContext(ctx context.Context) ServiceACLEntriesv1PtrOutput
+}
+
+type serviceACLEntriesv1PtrType ServiceACLEntriesv1Args
+
+func (*serviceACLEntriesv1PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceACLEntriesv1)(nil))
+}
+
+func (i *serviceACLEntriesv1PtrType) ToServiceACLEntriesv1PtrOutput() ServiceACLEntriesv1PtrOutput {
+	return i.ToServiceACLEntriesv1PtrOutputWithContext(context.Background())
+}
+
+func (i *serviceACLEntriesv1PtrType) ToServiceACLEntriesv1PtrOutputWithContext(ctx context.Context) ServiceACLEntriesv1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1PtrOutput)
+}
+
+// ServiceACLEntriesv1ArrayInput is an input type that accepts ServiceACLEntriesv1Array and ServiceACLEntriesv1ArrayOutput values.
+// You can construct a concrete instance of `ServiceACLEntriesv1ArrayInput` via:
+//
+//          ServiceACLEntriesv1Array{ ServiceACLEntriesv1Args{...} }
+type ServiceACLEntriesv1ArrayInput interface {
+	pulumi.Input
+
+	ToServiceACLEntriesv1ArrayOutput() ServiceACLEntriesv1ArrayOutput
+	ToServiceACLEntriesv1ArrayOutputWithContext(context.Context) ServiceACLEntriesv1ArrayOutput
+}
+
+type ServiceACLEntriesv1Array []ServiceACLEntriesv1Input
+
+func (ServiceACLEntriesv1Array) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ServiceACLEntriesv1)(nil))
+}
+
+func (i ServiceACLEntriesv1Array) ToServiceACLEntriesv1ArrayOutput() ServiceACLEntriesv1ArrayOutput {
+	return i.ToServiceACLEntriesv1ArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceACLEntriesv1Array) ToServiceACLEntriesv1ArrayOutputWithContext(ctx context.Context) ServiceACLEntriesv1ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1ArrayOutput)
+}
+
+// ServiceACLEntriesv1MapInput is an input type that accepts ServiceACLEntriesv1Map and ServiceACLEntriesv1MapOutput values.
+// You can construct a concrete instance of `ServiceACLEntriesv1MapInput` via:
+//
+//          ServiceACLEntriesv1Map{ "key": ServiceACLEntriesv1Args{...} }
+type ServiceACLEntriesv1MapInput interface {
+	pulumi.Input
+
+	ToServiceACLEntriesv1MapOutput() ServiceACLEntriesv1MapOutput
+	ToServiceACLEntriesv1MapOutputWithContext(context.Context) ServiceACLEntriesv1MapOutput
+}
+
+type ServiceACLEntriesv1Map map[string]ServiceACLEntriesv1Input
+
+func (ServiceACLEntriesv1Map) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ServiceACLEntriesv1)(nil))
+}
+
+func (i ServiceACLEntriesv1Map) ToServiceACLEntriesv1MapOutput() ServiceACLEntriesv1MapOutput {
+	return i.ToServiceACLEntriesv1MapOutputWithContext(context.Background())
+}
+
+func (i ServiceACLEntriesv1Map) ToServiceACLEntriesv1MapOutputWithContext(ctx context.Context) ServiceACLEntriesv1MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1MapOutput)
+}
+
 type ServiceACLEntriesv1Output struct {
 	*pulumi.OutputState
 }
@@ -147,6 +226,75 @@ func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1OutputWithContext(ctx co
 	return o
 }
 
+func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1PtrOutput() ServiceACLEntriesv1PtrOutput {
+	return o.ToServiceACLEntriesv1PtrOutputWithContext(context.Background())
+}
+
+func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1PtrOutputWithContext(ctx context.Context) ServiceACLEntriesv1PtrOutput {
+	return o.ApplyT(func(v ServiceACLEntriesv1) *ServiceACLEntriesv1 {
+		return &v
+	}).(ServiceACLEntriesv1PtrOutput)
+}
+
+type ServiceACLEntriesv1PtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceACLEntriesv1PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceACLEntriesv1)(nil))
+}
+
+func (o ServiceACLEntriesv1PtrOutput) ToServiceACLEntriesv1PtrOutput() ServiceACLEntriesv1PtrOutput {
+	return o
+}
+
+func (o ServiceACLEntriesv1PtrOutput) ToServiceACLEntriesv1PtrOutputWithContext(ctx context.Context) ServiceACLEntriesv1PtrOutput {
+	return o
+}
+
+type ServiceACLEntriesv1ArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceACLEntriesv1ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceACLEntriesv1)(nil))
+}
+
+func (o ServiceACLEntriesv1ArrayOutput) ToServiceACLEntriesv1ArrayOutput() ServiceACLEntriesv1ArrayOutput {
+	return o
+}
+
+func (o ServiceACLEntriesv1ArrayOutput) ToServiceACLEntriesv1ArrayOutputWithContext(ctx context.Context) ServiceACLEntriesv1ArrayOutput {
+	return o
+}
+
+func (o ServiceACLEntriesv1ArrayOutput) Index(i pulumi.IntInput) ServiceACLEntriesv1Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceACLEntriesv1 {
+		return vs[0].([]ServiceACLEntriesv1)[vs[1].(int)]
+	}).(ServiceACLEntriesv1Output)
+}
+
+type ServiceACLEntriesv1MapOutput struct{ *pulumi.OutputState }
+
+func (ServiceACLEntriesv1MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ServiceACLEntriesv1)(nil))
+}
+
+func (o ServiceACLEntriesv1MapOutput) ToServiceACLEntriesv1MapOutput() ServiceACLEntriesv1MapOutput {
+	return o
+}
+
+func (o ServiceACLEntriesv1MapOutput) ToServiceACLEntriesv1MapOutputWithContext(ctx context.Context) ServiceACLEntriesv1MapOutput {
+	return o
+}
+
+func (o ServiceACLEntriesv1MapOutput) MapIndex(k pulumi.StringInput) ServiceACLEntriesv1Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ServiceACLEntriesv1 {
+		return vs[0].(map[string]ServiceACLEntriesv1)[vs[1].(string)]
+	}).(ServiceACLEntriesv1Output)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceACLEntriesv1Output{})
+	pulumi.RegisterOutputType(ServiceACLEntriesv1PtrOutput{})
+	pulumi.RegisterOutputType(ServiceACLEntriesv1ArrayOutput{})
+	pulumi.RegisterOutputType(ServiceACLEntriesv1MapOutput{})
 }
