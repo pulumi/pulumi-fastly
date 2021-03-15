@@ -265,7 +265,7 @@ class ServiceComputeBackendArgs:
             pulumi.set(__self__, "ssl_client_key", ssl_client_key)
         if ssl_hostname is not None:
             warnings.warn("""Use ssl_cert_hostname and ssl_sni_hostname instead.""", DeprecationWarning)
-            pulumi.log.warn("ssl_hostname is deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.")
+            pulumi.log.warn("""ssl_hostname is deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.""")
         if ssl_hostname is not None:
             pulumi.set(__self__, "ssl_hostname", ssl_hostname)
         if ssl_sni_hostname is not None:
@@ -4259,7 +4259,7 @@ class Servicev1BackendArgs:
             pulumi.set(__self__, "ssl_client_key", ssl_client_key)
         if ssl_hostname is not None:
             warnings.warn("""Use ssl_cert_hostname and ssl_sni_hostname instead.""", DeprecationWarning)
-            pulumi.log.warn("ssl_hostname is deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.")
+            pulumi.log.warn("""ssl_hostname is deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.""")
         if ssl_hostname is not None:
             pulumi.set(__self__, "ssl_hostname", ssl_hostname)
         if ssl_sni_hostname is not None:
