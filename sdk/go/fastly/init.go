@@ -21,23 +21,24 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1":
-		r, err = NewServiceACLEntriesv1(ctx, name, nil, pulumi.URN_(urn))
+		r = &ServiceACLEntriesv1{}
 	case "fastly:index/serviceCompute:ServiceCompute":
-		r, err = NewServiceCompute(ctx, name, nil, pulumi.URN_(urn))
+		r = &ServiceCompute{}
 	case "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1":
-		r, err = NewServiceDictionaryItemsv1(ctx, name, nil, pulumi.URN_(urn))
+		r = &ServiceDictionaryItemsv1{}
 	case "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1":
-		r, err = NewServiceDynamicSnippetContentv1(ctx, name, nil, pulumi.URN_(urn))
+		r = &ServiceDynamicSnippetContentv1{}
 	case "fastly:index/serviceWafConfiguration:ServiceWafConfiguration":
-		r, err = NewServiceWafConfiguration(ctx, name, nil, pulumi.URN_(urn))
+		r = &ServiceWafConfiguration{}
 	case "fastly:index/servicev1:Servicev1":
-		r, err = NewServicev1(ctx, name, nil, pulumi.URN_(urn))
+		r = &Servicev1{}
 	case "fastly:index/userv1:Userv1":
-		r, err = NewUserv1(ctx, name, nil, pulumi.URN_(urn))
+		r = &Userv1{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -54,7 +55,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {

@@ -5,15 +5,892 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Servicev1']
+__all__ = ['Servicev1Args', 'Servicev1']
+
+@pulumi.input_type
+class Servicev1Args:
+    def __init__(__self__, *,
+                 domains: pulumi.Input[Sequence[pulumi.Input['Servicev1DomainArgs']]],
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1AclArgs']]]] = None,
+                 activate: Optional[pulumi.Input[bool]] = None,
+                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]] = None,
+                 bigqueryloggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BigqueryloggingArgs']]]] = None,
+                 blobstorageloggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BlobstorageloggingArgs']]]] = None,
+                 cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1CacheSettingArgs']]]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1ConditionArgs']]]] = None,
+                 default_host: Optional[pulumi.Input[str]] = None,
+                 default_ttl: Optional[pulumi.Input[int]] = None,
+                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DictionaryArgs']]]] = None,
+                 directors: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DirectorArgs']]]] = None,
+                 dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DynamicsnippetArgs']]]] = None,
+                 force_destroy: Optional[pulumi.Input[bool]] = None,
+                 gcsloggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1GcsloggingArgs']]]] = None,
+                 gzips: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1GzipArgs']]]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HeaderArgs']]]] = None,
+                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HealthcheckArgs']]]] = None,
+                 httpsloggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HttpsloggingArgs']]]] = None,
+                 logentries: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LogentryArgs']]]] = None,
+                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingCloudfileArgs']]]] = None,
+                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDatadogArgs']]]] = None,
+                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDigitaloceanArgs']]]] = None,
+                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingElasticsearchArgs']]]] = None,
+                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingFtpArgs']]]] = None,
+                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingGooglepubsubArgs']]]] = None,
+                 logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHerokuArgs']]]] = None,
+                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHoneycombArgs']]]] = None,
+                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKafkaArgs']]]] = None,
+                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKineseArgs']]]] = None,
+                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogglyArgs']]]] = None,
+                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogshuttleArgs']]]] = None,
+                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingNewrelicArgs']]]] = None,
+                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingOpenstackArgs']]]] = None,
+                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingScalyrArgs']]]] = None,
+                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingSftpArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1PapertrailArgs']]]] = None,
+                 request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1RequestSettingArgs']]]] = None,
+                 response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1ResponseObjectArgs']]]] = None,
+                 s3loggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1S3loggingArgs']]]] = None,
+                 snippets: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SnippetArgs']]]] = None,
+                 splunks: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SplunkArgs']]]] = None,
+                 sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]]] = None,
+                 syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SyslogArgs']]]] = None,
+                 vcls: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1VclArgs']]]] = None,
+                 version_comment: Optional[pulumi.Input[str]] = None,
+                 waf: Optional[pulumi.Input['Servicev1WafArgs']] = None):
+        """
+        The set of arguments for constructing a Servicev1 resource.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1DomainArgs']]] domains: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1AclArgs']]] acls: A set of ACL configuration blocks.
+               Defined below.
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]] backends: A set of Backends to service requests from your Domains.
+               Defined below. Backends must be defined in this argument, or defined in the
+               `vcl` argument below
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1BigqueryloggingArgs']]] bigqueryloggings: A BigQuery endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1BlobstorageloggingArgs']]] blobstorageloggings: An Azure Blob Storage endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1CacheSettingArgs']]] cache_settings: A set of Cache Settings, allowing you to override.
+               Defined below.
+        :param pulumi.Input[str] comment: An optional comment about the Director.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1ConditionArgs']]] conditions: A set of conditions to add logic to any basic
+               configuration object in this service. Defined below.
+        :param pulumi.Input[str] default_host: Sets the host header.
+        :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for
+               requests.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1DictionaryArgs']]] dictionaries: A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1DirectorArgs']]] directors: A director to allow more control over balancing traffic over backends.
+               when an item is not to be cached based on an above `condition`.
+               Defined below
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1DynamicsnippetArgs']]] dynamicsnippets: A set of custom, "dynamic" VCL Snippet configuration blocks.
+               Defined below.
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In
+               order to destroy the Service, set `force_destroy` to `true`. Default `false`.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1GcsloggingArgs']]] gcsloggings: A gcs endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1GzipArgs']]] gzips: A set of gzip rules to control automatic gzipping of
+               content. Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1HeaderArgs']]] headers: A set of Headers to manipulate for each request.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1HealthcheckArgs']]] healthchecks: Name of a defined `healthcheck` to assign to this backend.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1HttpsloggingArgs']]] httpsloggings: An HTTPS endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LogentryArgs']]] logentries: A logentries endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingCloudfileArgs']]] logging_cloudfiles: A Rackspace Cloud Files endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDatadogArgs']]] logging_datadogs: A Datadog endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDigitaloceanArgs']]] logging_digitaloceans: A DigitalOcean Spaces endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingElasticsearchArgs']]] logging_elasticsearches: An Elasticsearch endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingFtpArgs']]] logging_ftps: An FTP endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingGooglepubsubArgs']]] logging_googlepubsubs: A Google Cloud Pub/Sub endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHerokuArgs']]] logging_heroku: A Heroku endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHoneycombArgs']]] logging_honeycombs: A Honeycomb endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKafkaArgs']]] logging_kafkas: A Kafka endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKineseArgs']]] logging_kineses: A Kinesis endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogglyArgs']]] logging_logglies: A Loggly endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogshuttleArgs']]] logging_logshuttles: A Log Shuttle endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingNewrelicArgs']]] logging_newrelics: A New Relic endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingOpenstackArgs']]] logging_openstacks: An OpenStack endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingScalyrArgs']]] logging_scalyrs: A Scalyr endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingSftpArgs']]] logging_sftps: An SFTP endpoint to send streaming logs to.
+               Defined below.
+        :param pulumi.Input[str] name: A unique name to identify this dictionary.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1PapertrailArgs']]] papertrails: A Papertrail endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1RequestSettingArgs']]] request_settings: A set of Request modifiers.
+               Defined below
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1ResponseObjectArgs']]] response_objects: The name of the response object used by the Web Application Firewall.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1S3loggingArgs']]] s3loggings: A set of S3 Buckets to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1SnippetArgs']]] snippets: A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1SplunkArgs']]] splunks: A Splunk endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]] sumologics: A Sumologic endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1SyslogArgs']]] syslogs: A syslog endpoint to send streaming logs too.
+               Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['Servicev1VclArgs']]] vcls: A set of custom VCL configuration blocks.
+               Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+        :param pulumi.Input[str] version_comment: Description field for the version.
+        :param pulumi.Input['Servicev1WafArgs'] waf: A WAF configuration block.
+               Defined below.
+        """
+        pulumi.set(__self__, "domains", domains)
+        if acls is not None:
+            pulumi.set(__self__, "acls", acls)
+        if activate is not None:
+            pulumi.set(__self__, "activate", activate)
+        if backends is not None:
+            pulumi.set(__self__, "backends", backends)
+        if bigqueryloggings is not None:
+            pulumi.set(__self__, "bigqueryloggings", bigqueryloggings)
+        if blobstorageloggings is not None:
+            pulumi.set(__self__, "blobstorageloggings", blobstorageloggings)
+        if cache_settings is not None:
+            pulumi.set(__self__, "cache_settings", cache_settings)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if default_host is not None:
+            pulumi.set(__self__, "default_host", default_host)
+        if default_ttl is not None:
+            pulumi.set(__self__, "default_ttl", default_ttl)
+        if dictionaries is not None:
+            pulumi.set(__self__, "dictionaries", dictionaries)
+        if directors is not None:
+            pulumi.set(__self__, "directors", directors)
+        if dynamicsnippets is not None:
+            pulumi.set(__self__, "dynamicsnippets", dynamicsnippets)
+        if force_destroy is not None:
+            pulumi.set(__self__, "force_destroy", force_destroy)
+        if gcsloggings is not None:
+            pulumi.set(__self__, "gcsloggings", gcsloggings)
+        if gzips is not None:
+            pulumi.set(__self__, "gzips", gzips)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if healthchecks is not None:
+            pulumi.set(__self__, "healthchecks", healthchecks)
+        if httpsloggings is not None:
+            pulumi.set(__self__, "httpsloggings", httpsloggings)
+        if logentries is not None:
+            pulumi.set(__self__, "logentries", logentries)
+        if logging_cloudfiles is not None:
+            pulumi.set(__self__, "logging_cloudfiles", logging_cloudfiles)
+        if logging_datadogs is not None:
+            pulumi.set(__self__, "logging_datadogs", logging_datadogs)
+        if logging_digitaloceans is not None:
+            pulumi.set(__self__, "logging_digitaloceans", logging_digitaloceans)
+        if logging_elasticsearches is not None:
+            pulumi.set(__self__, "logging_elasticsearches", logging_elasticsearches)
+        if logging_ftps is not None:
+            pulumi.set(__self__, "logging_ftps", logging_ftps)
+        if logging_googlepubsubs is not None:
+            pulumi.set(__self__, "logging_googlepubsubs", logging_googlepubsubs)
+        if logging_heroku is not None:
+            pulumi.set(__self__, "logging_heroku", logging_heroku)
+        if logging_honeycombs is not None:
+            pulumi.set(__self__, "logging_honeycombs", logging_honeycombs)
+        if logging_kafkas is not None:
+            pulumi.set(__self__, "logging_kafkas", logging_kafkas)
+        if logging_kineses is not None:
+            pulumi.set(__self__, "logging_kineses", logging_kineses)
+        if logging_logglies is not None:
+            pulumi.set(__self__, "logging_logglies", logging_logglies)
+        if logging_logshuttles is not None:
+            pulumi.set(__self__, "logging_logshuttles", logging_logshuttles)
+        if logging_newrelics is not None:
+            pulumi.set(__self__, "logging_newrelics", logging_newrelics)
+        if logging_openstacks is not None:
+            pulumi.set(__self__, "logging_openstacks", logging_openstacks)
+        if logging_scalyrs is not None:
+            pulumi.set(__self__, "logging_scalyrs", logging_scalyrs)
+        if logging_sftps is not None:
+            pulumi.set(__self__, "logging_sftps", logging_sftps)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if papertrails is not None:
+            pulumi.set(__self__, "papertrails", papertrails)
+        if request_settings is not None:
+            pulumi.set(__self__, "request_settings", request_settings)
+        if response_objects is not None:
+            pulumi.set(__self__, "response_objects", response_objects)
+        if s3loggings is not None:
+            pulumi.set(__self__, "s3loggings", s3loggings)
+        if snippets is not None:
+            pulumi.set(__self__, "snippets", snippets)
+        if splunks is not None:
+            pulumi.set(__self__, "splunks", splunks)
+        if sumologics is not None:
+            pulumi.set(__self__, "sumologics", sumologics)
+        if syslogs is not None:
+            pulumi.set(__self__, "syslogs", syslogs)
+        if vcls is not None:
+            pulumi.set(__self__, "vcls", vcls)
+        if version_comment is not None:
+            pulumi.set(__self__, "version_comment", version_comment)
+        if waf is not None:
+            pulumi.set(__self__, "waf", waf)
+
+    @property
+    @pulumi.getter
+    def domains(self) -> pulumi.Input[Sequence[pulumi.Input['Servicev1DomainArgs']]]:
+        """
+        The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        """
+        return pulumi.get(self, "domains")
+
+    @domains.setter
+    def domains(self, value: pulumi.Input[Sequence[pulumi.Input['Servicev1DomainArgs']]]):
+        pulumi.set(self, "domains", value)
+
+    @property
+    @pulumi.getter
+    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1AclArgs']]]]:
+        """
+        A set of ACL configuration blocks.
+        Defined below.
+        """
+        return pulumi.get(self, "acls")
+
+    @acls.setter
+    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1AclArgs']]]]):
+        pulumi.set(self, "acls", value)
+
+    @property
+    @pulumi.getter
+    def activate(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+        """
+        return pulumi.get(self, "activate")
+
+    @activate.setter
+    def activate(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "activate", value)
+
+    @property
+    @pulumi.getter
+    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]]:
+        """
+        A set of Backends to service requests from your Domains.
+        Defined below. Backends must be defined in this argument, or defined in the
+        `vcl` argument below
+        """
+        return pulumi.get(self, "backends")
+
+    @backends.setter
+    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]]):
+        pulumi.set(self, "backends", value)
+
+    @property
+    @pulumi.getter
+    def bigqueryloggings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BigqueryloggingArgs']]]]:
+        """
+        A BigQuery endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "bigqueryloggings")
+
+    @bigqueryloggings.setter
+    def bigqueryloggings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BigqueryloggingArgs']]]]):
+        pulumi.set(self, "bigqueryloggings", value)
+
+    @property
+    @pulumi.getter
+    def blobstorageloggings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BlobstorageloggingArgs']]]]:
+        """
+        An Azure Blob Storage endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "blobstorageloggings")
+
+    @blobstorageloggings.setter
+    def blobstorageloggings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BlobstorageloggingArgs']]]]):
+        pulumi.set(self, "blobstorageloggings", value)
+
+    @property
+    @pulumi.getter(name="cacheSettings")
+    def cache_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1CacheSettingArgs']]]]:
+        """
+        A set of Cache Settings, allowing you to override.
+        Defined below.
+        """
+        return pulumi.get(self, "cache_settings")
+
+    @cache_settings.setter
+    def cache_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1CacheSettingArgs']]]]):
+        pulumi.set(self, "cache_settings", value)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional comment about the Director.
+        """
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1ConditionArgs']]]]:
+        """
+        A set of conditions to add logic to any basic
+        configuration object in this service. Defined below.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1ConditionArgs']]]]):
+        pulumi.set(self, "conditions", value)
+
+    @property
+    @pulumi.getter(name="defaultHost")
+    def default_host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets the host header.
+        """
+        return pulumi.get(self, "default_host")
+
+    @default_host.setter
+    def default_host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_host", value)
+
+    @property
+    @pulumi.getter(name="defaultTtl")
+    def default_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default Time-to-live (TTL) for
+        requests.
+        """
+        return pulumi.get(self, "default_ttl")
+
+    @default_ttl.setter
+    def default_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_ttl", value)
+
+    @property
+    @pulumi.getter
+    def dictionaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DictionaryArgs']]]]:
+        """
+        A set of dictionaries that allow the storing of key values pair for use within VCL functions.
+        Defined below.
+        """
+        return pulumi.get(self, "dictionaries")
+
+    @dictionaries.setter
+    def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DictionaryArgs']]]]):
+        pulumi.set(self, "dictionaries", value)
+
+    @property
+    @pulumi.getter
+    def directors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DirectorArgs']]]]:
+        """
+        A director to allow more control over balancing traffic over backends.
+        when an item is not to be cached based on an above `condition`.
+        Defined below
+        """
+        return pulumi.get(self, "directors")
+
+    @directors.setter
+    def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DirectorArgs']]]]):
+        pulumi.set(self, "directors", value)
+
+    @property
+    @pulumi.getter
+    def dynamicsnippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DynamicsnippetArgs']]]]:
+        """
+        A set of custom, "dynamic" VCL Snippet configuration blocks.
+        Defined below.
+        """
+        return pulumi.get(self, "dynamicsnippets")
+
+    @dynamicsnippets.setter
+    def dynamicsnippets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1DynamicsnippetArgs']]]]):
+        pulumi.set(self, "dynamicsnippets", value)
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Services that are active cannot be destroyed. In
+        order to destroy the Service, set `force_destroy` to `true`. Default `false`.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @force_destroy.setter
+    def force_destroy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_destroy", value)
+
+    @property
+    @pulumi.getter
+    def gcsloggings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1GcsloggingArgs']]]]:
+        """
+        A gcs endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "gcsloggings")
+
+    @gcsloggings.setter
+    def gcsloggings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1GcsloggingArgs']]]]):
+        pulumi.set(self, "gcsloggings", value)
+
+    @property
+    @pulumi.getter
+    def gzips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1GzipArgs']]]]:
+        """
+        A set of gzip rules to control automatic gzipping of
+        content. Defined below.
+        """
+        return pulumi.get(self, "gzips")
+
+    @gzips.setter
+    def gzips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1GzipArgs']]]]):
+        pulumi.set(self, "gzips", value)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HeaderArgs']]]]:
+        """
+        A set of Headers to manipulate for each request.
+        Defined below.
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HeaderArgs']]]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter
+    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HealthcheckArgs']]]]:
+        """
+        Name of a defined `healthcheck` to assign to this backend.
+        """
+        return pulumi.get(self, "healthchecks")
+
+    @healthchecks.setter
+    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HealthcheckArgs']]]]):
+        pulumi.set(self, "healthchecks", value)
+
+    @property
+    @pulumi.getter
+    def httpsloggings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HttpsloggingArgs']]]]:
+        """
+        An HTTPS endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "httpsloggings")
+
+    @httpsloggings.setter
+    def httpsloggings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1HttpsloggingArgs']]]]):
+        pulumi.set(self, "httpsloggings", value)
+
+    @property
+    @pulumi.getter
+    def logentries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LogentryArgs']]]]:
+        """
+        A logentries endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "logentries")
+
+    @logentries.setter
+    def logentries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LogentryArgs']]]]):
+        pulumi.set(self, "logentries", value)
+
+    @property
+    @pulumi.getter(name="loggingCloudfiles")
+    def logging_cloudfiles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingCloudfileArgs']]]]:
+        """
+        A Rackspace Cloud Files endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_cloudfiles")
+
+    @logging_cloudfiles.setter
+    def logging_cloudfiles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingCloudfileArgs']]]]):
+        pulumi.set(self, "logging_cloudfiles", value)
+
+    @property
+    @pulumi.getter(name="loggingDatadogs")
+    def logging_datadogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDatadogArgs']]]]:
+        """
+        A Datadog endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_datadogs")
+
+    @logging_datadogs.setter
+    def logging_datadogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDatadogArgs']]]]):
+        pulumi.set(self, "logging_datadogs", value)
+
+    @property
+    @pulumi.getter(name="loggingDigitaloceans")
+    def logging_digitaloceans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDigitaloceanArgs']]]]:
+        """
+        A DigitalOcean Spaces endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_digitaloceans")
+
+    @logging_digitaloceans.setter
+    def logging_digitaloceans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingDigitaloceanArgs']]]]):
+        pulumi.set(self, "logging_digitaloceans", value)
+
+    @property
+    @pulumi.getter(name="loggingElasticsearches")
+    def logging_elasticsearches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingElasticsearchArgs']]]]:
+        """
+        An Elasticsearch endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_elasticsearches")
+
+    @logging_elasticsearches.setter
+    def logging_elasticsearches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingElasticsearchArgs']]]]):
+        pulumi.set(self, "logging_elasticsearches", value)
+
+    @property
+    @pulumi.getter(name="loggingFtps")
+    def logging_ftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingFtpArgs']]]]:
+        """
+        An FTP endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_ftps")
+
+    @logging_ftps.setter
+    def logging_ftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingFtpArgs']]]]):
+        pulumi.set(self, "logging_ftps", value)
+
+    @property
+    @pulumi.getter(name="loggingGooglepubsubs")
+    def logging_googlepubsubs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingGooglepubsubArgs']]]]:
+        """
+        A Google Cloud Pub/Sub endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_googlepubsubs")
+
+    @logging_googlepubsubs.setter
+    def logging_googlepubsubs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingGooglepubsubArgs']]]]):
+        pulumi.set(self, "logging_googlepubsubs", value)
+
+    @property
+    @pulumi.getter(name="loggingHeroku")
+    def logging_heroku(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHerokuArgs']]]]:
+        """
+        A Heroku endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_heroku")
+
+    @logging_heroku.setter
+    def logging_heroku(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHerokuArgs']]]]):
+        pulumi.set(self, "logging_heroku", value)
+
+    @property
+    @pulumi.getter(name="loggingHoneycombs")
+    def logging_honeycombs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHoneycombArgs']]]]:
+        """
+        A Honeycomb endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_honeycombs")
+
+    @logging_honeycombs.setter
+    def logging_honeycombs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingHoneycombArgs']]]]):
+        pulumi.set(self, "logging_honeycombs", value)
+
+    @property
+    @pulumi.getter(name="loggingKafkas")
+    def logging_kafkas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKafkaArgs']]]]:
+        """
+        A Kafka endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_kafkas")
+
+    @logging_kafkas.setter
+    def logging_kafkas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKafkaArgs']]]]):
+        pulumi.set(self, "logging_kafkas", value)
+
+    @property
+    @pulumi.getter(name="loggingKineses")
+    def logging_kineses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKineseArgs']]]]:
+        """
+        A Kinesis endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_kineses")
+
+    @logging_kineses.setter
+    def logging_kineses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingKineseArgs']]]]):
+        pulumi.set(self, "logging_kineses", value)
+
+    @property
+    @pulumi.getter(name="loggingLogglies")
+    def logging_logglies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogglyArgs']]]]:
+        """
+        A Loggly endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_logglies")
+
+    @logging_logglies.setter
+    def logging_logglies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogglyArgs']]]]):
+        pulumi.set(self, "logging_logglies", value)
+
+    @property
+    @pulumi.getter(name="loggingLogshuttles")
+    def logging_logshuttles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogshuttleArgs']]]]:
+        """
+        A Log Shuttle endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_logshuttles")
+
+    @logging_logshuttles.setter
+    def logging_logshuttles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingLogshuttleArgs']]]]):
+        pulumi.set(self, "logging_logshuttles", value)
+
+    @property
+    @pulumi.getter(name="loggingNewrelics")
+    def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingNewrelicArgs']]]]:
+        """
+        A New Relic endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_newrelics")
+
+    @logging_newrelics.setter
+    def logging_newrelics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingNewrelicArgs']]]]):
+        pulumi.set(self, "logging_newrelics", value)
+
+    @property
+    @pulumi.getter(name="loggingOpenstacks")
+    def logging_openstacks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingOpenstackArgs']]]]:
+        """
+        An OpenStack endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_openstacks")
+
+    @logging_openstacks.setter
+    def logging_openstacks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingOpenstackArgs']]]]):
+        pulumi.set(self, "logging_openstacks", value)
+
+    @property
+    @pulumi.getter(name="loggingScalyrs")
+    def logging_scalyrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingScalyrArgs']]]]:
+        """
+        A Scalyr endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_scalyrs")
+
+    @logging_scalyrs.setter
+    def logging_scalyrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingScalyrArgs']]]]):
+        pulumi.set(self, "logging_scalyrs", value)
+
+    @property
+    @pulumi.getter(name="loggingSftps")
+    def logging_sftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingSftpArgs']]]]:
+        """
+        An SFTP endpoint to send streaming logs to.
+        Defined below.
+        """
+        return pulumi.get(self, "logging_sftps")
+
+    @logging_sftps.setter
+    def logging_sftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1LoggingSftpArgs']]]]):
+        pulumi.set(self, "logging_sftps", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique name to identify this dictionary.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def papertrails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1PapertrailArgs']]]]:
+        """
+        A Papertrail endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "papertrails")
+
+    @papertrails.setter
+    def papertrails(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1PapertrailArgs']]]]):
+        pulumi.set(self, "papertrails", value)
+
+    @property
+    @pulumi.getter(name="requestSettings")
+    def request_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1RequestSettingArgs']]]]:
+        """
+        A set of Request modifiers.
+        Defined below
+        """
+        return pulumi.get(self, "request_settings")
+
+    @request_settings.setter
+    def request_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1RequestSettingArgs']]]]):
+        pulumi.set(self, "request_settings", value)
+
+    @property
+    @pulumi.getter(name="responseObjects")
+    def response_objects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1ResponseObjectArgs']]]]:
+        """
+        The name of the response object used by the Web Application Firewall.
+        """
+        return pulumi.get(self, "response_objects")
+
+    @response_objects.setter
+    def response_objects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1ResponseObjectArgs']]]]):
+        pulumi.set(self, "response_objects", value)
+
+    @property
+    @pulumi.getter
+    def s3loggings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1S3loggingArgs']]]]:
+        """
+        A set of S3 Buckets to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "s3loggings")
+
+    @s3loggings.setter
+    def s3loggings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1S3loggingArgs']]]]):
+        pulumi.set(self, "s3loggings", value)
+
+    @property
+    @pulumi.getter
+    def snippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SnippetArgs']]]]:
+        """
+        A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
+        Defined below.
+        """
+        return pulumi.get(self, "snippets")
+
+    @snippets.setter
+    def snippets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SnippetArgs']]]]):
+        pulumi.set(self, "snippets", value)
+
+    @property
+    @pulumi.getter
+    def splunks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SplunkArgs']]]]:
+        """
+        A Splunk endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "splunks")
+
+    @splunks.setter
+    def splunks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SplunkArgs']]]]):
+        pulumi.set(self, "splunks", value)
+
+    @property
+    @pulumi.getter
+    def sumologics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]]]:
+        """
+        A Sumologic endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "sumologics")
+
+    @sumologics.setter
+    def sumologics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]]]):
+        pulumi.set(self, "sumologics", value)
+
+    @property
+    @pulumi.getter
+    def syslogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SyslogArgs']]]]:
+        """
+        A syslog endpoint to send streaming logs too.
+        Defined below.
+        """
+        return pulumi.get(self, "syslogs")
+
+    @syslogs.setter
+    def syslogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SyslogArgs']]]]):
+        pulumi.set(self, "syslogs", value)
+
+    @property
+    @pulumi.getter
+    def vcls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1VclArgs']]]]:
+        """
+        A set of custom VCL configuration blocks.
+        Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
+        """
+        return pulumi.get(self, "vcls")
+
+    @vcls.setter
+    def vcls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1VclArgs']]]]):
+        pulumi.set(self, "vcls", value)
+
+    @property
+    @pulumi.getter(name="versionComment")
+    def version_comment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description field for the version.
+        """
+        return pulumi.get(self, "version_comment")
+
+    @version_comment.setter
+    def version_comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version_comment", value)
+
+    @property
+    @pulumi.getter
+    def waf(self) -> Optional[pulumi.Input['Servicev1WafArgs']]:
+        """
+        A WAF configuration block.
+        Defined below.
+        """
+        return pulumi.get(self, "waf")
+
+    @waf.setter
+    def waf(self, value: Optional[pulumi.Input['Servicev1WafArgs']]):
+        pulumi.set(self, "waf", value)
 
 
 class Servicev1(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -173,6 +1050,88 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['Servicev1WafArgs']] waf: A WAF configuration block.
                Defined below.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Servicev1Args,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Fastly Service can be imported using their service ID, e.g.
+
+        ```sh
+         $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param Servicev1Args args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(Servicev1Args, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1AclArgs']]]]] = None,
+                 activate: Optional[pulumi.Input[bool]] = None,
+                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1BackendArgs']]]]] = None,
+                 bigqueryloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1BigqueryloggingArgs']]]]] = None,
+                 blobstorageloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1BlobstorageloggingArgs']]]]] = None,
+                 cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1CacheSettingArgs']]]]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1ConditionArgs']]]]] = None,
+                 default_host: Optional[pulumi.Input[str]] = None,
+                 default_ttl: Optional[pulumi.Input[int]] = None,
+                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1DictionaryArgs']]]]] = None,
+                 directors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1DirectorArgs']]]]] = None,
+                 domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1DomainArgs']]]]] = None,
+                 dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1DynamicsnippetArgs']]]]] = None,
+                 force_destroy: Optional[pulumi.Input[bool]] = None,
+                 gcsloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1GcsloggingArgs']]]]] = None,
+                 gzips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1GzipArgs']]]]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1HeaderArgs']]]]] = None,
+                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1HealthcheckArgs']]]]] = None,
+                 httpsloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1HttpsloggingArgs']]]]] = None,
+                 logentries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LogentryArgs']]]]] = None,
+                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingCloudfileArgs']]]]] = None,
+                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingDatadogArgs']]]]] = None,
+                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingDigitaloceanArgs']]]]] = None,
+                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingElasticsearchArgs']]]]] = None,
+                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingFtpArgs']]]]] = None,
+                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingGooglepubsubArgs']]]]] = None,
+                 logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingHerokuArgs']]]]] = None,
+                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingHoneycombArgs']]]]] = None,
+                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKafkaArgs']]]]] = None,
+                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingKineseArgs']]]]] = None,
+                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogglyArgs']]]]] = None,
+                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingLogshuttleArgs']]]]] = None,
+                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingNewrelicArgs']]]]] = None,
+                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingOpenstackArgs']]]]] = None,
+                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingScalyrArgs']]]]] = None,
+                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1LoggingSftpArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1PapertrailArgs']]]]] = None,
+                 request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1RequestSettingArgs']]]]] = None,
+                 response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1ResponseObjectArgs']]]]] = None,
+                 s3loggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1S3loggingArgs']]]]] = None,
+                 snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SnippetArgs']]]]] = None,
+                 splunks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SplunkArgs']]]]] = None,
+                 sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SumologicArgs']]]]] = None,
+                 syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SyslogArgs']]]]] = None,
+                 vcls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]]] = None,
+                 version_comment: Optional[pulumi.Input[str]] = None,
+                 waf: Optional[pulumi.Input[pulumi.InputType['Servicev1WafArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
