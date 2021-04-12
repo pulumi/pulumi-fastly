@@ -5,15 +5,69 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['ServiceACLEntriesv1']
+__all__ = ['ServiceACLEntriesv1Args', 'ServiceACLEntriesv1']
+
+@pulumi.input_type
+class ServiceACLEntriesv1Args:
+    def __init__(__self__, *,
+                 acl_id: pulumi.Input[str],
+                 service_id: pulumi.Input[str],
+                 entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]] = None):
+        """
+        The set of arguments for constructing a ServiceACLEntriesv1 resource.
+        :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
+        :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: A Set ACL entries that are applied to the service. Defined below
+        """
+        pulumi.set(__self__, "acl_id", acl_id)
+        pulumi.set(__self__, "service_id", service_id)
+        if entries is not None:
+            pulumi.set(__self__, "entries", entries)
+
+    @property
+    @pulumi.getter(name="aclId")
+    def acl_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the ACL that the items belong to
+        """
+        return pulumi.get(self, "acl_id")
+
+    @acl_id.setter
+    def acl_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "acl_id", value)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the Service that the ACL belongs to
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_id", value)
+
+    @property
+    @pulumi.getter
+    def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]:
+        """
+        A Set ACL entries that are applied to the service. Defined below
+        """
+        return pulumi.get(self, "entries")
+
+    @entries.setter
+    def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]):
+        pulumi.set(self, "entries", value)
 
 
 class ServiceACLEntriesv1(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -42,6 +96,46 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: A Set ACL entries that are applied to the service. Defined below
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ServiceACLEntriesv1Args,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
+
+        ```sh
+         $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+        ```
+
+         If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+
+         The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
+
+        :param str resource_name: The name of the resource.
+        :param ServiceACLEntriesv1Args args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ServiceACLEntriesv1Args, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 acl_id: Optional[pulumi.Input[str]] = None,
+                 entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

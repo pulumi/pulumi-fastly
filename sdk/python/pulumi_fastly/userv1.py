@@ -5,13 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Userv1']
+__all__ = ['Userv1Args', 'Userv1']
+
+@pulumi.input_type
+class Userv1Args:
+    def __init__(__self__, *,
+                 login: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Userv1 resource.
+        :param pulumi.Input[str] login: The email address, which is the login name, of the User.
+        :param pulumi.Input[str] name: The real life name of the user.
+        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        """
+        pulumi.set(__self__, "login", login)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter
+    def login(self) -> pulumi.Input[str]:
+        """
+        The email address, which is the login name, of the User.
+        """
+        return pulumi.get(self, "login")
+
+    @login.setter
+    def login(self, value: pulumi.Input[str]):
+        pulumi.set(self, "login", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The real life name of the user.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
 
 
 class Userv1(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -49,6 +104,55 @@ class Userv1(pulumi.CustomResource):
         :param pulumi.Input[str] name: The real life name of the user.
         :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Userv1Args,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.
+
+        The User resource requires a login and name, and optionally a role.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.Userv1("demo", login="demo@example.com")
+        ```
+
+        ## Import
+
+        A Fastly User can be imported using their user ID, e.g.
+
+        ```sh
+         $ pulumi import fastly:index/userv1:Userv1 demo xxxxxxxxxxxxxxxxxxxx
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param Userv1Args args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(Userv1Args, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 login: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

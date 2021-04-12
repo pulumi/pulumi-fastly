@@ -5,13 +5,66 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['ServiceDynamicSnippetContentv1']
+__all__ = ['ServiceDynamicSnippetContentv1Args', 'ServiceDynamicSnippetContentv1']
+
+@pulumi.input_type
+class ServiceDynamicSnippetContentv1Args:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 service_id: pulumi.Input[str],
+                 snippet_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a ServiceDynamicSnippetContentv1 resource.
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does.
+        :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
+        :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "snippet_id", snippet_id)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        """
+        The VCL code that specifies exactly what the snippet does.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the service that the dynamic snippet belongs to
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_id", value)
+
+    @property
+    @pulumi.getter(name="snippetId")
+    def snippet_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the dynamic snippet that the content belong to
+        """
+        return pulumi.get(self, "snippet_id")
+
+    @snippet_id.setter
+    def snippet_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "snippet_id", value)
 
 
 class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -38,6 +91,44 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
         :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ServiceDynamicSnippetContentv1Args,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content_v1.content` The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
+
+        ```sh
+         $ pulumi import fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1 content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+        ```
+
+         If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content_v1.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content_v1.content
+
+        :param str resource_name: The name of the resource.
+        :param ServiceDynamicSnippetContentv1Args args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ServiceDynamicSnippetContentv1Args, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 content: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
+                 snippet_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

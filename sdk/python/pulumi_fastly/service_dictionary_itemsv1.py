@@ -5,13 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['ServiceDictionaryItemsv1']
+__all__ = ['ServiceDictionaryItemsv1Args', 'ServiceDictionaryItemsv1']
+
+@pulumi.input_type
+class ServiceDictionaryItemsv1Args:
+    def __init__(__self__, *,
+                 dictionary_id: pulumi.Input[str],
+                 service_id: pulumi.Input[str],
+                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        The set of arguments for constructing a ServiceDictionaryItemsv1 resource.
+        :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
+        :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
+        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
+        """
+        pulumi.set(__self__, "dictionary_id", dictionary_id)
+        pulumi.set(__self__, "service_id", service_id)
+        if items is not None:
+            pulumi.set(__self__, "items", items)
+
+    @property
+    @pulumi.getter(name="dictionaryId")
+    def dictionary_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the dictionary that the items belong to
+        """
+        return pulumi.get(self, "dictionary_id")
+
+    @dictionary_id.setter
+    def dictionary_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "dictionary_id", value)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the service that the dictionary belongs to
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_id", value)
+
+    @property
+    @pulumi.getter
+    def items(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        A map representing an entry in the dictionary, (key/value)
+        """
+        return pulumi.get(self, "items")
+
+    @items.setter
+    def items(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "items", value)
 
 
 class ServiceDictionaryItemsv1(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -40,6 +94,46 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ServiceDictionaryItemsv1Args,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        This is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
+
+        ```sh
+         $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+        ```
+
+         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+
+         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
+
+        :param str resource_name: The name of the resource.
+        :param ServiceDictionaryItemsv1Args args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ServiceDictionaryItemsv1Args, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 dictionary_id: Optional[pulumi.Input[str]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
