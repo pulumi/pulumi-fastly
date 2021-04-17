@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['ServiceDictionaryItemsv1Args', 'ServiceDictionaryItemsv1']
 
@@ -62,6 +62,62 @@ class ServiceDictionaryItemsv1Args:
     @items.setter
     def items(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "items", value)
+
+
+@pulumi.input_type
+class _ServiceDictionaryItemsv1State:
+    def __init__(__self__, *,
+                 dictionary_id: Optional[pulumi.Input[str]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ServiceDictionaryItemsv1 resources.
+        :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
+        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
+        :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
+        """
+        if dictionary_id is not None:
+            pulumi.set(__self__, "dictionary_id", dictionary_id)
+        if items is not None:
+            pulumi.set(__self__, "items", items)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
+
+    @property
+    @pulumi.getter(name="dictionaryId")
+    def dictionary_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the dictionary that the items belong to
+        """
+        return pulumi.get(self, "dictionary_id")
+
+    @dictionary_id.setter
+    def dictionary_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dictionary_id", value)
+
+    @property
+    @pulumi.getter
+    def items(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        A map representing an entry in the dictionary, (key/value)
+        """
+        return pulumi.get(self, "items")
+
+    @items.setter
+    def items(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "items", value)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service that the dictionary belongs to
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
 
 
 class ServiceDictionaryItemsv1(pulumi.CustomResource):
@@ -149,15 +205,15 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ServiceDictionaryItemsv1Args.__new__(ServiceDictionaryItemsv1Args)
 
             if dictionary_id is None and not opts.urn:
                 raise TypeError("Missing required property 'dictionary_id'")
-            __props__['dictionary_id'] = dictionary_id
-            __props__['items'] = items
+            __props__.__dict__["dictionary_id"] = dictionary_id
+            __props__.__dict__["items"] = items
             if service_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_id'")
-            __props__['service_id'] = service_id
+            __props__.__dict__["service_id"] = service_id
         super(ServiceDictionaryItemsv1, __self__).__init__(
             'fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1',
             resource_name,
@@ -184,11 +240,11 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ServiceDictionaryItemsv1State.__new__(_ServiceDictionaryItemsv1State)
 
-        __props__["dictionary_id"] = dictionary_id
-        __props__["items"] = items
-        __props__["service_id"] = service_id
+        __props__.__dict__["dictionary_id"] = dictionary_id
+        __props__.__dict__["items"] = items
+        __props__.__dict__["service_id"] = service_id
         return ServiceDictionaryItemsv1(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -214,10 +270,4 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         The ID of the service that the dictionary belongs to
         """
         return pulumi.get(self, "service_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
