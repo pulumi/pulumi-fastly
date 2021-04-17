@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -64,6 +64,62 @@ class ServiceACLEntriesv1Args:
     @entries.setter
     def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]):
         pulumi.set(self, "entries", value)
+
+
+@pulumi.input_type
+class _ServiceACLEntriesv1State:
+    def __init__(__self__, *,
+                 acl_id: Optional[pulumi.Input[str]] = None,
+                 entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ServiceACLEntriesv1 resources.
+        :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
+        """
+        if acl_id is not None:
+            pulumi.set(__self__, "acl_id", acl_id)
+        if entries is not None:
+            pulumi.set(__self__, "entries", entries)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
+
+    @property
+    @pulumi.getter(name="aclId")
+    def acl_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the ACL that the items belong to
+        """
+        return pulumi.get(self, "acl_id")
+
+    @acl_id.setter
+    def acl_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acl_id", value)
+
+    @property
+    @pulumi.getter
+    def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]:
+        """
+        A Set ACL entries that are applied to the service. Defined below
+        """
+        return pulumi.get(self, "entries")
+
+    @entries.setter
+    def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]):
+        pulumi.set(self, "entries", value)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the Service that the ACL belongs to
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
 
 
 class ServiceACLEntriesv1(pulumi.CustomResource):
@@ -151,15 +207,15 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ServiceACLEntriesv1Args.__new__(ServiceACLEntriesv1Args)
 
             if acl_id is None and not opts.urn:
                 raise TypeError("Missing required property 'acl_id'")
-            __props__['acl_id'] = acl_id
-            __props__['entries'] = entries
+            __props__.__dict__["acl_id"] = acl_id
+            __props__.__dict__["entries"] = entries
             if service_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_id'")
-            __props__['service_id'] = service_id
+            __props__.__dict__["service_id"] = service_id
         super(ServiceACLEntriesv1, __self__).__init__(
             'fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1',
             resource_name,
@@ -186,11 +242,11 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ServiceACLEntriesv1State.__new__(_ServiceACLEntriesv1State)
 
-        __props__["acl_id"] = acl_id
-        __props__["entries"] = entries
-        __props__["service_id"] = service_id
+        __props__.__dict__["acl_id"] = acl_id
+        __props__.__dict__["entries"] = entries
+        __props__.__dict__["service_id"] = service_id
         return ServiceACLEntriesv1(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -216,10 +272,4 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         The ID of the Service that the ACL belongs to
         """
         return pulumi.get(self, "service_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

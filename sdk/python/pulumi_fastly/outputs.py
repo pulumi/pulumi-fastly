@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = [
     'ServiceACLEntriesv1Entry',
@@ -148,12 +148,60 @@ class ServiceACLEntriesv1Entry(dict):
         """
         return pulumi.get(self, "subnet")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeBackend(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoLoadbalance":
+            suggest = "auto_loadbalance"
+        elif key == "betweenBytesTimeout":
+            suggest = "between_bytes_timeout"
+        elif key == "connectTimeout":
+            suggest = "connect_timeout"
+        elif key == "errorThreshold":
+            suggest = "error_threshold"
+        elif key == "firstByteTimeout":
+            suggest = "first_byte_timeout"
+        elif key == "maxConn":
+            suggest = "max_conn"
+        elif key == "maxTlsVersion":
+            suggest = "max_tls_version"
+        elif key == "minTlsVersion":
+            suggest = "min_tls_version"
+        elif key == "overrideHost":
+            suggest = "override_host"
+        elif key == "sslCaCert":
+            suggest = "ssl_ca_cert"
+        elif key == "sslCertHostname":
+            suggest = "ssl_cert_hostname"
+        elif key == "sslCheckCert":
+            suggest = "ssl_check_cert"
+        elif key == "sslCiphers":
+            suggest = "ssl_ciphers"
+        elif key == "sslClientCert":
+            suggest = "ssl_client_cert"
+        elif key == "sslClientKey":
+            suggest = "ssl_client_key"
+        elif key == "sslHostname":
+            suggest = "ssl_hostname"
+        elif key == "sslSniHostname":
+            suggest = "ssl_sni_hostname"
+        elif key == "useSsl":
+            suggest = "use_ssl"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeBackend. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeBackend.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeBackend.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -452,12 +500,28 @@ class ServiceComputeBackend(dict):
         """
         return pulumi.get(self, "weight")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeBigquerylogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "secretKey":
+            suggest = "secret_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeBigquerylogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeBigquerylogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeBigquerylogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  dataset: str,
                  email: str,
@@ -536,12 +600,36 @@ class ServiceComputeBigquerylogging(dict):
     def template(self) -> Optional[str]:
         return pulumi.get(self, "template")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeBlobstoragelogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountName":
+            suggest = "account_name"
+        elif key == "sasToken":
+            suggest = "sas_token"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeBlobstoragelogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeBlobstoragelogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeBlobstoragelogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  account_name: str,
                  container: str,
@@ -662,9 +750,6 @@ class ServiceComputeBlobstoragelogging(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeDomain(dict):
@@ -695,12 +780,34 @@ class ServiceComputeDomain(dict):
         """
         return pulumi.get(self, "comment")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeGcslogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeGcslogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeGcslogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeGcslogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  bucket_name: str,
                  name: str,
@@ -811,12 +918,30 @@ class ServiceComputeGcslogging(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeHealthcheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "checkInterval":
+            suggest = "check_interval"
+        elif key == "expectedResponse":
+            suggest = "expected_response"
+        elif key == "httpVersion":
+            suggest = "http_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeHealthcheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeHealthcheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeHealthcheck.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  host: str,
                  name: str,
@@ -950,12 +1075,46 @@ class ServiceComputeHealthcheck(dict):
         """
         return pulumi.get(self, "window")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeHttpslogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contentType":
+            suggest = "content_type"
+        elif key == "headerName":
+            suggest = "header_name"
+        elif key == "headerValue":
+            suggest = "header_value"
+        elif key == "jsonFormat":
+            suggest = "json_format"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requestMaxEntries":
+            suggest = "request_max_entries"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeHttpslogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeHttpslogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeHttpslogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  url: str,
@@ -1126,12 +1285,26 @@ class ServiceComputeHttpslogging(dict):
         """
         return pulumi.get(self, "tls_hostname")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLogentry(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLogentry. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLogentry.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLogentry.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -1182,12 +1355,36 @@ class ServiceComputeLogentry(dict):
         """
         return pulumi.get(self, "use_tls")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingCloudfile(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingCloudfile. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingCloudfile.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingCloudfile.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  bucket_name: str,
@@ -1320,9 +1517,6 @@ class ServiceComputeLoggingCloudfile(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingDatadog(dict):
@@ -1364,12 +1558,38 @@ class ServiceComputeLoggingDatadog(dict):
         """
         return pulumi.get(self, "region")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingDigitalocean(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingDigitalocean. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingDigitalocean.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingDigitalocean.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  bucket_name: str,
@@ -1502,12 +1722,36 @@ class ServiceComputeLoggingDigitalocean(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingElasticsearch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requestMaxEntries":
+            suggest = "request_max_entries"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingElasticsearch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingElasticsearch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingElasticsearch.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  index: str,
                  name: str,
@@ -1653,12 +1897,32 @@ class ServiceComputeLoggingElasticsearch(dict):
         """
         return pulumi.get(self, "user")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingFtp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingFtp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingFtp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingFtp.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -1790,12 +2054,28 @@ class ServiceComputeLoggingFtp(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingGooglepubsub(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "secretKey":
+            suggest = "secret_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingGooglepubsub. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingGooglepubsub.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingGooglepubsub.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  project_id: str,
@@ -1855,9 +2135,6 @@ class ServiceComputeLoggingGooglepubsub(dict):
         """
         return pulumi.get(self, "user")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingHeroku(dict):
@@ -1897,9 +2174,6 @@ class ServiceComputeLoggingHeroku(dict):
         Your OpenStack auth url.
         """
         return pulumi.get(self, "url")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -1941,12 +2215,44 @@ class ServiceComputeLoggingHoneycomb(dict):
         """
         return pulumi.get(self, "token")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingKafka(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authMethod":
+            suggest = "auth_method"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "parseLogKeyvals":
+            suggest = "parse_log_keyvals"
+        elif key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requiredAcks":
+            suggest = "required_acks"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingKafka. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingKafka.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingKafka.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  brokers: str,
                  name: str,
@@ -2120,12 +2426,28 @@ class ServiceComputeLoggingKafka(dict):
         """
         return pulumi.get(self, "user")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingKinese(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "secretKey":
+            suggest = "secret_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingKinese. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingKinese.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingKinese.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  name: str,
@@ -2186,9 +2508,6 @@ class ServiceComputeLoggingKinese(dict):
         """
         return pulumi.get(self, "region")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingLoggly(dict):
@@ -2217,9 +2536,6 @@ class ServiceComputeLoggingLoggly(dict):
         The data authentication token associated with this endpoint.
         """
         return pulumi.get(self, "token")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -2261,9 +2577,6 @@ class ServiceComputeLoggingLogshuttle(dict):
         """
         return pulumi.get(self, "url")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingNewrelic(dict):
@@ -2293,12 +2606,36 @@ class ServiceComputeLoggingNewrelic(dict):
         """
         return pulumi.get(self, "token")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingOpenstack(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingOpenstack. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingOpenstack.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingOpenstack.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  bucket_name: str,
@@ -2430,9 +2767,6 @@ class ServiceComputeLoggingOpenstack(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingScalyr(dict):
@@ -2474,12 +2808,36 @@ class ServiceComputeLoggingScalyr(dict):
         """
         return pulumi.get(self, "region")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeLoggingSftp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sshKnownHosts":
+            suggest = "ssh_known_hosts"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingSftp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingSftp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingSftp.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -2635,12 +2993,26 @@ class ServiceComputeLoggingSftp(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputePackage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceCodeHash":
+            suggest = "source_code_hash"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputePackage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputePackage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputePackage.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  filename: str,
                  source_code_hash: Optional[str] = None):
@@ -2663,9 +3035,6 @@ class ServiceComputePackage(dict):
     @pulumi.getter(name="sourceCodeHash")
     def source_code_hash(self) -> Optional[str]:
         return pulumi.get(self, "source_code_hash")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -2707,12 +3076,42 @@ class ServiceComputePapertrail(dict):
         """
         return pulumi.get(self, "port")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeS3logging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "s3AccessKey":
+            suggest = "s3_access_key"
+        elif key == "s3SecretKey":
+            suggest = "s3_secret_key"
+        elif key == "serverSideEncryption":
+            suggest = "server_side_encryption"
+        elif key == "serverSideEncryptionKmsKeyId":
+            suggest = "server_side_encryption_kms_key_id"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeS3logging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeS3logging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeS3logging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  bucket_name: str,
                  name: str,
@@ -2887,12 +3286,28 @@ class ServiceComputeS3logging(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeSplunk(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeSplunk. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeSplunk.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeSplunk.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -2954,12 +3369,26 @@ class ServiceComputeSplunk(dict):
         """
         return pulumi.get(self, "tls_hostname")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeSumologic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "messageType":
+            suggest = "message_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeSumologic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeSumologic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeSumologic.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  url: str,
@@ -2998,12 +3427,36 @@ class ServiceComputeSumologic(dict):
         """
         return pulumi.get(self, "message_type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceComputeSyslog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "messageType":
+            suggest = "message_type"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeSyslog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeSyslog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeSyslog.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -3126,12 +3579,26 @@ class ServiceComputeSyslog(dict):
         """
         return pulumi.get(self, "use_tls")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceWafConfigurationRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "modsecRuleId":
+            suggest = "modsec_rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceWafConfigurationRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceWafConfigurationRule.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  modsec_rule_id: int,
                  status: str,
@@ -3170,12 +3637,28 @@ class ServiceWafConfigurationRule(dict):
         """
         return pulumi.get(self, "revision")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ServiceWafConfigurationRuleExclusion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "exclusionType":
+            suggest = "exclusion_type"
+        elif key == "modsecRuleIds":
+            suggest = "modsec_rule_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRuleExclusion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceWafConfigurationRuleExclusion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceWafConfigurationRuleExclusion.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  condition: str,
                  exclusion_type: str,
@@ -3237,12 +3720,26 @@ class ServiceWafConfigurationRuleExclusion(dict):
         """
         return pulumi.get(self, "number")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Acl(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "aclId":
+            suggest = "acl_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Acl. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Acl.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Acl.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  acl_id: Optional[str] = None):
@@ -3270,12 +3767,62 @@ class Servicev1Acl(dict):
         """
         return pulumi.get(self, "acl_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Backend(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoLoadbalance":
+            suggest = "auto_loadbalance"
+        elif key == "betweenBytesTimeout":
+            suggest = "between_bytes_timeout"
+        elif key == "connectTimeout":
+            suggest = "connect_timeout"
+        elif key == "errorThreshold":
+            suggest = "error_threshold"
+        elif key == "firstByteTimeout":
+            suggest = "first_byte_timeout"
+        elif key == "maxConn":
+            suggest = "max_conn"
+        elif key == "maxTlsVersion":
+            suggest = "max_tls_version"
+        elif key == "minTlsVersion":
+            suggest = "min_tls_version"
+        elif key == "overrideHost":
+            suggest = "override_host"
+        elif key == "requestCondition":
+            suggest = "request_condition"
+        elif key == "sslCaCert":
+            suggest = "ssl_ca_cert"
+        elif key == "sslCertHostname":
+            suggest = "ssl_cert_hostname"
+        elif key == "sslCheckCert":
+            suggest = "ssl_check_cert"
+        elif key == "sslCiphers":
+            suggest = "ssl_ciphers"
+        elif key == "sslClientCert":
+            suggest = "ssl_client_cert"
+        elif key == "sslClientKey":
+            suggest = "ssl_client_key"
+        elif key == "sslHostname":
+            suggest = "ssl_hostname"
+        elif key == "sslSniHostname":
+            suggest = "ssl_sni_hostname"
+        elif key == "useSsl":
+            suggest = "use_ssl"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Backend. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Backend.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Backend.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -3586,12 +4133,30 @@ class Servicev1Backend(dict):
         """
         return pulumi.get(self, "weight")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Bigquerylogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Bigquerylogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Bigquerylogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Bigquerylogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  dataset: str,
                  email: str,
@@ -3710,12 +4275,40 @@ class Servicev1Bigquerylogging(dict):
         """
         return pulumi.get(self, "template")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Blobstoragelogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountName":
+            suggest = "account_name"
+        elif key == "sasToken":
+            suggest = "sas_token"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Blobstoragelogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Blobstoragelogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Blobstoragelogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  account_name: str,
                  container: str,
@@ -3884,12 +4477,28 @@ class Servicev1Blobstoragelogging(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1CacheSetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheCondition":
+            suggest = "cache_condition"
+        elif key == "staleTtl":
+            suggest = "stale_ttl"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1CacheSetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1CacheSetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1CacheSetting.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  action: Optional[str] = None,
@@ -3957,9 +4566,6 @@ class Servicev1CacheSetting(dict):
         """
         return pulumi.get(self, "ttl")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Condition(dict):
@@ -4012,12 +4618,28 @@ class Servicev1Condition(dict):
         """
         return pulumi.get(self, "priority")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Dictionary(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dictionaryId":
+            suggest = "dictionary_id"
+        elif key == "writeOnly":
+            suggest = "write_only"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Dictionary. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Dictionary.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Dictionary.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  dictionary_id: Optional[str] = None,
@@ -4062,9 +4684,6 @@ class Servicev1Dictionary(dict):
         the items are managed outside of the provider.
         """
         return pulumi.get(self, "write_only")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -4167,9 +4786,6 @@ class Servicev1Director(dict):
         """
         return pulumi.get(self, "type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Domain(dict):
@@ -4200,12 +4816,26 @@ class Servicev1Domain(dict):
         """
         return pulumi.get(self, "comment")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Dynamicsnippet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "snippetId":
+            suggest = "snippet_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Dynamicsnippet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Dynamicsnippet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Dynamicsnippet.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  type: str,
@@ -4256,12 +4886,36 @@ class Servicev1Dynamicsnippet(dict):
         """
         return pulumi.get(self, "snippet_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Gcslogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Gcslogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Gcslogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Gcslogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  bucket_name: str,
                  name: str,
@@ -4408,12 +5062,28 @@ class Servicev1Gcslogging(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Gzip(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheCondition":
+            suggest = "cache_condition"
+        elif key == "contentTypes":
+            suggest = "content_types"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Gzip. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Gzip.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Gzip.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  cache_condition: Optional[str] = None,
@@ -4471,12 +5141,32 @@ class Servicev1Gzip(dict):
         """
         return pulumi.get(self, "extensions")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Header(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheCondition":
+            suggest = "cache_condition"
+        elif key == "ignoreIfSet":
+            suggest = "ignore_if_set"
+        elif key == "requestCondition":
+            suggest = "request_condition"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Header. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Header.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Header.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  action: str,
                  destination: str,
@@ -4627,12 +5317,30 @@ class Servicev1Header(dict):
         """
         return pulumi.get(self, "substitution")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Healthcheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "checkInterval":
+            suggest = "check_interval"
+        elif key == "expectedResponse":
+            suggest = "expected_response"
+        elif key == "httpVersion":
+            suggest = "http_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Healthcheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Healthcheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Healthcheck.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  host: str,
                  name: str,
@@ -4766,12 +5474,50 @@ class Servicev1Healthcheck(dict):
         """
         return pulumi.get(self, "window")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Httpslogging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contentType":
+            suggest = "content_type"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "headerName":
+            suggest = "header_name"
+        elif key == "headerValue":
+            suggest = "header_value"
+        elif key == "jsonFormat":
+            suggest = "json_format"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requestMaxEntries":
+            suggest = "request_max_entries"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Httpslogging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Httpslogging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Httpslogging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  url: str,
@@ -4990,12 +5736,30 @@ class Servicev1Httpslogging(dict):
         """
         return pulumi.get(self, "tls_hostname")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Logentry(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Logentry. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Logentry.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Logentry.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -5094,12 +5858,40 @@ class Servicev1Logentry(dict):
         """
         return pulumi.get(self, "use_tls")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingCloudfile(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingCloudfile. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingCloudfile.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingCloudfile.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  bucket_name: str,
@@ -5280,12 +6072,28 @@ class Servicev1LoggingCloudfile(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingDatadog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingDatadog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingDatadog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingDatadog.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -5372,12 +6180,42 @@ class Servicev1LoggingDatadog(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingDigitalocean(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingDigitalocean. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingDigitalocean.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingDigitalocean.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  bucket_name: str,
@@ -5558,12 +6396,40 @@ class Servicev1LoggingDigitalocean(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingElasticsearch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requestMaxEntries":
+            suggest = "request_max_entries"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingElasticsearch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingElasticsearch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingElasticsearch.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  index: str,
                  name: str,
@@ -5757,12 +6623,36 @@ class Servicev1LoggingElasticsearch(dict):
         """
         return pulumi.get(self, "user")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingFtp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingFtp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingFtp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingFtp.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -5942,12 +6832,32 @@ class Servicev1LoggingFtp(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingGooglepubsub(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingGooglepubsub. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingGooglepubsub.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingGooglepubsub.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  project_id: str,
@@ -6055,12 +6965,28 @@ class Servicev1LoggingGooglepubsub(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingHeroku(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingHeroku. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingHeroku.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingHeroku.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -6146,12 +7072,28 @@ class Servicev1LoggingHeroku(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingHoneycomb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingHoneycomb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingHoneycomb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingHoneycomb.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  dataset: str,
                  name: str,
@@ -6237,12 +7179,48 @@ class Servicev1LoggingHoneycomb(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingKafka(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authMethod":
+            suggest = "auth_method"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "parseLogKeyvals":
+            suggest = "parse_log_keyvals"
+        elif key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requiredAcks":
+            suggest = "required_acks"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingKafka. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingKafka.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingKafka.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  brokers: str,
                  name: str,
@@ -6464,12 +7442,32 @@ class Servicev1LoggingKafka(dict):
         """
         return pulumi.get(self, "user")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingKinese(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingKinese. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingKinese.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingKinese.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  name: str,
@@ -6578,12 +7576,28 @@ class Servicev1LoggingKinese(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingLoggly(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingLoggly. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingLoggly.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingLoggly.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -6658,12 +7672,28 @@ class Servicev1LoggingLoggly(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingLogshuttle(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingLogshuttle. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingLogshuttle.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingLogshuttle.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -6749,12 +7779,28 @@ class Servicev1LoggingLogshuttle(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingNewrelic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingNewrelic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingNewrelic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingNewrelic.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -6829,12 +7875,40 @@ class Servicev1LoggingNewrelic(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingOpenstack(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingOpenstack. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingOpenstack.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingOpenstack.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key: str,
                  bucket_name: str,
@@ -7014,12 +8088,28 @@ class Servicev1LoggingOpenstack(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingScalyr(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingScalyr. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingScalyr.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingScalyr.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -7106,12 +8196,40 @@ class Servicev1LoggingScalyr(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1LoggingSftp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sshKnownHosts":
+            suggest = "ssh_known_hosts"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingSftp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1LoggingSftp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1LoggingSftp.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -7315,12 +8433,26 @@ class Servicev1LoggingSftp(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Papertrail(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Papertrail. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Papertrail.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Papertrail.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -7394,12 +8526,42 @@ class Servicev1Papertrail(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1RequestSetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bypassBusyWait":
+            suggest = "bypass_busy_wait"
+        elif key == "defaultHost":
+            suggest = "default_host"
+        elif key == "forceMiss":
+            suggest = "force_miss"
+        elif key == "forceSsl":
+            suggest = "force_ssl"
+        elif key == "geoHeaders":
+            suggest = "geo_headers"
+        elif key == "hashKeys":
+            suggest = "hash_keys"
+        elif key == "maxStaleAge":
+            suggest = "max_stale_age"
+        elif key == "requestCondition":
+            suggest = "request_condition"
+        elif key == "timerSupport":
+            suggest = "timer_support"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1RequestSetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1RequestSetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1RequestSetting.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  action: Optional[str] = None,
@@ -7563,12 +8725,30 @@ class Servicev1RequestSetting(dict):
         """
         return pulumi.get(self, "xff")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1ResponseObject(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheCondition":
+            suggest = "cache_condition"
+        elif key == "contentType":
+            suggest = "content_type"
+        elif key == "requestCondition":
+            suggest = "request_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1ResponseObject. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1ResponseObject.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1ResponseObject.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  cache_condition: Optional[str] = None,
@@ -7658,12 +8838,46 @@ class Servicev1ResponseObject(dict):
         """
         return pulumi.get(self, "status")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1S3logging(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "s3AccessKey":
+            suggest = "s3_access_key"
+        elif key == "s3SecretKey":
+            suggest = "s3_secret_key"
+        elif key == "serverSideEncryption":
+            suggest = "server_side_encryption"
+        elif key == "serverSideEncryptionKmsKeyId":
+            suggest = "server_side_encryption_kms_key_id"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1S3logging. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1S3logging.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1S3logging.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  bucket_name: str,
                  name: str,
@@ -7894,9 +9108,6 @@ class Servicev1S3logging(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Snippet(dict):
@@ -7949,12 +9160,32 @@ class Servicev1Snippet(dict):
         """
         return pulumi.get(self, "priority")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Splunk(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Splunk. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Splunk.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Splunk.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
@@ -8064,12 +9295,30 @@ class Servicev1Splunk(dict):
         """
         return pulumi.get(self, "tls_hostname")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Sumologic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Sumologic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Sumologic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Sumologic.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  url: str,
@@ -8156,12 +9405,40 @@ class Servicev1Sumologic(dict):
         """
         return pulumi.get(self, "response_condition")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Syslog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Syslog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Syslog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Syslog.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: str,
                  name: str,
@@ -8332,9 +9609,6 @@ class Servicev1Syslog(dict):
         """
         return pulumi.get(self, "use_tls")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Vcl(dict):
@@ -8380,12 +9654,30 @@ class Servicev1Vcl(dict):
         """
         return pulumi.get(self, "main")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class Servicev1Waf(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "responseObject":
+            suggest = "response_object"
+        elif key == "prefetchCondition":
+            suggest = "prefetch_condition"
+        elif key == "wafId":
+            suggest = "waf_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Servicev1Waf. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Servicev1Waf.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Servicev1Waf.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  response_object: str,
                  disabled: Optional[bool] = None,
@@ -8432,9 +9724,6 @@ class Servicev1Waf(dict):
         The ID of the WAF.
         """
         return pulumi.get(self, "waf_id")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['Userv1Args', 'Userv1']
 
@@ -38,6 +38,62 @@ class Userv1Args:
 
     @login.setter
     def login(self, value: pulumi.Input[str]):
+        pulumi.set(self, "login", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The real life name of the user.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+
+@pulumi.input_type
+class _Userv1State:
+    def __init__(__self__, *,
+                 login: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Userv1 resources.
+        :param pulumi.Input[str] login: The email address, which is the login name, of the User.
+        :param pulumi.Input[str] name: The real life name of the user.
+        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        """
+        if login is not None:
+            pulumi.set(__self__, "login", login)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter
+    def login(self) -> Optional[pulumi.Input[str]]:
+        """
+        The email address, which is the login name, of the User.
+        """
+        return pulumi.get(self, "login")
+
+    @login.setter
+    def login(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "login", value)
 
     @property
@@ -168,13 +224,13 @@ class Userv1(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = Userv1Args.__new__(Userv1Args)
 
             if login is None and not opts.urn:
                 raise TypeError("Missing required property 'login'")
-            __props__['login'] = login
-            __props__['name'] = name
-            __props__['role'] = role
+            __props__.__dict__["login"] = login
+            __props__.__dict__["name"] = name
+            __props__.__dict__["role"] = role
         super(Userv1, __self__).__init__(
             'fastly:index/userv1:Userv1',
             resource_name,
@@ -201,11 +257,11 @@ class Userv1(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _Userv1State.__new__(_Userv1State)
 
-        __props__["login"] = login
-        __props__["name"] = name
-        __props__["role"] = role
+        __props__.__dict__["login"] = login
+        __props__.__dict__["name"] = name
+        __props__.__dict__["role"] = role
         return Userv1(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -231,10 +287,4 @@ class Userv1(pulumi.CustomResource):
         The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
         """
         return pulumi.get(self, "role")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
