@@ -1334,9 +1334,7 @@ class ServiceCompute(pulumi.CustomResource):
                  sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeSumologicArgs']]]]] = None,
                  syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeSyslogArgs']]]]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is run at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
 
@@ -1491,15 +1489,7 @@ class ServiceCompute(pulumi.CustomResource):
                  sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeSumologicArgs']]]]] = None,
                  syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeSyslogArgs']]]]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):

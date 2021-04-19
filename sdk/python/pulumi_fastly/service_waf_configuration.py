@@ -1055,9 +1055,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                  waf_id: Optional[pulumi.Input[str]] = None,
                  warning_anomaly_score: Optional[pulumi.Input[int]] = None,
                  xss_score_threshold: Optional[pulumi.Input[int]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         ## Import
 
@@ -1166,15 +1164,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                  waf_id: Optional[pulumi.Input[str]] = None,
                  warning_anomaly_score: Optional[pulumi.Input[int]] = None,
                  xss_score_threshold: Optional[pulumi.Input[int]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
