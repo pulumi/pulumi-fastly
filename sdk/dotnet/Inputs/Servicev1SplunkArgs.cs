@@ -13,55 +13,58 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1SplunkArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of the condition to apply
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
-        /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
-        /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
+        [Input("tlsClientCert")]
+        public Input<string>? TlsClientCert { get; set; }
+
+        [Input("tlsClientKey")]
+        public Input<string>? TlsClientKey { get; set; }
+
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Splunk token to be used for authentication
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The Splunk URL to stream logs to
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

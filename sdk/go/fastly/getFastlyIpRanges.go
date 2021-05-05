@@ -15,7 +15,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
 // 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -51,6 +51,8 @@ import (
 // 	return pulumiArr
 // }
 // ```
+//
+// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
 func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFastlyIpRangesResult, error) {
 	var rv GetFastlyIpRangesResult
 	err := ctx.Invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, &rv, opts...)
@@ -62,10 +64,8 @@ func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFa
 
 // A collection of values returned by getFastlyIpRanges.
 type GetFastlyIpRangesResult struct {
-	// The lexically ordered list of ipv4 CIDR blocks.
 	CidrBlocks []string `pulumi:"cidrBlocks"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The lexically ordered list of ipv6 CIDR blocks.
+	Id             string   `pulumi:"id"`
 	Ipv6CidrBlocks []string `pulumi:"ipv6CidrBlocks"`
 }

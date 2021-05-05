@@ -23,7 +23,7 @@ import (
 type ServiceDynamicSnippetContentv1 struct {
 	pulumi.CustomResourceState
 
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content pulumi.StringOutput `pulumi:"content"`
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
@@ -69,7 +69,7 @@ func GetServiceDynamicSnippetContentv1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceDynamicSnippetContentv1 resources.
 type serviceDynamicSnippetContentv1State struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content *string `pulumi:"content"`
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId *string `pulumi:"serviceId"`
@@ -78,7 +78,7 @@ type serviceDynamicSnippetContentv1State struct {
 }
 
 type ServiceDynamicSnippetContentv1State struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content pulumi.StringPtrInput
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId pulumi.StringPtrInput
@@ -91,7 +91,7 @@ func (ServiceDynamicSnippetContentv1State) ElementType() reflect.Type {
 }
 
 type serviceDynamicSnippetContentv1Args struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content string `pulumi:"content"`
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId string `pulumi:"serviceId"`
@@ -101,7 +101,7 @@ type serviceDynamicSnippetContentv1Args struct {
 
 // The set of arguments for constructing a ServiceDynamicSnippetContentv1 resource.
 type ServiceDynamicSnippetContentv1Args struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content pulumi.StringInput
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId pulumi.StringInput

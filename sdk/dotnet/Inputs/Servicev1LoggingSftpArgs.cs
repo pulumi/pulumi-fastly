@@ -13,103 +13,100 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingSftpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// The SFTP address to stream logs to
         /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload log files to. If the path ends in `/` then it is treated as a directory
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port the SFTP service listens on. (Default: `22`)
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of the condition to apply.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
-        /// <summary>
-        /// A list of host keys for all hosts we can connect to over SFTP.
-        /// </summary>
         [Input("sshKnownHosts", required: true)]
         public Input<string> SshKnownHosts { get; set; } = null!;
 
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// The username for the server
         /// </summary>
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;

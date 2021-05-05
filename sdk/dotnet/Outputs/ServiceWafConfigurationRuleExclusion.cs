@@ -14,23 +14,20 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceWafConfigurationRuleExclusion
     {
         /// <summary>
-        /// A conditional expression in VCL used to determine if the condition is met.
+        /// A conditional expression in VCL used to determine if the condition is met
         /// </summary>
         public readonly string Condition;
         /// <summary>
-        /// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+        /// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
         /// </summary>
         public readonly string ExclusionType;
-        /// <summary>
-        /// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
-        /// </summary>
         public readonly ImmutableArray<int> ModsecRuleIds;
         /// <summary>
-        /// The name of rule exclusion.
+        /// The name of rule exclusion
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The numeric ID assigned to the WAF Rule Exclusion.
+        /// The numeric ID assigned to the WAF Rule Exclusion
         /// </summary>
         public readonly int? Number;
 

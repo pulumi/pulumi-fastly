@@ -12,23 +12,26 @@ namespace Pulumi.Fastly.Inputs
 
     public sealed class ServiceComputeLoggingKafkaGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        /// </summary>
         [Input("authMethod")]
         public Input<string>? AuthMethod { get; set; }
 
         /// <summary>
-        /// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+        /// A comma-separated list of IP addresses or hostnames of Kafka brokers
         /// </summary>
         [Input("brokers", required: true)]
         public Input<string> Brokers { get; set; } = null!;
 
         /// <summary>
-        /// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+        /// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         /// </summary>
         [Input("compressionCodec")]
         public Input<string>? CompressionCodec { get; set; }
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -37,61 +40,49 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? ParseLogKeyvals { get; set; }
 
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// SASL Pass
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
-        /// <summary>
-        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        /// </summary>
         [Input("requestMaxBytes")]
         public Input<int>? RequestMaxBytes { get; set; }
 
         /// <summary>
-        /// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+        /// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
         /// </summary>
         [Input("requiredAcks")]
         public Input<string>? RequiredAcks { get; set; }
 
-        /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
-        /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
-        /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format.
-        /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
-        /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format.
-        /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }
 
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Kafka topic to send logs to
         /// </summary>
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either true or false.
+        /// Whether to use TLS for secure logging. Can be either `true` or `false`
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
 
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// SASL User
         /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }

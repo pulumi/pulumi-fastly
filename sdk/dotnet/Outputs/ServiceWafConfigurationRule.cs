@@ -13,16 +13,13 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class ServiceWafConfigurationRule
     {
-        /// <summary>
-        /// The Web Application Firewall rule's modsecurity ID.
-        /// </summary>
         public readonly int ModsecRuleId;
         /// <summary>
-        /// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        /// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
         /// </summary>
         public readonly int? Revision;
         /// <summary>
-        /// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+        /// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
         /// </summary>
         public readonly string Status;
 

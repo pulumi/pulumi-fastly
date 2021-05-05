@@ -24,6 +24,8 @@ import * as utilities from "./utilities";
  *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
  * }]});
  * ```
+ *
+ * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
 export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
     if (!opts) {
@@ -41,16 +43,10 @@ export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastl
  * A collection of values returned by getFastlyIpRanges.
  */
 export interface GetFastlyIpRangesResult {
-    /**
-     * The lexically ordered list of ipv4 CIDR blocks.
-     */
     readonly cidrBlocks: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The lexically ordered list of ipv6 CIDR blocks.
-     */
     readonly ipv6CidrBlocks: string[];
 }

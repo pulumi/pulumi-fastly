@@ -27,7 +27,7 @@ type ServiceACLEntriesv1 struct {
 
 	// The ID of the ACL that the items belong to
 	AclId pulumi.StringOutput `pulumi:"aclId"`
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries ServiceACLEntriesv1EntryArrayOutput `pulumi:"entries"`
 	// The ID of the Service that the ACL belongs to
 	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
@@ -70,7 +70,7 @@ func GetServiceACLEntriesv1(ctx *pulumi.Context,
 type serviceACLEntriesv1State struct {
 	// The ID of the ACL that the items belong to
 	AclId *string `pulumi:"aclId"`
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries []ServiceACLEntriesv1Entry `pulumi:"entries"`
 	// The ID of the Service that the ACL belongs to
 	ServiceId *string `pulumi:"serviceId"`
@@ -79,7 +79,7 @@ type serviceACLEntriesv1State struct {
 type ServiceACLEntriesv1State struct {
 	// The ID of the ACL that the items belong to
 	AclId pulumi.StringPtrInput
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries ServiceACLEntriesv1EntryArrayInput
 	// The ID of the Service that the ACL belongs to
 	ServiceId pulumi.StringPtrInput
@@ -92,7 +92,7 @@ func (ServiceACLEntriesv1State) ElementType() reflect.Type {
 type serviceACLEntriesv1Args struct {
 	// The ID of the ACL that the items belong to
 	AclId string `pulumi:"aclId"`
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries []ServiceACLEntriesv1Entry `pulumi:"entries"`
 	// The ID of the Service that the ACL belongs to
 	ServiceId string `pulumi:"serviceId"`
@@ -102,7 +102,7 @@ type serviceACLEntriesv1Args struct {
 type ServiceACLEntriesv1Args struct {
 	// The ID of the ACL that the items belong to
 	AclId pulumi.StringInput
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries ServiceACLEntriesv1EntryArrayInput
 	// The ID of the Service that the ACL belongs to
 	ServiceId pulumi.StringInput

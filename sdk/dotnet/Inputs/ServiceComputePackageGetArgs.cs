@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputePackageGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The path to the Wasm deployment package within your local filesystem.
+        /// The path to the Wasm deployment package within your local filesystem
         /// </summary>
         [Input("filename", required: true)]
         public Input<string> Filename { get; set; } = null!;

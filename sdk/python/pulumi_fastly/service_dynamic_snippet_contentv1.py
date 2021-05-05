@@ -18,7 +18,7 @@ class ServiceDynamicSnippetContentv1Args:
                  snippet_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a ServiceDynamicSnippetContentv1 resource.
-        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does.
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
         """
@@ -30,7 +30,7 @@ class ServiceDynamicSnippetContentv1Args:
     @pulumi.getter
     def content(self) -> pulumi.Input[str]:
         """
-        The VCL code that specifies exactly what the snippet does.
+        The VCL code that specifies exactly what the snippet does
         """
         return pulumi.get(self, "content")
 
@@ -71,7 +71,7 @@ class _ServiceDynamicSnippetContentv1State:
                  snippet_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceDynamicSnippetContentv1 resources.
-        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does.
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
         """
@@ -86,7 +86,7 @@ class _ServiceDynamicSnippetContentv1State:
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input[str]]:
         """
-        The VCL code that specifies exactly what the snippet does.
+        The VCL code that specifies exactly what the snippet does
         """
         return pulumi.get(self, "content")
 
@@ -141,7 +141,7 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does.
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
         """
@@ -221,7 +221,7 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does.
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
         """
@@ -238,7 +238,7 @@ class ServiceDynamicSnippetContentv1(pulumi.CustomResource):
     @pulumi.getter
     def content(self) -> pulumi.Output[str]:
         """
-        The VCL code that specifies exactly what the snippet does.
+        The VCL code that specifies exactly what the snippet does
         """
         return pulumi.get(self, "content")
 

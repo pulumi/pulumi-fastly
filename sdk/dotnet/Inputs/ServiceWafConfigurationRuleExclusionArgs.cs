@@ -13,23 +13,19 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceWafConfigurationRuleExclusionArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A conditional expression in VCL used to determine if the condition is met.
+        /// A conditional expression in VCL used to determine if the condition is met
         /// </summary>
         [Input("condition", required: true)]
         public Input<string> Condition { get; set; } = null!;
 
         /// <summary>
-        /// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+        /// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
         /// </summary>
         [Input("exclusionType", required: true)]
         public Input<string> ExclusionType { get; set; } = null!;
 
         [Input("modsecRuleIds")]
         private InputList<int>? _modsecRuleIds;
-
-        /// <summary>
-        /// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
-        /// </summary>
         public InputList<int> ModsecRuleIds
         {
             get => _modsecRuleIds ?? (_modsecRuleIds = new InputList<int>());
@@ -37,13 +33,13 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// The name of rule exclusion.
+        /// The name of rule exclusion
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The numeric ID assigned to the WAF Rule Exclusion.
+        /// The numeric ID assigned to the WAF Rule Exclusion
         /// </summary>
         [Input("number")]
         public Input<int>? Number { get; set; }

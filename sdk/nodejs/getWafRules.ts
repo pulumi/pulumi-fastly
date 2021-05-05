@@ -30,11 +30,11 @@ export interface GetWafRulesArgs {
      */
     readonly excludeModsecRuleIds?: number[];
     /**
-     * Inclusion filter by WAF rule's publishers.
+     * A list of publishers to be used as filters for the data set.
      */
     readonly publishers?: string[];
     /**
-     * Inclusion filter by WAF rule's tags.
+     * A list of tags to be used as filters for the data set.
      */
     readonly tags?: string[];
 }

@@ -22,7 +22,7 @@ class ServiceACLEntriesv1Args:
         The set of arguments for constructing a ServiceACLEntriesv1 resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: ACL Entries
         """
         pulumi.set(__self__, "acl_id", acl_id)
         pulumi.set(__self__, "service_id", service_id)
@@ -57,7 +57,7 @@ class ServiceACLEntriesv1Args:
     @pulumi.getter
     def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]:
         """
-        A Set ACL entries that are applied to the service. Defined below
+        ACL Entries
         """
         return pulumi.get(self, "entries")
 
@@ -75,7 +75,7 @@ class _ServiceACLEntriesv1State:
         """
         Input properties used for looking up and filtering ServiceACLEntriesv1 resources.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: ACL Entries
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
         if acl_id is not None:
@@ -101,7 +101,7 @@ class _ServiceACLEntriesv1State:
     @pulumi.getter
     def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]:
         """
-        A Set ACL entries that are applied to the service. Defined below
+        ACL Entries
         """
         return pulumi.get(self, "entries")
 
@@ -147,7 +147,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: ACL Entries
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
         ...
@@ -227,7 +227,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: ACL Entries
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -251,7 +251,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
     @pulumi.getter
     def entries(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceACLEntriesv1Entry']]]:
         """
-        A Set ACL entries that are applied to the service. Defined below
+        ACL Entries
         """
         return pulumi.get(self, "entries")
 

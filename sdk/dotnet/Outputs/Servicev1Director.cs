@@ -18,31 +18,31 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Backends;
         /// <summary>
-        /// Load balancing weight for the backends. Default `100`.
+        /// Load balancing weight for the backends. Default `100`
         /// </summary>
         public readonly int? Capacity;
         /// <summary>
-        /// An optional comment about the Director.
+        /// An optional comment about the Director
         /// </summary>
         public readonly string? Comment;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+        /// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
         /// </summary>
         public readonly int? Quorum;
         /// <summary>
-        /// How many backends to search if it fails. Default `5`.
+        /// How many backends to search if it fails. Default `5`
         /// </summary>
         public readonly int? Retries;
         /// <summary>
-        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
         /// </summary>
         public readonly string? Shield;
         /// <summary>
-        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
         /// </summary>
         public readonly int? Type;
 

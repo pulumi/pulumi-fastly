@@ -14,59 +14,50 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Syslog
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// A hostname or IPv4 address of the Syslog endpoint
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format. Can be either 1 or 2. (Default: 1)
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
-        /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
-        /// </summary>
         public readonly string? TlsCaCert;
-        /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format.
-        /// </summary>
         public readonly string? TlsClientCert;
-        /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format.
-        /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// Used during the TLS handshake to validate the certificate
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// Whether to prepend each message with a specific token
         /// </summary>
         public readonly string? Token;
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either true or false.
+        /// Whether to use TLS for secure logging. Default `false`
         /// </summary>
         public readonly bool? UseTls;
 

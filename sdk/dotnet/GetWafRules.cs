@@ -34,7 +34,7 @@ namespace Pulumi.Fastly
         private List<string>? _publishers;
 
         /// <summary>
-        /// Inclusion filter by WAF rule's publishers.
+        /// A list of publishers to be used as filters for the data set.
         /// </summary>
         public List<string> Publishers
         {
@@ -46,7 +46,7 @@ namespace Pulumi.Fastly
         private List<string>? _tags;
 
         /// <summary>
-        /// Inclusion filter by WAF rule's tags.
+        /// A list of tags to be used as filters for the data set.
         /// </summary>
         public List<string> Tags
         {

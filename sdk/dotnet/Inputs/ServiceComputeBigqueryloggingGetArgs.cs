@@ -13,41 +13,44 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeBigqueryloggingGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Honeycomb Dataset you want to log to.
+        /// The ID of your BigQuery dataset
         /// </summary>
         [Input("dataset", required: true)]
         public Input<string> Dataset { get; set; } = null!;
 
         /// <summary>
-        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
         /// </summary>
         [Input("email", required: true)]
         public Input<string> Email { get; set; } = null!;
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The ID of your Google Cloud Platform project.
+        /// The ID of your GCP project
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
-        /// The ID of your BigQuery table.
+        /// The ID of your BigQuery table
         /// </summary>
         [Input("table", required: true)]
         public Input<string> Table { get; set; } = null!;
 
+        /// <summary>
+        /// BigQuery table name suffix template
+        /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
 

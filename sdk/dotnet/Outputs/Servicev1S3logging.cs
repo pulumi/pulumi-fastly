@@ -14,81 +14,63 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1S3logging
     {
         /// <summary>
-        /// The name of your Cloud Files container.
+        /// The name of the bucket in which to store the logs
         /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        /// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         /// </summary>
         public readonly string? Domain;
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The path to upload logs to.
+        /// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         /// </summary>
         public readonly string? Path;
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently the logs should be transferred, in seconds. Default `3600`
         /// </summary>
         public readonly int? Period;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         public readonly string? PublicKey;
         /// <summary>
-        /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
+        /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
         /// </summary>
         public readonly string? Redundancy;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
-        /// <summary>
-        /// AWS Access Key of an account with the required
-        /// permissions to post logs. It is **strongly** recommended you create a separate
-        /// IAM user with permissions to only operate on this Bucket. This key will be
-        /// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-        /// </summary>
         public readonly string? S3AccessKey;
-        /// <summary>
-        /// AWS Secret Key of an account with the required
-        /// permissions to post logs. It is **strongly** recommended you create a separate
-        /// IAM user with permissions to only operate on this Bucket. This secret will be
-        /// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-        /// </summary>
         public readonly string? S3SecretKey;
-        /// <summary>
-        /// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
-        /// </summary>
         public readonly string? ServerSideEncryption;
-        /// <summary>
-        /// Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
-        /// </summary>
         public readonly string? ServerSideEncryptionKmsKeyId;
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
 

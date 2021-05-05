@@ -14,71 +14,68 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1LoggingSftp
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// The SFTP address to stream logs to
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload log files to. If the path ends in `/` then it is treated as a directory
         /// </summary>
         public readonly string Path;
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         /// </summary>
         public readonly int? Period;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port the SFTP service listens on. (Default: `22`)
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         public readonly string? PublicKey;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of the condition to apply.
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         /// </summary>
         public readonly string? SecretKey;
-        /// <summary>
-        /// A list of host keys for all hosts we can connect to over SFTP.
-        /// </summary>
         public readonly string SshKnownHosts;
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// The username for the server
         /// </summary>
         public readonly string User;
 

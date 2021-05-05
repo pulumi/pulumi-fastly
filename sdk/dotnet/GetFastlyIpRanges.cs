@@ -46,6 +46,8 @@ namespace Pulumi.Fastly
         /// 
         /// }
         /// ```
+        /// 
+        /// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
@@ -57,17 +59,11 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class GetFastlyIpRangesResult
     {
-        /// <summary>
-        /// The lexically ordered list of ipv4 CIDR blocks.
-        /// </summary>
         public readonly ImmutableArray<string> CidrBlocks;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The lexically ordered list of ipv6 CIDR blocks.
-        /// </summary>
         public readonly ImmutableArray<string> Ipv6CidrBlocks;
 
         [OutputConstructor]

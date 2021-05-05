@@ -14,59 +14,44 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeHttpslogging
     {
         /// <summary>
-        /// Value of the `Content-Type` header sent with the request.
+        /// Value of the `Content-Type` header sent with the request
         /// </summary>
         public readonly string? ContentType;
         /// <summary>
-        /// Custom header sent with the request.
+        /// Custom header sent with the request
         /// </summary>
         public readonly string? HeaderName;
         /// <summary>
-        /// Value of the custom header sent with the request.
+        /// Value of the custom header sent with the request
         /// </summary>
         public readonly string? HeaderValue;
         /// <summary>
-        /// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+        /// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         /// </summary>
         public readonly string? JsonFormat;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        /// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         /// </summary>
         public readonly string? Method;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        /// </summary>
         public readonly int? RequestMaxBytes;
-        /// <summary>
-        /// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-        /// </summary>
         public readonly int? RequestMaxEntries;
-        /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
-        /// </summary>
         public readonly string? TlsCaCert;
-        /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format.
-        /// </summary>
         public readonly string? TlsClientCert;
-        /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format.
-        /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// Used during the TLS handshake to validate the certificate
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// Your OpenStack auth url.
+        /// URL that log data will be sent to. Must use the https protocol
         /// </summary>
         public readonly string Url;
 

@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputePackage
     {
         /// <summary>
-        /// The path to the Wasm deployment package within your local filesystem.
+        /// The path to the Wasm deployment package within your local filesystem
         /// </summary>
         public readonly string Filename;
         public readonly string? SourceCodeHash;

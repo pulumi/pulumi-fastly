@@ -14,59 +14,59 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Blobstoragelogging
     {
         /// <summary>
-        /// The unique Azure Blob Storage namespace in which your data objects are stored.
+        /// The unique Azure Blob Storage namespace in which your data objects are stored
         /// </summary>
         public readonly string AccountName;
         /// <summary>
-        /// The name of the Azure Blob Storage container in which to store logs.
+        /// The name of the Azure Blob Storage container in which to store logs
         /// </summary>
         public readonly string Container;
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         /// </summary>
         public readonly string? Path;
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently the logs should be transferred in seconds. Default `3600`
         /// </summary>
         public readonly int? Period;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         public readonly string? PublicKey;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of the condition to apply
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+        /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
         /// </summary>
         public readonly string SasToken;
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
         /// </summary>
         public readonly string? TimestampFormat;
 

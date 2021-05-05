@@ -13,7 +13,8 @@ import (
 type ServiceACLEntriesv1Entry struct {
 	// A personal freeform descriptive note
 	Comment *string `pulumi:"comment"`
-	Id      *string `pulumi:"id"`
+	// The unique ID of the entry
+	Id *string `pulumi:"id"`
 	// An IP address that is the focus for the ACL
 	Ip string `pulumi:"ip"`
 	// A boolean that will negate the match if true
@@ -36,7 +37,8 @@ type ServiceACLEntriesv1EntryInput interface {
 type ServiceACLEntriesv1EntryArgs struct {
 	// A personal freeform descriptive note
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	Id      pulumi.StringPtrInput `pulumi:"id"`
+	// The unique ID of the entry
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// An IP address that is the focus for the ACL
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// A boolean that will negate the match if true
@@ -101,6 +103,7 @@ func (o ServiceACLEntriesv1EntryOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceACLEntriesv1Entry) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
+// The unique ID of the entry
 func (o ServiceACLEntriesv1EntryOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceACLEntriesv1Entry) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -141,59 +144,45 @@ func (o ServiceACLEntriesv1EntryArrayOutput) Index(i pulumi.IntInput) ServiceACL
 }
 
 type ServiceComputeBackend struct {
-	// The SFTP address to stream logs to.
+	// An IPv4, hostname, or IPv6 address for the Backend
 	Address string `pulumi:"address"`
-	// Denotes if this Backend should be
-	// included in the pool of backends that requests are load balanced against.
-	// Default `true`.
-	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
-	// How long to wait between bytes in milliseconds. Default `10000`.
-	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
-	// How long to wait for a timeout in milliseconds.
-	// Default `1000`
+	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+	AutoLoadbalance     *bool `pulumi:"autoLoadbalance"`
+	BetweenBytesTimeout *int  `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`.
-	ErrorThreshold *int `pulumi:"errorThreshold"`
-	// How long to wait for the first bytes in milliseconds. Default `15000`.
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold   *int `pulumi:"errorThreshold"`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
-	// Name of a defined `healthcheck` to assign to this backend.
+	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
-	// Maximum number of connections for this Backend.
-	// Default `200`.
-	MaxConn *int `pulumi:"maxConn"`
-	// Maximum allowed TLS version on SSL connections to this backend.
+	// Maximum number of connections for this Backend. Default `200`
+	MaxConn       *int    `pulumi:"maxConn"`
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
-	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
-	// The unique name of the Kinesis logging endpoint.
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The hostname to override the Host header.
+	// The hostname to override the Host header
 	OverrideHost *string `pulumi:"overrideHost"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number on which the Backend responds. Default `80`
 	Port *int `pulumi:"port"`
-	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-	Shield *string `pulumi:"shield"`
-	// CA certificate attached to origin.
-	SslCaCert *string `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+	Shield          *string `pulumi:"shield"`
+	SslCaCert       *string `pulumi:"sslCaCert"`
 	SslCertHostname *string `pulumi:"sslCertHostname"`
-	// Be strict about checking SSL certs. Default `true`.
-	SslCheckCert *bool `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-	SslCiphers *string `pulumi:"sslCiphers"`
-	// Client certificate attached to origin. Used when connecting to the backend.
+	SslCheckCert    *bool   `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	SslCiphers    *string `pulumi:"sslCiphers"`
 	SslClientCert *string `pulumi:"sslClientCert"`
-	// Client key attached to origin. Used when connecting to the backend.
-	SslClientKey *string `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert.
+	SslClientKey  *string `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname *string `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+	SslHostname    *string `pulumi:"sslHostname"`
 	SslSniHostname *string `pulumi:"sslSniHostname"`
-	// Whether or not to use SSL to reach the backend. Default `false`.
+	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl *bool `pulumi:"useSsl"`
-	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
 	Weight *int `pulumi:"weight"`
 }
 
@@ -209,59 +198,45 @@ type ServiceComputeBackendInput interface {
 }
 
 type ServiceComputeBackendArgs struct {
-	// The SFTP address to stream logs to.
+	// An IPv4, hostname, or IPv6 address for the Backend
 	Address pulumi.StringInput `pulumi:"address"`
-	// Denotes if this Backend should be
-	// included in the pool of backends that requests are load balanced against.
-	// Default `true`.
-	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
-	// How long to wait between bytes in milliseconds. Default `10000`.
-	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
-	// How long to wait for a timeout in milliseconds.
-	// Default `1000`
+	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+	AutoLoadbalance     pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
+	BetweenBytesTimeout pulumi.IntPtrInput  `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`.
-	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
-	// How long to wait for the first bytes in milliseconds. Default `15000`.
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold   pulumi.IntPtrInput `pulumi:"errorThreshold"`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
-	// Name of a defined `healthcheck` to assign to this backend.
+	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
-	// Maximum number of connections for this Backend.
-	// Default `200`.
-	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
-	// Maximum allowed TLS version on SSL connections to this backend.
+	// Maximum number of connections for this Backend. Default `200`
+	MaxConn       pulumi.IntPtrInput    `pulumi:"maxConn"`
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
-	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
-	// The unique name of the Kinesis logging endpoint.
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The hostname to override the Host header.
+	// The hostname to override the Host header
 	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number on which the Backend responds. Default `80`
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-	Shield pulumi.StringPtrInput `pulumi:"shield"`
-	// CA certificate attached to origin.
-	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+	Shield          pulumi.StringPtrInput `pulumi:"shield"`
+	SslCaCert       pulumi.StringPtrInput `pulumi:"sslCaCert"`
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
-	// Be strict about checking SSL certs. Default `true`.
-	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
-	// Client certificate attached to origin. Used when connecting to the backend.
+	SslCheckCert    pulumi.BoolPtrInput   `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	SslCiphers    pulumi.StringPtrInput `pulumi:"sslCiphers"`
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
-	// Client key attached to origin. Used when connecting to the backend.
-	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert.
+	SslClientKey  pulumi.StringPtrInput `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+	SslHostname    pulumi.StringPtrInput `pulumi:"sslHostname"`
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
-	// Whether or not to use SSL to reach the backend. Default `false`.
+	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
-	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
 
@@ -316,128 +291,114 @@ func (o ServiceComputeBackendOutput) ToServiceComputeBackendOutputWithContext(ct
 	return o
 }
 
-// The SFTP address to stream logs to.
+// An IPv4, hostname, or IPv6 address for the Backend
 func (o ServiceComputeBackendOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// Denotes if this Backend should be
-// included in the pool of backends that requests are load balanced against.
-// Default `true`.
+// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
 func (o ServiceComputeBackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
 }
 
-// How long to wait between bytes in milliseconds. Default `10000`.
 func (o ServiceComputeBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
 }
 
-// How long to wait for a timeout in milliseconds.
-// Default `1000`
+// How long to wait for a timeout in milliseconds. Default `1000`
 func (o ServiceComputeBackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Number of errors to allow before the Backend is marked as down. Default `0`.
+// Number of errors to allow before the Backend is marked as down. Default `0`
 func (o ServiceComputeBackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
-// How long to wait for the first bytes in milliseconds. Default `15000`.
 func (o ServiceComputeBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.FirstByteTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Name of a defined `healthcheck` to assign to this backend.
+// Name of a defined `healthcheck` to assign to this backend
 func (o ServiceComputeBackendOutput) Healthcheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of connections for this Backend.
-// Default `200`.
+// Maximum number of connections for this Backend. Default `200`
 func (o ServiceComputeBackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
-// Maximum allowed TLS version on SSL connections to this backend.
 func (o ServiceComputeBackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
 }
 
-// Minimum allowed TLS version on SSL connections to this backend.
 func (o ServiceComputeBackendOutput) MinTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeBackendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The hostname to override the Host header.
+// The hostname to override the Host header
 func (o ServiceComputeBackendOutput) OverrideHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.OverrideHost }).(pulumi.StringPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port number on which the Backend responds. Default `80`
 func (o ServiceComputeBackendOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
 func (o ServiceComputeBackendOutput) Shield() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
 
-// CA certificate attached to origin.
 func (o ServiceComputeBackendOutput) SslCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
 }
 
-// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
 func (o ServiceComputeBackendOutput) SslCertHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
 }
 
-// Be strict about checking SSL certs. Default `true`.
 func (o ServiceComputeBackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
 }
 
-// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
 func (o ServiceComputeBackendOutput) SslCiphers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate attached to origin. Used when connecting to the backend.
 func (o ServiceComputeBackendOutput) SslClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslClientCert }).(pulumi.StringPtrOutput)
 }
 
-// Client key attached to origin. Used when connecting to the backend.
 func (o ServiceComputeBackendOutput) SslClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
 }
 
-// Used for both SNI during the TLS handshake and to validate the cert.
+// Used for both SNI during the TLS handshake and to validate the cert
 //
 // Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
 func (o ServiceComputeBackendOutput) SslHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
 }
 
-// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
 func (o ServiceComputeBackendOutput) SslSniHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
 }
 
-// Whether or not to use SSL to reach the backend. Default `false`.
+// Whether or not to use SSL to reach the Backend. Default `false`
 func (o ServiceComputeBackendOutput) UseSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
 }
 
-// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
 func (o ServiceComputeBackendOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.Weight }).(pulumi.IntPtrOutput)
 }
@@ -463,18 +424,19 @@ func (o ServiceComputeBackendArrayOutput) Index(i pulumi.IntInput) ServiceComput
 }
 
 type ServiceComputeBigquerylogging struct {
-	// The Honeycomb Dataset you want to log to.
+	// The ID of your BigQuery dataset
 	Dataset string `pulumi:"dataset"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
 	Email string `pulumi:"email"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your GCP project
 	ProjectId string `pulumi:"projectId"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
 	SecretKey string `pulumi:"secretKey"`
-	// The ID of your BigQuery table.
-	Table    string  `pulumi:"table"`
+	// The ID of your BigQuery table
+	Table string `pulumi:"table"`
+	// BigQuery table name suffix template
 	Template *string `pulumi:"template"`
 }
 
@@ -490,18 +452,19 @@ type ServiceComputeBigqueryloggingInput interface {
 }
 
 type ServiceComputeBigqueryloggingArgs struct {
-	// The Honeycomb Dataset you want to log to.
+	// The ID of your BigQuery dataset
 	Dataset pulumi.StringInput `pulumi:"dataset"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
 	Email pulumi.StringInput `pulumi:"email"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your GCP project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The ID of your BigQuery table.
-	Table    pulumi.StringInput    `pulumi:"table"`
+	// The ID of your BigQuery table
+	Table pulumi.StringInput `pulumi:"table"`
+	// BigQuery table name suffix template
 	Template pulumi.StringPtrInput `pulumi:"template"`
 }
 
@@ -556,36 +519,37 @@ func (o ServiceComputeBigqueryloggingOutput) ToServiceComputeBigqueryloggingOutp
 	return o
 }
 
-// The Honeycomb Dataset you want to log to.
+// The ID of your BigQuery dataset
 func (o ServiceComputeBigqueryloggingOutput) Dataset() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Dataset }).(pulumi.StringOutput)
 }
 
-// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
 func (o ServiceComputeBigqueryloggingOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Email }).(pulumi.StringOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeBigqueryloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of your Google Cloud Platform project.
+// The ID of your GCP project
 func (o ServiceComputeBigqueryloggingOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
 func (o ServiceComputeBigqueryloggingOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The ID of your BigQuery table.
+// The ID of your BigQuery table
 func (o ServiceComputeBigqueryloggingOutput) Table() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) string { return v.Table }).(pulumi.StringOutput)
 }
 
+// BigQuery table name suffix template
 func (o ServiceComputeBigqueryloggingOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBigquerylogging) *string { return v.Template }).(pulumi.StringPtrOutput)
 }
@@ -611,25 +575,25 @@ func (o ServiceComputeBigqueryloggingArrayOutput) Index(i pulumi.IntInput) Servi
 }
 
 type ServiceComputeBlobstoragelogging struct {
-	// The unique Azure Blob Storage namespace in which your data objects are stored.
+	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName string `pulumi:"accountName"`
-	// The name of the Azure Blob Storage container in which to store logs.
+	// The name of the Azure Blob Storage container in which to store logs
 	Container string `pulumi:"container"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken string `pulumi:"sasToken"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -645,25 +609,25 @@ type ServiceComputeBlobstorageloggingInput interface {
 }
 
 type ServiceComputeBlobstorageloggingArgs struct {
-	// The unique Azure Blob Storage namespace in which your data objects are stored.
+	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName pulumi.StringInput `pulumi:"accountName"`
-	// The name of the Azure Blob Storage container in which to store logs.
+	// The name of the Azure Blob Storage container in which to store logs
 	Container pulumi.StringInput `pulumi:"container"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken pulumi.StringInput `pulumi:"sasToken"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -718,52 +682,52 @@ func (o ServiceComputeBlobstorageloggingOutput) ToServiceComputeBlobstorageloggi
 	return o
 }
 
-// The unique Azure Blob Storage namespace in which your data objects are stored.
+// The unique Azure Blob Storage namespace in which your data objects are stored
 func (o ServiceComputeBlobstorageloggingOutput) AccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.AccountName }).(pulumi.StringOutput)
 }
 
-// The name of the Azure Blob Storage container in which to store logs.
+// The name of the Azure Blob Storage container in which to store logs
 func (o ServiceComputeBlobstorageloggingOutput) Container() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.Container }).(pulumi.StringOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeBlobstorageloggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 func (o ServiceComputeBlobstorageloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeBlobstorageloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
 func (o ServiceComputeBlobstorageloggingOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred in seconds. Default `3600`
 func (o ServiceComputeBlobstorageloggingOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeBlobstorageloggingOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 func (o ServiceComputeBlobstorageloggingOutput) SasToken() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.SasToken }).(pulumi.StringOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
 func (o ServiceComputeBlobstorageloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -788,10 +752,131 @@ func (o ServiceComputeBlobstorageloggingArrayOutput) Index(i pulumi.IntInput) Se
 	}).(ServiceComputeBlobstorageloggingOutput)
 }
 
+type ServiceComputeDictionary struct {
+	// The ID of the dictionary
+	DictionaryId *string `pulumi:"dictionaryId"`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+	Name      string `pulumi:"name"`
+	WriteOnly *bool  `pulumi:"writeOnly"`
+}
+
+// ServiceComputeDictionaryInput is an input type that accepts ServiceComputeDictionaryArgs and ServiceComputeDictionaryOutput values.
+// You can construct a concrete instance of `ServiceComputeDictionaryInput` via:
+//
+//          ServiceComputeDictionaryArgs{...}
+type ServiceComputeDictionaryInput interface {
+	pulumi.Input
+
+	ToServiceComputeDictionaryOutput() ServiceComputeDictionaryOutput
+	ToServiceComputeDictionaryOutputWithContext(context.Context) ServiceComputeDictionaryOutput
+}
+
+type ServiceComputeDictionaryArgs struct {
+	// The ID of the dictionary
+	DictionaryId pulumi.StringPtrInput `pulumi:"dictionaryId"`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+	ForceDestroy pulumi.BoolPtrInput `pulumi:"forceDestroy"`
+	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+	Name      pulumi.StringInput  `pulumi:"name"`
+	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
+}
+
+func (ServiceComputeDictionaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeDictionary)(nil)).Elem()
+}
+
+func (i ServiceComputeDictionaryArgs) ToServiceComputeDictionaryOutput() ServiceComputeDictionaryOutput {
+	return i.ToServiceComputeDictionaryOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeDictionaryArgs) ToServiceComputeDictionaryOutputWithContext(ctx context.Context) ServiceComputeDictionaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDictionaryOutput)
+}
+
+// ServiceComputeDictionaryArrayInput is an input type that accepts ServiceComputeDictionaryArray and ServiceComputeDictionaryArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeDictionaryArrayInput` via:
+//
+//          ServiceComputeDictionaryArray{ ServiceComputeDictionaryArgs{...} }
+type ServiceComputeDictionaryArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeDictionaryArrayOutput() ServiceComputeDictionaryArrayOutput
+	ToServiceComputeDictionaryArrayOutputWithContext(context.Context) ServiceComputeDictionaryArrayOutput
+}
+
+type ServiceComputeDictionaryArray []ServiceComputeDictionaryInput
+
+func (ServiceComputeDictionaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeDictionary)(nil)).Elem()
+}
+
+func (i ServiceComputeDictionaryArray) ToServiceComputeDictionaryArrayOutput() ServiceComputeDictionaryArrayOutput {
+	return i.ToServiceComputeDictionaryArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeDictionaryArray) ToServiceComputeDictionaryArrayOutputWithContext(ctx context.Context) ServiceComputeDictionaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDictionaryArrayOutput)
+}
+
+type ServiceComputeDictionaryOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeDictionaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeDictionary)(nil)).Elem()
+}
+
+func (o ServiceComputeDictionaryOutput) ToServiceComputeDictionaryOutput() ServiceComputeDictionaryOutput {
+	return o
+}
+
+func (o ServiceComputeDictionaryOutput) ToServiceComputeDictionaryOutputWithContext(ctx context.Context) ServiceComputeDictionaryOutput {
+	return o
+}
+
+// The ID of the dictionary
+func (o ServiceComputeDictionaryOutput) DictionaryId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDictionary) *string { return v.DictionaryId }).(pulumi.StringPtrOutput)
+}
+
+// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+func (o ServiceComputeDictionaryOutput) ForceDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDictionary) *bool { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+func (o ServiceComputeDictionaryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeDictionary) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ServiceComputeDictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
+}
+
+type ServiceComputeDictionaryArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeDictionaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeDictionary)(nil)).Elem()
+}
+
+func (o ServiceComputeDictionaryArrayOutput) ToServiceComputeDictionaryArrayOutput() ServiceComputeDictionaryArrayOutput {
+	return o
+}
+
+func (o ServiceComputeDictionaryArrayOutput) ToServiceComputeDictionaryArrayOutputWithContext(ctx context.Context) ServiceComputeDictionaryArrayOutput {
+	return o
+}
+
+func (o ServiceComputeDictionaryArrayOutput) Index(i pulumi.IntInput) ServiceComputeDictionaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeDictionary {
+		return vs[0].([]ServiceComputeDictionary)[vs[1].(int)]
+	}).(ServiceComputeDictionaryOutput)
+}
+
 type ServiceComputeDomain struct {
 	// An optional comment about the Domain.
 	Comment *string `pulumi:"comment"`
-	// The unique name of the Kinesis logging endpoint.
+	// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
 	Name string `pulumi:"name"`
 }
 
@@ -809,7 +894,7 @@ type ServiceComputeDomainInput interface {
 type ServiceComputeDomainArgs struct {
 	// An optional comment about the Domain.
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// The unique name of the Kinesis logging endpoint.
+	// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -869,7 +954,7 @@ func (o ServiceComputeDomainOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeDomain) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
 func (o ServiceComputeDomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeDomain) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -895,23 +980,23 @@ func (o ServiceComputeDomainArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 }
 
 type ServiceComputeGcslogging struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 	Email *string `pulumi:"email"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period *int `pulumi:"period"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -927,23 +1012,23 @@ type ServiceComputeGcsloggingInput interface {
 }
 
 type ServiceComputeGcsloggingArgs struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 	Email pulumi.StringPtrInput `pulumi:"email"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -998,47 +1083,47 @@ func (o ServiceComputeGcsloggingOutput) ToServiceComputeGcsloggingOutputWithCont
 	return o
 }
 
-// The name of your Cloud Files container.
+// The name of the bucket in which to store the logs
 func (o ServiceComputeGcsloggingOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 func (o ServiceComputeGcsloggingOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 func (o ServiceComputeGcsloggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 func (o ServiceComputeGcsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeGcsloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 func (o ServiceComputeGcsloggingOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds (Default 3600)
 func (o ServiceComputeGcsloggingOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 func (o ServiceComputeGcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeGcsloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -1064,27 +1149,27 @@ func (o ServiceComputeGcsloggingArrayOutput) Index(i pulumi.IntInput) ServiceCom
 }
 
 type ServiceComputeHealthcheck struct {
-	// How often to run the Healthcheck in milliseconds. Default `5000`.
+	// How often to run the Healthcheck in milliseconds. Default `5000`
 	CheckInterval *int `pulumi:"checkInterval"`
-	// The status code expected from the host. Default `200`.
+	// The status code expected from the host. Default `200`
 	ExpectedResponse *int `pulumi:"expectedResponse"`
-	// The Host header to send for this Healthcheck.
+	// The Host header to send for this Healthcheck
 	Host string `pulumi:"host"`
-	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion *string `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`
 	Initial *int `pulumi:"initial"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// Which HTTP method to use. Default `HEAD`
 	Method *string `pulumi:"method"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to check
 	Path string `pulumi:"path"`
-	// How many Healthchecks must succeed to be considered healthy. Default `3`.
+	// How many Healthchecks must succeed to be considered healthy. Default `3`
 	Threshold *int `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`.
+	// Timeout in milliseconds. Default `500`
 	Timeout *int `pulumi:"timeout"`
-	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 	Window *int `pulumi:"window"`
 }
 
@@ -1100,27 +1185,27 @@ type ServiceComputeHealthcheckInput interface {
 }
 
 type ServiceComputeHealthcheckArgs struct {
-	// How often to run the Healthcheck in milliseconds. Default `5000`.
+	// How often to run the Healthcheck in milliseconds. Default `5000`
 	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
-	// The status code expected from the host. Default `200`.
+	// The status code expected from the host. Default `200`
 	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
-	// The Host header to send for this Healthcheck.
+	// The Host header to send for this Healthcheck
 	Host pulumi.StringInput `pulumi:"host"`
-	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`
 	Initial pulumi.IntPtrInput `pulumi:"initial"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// Which HTTP method to use. Default `HEAD`
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to check
 	Path pulumi.StringInput `pulumi:"path"`
-	// How many Healthchecks must succeed to be considered healthy. Default `3`.
+	// How many Healthchecks must succeed to be considered healthy. Default `3`
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`.
+	// Timeout in milliseconds. Default `500`
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
-	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 	Window pulumi.IntPtrInput `pulumi:"window"`
 }
 
@@ -1175,57 +1260,57 @@ func (o ServiceComputeHealthcheckOutput) ToServiceComputeHealthcheckOutputWithCo
 	return o
 }
 
-// How often to run the Healthcheck in milliseconds. Default `5000`.
+// How often to run the Healthcheck in milliseconds. Default `5000`
 func (o ServiceComputeHealthcheckOutput) CheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
 }
 
-// The status code expected from the host. Default `200`.
+// The status code expected from the host. Default `200`
 func (o ServiceComputeHealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
 }
 
-// The Host header to send for this Healthcheck.
+// The Host header to send for this Healthcheck
 func (o ServiceComputeHealthcheckOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 func (o ServiceComputeHealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
 }
 
-// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+// When loading a config, the initial number of probes to be seen as OK. Default `2`
 func (o ServiceComputeHealthcheckOutput) Initial() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
 }
 
-// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+// Which HTTP method to use. Default `HEAD`
 func (o ServiceComputeHealthcheckOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeHealthcheckOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to check
 func (o ServiceComputeHealthcheckOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// How many Healthchecks must succeed to be considered healthy. Default `3`.
+// How many Healthchecks must succeed to be considered healthy. Default `3`
 func (o ServiceComputeHealthcheckOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Timeout in milliseconds. Default `500`.
+// Timeout in milliseconds. Default `500`
 func (o ServiceComputeHealthcheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
-// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 func (o ServiceComputeHealthcheckOutput) Window() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Window }).(pulumi.IntPtrOutput)
 }
@@ -1251,33 +1336,28 @@ func (o ServiceComputeHealthcheckArrayOutput) Index(i pulumi.IntInput) ServiceCo
 }
 
 type ServiceComputeHttpslogging struct {
-	// Value of the `Content-Type` header sent with the request.
+	// Value of the `Content-Type` header sent with the request
 	ContentType *string `pulumi:"contentType"`
-	// Custom header sent with the request.
+	// Custom header sent with the request
 	HeaderName *string `pulumi:"headerName"`
-	// Value of the custom header sent with the request.
+	// Value of the custom header sent with the request
 	HeaderValue *string `pulumi:"headerValue"`
-	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat *string `pulumi:"jsonFormat"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
 	MessageType *string `pulumi:"messageType"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method *string `pulumi:"method"`
-	// The unique name of the Kinesis logging endpoint.
-	Name string `pulumi:"name"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name              string  `pulumi:"name"`
+	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
+	TlsCaCert         *string `pulumi:"tlsCaCert"`
+	TlsClientCert     *string `pulumi:"tlsClientCert"`
+	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// URL that log data will be sent to. Must use the https protocol
 	Url string `pulumi:"url"`
 }
 
@@ -1293,33 +1373,28 @@ type ServiceComputeHttpsloggingInput interface {
 }
 
 type ServiceComputeHttpsloggingArgs struct {
-	// Value of the `Content-Type` header sent with the request.
+	// Value of the `Content-Type` header sent with the request
 	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
-	// Custom header sent with the request.
+	// Custom header sent with the request
 	HeaderName pulumi.StringPtrInput `pulumi:"headerName"`
-	// Value of the custom header sent with the request.
+	// Value of the custom header sent with the request
 	HeaderValue pulumi.StringPtrInput `pulumi:"headerValue"`
-	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat pulumi.StringPtrInput `pulumi:"jsonFormat"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The unique name of the Kinesis logging endpoint.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name              pulumi.StringInput    `pulumi:"name"`
+	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
+	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// URL that log data will be sent to. Must use the https protocol
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -1374,72 +1449,67 @@ func (o ServiceComputeHttpsloggingOutput) ToServiceComputeHttpsloggingOutputWith
 	return o
 }
 
-// Value of the `Content-Type` header sent with the request.
+// Value of the `Content-Type` header sent with the request
 func (o ServiceComputeHttpsloggingOutput) ContentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.ContentType }).(pulumi.StringPtrOutput)
 }
 
-// Custom header sent with the request.
+// Custom header sent with the request
 func (o ServiceComputeHttpsloggingOutput) HeaderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.HeaderName }).(pulumi.StringPtrOutput)
 }
 
-// Value of the custom header sent with the request.
+// Value of the custom header sent with the request
 func (o ServiceComputeHttpsloggingOutput) HeaderValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.HeaderValue }).(pulumi.StringPtrOutput)
 }
 
-// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 func (o ServiceComputeHttpsloggingOutput) JsonFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.JsonFormat }).(pulumi.StringPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
 func (o ServiceComputeHttpsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 func (o ServiceComputeHttpsloggingOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeHttpsloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 func (o ServiceComputeHttpsloggingOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
 func (o ServiceComputeHttpsloggingOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o ServiceComputeHttpsloggingOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeHttpsloggingOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeHttpsloggingOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// Used during the TLS handshake to validate the certificate
 func (o ServiceComputeHttpsloggingOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// Your OpenStack auth url.
+// URL that log data will be sent to. Must use the https protocol
 func (o ServiceComputeHttpsloggingOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -1465,13 +1535,13 @@ func (o ServiceComputeHttpsloggingArrayOutput) Index(i pulumi.IntInput) ServiceC
 }
 
 type ServiceComputeLogentry struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number configured in Logentries
 	Port *int `pulumi:"port"`
-	// The data authentication token associated with this endpoint.
+	// Use token based authentication (https://logentries.com/doc/input-token/)
 	Token string `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging
 	UseTls *bool `pulumi:"useTls"`
 }
 
@@ -1487,13 +1557,13 @@ type ServiceComputeLogentryInput interface {
 }
 
 type ServiceComputeLogentryArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number configured in Logentries
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The data authentication token associated with this endpoint.
+	// Use token based authentication (https://logentries.com/doc/input-token/)
 	Token pulumi.StringInput `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
@@ -1548,22 +1618,22 @@ func (o ServiceComputeLogentryOutput) ToServiceComputeLogentryOutputWithContext(
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLogentryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLogentry) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port number configured in Logentries
 func (o ServiceComputeLogentryOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLogentry) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// Use token based authentication (https://logentries.com/doc/input-token/)
 func (o ServiceComputeLogentryOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLogentry) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Whether to use TLS for secure logging. Can be either true or false.
+// Whether to use TLS for secure logging
 func (o ServiceComputeLogentryOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLogentry) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
@@ -1589,27 +1659,27 @@ func (o ServiceComputeLogentryArrayOutput) Index(i pulumi.IntInput) ServiceCompu
 }
 
 type ServiceComputeLoggingCloudfile struct {
-	// The AWS access key to be used to write to the stream.
+	// Your Cloud File account access key
 	AccessKey string `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your Cloud Files container
 	BucketName string `pulumi:"bucketName"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 	Region *string `pulumi:"region"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for your Cloud Files account
 	User string `pulumi:"user"`
 }
 
@@ -1625,27 +1695,27 @@ type ServiceComputeLoggingCloudfileInput interface {
 }
 
 type ServiceComputeLoggingCloudfileArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// Your Cloud File account access key
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your Cloud Files container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for your Cloud Files account
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -1700,57 +1770,57 @@ func (o ServiceComputeLoggingCloudfileOutput) ToServiceComputeLoggingCloudfileOu
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// Your Cloud File account access key
 func (o ServiceComputeLoggingCloudfileOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The name of your Cloud Files container.
+// The name of your Cloud Files container
 func (o ServiceComputeLoggingCloudfileOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
 func (o ServiceComputeLoggingCloudfileOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 func (o ServiceComputeLoggingCloudfileOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingCloudfileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload logs to
 func (o ServiceComputeLoggingCloudfileOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 func (o ServiceComputeLoggingCloudfileOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingCloudfileOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 func (o ServiceComputeLoggingCloudfileOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingCloudfileOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for your Cloud Files account
 func (o ServiceComputeLoggingCloudfileOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.User }).(pulumi.StringOutput)
 }
@@ -1776,11 +1846,11 @@ func (o ServiceComputeLoggingCloudfileArrayOutput) Index(i pulumi.IntInput) Serv
 }
 
 type ServiceComputeLoggingDatadog struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
-	// The data authentication token associated with this endpoint.
+	// The API key from your Datadog account
 	Token string `pulumi:"token"`
 }
 
@@ -1796,11 +1866,11 @@ type ServiceComputeLoggingDatadogInput interface {
 }
 
 type ServiceComputeLoggingDatadogArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The data authentication token associated with this endpoint.
+	// The API key from your Datadog account
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -1855,17 +1925,17 @@ func (o ServiceComputeLoggingDatadogOutput) ToServiceComputeLoggingDatadogOutput
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingDatadogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 func (o ServiceComputeLoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The API key from your Datadog account
 func (o ServiceComputeLoggingDatadogOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -1891,27 +1961,27 @@ func (o ServiceComputeLoggingDatadogArrayOutput) Index(i pulumi.IntInput) Servic
 }
 
 type ServiceComputeLoggingDigitalocean struct {
-	// The AWS access key to be used to write to the stream.
+	// Your DigitalOcean Spaces account access key
 	AccessKey string `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of the DigitalOcean Space
 	BucketName string `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain *string `pulumi:"domain"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The AWS secret access key to authenticate with.
+	// Your DigitalOcean Spaces account secret key
 	SecretKey string `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -1927,27 +1997,27 @@ type ServiceComputeLoggingDigitaloceanInput interface {
 }
 
 type ServiceComputeLoggingDigitaloceanArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// Your DigitalOcean Spaces account access key
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of the DigitalOcean Space
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The AWS secret access key to authenticate with.
+	// Your DigitalOcean Spaces account secret key
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -2002,57 +2072,57 @@ func (o ServiceComputeLoggingDigitaloceanOutput) ToServiceComputeLoggingDigitalo
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// Your DigitalOcean Spaces account access key
 func (o ServiceComputeLoggingDigitaloceanOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The name of your Cloud Files container.
+// The name of the DigitalOcean Space
 func (o ServiceComputeLoggingDigitaloceanOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 func (o ServiceComputeLoggingDigitaloceanOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 func (o ServiceComputeLoggingDigitaloceanOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 func (o ServiceComputeLoggingDigitaloceanOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingDigitaloceanOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload logs to
 func (o ServiceComputeLoggingDigitaloceanOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 func (o ServiceComputeLoggingDigitaloceanOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingDigitaloceanOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// Your DigitalOcean Spaces account secret key
 func (o ServiceComputeLoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingDigitaloceanOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -2078,29 +2148,24 @@ func (o ServiceComputeLoggingDigitaloceanArrayOutput) Index(i pulumi.IntInput) S
 }
 
 type ServiceComputeLoggingElasticsearch struct {
-	// The name of the Elasticsearch index to send documents (logs) to.
+	// The name of the Elasticsearch index to send documents (logs) to
 	Index string `pulumi:"index"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// BasicAuth password for Elasticsearch
 	Password *string `pulumi:"password"`
-	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-	Pipeline *string `pulumi:"pipeline"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+	Pipeline          *string `pulumi:"pipeline"`
+	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
+	TlsCaCert         *string `pulumi:"tlsCaCert"`
+	TlsClientCert     *string `pulumi:"tlsClientCert"`
+	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// The Elasticsearch URL to stream logs to
 	Url string `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// BasicAuth username for Elasticsearch
 	User *string `pulumi:"user"`
 }
 
@@ -2116,29 +2181,24 @@ type ServiceComputeLoggingElasticsearchInput interface {
 }
 
 type ServiceComputeLoggingElasticsearchArgs struct {
-	// The name of the Elasticsearch index to send documents (logs) to.
+	// The name of the Elasticsearch index to send documents (logs) to
 	Index pulumi.StringInput `pulumi:"index"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// BasicAuth password for Elasticsearch
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+	Pipeline          pulumi.StringPtrInput `pulumi:"pipeline"`
+	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
+	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// The Elasticsearch URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// BasicAuth username for Elasticsearch
 	User pulumi.StringPtrInput `pulumi:"user"`
 }
 
@@ -2193,62 +2253,57 @@ func (o ServiceComputeLoggingElasticsearchOutput) ToServiceComputeLoggingElastic
 	return o
 }
 
-// The name of the Elasticsearch index to send documents (logs) to.
+// The name of the Elasticsearch index to send documents (logs) to
 func (o ServiceComputeLoggingElasticsearchOutput) Index() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Index }).(pulumi.StringOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingElasticsearchOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// BasicAuth password for Elasticsearch
 func (o ServiceComputeLoggingElasticsearchOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 func (o ServiceComputeLoggingElasticsearchOutput) Pipeline() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 func (o ServiceComputeLoggingElasticsearchOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
 func (o ServiceComputeLoggingElasticsearchOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o ServiceComputeLoggingElasticsearchOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeLoggingElasticsearchOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeLoggingElasticsearchOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 func (o ServiceComputeLoggingElasticsearchOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// Your OpenStack auth url.
+// The Elasticsearch URL to stream logs to
 func (o ServiceComputeLoggingElasticsearchOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The username for your Cloud Files account.
+// BasicAuth username for Elasticsearch
 func (o ServiceComputeLoggingElasticsearchOutput) User() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.User }).(pulumi.StringPtrOutput)
 }
@@ -2274,27 +2329,27 @@ func (o ServiceComputeLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type ServiceComputeLoggingFtp struct {
-	// The SFTP address to stream logs to.
+	// The FTP address to stream logs to
 	Address string `pulumi:"address"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Gzip Compression level. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted (default: `classic`)
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server (for anonymous use an email address)
 	Password string `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period *int `pulumi:"period"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number. Default: `21`
 	Port *int `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server (can be `anonymous`)
 	User string `pulumi:"user"`
 }
 
@@ -2310,27 +2365,27 @@ type ServiceComputeLoggingFtpInput interface {
 }
 
 type ServiceComputeLoggingFtpArgs struct {
-	// The SFTP address to stream logs to.
+	// The FTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Gzip Compression level. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted (default: `classic`)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server (for anonymous use an email address)
 	Password pulumi.StringInput `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path pulumi.StringInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number. Default: `21`
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server (can be `anonymous`)
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -2385,57 +2440,57 @@ func (o ServiceComputeLoggingFtpOutput) ToServiceComputeLoggingFtpOutputWithCont
 	return o
 }
 
-// The SFTP address to stream logs to.
+// The FTP address to stream logs to
 func (o ServiceComputeLoggingFtpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Gzip Compression level. Default `0`
 func (o ServiceComputeLoggingFtpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted (default: `classic`)
 func (o ServiceComputeLoggingFtpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingFtpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// The password for the server (for anonymous use an email address)
 func (o ServiceComputeLoggingFtpOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 func (o ServiceComputeLoggingFtpOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds (Default `3600`)
 func (o ServiceComputeLoggingFtpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port number. Default: `21`
 func (o ServiceComputeLoggingFtpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingFtpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingFtpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for the server (can be `anonymous`)
 func (o ServiceComputeLoggingFtpOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.User }).(pulumi.StringOutput)
 }
@@ -2461,15 +2516,15 @@ func (o ServiceComputeLoggingFtpArrayOutput) Index(i pulumi.IntInput) ServiceCom
 }
 
 type ServiceComputeLoggingGooglepubsub struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your Google Cloud Platform project
 	ProjectId string `pulumi:"projectId"`
-	// The AWS secret access key to authenticate with.
+	// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
 	SecretKey string `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Google Cloud Pub/Sub topic to which logs will be published
 	Topic string `pulumi:"topic"`
-	// The username for your Cloud Files account.
+	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
 	User string `pulumi:"user"`
 }
 
@@ -2485,15 +2540,15 @@ type ServiceComputeLoggingGooglepubsubInput interface {
 }
 
 type ServiceComputeLoggingGooglepubsubArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The AWS secret access key to authenticate with.
+	// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Google Cloud Pub/Sub topic to which logs will be published
 	Topic pulumi.StringInput `pulumi:"topic"`
-	// The username for your Cloud Files account.
+	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -2548,27 +2603,27 @@ func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepu
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingGooglepubsubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of your Google Cloud Platform project.
+// The ID of your Google Cloud Platform project
 func (o ServiceComputeLoggingGooglepubsubOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
 func (o ServiceComputeLoggingGooglepubsubOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The Kinesis stream name.
+// The Google Cloud Pub/Sub topic to which logs will be published
 func (o ServiceComputeLoggingGooglepubsubOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.Topic }).(pulumi.StringOutput)
 }
 
-// The username for your Cloud Files account.
+// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
 func (o ServiceComputeLoggingGooglepubsubOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.User }).(pulumi.StringOutput)
 }
@@ -2594,11 +2649,11 @@ func (o ServiceComputeLoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) S
 }
 
 type ServiceComputeLoggingHeroku struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 	Token string `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The URL to stream logs to
 	Url string `pulumi:"url"`
 }
 
@@ -2614,11 +2669,11 @@ type ServiceComputeLoggingHerokuInput interface {
 }
 
 type ServiceComputeLoggingHerokuArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 	Token pulumi.StringInput `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -2673,17 +2728,17 @@ func (o ServiceComputeLoggingHerokuOutput) ToServiceComputeLoggingHerokuOutputWi
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingHerokuOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 func (o ServiceComputeLoggingHerokuOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Your OpenStack auth url.
+// The URL to stream logs to
 func (o ServiceComputeLoggingHerokuOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -2709,11 +2764,11 @@ func (o ServiceComputeLoggingHerokuArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type ServiceComputeLoggingHoneycomb struct {
-	// The Honeycomb Dataset you want to log to.
+	// The Honeycomb Dataset you want to log to
 	Dataset string `pulumi:"dataset"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The Write Key from the Account page of your Honeycomb account
 	Token string `pulumi:"token"`
 }
 
@@ -2729,11 +2784,11 @@ type ServiceComputeLoggingHoneycombInput interface {
 }
 
 type ServiceComputeLoggingHoneycombArgs struct {
-	// The Honeycomb Dataset you want to log to.
+	// The Honeycomb Dataset you want to log to
 	Dataset pulumi.StringInput `pulumi:"dataset"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The Write Key from the Account page of your Honeycomb account
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -2788,17 +2843,17 @@ func (o ServiceComputeLoggingHoneycombOutput) ToServiceComputeLoggingHoneycombOu
 	return o
 }
 
-// The Honeycomb Dataset you want to log to.
+// The Honeycomb Dataset you want to log to
 func (o ServiceComputeLoggingHoneycombOutput) Dataset() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Dataset }).(pulumi.StringOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingHoneycombOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The Write Key from the Account page of your Honeycomb account
 func (o ServiceComputeLoggingHoneycombOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -2824,33 +2879,30 @@ func (o ServiceComputeLoggingHoneycombArrayOutput) Index(i pulumi.IntInput) Serv
 }
 
 type ServiceComputeLoggingKafka struct {
+	// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
 	AuthMethod *string `pulumi:"authMethod"`
-	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+	// A comma-separated list of IP addresses or hostnames of Kafka brokers
 	Brokers string `pulumi:"brokers"`
-	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+	// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 	CompressionCodec *string `pulumi:"compressionCodec"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name            string `pulumi:"name"`
 	ParseLogKeyvals *bool  `pulumi:"parseLogKeyvals"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
-	Password *string `pulumi:"password"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
-	RequiredAcks *string `pulumi:"requiredAcks"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
+	// SASL Pass
+	Password        *string `pulumi:"password"`
+	RequestMaxBytes *int    `pulumi:"requestMaxBytes"`
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+	RequiredAcks  *string `pulumi:"requiredAcks"`
+	TlsCaCert     *string `pulumi:"tlsCaCert"`
 	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsClientKey  *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The Kinesis stream name.
+	// The Kafka topic to send logs to
 	Topic string `pulumi:"topic"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Can be either `true` or `false`
 	UseTls *bool `pulumi:"useTls"`
-	// The username for your Cloud Files account.
+	// SASL User
 	User *string `pulumi:"user"`
 }
 
@@ -2866,33 +2918,30 @@ type ServiceComputeLoggingKafkaInput interface {
 }
 
 type ServiceComputeLoggingKafkaArgs struct {
+	// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
 	AuthMethod pulumi.StringPtrInput `pulumi:"authMethod"`
-	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+	// A comma-separated list of IP addresses or hostnames of Kafka brokers
 	Brokers pulumi.StringInput `pulumi:"brokers"`
-	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+	// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name            pulumi.StringInput  `pulumi:"name"`
 	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
-	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
-	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
+	// SASL Pass
+	Password        pulumi.StringPtrInput `pulumi:"password"`
+	RequestMaxBytes pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+	RequiredAcks  pulumi.StringPtrInput `pulumi:"requiredAcks"`
+	TlsCaCert     pulumi.StringPtrInput `pulumi:"tlsCaCert"`
 	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsClientKey  pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The Kinesis stream name.
+	// The Kafka topic to send logs to
 	Topic pulumi.StringInput `pulumi:"topic"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Can be either `true` or `false`
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
-	// The username for your Cloud Files account.
+	// SASL User
 	User pulumi.StringPtrInput `pulumi:"user"`
 }
 
@@ -2947,21 +2996,22 @@ func (o ServiceComputeLoggingKafkaOutput) ToServiceComputeLoggingKafkaOutputWith
 	return o
 }
 
+// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
 func (o ServiceComputeLoggingKafkaOutput) AuthMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.AuthMethod }).(pulumi.StringPtrOutput)
 }
 
-// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+// A comma-separated list of IP addresses or hostnames of Kafka brokers
 func (o ServiceComputeLoggingKafkaOutput) Brokers() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Brokers }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 func (o ServiceComputeLoggingKafkaOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingKafkaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2970,52 +3020,48 @@ func (o ServiceComputeLoggingKafkaOutput) ParseLogKeyvals() pulumi.BoolPtrOutput
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *bool { return v.ParseLogKeyvals }).(pulumi.BoolPtrOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// SASL Pass
 func (o ServiceComputeLoggingKafkaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 func (o ServiceComputeLoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
 func (o ServiceComputeLoggingKafkaOutput) RequiredAcks() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.RequiredAcks }).(pulumi.StringPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o ServiceComputeLoggingKafkaOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeLoggingKafkaOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeLoggingKafkaOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 func (o ServiceComputeLoggingKafkaOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The Kinesis stream name.
+// The Kafka topic to send logs to
 func (o ServiceComputeLoggingKafkaOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Topic }).(pulumi.StringOutput)
 }
 
-// Whether to use TLS for secure logging. Can be either true or false.
+// Whether to use TLS for secure logging. Can be either `true` or `false`
 func (o ServiceComputeLoggingKafkaOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// SASL User
 func (o ServiceComputeLoggingKafkaOutput) User() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.User }).(pulumi.StringPtrOutput)
 }
@@ -3041,15 +3087,15 @@ func (o ServiceComputeLoggingKafkaArrayOutput) Index(i pulumi.IntInput) ServiceC
 }
 
 type ServiceComputeLoggingKinese struct {
-	// The AWS access key to be used to write to the stream.
+	// The AWS access key to be used to write to the stream
 	AccessKey string `pulumi:"accessKey"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region *string `pulumi:"region"`
-	// The AWS secret access key to authenticate with.
+	// The AWS secret access key to authenticate with
 	SecretKey string `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Kinesis stream name
 	Topic string `pulumi:"topic"`
 }
 
@@ -3065,15 +3111,15 @@ type ServiceComputeLoggingKineseInput interface {
 }
 
 type ServiceComputeLoggingKineseArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// The AWS access key to be used to write to the stream
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The AWS secret access key to authenticate with.
+	// The AWS secret access key to authenticate with
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Kinesis stream name
 	Topic pulumi.StringInput `pulumi:"topic"`
 }
 
@@ -3128,27 +3174,27 @@ func (o ServiceComputeLoggingKineseOutput) ToServiceComputeLoggingKineseOutputWi
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// The AWS access key to be used to write to the stream
 func (o ServiceComputeLoggingKineseOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingKineseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The AWS region the stream resides in. (Default: `us-east-1`)
 func (o ServiceComputeLoggingKineseOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKinese) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The AWS secret access key to authenticate with
 func (o ServiceComputeLoggingKineseOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The Kinesis stream name.
+// The Kinesis stream name
 func (o ServiceComputeLoggingKineseOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.Topic }).(pulumi.StringOutput)
 }
@@ -3174,9 +3220,9 @@ func (o ServiceComputeLoggingKineseArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type ServiceComputeLoggingLoggly struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 	Token string `pulumi:"token"`
 }
 
@@ -3192,9 +3238,9 @@ type ServiceComputeLoggingLogglyInput interface {
 }
 
 type ServiceComputeLoggingLogglyArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -3249,12 +3295,12 @@ func (o ServiceComputeLoggingLogglyOutput) ToServiceComputeLoggingLogglyOutputWi
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingLogglyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLoggly) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 func (o ServiceComputeLoggingLogglyOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLoggly) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -3280,11 +3326,11 @@ func (o ServiceComputeLoggingLogglyArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type ServiceComputeLoggingLogshuttle struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The data authentication token associated with this endpoint
 	Token string `pulumi:"token"`
-	// Your OpenStack auth url.
+	// Your Log Shuttle endpoint URL
 	Url string `pulumi:"url"`
 }
 
@@ -3300,11 +3346,11 @@ type ServiceComputeLoggingLogshuttleInput interface {
 }
 
 type ServiceComputeLoggingLogshuttleArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The data authentication token associated with this endpoint
 	Token pulumi.StringInput `pulumi:"token"`
-	// Your OpenStack auth url.
+	// Your Log Shuttle endpoint URL
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -3359,17 +3405,17 @@ func (o ServiceComputeLoggingLogshuttleOutput) ToServiceComputeLoggingLogshuttle
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingLogshuttleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The data authentication token associated with this endpoint
 func (o ServiceComputeLoggingLogshuttleOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Your OpenStack auth url.
+// Your Log Shuttle endpoint URL
 func (o ServiceComputeLoggingLogshuttleOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -3395,9 +3441,9 @@ func (o ServiceComputeLoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) Ser
 }
 
 type ServiceComputeLoggingNewrelic struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The Insert API key from the Account page of your New Relic account
 	Token string `pulumi:"token"`
 }
 
@@ -3413,9 +3459,9 @@ type ServiceComputeLoggingNewrelicInput interface {
 }
 
 type ServiceComputeLoggingNewrelicArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The data authentication token associated with this endpoint.
+	// The Insert API key from the Account page of your New Relic account
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -3470,12 +3516,12 @@ func (o ServiceComputeLoggingNewrelicOutput) ToServiceComputeLoggingNewrelicOutp
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingNewrelicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The Insert API key from the Account page of your New Relic account
 func (o ServiceComputeLoggingNewrelicOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -3501,27 +3547,27 @@ func (o ServiceComputeLoggingNewrelicArrayOutput) Index(i pulumi.IntInput) Servi
 }
 
 type ServiceComputeLoggingOpenstack struct {
-	// The AWS access key to be used to write to the stream.
+	// Your OpenStack account access key
 	AccessKey string `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your OpenStack container
 	BucketName string `pulumi:"bucketName"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// Your OpenStack auth url.
+	// Your OpenStack auth url
 	Url string `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// The username for your OpenStack account
 	User string `pulumi:"user"`
 }
 
@@ -3537,27 +3583,27 @@ type ServiceComputeLoggingOpenstackInput interface {
 }
 
 type ServiceComputeLoggingOpenstackArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// Your OpenStack account access key
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your OpenStack container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// Your OpenStack auth url.
+	// Your OpenStack auth url
 	Url pulumi.StringInput `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// The username for your OpenStack account
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -3612,57 +3658,57 @@ func (o ServiceComputeLoggingOpenstackOutput) ToServiceComputeLoggingOpenstackOu
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// Your OpenStack account access key
 func (o ServiceComputeLoggingOpenstackOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The name of your Cloud Files container.
+// The name of your OpenStack container
 func (o ServiceComputeLoggingOpenstackOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 func (o ServiceComputeLoggingOpenstackOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 func (o ServiceComputeLoggingOpenstackOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingOpenstackOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 func (o ServiceComputeLoggingOpenstackOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds. Default `3600`
 func (o ServiceComputeLoggingOpenstackOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingOpenstackOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingOpenstackOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// Your OpenStack auth url.
+// Your OpenStack auth url
 func (o ServiceComputeLoggingOpenstackOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for your OpenStack account
 func (o ServiceComputeLoggingOpenstackOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.User }).(pulumi.StringOutput)
 }
@@ -3688,11 +3734,11 @@ func (o ServiceComputeLoggingOpenstackArrayOutput) Index(i pulumi.IntInput) Serv
 }
 
 type ServiceComputeLoggingScalyr struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.scalyr.com/keys)
 	Token string `pulumi:"token"`
 }
 
@@ -3708,11 +3754,11 @@ type ServiceComputeLoggingScalyrInput interface {
 }
 
 type ServiceComputeLoggingScalyrArgs struct {
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.scalyr.com/keys)
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -3767,17 +3813,17 @@ func (o ServiceComputeLoggingScalyrOutput) ToServiceComputeLoggingScalyrOutputWi
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingScalyrOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 func (o ServiceComputeLoggingScalyrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The token to use for authentication (https://www.scalyr.com/keys)
 func (o ServiceComputeLoggingScalyrOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -3803,31 +3849,30 @@ func (o ServiceComputeLoggingScalyrArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type ServiceComputeLoggingSftp struct {
-	// The SFTP address to stream logs to.
+	// The SFTP address to stream logs to
 	Address string `pulumi:"address"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 	Password *string `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port the SFTP service listens on. (Default: `22`)
 	Port *int `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The AWS secret access key to authenticate with.
-	SecretKey *string `pulumi:"secretKey"`
-	// A list of host keys for all hosts we can connect to over SFTP.
-	SshKnownHosts string `pulumi:"sshKnownHosts"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
+	SecretKey     *string `pulumi:"secretKey"`
+	SshKnownHosts string  `pulumi:"sshKnownHosts"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server
 	User string `pulumi:"user"`
 }
 
@@ -3843,31 +3888,30 @@ type ServiceComputeLoggingSftpInput interface {
 }
 
 type ServiceComputeLoggingSftpArgs struct {
-	// The SFTP address to stream logs to.
+	// The SFTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path pulumi.StringInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port the SFTP service listens on. (Default: `22`)
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The AWS secret access key to authenticate with.
-	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// A list of host keys for all hosts we can connect to over SFTP.
-	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
+	SecretKey     pulumi.StringPtrInput `pulumi:"secretKey"`
+	SshKnownHosts pulumi.StringInput    `pulumi:"sshKnownHosts"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -3922,67 +3966,66 @@ func (o ServiceComputeLoggingSftpOutput) ToServiceComputeLoggingSftpOutputWithCo
 	return o
 }
 
-// The SFTP address to stream logs to.
+// The SFTP address to stream logs to
 func (o ServiceComputeLoggingSftpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 func (o ServiceComputeLoggingSftpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 func (o ServiceComputeLoggingSftpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingSftpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 func (o ServiceComputeLoggingSftpOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The path to upload logs to.
+// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 func (o ServiceComputeLoggingSftpOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 func (o ServiceComputeLoggingSftpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port the SFTP service listens on. (Default: `22`)
 func (o ServiceComputeLoggingSftpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingSftpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 func (o ServiceComputeLoggingSftpOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// A list of host keys for all hosts we can connect to over SFTP.
 func (o ServiceComputeLoggingSftpOutput) SshKnownHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.SshKnownHosts }).(pulumi.StringOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingSftpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for the server
 func (o ServiceComputeLoggingSftpOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.User }).(pulumi.StringOutput)
 }
@@ -4008,7 +4051,7 @@ func (o ServiceComputeLoggingSftpArrayOutput) Index(i pulumi.IntInput) ServiceCo
 }
 
 type ServiceComputePackage struct {
-	// The path to the Wasm deployment package within your local filesystem.
+	// The path to the Wasm deployment package within your local filesystem
 	Filename       string  `pulumi:"filename"`
 	SourceCodeHash *string `pulumi:"sourceCodeHash"`
 }
@@ -4025,7 +4068,7 @@ type ServiceComputePackageInput interface {
 }
 
 type ServiceComputePackageArgs struct {
-	// The path to the Wasm deployment package within your local filesystem.
+	// The path to the Wasm deployment package within your local filesystem
 	Filename       pulumi.StringInput    `pulumi:"filename"`
 	SourceCodeHash pulumi.StringPtrInput `pulumi:"sourceCodeHash"`
 }
@@ -4107,7 +4150,7 @@ func (o ServiceComputePackageOutput) ToServiceComputePackagePtrOutputWithContext
 	}).(ServiceComputePackagePtrOutput)
 }
 
-// The path to the Wasm deployment package within your local filesystem.
+// The path to the Wasm deployment package within your local filesystem
 func (o ServiceComputePackageOutput) Filename() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputePackage) string { return v.Filename }).(pulumi.StringOutput)
 }
@@ -4134,7 +4177,7 @@ func (o ServiceComputePackagePtrOutput) Elem() ServiceComputePackageOutput {
 	return o.ApplyT(func(v *ServiceComputePackage) ServiceComputePackage { return *v }).(ServiceComputePackageOutput)
 }
 
-// The path to the Wasm deployment package within your local filesystem.
+// The path to the Wasm deployment package within your local filesystem
 func (o ServiceComputePackagePtrOutput) Filename() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputePackage) *string {
 		if v == nil {
@@ -4154,11 +4197,11 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 }
 
 type ServiceComputePapertrail struct {
-	// The SFTP address to stream logs to.
+	// The address of the Papertrail endpoint
 	Address string `pulumi:"address"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port int `pulumi:"port"`
 }
 
@@ -4174,11 +4217,11 @@ type ServiceComputePapertrailInput interface {
 }
 
 type ServiceComputePapertrailArgs struct {
-	// The SFTP address to stream logs to.
+	// The address of the Papertrail endpoint
 	Address pulumi.StringInput `pulumi:"address"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port pulumi.IntInput `pulumi:"port"`
 }
 
@@ -4233,17 +4276,17 @@ func (o ServiceComputePapertrailOutput) ToServiceComputePapertrailOutputWithCont
 	return o
 }
 
-// The SFTP address to stream logs to.
+// The address of the Papertrail endpoint
 func (o ServiceComputePapertrailOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputePapertrail) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputePapertrailOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputePapertrail) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port associated with the address where the Papertrail endpoint can be accessed
 func (o ServiceComputePapertrailOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v ServiceComputePapertrail) int { return v.Port }).(pulumi.IntOutput)
 }
@@ -4269,37 +4312,29 @@ func (o ServiceComputePapertrailArrayOutput) Index(i pulumi.IntInput) ServiceCom
 }
 
 type ServiceComputeS3logging struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain *string `pulumi:"domain"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
-	Redundancy *string `pulumi:"redundancy"`
-	// AWS Access Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This key will be
-	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-	S3AccessKey *string `pulumi:"s3AccessKey"`
-	// AWS Secret Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This secret will be
-	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+	Redundancy                   *string `pulumi:"redundancy"`
+	S3AccessKey                  *string `pulumi:"s3AccessKey"`
 	S3SecretKey                  *string `pulumi:"s3SecretKey"`
 	ServerSideEncryption         *string `pulumi:"serverSideEncryption"`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -4315,37 +4350,29 @@ type ServiceComputeS3loggingInput interface {
 }
 
 type ServiceComputeS3loggingArgs struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
-	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
-	// AWS Access Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This key will be
-	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
-	// AWS Secret Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This secret will be
-	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+	Redundancy                   pulumi.StringPtrInput `pulumi:"redundancy"`
+	S3AccessKey                  pulumi.StringPtrInput `pulumi:"s3AccessKey"`
 	S3SecretKey                  pulumi.StringPtrInput `pulumi:"s3SecretKey"`
 	ServerSideEncryption         pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -4400,63 +4427,55 @@ func (o ServiceComputeS3loggingOutput) ToServiceComputeS3loggingOutputWithContex
 	return o
 }
 
-// The name of your Cloud Files container.
+// The name of the bucket in which to store the logs
 func (o ServiceComputeS3loggingOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 func (o ServiceComputeS3loggingOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 func (o ServiceComputeS3loggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 func (o ServiceComputeS3loggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeS3loggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 func (o ServiceComputeS3loggingOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds. Default `3600`
 func (o ServiceComputeS3loggingOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeS3loggingOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
 func (o ServiceComputeS3loggingOutput) Redundancy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }
 
-// AWS Access Key of an account with the required
-// permissions to post logs. It is **strongly** recommended you create a separate
-// IAM user with permissions to only operate on this Bucket. This key will be
-// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
 func (o ServiceComputeS3loggingOutput) S3AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.S3AccessKey }).(pulumi.StringPtrOutput)
 }
 
-// AWS Secret Key of an account with the required
-// permissions to post logs. It is **strongly** recommended you create a separate
-// IAM user with permissions to only operate on this Bucket. This secret will be
-// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
 func (o ServiceComputeS3loggingOutput) S3SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
 }
@@ -4469,7 +4488,7 @@ func (o ServiceComputeS3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.Str
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeS3loggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -4495,15 +4514,16 @@ func (o ServiceComputeS3loggingArrayOutput) Index(i pulumi.IntInput) ServiceComp
 }
 
 type ServiceComputeSplunk struct {
-	// The unique name of the Kinesis logging endpoint.
-	Name string `pulumi:"name"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name          string  `pulumi:"name"`
+	TlsCaCert     *string `pulumi:"tlsCaCert"`
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	TlsClientKey  *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// The Splunk token to be used for authentication
 	Token string `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The Splunk URL to stream logs to
 	Url string `pulumi:"url"`
 }
 
@@ -4519,15 +4539,16 @@ type ServiceComputeSplunkInput interface {
 }
 
 type ServiceComputeSplunkArgs struct {
-	// The unique name of the Kinesis logging endpoint.
-	Name pulumi.StringInput `pulumi:"name"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name          pulumi.StringInput    `pulumi:"name"`
+	TlsCaCert     pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey  pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// The Splunk token to be used for authentication
 	Token pulumi.StringInput `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The Splunk URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -4582,27 +4603,34 @@ func (o ServiceComputeSplunkOutput) ToServiceComputeSplunkOutputWithContext(ctx 
 	return o
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeSplunkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o ServiceComputeSplunkOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+func (o ServiceComputeSplunkOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceComputeSplunkOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 func (o ServiceComputeSplunkOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The Splunk token to be used for authentication
 func (o ServiceComputeSplunkOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Your OpenStack auth url.
+// The Splunk URL to stream logs to
 func (o ServiceComputeSplunkOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -4628,11 +4656,11 @@ func (o ServiceComputeSplunkArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 }
 
 type ServiceComputeSumologic struct {
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Your OpenStack auth url.
+	// The URL to Sumologic collector endpoint
 	Url string `pulumi:"url"`
 }
 
@@ -4648,11 +4676,11 @@ type ServiceComputeSumologicInput interface {
 }
 
 type ServiceComputeSumologicArgs struct {
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Your OpenStack auth url.
+	// The URL to Sumologic collector endpoint
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -4707,17 +4735,17 @@ func (o ServiceComputeSumologicOutput) ToServiceComputeSumologicOutputWithContex
 	return o
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
 func (o ServiceComputeSumologicOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeSumologicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSumologic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Your OpenStack auth url.
+// The URL to Sumologic collector endpoint
 func (o ServiceComputeSumologicOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSumologic) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -4743,25 +4771,22 @@ func (o ServiceComputeSumologicArrayOutput) Index(i pulumi.IntInput) ServiceComp
 }
 
 type ServiceComputeSyslog struct {
-	// The SFTP address to stream logs to.
+	// A hostname or IPv4 address of the Syslog endpoint
 	Address string `pulumi:"address"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType *string `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The port the SFTP service listens on. (Default: `22`).
-	Port *int `pulumi:"port"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
+	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+	Port          *int    `pulumi:"port"`
+	TlsCaCert     *string `pulumi:"tlsCaCert"`
 	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsClientKey  *string `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// Whether to prepend each message with a specific token
 	Token *string `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Default `false`
 	UseTls *bool `pulumi:"useTls"`
 }
 
@@ -4777,25 +4802,22 @@ type ServiceComputeSyslogInput interface {
 }
 
 type ServiceComputeSyslogArgs struct {
-	// The SFTP address to stream logs to.
+	// A hostname or IPv4 address of the Syslog endpoint
 	Address pulumi.StringInput `pulumi:"address"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// The unique name of the Kinesis logging endpoint.
+	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The port the SFTP service listens on. (Default: `22`).
-	Port pulumi.IntPtrInput `pulumi:"port"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
+	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+	Port          pulumi.IntPtrInput    `pulumi:"port"`
+	TlsCaCert     pulumi.StringPtrInput `pulumi:"tlsCaCert"`
 	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsClientKey  pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// Whether to prepend each message with a specific token
 	Token pulumi.StringPtrInput `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Default `false`
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
@@ -4850,52 +4872,49 @@ func (o ServiceComputeSyslogOutput) ToServiceComputeSyslogOutputWithContext(ctx 
 	return o
 }
 
-// The SFTP address to stream logs to.
+// A hostname or IPv4 address of the Syslog endpoint
 func (o ServiceComputeSyslogOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 func (o ServiceComputeSyslogOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// The unique name of the Kinesis logging endpoint.
+// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeSyslogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 func (o ServiceComputeSyslogOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o ServiceComputeSyslogOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeSyslogOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeSyslogOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// Used during the TLS handshake to validate the certificate
 func (o ServiceComputeSyslogOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// Whether to prepend each message with a specific token
 func (o ServiceComputeSyslogOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.Token }).(pulumi.StringPtrOutput)
 }
 
-// Whether to use TLS for secure logging. Can be either true or false.
+// Whether to use TLS for secure logging. Default `false`
 func (o ServiceComputeSyslogOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
@@ -4921,11 +4940,10 @@ func (o ServiceComputeSyslogArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 }
 
 type ServiceWafConfigurationRule struct {
-	// The Web Application Firewall rule's modsecurity ID.
 	ModsecRuleId int `pulumi:"modsecRuleId"`
-	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
 	Revision *int `pulumi:"revision"`
-	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
 	Status string `pulumi:"status"`
 }
 
@@ -4941,11 +4959,10 @@ type ServiceWafConfigurationRuleInput interface {
 }
 
 type ServiceWafConfigurationRuleArgs struct {
-	// The Web Application Firewall rule's modsecurity ID.
 	ModsecRuleId pulumi.IntInput `pulumi:"modsecRuleId"`
-	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
 	Revision pulumi.IntPtrInput `pulumi:"revision"`
-	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
 	Status pulumi.StringInput `pulumi:"status"`
 }
 
@@ -5000,17 +5017,16 @@ func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutputWi
 	return o
 }
 
-// The Web Application Firewall rule's modsecurity ID.
 func (o ServiceWafConfigurationRuleOutput) ModsecRuleId() pulumi.IntOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRule) int { return v.ModsecRuleId }).(pulumi.IntOutput)
 }
 
-// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
 func (o ServiceWafConfigurationRuleOutput) Revision() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRule) *int { return v.Revision }).(pulumi.IntPtrOutput)
 }
 
-// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
 func (o ServiceWafConfigurationRuleOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRule) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -5036,15 +5052,14 @@ func (o ServiceWafConfigurationRuleArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type ServiceWafConfigurationRuleExclusion struct {
-	// A conditional expression in VCL used to determine if the condition is met.
+	// A conditional expression in VCL used to determine if the condition is met
 	Condition string `pulumi:"condition"`
-	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
 	ExclusionType string `pulumi:"exclusionType"`
-	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
-	ModsecRuleIds []int `pulumi:"modsecRuleIds"`
-	// The name of rule exclusion.
+	ModsecRuleIds []int  `pulumi:"modsecRuleIds"`
+	// The name of rule exclusion
 	Name string `pulumi:"name"`
-	// The numeric ID assigned to the WAF Rule Exclusion.
+	// The numeric ID assigned to the WAF Rule Exclusion
 	Number *int `pulumi:"number"`
 }
 
@@ -5060,15 +5075,14 @@ type ServiceWafConfigurationRuleExclusionInput interface {
 }
 
 type ServiceWafConfigurationRuleExclusionArgs struct {
-	// A conditional expression in VCL used to determine if the condition is met.
+	// A conditional expression in VCL used to determine if the condition is met
 	Condition pulumi.StringInput `pulumi:"condition"`
-	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
-	ExclusionType pulumi.StringInput `pulumi:"exclusionType"`
-	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
+	ExclusionType pulumi.StringInput   `pulumi:"exclusionType"`
 	ModsecRuleIds pulumi.IntArrayInput `pulumi:"modsecRuleIds"`
-	// The name of rule exclusion.
+	// The name of rule exclusion
 	Name pulumi.StringInput `pulumi:"name"`
-	// The numeric ID assigned to the WAF Rule Exclusion.
+	// The numeric ID assigned to the WAF Rule Exclusion
 	Number pulumi.IntPtrInput `pulumi:"number"`
 }
 
@@ -5123,27 +5137,26 @@ func (o ServiceWafConfigurationRuleExclusionOutput) ToServiceWafConfigurationRul
 	return o
 }
 
-// A conditional expression in VCL used to determine if the condition is met.
+// A conditional expression in VCL used to determine if the condition is met
 func (o ServiceWafConfigurationRuleExclusionOutput) Condition() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.Condition }).(pulumi.StringOutput)
 }
 
-// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
 func (o ServiceWafConfigurationRuleExclusionOutput) ExclusionType() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.ExclusionType }).(pulumi.StringOutput)
 }
 
-// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
 func (o ServiceWafConfigurationRuleExclusionOutput) ModsecRuleIds() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) []int { return v.ModsecRuleIds }).(pulumi.IntArrayOutput)
 }
 
-// The name of rule exclusion.
+// The name of rule exclusion
 func (o ServiceWafConfigurationRuleExclusionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The numeric ID assigned to the WAF Rule Exclusion.
+// The numeric ID assigned to the WAF Rule Exclusion
 func (o ServiceWafConfigurationRuleExclusionOutput) Number() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) *int { return v.Number }).(pulumi.IntPtrOutput)
 }
@@ -5169,9 +5182,11 @@ func (o ServiceWafConfigurationRuleExclusionArrayOutput) Index(i pulumi.IntInput
 }
 
 type Servicev1Acl struct {
-	// The ID of the ACL.
+	// The ID of the ACL
 	AclId *string `pulumi:"aclId"`
-	// A unique name to identify this dictionary.
+	// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
 	Name string `pulumi:"name"`
 }
 
@@ -5187,9 +5202,11 @@ type Servicev1AclInput interface {
 }
 
 type Servicev1AclArgs struct {
-	// The ID of the ACL.
+	// The ID of the ACL
 	AclId pulumi.StringPtrInput `pulumi:"aclId"`
-	// A unique name to identify this dictionary.
+	// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+	ForceDestroy pulumi.BoolPtrInput `pulumi:"forceDestroy"`
+	// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -5244,12 +5261,17 @@ func (o Servicev1AclOutput) ToServicev1AclOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The ID of the ACL.
+// The ID of the ACL
 func (o Servicev1AclOutput) AclId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Acl) *string { return v.AclId }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+func (o Servicev1AclOutput) ForceDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v Servicev1Acl) *bool { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
 func (o Servicev1AclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Acl) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -5275,61 +5297,47 @@ func (o Servicev1AclArrayOutput) Index(i pulumi.IntInput) Servicev1AclOutput {
 }
 
 type Servicev1Backend struct {
-	// The SFTP address to stream logs to.
+	// An IPv4, hostname, or IPv6 address for the Backend
 	Address string `pulumi:"address"`
-	// Denotes if this Backend should be
-	// included in the pool of backends that requests are load balanced against.
-	// Default `true`.
-	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
-	// How long to wait between bytes in milliseconds. Default `10000`.
-	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
-	// How long to wait for a timeout in milliseconds.
-	// Default `1000`
+	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+	AutoLoadbalance     *bool `pulumi:"autoLoadbalance"`
+	BetweenBytesTimeout *int  `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`.
-	ErrorThreshold *int `pulumi:"errorThreshold"`
-	// How long to wait for the first bytes in milliseconds. Default `15000`.
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold   *int `pulumi:"errorThreshold"`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
-	// Name of a defined `healthcheck` to assign to this backend.
+	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
-	// Maximum number of connections for this Backend.
-	// Default `200`.
-	MaxConn *int `pulumi:"maxConn"`
-	// Maximum allowed TLS version on SSL connections to this backend.
+	// Maximum number of connections for this Backend. Default `200`
+	MaxConn       *int    `pulumi:"maxConn"`
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
-	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
-	// A unique name to identify this dictionary.
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The hostname to override the Host header.
+	// The hostname to override the Host header
 	OverrideHost *string `pulumi:"overrideHost"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number on which the Backend responds. Default `80`
 	Port *int `pulumi:"port"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition *string `pulumi:"requestCondition"`
-	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-	Shield *string `pulumi:"shield"`
-	// CA certificate attached to origin.
-	SslCaCert *string `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+	Shield          *string `pulumi:"shield"`
+	SslCaCert       *string `pulumi:"sslCaCert"`
 	SslCertHostname *string `pulumi:"sslCertHostname"`
-	// Be strict about checking SSL certs. Default `true`.
-	SslCheckCert *bool `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-	SslCiphers *string `pulumi:"sslCiphers"`
-	// Client certificate attached to origin. Used when connecting to the backend.
+	SslCheckCert    *bool   `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	SslCiphers    *string `pulumi:"sslCiphers"`
 	SslClientCert *string `pulumi:"sslClientCert"`
-	// Client key attached to origin. Used when connecting to the backend.
-	SslClientKey *string `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert.
+	SslClientKey  *string `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname *string `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+	SslHostname    *string `pulumi:"sslHostname"`
 	SslSniHostname *string `pulumi:"sslSniHostname"`
-	// Whether or not to use SSL to reach the backend. Default `false`.
+	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl *bool `pulumi:"useSsl"`
-	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
 	Weight *int `pulumi:"weight"`
 }
 
@@ -5345,61 +5353,47 @@ type Servicev1BackendInput interface {
 }
 
 type Servicev1BackendArgs struct {
-	// The SFTP address to stream logs to.
+	// An IPv4, hostname, or IPv6 address for the Backend
 	Address pulumi.StringInput `pulumi:"address"`
-	// Denotes if this Backend should be
-	// included in the pool of backends that requests are load balanced against.
-	// Default `true`.
-	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
-	// How long to wait between bytes in milliseconds. Default `10000`.
-	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
-	// How long to wait for a timeout in milliseconds.
-	// Default `1000`
+	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+	AutoLoadbalance     pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
+	BetweenBytesTimeout pulumi.IntPtrInput  `pulumi:"betweenBytesTimeout"`
+	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`.
-	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
-	// How long to wait for the first bytes in milliseconds. Default `15000`.
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold   pulumi.IntPtrInput `pulumi:"errorThreshold"`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
-	// Name of a defined `healthcheck` to assign to this backend.
+	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
-	// Maximum number of connections for this Backend.
-	// Default `200`.
-	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
-	// Maximum allowed TLS version on SSL connections to this backend.
+	// Maximum number of connections for this Backend. Default `200`
+	MaxConn       pulumi.IntPtrInput    `pulumi:"maxConn"`
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
-	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
-	// A unique name to identify this dictionary.
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The hostname to override the Host header.
+	// The hostname to override the Host header
 	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number on which the Backend responds. Default `80`
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
-	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-	Shield pulumi.StringPtrInput `pulumi:"shield"`
-	// CA certificate attached to origin.
-	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+	Shield          pulumi.StringPtrInput `pulumi:"shield"`
+	SslCaCert       pulumi.StringPtrInput `pulumi:"sslCaCert"`
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
-	// Be strict about checking SSL certs. Default `true`.
-	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
-	// Client certificate attached to origin. Used when connecting to the backend.
+	SslCheckCert    pulumi.BoolPtrInput   `pulumi:"sslCheckCert"`
+	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	SslCiphers    pulumi.StringPtrInput `pulumi:"sslCiphers"`
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
-	// Client key attached to origin. Used when connecting to the backend.
-	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert.
+	SslClientKey  pulumi.StringPtrInput `pulumi:"sslClientKey"`
+	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+	SslHostname    pulumi.StringPtrInput `pulumi:"sslHostname"`
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
-	// Whether or not to use SSL to reach the backend. Default `false`.
+	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
-	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+	// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
 
@@ -5454,133 +5448,119 @@ func (o Servicev1BackendOutput) ToServicev1BackendOutputWithContext(ctx context.
 	return o
 }
 
-// The SFTP address to stream logs to.
+// An IPv4, hostname, or IPv6 address for the Backend
 func (o Servicev1BackendOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Backend) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// Denotes if this Backend should be
-// included in the pool of backends that requests are load balanced against.
-// Default `true`.
+// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
 func (o Servicev1BackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
 }
 
-// How long to wait between bytes in milliseconds. Default `10000`.
 func (o Servicev1BackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
 }
 
-// How long to wait for a timeout in milliseconds.
-// Default `1000`
+// How long to wait for a timeout in milliseconds. Default `1000`
 func (o Servicev1BackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Number of errors to allow before the Backend is marked as down. Default `0`.
+// Number of errors to allow before the Backend is marked as down. Default `0`
 func (o Servicev1BackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
-// How long to wait for the first bytes in milliseconds. Default `15000`.
 func (o Servicev1BackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.FirstByteTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Name of a defined `healthcheck` to assign to this backend.
+// Name of a defined `healthcheck` to assign to this backend
 func (o Servicev1BackendOutput) Healthcheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of connections for this Backend.
-// Default `200`.
+// Maximum number of connections for this Backend. Default `200`
 func (o Servicev1BackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
-// Maximum allowed TLS version on SSL connections to this backend.
 func (o Servicev1BackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
 }
 
-// Minimum allowed TLS version on SSL connections to this backend.
 func (o Servicev1BackendOutput) MinTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1BackendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Backend) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The hostname to override the Host header.
+// The hostname to override the Host header
 func (o Servicev1BackendOutput) OverrideHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.OverrideHost }).(pulumi.StringPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port number on which the Backend responds. Default `80`
 func (o Servicev1BackendOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+// Name of a condition, which if met, will select this backend during a request.
 func (o Servicev1BackendOutput) RequestCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
-// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
 func (o Servicev1BackendOutput) Shield() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
 
-// CA certificate attached to origin.
 func (o Servicev1BackendOutput) SslCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
 }
 
-// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
 func (o Servicev1BackendOutput) SslCertHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
 }
 
-// Be strict about checking SSL certs. Default `true`.
 func (o Servicev1BackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
 }
 
-// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
 func (o Servicev1BackendOutput) SslCiphers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate attached to origin. Used when connecting to the backend.
 func (o Servicev1BackendOutput) SslClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslClientCert }).(pulumi.StringPtrOutput)
 }
 
-// Client key attached to origin. Used when connecting to the backend.
 func (o Servicev1BackendOutput) SslClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
 }
 
-// Used for both SNI during the TLS handshake and to validate the cert.
+// Used for both SNI during the TLS handshake and to validate the cert
 //
 // Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
 func (o Servicev1BackendOutput) SslHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
 }
 
-// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
 func (o Servicev1BackendOutput) SslSniHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
 }
 
-// Whether or not to use SSL to reach the backend. Default `false`.
+// Whether or not to use SSL to reach the Backend. Default `false`
 func (o Servicev1BackendOutput) UseSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
 }
 
-// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
 func (o Servicev1BackendOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.Weight }).(pulumi.IntPtrOutput)
 }
@@ -5606,25 +5586,25 @@ func (o Servicev1BackendArrayOutput) Index(i pulumi.IntInput) Servicev1BackendOu
 }
 
 type Servicev1Bigquerylogging struct {
-	// The Honeycomb Dataset you want to log to.
+	// The ID of your BigQuery dataset
 	Dataset string `pulumi:"dataset"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
 	Email string `pulumi:"email"`
-	// Apache style log formatting.
+	// The logging format desired.
 	Format *string `pulumi:"format"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your GCP project
 	ProjectId string `pulumi:"projectId"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of a condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
 	SecretKey string `pulumi:"secretKey"`
-	// The ID of your BigQuery table.
+	// The ID of your BigQuery table
 	Table string `pulumi:"table"`
-	// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+	// BigQuery table name suffix template
 	Template *string `pulumi:"template"`
 }
 
@@ -5640,25 +5620,25 @@ type Servicev1BigqueryloggingInput interface {
 }
 
 type Servicev1BigqueryloggingArgs struct {
-	// The Honeycomb Dataset you want to log to.
+	// The ID of your BigQuery dataset
 	Dataset pulumi.StringInput `pulumi:"dataset"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
 	Email pulumi.StringInput `pulumi:"email"`
-	// Apache style log formatting.
+	// The logging format desired.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your GCP project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of a condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The ID of your BigQuery table.
+	// The ID of your BigQuery table
 	Table pulumi.StringInput `pulumi:"table"`
-	// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+	// BigQuery table name suffix template
 	Template pulumi.StringPtrInput `pulumi:"template"`
 }
 
@@ -5713,52 +5693,52 @@ func (o Servicev1BigqueryloggingOutput) ToServicev1BigqueryloggingOutputWithCont
 	return o
 }
 
-// The Honeycomb Dataset you want to log to.
+// The ID of your BigQuery dataset
 func (o Servicev1BigqueryloggingOutput) Dataset() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Dataset }).(pulumi.StringOutput)
 }
 
-// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
 func (o Servicev1BigqueryloggingOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Email }).(pulumi.StringOutput)
 }
 
-// Apache style log formatting.
+// The logging format desired.
 func (o Servicev1BigqueryloggingOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1BigqueryloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1BigqueryloggingOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The ID of your Google Cloud Platform project.
+// The ID of your GCP project
 func (o Servicev1BigqueryloggingOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// Name of a condition to apply this logging.
 func (o Servicev1BigqueryloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
 func (o Servicev1BigqueryloggingOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The ID of your BigQuery table.
+// The ID of your BigQuery table
 func (o Servicev1BigqueryloggingOutput) Table() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) string { return v.Table }).(pulumi.StringOutput)
 }
 
-// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+// BigQuery table name suffix template
 func (o Servicev1BigqueryloggingOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Bigquerylogging) *string { return v.Template }).(pulumi.StringPtrOutput)
 }
@@ -5784,33 +5764,33 @@ func (o Servicev1BigqueryloggingArrayOutput) Index(i pulumi.IntInput) Servicev1B
 }
 
 type Servicev1Blobstoragelogging struct {
-	// The unique Azure Blob Storage namespace in which your data objects are stored.
+	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName string `pulumi:"accountName"`
-	// The name of the Azure Blob Storage container in which to store logs.
+	// The name of the Azure Blob Storage container in which to store logs
 	Container string `pulumi:"container"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken string `pulumi:"sasToken"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -5826,33 +5806,33 @@ type Servicev1BlobstorageloggingInput interface {
 }
 
 type Servicev1BlobstorageloggingArgs struct {
-	// The unique Azure Blob Storage namespace in which your data objects are stored.
+	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName pulumi.StringInput `pulumi:"accountName"`
-	// The name of the Azure Blob Storage container in which to store logs.
+	// The name of the Azure Blob Storage container in which to store logs
 	Container pulumi.StringInput `pulumi:"container"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken pulumi.StringInput `pulumi:"sasToken"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -5907,72 +5887,72 @@ func (o Servicev1BlobstorageloggingOutput) ToServicev1BlobstorageloggingOutputWi
 	return o
 }
 
-// The unique Azure Blob Storage namespace in which your data objects are stored.
+// The unique Azure Blob Storage namespace in which your data objects are stored
 func (o Servicev1BlobstorageloggingOutput) AccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.AccountName }).(pulumi.StringOutput)
 }
 
-// The name of the Azure Blob Storage container in which to store logs.
+// The name of the Azure Blob Storage container in which to store logs
 func (o Servicev1BlobstorageloggingOutput) Container() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.Container }).(pulumi.StringOutput)
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
 func (o Servicev1BlobstorageloggingOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 func (o Servicev1BlobstorageloggingOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1BlobstorageloggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 func (o Servicev1BlobstorageloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1BlobstorageloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
 func (o Servicev1BlobstorageloggingOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred in seconds. Default `3600`
 func (o Servicev1BlobstorageloggingOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed
 func (o Servicev1BlobstorageloggingOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o Servicev1BlobstorageloggingOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply
 func (o Servicev1BlobstorageloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 func (o Servicev1BlobstorageloggingOutput) SasToken() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.SasToken }).(pulumi.StringOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
 func (o Servicev1BlobstorageloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -5998,17 +5978,15 @@ func (o Servicev1BlobstorageloggingArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type Servicev1CacheSetting struct {
-	// Allows you to terminate request handling and immediately
-	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+	// One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
 	Action *string `pulumi:"action"`
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
 	CacheCondition *string `pulumi:"cacheCondition"`
-	// A unique name to identify this dictionary.
+	// Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Max "Time To Live" for stale (unreachable) objects.
+	// Max "Time To Live" for stale (unreachable) objects
 	StaleTtl *int `pulumi:"staleTtl"`
-	// The Time-To-Live (TTL) for the object.
+	// The Time-To-Live (TTL) for the object
 	Ttl *int `pulumi:"ttl"`
 }
 
@@ -6024,17 +6002,15 @@ type Servicev1CacheSettingInput interface {
 }
 
 type Servicev1CacheSettingArgs struct {
-	// Allows you to terminate request handling and immediately
-	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+	// One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
 	Action pulumi.StringPtrInput `pulumi:"action"`
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
-	// A unique name to identify this dictionary.
+	// Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Max "Time To Live" for stale (unreachable) objects.
+	// Max "Time To Live" for stale (unreachable) objects
 	StaleTtl pulumi.IntPtrInput `pulumi:"staleTtl"`
-	// The Time-To-Live (TTL) for the object.
+	// The Time-To-Live (TTL) for the object
 	Ttl pulumi.IntPtrInput `pulumi:"ttl"`
 }
 
@@ -6089,29 +6065,27 @@ func (o Servicev1CacheSettingOutput) ToServicev1CacheSettingOutputWithContext(ct
 	return o
 }
 
-// Allows you to terminate request handling and immediately
-// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+// One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
 func (o Servicev1CacheSettingOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1CacheSetting) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
 
-// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+// Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
 func (o Servicev1CacheSettingOutput) CacheCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1CacheSetting) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1CacheSettingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1CacheSetting) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Max "Time To Live" for stale (unreachable) objects.
+// Max "Time To Live" for stale (unreachable) objects
 func (o Servicev1CacheSettingOutput) StaleTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1CacheSetting) *int { return v.StaleTtl }).(pulumi.IntPtrOutput)
 }
 
-// The Time-To-Live (TTL) for the object.
+// The Time-To-Live (TTL) for the object
 func (o Servicev1CacheSettingOutput) Ttl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1CacheSetting) *int { return v.Ttl }).(pulumi.IntPtrOutput)
 }
@@ -6137,13 +6111,13 @@ func (o Servicev1CacheSettingArrayOutput) Index(i pulumi.IntInput) Servicev1Cach
 }
 
 type Servicev1Condition struct {
-	// A unique name to identify this dictionary.
+	// The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
 	Priority *int `pulumi:"priority"`
-	// The statement used to determine if the condition is met.
+	// The statement used to determine if the condition is met
 	Statement string `pulumi:"statement"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
 	Type string `pulumi:"type"`
 }
 
@@ -6159,13 +6133,13 @@ type Servicev1ConditionInput interface {
 }
 
 type Servicev1ConditionArgs struct {
-	// A unique name to identify this dictionary.
+	// The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// The statement used to determine if the condition is met.
+	// The statement used to determine if the condition is met
 	Statement pulumi.StringInput `pulumi:"statement"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -6220,22 +6194,22 @@ func (o Servicev1ConditionOutput) ToServicev1ConditionOutputWithContext(ctx cont
 	return o
 }
 
-// A unique name to identify this dictionary.
+// The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1ConditionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Condition) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+// A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
 func (o Servicev1ConditionOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Condition) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// The statement used to determine if the condition is met.
+// The statement used to determine if the condition is met
 func (o Servicev1ConditionOutput) Statement() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Condition) string { return v.Statement }).(pulumi.StringOutput)
 }
 
-// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+// Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
 func (o Servicev1ConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Condition) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -6261,15 +6235,13 @@ func (o Servicev1ConditionArrayOutput) Index(i pulumi.IntInput) Servicev1Conditi
 }
 
 type Servicev1Dictionary struct {
-	// The ID of the dictionary.
+	// The ID of the dictionary
 	DictionaryId *string `pulumi:"dictionaryId"`
-	// A unique name to identify this dictionary.
-	Name string `pulumi:"name"`
-	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
-	// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
-	// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
-	// the items are managed outside of the provider.
-	WriteOnly *bool `pulumi:"writeOnly"`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+	Name      string `pulumi:"name"`
+	WriteOnly *bool  `pulumi:"writeOnly"`
 }
 
 // Servicev1DictionaryInput is an input type that accepts Servicev1DictionaryArgs and Servicev1DictionaryOutput values.
@@ -6284,14 +6256,12 @@ type Servicev1DictionaryInput interface {
 }
 
 type Servicev1DictionaryArgs struct {
-	// The ID of the dictionary.
+	// The ID of the dictionary
 	DictionaryId pulumi.StringPtrInput `pulumi:"dictionaryId"`
-	// A unique name to identify this dictionary.
-	Name pulumi.StringInput `pulumi:"name"`
-	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
-	// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
-	// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
-	// the items are managed outside of the provider.
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+	ForceDestroy pulumi.BoolPtrInput `pulumi:"forceDestroy"`
+	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+	Name      pulumi.StringInput  `pulumi:"name"`
 	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
 }
 
@@ -6346,20 +6316,21 @@ func (o Servicev1DictionaryOutput) ToServicev1DictionaryOutputWithContext(ctx co
 	return o
 }
 
-// The ID of the dictionary.
+// The ID of the dictionary
 func (o Servicev1DictionaryOutput) DictionaryId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Dictionary) *string { return v.DictionaryId }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+func (o Servicev1DictionaryOutput) ForceDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v Servicev1Dictionary) *bool { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
 func (o Servicev1DictionaryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Dictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
-// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
-// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
-// the items are managed outside of the provider.
 func (o Servicev1DictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Dictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }
@@ -6387,19 +6358,19 @@ func (o Servicev1DictionaryArrayOutput) Index(i pulumi.IntInput) Servicev1Dictio
 type Servicev1Director struct {
 	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
 	Backends []string `pulumi:"backends"`
-	// Load balancing weight for the backends. Default `100`.
+	// Load balancing weight for the backends. Default `100`
 	Capacity *int `pulumi:"capacity"`
-	// An optional comment about the Director.
+	// An optional comment about the Director
 	Comment *string `pulumi:"comment"`
-	// A unique name to identify this dictionary.
+	// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
 	Quorum *int `pulumi:"quorum"`
-	// How many backends to search if it fails. Default `5`.
+	// How many backends to search if it fails. Default `5`
 	Retries *int `pulumi:"retries"`
-	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
 	Shield *string `pulumi:"shield"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
 	Type *int `pulumi:"type"`
 }
 
@@ -6417,19 +6388,19 @@ type Servicev1DirectorInput interface {
 type Servicev1DirectorArgs struct {
 	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
 	Backends pulumi.StringArrayInput `pulumi:"backends"`
-	// Load balancing weight for the backends. Default `100`.
+	// Load balancing weight for the backends. Default `100`
 	Capacity pulumi.IntPtrInput `pulumi:"capacity"`
-	// An optional comment about the Director.
+	// An optional comment about the Director
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// A unique name to identify this dictionary.
+	// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
 	Quorum pulumi.IntPtrInput `pulumi:"quorum"`
-	// How many backends to search if it fails. Default `5`.
+	// How many backends to search if it fails. Default `5`
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
-	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
 	Type pulumi.IntPtrInput `pulumi:"type"`
 }
 
@@ -6489,37 +6460,37 @@ func (o Servicev1DirectorOutput) Backends() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v Servicev1Director) []string { return v.Backends }).(pulumi.StringArrayOutput)
 }
 
-// Load balancing weight for the backends. Default `100`.
+// Load balancing weight for the backends. Default `100`
 func (o Servicev1DirectorOutput) Capacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *int { return v.Capacity }).(pulumi.IntPtrOutput)
 }
 
-// An optional comment about the Director.
+// An optional comment about the Director
 func (o Servicev1DirectorOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1DirectorOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Director) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
 func (o Servicev1DirectorOutput) Quorum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *int { return v.Quorum }).(pulumi.IntPtrOutput)
 }
 
-// How many backends to search if it fails. Default `5`.
+// How many backends to search if it fails. Default `5`
 func (o Servicev1DirectorOutput) Retries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *int { return v.Retries }).(pulumi.IntPtrOutput)
 }
 
-// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
 func (o Servicev1DirectorOutput) Shield() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
 
-// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
 func (o Servicev1DirectorOutput) Type() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Director) *int { return v.Type }).(pulumi.IntPtrOutput)
 }
@@ -6545,9 +6516,9 @@ func (o Servicev1DirectorArrayOutput) Index(i pulumi.IntInput) Servicev1Director
 }
 
 type Servicev1Domain struct {
-	// An optional comment about the Director.
+	// An optional comment about the Domain.
 	Comment *string `pulumi:"comment"`
-	// A unique name to identify this dictionary.
+	// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
 	Name string `pulumi:"name"`
 }
 
@@ -6563,9 +6534,9 @@ type Servicev1DomainInput interface {
 }
 
 type Servicev1DomainArgs struct {
-	// An optional comment about the Director.
+	// An optional comment about the Domain.
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// A unique name to identify this dictionary.
+	// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -6620,12 +6591,12 @@ func (o Servicev1DomainOutput) ToServicev1DomainOutputWithContext(ctx context.Co
 	return o
 }
 
-// An optional comment about the Director.
+// An optional comment about the Domain.
 func (o Servicev1DomainOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Domain) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
 func (o Servicev1DomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Domain) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6651,13 +6622,13 @@ func (o Servicev1DomainArrayOutput) Index(i pulumi.IntInput) Servicev1DomainOutp
 }
 
 type Servicev1Dynamicsnippet struct {
-	// A unique name to identify this dictionary.
+	// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 	Priority *int `pulumi:"priority"`
-	// The ID of the dynamic snippet.
+	// The ID of the dynamic snippet
 	SnippetId *string `pulumi:"snippetId"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type string `pulumi:"type"`
 }
 
@@ -6673,13 +6644,13 @@ type Servicev1DynamicsnippetInput interface {
 }
 
 type Servicev1DynamicsnippetArgs struct {
-	// A unique name to identify this dictionary.
+	// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// The ID of the dynamic snippet.
+	// The ID of the dynamic snippet
 	SnippetId pulumi.StringPtrInput `pulumi:"snippetId"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -6734,22 +6705,22 @@ func (o Servicev1DynamicsnippetOutput) ToServicev1DynamicsnippetOutputWithContex
 	return o
 }
 
-// A unique name to identify this dictionary.
+// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1DynamicsnippetOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Dynamicsnippet) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 func (o Servicev1DynamicsnippetOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Dynamicsnippet) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// The ID of the dynamic snippet.
+// The ID of the dynamic snippet
 func (o Servicev1DynamicsnippetOutput) SnippetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Dynamicsnippet) *string { return v.SnippetId }).(pulumi.StringPtrOutput)
 }
 
-// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 func (o Servicev1DynamicsnippetOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Dynamicsnippet) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -6775,29 +6746,29 @@ func (o Servicev1DynamicsnippetArrayOutput) Index(i pulumi.IntInput) Servicev1Dy
 }
 
 type Servicev1Gcslogging struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 	Email *string `pulumi:"email"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format *string `pulumi:"format"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of a condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -6813,29 +6784,29 @@ type Servicev1GcsloggingInput interface {
 }
 
 type Servicev1GcsloggingArgs struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+	// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 	Email pulumi.StringPtrInput `pulumi:"email"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of a condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -6890,62 +6861,62 @@ func (o Servicev1GcsloggingOutput) ToServicev1GcsloggingOutputWithContext(ctx co
 	return o
 }
 
-// The name of your Cloud Files container.
+// The name of the bucket in which to store the logs
 func (o Servicev1GcsloggingOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 func (o Servicev1GcsloggingOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting
 func (o Servicev1GcsloggingOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 func (o Servicev1GcsloggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 func (o Servicev1GcsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1GcsloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 func (o Servicev1GcsloggingOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds (Default 3600)
 func (o Servicev1GcsloggingOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1GcsloggingOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// Name of a condition to apply this logging.
 func (o Servicev1GcsloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 func (o Servicev1GcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1GcsloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -6971,16 +6942,13 @@ func (o Servicev1GcsloggingArrayOutput) Index(i pulumi.IntInput) Servicev1Gcslog
 }
 
 type Servicev1Gzip struct {
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	CacheCondition *string `pulumi:"cacheCondition"`
-	// The content-type for each type of content you wish to
-	// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+	// The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
 	ContentTypes []string `pulumi:"contentTypes"`
-	// File extensions for each file type to dynamically
-	// gzip. Example: `["css", "js"]`.
+	// File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
 	Extensions []string `pulumi:"extensions"`
-	// A unique name to identify this dictionary.
+	// A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 }
 
@@ -6996,16 +6964,13 @@ type Servicev1GzipInput interface {
 }
 
 type Servicev1GzipArgs struct {
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
-	// The content-type for each type of content you wish to
-	// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+	// The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
 	ContentTypes pulumi.StringArrayInput `pulumi:"contentTypes"`
-	// File extensions for each file type to dynamically
-	// gzip. Example: `["css", "js"]`.
+	// File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
 	Extensions pulumi.StringArrayInput `pulumi:"extensions"`
-	// A unique name to identify this dictionary.
+	// A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -7060,25 +7025,22 @@ func (o Servicev1GzipOutput) ToServicev1GzipOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+// Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 func (o Servicev1GzipOutput) CacheCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gzip) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
-// The content-type for each type of content you wish to
-// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+// The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
 func (o Servicev1GzipOutput) ContentTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v Servicev1Gzip) []string { return v.ContentTypes }).(pulumi.StringArrayOutput)
 }
 
-// File extensions for each file type to dynamically
-// gzip. Example: `["css", "js"]`.
+// File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
 func (o Servicev1GzipOutput) Extensions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v Servicev1Gzip) []string { return v.Extensions }).(pulumi.StringArrayOutput)
 }
 
-// A unique name to identify this dictionary.
+// A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1GzipOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Gzip) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -7104,32 +7066,28 @@ func (o Servicev1GzipArrayOutput) Index(i pulumi.IntInput) Servicev1GzipOutput {
 }
 
 type Servicev1Header struct {
-	// Allows you to terminate request handling and immediately
-	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+	// The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
 	Action string `pulumi:"action"`
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
 	CacheCondition *string `pulumi:"cacheCondition"`
-	// The name of the header that is going to be affected by the Action.
+	// The name of the header that is going to be affected by the Action
 	Destination string `pulumi:"destination"`
-	// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
-	IgnoreIfSet *bool `pulumi:"ignoreIfSet"`
-	// A unique name to identify this dictionary.
+	IgnoreIfSet *bool  `pulumi:"ignoreIfSet"`
+	// Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// Lower priorities execute first. Default: `100`
 	Priority *int `pulumi:"priority"`
-	// Regular expression to use (Only applies to the `regex` and `regexRepeat` actions.)
+	// Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
 	Regex *string `pulumi:"regex"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
 	RequestCondition *string `pulumi:"requestCondition"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// Variable to be used as a source for the header
-	// content. (Does not apply to the `delete` action.)
+	// Variable to be used as a source for the header content (Does not apply to `delete` action.)
 	Source *string `pulumi:"source"`
-	// Value to substitute in place of regular expression. (Only applies to the `regex` and `regexRepeat` actions.)
+	// Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
 	Substitution *string `pulumi:"substitution"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
 	Type string `pulumi:"type"`
 }
 
@@ -7145,32 +7103,28 @@ type Servicev1HeaderInput interface {
 }
 
 type Servicev1HeaderArgs struct {
-	// Allows you to terminate request handling and immediately
-	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+	// The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
 	Action pulumi.StringInput `pulumi:"action"`
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
-	// The name of the header that is going to be affected by the Action.
-	Destination pulumi.StringInput `pulumi:"destination"`
-	// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
+	// The name of the header that is going to be affected by the Action
+	Destination pulumi.StringInput  `pulumi:"destination"`
 	IgnoreIfSet pulumi.BoolPtrInput `pulumi:"ignoreIfSet"`
-	// A unique name to identify this dictionary.
+	// Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// Lower priorities execute first. Default: `100`
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// Regular expression to use (Only applies to the `regex` and `regexRepeat` actions.)
+	// Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
 	Regex pulumi.StringPtrInput `pulumi:"regex"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// Variable to be used as a source for the header
-	// content. (Does not apply to the `delete` action.)
+	// Variable to be used as a source for the header content (Does not apply to `delete` action.)
 	Source pulumi.StringPtrInput `pulumi:"source"`
-	// Value to substitute in place of regular expression. (Only applies to the `regex` and `regexRepeat` actions.)
+	// Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
 	Substitution pulumi.StringPtrInput `pulumi:"substitution"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -7225,65 +7179,61 @@ func (o Servicev1HeaderOutput) ToServicev1HeaderOutputWithContext(ctx context.Co
 	return o
 }
 
-// Allows you to terminate request handling and immediately
-// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+// The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
 func (o Servicev1HeaderOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Header) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+// Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
 func (o Servicev1HeaderOutput) CacheCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
-// The name of the header that is going to be affected by the Action.
+// The name of the header that is going to be affected by the Action
 func (o Servicev1HeaderOutput) Destination() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Header) string { return v.Destination }).(pulumi.StringOutput)
 }
 
-// Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
 func (o Servicev1HeaderOutput) IgnoreIfSet() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *bool { return v.IgnoreIfSet }).(pulumi.BoolPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1HeaderOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Header) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+// Lower priorities execute first. Default: `100`
 func (o Servicev1HeaderOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// Regular expression to use (Only applies to the `regex` and `regexRepeat` actions.)
+// Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
 func (o Servicev1HeaderOutput) Regex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *string { return v.Regex }).(pulumi.StringPtrOutput)
 }
 
-// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+// Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
 func (o Servicev1HeaderOutput) RequestCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 func (o Servicev1HeaderOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// Variable to be used as a source for the header
-// content. (Does not apply to the `delete` action.)
+// Variable to be used as a source for the header content (Does not apply to `delete` action.)
 func (o Servicev1HeaderOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
 
-// Value to substitute in place of regular expression. (Only applies to the `regex` and `regexRepeat` actions.)
+// Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
 func (o Servicev1HeaderOutput) Substitution() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *string { return v.Substitution }).(pulumi.StringPtrOutput)
 }
 
-// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+// The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
 func (o Servicev1HeaderOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Header) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -7309,27 +7259,27 @@ func (o Servicev1HeaderArrayOutput) Index(i pulumi.IntInput) Servicev1HeaderOutp
 }
 
 type Servicev1Healthcheck struct {
-	// How often to run the Healthcheck in milliseconds. Default `5000`.
+	// How often to run the Healthcheck in milliseconds. Default `5000`
 	CheckInterval *int `pulumi:"checkInterval"`
-	// The status code expected from the host. Default `200`.
+	// The status code expected from the host. Default `200`
 	ExpectedResponse *int `pulumi:"expectedResponse"`
-	// The Host header to send for this Healthcheck.
+	// The Host header to send for this Healthcheck
 	Host string `pulumi:"host"`
-	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion *string `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`
 	Initial *int `pulumi:"initial"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// Which HTTP method to use. Default `HEAD`
 	Method *string `pulumi:"method"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to check
 	Path string `pulumi:"path"`
-	// How many Healthchecks must succeed to be considered healthy. Default `3`.
+	// How many Healthchecks must succeed to be considered healthy. Default `3`
 	Threshold *int `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`.
+	// Timeout in milliseconds. Default `500`
 	Timeout *int `pulumi:"timeout"`
-	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 	Window *int `pulumi:"window"`
 }
 
@@ -7345,27 +7295,27 @@ type Servicev1HealthcheckInput interface {
 }
 
 type Servicev1HealthcheckArgs struct {
-	// How often to run the Healthcheck in milliseconds. Default `5000`.
+	// How often to run the Healthcheck in milliseconds. Default `5000`
 	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
-	// The status code expected from the host. Default `200`.
+	// The status code expected from the host. Default `200`
 	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
-	// The Host header to send for this Healthcheck.
+	// The Host header to send for this Healthcheck
 	Host pulumi.StringInput `pulumi:"host"`
-	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+	// When loading a config, the initial number of probes to be seen as OK. Default `2`
 	Initial pulumi.IntPtrInput `pulumi:"initial"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// Which HTTP method to use. Default `HEAD`
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to check
 	Path pulumi.StringInput `pulumi:"path"`
-	// How many Healthchecks must succeed to be considered healthy. Default `3`.
+	// How many Healthchecks must succeed to be considered healthy. Default `3`
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`.
+	// Timeout in milliseconds. Default `500`
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
-	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 	Window pulumi.IntPtrInput `pulumi:"window"`
 }
 
@@ -7420,57 +7370,57 @@ func (o Servicev1HealthcheckOutput) ToServicev1HealthcheckOutputWithContext(ctx 
 	return o
 }
 
-// How often to run the Healthcheck in milliseconds. Default `5000`.
+// How often to run the Healthcheck in milliseconds. Default `5000`
 func (o Servicev1HealthcheckOutput) CheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
 }
 
-// The status code expected from the host. Default `200`.
+// The status code expected from the host. Default `200`
 func (o Servicev1HealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
 }
 
-// The Host header to send for this Healthcheck.
+// The Host header to send for this Healthcheck
 func (o Servicev1HealthcheckOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 func (o Servicev1HealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
 }
 
-// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+// When loading a config, the initial number of probes to be seen as OK. Default `2`
 func (o Servicev1HealthcheckOutput) Initial() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
 }
 
-// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+// Which HTTP method to use. Default `HEAD`
 func (o Servicev1HealthcheckOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1HealthcheckOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to check
 func (o Servicev1HealthcheckOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// How many Healthchecks must succeed to be considered healthy. Default `3`.
+// How many Healthchecks must succeed to be considered healthy. Default `3`
 func (o Servicev1HealthcheckOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Timeout in milliseconds. Default `500`.
+// Timeout in milliseconds. Default `500`
 func (o Servicev1HealthcheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
-// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 func (o Servicev1HealthcheckOutput) Window() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Window }).(pulumi.IntPtrOutput)
 }
@@ -7496,41 +7446,36 @@ func (o Servicev1HealthcheckArrayOutput) Index(i pulumi.IntInput) Servicev1Healt
 }
 
 type Servicev1Httpslogging struct {
-	// The MIME type of the content.
+	// Value of the `Content-Type` header sent with the request
 	ContentType *string `pulumi:"contentType"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// Custom header sent with the request.
+	// Custom header sent with the request
 	HeaderName *string `pulumi:"headerName"`
-	// Value of the custom header sent with the request.
+	// Value of the custom header sent with the request
 	HeaderValue *string `pulumi:"headerValue"`
-	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat *string `pulumi:"jsonFormat"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
 	MessageType *string `pulumi:"messageType"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method *string `pulumi:"method"`
-	// A unique name to identify this dictionary.
+	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-	Placement *string `pulumi:"placement"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Where in the generated VCL the logging call should be placed
+	Placement         *string `pulumi:"placement"`
+	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
+	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         *string `pulumi:"tlsCaCert"`
+	TlsClientCert     *string `pulumi:"tlsClientCert"`
+	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// URL that log data will be sent to. Must use the https protocol
 	Url string `pulumi:"url"`
 }
 
@@ -7546,41 +7491,36 @@ type Servicev1HttpsloggingInput interface {
 }
 
 type Servicev1HttpsloggingArgs struct {
-	// The MIME type of the content.
+	// Value of the `Content-Type` header sent with the request
 	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// Custom header sent with the request.
+	// Custom header sent with the request
 	HeaderName pulumi.StringPtrInput `pulumi:"headerName"`
-	// Value of the custom header sent with the request.
+	// Value of the custom header sent with the request
 	HeaderValue pulumi.StringPtrInput `pulumi:"headerValue"`
-	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat pulumi.StringPtrInput `pulumi:"jsonFormat"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// A unique name to identify this dictionary.
+	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Where in the generated VCL the logging call should be placed
+	Placement         pulumi.StringPtrInput `pulumi:"placement"`
+	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
+	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// URL that log data will be sent to. Must use the https protocol
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -7635,92 +7575,87 @@ func (o Servicev1HttpsloggingOutput) ToServicev1HttpsloggingOutputWithContext(ct
 	return o
 }
 
-// The MIME type of the content.
+// Value of the `Content-Type` header sent with the request
 func (o Servicev1HttpsloggingOutput) ContentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.ContentType }).(pulumi.StringPtrOutput)
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1HttpsloggingOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 func (o Servicev1HttpsloggingOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// Custom header sent with the request.
+// Custom header sent with the request
 func (o Servicev1HttpsloggingOutput) HeaderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.HeaderName }).(pulumi.StringPtrOutput)
 }
 
-// Value of the custom header sent with the request.
+// Value of the custom header sent with the request
 func (o Servicev1HttpsloggingOutput) HeaderValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.HeaderValue }).(pulumi.StringPtrOutput)
 }
 
-// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 func (o Servicev1HttpsloggingOutput) JsonFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.JsonFormat }).(pulumi.StringPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
 func (o Servicev1HttpsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 func (o Servicev1HttpsloggingOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1HttpsloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed
 func (o Servicev1HttpsloggingOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 func (o Servicev1HttpsloggingOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
 func (o Servicev1HttpsloggingOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply
 func (o Servicev1HttpsloggingOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o Servicev1HttpsloggingOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o Servicev1HttpsloggingOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o Servicev1HttpsloggingOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// Used during the TLS handshake to validate the certificate
 func (o Servicev1HttpsloggingOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// Your OpenStack auth url.
+// URL that log data will be sent to. Must use the https protocol
 func (o Servicev1HttpsloggingOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -7746,21 +7681,21 @@ func (o Servicev1HttpsloggingArrayOutput) Index(i pulumi.IntInput) Servicev1Http
 }
 
 type Servicev1Logentry struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number configured in Logentries
 	Port *int `pulumi:"port"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// Use token based authentication (https://logentries.com/doc/input-token/)
 	Token string `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging
 	UseTls *bool `pulumi:"useTls"`
 }
 
@@ -7776,21 +7711,21 @@ type Servicev1LogentryInput interface {
 }
 
 type Servicev1LogentryArgs struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number configured in Logentries
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// Use token based authentication (https://logentries.com/doc/input-token/)
 	Token pulumi.StringInput `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
@@ -7845,42 +7780,42 @@ func (o Servicev1LogentryOutput) ToServicev1LogentryOutputWithContext(ctx contex
 	return o
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting
 func (o Servicev1LogentryOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Logentry) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 func (o Servicev1LogentryOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Logentry) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LogentryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Logentry) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LogentryOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Logentry) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port number configured in Logentries
 func (o Servicev1LogentryOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Logentry) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// Name of blockAttributes condition to apply this logging.
 func (o Servicev1LogentryOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Logentry) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// Use token based authentication (https://logentries.com/doc/input-token/)
 func (o Servicev1LogentryOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Logentry) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Whether to use TLS for secure logging. Can be either true or false.
+// Whether to use TLS for secure logging
 func (o Servicev1LogentryOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Logentry) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
@@ -7906,35 +7841,35 @@ func (o Servicev1LogentryArrayOutput) Index(i pulumi.IntInput) Servicev1Logentry
 }
 
 type Servicev1LoggingCloudfile struct {
-	// The AWS access key to be used to write to the stream.
+	// Your Cloud File account access key
 	AccessKey string `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your Cloud Files container
 	BucketName string `pulumi:"bucketName"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for your Cloud Files account
 	User string `pulumi:"user"`
 }
 
@@ -7950,35 +7885,35 @@ type Servicev1LoggingCloudfileInput interface {
 }
 
 type Servicev1LoggingCloudfileArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// Your Cloud File account access key
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your Cloud Files container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for your Cloud Files account
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -8033,12 +7968,12 @@ func (o Servicev1LoggingCloudfileOutput) ToServicev1LoggingCloudfileOutputWithCo
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// Your Cloud File account access key
 func (o Servicev1LoggingCloudfileOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The name of your Cloud Files container.
+// The name of your Cloud Files container
 func (o Servicev1LoggingCloudfileOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) string { return v.BucketName }).(pulumi.StringOutput)
 }
@@ -8053,27 +7988,27 @@ func (o Servicev1LoggingCloudfileOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
 func (o Servicev1LoggingCloudfileOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 func (o Servicev1LoggingCloudfileOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingCloudfileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload logs to
 func (o Servicev1LoggingCloudfileOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 func (o Servicev1LoggingCloudfileOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
@@ -8083,12 +8018,12 @@ func (o Servicev1LoggingCloudfileOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o Servicev1LoggingCloudfileOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 func (o Servicev1LoggingCloudfileOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -8098,12 +8033,12 @@ func (o Servicev1LoggingCloudfileOutput) ResponseCondition() pulumi.StringPtrOut
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingCloudfileOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for your Cloud Files account
 func (o Servicev1LoggingCloudfileOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) string { return v.User }).(pulumi.StringOutput)
 }
@@ -8129,19 +8064,19 @@ func (o Servicev1LoggingCloudfileArrayOutput) Index(i pulumi.IntInput) Servicev1
 }
 
 type Servicev1LoggingDatadog struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The API key from your Datadog account
 	Token string `pulumi:"token"`
 }
 
@@ -8157,19 +8092,19 @@ type Servicev1LoggingDatadogInput interface {
 }
 
 type Servicev1LoggingDatadogArgs struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The API key from your Datadog account
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -8224,7 +8159,7 @@ func (o Servicev1LoggingDatadogOutput) ToServicev1LoggingDatadogOutputWithContex
 	return o
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1LoggingDatadogOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -8234,27 +8169,27 @@ func (o Servicev1LoggingDatadogOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingDatadogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingDatadogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 func (o Servicev1LoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply.
 func (o Servicev1LoggingDatadogOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The API key from your Datadog account
 func (o Servicev1LoggingDatadogOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDatadog) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -8280,35 +8215,35 @@ func (o Servicev1LoggingDatadogArrayOutput) Index(i pulumi.IntInput) Servicev1Lo
 }
 
 type Servicev1LoggingDigitalocean struct {
-	// The AWS access key to be used to write to the stream.
+	// Your DigitalOcean Spaces account access key
 	AccessKey string `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of the DigitalOcean Space
 	BucketName string `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain *string `pulumi:"domain"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// Your DigitalOcean Spaces account secret key
 	SecretKey string `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -8324,35 +8259,35 @@ type Servicev1LoggingDigitaloceanInput interface {
 }
 
 type Servicev1LoggingDigitaloceanArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// Your DigitalOcean Spaces account access key
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of the DigitalOcean Space
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// The path to upload logs to
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// Your DigitalOcean Spaces account secret key
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -8407,17 +8342,17 @@ func (o Servicev1LoggingDigitaloceanOutput) ToServicev1LoggingDigitaloceanOutput
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// Your DigitalOcean Spaces account access key
 func (o Servicev1LoggingDigitaloceanOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The name of your Cloud Files container.
+// The name of the DigitalOcean Space
 func (o Servicev1LoggingDigitaloceanOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 func (o Servicev1LoggingDigitaloceanOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
@@ -8432,27 +8367,27 @@ func (o Servicev1LoggingDigitaloceanOutput) FormatVersion() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 func (o Servicev1LoggingDigitaloceanOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 func (o Servicev1LoggingDigitaloceanOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingDigitaloceanOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload logs to
 func (o Servicev1LoggingDigitaloceanOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 func (o Servicev1LoggingDigitaloceanOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
@@ -8462,7 +8397,7 @@ func (o Servicev1LoggingDigitaloceanOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o Servicev1LoggingDigitaloceanOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
@@ -8472,12 +8407,12 @@ func (o Servicev1LoggingDigitaloceanOutput) ResponseCondition() pulumi.StringPtr
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// Your DigitalOcean Spaces account secret key
 func (o Servicev1LoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingDigitaloceanOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -8503,37 +8438,32 @@ func (o Servicev1LoggingDigitaloceanArrayOutput) Index(i pulumi.IntInput) Servic
 }
 
 type Servicev1LoggingElasticsearch struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// The name of the Elasticsearch index to send documents (logs) to.
+	// The name of the Elasticsearch index to send documents (logs) to
 	Index string `pulumi:"index"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// BasicAuth password for Elasticsearch
 	Password *string `pulumi:"password"`
-	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline *string `pulumi:"pipeline"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-	Placement *string `pulumi:"placement"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Where in the generated VCL the logging call should be placed.
+	Placement         *string `pulumi:"placement"`
+	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
+	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         *string `pulumi:"tlsCaCert"`
+	TlsClientCert     *string `pulumi:"tlsClientCert"`
+	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// The Elasticsearch URL to stream logs to
 	Url string `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// BasicAuth username for Elasticsearch
 	User *string `pulumi:"user"`
 }
 
@@ -8549,37 +8479,32 @@ type Servicev1LoggingElasticsearchInput interface {
 }
 
 type Servicev1LoggingElasticsearchArgs struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// The name of the Elasticsearch index to send documents (logs) to.
+	// The name of the Elasticsearch index to send documents (logs) to
 	Index pulumi.StringInput `pulumi:"index"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// BasicAuth password for Elasticsearch
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Where in the generated VCL the logging call should be placed.
+	Placement         pulumi.StringPtrInput `pulumi:"placement"`
+	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
+	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// Your OpenStack auth url.
+	// The Elasticsearch URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// BasicAuth username for Elasticsearch
 	User pulumi.StringPtrInput `pulumi:"user"`
 }
 
@@ -8634,82 +8559,77 @@ func (o Servicev1LoggingElasticsearchOutput) ToServicev1LoggingElasticsearchOutp
 	return o
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1LoggingElasticsearchOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 func (o Servicev1LoggingElasticsearchOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// The name of the Elasticsearch index to send documents (logs) to.
+// The name of the Elasticsearch index to send documents (logs) to
 func (o Servicev1LoggingElasticsearchOutput) Index() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) string { return v.Index }).(pulumi.StringOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingElasticsearchOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// BasicAuth password for Elasticsearch
 func (o Servicev1LoggingElasticsearchOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 func (o Servicev1LoggingElasticsearchOutput) Pipeline() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingElasticsearchOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 func (o Servicev1LoggingElasticsearchOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
 func (o Servicev1LoggingElasticsearchOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply
 func (o Servicev1LoggingElasticsearchOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o Servicev1LoggingElasticsearchOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o Servicev1LoggingElasticsearchOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o Servicev1LoggingElasticsearchOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 func (o Servicev1LoggingElasticsearchOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// Your OpenStack auth url.
+// The Elasticsearch URL to stream logs to
 func (o Servicev1LoggingElasticsearchOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The username for your Cloud Files account.
+// BasicAuth username for Elasticsearch
 func (o Servicev1LoggingElasticsearchOutput) User() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.User }).(pulumi.StringPtrOutput)
 }
@@ -8735,35 +8655,35 @@ func (o Servicev1LoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) Servi
 }
 
 type Servicev1LoggingFtp struct {
-	// The SFTP address to stream logs to.
+	// The FTP address to stream logs to
 	Address string `pulumi:"address"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Gzip Compression level. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted (default: `classic`)
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server (for anonymous use an email address)
 	Password string `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number. Default: `21`
 	Port *int `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server (can be `anonymous`)
 	User string `pulumi:"user"`
 }
 
@@ -8779,35 +8699,35 @@ type Servicev1LoggingFtpInput interface {
 }
 
 type Servicev1LoggingFtpArgs struct {
-	// The SFTP address to stream logs to.
+	// The FTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Gzip Compression level. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted (default: `classic`)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server (for anonymous use an email address)
 	Password pulumi.StringInput `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path pulumi.StringInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port number. Default: `21`
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server (can be `anonymous`)
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -8862,77 +8782,77 @@ func (o Servicev1LoggingFtpOutput) ToServicev1LoggingFtpOutputWithContext(ctx co
 	return o
 }
 
-// The SFTP address to stream logs to.
+// The FTP address to stream logs to
 func (o Servicev1LoggingFtpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1LoggingFtpOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 func (o Servicev1LoggingFtpOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Gzip Compression level. Default `0`
 func (o Servicev1LoggingFtpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted (default: `classic`)
 func (o Servicev1LoggingFtpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingFtpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// The password for the server (for anonymous use an email address)
 func (o Servicev1LoggingFtpOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 func (o Servicev1LoggingFtpOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds (Default `3600`)
 func (o Servicev1LoggingFtpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingFtpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port number. Default: `21`
 func (o Servicev1LoggingFtpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o Servicev1LoggingFtpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply.
 func (o Servicev1LoggingFtpOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingFtpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for the server (can be `anonymous`)
 func (o Servicev1LoggingFtpOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) string { return v.User }).(pulumi.StringOutput)
 }
@@ -8960,21 +8880,21 @@ func (o Servicev1LoggingFtpArrayOutput) Index(i pulumi.IntInput) Servicev1Loggin
 type Servicev1LoggingGooglepubsub struct {
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your Google Cloud Platform project
 	ProjectId string `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
 	SecretKey string `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Google Cloud Pub/Sub topic to which logs will be published
 	Topic string `pulumi:"topic"`
-	// The username for your Cloud Files account.
+	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
 	User string `pulumi:"user"`
 }
 
@@ -8992,21 +8912,21 @@ type Servicev1LoggingGooglepubsubInput interface {
 type Servicev1LoggingGooglepubsubArgs struct {
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The ID of your Google Cloud Platform project.
+	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Google Cloud Pub/Sub topic to which logs will be published
 	Topic pulumi.StringInput `pulumi:"topic"`
-	// The username for your Cloud Files account.
+	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -9066,22 +8986,22 @@ func (o Servicev1LoggingGooglepubsubOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 func (o Servicev1LoggingGooglepubsubOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingGooglepubsubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingGooglepubsubOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The ID of your Google Cloud Platform project.
+// The ID of your Google Cloud Platform project
 func (o Servicev1LoggingGooglepubsubOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -9091,17 +9011,17 @@ func (o Servicev1LoggingGooglepubsubOutput) ResponseCondition() pulumi.StringPtr
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
 func (o Servicev1LoggingGooglepubsubOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The Kinesis stream name.
+// The Google Cloud Pub/Sub topic to which logs will be published
 func (o Servicev1LoggingGooglepubsubOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) string { return v.Topic }).(pulumi.StringOutput)
 }
 
-// The username for your Cloud Files account.
+// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
 func (o Servicev1LoggingGooglepubsubOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingGooglepubsub) string { return v.User }).(pulumi.StringOutput)
 }
@@ -9127,19 +9047,19 @@ func (o Servicev1LoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) Servic
 }
 
 type Servicev1LoggingHeroku struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 	Token string `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The URL to stream logs to
 	Url string `pulumi:"url"`
 }
 
@@ -9155,19 +9075,19 @@ type Servicev1LoggingHerokuInput interface {
 }
 
 type Servicev1LoggingHerokuArgs struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 	Token pulumi.StringInput `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -9222,7 +9142,7 @@ func (o Servicev1LoggingHerokuOutput) ToServicev1LoggingHerokuOutputWithContext(
 	return o
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1LoggingHerokuOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingHeroku) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -9232,7 +9152,7 @@ func (o Servicev1LoggingHerokuOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingHeroku) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingHerokuOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingHeroku) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -9247,12 +9167,12 @@ func (o Servicev1LoggingHerokuOutput) ResponseCondition() pulumi.StringPtrOutput
 	return o.ApplyT(func(v Servicev1LoggingHeroku) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 func (o Servicev1LoggingHerokuOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingHeroku) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Your OpenStack auth url.
+// The URL to stream logs to
 func (o Servicev1LoggingHerokuOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingHeroku) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -9278,19 +9198,19 @@ func (o Servicev1LoggingHerokuArrayOutput) Index(i pulumi.IntInput) Servicev1Log
 }
 
 type Servicev1LoggingHoneycomb struct {
-	// The Honeycomb Dataset you want to log to.
+	// The Honeycomb Dataset you want to log to
 	Dataset string `pulumi:"dataset"`
-	// Apache style log formatting.
+	// Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The Write Key from the Account page of your Honeycomb account
 	Token string `pulumi:"token"`
 }
 
@@ -9306,19 +9226,19 @@ type Servicev1LoggingHoneycombInput interface {
 }
 
 type Servicev1LoggingHoneycombArgs struct {
-	// The Honeycomb Dataset you want to log to.
+	// The Honeycomb Dataset you want to log to
 	Dataset pulumi.StringInput `pulumi:"dataset"`
-	// Apache style log formatting.
+	// Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The Write Key from the Account page of your Honeycomb account
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -9373,12 +9293,12 @@ func (o Servicev1LoggingHoneycombOutput) ToServicev1LoggingHoneycombOutputWithCo
 	return o
 }
 
-// The Honeycomb Dataset you want to log to.
+// The Honeycomb Dataset you want to log to
 func (o Servicev1LoggingHoneycombOutput) Dataset() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingHoneycomb) string { return v.Dataset }).(pulumi.StringOutput)
 }
 
-// Apache style log formatting.
+// Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
 func (o Servicev1LoggingHoneycombOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingHoneycomb) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -9388,7 +9308,7 @@ func (o Servicev1LoggingHoneycombOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingHoneycomb) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingHoneycombOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingHoneycomb) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -9403,7 +9323,7 @@ func (o Servicev1LoggingHoneycombOutput) ResponseCondition() pulumi.StringPtrOut
 	return o.ApplyT(func(v Servicev1LoggingHoneycomb) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The Write Key from the Account page of your Honeycomb account
 func (o Servicev1LoggingHoneycombOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingHoneycomb) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -9429,41 +9349,38 @@ func (o Servicev1LoggingHoneycombArrayOutput) Index(i pulumi.IntInput) Servicev1
 }
 
 type Servicev1LoggingKafka struct {
+	// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
 	AuthMethod *string `pulumi:"authMethod"`
-	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+	// A comma-separated list of IP addresses or hostnames of Kafka brokers
 	Brokers string `pulumi:"brokers"`
-	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+	// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name            string `pulumi:"name"`
 	ParseLogKeyvals *bool  `pulumi:"parseLogKeyvals"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// SASL Pass
 	Password *string `pulumi:"password"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-	Placement *string `pulumi:"placement"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+	// Where in the generated VCL the logging call should be placed.
+	Placement       *string `pulumi:"placement"`
+	RequestMaxBytes *int    `pulumi:"requestMaxBytes"`
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
 	RequiredAcks *string `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         *string `pulumi:"tlsCaCert"`
+	TlsClientCert     *string `pulumi:"tlsClientCert"`
+	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The Kinesis stream name.
+	// The Kafka topic to send logs to
 	Topic string `pulumi:"topic"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Can be either `true` or `false`
 	UseTls *bool `pulumi:"useTls"`
-	// The username for your Cloud Files account.
+	// SASL User
 	User *string `pulumi:"user"`
 }
 
@@ -9479,41 +9396,38 @@ type Servicev1LoggingKafkaInput interface {
 }
 
 type Servicev1LoggingKafkaArgs struct {
+	// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
 	AuthMethod pulumi.StringPtrInput `pulumi:"authMethod"`
-	// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+	// A comma-separated list of IP addresses or hostnames of Kafka brokers
 	Brokers pulumi.StringInput `pulumi:"brokers"`
-	// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+	// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name            pulumi.StringInput  `pulumi:"name"`
 	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// SASL Pass
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+	// Where in the generated VCL the logging call should be placed.
+	Placement       pulumi.StringPtrInput `pulumi:"placement"`
+	RequestMaxBytes pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
 	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The Kinesis stream name.
+	// The Kafka topic to send logs to
 	Topic pulumi.StringInput `pulumi:"topic"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Can be either `true` or `false`
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
-	// The username for your Cloud Files account.
+	// SASL User
 	User pulumi.StringPtrInput `pulumi:"user"`
 }
 
@@ -9568,16 +9482,17 @@ func (o Servicev1LoggingKafkaOutput) ToServicev1LoggingKafkaOutputWithContext(ct
 	return o
 }
 
+// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
 func (o Servicev1LoggingKafkaOutput) AuthMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.AuthMethod }).(pulumi.StringPtrOutput)
 }
 
-// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+// A comma-separated list of IP addresses or hostnames of Kafka brokers
 func (o Servicev1LoggingKafkaOutput) Brokers() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) string { return v.Brokers }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 func (o Servicev1LoggingKafkaOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -9587,12 +9502,12 @@ func (o Servicev1LoggingKafkaOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 func (o Servicev1LoggingKafkaOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingKafkaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -9601,22 +9516,21 @@ func (o Servicev1LoggingKafkaOutput) ParseLogKeyvals() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *bool { return v.ParseLogKeyvals }).(pulumi.BoolPtrOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// SASL Pass
 func (o Servicev1LoggingKafkaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingKafkaOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
 func (o Servicev1LoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
 func (o Servicev1LoggingKafkaOutput) RequiredAcks() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.RequiredAcks }).(pulumi.StringPtrOutput)
 }
@@ -9626,37 +9540,34 @@ func (o Servicev1LoggingKafkaOutput) ResponseCondition() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o Servicev1LoggingKafkaOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o Servicev1LoggingKafkaOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o Servicev1LoggingKafkaOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 func (o Servicev1LoggingKafkaOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The Kinesis stream name.
+// The Kafka topic to send logs to
 func (o Servicev1LoggingKafkaOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) string { return v.Topic }).(pulumi.StringOutput)
 }
 
-// Whether to use TLS for secure logging. Can be either true or false.
+// Whether to use TLS for secure logging. Can be either `true` or `false`
 func (o Servicev1LoggingKafkaOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// SASL User
 func (o Servicev1LoggingKafkaOutput) User() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.User }).(pulumi.StringPtrOutput)
 }
@@ -9682,23 +9593,23 @@ func (o Servicev1LoggingKafkaArrayOutput) Index(i pulumi.IntInput) Servicev1Logg
 }
 
 type Servicev1LoggingKinese struct {
-	// The AWS access key to be used to write to the stream.
+	// The AWS access key to be used to write to the stream
 	AccessKey string `pulumi:"accessKey"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// The AWS secret access key to authenticate with
 	SecretKey string `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Kinesis stream name
 	Topic string `pulumi:"topic"`
 }
 
@@ -9714,23 +9625,23 @@ type Servicev1LoggingKineseInput interface {
 }
 
 type Servicev1LoggingKineseArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// The AWS access key to be used to write to the stream
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
+	// The AWS secret access key to authenticate with
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The Kinesis stream name.
+	// The Kinesis stream name
 	Topic pulumi.StringInput `pulumi:"topic"`
 }
 
@@ -9785,7 +9696,7 @@ func (o Servicev1LoggingKineseOutput) ToServicev1LoggingKineseOutputWithContext(
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// The AWS access key to be used to write to the stream
 func (o Servicev1LoggingKineseOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -9800,7 +9711,7 @@ func (o Servicev1LoggingKineseOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKinese) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingKineseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -9810,7 +9721,7 @@ func (o Servicev1LoggingKineseOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKinese) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The AWS region the stream resides in. (Default: `us-east-1`)
 func (o Servicev1LoggingKineseOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKinese) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -9820,12 +9731,12 @@ func (o Servicev1LoggingKineseOutput) ResponseCondition() pulumi.StringPtrOutput
 	return o.ApplyT(func(v Servicev1LoggingKinese) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The AWS secret access key to authenticate with
 func (o Servicev1LoggingKineseOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The Kinesis stream name.
+// The Kinesis stream name
 func (o Servicev1LoggingKineseOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKinese) string { return v.Topic }).(pulumi.StringOutput)
 }
@@ -9851,17 +9762,17 @@ func (o Servicev1LoggingKineseArrayOutput) Index(i pulumi.IntInput) Servicev1Log
 }
 
 type Servicev1LoggingLoggly struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 	Token string `pulumi:"token"`
 }
 
@@ -9877,17 +9788,17 @@ type Servicev1LoggingLogglyInput interface {
 }
 
 type Servicev1LoggingLogglyArgs struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -9942,7 +9853,7 @@ func (o Servicev1LoggingLogglyOutput) ToServicev1LoggingLogglyOutputWithContext(
 	return o
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1LoggingLogglyOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingLoggly) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -9952,7 +9863,7 @@ func (o Servicev1LoggingLogglyOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingLoggly) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingLogglyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingLoggly) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -9967,7 +9878,7 @@ func (o Servicev1LoggingLogglyOutput) ResponseCondition() pulumi.StringPtrOutput
 	return o.ApplyT(func(v Servicev1LoggingLoggly) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 func (o Servicev1LoggingLogglyOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingLoggly) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -9997,15 +9908,15 @@ type Servicev1LoggingLogshuttle struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The data authentication token associated with this endpoint
 	Token string `pulumi:"token"`
-	// Your OpenStack auth url.
+	// Your Log Shuttle endpoint URL
 	Url string `pulumi:"url"`
 }
 
@@ -10025,15 +9936,15 @@ type Servicev1LoggingLogshuttleArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The data authentication token associated with this endpoint
 	Token pulumi.StringInput `pulumi:"token"`
-	// Your OpenStack auth url.
+	// Your Log Shuttle endpoint URL
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -10098,7 +10009,7 @@ func (o Servicev1LoggingLogshuttleOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingLogshuttle) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingLogshuttleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingLogshuttle) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -10113,12 +10024,12 @@ func (o Servicev1LoggingLogshuttleOutput) ResponseCondition() pulumi.StringPtrOu
 	return o.ApplyT(func(v Servicev1LoggingLogshuttle) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The data authentication token associated with this endpoint
 func (o Servicev1LoggingLogshuttleOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingLogshuttle) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Your OpenStack auth url.
+// Your Log Shuttle endpoint URL
 func (o Servicev1LoggingLogshuttleOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingLogshuttle) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -10144,17 +10055,17 @@ func (o Servicev1LoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) Servicev
 }
 
 type Servicev1LoggingNewrelic struct {
-	// Apache style log formatting.
+	// Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The Insert API key from the Account page of your New Relic account
 	Token string `pulumi:"token"`
 }
 
@@ -10170,17 +10081,17 @@ type Servicev1LoggingNewrelicInput interface {
 }
 
 type Servicev1LoggingNewrelicArgs struct {
-	// Apache style log formatting.
+	// Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The Insert API key from the Account page of your New Relic account
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -10235,7 +10146,7 @@ func (o Servicev1LoggingNewrelicOutput) ToServicev1LoggingNewrelicOutputWithCont
 	return o
 }
 
-// Apache style log formatting.
+// Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
 func (o Servicev1LoggingNewrelicOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingNewrelic) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -10245,22 +10156,22 @@ func (o Servicev1LoggingNewrelicOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingNewrelic) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingNewrelicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingNewrelicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingNewrelic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply.
 func (o Servicev1LoggingNewrelicOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingNewrelic) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The Insert API key from the Account page of your New Relic account
 func (o Servicev1LoggingNewrelicOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingNewrelic) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -10286,35 +10197,35 @@ func (o Servicev1LoggingNewrelicArrayOutput) Index(i pulumi.IntInput) Servicev1L
 }
 
 type Servicev1LoggingOpenstack struct {
-	// The AWS access key to be used to write to the stream.
+	// Your OpenStack account access key
 	AccessKey string `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your OpenStack container
 	BucketName string `pulumi:"bucketName"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement *string `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// Your OpenStack auth url.
+	// Your OpenStack auth url
 	Url string `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// The username for your OpenStack account
 	User string `pulumi:"user"`
 }
 
@@ -10330,35 +10241,35 @@ type Servicev1LoggingOpenstackInput interface {
 }
 
 type Servicev1LoggingOpenstackArgs struct {
-	// The AWS access key to be used to write to the stream.
+	// Your OpenStack account access key
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// The name of your Cloud Files container.
+	// The name of your OpenStack container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// Your OpenStack auth url.
+	// Your OpenStack auth url
 	Url pulumi.StringInput `pulumi:"url"`
-	// The username for your Cloud Files account.
+	// The username for your OpenStack account
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -10413,12 +10324,12 @@ func (o Servicev1LoggingOpenstackOutput) ToServicev1LoggingOpenstackOutputWithCo
 	return o
 }
 
-// The AWS access key to be used to write to the stream.
+// Your OpenStack account access key
 func (o Servicev1LoggingOpenstackOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The name of your Cloud Files container.
+// The name of your OpenStack container
 func (o Servicev1LoggingOpenstackOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) string { return v.BucketName }).(pulumi.StringOutput)
 }
@@ -10433,27 +10344,27 @@ func (o Servicev1LoggingOpenstackOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 func (o Servicev1LoggingOpenstackOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
 func (o Servicev1LoggingOpenstackOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingOpenstackOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 func (o Servicev1LoggingOpenstackOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds. Default `3600`
 func (o Servicev1LoggingOpenstackOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
@@ -10463,7 +10374,7 @@ func (o Servicev1LoggingOpenstackOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o Servicev1LoggingOpenstackOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
@@ -10473,17 +10384,17 @@ func (o Servicev1LoggingOpenstackOutput) ResponseCondition() pulumi.StringPtrOut
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingOpenstackOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// Your OpenStack auth url.
+// Your OpenStack auth url
 func (o Servicev1LoggingOpenstackOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for your OpenStack account
 func (o Servicev1LoggingOpenstackOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) string { return v.User }).(pulumi.StringOutput)
 }
@@ -10511,17 +10422,17 @@ func (o Servicev1LoggingOpenstackArrayOutput) Index(i pulumi.IntInput) Servicev1
 type Servicev1LoggingScalyr struct {
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.scalyr.com/keys)
 	Token string `pulumi:"token"`
 }
 
@@ -10539,17 +10450,17 @@ type Servicev1LoggingScalyrInput interface {
 type Servicev1LoggingScalyrArgs struct {
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The AWS region the stream resides in. (Default: `us-east-1`).
+	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The data authentication token associated with this endpoint.
+	// The token to use for authentication (https://www.scalyr.com/keys)
 	Token pulumi.StringInput `pulumi:"token"`
 }
 
@@ -10609,22 +10520,22 @@ func (o Servicev1LoggingScalyrOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 func (o Servicev1LoggingScalyrOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingScalyrOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingScalyrOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The AWS region the stream resides in. (Default: `us-east-1`).
+// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 func (o Servicev1LoggingScalyrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -10634,7 +10545,7 @@ func (o Servicev1LoggingScalyrOutput) ResponseCondition() pulumi.StringPtrOutput
 	return o.ApplyT(func(v Servicev1LoggingScalyr) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The token to use for authentication (https://www.scalyr.com/keys)
 func (o Servicev1LoggingScalyrOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingScalyr) string { return v.Token }).(pulumi.StringOutput)
 }
@@ -10660,39 +10571,38 @@ func (o Servicev1LoggingScalyrArrayOutput) Index(i pulumi.IntInput) Servicev1Log
 }
 
 type Servicev1LoggingSftp struct {
-	// The SFTP address to stream logs to.
+	// The SFTP address to stream logs to
 	Address string `pulumi:"address"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 	Password *string `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port the SFTP service listens on. (Default: `22`)
 	Port *int `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
-	SecretKey *string `pulumi:"secretKey"`
-	// A list of host keys for all hosts we can connect to over SFTP.
-	SshKnownHosts string `pulumi:"sshKnownHosts"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
+	SecretKey     *string `pulumi:"secretKey"`
+	SshKnownHosts string  `pulumi:"sshKnownHosts"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server
 	User string `pulumi:"user"`
 }
 
@@ -10708,39 +10618,38 @@ type Servicev1LoggingSftpInput interface {
 }
 
 type Servicev1LoggingSftpArgs struct {
-	// The SFTP address to stream logs to.
+	// The SFTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+	// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The path to upload logs to.
+	// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 	Path pulumi.StringInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port the SFTP service listens on. (Default: `22`)
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The AWS secret access key to authenticate with.
-	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// A list of host keys for all hosts we can connect to over SFTP.
-	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
+	SecretKey     pulumi.StringPtrInput `pulumi:"secretKey"`
+	SshKnownHosts pulumi.StringInput    `pulumi:"sshKnownHosts"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
-	// The username for your Cloud Files account.
+	// The username for the server
 	User pulumi.StringInput `pulumi:"user"`
 }
 
@@ -10795,87 +10704,86 @@ func (o Servicev1LoggingSftpOutput) ToServicev1LoggingSftpOutputWithContext(ctx 
 	return o
 }
 
-// The SFTP address to stream logs to.
+// The SFTP address to stream logs to
 func (o Servicev1LoggingSftpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1LoggingSftpOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 func (o Servicev1LoggingSftpOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
 func (o Servicev1LoggingSftpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
 func (o Servicev1LoggingSftpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1LoggingSftpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+// The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 func (o Servicev1LoggingSftpOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The path to upload logs to.
+// The path to upload log files to. If the path ends in `/` then it is treated as a directory
 func (o Servicev1LoggingSftpOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) string { return v.Path }).(pulumi.StringOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 func (o Servicev1LoggingSftpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingSftpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port the SFTP service listens on. (Default: `22`)
 func (o Servicev1LoggingSftpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o Servicev1LoggingSftpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply.
 func (o Servicev1LoggingSftpOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The AWS secret access key to authenticate with.
+// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
 func (o Servicev1LoggingSftpOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// A list of host keys for all hosts we can connect to over SFTP.
 func (o Servicev1LoggingSftpOutput) SshKnownHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) string { return v.SshKnownHosts }).(pulumi.StringOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingSftpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
 
-// The username for your Cloud Files account.
+// The username for the server
 func (o Servicev1LoggingSftpOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) string { return v.User }).(pulumi.StringOutput)
 }
@@ -10901,17 +10809,19 @@ func (o Servicev1LoggingSftpArrayOutput) Index(i pulumi.IntInput) Servicev1Loggi
 }
 
 type Servicev1Papertrail struct {
-	// The SFTP address to stream logs to.
+	// The address of the Papertrail endpoint
 	Address string `pulumi:"address"`
-	// Apache style log formatting.
+	// A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
 	Format *string `pulumi:"format"`
-	// A unique name to identify this dictionary.
+	// The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`
+	FormatVersion *int `pulumi:"formatVersion"`
+	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 	Placement *string `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port int `pulumi:"port"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of an existing condition in the configured endpoint, or leave blank to always execute
 	ResponseCondition *string `pulumi:"responseCondition"`
 }
 
@@ -10927,17 +10837,19 @@ type Servicev1PapertrailInput interface {
 }
 
 type Servicev1PapertrailArgs struct {
-	// The SFTP address to stream logs to.
+	// The address of the Papertrail endpoint
 	Address pulumi.StringInput `pulumi:"address"`
-	// Apache style log formatting.
+	// A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// A unique name to identify this dictionary.
+	// The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`
+	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port pulumi.IntInput `pulumi:"port"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of an existing condition in the configured endpoint, or leave blank to always execute
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 }
 
@@ -10992,32 +10904,37 @@ func (o Servicev1PapertrailOutput) ToServicev1PapertrailOutputWithContext(ctx co
 	return o
 }
 
-// The SFTP address to stream logs to.
+// The address of the Papertrail endpoint
 func (o Servicev1PapertrailOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Papertrail) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// Apache style log formatting.
+// A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
 func (o Servicev1PapertrailOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Papertrail) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`
+func (o Servicev1PapertrailOutput) FormatVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Servicev1Papertrail) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+}
+
+// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1PapertrailOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Papertrail) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 func (o Servicev1PapertrailOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Papertrail) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port associated with the address where the Papertrail endpoint can be accessed
 func (o Servicev1PapertrailOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v Servicev1Papertrail) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of an existing condition in the configured endpoint, or leave blank to always execute
 func (o Servicev1PapertrailOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Papertrail) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
@@ -11043,37 +10960,27 @@ func (o Servicev1PapertrailArrayOutput) Index(i pulumi.IntInput) Servicev1Papert
 }
 
 type Servicev1RequestSetting struct {
-	// Allows you to terminate request handling and immediately
-	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
-	Action *string `pulumi:"action"`
-	// Disable collapsed forwarding, so you don't wait
-	// for other objects to origin.
-	BypassBusyWait *bool `pulumi:"bypassBusyWait"`
-	// Sets the host header.
+	// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
+	Action         *string `pulumi:"action"`
+	BypassBusyWait *bool   `pulumi:"bypassBusyWait"`
+	// Sets the host header
 	DefaultHost *string `pulumi:"defaultHost"`
-	// Force a cache miss for the request. If specified,
-	// can be `true` or `false`.
+	// Force a cache miss for the request. If specified, can be `true` or `false`
 	ForceMiss *bool `pulumi:"forceMiss"`
-	// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+	// Forces the request to use SSL (Redirects a non-SSL request to SSL)
 	ForceSsl *bool `pulumi:"forceSsl"`
-	// Injects Fastly-Geo-Country, Fastly-Geo-City, and
-	// Fastly-Geo-Region into the request headers.
+	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
 	GeoHeaders *bool `pulumi:"geoHeaders"`
-	// Comma separated list of varnish request object fields
-	// that should be in the hash key.
-	HashKeys *string `pulumi:"hashKeys"`
-	// How old an object is allowed to be to serve
-	// `stale-if-error` or `stale-while-revalidate`, in seconds.
-	MaxStaleAge *int `pulumi:"maxStaleAge"`
-	// A unique name to identify this dictionary.
+	// Comma separated list of varnish request object fields that should be in the hash key
+	HashKeys    *string `pulumi:"hashKeys"`
+	MaxStaleAge *int    `pulumi:"maxStaleAge"`
+	// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of already defined `condition` to determine if this request setting should be applied
 	RequestCondition *string `pulumi:"requestCondition"`
-	// Injects the X-Timer info into the request for
-	// viewing origin fetch durations.
+	// Injects the X-Timer info into the request for viewing origin fetch durations
 	TimerSupport *bool `pulumi:"timerSupport"`
-	// X-Forwarded-For, should be `clear`, `leave`, `append`,
-	// `appendAll`, or `overwrite`. Default `append`.
+	// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
 	Xff *string `pulumi:"xff"`
 }
 
@@ -11089,37 +10996,27 @@ type Servicev1RequestSettingInput interface {
 }
 
 type Servicev1RequestSettingArgs struct {
-	// Allows you to terminate request handling and immediately
-	// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
-	Action pulumi.StringPtrInput `pulumi:"action"`
-	// Disable collapsed forwarding, so you don't wait
-	// for other objects to origin.
-	BypassBusyWait pulumi.BoolPtrInput `pulumi:"bypassBusyWait"`
-	// Sets the host header.
+	// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
+	Action         pulumi.StringPtrInput `pulumi:"action"`
+	BypassBusyWait pulumi.BoolPtrInput   `pulumi:"bypassBusyWait"`
+	// Sets the host header
 	DefaultHost pulumi.StringPtrInput `pulumi:"defaultHost"`
-	// Force a cache miss for the request. If specified,
-	// can be `true` or `false`.
+	// Force a cache miss for the request. If specified, can be `true` or `false`
 	ForceMiss pulumi.BoolPtrInput `pulumi:"forceMiss"`
-	// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+	// Forces the request to use SSL (Redirects a non-SSL request to SSL)
 	ForceSsl pulumi.BoolPtrInput `pulumi:"forceSsl"`
-	// Injects Fastly-Geo-Country, Fastly-Geo-City, and
-	// Fastly-Geo-Region into the request headers.
+	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
 	GeoHeaders pulumi.BoolPtrInput `pulumi:"geoHeaders"`
-	// Comma separated list of varnish request object fields
-	// that should be in the hash key.
-	HashKeys pulumi.StringPtrInput `pulumi:"hashKeys"`
-	// How old an object is allowed to be to serve
-	// `stale-if-error` or `stale-while-revalidate`, in seconds.
-	MaxStaleAge pulumi.IntPtrInput `pulumi:"maxStaleAge"`
-	// A unique name to identify this dictionary.
+	// Comma separated list of varnish request object fields that should be in the hash key
+	HashKeys    pulumi.StringPtrInput `pulumi:"hashKeys"`
+	MaxStaleAge pulumi.IntPtrInput    `pulumi:"maxStaleAge"`
+	// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of already defined `condition` to determine if this request setting should be applied
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
-	// Injects the X-Timer info into the request for
-	// viewing origin fetch durations.
+	// Injects the X-Timer info into the request for viewing origin fetch durations
 	TimerSupport pulumi.BoolPtrInput `pulumi:"timerSupport"`
-	// X-Forwarded-For, should be `clear`, `leave`, `append`,
-	// `appendAll`, or `overwrite`. Default `append`.
+	// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
 	Xff pulumi.StringPtrInput `pulumi:"xff"`
 }
 
@@ -11174,70 +11071,60 @@ func (o Servicev1RequestSettingOutput) ToServicev1RequestSettingOutputWithContex
 	return o
 }
 
-// Allows you to terminate request handling and immediately
-// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
 func (o Servicev1RequestSettingOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
 
-// Disable collapsed forwarding, so you don't wait
-// for other objects to origin.
 func (o Servicev1RequestSettingOutput) BypassBusyWait() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.BypassBusyWait }).(pulumi.BoolPtrOutput)
 }
 
-// Sets the host header.
+// Sets the host header
 func (o Servicev1RequestSettingOutput) DefaultHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.DefaultHost }).(pulumi.StringPtrOutput)
 }
 
-// Force a cache miss for the request. If specified,
-// can be `true` or `false`.
+// Force a cache miss for the request. If specified, can be `true` or `false`
 func (o Servicev1RequestSettingOutput) ForceMiss() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.ForceMiss }).(pulumi.BoolPtrOutput)
 }
 
-// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+// Forces the request to use SSL (Redirects a non-SSL request to SSL)
 func (o Servicev1RequestSettingOutput) ForceSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.ForceSsl }).(pulumi.BoolPtrOutput)
 }
 
-// Injects Fastly-Geo-Country, Fastly-Geo-City, and
-// Fastly-Geo-Region into the request headers.
+// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
 func (o Servicev1RequestSettingOutput) GeoHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.GeoHeaders }).(pulumi.BoolPtrOutput)
 }
 
-// Comma separated list of varnish request object fields
-// that should be in the hash key.
+// Comma separated list of varnish request object fields that should be in the hash key
 func (o Servicev1RequestSettingOutput) HashKeys() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.HashKeys }).(pulumi.StringPtrOutput)
 }
 
-// How old an object is allowed to be to serve
-// `stale-if-error` or `stale-while-revalidate`, in seconds.
 func (o Servicev1RequestSettingOutput) MaxStaleAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *int { return v.MaxStaleAge }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1RequestSettingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+// Name of already defined `condition` to determine if this request setting should be applied
 func (o Servicev1RequestSettingOutput) RequestCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
-// Injects the X-Timer info into the request for
-// viewing origin fetch durations.
+// Injects the X-Timer info into the request for viewing origin fetch durations
 func (o Servicev1RequestSettingOutput) TimerSupport() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.TimerSupport }).(pulumi.BoolPtrOutput)
 }
 
-// X-Forwarded-For, should be `clear`, `leave`, `append`,
-// `appendAll`, or `overwrite`. Default `append`.
+// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
 func (o Servicev1RequestSettingOutput) Xff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.Xff }).(pulumi.StringPtrOutput)
 }
@@ -11263,20 +11150,19 @@ func (o Servicev1RequestSettingArrayOutput) Index(i pulumi.IntInput) Servicev1Re
 }
 
 type Servicev1ResponseObject struct {
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	CacheCondition *string `pulumi:"cacheCondition"`
-	// The custom VCL code to upload.
+	// The content to deliver for the response object
 	Content *string `pulumi:"content"`
-	// The MIME type of the content.
+	// The MIME type of the content
 	ContentType *string `pulumi:"contentType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
 	RequestCondition *string `pulumi:"requestCondition"`
-	// The HTTP Response. Default `Ok`.
+	// The HTTP Response. Default `OK`
 	Response *string `pulumi:"response"`
-	// The HTTP Status Code. Default `200`.
+	// The HTTP Status Code. Default `200`
 	Status *int `pulumi:"status"`
 }
 
@@ -11292,20 +11178,19 @@ type Servicev1ResponseObjectInput interface {
 }
 
 type Servicev1ResponseObjectArgs struct {
-	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-	// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
-	// The custom VCL code to upload.
+	// The content to deliver for the response object
 	Content pulumi.StringPtrInput `pulumi:"content"`
-	// The MIME type of the content.
+	// The MIME type of the content
 	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+	// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
-	// The HTTP Response. Default `Ok`.
+	// The HTTP Response. Default `OK`
 	Response pulumi.StringPtrInput `pulumi:"response"`
-	// The HTTP Status Code. Default `200`.
+	// The HTTP Status Code. Default `200`
 	Status pulumi.IntPtrInput `pulumi:"status"`
 }
 
@@ -11360,38 +11245,37 @@ func (o Servicev1ResponseObjectOutput) ToServicev1ResponseObjectOutputWithContex
 	return o
 }
 
-// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 func (o Servicev1ResponseObjectOutput) CacheCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.CacheCondition }).(pulumi.StringPtrOutput)
 }
 
-// The custom VCL code to upload.
+// The content to deliver for the response object
 func (o Servicev1ResponseObjectOutput) Content() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.Content }).(pulumi.StringPtrOutput)
 }
 
-// The MIME type of the content.
+// The MIME type of the content
 func (o Servicev1ResponseObjectOutput) ContentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.ContentType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1ResponseObjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1ResponseObject) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
 func (o Servicev1ResponseObjectOutput) RequestCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
 
-// The HTTP Response. Default `Ok`.
+// The HTTP Response. Default `OK`
 func (o Servicev1ResponseObjectOutput) Response() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1ResponseObject) *string { return v.Response }).(pulumi.StringPtrOutput)
 }
 
-// The HTTP Status Code. Default `200`.
+// The HTTP Status Code. Default `200`
 func (o Servicev1ResponseObjectOutput) Status() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1ResponseObject) *int { return v.Status }).(pulumi.IntPtrOutput)
 }
@@ -11417,47 +11301,37 @@ func (o Servicev1ResponseObjectArrayOutput) Index(i pulumi.IntInput) Servicev1Re
 }
 
 type Servicev1S3logging struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain *string `pulumi:"domain"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path *string `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
 	Redundancy *string `pulumi:"redundancy"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
-	ResponseCondition *string `pulumi:"responseCondition"`
-	// AWS Access Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This key will be
-	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-	S3AccessKey *string `pulumi:"s3AccessKey"`
-	// AWS Secret Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This secret will be
-	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-	S3SecretKey *string `pulumi:"s3SecretKey"`
-	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
-	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
-	// Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
+	// Name of blockAttributes condition to apply this logging.
+	ResponseCondition            *string `pulumi:"responseCondition"`
+	S3AccessKey                  *string `pulumi:"s3AccessKey"`
+	S3SecretKey                  *string `pulumi:"s3SecretKey"`
+	ServerSideEncryption         *string `pulumi:"serverSideEncryption"`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -11473,47 +11347,37 @@ type Servicev1S3loggingInput interface {
 }
 
 type Servicev1S3loggingArgs struct {
-	// The name of your Cloud Files container.
+	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// The path to upload logs to.
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
 	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
-	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// AWS Access Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This key will be
-	// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
-	// AWS Secret Key of an account with the required
-	// permissions to post logs. It is **strongly** recommended you create a separate
-	// IAM user with permissions to only operate on this Bucket. This secret will be
-	// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-	S3SecretKey pulumi.StringPtrInput `pulumi:"s3SecretKey"`
-	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
-	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
-	// Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
+	// Name of blockAttributes condition to apply this logging.
+	ResponseCondition            pulumi.StringPtrInput `pulumi:"responseCondition"`
+	S3AccessKey                  pulumi.StringPtrInput `pulumi:"s3AccessKey"`
+	S3SecretKey                  pulumi.StringPtrInput `pulumi:"s3SecretKey"`
+	ServerSideEncryption         pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -11568,98 +11432,88 @@ func (o Servicev1S3loggingOutput) ToServicev1S3loggingOutputWithContext(ctx cont
 	return o
 }
 
-// The name of your Cloud Files container.
+// The name of the bucket in which to store the logs
 func (o Servicev1S3loggingOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1S3logging) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 func (o Servicev1S3loggingOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting.
 func (o Servicev1S3loggingOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
 func (o Servicev1S3loggingOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
 func (o Servicev1S3loggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 func (o Servicev1S3loggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1S3loggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1S3logging) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The path to upload logs to.
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
 func (o Servicev1S3loggingOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+// How frequently the logs should be transferred, in seconds. Default `3600`
 func (o Servicev1S3loggingOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1S3loggingOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o Servicev1S3loggingOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
 func (o Servicev1S3loggingOutput) Redundancy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// Name of blockAttributes condition to apply this logging.
 func (o Servicev1S3loggingOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// AWS Access Key of an account with the required
-// permissions to post logs. It is **strongly** recommended you create a separate
-// IAM user with permissions to only operate on this Bucket. This key will be
-// not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
 func (o Servicev1S3loggingOutput) S3AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.S3AccessKey }).(pulumi.StringPtrOutput)
 }
 
-// AWS Secret Key of an account with the required
-// permissions to post logs. It is **strongly** recommended you create a separate
-// IAM user with permissions to only operate on this Bucket. This secret will be
-// not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
 func (o Servicev1S3loggingOutput) S3SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
 func (o Servicev1S3loggingOutput) ServerSideEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
 func (o Servicev1S3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1S3loggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -11685,13 +11539,13 @@ func (o Servicev1S3loggingArrayOutput) Index(i pulumi.IntInput) Servicev1S3loggi
 }
 
 type Servicev1Snippet struct {
-	// The custom VCL code to upload.
+	// The VCL code that specifies exactly what the snippet does
 	Content string `pulumi:"content"`
-	// A unique name to identify this dictionary.
+	// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 	Priority *int `pulumi:"priority"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type string `pulumi:"type"`
 }
 
@@ -11707,13 +11561,13 @@ type Servicev1SnippetInput interface {
 }
 
 type Servicev1SnippetArgs struct {
-	// The custom VCL code to upload.
+	// The VCL code that specifies exactly what the snippet does
 	Content pulumi.StringInput `pulumi:"content"`
-	// A unique name to identify this dictionary.
+	// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -11768,22 +11622,22 @@ func (o Servicev1SnippetOutput) ToServicev1SnippetOutputWithContext(ctx context.
 	return o
 }
 
-// The custom VCL code to upload.
+// The VCL code that specifies exactly what the snippet does
 func (o Servicev1SnippetOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Snippet) string { return v.Content }).(pulumi.StringOutput)
 }
 
-// A unique name to identify this dictionary.
+// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1SnippetOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Snippet) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 func (o Servicev1SnippetOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Snippet) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 func (o Servicev1SnippetOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Snippet) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -11809,23 +11663,24 @@ func (o Servicev1SnippetArrayOutput) Index(i pulumi.IntInput) Servicev1SnippetOu
 }
 
 type Servicev1Splunk struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         *string `pulumi:"tlsCaCert"`
+	TlsClientCert     *string `pulumi:"tlsClientCert"`
+	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// The Splunk token to be used for authentication
 	Token string `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The Splunk URL to stream logs to
 	Url string `pulumi:"url"`
 }
 
@@ -11841,23 +11696,24 @@ type Servicev1SplunkInput interface {
 }
 
 type Servicev1SplunkArgs struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// The Splunk token to be used for authentication
 	Token pulumi.StringInput `pulumi:"token"`
-	// Your OpenStack auth url.
+	// The Splunk URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -11912,47 +11768,54 @@ func (o Servicev1SplunkOutput) ToServicev1SplunkOutputWithContext(ctx context.Co
 	return o
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
 func (o Servicev1SplunkOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 func (o Servicev1SplunkOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1SplunkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Splunk) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed
 func (o Servicev1SplunkOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// The name of the condition to apply
 func (o Servicev1SplunkOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o Servicev1SplunkOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+func (o Servicev1SplunkOutput) TlsClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1Splunk) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
+}
+
+func (o Servicev1SplunkOutput) TlsClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1Splunk) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 func (o Servicev1SplunkOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// The Splunk token to be used for authentication
 func (o Servicev1SplunkOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Splunk) string { return v.Token }).(pulumi.StringOutput)
 }
 
-// Your OpenStack auth url.
+// The Splunk URL to stream logs to
 func (o Servicev1SplunkOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Splunk) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -11978,19 +11841,19 @@ func (o Servicev1SplunkArrayOutput) Index(i pulumi.IntInput) Servicev1SplunkOutp
 }
 
 type Servicev1Sumologic struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// Your OpenStack auth url.
+	// The URL to Sumologic collector endpoint
 	Url string `pulumi:"url"`
 }
 
@@ -12006,19 +11869,19 @@ type Servicev1SumologicInput interface {
 }
 
 type Servicev1SumologicArgs struct {
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// Your OpenStack auth url.
+	// The URL to Sumologic collector endpoint
 	Url pulumi.StringInput `pulumi:"url"`
 }
 
@@ -12073,37 +11936,37 @@ func (o Servicev1SumologicOutput) ToServicev1SumologicOutputWithContext(ctx cont
 	return o
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting
 func (o Servicev1SumologicOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 func (o Servicev1SumologicOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
 func (o Servicev1SumologicOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1SumologicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1SumologicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// Name of blockAttributes condition to apply this logging.
 func (o Servicev1SumologicOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// Your OpenStack auth url.
+// The URL to Sumologic collector endpoint
 func (o Servicev1SumologicOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -12129,33 +11992,30 @@ func (o Servicev1SumologicArrayOutput) Index(i pulumi.IntInput) Servicev1Sumolog
 }
 
 type Servicev1Syslog struct {
-	// The SFTP address to stream logs to.
+	// A hostname or IPv4 address of the Syslog endpoint
 	Address string `pulumi:"address"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format *string `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format. Can be either 1 or 2. (Default: 1)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType *string `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port *int `pulumi:"port"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert *string `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert *string `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey *string `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         *string `pulumi:"tlsCaCert"`
+	TlsClientCert     *string `pulumi:"tlsClientCert"`
+	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// Whether to prepend each message with a specific token
 	Token *string `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Default `false`
 	UseTls *bool `pulumi:"useTls"`
 }
 
@@ -12171,33 +12031,30 @@ type Servicev1SyslogInput interface {
 }
 
 type Servicev1SyslogArgs struct {
-	// The SFTP address to stream logs to.
+	// A hostname or IPv4 address of the Syslog endpoint
 	Address pulumi.StringInput `pulumi:"address"`
-	// Apache style log formatting.
+	// Apache-style string or VCL variables to use for log formatting
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	// The version of the custom logging format. Can be either 1 or 2. (Default: 1)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
-	// A unique name to identify this dictionary.
+	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
-	// The port the SFTP service listens on. (Default: `22`).
+	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// A secure certificate to authenticate the server with. Must be in PEM format.
-	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	// The client certificate used to make authenticated requests. Must be in PEM format.
-	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	// The client private key used to make authenticated requests. Must be in PEM format.
-	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
-	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
-	// The data authentication token associated with this endpoint.
+	// Whether to prepend each message with a specific token
 	Token pulumi.StringPtrInput `pulumi:"token"`
-	// Whether to use TLS for secure logging. Can be either true or false.
+	// Whether to use TLS for secure logging. Default `false`
 	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
@@ -12252,72 +12109,69 @@ func (o Servicev1SyslogOutput) ToServicev1SyslogOutputWithContext(ctx context.Co
 	return o
 }
 
-// The SFTP address to stream logs to.
+// A hostname or IPv4 address of the Syslog endpoint
 func (o Servicev1SyslogOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Syslog) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// Apache style log formatting.
+// Apache-style string or VCL variables to use for log formatting
 func (o Servicev1SyslogOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+// The version of the custom logging format. Can be either 1 or 2. (Default: 1)
 func (o Servicev1SyslogOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
 func (o Servicev1SyslogOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1SyslogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Syslog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed.
 func (o Servicev1SyslogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
-// The port the SFTP service listens on. (Default: `22`).
+// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 func (o Servicev1SyslogOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+// Name of blockAttributes condition to apply this logging.
 func (o Servicev1SyslogOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// A secure certificate to authenticate the server with. Must be in PEM format.
 func (o Servicev1SyslogOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
-// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o Servicev1SyslogOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The client private key used to make authenticated requests. Must be in PEM format.
 func (o Servicev1SyslogOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
 
-// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+// Used during the TLS handshake to validate the certificate
 func (o Servicev1SyslogOutput) TlsHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsHostname }).(pulumi.StringPtrOutput)
 }
 
-// The data authentication token associated with this endpoint.
+// Whether to prepend each message with a specific token
 func (o Servicev1SyslogOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.Token }).(pulumi.StringPtrOutput)
 }
 
-// Whether to use TLS for secure logging. Can be either true or false.
+// Whether to use TLS for secure logging. Default `false`
 func (o Servicev1SyslogOutput) UseTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
@@ -12343,13 +12197,11 @@ func (o Servicev1SyslogArrayOutput) Index(i pulumi.IntInput) Servicev1SyslogOutp
 }
 
 type Servicev1Vcl struct {
-	// The custom VCL code to upload.
+	// The custom VCL code to upload
 	Content string `pulumi:"content"`
-	// If `true`, use this block as the main configuration. If
-	// `false`, use this block as an includable library. Only a single VCL block can be
-	// marked as the main block. Default is `false`.
+	// If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
 	Main *bool `pulumi:"main"`
-	// A unique name to identify this dictionary.
+	// A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 }
 
@@ -12365,13 +12217,11 @@ type Servicev1VclInput interface {
 }
 
 type Servicev1VclArgs struct {
-	// The custom VCL code to upload.
+	// The custom VCL code to upload
 	Content pulumi.StringInput `pulumi:"content"`
-	// If `true`, use this block as the main configuration. If
-	// `false`, use this block as an includable library. Only a single VCL block can be
-	// marked as the main block. Default is `false`.
+	// If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
 	Main pulumi.BoolPtrInput `pulumi:"main"`
-	// A unique name to identify this dictionary.
+	// A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -12426,19 +12276,17 @@ func (o Servicev1VclOutput) ToServicev1VclOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The custom VCL code to upload.
+// The custom VCL code to upload
 func (o Servicev1VclOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Vcl) string { return v.Content }).(pulumi.StringOutput)
 }
 
-// If `true`, use this block as the main configuration. If
-// `false`, use this block as an includable library. Only a single VCL block can be
-// marked as the main block. Default is `false`.
+// If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
 func (o Servicev1VclOutput) Main() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Vcl) *bool { return v.Main }).(pulumi.BoolPtrOutput)
 }
 
-// A unique name to identify this dictionary.
+// A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
 func (o Servicev1VclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Vcl) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -12464,12 +12312,13 @@ func (o Servicev1VclArrayOutput) Index(i pulumi.IntInput) Servicev1VclOutput {
 }
 
 type Servicev1Waf struct {
+	// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
 	Disabled *bool `pulumi:"disabled"`
-	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	PrefetchCondition *string `pulumi:"prefetchCondition"`
-	// The name of the response object used by the Web Application Firewall.
+	// The name of the response object used by the Web Application Firewall
 	ResponseObject string `pulumi:"responseObject"`
-	// The ID of the WAF.
+	// The ID of the WAF
 	WafId *string `pulumi:"wafId"`
 }
 
@@ -12485,12 +12334,13 @@ type Servicev1WafInput interface {
 }
 
 type Servicev1WafArgs struct {
+	// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
 	Disabled pulumi.BoolPtrInput `pulumi:"disabled"`
-	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 	PrefetchCondition pulumi.StringPtrInput `pulumi:"prefetchCondition"`
-	// The name of the response object used by the Web Application Firewall.
+	// The name of the response object used by the Web Application Firewall
 	ResponseObject pulumi.StringInput `pulumi:"responseObject"`
-	// The ID of the WAF.
+	// The ID of the WAF
 	WafId pulumi.StringPtrInput `pulumi:"wafId"`
 }
 
@@ -12570,21 +12420,23 @@ func (o Servicev1WafOutput) ToServicev1WafPtrOutputWithContext(ctx context.Conte
 		return &v
 	}).(Servicev1WafPtrOutput)
 }
+
+// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
 func (o Servicev1WafOutput) Disabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Waf) *bool { return v.Disabled }).(pulumi.BoolPtrOutput)
 }
 
-// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 func (o Servicev1WafOutput) PrefetchCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Waf) *string { return v.PrefetchCondition }).(pulumi.StringPtrOutput)
 }
 
-// The name of the response object used by the Web Application Firewall.
+// The name of the response object used by the Web Application Firewall
 func (o Servicev1WafOutput) ResponseObject() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Waf) string { return v.ResponseObject }).(pulumi.StringOutput)
 }
 
-// The ID of the WAF.
+// The ID of the WAF
 func (o Servicev1WafOutput) WafId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Waf) *string { return v.WafId }).(pulumi.StringPtrOutput)
 }
@@ -12607,6 +12459,7 @@ func (o Servicev1WafPtrOutput) Elem() Servicev1WafOutput {
 	return o.ApplyT(func(v *Servicev1Waf) Servicev1Waf { return *v }).(Servicev1WafOutput)
 }
 
+// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
 func (o Servicev1WafPtrOutput) Disabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Servicev1Waf) *bool {
 		if v == nil {
@@ -12616,7 +12469,7 @@ func (o Servicev1WafPtrOutput) Disabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
 func (o Servicev1WafPtrOutput) PrefetchCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Servicev1Waf) *string {
 		if v == nil {
@@ -12626,7 +12479,7 @@ func (o Servicev1WafPtrOutput) PrefetchCondition() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the response object used by the Web Application Firewall.
+// The name of the response object used by the Web Application Firewall
 func (o Servicev1WafPtrOutput) ResponseObject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Servicev1Waf) *string {
 		if v == nil {
@@ -12636,7 +12489,7 @@ func (o Servicev1WafPtrOutput) ResponseObject() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The ID of the WAF.
+// The ID of the WAF
 func (o Servicev1WafPtrOutput) WafId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Servicev1Waf) *string {
 		if v == nil {
@@ -12770,6 +12623,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeBigqueryloggingArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBlobstorageloggingOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBlobstorageloggingArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeDictionaryOutput{})
+	pulumi.RegisterOutputType(ServiceComputeDictionaryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeGcsloggingOutput{})

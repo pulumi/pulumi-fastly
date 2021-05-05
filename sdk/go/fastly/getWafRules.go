@@ -20,9 +20,9 @@ func GetWafRules(ctx *pulumi.Context, args *GetWafRulesArgs, opts ...pulumi.Invo
 type GetWafRulesArgs struct {
 	// Exclusion filter by WAF rule's ModSecurity ID.
 	ExcludeModsecRuleIds []int `pulumi:"excludeModsecRuleIds"`
-	// Inclusion filter by WAF rule's publishers.
+	// A list of publishers to be used as filters for the data set.
 	Publishers []string `pulumi:"publishers"`
-	// Inclusion filter by WAF rule's tags.
+	// A list of tags to be used as filters for the data set.
 	Tags []string `pulumi:"tags"`
 }
 

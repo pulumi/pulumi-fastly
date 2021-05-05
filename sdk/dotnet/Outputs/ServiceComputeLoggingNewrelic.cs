@@ -14,11 +14,11 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingNewrelic
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Insert API key from the Account page of your New Relic account
         /// </summary>
         public readonly string Token;
 

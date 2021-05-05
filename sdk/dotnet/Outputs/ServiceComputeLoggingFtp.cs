@@ -14,47 +14,47 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingFtp
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// The FTP address to stream logs to
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// Gzip Compression level. Default `0`
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted (default: `classic`)
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// The password for the server (for anonymous use an email address)
         /// </summary>
         public readonly string Password;
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload log files to. If the path ends in `/` then it is treated as a directory
         /// </summary>
         public readonly string Path;
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently the logs should be transferred, in seconds (Default `3600`)
         /// </summary>
         public readonly int? Period;
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port number. Default: `21`
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         public readonly string? PublicKey;
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// The username for the server (can be `anonymous`)
         /// </summary>
         public readonly string User;
 

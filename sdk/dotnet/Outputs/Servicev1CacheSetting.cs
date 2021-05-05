@@ -14,25 +14,23 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1CacheSetting
     {
         /// <summary>
-        /// Allows you to terminate request handling and immediately
-        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
         /// </summary>
         public readonly string? Action;
         /// <summary>
-        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
         /// </summary>
         public readonly string? CacheCondition;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Max "Time To Live" for stale (unreachable) objects.
+        /// Max "Time To Live" for stale (unreachable) objects
         /// </summary>
         public readonly int? StaleTtl;
         /// <summary>
-        /// The Time-To-Live (TTL) for the object.
+        /// The Time-To-Live (TTL) for the object
         /// </summary>
         public readonly int? Ttl;
 
