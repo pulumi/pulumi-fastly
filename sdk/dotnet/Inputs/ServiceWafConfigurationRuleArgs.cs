@@ -13,19 +13,19 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceWafConfigurationRuleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Web Application Firewall rule's modsecurity ID.
+        /// The Web Application Firewall rule's modsecurity ID
         /// </summary>
         [Input("modsecRuleId", required: true)]
         public Input<int> ModsecRuleId { get; set; } = null!;
 
         /// <summary>
-        /// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        /// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
         /// </summary>
         [Input("revision")]
         public Input<int>? Revision { get; set; }
 
         /// <summary>
-        /// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+        /// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
         /// </summary>
         [Input("status", required: true)]
         public Input<string> Status { get; set; } = null!;

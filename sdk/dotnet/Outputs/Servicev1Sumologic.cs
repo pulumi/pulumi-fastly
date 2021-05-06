@@ -14,31 +14,31 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Sumologic
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The URL to Sumologic collector endpoint
         /// </summary>
         public readonly string Url;
 

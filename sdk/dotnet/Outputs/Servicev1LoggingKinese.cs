@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1LoggingKinese
     {
         /// <summary>
-        /// The AWS access key to be used to write to the stream.
+        /// The AWS access key to be used to write to the stream
         /// </summary>
         public readonly string AccessKey;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The AWS region the stream resides in. (Default: `us-east-1`).
+        /// The AWS region the stream resides in. (Default: `us-east-1`)
         /// </summary>
         public readonly string? Region;
         /// <summary>
@@ -42,11 +42,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The AWS secret access key to authenticate with
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Kinesis stream name
         /// </summary>
         public readonly string Topic;
 

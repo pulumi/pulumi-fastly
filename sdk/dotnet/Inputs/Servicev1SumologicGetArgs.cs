@@ -13,43 +13,43 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1SumologicGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The URL to Sumologic collector endpoint
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

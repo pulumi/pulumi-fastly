@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1LoggingLoggly
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         public readonly string? Format;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         /// </summary>
         public readonly string Token;
 

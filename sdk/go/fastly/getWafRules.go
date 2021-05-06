@@ -28,11 +28,14 @@ type GetWafRulesArgs struct {
 
 // A collection of values returned by getWafRules.
 type GetWafRulesResult struct {
+	// A list of modsecurity rules IDs to be excluded from the data set.
 	ExcludeModsecRuleIds []int `pulumi:"excludeModsecRuleIds"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// A list of publishers to be used as filters for the data set.
 	Publishers []string `pulumi:"publishers"`
-	// The Web Application Firewall's rules result set.
+	// The list of rules that results from any given combination of filters.
 	Rules []GetWafRulesRule `pulumi:"rules"`
-	Tags  []string          `pulumi:"tags"`
+	// A list of tags to be used as filters for the data set.
+	Tags []string `pulumi:"tags"`
 }

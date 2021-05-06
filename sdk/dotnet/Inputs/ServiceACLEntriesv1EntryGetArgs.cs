@@ -18,6 +18,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
+        /// <summary>
+        /// The unique ID of the entry
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 

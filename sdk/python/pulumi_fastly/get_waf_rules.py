@@ -40,6 +40,9 @@ class GetWafRulesResult:
     @property
     @pulumi.getter(name="excludeModsecRuleIds")
     def exclude_modsec_rule_ids(self) -> Optional[Sequence[int]]:
+        """
+        A list of modsecurity rules IDs to be excluded from the data set.
+        """
         return pulumi.get(self, "exclude_modsec_rule_ids")
 
     @property
@@ -53,19 +56,25 @@ class GetWafRulesResult:
     @property
     @pulumi.getter
     def publishers(self) -> Optional[Sequence[str]]:
+        """
+        A list of publishers to be used as filters for the data set.
+        """
         return pulumi.get(self, "publishers")
 
     @property
     @pulumi.getter
     def rules(self) -> Sequence['outputs.GetWafRulesRuleResult']:
         """
-        The Web Application Firewall's rules result set.
+        The list of rules that results from any given combination of filters.
         """
         return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
+        """
+        A list of tags to be used as filters for the data set.
+        """
         return pulumi.get(self, "tags")
 
 

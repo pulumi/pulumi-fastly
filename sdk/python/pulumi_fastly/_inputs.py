@@ -13,6 +13,7 @@ __all__ = [
     'ServiceComputeBackendArgs',
     'ServiceComputeBigqueryloggingArgs',
     'ServiceComputeBlobstorageloggingArgs',
+    'ServiceComputeDictionaryArgs',
     'ServiceComputeDomainArgs',
     'ServiceComputeGcsloggingArgs',
     'ServiceComputeHealthcheckArgs',
@@ -97,6 +98,7 @@ class ServiceACLEntriesv1EntryArgs:
         """
         :param pulumi.Input[str] ip: An IP address that is the focus for the ACL
         :param pulumi.Input[str] comment: A personal freeform descriptive note
+        :param pulumi.Input[str] id: The unique ID of the entry
         :param pulumi.Input[bool] negated: A boolean that will negate the match if true
         :param pulumi.Input[str] subnet: An optional subnet mask applied to the IP address
         """
@@ -137,6 +139,9 @@ class ServiceACLEntriesv1EntryArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID of the entry
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -196,34 +201,30 @@ class ServiceComputeBackendArgs:
                  use_ssl: Optional[pulumi.Input[bool]] = None,
                  weight: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[bool] auto_loadbalance: Denotes if this Backend should be
-               included in the pool of backends that requests are load balanced against.
-               Default `true`.
-        :param pulumi.Input[int] between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`.
-        :param pulumi.Input[int] connect_timeout: How long to wait for a timeout in milliseconds.
-               Default `1000`
-        :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`.
-        :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`.
-        :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend.
-        :param pulumi.Input[int] max_conn: Maximum number of connections for this Backend.
-               Default `200`.
+        :param pulumi.Input[str] address: An IPv4, hostname, or IPv6 address for the Backend
+        :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[bool] auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        :param pulumi.Input[int] between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
+        :param pulumi.Input[int] connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
+        :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
+        :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
+        :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend
+        :param pulumi.Input[int] max_conn: Maximum number of connections for this Backend. Default `200`
         :param pulumi.Input[str] max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
         :param pulumi.Input[str] min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
-        :param pulumi.Input[str] override_host: The hostname to override the Host header.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        :param pulumi.Input[str] override_host: The hostname to override the Host header
+        :param pulumi.Input[int] port: The port number on which the Backend responds. Default `80`
+        :param pulumi.Input[str] shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         :param pulumi.Input[str] ssl_ca_cert: CA certificate attached to origin.
-        :param pulumi.Input[str] ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
-        :param pulumi.Input[bool] ssl_check_cert: Be strict about checking SSL certs. Default `true`.
-        :param pulumi.Input[str] ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-        :param pulumi.Input[str] ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend.
-        :param pulumi.Input[str] ssl_client_key: Client key attached to origin. Used when connecting to the backend.
-        :param pulumi.Input[str] ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert.
-        :param pulumi.Input[str] ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
-        :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the backend. Default `false`.
-        :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        :param pulumi.Input[str] ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        :param pulumi.Input[bool] ssl_check_cert: Be strict about checking SSL certs. Default `true`
+        :param pulumi.Input[str] ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        :param pulumi.Input[str] ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
+        :param pulumi.Input[str] ssl_client_key: Client key attached to origin. Used when connecting to the backend
+        :param pulumi.Input[str] ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
+        :param pulumi.Input[str] ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
+        :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -279,7 +280,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        An IPv4, hostname, or IPv6 address for the Backend
         """
         return pulumi.get(self, "address")
 
@@ -291,7 +292,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -303,9 +304,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="autoLoadbalance")
     def auto_loadbalance(self) -> Optional[pulumi.Input[bool]]:
         """
-        Denotes if this Backend should be
-        included in the pool of backends that requests are load balanced against.
-        Default `true`.
+        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
         """
         return pulumi.get(self, "auto_loadbalance")
 
@@ -317,7 +316,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="betweenBytesTimeout")
     def between_bytes_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        How long to wait between bytes in milliseconds. Default `10000`.
+        How long to wait between bytes in milliseconds. Default `10000`
         """
         return pulumi.get(self, "between_bytes_timeout")
 
@@ -329,8 +328,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        How long to wait for a timeout in milliseconds.
-        Default `1000`
+        How long to wait for a timeout in milliseconds. Default `1000`
         """
         return pulumi.get(self, "connect_timeout")
 
@@ -342,7 +340,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="errorThreshold")
     def error_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of errors to allow before the Backend is marked as down. Default `0`.
+        Number of errors to allow before the Backend is marked as down. Default `0`
         """
         return pulumi.get(self, "error_threshold")
 
@@ -354,7 +352,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="firstByteTimeout")
     def first_byte_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        How long to wait for the first bytes in milliseconds. Default `15000`.
+        How long to wait for the first bytes in milliseconds. Default `15000`
         """
         return pulumi.get(self, "first_byte_timeout")
 
@@ -366,7 +364,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter
     def healthcheck(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of a defined `healthcheck` to assign to this backend.
+        Name of a defined `healthcheck` to assign to this backend
         """
         return pulumi.get(self, "healthcheck")
 
@@ -378,8 +376,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="maxConn")
     def max_conn(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of connections for this Backend.
-        Default `200`.
+        Maximum number of connections for this Backend. Default `200`
         """
         return pulumi.get(self, "max_conn")
 
@@ -415,7 +412,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="overrideHost")
     def override_host(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname to override the Host header.
+        The hostname to override the Host header
         """
         return pulumi.get(self, "override_host")
 
@@ -427,7 +424,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port number on which the Backend responds. Default `80`
         """
         return pulumi.get(self, "port")
 
@@ -439,7 +436,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter
     def shield(self) -> Optional[pulumi.Input[str]]:
         """
-        The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         """
         return pulumi.get(self, "shield")
 
@@ -463,7 +460,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslCertHostname")
     def ssl_cert_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
         """
         return pulumi.get(self, "ssl_cert_hostname")
 
@@ -475,7 +472,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslCheckCert")
     def ssl_check_cert(self) -> Optional[pulumi.Input[bool]]:
         """
-        Be strict about checking SSL certs. Default `true`.
+        Be strict about checking SSL certs. Default `true`
         """
         return pulumi.get(self, "ssl_check_cert")
 
@@ -487,7 +484,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslCiphers")
     def ssl_ciphers(self) -> Optional[pulumi.Input[str]]:
         """
-        Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+        Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
         """
         return pulumi.get(self, "ssl_ciphers")
 
@@ -499,7 +496,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslClientCert")
     def ssl_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Client certificate attached to origin. Used when connecting to the backend.
+        Client certificate attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_cert")
 
@@ -511,7 +508,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslClientKey")
     def ssl_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Client key attached to origin. Used when connecting to the backend.
+        Client key attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_key")
 
@@ -523,7 +520,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslHostname")
     def ssl_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Used for both SNI during the TLS handshake and to validate the cert.
+        Used for both SNI during the TLS handshake and to validate the cert
         """
         return pulumi.get(self, "ssl_hostname")
 
@@ -535,7 +532,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslSniHostname")
     def ssl_sni_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
         """
         return pulumi.get(self, "ssl_sni_hostname")
 
@@ -547,7 +544,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="useSsl")
     def use_ssl(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not to use SSL to reach the backend. Default `false`.
+        Whether or not to use SSL to reach the Backend. Default `false`
         """
         return pulumi.get(self, "use_ssl")
 
@@ -559,7 +556,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
         """
-        The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
         return pulumi.get(self, "weight")
 
@@ -579,12 +576,13 @@ class ServiceComputeBigqueryloggingArgs:
                  table: pulumi.Input[str],
                  template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to.
-        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] table: The ID of your BigQuery table.
+        :param pulumi.Input[str] dataset: The ID of your BigQuery dataset
+        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
+        :param pulumi.Input[str] name: A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] project_id: The ID of your GCP project
+        :param pulumi.Input[str] secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
+        :param pulumi.Input[str] table: The ID of your BigQuery table
+        :param pulumi.Input[str] template: BigQuery table name suffix template
         """
         pulumi.set(__self__, "dataset", dataset)
         pulumi.set(__self__, "email", email)
@@ -599,7 +597,7 @@ class ServiceComputeBigqueryloggingArgs:
     @pulumi.getter
     def dataset(self) -> pulumi.Input[str]:
         """
-        The Honeycomb Dataset you want to log to.
+        The ID of your BigQuery dataset
         """
         return pulumi.get(self, "dataset")
 
@@ -611,7 +609,7 @@ class ServiceComputeBigqueryloggingArgs:
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
         """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
         """
         return pulumi.get(self, "email")
 
@@ -623,7 +621,7 @@ class ServiceComputeBigqueryloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -635,7 +633,7 @@ class ServiceComputeBigqueryloggingArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The ID of your Google Cloud Platform project.
+        The ID of your GCP project
         """
         return pulumi.get(self, "project_id")
 
@@ -647,7 +645,7 @@ class ServiceComputeBigqueryloggingArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         """
         return pulumi.get(self, "secret_key")
 
@@ -659,7 +657,7 @@ class ServiceComputeBigqueryloggingArgs:
     @pulumi.getter
     def table(self) -> pulumi.Input[str]:
         """
-        The ID of your BigQuery table.
+        The ID of your BigQuery table
         """
         return pulumi.get(self, "table")
 
@@ -670,6 +668,9 @@ class ServiceComputeBigqueryloggingArgs:
     @property
     @pulumi.getter
     def template(self) -> Optional[pulumi.Input[str]]:
+        """
+        BigQuery table name suffix template
+        """
         return pulumi.get(self, "template")
 
     @template.setter
@@ -691,16 +692,16 @@ class ServiceComputeBlobstorageloggingArgs:
                  public_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] account_name: The unique Azure Blob Storage namespace in which your data objects are stored.
-        :param pulumi.Input[str] container: The name of the Azure Blob Storage container in which to store logs.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] account_name: The unique Azure Blob Storage namespace in which your data objects are stored
+        :param pulumi.Input[str] container: The name of the Azure Blob Storage container in which to store logs
+        :param pulumi.Input[str] name: A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred in seconds. Default `3600`
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "container", container)
@@ -723,7 +724,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="accountName")
     def account_name(self) -> pulumi.Input[str]:
         """
-        The unique Azure Blob Storage namespace in which your data objects are stored.
+        The unique Azure Blob Storage namespace in which your data objects are stored
         """
         return pulumi.get(self, "account_name")
 
@@ -735,7 +736,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter
     def container(self) -> pulumi.Input[str]:
         """
-        The name of the Azure Blob Storage container in which to store logs.
+        The name of the Azure Blob Storage container in which to store logs
         """
         return pulumi.get(self, "container")
 
@@ -747,7 +748,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -759,7 +760,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="sasToken")
     def sas_token(self) -> pulumi.Input[str]:
         """
-        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
         """
         return pulumi.get(self, "sas_token")
 
@@ -771,7 +772,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -783,7 +784,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -795,7 +796,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         """
         return pulumi.get(self, "path")
 
@@ -807,7 +808,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
@@ -819,7 +820,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -831,7 +832,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -841,12 +842,78 @@ class ServiceComputeBlobstorageloggingArgs:
 
 
 @pulumi.input_type
+class ServiceComputeDictionaryArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 dictionary_id: Optional[pulumi.Input[str]] = None,
+                 force_destroy: Optional[pulumi.Input[bool]] = None,
+                 write_only: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        :param pulumi.Input[str] dictionary_id: The ID of the dictionary
+        :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        """
+        pulumi.set(__self__, "name", name)
+        if dictionary_id is not None:
+            pulumi.set(__self__, "dictionary_id", dictionary_id)
+        if force_destroy is not None:
+            pulumi.set(__self__, "force_destroy", force_destroy)
+        if write_only is not None:
+            pulumi.set(__self__, "write_only", write_only)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="dictionaryId")
+    def dictionary_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the dictionary
+        """
+        return pulumi.get(self, "dictionary_id")
+
+    @dictionary_id.setter
+    def dictionary_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dictionary_id", value)
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @force_destroy.setter
+    def force_destroy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_destroy", value)
+
+    @property
+    @pulumi.getter(name="writeOnly")
+    def write_only(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "write_only")
+
+    @write_only.setter
+    def write_only(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "write_only", value)
+
+
+@pulumi.input_type
 class ServiceComputeDomainArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  comment: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
+        :param pulumi.Input[str] name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         :param pulumi.Input[str] comment: An optional comment about the Domain.
         """
         pulumi.set(__self__, "name", name)
@@ -857,7 +924,7 @@ class ServiceComputeDomainArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         """
         return pulumi.get(self, "name")
 
@@ -891,15 +958,15 @@ class ServiceComputeGcsloggingArgs:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
+        :param pulumi.Input[str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] email: The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default 3600)
+        :param pulumi.Input[str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
+        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -922,7 +989,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of the bucket in which to store the logs
         """
         return pulumi.get(self, "bucket_name")
 
@@ -934,7 +1001,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -946,7 +1013,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
         """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
         """
         return pulumi.get(self, "email")
 
@@ -958,7 +1025,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -970,7 +1037,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
         """
         return pulumi.get(self, "message_type")
 
@@ -982,7 +1049,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
@@ -994,7 +1061,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds (Default 3600)
         """
         return pulumi.get(self, "period")
 
@@ -1006,7 +1073,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS secret access key to authenticate with.
+        The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         """
         return pulumi.get(self, "secret_key")
 
@@ -1018,7 +1085,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1042,17 +1109,17 @@ class ServiceComputeHealthcheckArgs:
                  timeout: Optional[pulumi.Input[int]] = None,
                  window: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] host: The Host header to send for this Healthcheck.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`.
-        :param pulumi.Input[int] expected_response: The status code expected from the host. Default `200`.
-        :param pulumi.Input[str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
-        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `2`.
-        :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-        :param pulumi.Input[int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`.
-        :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`.
-        :param pulumi.Input[int] window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        :param pulumi.Input[str] host: The Host header to send for this Healthcheck
+        :param pulumi.Input[str] name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] path: The path to check
+        :param pulumi.Input[int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
+        :param pulumi.Input[int] expected_response: The status code expected from the host. Default `200`
+        :param pulumi.Input[str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `2`
+        :param pulumi.Input[str] method: Which HTTP method to use. Default `HEAD`
+        :param pulumi.Input[int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
+        :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`
+        :param pulumi.Input[int] window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "name", name)
@@ -1078,7 +1145,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        The Host header to send for this Healthcheck.
+        The Host header to send for this Healthcheck
         """
         return pulumi.get(self, "host")
 
@@ -1090,7 +1157,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -1102,7 +1169,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
         """
-        The path to upload logs to.
+        The path to check
         """
         return pulumi.get(self, "path")
 
@@ -1114,7 +1181,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter(name="checkInterval")
     def check_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        How often to run the Healthcheck in milliseconds. Default `5000`.
+        How often to run the Healthcheck in milliseconds. Default `5000`
         """
         return pulumi.get(self, "check_interval")
 
@@ -1126,7 +1193,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter(name="expectedResponse")
     def expected_response(self) -> Optional[pulumi.Input[int]]:
         """
-        The status code expected from the host. Default `200`.
+        The status code expected from the host. Default `200`
         """
         return pulumi.get(self, "expected_response")
 
@@ -1138,7 +1205,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter(name="httpVersion")
     def http_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
         """
         return pulumi.get(self, "http_version")
 
@@ -1150,7 +1217,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def initial(self) -> Optional[pulumi.Input[int]]:
         """
-        When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        When loading a config, the initial number of probes to be seen as OK. Default `2`
         """
         return pulumi.get(self, "initial")
 
@@ -1162,7 +1229,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        Which HTTP method to use. Default `HEAD`
         """
         return pulumi.get(self, "method")
 
@@ -1174,7 +1241,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        How many Healthchecks must succeed to be considered healthy. Default `3`.
+        How many Healthchecks must succeed to be considered healthy. Default `3`
         """
         return pulumi.get(self, "threshold")
 
@@ -1186,7 +1253,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Timeout in milliseconds. Default `500`.
+        Timeout in milliseconds. Default `500`
         """
         return pulumi.get(self, "timeout")
 
@@ -1198,7 +1265,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def window(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
         return pulumi.get(self, "window")
 
@@ -1225,20 +1292,20 @@ class ServiceComputeHttpsloggingArgs:
                  tls_client_key: Optional[pulumi.Input[str]] = None,
                  tls_hostname: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] content_type: Value of the `Content-Type` header sent with the request.
-        :param pulumi.Input[str] header_name: Custom header sent with the request.
-        :param pulumi.Input[str] header_value: Value of the custom header sent with the request.
-        :param pulumi.Input[str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        :param pulumi.Input[str] name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: URL that log data will be sent to. Must use the https protocol
+        :param pulumi.Input[str] content_type: Value of the `Content-Type` header sent with the request
+        :param pulumi.Input[str] header_name: Custom header sent with the request
+        :param pulumi.Input[str] header_value: Value of the custom header sent with the request
+        :param pulumi.Input[str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request
+        :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_hostname: Used during the TLS handshake to validate the certificate
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "url", url)
@@ -1271,7 +1338,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -1283,7 +1350,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        URL that log data will be sent to. Must use the https protocol
         """
         return pulumi.get(self, "url")
 
@@ -1295,7 +1362,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Value of the `Content-Type` header sent with the request.
+        Value of the `Content-Type` header sent with the request
         """
         return pulumi.get(self, "content_type")
 
@@ -1307,7 +1374,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="headerName")
     def header_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Custom header sent with the request.
+        Custom header sent with the request
         """
         return pulumi.get(self, "header_name")
 
@@ -1319,7 +1386,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="headerValue")
     def header_value(self) -> Optional[pulumi.Input[str]]:
         """
-        Value of the custom header sent with the request.
+        Value of the custom header sent with the request
         """
         return pulumi.get(self, "header_value")
 
@@ -1331,7 +1398,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="jsonFormat")
     def json_format(self) -> Optional[pulumi.Input[str]]:
         """
-        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         """
         return pulumi.get(self, "json_format")
 
@@ -1343,7 +1410,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -1355,7 +1422,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         """
         return pulumi.get(self, "method")
 
@@ -1367,7 +1434,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        The maximum number of bytes sent in one request
         """
         return pulumi.get(self, "request_max_bytes")
 
@@ -1379,7 +1446,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        The maximum number of logs sent in one request
         """
         return pulumi.get(self, "request_max_entries")
 
@@ -1391,7 +1458,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -1403,7 +1470,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The client certificate used to make authenticated requests. Must be in PEM format.
+        The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
@@ -1415,7 +1482,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The client private key used to make authenticated requests. Must be in PEM format.
+        The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
@@ -1427,7 +1494,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -1444,10 +1511,10 @@ class ServiceComputeLogentryArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  use_tls: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
+        :param pulumi.Input[str] name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: Use token based authentication (https://logentries.com/doc/input-token/)
+        :param pulumi.Input[int] port: The port number configured in Logentries
+        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -1460,7 +1527,7 @@ class ServiceComputeLogentryArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -1472,7 +1539,7 @@ class ServiceComputeLogentryArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        Use token based authentication (https://logentries.com/doc/input-token/)
         """
         return pulumi.get(self, "token")
 
@@ -1484,7 +1551,7 @@ class ServiceComputeLogentryArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port number configured in Logentries
         """
         return pulumi.get(self, "port")
 
@@ -1496,7 +1563,7 @@ class ServiceComputeLogentryArgs:
     @pulumi.getter(name="useTls")
     def use_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS for secure logging. Can be either true or false.
+        Whether to use TLS for secure logging
         """
         return pulumi.get(self, "use_tls")
 
@@ -1520,17 +1587,17 @@ class ServiceComputeLoggingCloudfileArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] access_key: Your Cloud File account access key
+        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container
+        :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] user: The username for your Cloud Files account
+        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[str] path: The path to upload logs to
+        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -1555,7 +1622,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        Your Cloud File account access key
         """
         return pulumi.get(self, "access_key")
 
@@ -1567,7 +1634,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of your Cloud Files container
         """
         return pulumi.get(self, "bucket_name")
 
@@ -1579,7 +1646,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -1591,7 +1658,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for your Cloud Files account
         """
         return pulumi.get(self, "user")
 
@@ -1603,7 +1670,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of GZIP encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -1615,7 +1682,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -1627,7 +1694,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        The path to upload logs to
         """
         return pulumi.get(self, "path")
 
@@ -1639,7 +1706,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -1651,7 +1718,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -1663,7 +1730,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         """
         return pulumi.get(self, "region")
 
@@ -1675,7 +1742,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1691,9 +1758,9 @@ class ServiceComputeLoggingDatadogArgs:
                  token: pulumi.Input[str],
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
+        :param pulumi.Input[str] name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The API key from your Datadog account
+        :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -1704,7 +1771,7 @@ class ServiceComputeLoggingDatadogArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -1716,7 +1783,7 @@ class ServiceComputeLoggingDatadogArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The API key from your Datadog account
         """
         return pulumi.get(self, "token")
 
@@ -1728,7 +1795,7 @@ class ServiceComputeLoggingDatadogArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
@@ -1752,17 +1819,17 @@ class ServiceComputeLoggingDigitaloceanArgs:
                  public_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] access_key: Your DigitalOcean Spaces account access key
+        :param pulumi.Input[str] bucket_name: The name of the DigitalOcean Space
+        :param pulumi.Input[str] name: The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] secret_key: Your DigitalOcean Spaces account secret key
+        :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[str] path: The path to upload logs to
+        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -1787,7 +1854,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        Your DigitalOcean Spaces account access key
         """
         return pulumi.get(self, "access_key")
 
@@ -1799,7 +1866,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of the DigitalOcean Space
         """
         return pulumi.get(self, "bucket_name")
 
@@ -1811,7 +1878,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -1823,7 +1890,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        Your DigitalOcean Spaces account secret key
         """
         return pulumi.get(self, "secret_key")
 
@@ -1835,7 +1902,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         """
         return pulumi.get(self, "domain")
 
@@ -1847,7 +1914,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -1859,7 +1926,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -1871,7 +1938,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        The path to upload logs to
         """
         return pulumi.get(self, "path")
 
@@ -1883,7 +1950,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -1895,7 +1962,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -1907,7 +1974,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1932,18 +1999,18 @@ class ServiceComputeLoggingElasticsearchArgs:
                  tls_hostname: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] index: The name of the Elasticsearch index to send documents (logs) to.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[str] pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] index: The name of the Elasticsearch index to send documents (logs) to
+        :param pulumi.Input[str] name: The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: The Elasticsearch URL to stream logs to
+        :param pulumi.Input[str] password: BasicAuth password for Elasticsearch
+        :param pulumi.Input[str] pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        :param pulumi.Input[int] request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        :param pulumi.Input[int] request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+        :param pulumi.Input[str] user: BasicAuth username for Elasticsearch
         """
         pulumi.set(__self__, "index", index)
         pulumi.set(__self__, "name", name)
@@ -1971,7 +2038,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter
     def index(self) -> pulumi.Input[str]:
         """
-        The name of the Elasticsearch index to send documents (logs) to.
+        The name of the Elasticsearch index to send documents (logs) to
         """
         return pulumi.get(self, "index")
 
@@ -1983,7 +2050,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -1995,7 +2062,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        The Elasticsearch URL to stream logs to
         """
         return pulumi.get(self, "url")
 
@@ -2007,7 +2074,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        BasicAuth password for Elasticsearch
         """
         return pulumi.get(self, "password")
 
@@ -2019,7 +2086,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter
     def pipeline(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         """
         return pulumi.get(self, "pipeline")
 
@@ -2031,7 +2098,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        The maximum number of logs sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
@@ -2043,7 +2110,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_entries")
 
@@ -2055,7 +2122,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -2067,7 +2134,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The client certificate used to make authenticated requests. Must be in PEM format.
+        The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
@@ -2079,7 +2146,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The client private key used to make authenticated requests. Must be in PEM format.
+        The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
@@ -2091,7 +2158,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -2103,7 +2170,7 @@ class ServiceComputeLoggingElasticsearchArgs:
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
         """
-        The username for your Cloud Files account.
+        BasicAuth username for Elasticsearch
         """
         return pulumi.get(self, "user")
 
@@ -2127,17 +2194,17 @@ class ServiceComputeLoggingFtpArgs:
                  public_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] address: The FTP address to stream logs to
+        :param pulumi.Input[str] name: The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] password: The password for the server (for anonymous use an email address)
+        :param pulumi.Input[str] path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        :param pulumi.Input[str] user: The username for the server (can be `anonymous`)
+        :param pulumi.Input[int] gzip_level: Gzip Compression level. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted (default: `classic`)
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default `3600`)
+        :param pulumi.Input[int] port: The port number. Default: `21`
+        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -2161,7 +2228,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        The FTP address to stream logs to
         """
         return pulumi.get(self, "address")
 
@@ -2173,7 +2240,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2185,7 +2252,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        The password for the server (for anonymous use an email address)
         """
         return pulumi.get(self, "password")
 
@@ -2197,7 +2264,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
         """
-        The path to upload logs to.
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
         """
         return pulumi.get(self, "path")
 
@@ -2209,7 +2276,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for the server (can be `anonymous`)
         """
         return pulumi.get(self, "user")
 
@@ -2221,7 +2288,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Gzip Compression level. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -2233,7 +2300,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted (default: `classic`)
         """
         return pulumi.get(self, "message_type")
 
@@ -2245,7 +2312,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds (Default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -2257,7 +2324,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port number. Default: `21`
         """
         return pulumi.get(self, "port")
 
@@ -2269,7 +2336,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -2281,7 +2348,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -2299,11 +2366,11 @@ class ServiceComputeLoggingGooglepubsubArgs:
                  topic: pulumi.Input[str],
                  user: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] topic: The Kinesis stream name.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
+        :param pulumi.Input[str] secret_key: Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+        :param pulumi.Input[str] topic: The Google Cloud Pub/Sub topic to which logs will be published
+        :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
@@ -2315,7 +2382,7 @@ class ServiceComputeLoggingGooglepubsubArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2327,7 +2394,7 @@ class ServiceComputeLoggingGooglepubsubArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The ID of your Google Cloud Platform project.
+        The ID of your Google Cloud Platform project
         """
         return pulumi.get(self, "project_id")
 
@@ -2339,7 +2406,7 @@ class ServiceComputeLoggingGooglepubsubArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         """
         return pulumi.get(self, "secret_key")
 
@@ -2351,7 +2418,7 @@ class ServiceComputeLoggingGooglepubsubArgs:
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
         """
-        The Kinesis stream name.
+        The Google Cloud Pub/Sub topic to which logs will be published
         """
         return pulumi.get(self, "topic")
 
@@ -2363,7 +2430,7 @@ class ServiceComputeLoggingGooglepubsubArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         """
         return pulumi.get(self, "user")
 
@@ -2379,9 +2446,9 @@ class ServiceComputeLoggingHerokuArgs:
                  token: pulumi.Input[str],
                  url: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
+        :param pulumi.Input[str] name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
+        :param pulumi.Input[str] url: The URL to stream logs to
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -2391,7 +2458,7 @@ class ServiceComputeLoggingHerokuArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2403,7 +2470,7 @@ class ServiceComputeLoggingHerokuArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         """
         return pulumi.get(self, "token")
 
@@ -2415,7 +2482,7 @@ class ServiceComputeLoggingHerokuArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        The URL to stream logs to
         """
         return pulumi.get(self, "url")
 
@@ -2431,9 +2498,9 @@ class ServiceComputeLoggingHoneycombArgs:
                  name: pulumi.Input[str],
                  token: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
+        :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to
+        :param pulumi.Input[str] name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The Write Key from the Account page of your Honeycomb account
         """
         pulumi.set(__self__, "dataset", dataset)
         pulumi.set(__self__, "name", name)
@@ -2443,7 +2510,7 @@ class ServiceComputeLoggingHoneycombArgs:
     @pulumi.getter
     def dataset(self) -> pulumi.Input[str]:
         """
-        The Honeycomb Dataset you want to log to.
+        The Honeycomb Dataset you want to log to
         """
         return pulumi.get(self, "dataset")
 
@@ -2455,7 +2522,7 @@ class ServiceComputeLoggingHoneycombArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2467,7 +2534,7 @@ class ServiceComputeLoggingHoneycombArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The Write Key from the Account page of your Honeycomb account
         """
         return pulumi.get(self, "token")
 
@@ -2495,19 +2562,21 @@ class ServiceComputeLoggingKafkaArgs:
                  use_tls: Optional[pulumi.Input[bool]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] topic: The Kinesis stream name.
-        :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers
+        :param pulumi.Input[str] name: The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] topic: The Kafka topic to send logs to
+        :param pulumi.Input[str] auth_method: SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
+        :param pulumi.Input[bool] parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        :param pulumi.Input[str] password: SASL Pass
+        :param pulumi.Input[int] request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
+        :param pulumi.Input[str] user: SASL User
         """
         pulumi.set(__self__, "brokers", brokers)
         pulumi.set(__self__, "name", name)
@@ -2541,7 +2610,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter
     def brokers(self) -> pulumi.Input[str]:
         """
-        A comma-separated list of IP addresses or hostnames of Kafka brokers.
+        A comma-separated list of IP addresses or hostnames of Kafka brokers
         """
         return pulumi.get(self, "brokers")
 
@@ -2553,7 +2622,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2565,7 +2634,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
         """
-        The Kinesis stream name.
+        The Kafka topic to send logs to
         """
         return pulumi.get(self, "topic")
 
@@ -2576,6 +2645,9 @@ class ServiceComputeLoggingKafkaArgs:
     @property
     @pulumi.getter(name="authMethod")
     def auth_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        """
         return pulumi.get(self, "auth_method")
 
     @auth_method.setter
@@ -2586,7 +2658,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[pulumi.Input[str]]:
         """
-        The codec used for compression of your logs. One of: gzip, snappy, lz4.
+        The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         """
         return pulumi.get(self, "compression_codec")
 
@@ -2597,6 +2669,9 @@ class ServiceComputeLoggingKafkaArgs:
     @property
     @pulumi.getter(name="parseLogKeyvals")
     def parse_log_keyvals(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        """
         return pulumi.get(self, "parse_log_keyvals")
 
     @parse_log_keyvals.setter
@@ -2607,7 +2682,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        SASL Pass
         """
         return pulumi.get(self, "password")
 
@@ -2619,7 +2694,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
@@ -2631,7 +2706,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="requiredAcks")
     def required_acks(self) -> Optional[pulumi.Input[str]]:
         """
-        The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
         """
         return pulumi.get(self, "required_acks")
 
@@ -2643,7 +2718,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -2655,7 +2730,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The client certificate used to make authenticated requests. Must be in PEM format.
+        The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
@@ -2667,7 +2742,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The client private key used to make authenticated requests. Must be in PEM format.
+        The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
@@ -2679,7 +2754,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -2691,7 +2766,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="useTls")
     def use_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS for secure logging. Can be either true or false.
+        Whether to use TLS for secure logging. Can be either `true` or `false`
         """
         return pulumi.get(self, "use_tls")
 
@@ -2703,7 +2778,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
         """
-        The username for your Cloud Files account.
+        SASL User
         """
         return pulumi.get(self, "user")
 
@@ -2721,11 +2796,11 @@ class ServiceComputeLoggingKineseArgs:
                  topic: pulumi.Input[str],
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] topic: The Kinesis stream name.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
+        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream
+        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with
+        :param pulumi.Input[str] topic: The Kinesis stream name
+        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "name", name)
@@ -2738,7 +2813,7 @@ class ServiceComputeLoggingKineseArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        The AWS access key to be used to write to the stream
         """
         return pulumi.get(self, "access_key")
 
@@ -2750,7 +2825,7 @@ class ServiceComputeLoggingKineseArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2762,7 +2837,7 @@ class ServiceComputeLoggingKineseArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        The AWS secret access key to authenticate with
         """
         return pulumi.get(self, "secret_key")
 
@@ -2774,7 +2849,7 @@ class ServiceComputeLoggingKineseArgs:
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
         """
-        The Kinesis stream name.
+        The Kinesis stream name
         """
         return pulumi.get(self, "topic")
 
@@ -2786,7 +2861,7 @@ class ServiceComputeLoggingKineseArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The AWS region the stream resides in. (Default: `us-east-1`)
         """
         return pulumi.get(self, "region")
 
@@ -2801,8 +2876,8 @@ class ServiceComputeLoggingLogglyArgs:
                  name: pulumi.Input[str],
                  token: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
+        :param pulumi.Input[str] name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -2811,7 +2886,7 @@ class ServiceComputeLoggingLogglyArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2823,7 +2898,7 @@ class ServiceComputeLoggingLogglyArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         """
         return pulumi.get(self, "token")
 
@@ -2839,9 +2914,9 @@ class ServiceComputeLoggingLogshuttleArgs:
                  token: pulumi.Input[str],
                  url: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
+        :param pulumi.Input[str] name: The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The data authentication token associated with this endpoint
+        :param pulumi.Input[str] url: Your Log Shuttle endpoint URL
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -2851,7 +2926,7 @@ class ServiceComputeLoggingLogshuttleArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2863,7 +2938,7 @@ class ServiceComputeLoggingLogshuttleArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The data authentication token associated with this endpoint
         """
         return pulumi.get(self, "token")
 
@@ -2875,7 +2950,7 @@ class ServiceComputeLoggingLogshuttleArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        Your Log Shuttle endpoint URL
         """
         return pulumi.get(self, "url")
 
@@ -2890,8 +2965,8 @@ class ServiceComputeLoggingNewrelicArgs:
                  name: pulumi.Input[str],
                  token: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
+        :param pulumi.Input[str] name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The Insert API key from the Account page of your New Relic account
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -2900,7 +2975,7 @@ class ServiceComputeLoggingNewrelicArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -2912,7 +2987,7 @@ class ServiceComputeLoggingNewrelicArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The Insert API key from the Account page of your New Relic account
         """
         return pulumi.get(self, "token")
 
@@ -2936,17 +3011,17 @@ class ServiceComputeLoggingOpenstackArgs:
                  public_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] access_key: Your OpenStack account access key
+        :param pulumi.Input[str] bucket_name: The name of your OpenStack container
+        :param pulumi.Input[str] name: The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: Your OpenStack auth url
+        :param pulumi.Input[str] user: The username for your OpenStack account
+        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -2970,7 +3045,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        Your OpenStack account access key
         """
         return pulumi.get(self, "access_key")
 
@@ -2982,7 +3057,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of your OpenStack container
         """
         return pulumi.get(self, "bucket_name")
 
@@ -2994,7 +3069,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -3006,7 +3081,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        Your OpenStack auth url
         """
         return pulumi.get(self, "url")
 
@@ -3018,7 +3093,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for your OpenStack account
         """
         return pulumi.get(self, "user")
 
@@ -3030,7 +3105,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -3042,7 +3117,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
         """
         return pulumi.get(self, "message_type")
 
@@ -3054,7 +3129,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
@@ -3066,7 +3141,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
@@ -3078,7 +3153,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -3090,7 +3165,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3106,9 +3181,9 @@ class ServiceComputeLoggingScalyrArgs:
                  token: pulumi.Input[str],
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
+        :param pulumi.Input[str] name: The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The token to use for authentication (https://www.scalyr.com/keys)
+        :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -3119,7 +3194,7 @@ class ServiceComputeLoggingScalyrArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -3131,7 +3206,7 @@ class ServiceComputeLoggingScalyrArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The token to use for authentication (https://www.scalyr.com/keys)
         """
         return pulumi.get(self, "token")
 
@@ -3143,7 +3218,7 @@ class ServiceComputeLoggingScalyrArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
@@ -3169,19 +3244,19 @@ class ServiceComputeLoggingSftpArgs:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[str] ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] address: The SFTP address to stream logs to
+        :param pulumi.Input[str] name: The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        :param pulumi.Input[str] ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP
+        :param pulumi.Input[str] user: The username for the server
+        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`)
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -3209,7 +3284,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        The SFTP address to stream logs to
         """
         return pulumi.get(self, "address")
 
@@ -3221,7 +3296,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -3233,7 +3308,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
         """
-        The path to upload logs to.
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
         """
         return pulumi.get(self, "path")
 
@@ -3245,7 +3320,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="sshKnownHosts")
     def ssh_known_hosts(self) -> pulumi.Input[str]:
         """
-        A list of host keys for all hosts we can connect to over SFTP.
+        A list of host keys for all hosts we can connect to over SFTP
         """
         return pulumi.get(self, "ssh_known_hosts")
 
@@ -3257,7 +3332,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for the server
         """
         return pulumi.get(self, "user")
 
@@ -3269,7 +3344,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -3281,7 +3356,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -3293,7 +3368,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "password")
 
@@ -3305,7 +3380,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -3317,7 +3392,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port the SFTP service listens on. (Default: `22`)
         """
         return pulumi.get(self, "port")
 
@@ -3329,7 +3404,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -3341,7 +3416,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS secret access key to authenticate with.
+        The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "secret_key")
 
@@ -3353,7 +3428,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3368,7 +3443,7 @@ class ServiceComputePackageArgs:
                  filename: pulumi.Input[str],
                  source_code_hash: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] filename: The path to the Wasm deployment package within your local filesystem.
+        :param pulumi.Input[str] filename: The path to the Wasm deployment package within your local filesystem
         """
         pulumi.set(__self__, "filename", filename)
         if source_code_hash is not None:
@@ -3378,7 +3453,7 @@ class ServiceComputePackageArgs:
     @pulumi.getter
     def filename(self) -> pulumi.Input[str]:
         """
-        The path to the Wasm deployment package within your local filesystem.
+        The path to the Wasm deployment package within your local filesystem
         """
         return pulumi.get(self, "filename")
 
@@ -3403,9 +3478,9 @@ class ServiceComputePapertrailArgs:
                  name: pulumi.Input[str],
                  port: pulumi.Input[int]):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
+        :param pulumi.Input[str] address: The address of the Papertrail endpoint
+        :param pulumi.Input[str] name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[int] port: The port associated with the address where the Papertrail endpoint can be accessed
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -3415,7 +3490,7 @@ class ServiceComputePapertrailArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        The address of the Papertrail endpoint
         """
         return pulumi.get(self, "address")
 
@@ -3427,7 +3502,7 @@ class ServiceComputePapertrailArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -3439,7 +3514,7 @@ class ServiceComputePapertrailArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port associated with the address where the Papertrail endpoint can be accessed
         """
         return pulumi.get(self, "port")
 
@@ -3466,24 +3541,20 @@ class ServiceComputeS3loggingArgs:
                  server_side_encryption_kms_key_id: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
-        :param pulumi.Input[str] s3_access_key: AWS Access Key of an account with the required
-               permissions to post logs. It is **strongly** recommended you create a separate
-               IAM user with permissions to only operate on this Bucket. This key will be
-               not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-        :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required
-               permissions to post logs. It is **strongly** recommended you create a separate
-               IAM user with permissions to only operate on this Bucket. This secret will be
-               not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
+        :param pulumi.Input[str] name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        :param pulumi.Input[str] s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -3516,7 +3587,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of the bucket in which to store the logs
         """
         return pulumi.get(self, "bucket_name")
 
@@ -3528,7 +3599,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -3540,7 +3611,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         """
         return pulumi.get(self, "domain")
 
@@ -3552,7 +3623,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -3564,7 +3635,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -3576,7 +3647,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
@@ -3588,7 +3659,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
@@ -3600,7 +3671,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -3612,7 +3683,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter
     def redundancy(self) -> Optional[pulumi.Input[str]]:
         """
-        The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
+        The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
         """
         return pulumi.get(self, "redundancy")
 
@@ -3624,10 +3695,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="s3AccessKey")
     def s3_access_key(self) -> Optional[pulumi.Input[str]]:
         """
-        AWS Access Key of an account with the required
-        permissions to post logs. It is **strongly** recommended you create a separate
-        IAM user with permissions to only operate on this Bucket. This key will be
-        not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         """
         return pulumi.get(self, "s3_access_key")
 
@@ -3639,10 +3707,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="s3SecretKey")
     def s3_secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        AWS Secret Key of an account with the required
-        permissions to post logs. It is **strongly** recommended you create a separate
-        IAM user with permissions to only operate on this Bucket. This secret will be
-        not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         """
         return pulumi.get(self, "s3_secret_key")
 
@@ -3653,6 +3718,9 @@ class ServiceComputeS3loggingArgs:
     @property
     @pulumi.getter(name="serverSideEncryption")
     def server_side_encryption(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        """
         return pulumi.get(self, "server_side_encryption")
 
     @server_side_encryption.setter
@@ -3662,6 +3730,9 @@ class ServiceComputeS3loggingArgs:
     @property
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
     @server_side_encryption_kms_key_id.setter
@@ -3672,7 +3743,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3688,19 +3759,27 @@ class ServiceComputeSplunkArgs:
                  token: pulumi.Input[str],
                  url: pulumi.Input[str],
                  tls_ca_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_key: Optional[pulumi.Input[str]] = None,
                  tls_hostname: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        :param pulumi.Input[str] name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The Splunk token to be used for authentication
+        :param pulumi.Input[str] url: The Splunk URL to stream logs to
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
+        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
         pulumi.set(__self__, "url", url)
         if tls_ca_cert is not None:
             pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
             pulumi.set(__self__, "tls_hostname", tls_hostname)
 
@@ -3708,7 +3787,7 @@ class ServiceComputeSplunkArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Kinesis logging endpoint.
+        A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -3720,7 +3799,7 @@ class ServiceComputeSplunkArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The Splunk token to be used for authentication
         """
         return pulumi.get(self, "token")
 
@@ -3732,7 +3811,7 @@ class ServiceComputeSplunkArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        The Splunk URL to stream logs to
         """
         return pulumi.get(self, "url")
 
@@ -3744,177 +3823,7 @@ class ServiceComputeSplunkArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_ca_cert", value)
-
-    @property
-    @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[str]]:
-        """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        """
-        return pulumi.get(self, "tls_hostname")
-
-    @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_hostname", value)
-
-
-@pulumi.input_type
-class ServiceComputeSumologicArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 url: pulumi.Input[str],
-                 message_type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The unique name of the Kinesis logging endpoint.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def url(self) -> pulumi.Input[str]:
-        """
-        Your OpenStack auth url.
-        """
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "url", value)
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        """
-        return pulumi.get(self, "message_type")
-
-    @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message_type", value)
-
-
-@pulumi.input_type
-class ServiceComputeSyslogArgs:
-    def __init__(__self__, *,
-                 address: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 message_type: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[str]] = None,
-                 tls_client_key: Optional[pulumi.Input[str]] = None,
-                 tls_hostname: Optional[pulumi.Input[str]] = None,
-                 token: Optional[pulumi.Input[str]] = None,
-                 use_tls: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint.
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
-        """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-        if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
-        if token is not None:
-            pulumi.set(__self__, "token", token)
-        if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
-
-    @property
-    @pulumi.getter
-    def address(self) -> pulumi.Input[str]:
-        """
-        The SFTP address to stream logs to.
-        """
-        return pulumi.get(self, "address")
-
-    @address.setter
-    def address(self, value: pulumi.Input[str]):
-        pulumi.set(self, "address", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The unique name of the Kinesis logging endpoint.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        """
-        return pulumi.get(self, "message_type")
-
-    @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message_type", value)
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[int]]:
-        """
-        The port the SFTP service listens on. (Default: `22`).
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port", value)
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -3950,7 +3859,201 @@ class ServiceComputeSyslogArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        """
+        return pulumi.get(self, "tls_hostname")
+
+    @tls_hostname.setter
+    def tls_hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_hostname", value)
+
+
+@pulumi.input_type
+class ServiceComputeSumologicArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 url: pulumi.Input[str],
+                 message_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: The URL to Sumologic collector endpoint
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        """
+        The URL to Sumologic collector endpoint
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        """
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_type", value)
+
+
+@pulumi.input_type
+class ServiceComputeSyslogArgs:
+    def __init__(__self__, *,
+                 address: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 message_type: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 tls_ca_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_key: Optional[pulumi.Input[str]] = None,
+                 tls_hostname: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 use_tls: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] address: A hostname or IPv4 address of the Syslog endpoint
+        :param pulumi.Input[str] name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[int] port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        :param pulumi.Input[str] tls_hostname: Used during the TLS handshake to validate the certificate
+        :param pulumi.Input[str] token: Whether to prepend each message with a specific token
+        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Default `false`
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if tls_ca_cert is not None:
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
+        if tls_hostname is not None:
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
+
+    @property
+    @pulumi.getter
+    def address(self) -> pulumi.Input[str]:
+        """
+        A hostname or IPv4 address of the Syslog endpoint
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: pulumi.Input[str]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_type", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="tlsCaCert")
+    def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        """
+        return pulumi.get(self, "tls_ca_cert")
+
+    @tls_ca_cert.setter
+    def tls_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="tlsClientCert")
+    def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        """
+        return pulumi.get(self, "tls_client_cert")
+
+    @tls_client_cert.setter
+    def tls_client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_client_cert", value)
+
+    @property
+    @pulumi.getter(name="tlsClientKey")
+    def tls_client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        """
+        return pulumi.get(self, "tls_client_key")
+
+    @tls_client_key.setter
+    def tls_client_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_client_key", value)
+
+    @property
+    @pulumi.getter(name="tlsHostname")
+    def tls_hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -3962,7 +4065,7 @@ class ServiceComputeSyslogArgs:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
         """
-        The data authentication token associated with this endpoint.
+        Whether to prepend each message with a specific token
         """
         return pulumi.get(self, "token")
 
@@ -3974,7 +4077,7 @@ class ServiceComputeSyslogArgs:
     @pulumi.getter(name="useTls")
     def use_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS for secure logging. Can be either true or false.
+        Whether to use TLS for secure logging. Default `false`
         """
         return pulumi.get(self, "use_tls")
 
@@ -3990,9 +4093,9 @@ class ServiceWafConfigurationRuleArgs:
                  status: pulumi.Input[str],
                  revision: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[int] modsec_rule_id: The Web Application Firewall rule's modsecurity ID.
-        :param pulumi.Input[str] status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
-        :param pulumi.Input[int] revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        :param pulumi.Input[int] modsec_rule_id: The Web Application Firewall rule's modsecurity ID
+        :param pulumi.Input[str] status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
+        :param pulumi.Input[int] revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
         """
         pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
         pulumi.set(__self__, "status", status)
@@ -4003,7 +4106,7 @@ class ServiceWafConfigurationRuleArgs:
     @pulumi.getter(name="modsecRuleId")
     def modsec_rule_id(self) -> pulumi.Input[int]:
         """
-        The Web Application Firewall rule's modsecurity ID.
+        The Web Application Firewall rule's modsecurity ID
         """
         return pulumi.get(self, "modsec_rule_id")
 
@@ -4015,7 +4118,7 @@ class ServiceWafConfigurationRuleArgs:
     @pulumi.getter
     def status(self) -> pulumi.Input[str]:
         """
-        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
         """
         return pulumi.get(self, "status")
 
@@ -4027,7 +4130,7 @@ class ServiceWafConfigurationRuleArgs:
     @pulumi.getter
     def revision(self) -> Optional[pulumi.Input[int]]:
         """
-        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
         """
         return pulumi.get(self, "revision")
 
@@ -4045,11 +4148,11 @@ class ServiceWafConfigurationRuleExclusionArgs:
                  modsec_rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  number: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] condition: A conditional expression in VCL used to determine if the condition is met.
-        :param pulumi.Input[str] exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
-        :param pulumi.Input[str] name: The name of rule exclusion.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
-        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion.
+        :param pulumi.Input[str] condition: A conditional expression in VCL used to determine if the condition is met
+        :param pulumi.Input[str] exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
+        :param pulumi.Input[str] name: The name of rule exclusion
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion
         """
         pulumi.set(__self__, "condition", condition)
         pulumi.set(__self__, "exclusion_type", exclusion_type)
@@ -4063,7 +4166,7 @@ class ServiceWafConfigurationRuleExclusionArgs:
     @pulumi.getter
     def condition(self) -> pulumi.Input[str]:
         """
-        A conditional expression in VCL used to determine if the condition is met.
+        A conditional expression in VCL used to determine if the condition is met
         """
         return pulumi.get(self, "condition")
 
@@ -4075,7 +4178,7 @@ class ServiceWafConfigurationRuleExclusionArgs:
     @pulumi.getter(name="exclusionType")
     def exclusion_type(self) -> pulumi.Input[str]:
         """
-        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
         """
         return pulumi.get(self, "exclusion_type")
 
@@ -4087,7 +4190,7 @@ class ServiceWafConfigurationRuleExclusionArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The name of rule exclusion.
+        The name of rule exclusion
         """
         return pulumi.get(self, "name")
 
@@ -4099,7 +4202,7 @@ class ServiceWafConfigurationRuleExclusionArgs:
     @pulumi.getter(name="modsecRuleIds")
     def modsec_rule_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
         """
-        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
         """
         return pulumi.get(self, "modsec_rule_ids")
 
@@ -4111,7 +4214,7 @@ class ServiceWafConfigurationRuleExclusionArgs:
     @pulumi.getter
     def number(self) -> Optional[pulumi.Input[int]]:
         """
-        The numeric ID assigned to the WAF Rule Exclusion.
+        The numeric ID assigned to the WAF Rule Exclusion
         """
         return pulumi.get(self, "number")
 
@@ -4124,20 +4227,24 @@ class ServiceWafConfigurationRuleExclusionArgs:
 class Servicev1AclArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 acl_id: Optional[pulumi.Input[str]] = None):
+                 acl_id: Optional[pulumi.Input[str]] = None,
+                 force_destroy: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] acl_id: The ID of the ACL.
+        :param pulumi.Input[str] name: A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
+        :param pulumi.Input[str] acl_id: The ID of the ACL
+        :param pulumi.Input[bool] force_destroy: Allow the ACL to be deleted, even if it contains entries. Defaults to false.
         """
         pulumi.set(__self__, "name", name)
         if acl_id is not None:
             pulumi.set(__self__, "acl_id", acl_id)
+        if force_destroy is not None:
+            pulumi.set(__self__, "force_destroy", force_destroy)
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
         """
         return pulumi.get(self, "name")
 
@@ -4149,13 +4256,25 @@ class Servicev1AclArgs:
     @pulumi.getter(name="aclId")
     def acl_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the ACL.
+        The ID of the ACL
         """
         return pulumi.get(self, "acl_id")
 
     @acl_id.setter
     def acl_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "acl_id", value)
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @force_destroy.setter
+    def force_destroy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_destroy", value)
 
 
 @pulumi.input_type
@@ -4187,35 +4306,31 @@ class Servicev1BackendArgs:
                  use_ssl: Optional[pulumi.Input[bool]] = None,
                  weight: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[bool] auto_loadbalance: Denotes if this Backend should be
-               included in the pool of backends that requests are load balanced against.
-               Default `true`.
-        :param pulumi.Input[int] between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`.
-        :param pulumi.Input[int] connect_timeout: How long to wait for a timeout in milliseconds.
-               Default `1000`
-        :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`.
-        :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`.
-        :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend.
-        :param pulumi.Input[int] max_conn: Maximum number of connections for this Backend.
-               Default `200`.
+        :param pulumi.Input[str] address: An IPv4, hostname, or IPv6 address for the Backend
+        :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[bool] auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        :param pulumi.Input[int] between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
+        :param pulumi.Input[int] connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
+        :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
+        :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
+        :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend
+        :param pulumi.Input[int] max_conn: Maximum number of connections for this Backend. Default `200`
         :param pulumi.Input[str] max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
         :param pulumi.Input[str] min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
-        :param pulumi.Input[str] override_host: The hostname to override the Host header.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-        :param pulumi.Input[str] shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        :param pulumi.Input[str] override_host: The hostname to override the Host header
+        :param pulumi.Input[int] port: The port number on which the Backend responds. Default `80`
+        :param pulumi.Input[str] request_condition: Name of a condition, which if met, will select this backend during a request.
+        :param pulumi.Input[str] shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         :param pulumi.Input[str] ssl_ca_cert: CA certificate attached to origin.
-        :param pulumi.Input[str] ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
-        :param pulumi.Input[bool] ssl_check_cert: Be strict about checking SSL certs. Default `true`.
-        :param pulumi.Input[str] ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
-        :param pulumi.Input[str] ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend.
-        :param pulumi.Input[str] ssl_client_key: Client key attached to origin. Used when connecting to the backend.
-        :param pulumi.Input[str] ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert.
-        :param pulumi.Input[str] ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
-        :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the backend. Default `false`.
-        :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        :param pulumi.Input[str] ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        :param pulumi.Input[bool] ssl_check_cert: Be strict about checking SSL certs. Default `true`
+        :param pulumi.Input[str] ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        :param pulumi.Input[str] ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
+        :param pulumi.Input[str] ssl_client_key: Client key attached to origin. Used when connecting to the backend
+        :param pulumi.Input[str] ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
+        :param pulumi.Input[str] ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
+        :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -4273,7 +4388,7 @@ class Servicev1BackendArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        An IPv4, hostname, or IPv6 address for the Backend
         """
         return pulumi.get(self, "address")
 
@@ -4285,7 +4400,7 @@ class Servicev1BackendArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -4297,9 +4412,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="autoLoadbalance")
     def auto_loadbalance(self) -> Optional[pulumi.Input[bool]]:
         """
-        Denotes if this Backend should be
-        included in the pool of backends that requests are load balanced against.
-        Default `true`.
+        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
         """
         return pulumi.get(self, "auto_loadbalance")
 
@@ -4311,7 +4424,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="betweenBytesTimeout")
     def between_bytes_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        How long to wait between bytes in milliseconds. Default `10000`.
+        How long to wait between bytes in milliseconds. Default `10000`
         """
         return pulumi.get(self, "between_bytes_timeout")
 
@@ -4323,8 +4436,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        How long to wait for a timeout in milliseconds.
-        Default `1000`
+        How long to wait for a timeout in milliseconds. Default `1000`
         """
         return pulumi.get(self, "connect_timeout")
 
@@ -4336,7 +4448,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="errorThreshold")
     def error_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of errors to allow before the Backend is marked as down. Default `0`.
+        Number of errors to allow before the Backend is marked as down. Default `0`
         """
         return pulumi.get(self, "error_threshold")
 
@@ -4348,7 +4460,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="firstByteTimeout")
     def first_byte_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        How long to wait for the first bytes in milliseconds. Default `15000`.
+        How long to wait for the first bytes in milliseconds. Default `15000`
         """
         return pulumi.get(self, "first_byte_timeout")
 
@@ -4360,7 +4472,7 @@ class Servicev1BackendArgs:
     @pulumi.getter
     def healthcheck(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of a defined `healthcheck` to assign to this backend.
+        Name of a defined `healthcheck` to assign to this backend
         """
         return pulumi.get(self, "healthcheck")
 
@@ -4372,8 +4484,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="maxConn")
     def max_conn(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of connections for this Backend.
-        Default `200`.
+        Maximum number of connections for this Backend. Default `200`
         """
         return pulumi.get(self, "max_conn")
 
@@ -4409,7 +4520,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="overrideHost")
     def override_host(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname to override the Host header.
+        The hostname to override the Host header
         """
         return pulumi.get(self, "override_host")
 
@@ -4421,7 +4532,7 @@ class Servicev1BackendArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port number on which the Backend responds. Default `80`
         """
         return pulumi.get(self, "port")
 
@@ -4433,7 +4544,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="requestCondition")
     def request_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        Name of a condition, which if met, will select this backend during a request.
         """
         return pulumi.get(self, "request_condition")
 
@@ -4445,7 +4556,7 @@ class Servicev1BackendArgs:
     @pulumi.getter
     def shield(self) -> Optional[pulumi.Input[str]]:
         """
-        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         """
         return pulumi.get(self, "shield")
 
@@ -4469,7 +4580,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="sslCertHostname")
     def ssl_cert_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
         """
         return pulumi.get(self, "ssl_cert_hostname")
 
@@ -4481,7 +4592,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="sslCheckCert")
     def ssl_check_cert(self) -> Optional[pulumi.Input[bool]]:
         """
-        Be strict about checking SSL certs. Default `true`.
+        Be strict about checking SSL certs. Default `true`
         """
         return pulumi.get(self, "ssl_check_cert")
 
@@ -4493,7 +4604,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="sslCiphers")
     def ssl_ciphers(self) -> Optional[pulumi.Input[str]]:
         """
-        Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+        Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
         """
         return pulumi.get(self, "ssl_ciphers")
 
@@ -4505,7 +4616,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="sslClientCert")
     def ssl_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Client certificate attached to origin. Used when connecting to the backend.
+        Client certificate attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_cert")
 
@@ -4517,7 +4628,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="sslClientKey")
     def ssl_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Client key attached to origin. Used when connecting to the backend.
+        Client key attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_key")
 
@@ -4529,7 +4640,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="sslHostname")
     def ssl_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Used for both SNI during the TLS handshake and to validate the cert.
+        Used for both SNI during the TLS handshake and to validate the cert
         """
         return pulumi.get(self, "ssl_hostname")
 
@@ -4541,7 +4652,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="sslSniHostname")
     def ssl_sni_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
         """
         return pulumi.get(self, "ssl_sni_hostname")
 
@@ -4553,7 +4664,7 @@ class Servicev1BackendArgs:
     @pulumi.getter(name="useSsl")
     def use_ssl(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not to use SSL to reach the backend. Default `false`.
+        Whether or not to use SSL to reach the Backend. Default `false`
         """
         return pulumi.get(self, "use_ssl")
 
@@ -4565,7 +4676,7 @@ class Servicev1BackendArgs:
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
         """
-        The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
         return pulumi.get(self, "weight")
 
@@ -4588,16 +4699,16 @@ class Servicev1BigqueryloggingArgs:
                  response_condition: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to.
-        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] table: The ID of your BigQuery table.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] template: Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+        :param pulumi.Input[str] dataset: The ID of your BigQuery dataset
+        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
+        :param pulumi.Input[str] name: A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] project_id: The ID of your GCP project
+        :param pulumi.Input[str] secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
+        :param pulumi.Input[str] table: The ID of your BigQuery table
+        :param pulumi.Input[str] format: The logging format desired.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
+        :param pulumi.Input[str] template: BigQuery table name suffix template
         """
         pulumi.set(__self__, "dataset", dataset)
         pulumi.set(__self__, "email", email)
@@ -4618,7 +4729,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter
     def dataset(self) -> pulumi.Input[str]:
         """
-        The Honeycomb Dataset you want to log to.
+        The ID of your BigQuery dataset
         """
         return pulumi.get(self, "dataset")
 
@@ -4630,7 +4741,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
         """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
         """
         return pulumi.get(self, "email")
 
@@ -4642,7 +4753,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -4654,7 +4765,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The ID of your Google Cloud Platform project.
+        The ID of your GCP project
         """
         return pulumi.get(self, "project_id")
 
@@ -4666,7 +4777,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         """
         return pulumi.get(self, "secret_key")
 
@@ -4678,7 +4789,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter
     def table(self) -> pulumi.Input[str]:
         """
-        The ID of your BigQuery table.
+        The ID of your BigQuery table
         """
         return pulumi.get(self, "table")
 
@@ -4690,7 +4801,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        The logging format desired.
         """
         return pulumi.get(self, "format")
 
@@ -4702,7 +4813,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -4714,7 +4825,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        Name of a condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
@@ -4726,7 +4837,7 @@ class Servicev1BigqueryloggingArgs:
     @pulumi.getter
     def template(self) -> Optional[pulumi.Input[str]]:
         """
-        Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+        BigQuery table name suffix template
         """
         return pulumi.get(self, "template")
 
@@ -4753,20 +4864,20 @@ class Servicev1BlobstorageloggingArgs:
                  response_condition: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] account_name: The unique Azure Blob Storage namespace in which your data objects are stored.
-        :param pulumi.Input[str] container: The name of the Azure Blob Storage container in which to store logs.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] account_name: The unique Azure Blob Storage namespace in which your data objects are stored
+        :param pulumi.Input[str] container: The name of the Azure Blob Storage container in which to store logs
+        :param pulumi.Input[str] name: A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred in seconds. Default `3600`
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] response_condition: The name of the condition to apply
+        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "container", container)
@@ -4797,7 +4908,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="accountName")
     def account_name(self) -> pulumi.Input[str]:
         """
-        The unique Azure Blob Storage namespace in which your data objects are stored.
+        The unique Azure Blob Storage namespace in which your data objects are stored
         """
         return pulumi.get(self, "account_name")
 
@@ -4809,7 +4920,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter
     def container(self) -> pulumi.Input[str]:
         """
-        The name of the Azure Blob Storage container in which to store logs.
+        The name of the Azure Blob Storage container in which to store logs
         """
         return pulumi.get(self, "container")
 
@@ -4821,7 +4932,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -4833,7 +4944,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="sasToken")
     def sas_token(self) -> pulumi.Input[str]:
         """
-        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
         """
         return pulumi.get(self, "sas_token")
 
@@ -4845,7 +4956,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         """
         return pulumi.get(self, "format")
 
@@ -4857,7 +4968,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         """
         return pulumi.get(self, "format_version")
 
@@ -4869,7 +4980,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -4881,7 +4992,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -4893,7 +5004,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         """
         return pulumi.get(self, "path")
 
@@ -4905,7 +5016,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
@@ -4917,7 +5028,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
@@ -4929,7 +5040,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -4941,7 +5052,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
@@ -4953,7 +5064,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -4971,13 +5082,11 @@ class Servicev1CacheSettingArgs:
                  stale_ttl: Optional[pulumi.Input[int]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] action: Allows you to terminate request handling and immediately
-               perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
-        :param pulumi.Input[str] cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-               see [Fastly's Documentation on Conditionals][fastly-conditionals].
-        :param pulumi.Input[int] stale_ttl: Max "Time To Live" for stale (unreachable) objects.
-        :param pulumi.Input[int] ttl: The Time-To-Live (TTL) for the object.
+        :param pulumi.Input[str] name: Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] action: One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
+        :param pulumi.Input[str] cache_condition: Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+        :param pulumi.Input[int] stale_ttl: Max "Time To Live" for stale (unreachable) objects
+        :param pulumi.Input[int] ttl: The Time-To-Live (TTL) for the object
         """
         pulumi.set(__self__, "name", name)
         if action is not None:
@@ -4993,7 +5102,7 @@ class Servicev1CacheSettingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5005,8 +5114,7 @@ class Servicev1CacheSettingArgs:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        Allows you to terminate request handling and immediately
-        perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
         """
         return pulumi.get(self, "action")
 
@@ -5018,8 +5126,7 @@ class Servicev1CacheSettingArgs:
     @pulumi.getter(name="cacheCondition")
     def cache_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-        see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
         """
         return pulumi.get(self, "cache_condition")
 
@@ -5031,7 +5138,7 @@ class Servicev1CacheSettingArgs:
     @pulumi.getter(name="staleTtl")
     def stale_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        Max "Time To Live" for stale (unreachable) objects.
+        Max "Time To Live" for stale (unreachable) objects
         """
         return pulumi.get(self, "stale_ttl")
 
@@ -5043,7 +5150,7 @@ class Servicev1CacheSettingArgs:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The Time-To-Live (TTL) for the object.
+        The Time-To-Live (TTL) for the object
         """
         return pulumi.get(self, "ttl")
 
@@ -5060,10 +5167,10 @@ class Servicev1ConditionArgs:
                  type: pulumi.Input[str],
                  priority: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] statement: The statement used to determine if the condition is met.
-        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
-        :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        :param pulumi.Input[str] name: The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] statement: The statement used to determine if the condition is met
+        :param pulumi.Input[str] type: Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
+        :param pulumi.Input[int] priority: A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "statement", statement)
@@ -5075,7 +5182,7 @@ class Servicev1ConditionArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5087,7 +5194,7 @@ class Servicev1ConditionArgs:
     @pulumi.getter
     def statement(self) -> pulumi.Input[str]:
         """
-        The statement used to determine if the condition is met.
+        The statement used to determine if the condition is met
         """
         return pulumi.get(self, "statement")
 
@@ -5099,7 +5206,7 @@ class Servicev1ConditionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
         """
         return pulumi.get(self, "type")
 
@@ -5111,7 +5218,7 @@ class Servicev1ConditionArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
         """
         return pulumi.get(self, "priority")
 
@@ -5125,18 +5232,18 @@ class Servicev1DictionaryArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  dictionary_id: Optional[pulumi.Input[str]] = None,
+                 force_destroy: Optional[pulumi.Input[bool]] = None,
                  write_only: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] dictionary_id: The ID of the dictionary.
-        :param pulumi.Input[bool] write_only: If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
-               via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
-               dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
-               the items are managed outside of the provider.
+        :param pulumi.Input[str] name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        :param pulumi.Input[str] dictionary_id: The ID of the dictionary
+        :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         """
         pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
             pulumi.set(__self__, "dictionary_id", dictionary_id)
+        if force_destroy is not None:
+            pulumi.set(__self__, "force_destroy", force_destroy)
         if write_only is not None:
             pulumi.set(__self__, "write_only", write_only)
 
@@ -5144,7 +5251,7 @@ class Servicev1DictionaryArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         """
         return pulumi.get(self, "name")
 
@@ -5156,7 +5263,7 @@ class Servicev1DictionaryArgs:
     @pulumi.getter(name="dictionaryId")
     def dictionary_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the dictionary.
+        The ID of the dictionary
         """
         return pulumi.get(self, "dictionary_id")
 
@@ -5165,14 +5272,20 @@ class Servicev1DictionaryArgs:
         pulumi.set(self, "dictionary_id", value)
 
     @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @force_destroy.setter
+    def force_destroy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_destroy", value)
+
+    @property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[pulumi.Input[bool]]:
-        """
-        If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
-        via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
-        dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
-        the items are managed outside of the provider.
-        """
         return pulumi.get(self, "write_only")
 
     @write_only.setter
@@ -5193,13 +5306,13 @@ class Servicev1DirectorArgs:
                  type: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[int] capacity: Load balancing weight for the backends. Default `100`.
-        :param pulumi.Input[str] comment: An optional comment about the Director.
-        :param pulumi.Input[int] quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
-        :param pulumi.Input[int] retries: How many backends to search if it fails. Default `5`.
-        :param pulumi.Input[str] shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
-        :param pulumi.Input[int] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        :param pulumi.Input[str] name: Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[int] capacity: Load balancing weight for the backends. Default `100`
+        :param pulumi.Input[str] comment: An optional comment about the Director
+        :param pulumi.Input[int] quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+        :param pulumi.Input[int] retries: How many backends to search if it fails. Default `5`
+        :param pulumi.Input[str] shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+        :param pulumi.Input[int] type: Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
         """
         pulumi.set(__self__, "backends", backends)
         pulumi.set(__self__, "name", name)
@@ -5232,7 +5345,7 @@ class Servicev1DirectorArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5244,7 +5357,7 @@ class Servicev1DirectorArgs:
     @pulumi.getter
     def capacity(self) -> Optional[pulumi.Input[int]]:
         """
-        Load balancing weight for the backends. Default `100`.
+        Load balancing weight for the backends. Default `100`
         """
         return pulumi.get(self, "capacity")
 
@@ -5256,7 +5369,7 @@ class Servicev1DirectorArgs:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
-        An optional comment about the Director.
+        An optional comment about the Director
         """
         return pulumi.get(self, "comment")
 
@@ -5268,7 +5381,7 @@ class Servicev1DirectorArgs:
     @pulumi.getter
     def quorum(self) -> Optional[pulumi.Input[int]]:
         """
-        Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+        Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
         """
         return pulumi.get(self, "quorum")
 
@@ -5280,7 +5393,7 @@ class Servicev1DirectorArgs:
     @pulumi.getter
     def retries(self) -> Optional[pulumi.Input[int]]:
         """
-        How many backends to search if it fails. Default `5`.
+        How many backends to search if it fails. Default `5`
         """
         return pulumi.get(self, "retries")
 
@@ -5292,7 +5405,7 @@ class Servicev1DirectorArgs:
     @pulumi.getter
     def shield(self) -> Optional[pulumi.Input[str]]:
         """
-        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
         """
         return pulumi.get(self, "shield")
 
@@ -5304,7 +5417,7 @@ class Servicev1DirectorArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[int]]:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
         """
         return pulumi.get(self, "type")
 
@@ -5319,8 +5432,8 @@ class Servicev1DomainArgs:
                  name: pulumi.Input[str],
                  comment: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] comment: An optional comment about the Director.
+        :param pulumi.Input[str] name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
+        :param pulumi.Input[str] comment: An optional comment about the Domain.
         """
         pulumi.set(__self__, "name", name)
         if comment is not None:
@@ -5330,7 +5443,7 @@ class Servicev1DomainArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         """
         return pulumi.get(self, "name")
 
@@ -5342,7 +5455,7 @@ class Servicev1DomainArgs:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
-        An optional comment about the Director.
+        An optional comment about the Domain.
         """
         return pulumi.get(self, "comment")
 
@@ -5359,10 +5472,10 @@ class Servicev1DynamicsnippetArgs:
                  priority: Optional[pulumi.Input[int]] = None,
                  snippet_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
-        :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
-        :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet.
+        :param pulumi.Input[str] name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+        :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -5375,7 +5488,7 @@ class Servicev1DynamicsnippetArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5387,7 +5500,7 @@ class Servicev1DynamicsnippetArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         """
         return pulumi.get(self, "type")
 
@@ -5399,7 +5512,7 @@ class Servicev1DynamicsnippetArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
         return pulumi.get(self, "priority")
 
@@ -5411,7 +5524,7 @@ class Servicev1DynamicsnippetArgs:
     @pulumi.getter(name="snippetId")
     def snippet_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the dynamic snippet.
+        The ID of the dynamic snippet
         """
         return pulumi.get(self, "snippet_id")
 
@@ -5436,18 +5549,18 @@ class Servicev1GcsloggingArgs:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
+        :param pulumi.Input[str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] email: The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default 3600)
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
+        :param pulumi.Input[str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
+        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -5476,7 +5589,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of the bucket in which to store the logs
         """
         return pulumi.get(self, "bucket_name")
 
@@ -5488,7 +5601,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5500,7 +5613,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
         """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
         """
         return pulumi.get(self, "email")
 
@@ -5512,7 +5625,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting
         """
         return pulumi.get(self, "format")
 
@@ -5524,7 +5637,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -5536,7 +5649,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
         """
         return pulumi.get(self, "message_type")
 
@@ -5548,7 +5661,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
@@ -5560,7 +5673,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds (Default 3600)
         """
         return pulumi.get(self, "period")
 
@@ -5572,7 +5685,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -5584,7 +5697,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        Name of a condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
@@ -5596,7 +5709,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS secret access key to authenticate with.
+        The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         """
         return pulumi.get(self, "secret_key")
 
@@ -5608,7 +5721,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -5625,13 +5738,10 @@ class Servicev1GzipArgs:
                  content_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-               see [Fastly's Documentation on Conditionals][fastly-conditionals].
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] content_types: The content-type for each type of content you wish to
-               have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] extensions: File extensions for each file type to dynamically
-               gzip. Example: `["css", "js"]`.
+        :param pulumi.Input[str] name: A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] cache_condition: Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] content_types: The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] extensions: File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
         """
         pulumi.set(__self__, "name", name)
         if cache_condition is not None:
@@ -5645,7 +5755,7 @@ class Servicev1GzipArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5657,8 +5767,7 @@ class Servicev1GzipArgs:
     @pulumi.getter(name="cacheCondition")
     def cache_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-        see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         """
         return pulumi.get(self, "cache_condition")
 
@@ -5670,8 +5779,7 @@ class Servicev1GzipArgs:
     @pulumi.getter(name="contentTypes")
     def content_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The content-type for each type of content you wish to
-        have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+        The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
         """
         return pulumi.get(self, "content_types")
 
@@ -5683,8 +5791,7 @@ class Servicev1GzipArgs:
     @pulumi.getter
     def extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        File extensions for each file type to dynamically
-        gzip. Example: `["css", "js"]`.
+        File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
         """
         return pulumi.get(self, "extensions")
 
@@ -5709,21 +5816,18 @@ class Servicev1HeaderArgs:
                  source: Optional[pulumi.Input[str]] = None,
                  substitution: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] action: Allows you to terminate request handling and immediately
-               perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
-        :param pulumi.Input[str] destination: The name of the header that is going to be affected by the Action.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
-        :param pulumi.Input[str] cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-               see [Fastly's Documentation on Conditionals][fastly-conditionals].
-        :param pulumi.Input[bool] ignore_if_set: Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
-        :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
-        :param pulumi.Input[str] regex: Regular expression to use (Only applies to the `regex` and `regex_repeat` actions.)
-        :param pulumi.Input[str] request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] source: Variable to be used as a source for the header
-               content. (Does not apply to the `delete` action.)
-        :param pulumi.Input[str] substitution: Value to substitute in place of regular expression. (Only applies to the `regex` and `regex_repeat` actions.)
+        :param pulumi.Input[str] action: The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+        :param pulumi.Input[str] destination: The name of the header that is going to be affected by the Action
+        :param pulumi.Input[str] name: Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] type: The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+        :param pulumi.Input[str] cache_condition: Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        :param pulumi.Input[bool] ignore_if_set: Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        :param pulumi.Input[int] priority: Lower priorities execute first. Default: `100`
+        :param pulumi.Input[str] regex: Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+        :param pulumi.Input[str] request_condition: Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+        :param pulumi.Input[str] response_condition: Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        :param pulumi.Input[str] source: Variable to be used as a source for the header content (Does not apply to `delete` action.)
+        :param pulumi.Input[str] substitution: Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "destination", destination)
@@ -5750,8 +5854,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        Allows you to terminate request handling and immediately
-        perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
         """
         return pulumi.get(self, "action")
 
@@ -5763,7 +5866,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def destination(self) -> pulumi.Input[str]:
         """
-        The name of the header that is going to be affected by the Action.
+        The name of the header that is going to be affected by the Action
         """
         return pulumi.get(self, "destination")
 
@@ -5775,7 +5878,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5787,7 +5890,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
         """
         return pulumi.get(self, "type")
 
@@ -5799,8 +5902,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter(name="cacheCondition")
     def cache_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-        see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
         """
         return pulumi.get(self, "cache_condition")
 
@@ -5812,7 +5914,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter(name="ignoreIfSet")
     def ignore_if_set(self) -> Optional[pulumi.Input[bool]]:
         """
-        Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
+        Don't add the header if it is already. (Only applies to `set` action.). Default `false`
         """
         return pulumi.get(self, "ignore_if_set")
 
@@ -5824,7 +5926,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        Lower priorities execute first. Default: `100`
         """
         return pulumi.get(self, "priority")
 
@@ -5836,7 +5938,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def regex(self) -> Optional[pulumi.Input[str]]:
         """
-        Regular expression to use (Only applies to the `regex` and `regex_repeat` actions.)
+        Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
         """
         return pulumi.get(self, "regex")
 
@@ -5848,7 +5950,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter(name="requestCondition")
     def request_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
         """
         return pulumi.get(self, "request_condition")
 
@@ -5860,7 +5962,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         """
         return pulumi.get(self, "response_condition")
 
@@ -5872,8 +5974,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def source(self) -> Optional[pulumi.Input[str]]:
         """
-        Variable to be used as a source for the header
-        content. (Does not apply to the `delete` action.)
+        Variable to be used as a source for the header content (Does not apply to `delete` action.)
         """
         return pulumi.get(self, "source")
 
@@ -5885,7 +5986,7 @@ class Servicev1HeaderArgs:
     @pulumi.getter
     def substitution(self) -> Optional[pulumi.Input[str]]:
         """
-        Value to substitute in place of regular expression. (Only applies to the `regex` and `regex_repeat` actions.)
+        Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
         """
         return pulumi.get(self, "substitution")
 
@@ -5909,17 +6010,17 @@ class Servicev1HealthcheckArgs:
                  timeout: Optional[pulumi.Input[int]] = None,
                  window: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] host: The Host header to send for this Healthcheck.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`.
-        :param pulumi.Input[int] expected_response: The status code expected from the host. Default `200`.
-        :param pulumi.Input[str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
-        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `2`.
-        :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-        :param pulumi.Input[int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`.
-        :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`.
-        :param pulumi.Input[int] window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        :param pulumi.Input[str] host: The Host header to send for this Healthcheck
+        :param pulumi.Input[str] name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] path: The path to check
+        :param pulumi.Input[int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
+        :param pulumi.Input[int] expected_response: The status code expected from the host. Default `200`
+        :param pulumi.Input[str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `2`
+        :param pulumi.Input[str] method: Which HTTP method to use. Default `HEAD`
+        :param pulumi.Input[int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
+        :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`
+        :param pulumi.Input[int] window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "name", name)
@@ -5945,7 +6046,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        The Host header to send for this Healthcheck.
+        The Host header to send for this Healthcheck
         """
         return pulumi.get(self, "host")
 
@@ -5957,7 +6058,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -5969,7 +6070,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
         """
-        The path to upload logs to.
+        The path to check
         """
         return pulumi.get(self, "path")
 
@@ -5981,7 +6082,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter(name="checkInterval")
     def check_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        How often to run the Healthcheck in milliseconds. Default `5000`.
+        How often to run the Healthcheck in milliseconds. Default `5000`
         """
         return pulumi.get(self, "check_interval")
 
@@ -5993,7 +6094,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter(name="expectedResponse")
     def expected_response(self) -> Optional[pulumi.Input[int]]:
         """
-        The status code expected from the host. Default `200`.
+        The status code expected from the host. Default `200`
         """
         return pulumi.get(self, "expected_response")
 
@@ -6005,7 +6106,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter(name="httpVersion")
     def http_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
         """
         return pulumi.get(self, "http_version")
 
@@ -6017,7 +6118,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def initial(self) -> Optional[pulumi.Input[int]]:
         """
-        When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        When loading a config, the initial number of probes to be seen as OK. Default `2`
         """
         return pulumi.get(self, "initial")
 
@@ -6029,7 +6130,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        Which HTTP method to use. Default `HEAD`
         """
         return pulumi.get(self, "method")
 
@@ -6041,7 +6142,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        How many Healthchecks must succeed to be considered healthy. Default `3`.
+        How many Healthchecks must succeed to be considered healthy. Default `3`
         """
         return pulumi.get(self, "threshold")
 
@@ -6053,7 +6154,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Timeout in milliseconds. Default `500`.
+        Timeout in milliseconds. Default `500`
         """
         return pulumi.get(self, "timeout")
 
@@ -6065,7 +6166,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def window(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
         return pulumi.get(self, "window")
 
@@ -6096,24 +6197,24 @@ class Servicev1HttpsloggingArgs:
                  tls_client_key: Optional[pulumi.Input[str]] = None,
                  tls_hostname: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] content_type: The MIME type of the content.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] header_name: Custom header sent with the request.
-        :param pulumi.Input[str] header_value: Value of the custom header sent with the request.
-        :param pulumi.Input[str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        :param pulumi.Input[str] name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: URL that log data will be sent to. Must use the https protocol
+        :param pulumi.Input[str] content_type: Value of the `Content-Type` header sent with the request
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        :param pulumi.Input[str] header_name: Custom header sent with the request
+        :param pulumi.Input[str] header_value: Value of the custom header sent with the request
+        :param pulumi.Input[str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
+        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request
+        :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request
+        :param pulumi.Input[str] response_condition: The name of the condition to apply
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_hostname: Used during the TLS handshake to validate the certificate
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "url", url)
@@ -6154,7 +6255,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -6166,7 +6267,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        URL that log data will be sent to. Must use the https protocol
         """
         return pulumi.get(self, "url")
 
@@ -6178,7 +6279,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The MIME type of the content.
+        Value of the `Content-Type` header sent with the request
         """
         return pulumi.get(self, "content_type")
 
@@ -6190,7 +6291,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -6202,7 +6303,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         """
         return pulumi.get(self, "format_version")
 
@@ -6214,7 +6315,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="headerName")
     def header_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Custom header sent with the request.
+        Custom header sent with the request
         """
         return pulumi.get(self, "header_name")
 
@@ -6226,7 +6327,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="headerValue")
     def header_value(self) -> Optional[pulumi.Input[str]]:
         """
-        Value of the custom header sent with the request.
+        Value of the custom header sent with the request
         """
         return pulumi.get(self, "header_value")
 
@@ -6238,7 +6339,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="jsonFormat")
     def json_format(self) -> Optional[pulumi.Input[str]]:
         """
-        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         """
         return pulumi.get(self, "json_format")
 
@@ -6250,7 +6351,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -6262,7 +6363,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         """
         return pulumi.get(self, "method")
 
@@ -6274,7 +6375,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
@@ -6286,7 +6387,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        The maximum number of bytes sent in one request
         """
         return pulumi.get(self, "request_max_bytes")
 
@@ -6298,7 +6399,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        The maximum number of logs sent in one request
         """
         return pulumi.get(self, "request_max_entries")
 
@@ -6310,7 +6411,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
@@ -6322,7 +6423,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -6334,7 +6435,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The client certificate used to make authenticated requests. Must be in PEM format.
+        The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
@@ -6346,7 +6447,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The client private key used to make authenticated requests. Must be in PEM format.
+        The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
@@ -6358,7 +6459,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -6379,14 +6480,14 @@ class Servicev1LogentryArgs:
                  response_condition: Optional[pulumi.Input[str]] = None,
                  use_tls: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
+        :param pulumi.Input[str] name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: Use token based authentication (https://logentries.com/doc/input-token/)
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[int] port: The port number configured in Logentries
+        :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
+        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -6407,7 +6508,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -6419,7 +6520,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        Use token based authentication (https://logentries.com/doc/input-token/)
         """
         return pulumi.get(self, "token")
 
@@ -6431,7 +6532,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting
         """
         return pulumi.get(self, "format")
 
@@ -6443,7 +6544,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
         """
         return pulumi.get(self, "format_version")
 
@@ -6455,7 +6556,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -6467,7 +6568,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port number configured in Logentries
         """
         return pulumi.get(self, "port")
 
@@ -6479,7 +6580,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        Name of blockAttributes condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
@@ -6491,7 +6592,7 @@ class Servicev1LogentryArgs:
     @pulumi.getter(name="useTls")
     def use_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS for secure logging. Can be either true or false.
+        Whether to use TLS for secure logging
         """
         return pulumi.get(self, "use_tls")
 
@@ -6519,21 +6620,21 @@ class Servicev1LoggingCloudfileArgs:
                  response_condition: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] access_key: Your Cloud File account access key
+        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container
+        :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] user: The username for your Cloud Files account
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[str] path: The path to upload logs to
+        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
+        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -6566,7 +6667,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        Your Cloud File account access key
         """
         return pulumi.get(self, "access_key")
 
@@ -6578,7 +6679,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of your Cloud Files container
         """
         return pulumi.get(self, "bucket_name")
 
@@ -6590,7 +6691,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -6602,7 +6703,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for your Cloud Files account
         """
         return pulumi.get(self, "user")
 
@@ -6638,7 +6739,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of GZIP encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -6650,7 +6751,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -6662,7 +6763,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        The path to upload logs to
         """
         return pulumi.get(self, "path")
 
@@ -6674,7 +6775,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -6698,7 +6799,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -6710,7 +6811,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         """
         return pulumi.get(self, "region")
 
@@ -6734,7 +6835,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -6754,13 +6855,13 @@ class Servicev1LoggingDatadogArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] format: Apache style log formatting.
+        :param pulumi.Input[str] name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The API key from your Datadog account
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -6779,7 +6880,7 @@ class Servicev1LoggingDatadogArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -6791,7 +6892,7 @@ class Servicev1LoggingDatadogArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The API key from your Datadog account
         """
         return pulumi.get(self, "token")
 
@@ -6803,7 +6904,7 @@ class Servicev1LoggingDatadogArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -6827,7 +6928,7 @@ class Servicev1LoggingDatadogArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -6839,7 +6940,7 @@ class Servicev1LoggingDatadogArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
@@ -6851,7 +6952,7 @@ class Servicev1LoggingDatadogArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
@@ -6879,21 +6980,21 @@ class Servicev1LoggingDigitaloceanArgs:
                  response_condition: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        :param pulumi.Input[str] access_key: Your DigitalOcean Spaces account access key
+        :param pulumi.Input[str] bucket_name: The name of the DigitalOcean Space
+        :param pulumi.Input[str] name: The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] secret_key: Your DigitalOcean Spaces account secret key
+        :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[str] path: The path to upload logs to
+        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -6926,7 +7027,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        Your DigitalOcean Spaces account access key
         """
         return pulumi.get(self, "access_key")
 
@@ -6938,7 +7039,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of the DigitalOcean Space
         """
         return pulumi.get(self, "bucket_name")
 
@@ -6950,7 +7051,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -6962,7 +7063,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        Your DigitalOcean Spaces account secret key
         """
         return pulumi.get(self, "secret_key")
 
@@ -6974,7 +7075,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         """
         return pulumi.get(self, "domain")
 
@@ -7010,7 +7111,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -7022,7 +7123,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -7034,7 +7135,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        The path to upload logs to
         """
         return pulumi.get(self, "path")
 
@@ -7046,7 +7147,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -7070,7 +7171,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -7094,7 +7195,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -7123,22 +7224,22 @@ class Servicev1LoggingElasticsearchArgs:
                  tls_hostname: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] index: The name of the Elasticsearch index to send documents (logs) to.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[str] pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] index: The name of the Elasticsearch index to send documents (logs) to
+        :param pulumi.Input[str] name: The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: The Elasticsearch URL to stream logs to
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param pulumi.Input[str] password: BasicAuth password for Elasticsearch
+        :param pulumi.Input[str] pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[int] request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        :param pulumi.Input[int] request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        :param pulumi.Input[str] response_condition: The name of the condition to apply
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+        :param pulumi.Input[str] user: BasicAuth username for Elasticsearch
         """
         pulumi.set(__self__, "index", index)
         pulumi.set(__self__, "name", name)
@@ -7174,7 +7275,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def index(self) -> pulumi.Input[str]:
         """
-        The name of the Elasticsearch index to send documents (logs) to.
+        The name of the Elasticsearch index to send documents (logs) to
         """
         return pulumi.get(self, "index")
 
@@ -7186,7 +7287,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -7198,7 +7299,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        The Elasticsearch URL to stream logs to
         """
         return pulumi.get(self, "url")
 
@@ -7210,7 +7311,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -7222,7 +7323,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
@@ -7234,7 +7335,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        BasicAuth password for Elasticsearch
         """
         return pulumi.get(self, "password")
 
@@ -7246,7 +7347,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def pipeline(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         """
         return pulumi.get(self, "pipeline")
 
@@ -7258,7 +7359,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -7270,7 +7371,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        The maximum number of logs sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
@@ -7282,7 +7383,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_entries")
 
@@ -7294,7 +7395,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
@@ -7306,7 +7407,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -7318,7 +7419,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The client certificate used to make authenticated requests. Must be in PEM format.
+        The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
@@ -7330,7 +7431,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The client private key used to make authenticated requests. Must be in PEM format.
+        The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
@@ -7342,7 +7443,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -7354,7 +7455,7 @@ class Servicev1LoggingElasticsearchArgs:
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
         """
-        The username for your Cloud Files account.
+        BasicAuth username for Elasticsearch
         """
         return pulumi.get(self, "user")
 
@@ -7382,21 +7483,21 @@ class Servicev1LoggingFtpArgs:
                  response_condition: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] address: The FTP address to stream logs to
+        :param pulumi.Input[str] name: The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] password: The password for the server (for anonymous use an email address)
+        :param pulumi.Input[str] path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        :param pulumi.Input[str] user: The username for the server (can be `anonymous`)
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param pulumi.Input[int] gzip_level: Gzip Compression level. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted (default: `classic`)
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default `3600`)
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[int] port: The port number. Default: `21`
+        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] response_condition: The name of the condition to apply.
+        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -7428,7 +7529,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        The FTP address to stream logs to
         """
         return pulumi.get(self, "address")
 
@@ -7440,7 +7541,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -7452,7 +7553,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        The password for the server (for anonymous use an email address)
         """
         return pulumi.get(self, "password")
 
@@ -7464,7 +7565,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
         """
-        The path to upload logs to.
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
         """
         return pulumi.get(self, "path")
 
@@ -7476,7 +7577,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for the server (can be `anonymous`)
         """
         return pulumi.get(self, "user")
 
@@ -7488,7 +7589,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -7500,7 +7601,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
@@ -7512,7 +7613,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Gzip Compression level. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -7524,7 +7625,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted (default: `classic`)
         """
         return pulumi.get(self, "message_type")
 
@@ -7536,7 +7637,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds (Default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -7548,7 +7649,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -7560,7 +7661,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port number. Default: `21`
         """
         return pulumi.get(self, "port")
 
@@ -7572,7 +7673,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -7584,7 +7685,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
@@ -7596,7 +7697,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -7618,14 +7719,14 @@ class Servicev1LoggingGooglepubsubArgs:
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] topic: The Kinesis stream name.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
+        :param pulumi.Input[str] secret_key: Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+        :param pulumi.Input[str] topic: The Google Cloud Pub/Sub topic to which logs will be published
+        :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -7646,7 +7747,7 @@ class Servicev1LoggingGooglepubsubArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -7658,7 +7759,7 @@ class Servicev1LoggingGooglepubsubArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The ID of your Google Cloud Platform project.
+        The ID of your Google Cloud Platform project
         """
         return pulumi.get(self, "project_id")
 
@@ -7670,7 +7771,7 @@ class Servicev1LoggingGooglepubsubArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         """
         return pulumi.get(self, "secret_key")
 
@@ -7682,7 +7783,7 @@ class Servicev1LoggingGooglepubsubArgs:
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
         """
-        The Kinesis stream name.
+        The Google Cloud Pub/Sub topic to which logs will be published
         """
         return pulumi.get(self, "topic")
 
@@ -7694,7 +7795,7 @@ class Servicev1LoggingGooglepubsubArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         """
         return pulumi.get(self, "user")
 
@@ -7718,7 +7819,7 @@ class Servicev1LoggingGooglepubsubArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
@@ -7730,7 +7831,7 @@ class Servicev1LoggingGooglepubsubArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -7762,10 +7863,10 @@ class Servicev1LoggingHerokuArgs:
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] format: Apache style log formatting.
+        :param pulumi.Input[str] name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
+        :param pulumi.Input[str] url: The URL to stream logs to
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -7786,7 +7887,7 @@ class Servicev1LoggingHerokuArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -7798,7 +7899,7 @@ class Servicev1LoggingHerokuArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         """
         return pulumi.get(self, "token")
 
@@ -7810,7 +7911,7 @@ class Servicev1LoggingHerokuArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        The URL to stream logs to
         """
         return pulumi.get(self, "url")
 
@@ -7822,7 +7923,7 @@ class Servicev1LoggingHerokuArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -7878,10 +7979,10 @@ class Servicev1LoggingHoneycombArgs:
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] format: Apache style log formatting.
+        :param pulumi.Input[str] dataset: The Honeycomb Dataset you want to log to
+        :param pulumi.Input[str] name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The Write Key from the Account page of your Honeycomb account
+        :param pulumi.Input[str] format: Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -7902,7 +8003,7 @@ class Servicev1LoggingHoneycombArgs:
     @pulumi.getter
     def dataset(self) -> pulumi.Input[str]:
         """
-        The Honeycomb Dataset you want to log to.
+        The Honeycomb Dataset you want to log to
         """
         return pulumi.get(self, "dataset")
 
@@ -7914,7 +8015,7 @@ class Servicev1LoggingHoneycombArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -7926,7 +8027,7 @@ class Servicev1LoggingHoneycombArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The Write Key from the Account page of your Honeycomb account
         """
         return pulumi.get(self, "token")
 
@@ -7938,7 +8039,7 @@ class Servicev1LoggingHoneycombArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         """
         return pulumi.get(self, "format")
 
@@ -8006,23 +8107,25 @@ class Servicev1LoggingKafkaArgs:
                  use_tls: Optional[pulumi.Input[bool]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] topic: The Kinesis stream name.
-        :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. One of: gzip, snappy, lz4.
+        :param pulumi.Input[str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers
+        :param pulumi.Input[str] name: The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] topic: The Kafka topic to send logs to
+        :param pulumi.Input[str] auth_method: SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param pulumi.Input[bool] parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        :param pulumi.Input[str] password: SASL Pass
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[int] request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
+        :param pulumi.Input[str] user: SASL User
         """
         pulumi.set(__self__, "brokers", brokers)
         pulumi.set(__self__, "name", name)
@@ -8064,7 +8167,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter
     def brokers(self) -> pulumi.Input[str]:
         """
-        A comma-separated list of IP addresses or hostnames of Kafka brokers.
+        A comma-separated list of IP addresses or hostnames of Kafka brokers
         """
         return pulumi.get(self, "brokers")
 
@@ -8076,7 +8179,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -8088,7 +8191,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
         """
-        The Kinesis stream name.
+        The Kafka topic to send logs to
         """
         return pulumi.get(self, "topic")
 
@@ -8099,6 +8202,9 @@ class Servicev1LoggingKafkaArgs:
     @property
     @pulumi.getter(name="authMethod")
     def auth_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        """
         return pulumi.get(self, "auth_method")
 
     @auth_method.setter
@@ -8109,7 +8215,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[pulumi.Input[str]]:
         """
-        The codec used for compression of your logs. One of: gzip, snappy, lz4.
+        The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         """
         return pulumi.get(self, "compression_codec")
 
@@ -8133,7 +8239,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
@@ -8144,6 +8250,9 @@ class Servicev1LoggingKafkaArgs:
     @property
     @pulumi.getter(name="parseLogKeyvals")
     def parse_log_keyvals(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        """
         return pulumi.get(self, "parse_log_keyvals")
 
     @parse_log_keyvals.setter
@@ -8154,7 +8263,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        SASL Pass
         """
         return pulumi.get(self, "password")
 
@@ -8166,7 +8275,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -8178,7 +8287,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
@@ -8190,7 +8299,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="requiredAcks")
     def required_acks(self) -> Optional[pulumi.Input[str]]:
         """
-        The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
         """
         return pulumi.get(self, "required_acks")
 
@@ -8214,7 +8323,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -8226,7 +8335,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The client certificate used to make authenticated requests. Must be in PEM format.
+        The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
@@ -8238,7 +8347,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The client private key used to make authenticated requests. Must be in PEM format.
+        The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
@@ -8250,7 +8359,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -8262,7 +8371,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter(name="useTls")
     def use_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS for secure logging. Can be either true or false.
+        Whether to use TLS for secure logging. Can be either `true` or `false`
         """
         return pulumi.get(self, "use_tls")
 
@@ -8274,7 +8383,7 @@ class Servicev1LoggingKafkaArgs:
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
         """
-        The username for your Cloud Files account.
+        SASL User
         """
         return pulumi.get(self, "user")
 
@@ -8296,14 +8405,14 @@ class Servicev1LoggingKineseArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] topic: The Kinesis stream name.
+        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream
+        :param pulumi.Input[str] name: The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with
+        :param pulumi.Input[str] topic: The Kinesis stream name
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
+        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "access_key", access_key)
@@ -8325,7 +8434,7 @@ class Servicev1LoggingKineseArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        The AWS access key to be used to write to the stream
         """
         return pulumi.get(self, "access_key")
 
@@ -8337,7 +8446,7 @@ class Servicev1LoggingKineseArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -8349,7 +8458,7 @@ class Servicev1LoggingKineseArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
         """
-        The AWS secret access key to authenticate with.
+        The AWS secret access key to authenticate with
         """
         return pulumi.get(self, "secret_key")
 
@@ -8361,7 +8470,7 @@ class Servicev1LoggingKineseArgs:
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
         """
-        The Kinesis stream name.
+        The Kinesis stream name
         """
         return pulumi.get(self, "topic")
 
@@ -8409,7 +8518,7 @@ class Servicev1LoggingKineseArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The AWS region the stream resides in. (Default: `us-east-1`)
         """
         return pulumi.get(self, "region")
 
@@ -8440,9 +8549,9 @@ class Servicev1LoggingLogglyArgs:
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] format: Apache style log formatting.
+        :param pulumi.Input[str] name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -8462,7 +8571,7 @@ class Servicev1LoggingLogglyArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -8474,7 +8583,7 @@ class Servicev1LoggingLogglyArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         """
         return pulumi.get(self, "token")
 
@@ -8486,7 +8595,7 @@ class Servicev1LoggingLogglyArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -8542,9 +8651,9 @@ class Servicev1LoggingLogshuttleArgs:
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
+        :param pulumi.Input[str] name: The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The data authentication token associated with this endpoint
+        :param pulumi.Input[str] url: Your Log Shuttle endpoint URL
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
@@ -8566,7 +8675,7 @@ class Servicev1LoggingLogshuttleArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -8578,7 +8687,7 @@ class Servicev1LoggingLogshuttleArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The data authentication token associated with this endpoint
         """
         return pulumi.get(self, "token")
 
@@ -8590,7 +8699,7 @@ class Servicev1LoggingLogshuttleArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        Your Log Shuttle endpoint URL
         """
         return pulumi.get(self, "url")
 
@@ -8657,12 +8766,12 @@ class Servicev1LoggingNewrelicArgs:
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] format: Apache style log formatting.
+        :param pulumi.Input[str] name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The Insert API key from the Account page of your New Relic account
+        :param pulumi.Input[str] format: Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -8679,7 +8788,7 @@ class Servicev1LoggingNewrelicArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -8691,7 +8800,7 @@ class Servicev1LoggingNewrelicArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The Insert API key from the Account page of your New Relic account
         """
         return pulumi.get(self, "token")
 
@@ -8703,7 +8812,7 @@ class Servicev1LoggingNewrelicArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         """
         return pulumi.get(self, "format")
 
@@ -8727,7 +8836,7 @@ class Servicev1LoggingNewrelicArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -8739,7 +8848,7 @@ class Servicev1LoggingNewrelicArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
@@ -8767,21 +8876,21 @@ class Servicev1LoggingOpenstackArgs:
                  response_condition: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key: The AWS access key to be used to write to the stream.
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
+        :param pulumi.Input[str] access_key: Your OpenStack account access key
+        :param pulumi.Input[str] bucket_name: The name of your OpenStack container
+        :param pulumi.Input[str] name: The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: Your OpenStack auth url
+        :param pulumi.Input[str] user: The username for your OpenStack account
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -8813,7 +8922,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
         """
-        The AWS access key to be used to write to the stream.
+        Your OpenStack account access key
         """
         return pulumi.get(self, "access_key")
 
@@ -8825,7 +8934,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of your OpenStack container
         """
         return pulumi.get(self, "bucket_name")
 
@@ -8837,7 +8946,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -8849,7 +8958,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        Your OpenStack auth url
         """
         return pulumi.get(self, "url")
 
@@ -8861,7 +8970,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for your OpenStack account
         """
         return pulumi.get(self, "user")
 
@@ -8897,7 +9006,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -8909,7 +9018,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
         """
         return pulumi.get(self, "message_type")
 
@@ -8921,7 +9030,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
@@ -8933,7 +9042,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
@@ -8957,7 +9066,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -8981,7 +9090,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -9001,12 +9110,12 @@ class Servicev1LoggingScalyrArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
+        :param pulumi.Input[str] name: The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The token to use for authentication (https://www.scalyr.com/keys)
         :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`).
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -9026,7 +9135,7 @@ class Servicev1LoggingScalyrArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -9038,7 +9147,7 @@ class Servicev1LoggingScalyrArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The token to use for authentication (https://www.scalyr.com/keys)
         """
         return pulumi.get(self, "token")
 
@@ -9062,7 +9171,7 @@ class Servicev1LoggingScalyrArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
@@ -9074,7 +9183,7 @@ class Servicev1LoggingScalyrArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -9086,7 +9195,7 @@ class Servicev1LoggingScalyrArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region the stream resides in. (Default: `us-east-1`).
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
@@ -9128,23 +9237,23 @@ class Servicev1LoggingSftpArgs:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[str] ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP.
-        :param pulumi.Input[str] user: The username for your Cloud Files account.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] address: The SFTP address to stream logs to
+        :param pulumi.Input[str] name: The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        :param pulumi.Input[str] ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP
+        :param pulumi.Input[str] user: The username for the server
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`)
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] response_condition: The name of the condition to apply.
+        :param pulumi.Input[str] secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -9180,7 +9289,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        The SFTP address to stream logs to
         """
         return pulumi.get(self, "address")
 
@@ -9192,7 +9301,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -9204,7 +9313,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
         """
-        The path to upload logs to.
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
         """
         return pulumi.get(self, "path")
 
@@ -9216,7 +9325,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="sshKnownHosts")
     def ssh_known_hosts(self) -> pulumi.Input[str]:
         """
-        A list of host keys for all hosts we can connect to over SFTP.
+        A list of host keys for all hosts we can connect to over SFTP
         """
         return pulumi.get(self, "ssh_known_hosts")
 
@@ -9228,7 +9337,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
         """
-        The username for your Cloud Files account.
+        The username for the server
         """
         return pulumi.get(self, "user")
 
@@ -9240,7 +9349,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -9252,7 +9361,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
@@ -9264,7 +9373,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         """
         return pulumi.get(self, "gzip_level")
 
@@ -9276,7 +9385,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         """
         return pulumi.get(self, "message_type")
 
@@ -9288,7 +9397,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "password")
 
@@ -9300,7 +9409,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
@@ -9312,7 +9421,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -9324,7 +9433,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port the SFTP service listens on. (Default: `22`)
         """
         return pulumi.get(self, "port")
 
@@ -9336,7 +9445,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -9348,7 +9457,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
@@ -9360,7 +9469,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS secret access key to authenticate with.
+        The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "secret_key")
 
@@ -9372,7 +9481,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -9388,21 +9497,25 @@ class Servicev1PapertrailArgs:
                  name: pulumi.Input[str],
                  port: pulumi.Input[int],
                  format: Optional[pulumi.Input[str]] = None,
+                 format_version: Optional[pulumi.Input[int]] = None,
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        :param pulumi.Input[str] address: The address of the Papertrail endpoint
+        :param pulumi.Input[str] name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[int] port: The port associated with the address where the Papertrail endpoint can be accessed
+        :param pulumi.Input[str] format: A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "port", port)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
@@ -9412,7 +9525,7 @@ class Servicev1PapertrailArgs:
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
         """
-        The SFTP address to stream logs to.
+        The address of the Papertrail endpoint
         """
         return pulumi.get(self, "address")
 
@@ -9424,7 +9537,7 @@ class Servicev1PapertrailArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -9436,7 +9549,7 @@ class Servicev1PapertrailArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The port the SFTP service listens on. (Default: `22`).
+        The port associated with the address where the Papertrail endpoint can be accessed
         """
         return pulumi.get(self, "port")
 
@@ -9448,7 +9561,7 @@ class Servicev1PapertrailArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         """
         return pulumi.get(self, "format")
 
@@ -9457,10 +9570,22 @@ class Servicev1PapertrailArgs:
         pulumi.set(self, "format", value)
 
     @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        """
+        return pulumi.get(self, "format_version")
+
+    @format_version.setter
+    def format_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "format_version", value)
+
+    @property
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         """
         return pulumi.get(self, "placement")
 
@@ -9472,7 +9597,7 @@ class Servicev1PapertrailArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
         return pulumi.get(self, "response_condition")
 
@@ -9497,26 +9622,18 @@ class Servicev1RequestSettingArgs:
                  timer_support: Optional[pulumi.Input[bool]] = None,
                  xff: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] action: Allows you to terminate request handling and immediately
-               perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
-        :param pulumi.Input[bool] bypass_busy_wait: Disable collapsed forwarding, so you don't wait
-               for other objects to origin.
-        :param pulumi.Input[str] default_host: Sets the host header.
-        :param pulumi.Input[bool] force_miss: Force a cache miss for the request. If specified,
-               can be `true` or `false`.
-        :param pulumi.Input[bool] force_ssl: Forces the request to use SSL (Redirects a non-SSL request to SSL).
-        :param pulumi.Input[bool] geo_headers: Injects Fastly-Geo-Country, Fastly-Geo-City, and
-               Fastly-Geo-Region into the request headers.
-        :param pulumi.Input[str] hash_keys: Comma separated list of varnish request object fields
-               that should be in the hash key.
-        :param pulumi.Input[int] max_stale_age: How old an object is allowed to be to serve
-               `stale-if-error` or `stale-while-revalidate`, in seconds.
-        :param pulumi.Input[str] request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-        :param pulumi.Input[bool] timer_support: Injects the X-Timer info into the request for
-               viewing origin fetch durations.
-        :param pulumi.Input[str] xff: X-Forwarded-For, should be `clear`, `leave`, `append`,
-               `append_all`, or `overwrite`. Default `append`.
+        :param pulumi.Input[str] name: Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] action: Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
+        :param pulumi.Input[bool] bypass_busy_wait: Disable collapsed forwarding, so you don't wait for other objects to origin
+        :param pulumi.Input[str] default_host: Sets the host header
+        :param pulumi.Input[bool] force_miss: Force a cache miss for the request. If specified, can be `true` or `false`
+        :param pulumi.Input[bool] force_ssl: Forces the request to use SSL (Redirects a non-SSL request to SSL)
+        :param pulumi.Input[bool] geo_headers: Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
+        :param pulumi.Input[str] hash_keys: Comma separated list of varnish request object fields that should be in the hash key
+        :param pulumi.Input[int] max_stale_age: How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+        :param pulumi.Input[str] request_condition: Name of already defined `condition` to determine if this request setting should be applied
+        :param pulumi.Input[bool] timer_support: Injects the X-Timer info into the request for viewing origin fetch durations
+        :param pulumi.Input[str] xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         """
         pulumi.set(__self__, "name", name)
         if action is not None:
@@ -9546,7 +9663,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -9558,8 +9675,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        Allows you to terminate request handling and immediately
-        perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
         """
         return pulumi.get(self, "action")
 
@@ -9571,8 +9687,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="bypassBusyWait")
     def bypass_busy_wait(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable collapsed forwarding, so you don't wait
-        for other objects to origin.
+        Disable collapsed forwarding, so you don't wait for other objects to origin
         """
         return pulumi.get(self, "bypass_busy_wait")
 
@@ -9584,7 +9699,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="defaultHost")
     def default_host(self) -> Optional[pulumi.Input[str]]:
         """
-        Sets the host header.
+        Sets the host header
         """
         return pulumi.get(self, "default_host")
 
@@ -9596,8 +9711,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="forceMiss")
     def force_miss(self) -> Optional[pulumi.Input[bool]]:
         """
-        Force a cache miss for the request. If specified,
-        can be `true` or `false`.
+        Force a cache miss for the request. If specified, can be `true` or `false`
         """
         return pulumi.get(self, "force_miss")
 
@@ -9609,7 +9723,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="forceSsl")
     def force_ssl(self) -> Optional[pulumi.Input[bool]]:
         """
-        Forces the request to use SSL (Redirects a non-SSL request to SSL).
+        Forces the request to use SSL (Redirects a non-SSL request to SSL)
         """
         return pulumi.get(self, "force_ssl")
 
@@ -9621,8 +9735,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="geoHeaders")
     def geo_headers(self) -> Optional[pulumi.Input[bool]]:
         """
-        Injects Fastly-Geo-Country, Fastly-Geo-City, and
-        Fastly-Geo-Region into the request headers.
+        Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         """
         return pulumi.get(self, "geo_headers")
 
@@ -9634,8 +9747,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="hashKeys")
     def hash_keys(self) -> Optional[pulumi.Input[str]]:
         """
-        Comma separated list of varnish request object fields
-        that should be in the hash key.
+        Comma separated list of varnish request object fields that should be in the hash key
         """
         return pulumi.get(self, "hash_keys")
 
@@ -9647,8 +9759,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="maxStaleAge")
     def max_stale_age(self) -> Optional[pulumi.Input[int]]:
         """
-        How old an object is allowed to be to serve
-        `stale-if-error` or `stale-while-revalidate`, in seconds.
+        How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
         """
         return pulumi.get(self, "max_stale_age")
 
@@ -9660,7 +9771,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="requestCondition")
     def request_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        Name of already defined `condition` to determine if this request setting should be applied
         """
         return pulumi.get(self, "request_condition")
 
@@ -9672,8 +9783,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter(name="timerSupport")
     def timer_support(self) -> Optional[pulumi.Input[bool]]:
         """
-        Injects the X-Timer info into the request for
-        viewing origin fetch durations.
+        Injects the X-Timer info into the request for viewing origin fetch durations
         """
         return pulumi.get(self, "timer_support")
 
@@ -9685,8 +9795,7 @@ class Servicev1RequestSettingArgs:
     @pulumi.getter
     def xff(self) -> Optional[pulumi.Input[str]]:
         """
-        X-Forwarded-For, should be `clear`, `leave`, `append`,
-        `append_all`, or `overwrite`. Default `append`.
+        X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         """
         return pulumi.get(self, "xff")
 
@@ -9706,14 +9815,13 @@ class Servicev1ResponseObjectArgs:
                  response: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-               see [Fastly's Documentation on Conditionals][fastly-conditionals].
-        :param pulumi.Input[str] content: The custom VCL code to upload.
-        :param pulumi.Input[str] content_type: The MIME type of the content.
-        :param pulumi.Input[str] request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
-        :param pulumi.Input[str] response: The HTTP Response. Default `Ok`.
-        :param pulumi.Input[int] status: The HTTP Status Code. Default `200`.
+        :param pulumi.Input[str] name: A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        :param pulumi.Input[str] content: The content to deliver for the response object
+        :param pulumi.Input[str] content_type: The MIME type of the content
+        :param pulumi.Input[str] request_condition: Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
+        :param pulumi.Input[str] response: The HTTP Response. Default `OK`
+        :param pulumi.Input[int] status: The HTTP Status Code. Default `200`
         """
         pulumi.set(__self__, "name", name)
         if cache_condition is not None:
@@ -9733,7 +9841,7 @@ class Servicev1ResponseObjectArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -9745,8 +9853,7 @@ class Servicev1ResponseObjectArgs:
     @pulumi.getter(name="cacheCondition")
     def cache_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-        see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         """
         return pulumi.get(self, "cache_condition")
 
@@ -9758,7 +9865,7 @@ class Servicev1ResponseObjectArgs:
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input[str]]:
         """
-        The custom VCL code to upload.
+        The content to deliver for the response object
         """
         return pulumi.get(self, "content")
 
@@ -9770,7 +9877,7 @@ class Servicev1ResponseObjectArgs:
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The MIME type of the content.
+        The MIME type of the content
         """
         return pulumi.get(self, "content_type")
 
@@ -9782,7 +9889,7 @@ class Servicev1ResponseObjectArgs:
     @pulumi.getter(name="requestCondition")
     def request_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
         """
         return pulumi.get(self, "request_condition")
 
@@ -9794,7 +9901,7 @@ class Servicev1ResponseObjectArgs:
     @pulumi.getter
     def response(self) -> Optional[pulumi.Input[str]]:
         """
-        The HTTP Response. Default `Ok`.
+        The HTTP Response. Default `OK`
         """
         return pulumi.get(self, "response")
 
@@ -9806,7 +9913,7 @@ class Servicev1ResponseObjectArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[int]]:
         """
-        The HTTP Status Code. Default `200`.
+        The HTTP Status Code. Default `200`
         """
         return pulumi.get(self, "status")
 
@@ -9837,30 +9944,24 @@ class Servicev1S3loggingArgs:
                  server_side_encryption_kms_key_id: Optional[pulumi.Input[str]] = None,
                  timestamp_format: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] bucket_name: The name of your Cloud Files container.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default 0, no compression).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] path: The path to upload logs to.
-        :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-        :param pulumi.Input[str] redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] s3_access_key: AWS Access Key of an account with the required
-               permissions to post logs. It is **strongly** recommended you create a separate
-               IAM user with permissions to only operate on this Bucket. This key will be
-               not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
-        :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required
-               permissions to post logs. It is **strongly** recommended you create a separate
-               IAM user with permissions to only operate on this Bucket. This secret will be
-               not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
-        :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
-        :param pulumi.Input[str] server_side_encryption_kms_key_id: Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
-        :param pulumi.Input[str] timestamp_format: The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
+        :param pulumi.Input[str] name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param pulumi.Input[str] redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
+        :param pulumi.Input[str] s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -9901,7 +10002,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of your Cloud Files container.
+        The name of the bucket in which to store the logs
         """
         return pulumi.get(self, "bucket_name")
 
@@ -9913,7 +10014,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -9925,7 +10026,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         """
         return pulumi.get(self, "domain")
 
@@ -9937,7 +10038,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -9949,7 +10050,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
         """
         return pulumi.get(self, "format_version")
 
@@ -9961,7 +10062,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -9973,7 +10074,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -9985,7 +10086,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to upload logs to.
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
@@ -9997,7 +10098,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
@@ -10009,7 +10110,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -10021,7 +10122,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
@@ -10033,7 +10134,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def redundancy(self) -> Optional[pulumi.Input[str]]:
         """
-        The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`.
+        The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
         """
         return pulumi.get(self, "redundancy")
 
@@ -10045,7 +10146,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        Name of blockAttributes condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
@@ -10057,10 +10158,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="s3AccessKey")
     def s3_access_key(self) -> Optional[pulumi.Input[str]]:
         """
-        AWS Access Key of an account with the required
-        permissions to post logs. It is **strongly** recommended you create a separate
-        IAM user with permissions to only operate on this Bucket. This key will be
-        not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         """
         return pulumi.get(self, "s3_access_key")
 
@@ -10072,10 +10170,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="s3SecretKey")
     def s3_secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        AWS Secret Key of an account with the required
-        permissions to post logs. It is **strongly** recommended you create a separate
-        IAM user with permissions to only operate on this Bucket. This secret will be
-        not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         """
         return pulumi.get(self, "s3_secret_key")
 
@@ -10087,7 +10182,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="serverSideEncryption")
     def server_side_encryption(self) -> Optional[pulumi.Input[str]]:
         """
-        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption")
 
@@ -10099,7 +10194,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Server-side KMS Key ID. Must be set if `server_side_encryption` is set to `aws:kms`.
+        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
@@ -10111,7 +10206,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -10128,10 +10223,10 @@ class Servicev1SnippetArgs:
                  type: pulumi.Input[str],
                  priority: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] content: The custom VCL code to upload.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
-        :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
+        :param pulumi.Input[str] name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
         pulumi.set(__self__, "content", content)
         pulumi.set(__self__, "name", name)
@@ -10143,7 +10238,7 @@ class Servicev1SnippetArgs:
     @pulumi.getter
     def content(self) -> pulumi.Input[str]:
         """
-        The custom VCL code to upload.
+        The VCL code that specifies exactly what the snippet does
         """
         return pulumi.get(self, "content")
 
@@ -10155,7 +10250,7 @@ class Servicev1SnippetArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -10167,7 +10262,7 @@ class Servicev1SnippetArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         """
         return pulumi.get(self, "type")
 
@@ -10179,7 +10274,7 @@ class Servicev1SnippetArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
         return pulumi.get(self, "priority")
 
@@ -10199,17 +10294,21 @@ class Servicev1SplunkArgs:
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None,
                  tls_ca_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_key: Optional[pulumi.Input[str]] = None,
                  tls_hostname: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        :param pulumi.Input[str] name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] token: The Splunk token to be used for authentication
+        :param pulumi.Input[str] url: The Splunk URL to stream logs to
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
+        :param pulumi.Input[str] response_condition: The name of the condition to apply
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
+        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -10224,6 +10323,10 @@ class Servicev1SplunkArgs:
             pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
             pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
             pulumi.set(__self__, "tls_hostname", tls_hostname)
 
@@ -10231,7 +10334,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -10243,7 +10346,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
         """
-        The data authentication token associated with this endpoint.
+        The Splunk token to be used for authentication
         """
         return pulumi.get(self, "token")
 
@@ -10255,7 +10358,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        Your OpenStack auth url.
+        The Splunk URL to stream logs to
         """
         return pulumi.get(self, "url")
 
@@ -10267,7 +10370,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache style log formatting.
+        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         """
         return pulumi.get(self, "format")
 
@@ -10279,7 +10382,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[pulumi.Input[int]]:
         """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         """
         return pulumi.get(self, "format_version")
 
@@ -10291,7 +10394,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
@@ -10303,7 +10406,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
@@ -10315,305 +10418,7 @@ class Servicev1SplunkArgs:
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A secure certificate to authenticate the server with. Must be in PEM format.
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_ca_cert", value)
-
-    @property
-    @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[str]]:
-        """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        """
-        return pulumi.get(self, "tls_hostname")
-
-    @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "tls_hostname", value)
-
-
-@pulumi.input_type
-class Servicev1SumologicArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 url: pulumi.Input[str],
-                 format: Optional[pulumi.Input[str]] = None,
-                 format_version: Optional[pulumi.Input[int]] = None,
-                 message_type: Optional[pulumi.Input[str]] = None,
-                 placement: Optional[pulumi.Input[str]] = None,
-                 response_condition: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] url: Your OpenStack auth url.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        A unique name to identify this dictionary.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def url(self) -> pulumi.Input[str]:
-        """
-        Your OpenStack auth url.
-        """
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "url", value)
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[str]]:
-        """
-        Apache style log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @format.setter
-    def format(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "format", value)
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[int]]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        """
-        return pulumi.get(self, "format_version")
-
-    @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "format_version", value)
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        """
-        return pulumi.get(self, "message_type")
-
-    @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message_type", value)
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[str]]:
-        """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        """
-        return pulumi.get(self, "placement")
-
-    @placement.setter
-    def placement(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "placement", value)
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "response_condition", value)
-
-
-@pulumi.input_type
-class Servicev1SyslogArgs:
-    def __init__(__self__, *,
-                 address: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 format: Optional[pulumi.Input[str]] = None,
-                 format_version: Optional[pulumi.Input[int]] = None,
-                 message_type: Optional[pulumi.Input[str]] = None,
-                 placement: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 response_condition: Optional[pulumi.Input[str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[str]] = None,
-                 tls_client_key: Optional[pulumi.Input[str]] = None,
-                 tls_hostname: Optional[pulumi.Input[str]] = None,
-                 token: Optional[pulumi.Input[str]] = None,
-                 use_tls: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] address: The SFTP address to stream logs to.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[str] format: Apache style log formatting.
-        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`).
-        :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-        :param pulumi.Input[str] token: The data authentication token associated with this endpoint.
-        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either true or false.
-        """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-        if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
-        if token is not None:
-            pulumi.set(__self__, "token", token)
-        if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
-
-    @property
-    @pulumi.getter
-    def address(self) -> pulumi.Input[str]:
-        """
-        The SFTP address to stream logs to.
-        """
-        return pulumi.get(self, "address")
-
-    @address.setter
-    def address(self, value: pulumi.Input[str]):
-        pulumi.set(self, "address", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        A unique name to identify this dictionary.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[str]]:
-        """
-        Apache style log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @format.setter
-    def format(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "format", value)
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[int]]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        """
-        return pulumi.get(self, "format_version")
-
-    @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "format_version", value)
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-        """
-        return pulumi.get(self, "message_type")
-
-    @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message_type", value)
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[str]]:
-        """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        """
-        return pulumi.get(self, "placement")
-
-    @placement.setter
-    def placement(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "placement", value)
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[int]]:
-        """
-        The port the SFTP service listens on. (Default: `22`).
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port", value)
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "response_condition", value)
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        A secure certificate to authenticate the server with. Must be in PEM format.
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         """
         return pulumi.get(self, "tls_ca_cert")
 
@@ -10649,7 +10454,329 @@ class Servicev1SyslogArgs:
     @pulumi.getter(name="tlsHostname")
     def tls_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        """
+        return pulumi.get(self, "tls_hostname")
+
+    @tls_hostname.setter
+    def tls_hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_hostname", value)
+
+
+@pulumi.input_type
+class Servicev1SumologicArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 url: pulumi.Input[str],
+                 format: Optional[pulumi.Input[str]] = None,
+                 format_version: Optional[pulumi.Input[int]] = None,
+                 message_type: Optional[pulumi.Input[str]] = None,
+                 placement: Optional[pulumi.Input[str]] = None,
+                 response_condition: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] url: The URL to Sumologic collector endpoint
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
+        :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        """
+        The URL to Sumologic collector endpoint
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
+        """
+        return pulumi.get(self, "format_version")
+
+    @format_version.setter
+    def format_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "format_version", value)
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        """
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_type", value)
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @placement.setter
+    def placement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "placement", value)
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @response_condition.setter
+    def response_condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "response_condition", value)
+
+
+@pulumi.input_type
+class Servicev1SyslogArgs:
+    def __init__(__self__, *,
+                 address: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 format: Optional[pulumi.Input[str]] = None,
+                 format_version: Optional[pulumi.Input[int]] = None,
+                 message_type: Optional[pulumi.Input[str]] = None,
+                 placement: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 response_condition: Optional[pulumi.Input[str]] = None,
+                 tls_ca_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_cert: Optional[pulumi.Input[str]] = None,
+                 tls_client_key: Optional[pulumi.Input[str]] = None,
+                 tls_hostname: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 use_tls: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] address: A hostname or IPv4 address of the Syslog endpoint
+        :param pulumi.Input[str] name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
+        :param pulumi.Input[int] format_version: The version of the custom logging format. Can be either 1 or 2. (Default: 1)
+        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[int] port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
+        :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        :param pulumi.Input[str] tls_hostname: Used during the TLS handshake to validate the certificate
+        :param pulumi.Input[str] token: Whether to prepend each message with a specific token
+        :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Default `false`
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if tls_ca_cert is not None:
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
+        if tls_hostname is not None:
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
+
+    @property
+    @pulumi.getter
+    def address(self) -> pulumi.Input[str]:
+        """
+        A hostname or IPv4 address of the Syslog endpoint
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: pulumi.Input[str]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        The version of the custom logging format. Can be either 1 or 2. (Default: 1)
+        """
+        return pulumi.get(self, "format_version")
+
+    @format_version.setter
+    def format_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "format_version", value)
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_type", value)
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @placement.setter
+    def placement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "placement", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @response_condition.setter
+    def response_condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "response_condition", value)
+
+    @property
+    @pulumi.getter(name="tlsCaCert")
+    def tls_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        """
+        return pulumi.get(self, "tls_ca_cert")
+
+    @tls_ca_cert.setter
+    def tls_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="tlsClientCert")
+    def tls_client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        """
+        return pulumi.get(self, "tls_client_cert")
+
+    @tls_client_cert.setter
+    def tls_client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_client_cert", value)
+
+    @property
+    @pulumi.getter(name="tlsClientKey")
+    def tls_client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        """
+        return pulumi.get(self, "tls_client_key")
+
+    @tls_client_key.setter
+    def tls_client_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_client_key", value)
+
+    @property
+    @pulumi.getter(name="tlsHostname")
+    def tls_hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
@@ -10661,7 +10788,7 @@ class Servicev1SyslogArgs:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
         """
-        The data authentication token associated with this endpoint.
+        Whether to prepend each message with a specific token
         """
         return pulumi.get(self, "token")
 
@@ -10673,7 +10800,7 @@ class Servicev1SyslogArgs:
     @pulumi.getter(name="useTls")
     def use_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS for secure logging. Can be either true or false.
+        Whether to use TLS for secure logging. Default `false`
         """
         return pulumi.get(self, "use_tls")
 
@@ -10689,11 +10816,9 @@ class Servicev1VclArgs:
                  name: pulumi.Input[str],
                  main: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] content: The custom VCL code to upload.
-        :param pulumi.Input[str] name: A unique name to identify this dictionary.
-        :param pulumi.Input[bool] main: If `true`, use this block as the main configuration. If
-               `false`, use this block as an includable library. Only a single VCL block can be
-               marked as the main block. Default is `false`.
+        :param pulumi.Input[str] content: The custom VCL code to upload
+        :param pulumi.Input[str] name: A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[bool] main: If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
         """
         pulumi.set(__self__, "content", content)
         pulumi.set(__self__, "name", name)
@@ -10704,7 +10829,7 @@ class Servicev1VclArgs:
     @pulumi.getter
     def content(self) -> pulumi.Input[str]:
         """
-        The custom VCL code to upload.
+        The custom VCL code to upload
         """
         return pulumi.get(self, "content")
 
@@ -10716,7 +10841,7 @@ class Servicev1VclArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        A unique name to identify this dictionary.
+        A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
@@ -10728,9 +10853,7 @@ class Servicev1VclArgs:
     @pulumi.getter
     def main(self) -> Optional[pulumi.Input[bool]]:
         """
-        If `true`, use this block as the main configuration. If
-        `false`, use this block as an includable library. Only a single VCL block can be
-        marked as the main block. Default is `false`.
+        If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
         """
         return pulumi.get(self, "main")
 
@@ -10747,9 +10870,10 @@ class Servicev1WafArgs:
                  prefetch_condition: Optional[pulumi.Input[str]] = None,
                  waf_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] response_object: The name of the response object used by the Web Application Firewall.
-        :param pulumi.Input[str] prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
-        :param pulumi.Input[str] waf_id: The ID of the WAF.
+        :param pulumi.Input[str] response_object: The name of the response object used by the Web Application Firewall
+        :param pulumi.Input[bool] disabled: A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
+        :param pulumi.Input[str] prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        :param pulumi.Input[str] waf_id: The ID of the WAF
         """
         pulumi.set(__self__, "response_object", response_object)
         if disabled is not None:
@@ -10763,7 +10887,7 @@ class Servicev1WafArgs:
     @pulumi.getter(name="responseObject")
     def response_object(self) -> pulumi.Input[str]:
         """
-        The name of the response object used by the Web Application Firewall.
+        The name of the response object used by the Web Application Firewall
         """
         return pulumi.get(self, "response_object")
 
@@ -10774,6 +10898,9 @@ class Servicev1WafArgs:
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -10784,7 +10911,7 @@ class Servicev1WafArgs:
     @pulumi.getter(name="prefetchCondition")
     def prefetch_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         """
         return pulumi.get(self, "prefetch_condition")
 
@@ -10796,7 +10923,7 @@ class Servicev1WafArgs:
     @pulumi.getter(name="wafId")
     def waf_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the WAF.
+        The ID of the WAF
         """
         return pulumi.get(self, "waf_id")
 

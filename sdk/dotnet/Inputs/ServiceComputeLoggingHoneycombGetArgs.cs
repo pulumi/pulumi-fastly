@@ -13,19 +13,19 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingHoneycombGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Honeycomb Dataset you want to log to.
+        /// The Honeycomb Dataset you want to log to
         /// </summary>
         [Input("dataset", required: true)]
         public Input<string> Dataset { get; set; } = null!;
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Write Key from the Account page of your Honeycomb account
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;

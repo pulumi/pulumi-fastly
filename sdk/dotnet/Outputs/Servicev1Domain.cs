@@ -14,11 +14,11 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Domain
     {
         /// <summary>
-        /// An optional comment about the Director.
+        /// An optional comment about the Domain.
         /// </summary>
         public readonly string? Comment;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         /// </summary>
         public readonly string Name;
 

@@ -44,7 +44,7 @@ export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
     }
 
     /**
-     * The VCL code that specifies exactly what the snippet does.
+     * The VCL code that specifies exactly what the snippet does
      */
     public readonly content!: pulumi.Output<string>;
     /**
@@ -99,7 +99,7 @@ export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
  */
 export interface ServiceDynamicSnippetContentv1State {
     /**
-     * The VCL code that specifies exactly what the snippet does.
+     * The VCL code that specifies exactly what the snippet does
      */
     readonly content?: pulumi.Input<string>;
     /**
@@ -117,7 +117,7 @@ export interface ServiceDynamicSnippetContentv1State {
  */
 export interface ServiceDynamicSnippetContentv1Args {
     /**
-     * The VCL code that specifies exactly what the snippet does.
+     * The VCL code that specifies exactly what the snippet does
      */
     readonly content: pulumi.Input<string>;
     /**

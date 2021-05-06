@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -43,13 +43,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The data authentication token associated with this endpoint
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// Your OpenStack auth url.
+        /// Your Log Shuttle endpoint URL
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

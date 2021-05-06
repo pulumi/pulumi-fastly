@@ -18,19 +18,19 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The ID of your Google Cloud Platform project.
+        /// The ID of your Google Cloud Platform project
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
@@ -38,15 +38,15 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Google Cloud Pub/Sub topic to which logs will be published
         /// </summary>
         public readonly string Topic;
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         /// </summary>
         public readonly string User;
 

@@ -63,16 +63,25 @@ namespace Pulumi.Fastly
     [OutputType]
     public sealed class GetWafRulesResult
     {
+        /// <summary>
+        /// A list of modsecurity rules IDs to be excluded from the data set.
+        /// </summary>
         public readonly ImmutableArray<int> ExcludeModsecRuleIds;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A list of publishers to be used as filters for the data set.
+        /// </summary>
         public readonly ImmutableArray<string> Publishers;
         /// <summary>
-        /// The Web Application Firewall's rules result set.
+        /// The list of rules that results from any given combination of filters.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetWafRulesRuleResult> Rules;
+        /// <summary>
+        /// A list of tags to be used as filters for the data set.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]

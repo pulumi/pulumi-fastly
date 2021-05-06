@@ -17,6 +17,8 @@ import (
 //
 // ## Example Usage
 //
+// Basic usage:
+//
 // ```go
 // package main
 //
@@ -48,11 +50,11 @@ import (
 type Userv1 struct {
 	pulumi.CustomResourceState
 
-	// The email address, which is the login name, of the User.
+	// The email address, which is the login name, of the User
 	Login pulumi.StringOutput `pulumi:"login"`
-	// The real life name of the user.
+	// The real life name of the user
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
 	Role pulumi.StringPtrOutput `pulumi:"role"`
 }
 
@@ -88,20 +90,20 @@ func GetUserv1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Userv1 resources.
 type userv1State struct {
-	// The email address, which is the login name, of the User.
+	// The email address, which is the login name, of the User
 	Login *string `pulumi:"login"`
-	// The real life name of the user.
+	// The real life name of the user
 	Name *string `pulumi:"name"`
-	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
 	Role *string `pulumi:"role"`
 }
 
 type Userv1State struct {
-	// The email address, which is the login name, of the User.
+	// The email address, which is the login name, of the User
 	Login pulumi.StringPtrInput
-	// The real life name of the user.
+	// The real life name of the user
 	Name pulumi.StringPtrInput
-	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
 	Role pulumi.StringPtrInput
 }
 
@@ -110,21 +112,21 @@ func (Userv1State) ElementType() reflect.Type {
 }
 
 type userv1Args struct {
-	// The email address, which is the login name, of the User.
+	// The email address, which is the login name, of the User
 	Login string `pulumi:"login"`
-	// The real life name of the user.
+	// The real life name of the user
 	Name *string `pulumi:"name"`
-	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
 	Role *string `pulumi:"role"`
 }
 
 // The set of arguments for constructing a Userv1 resource.
 type Userv1Args struct {
-	// The email address, which is the login name, of the User.
+	// The email address, which is the login name, of the User
 	Login pulumi.StringInput
-	// The real life name of the user.
+	// The real life name of the user
 	Name pulumi.StringPtrInput
-	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
 	Role pulumi.StringPtrInput
 }
 

@@ -14,43 +14,43 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Bigquerylogging
     {
         /// <summary>
-        /// The Honeycomb Dataset you want to log to.
+        /// The ID of your BigQuery dataset
         /// </summary>
         public readonly string Dataset;
         /// <summary>
-        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+        /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
         /// </summary>
         public readonly string Email;
         /// <summary>
-        /// Apache style log formatting.
+        /// The logging format desired.
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The ID of your Google Cloud Platform project.
+        /// The ID of your GCP project
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Name of a condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// The ID of your BigQuery table.
+        /// The ID of your BigQuery table
         /// </summary>
         public readonly string Table;
         /// <summary>
-        /// Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+        /// BigQuery table name suffix template
         /// </summary>
         public readonly string? Template;
 

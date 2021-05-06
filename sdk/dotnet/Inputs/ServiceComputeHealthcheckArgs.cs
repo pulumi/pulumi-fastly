@@ -13,67 +13,67 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeHealthcheckArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// How often to run the Healthcheck in milliseconds. Default `5000`.
+        /// How often to run the Healthcheck in milliseconds. Default `5000`
         /// </summary>
         [Input("checkInterval")]
         public Input<int>? CheckInterval { get; set; }
 
         /// <summary>
-        /// The status code expected from the host. Default `200`.
+        /// The status code expected from the host. Default `200`
         /// </summary>
         [Input("expectedResponse")]
         public Input<int>? ExpectedResponse { get; set; }
 
         /// <summary>
-        /// The Host header to send for this Healthcheck.
+        /// The Host header to send for this Healthcheck
         /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
-        /// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+        /// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
         /// </summary>
         [Input("httpVersion")]
         public Input<string>? HttpVersion { get; set; }
 
         /// <summary>
-        /// When loading a config, the initial number of probes to be seen as OK. Default `2`.
+        /// When loading a config, the initial number of probes to be seen as OK. Default `2`
         /// </summary>
         [Input("initial")]
         public Input<int>? Initial { get; set; }
 
         /// <summary>
-        /// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+        /// Which HTTP method to use. Default `HEAD`
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to check
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// How many Healthchecks must succeed to be considered healthy. Default `3`.
+        /// How many Healthchecks must succeed to be considered healthy. Default `3`
         /// </summary>
         [Input("threshold")]
         public Input<int>? Threshold { get; set; }
 
         /// <summary>
-        /// Timeout in milliseconds. Default `500`.
+        /// Timeout in milliseconds. Default `500`
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+        /// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         /// </summary>
         [Input("window")]
         public Input<int>? Window { get; set; }

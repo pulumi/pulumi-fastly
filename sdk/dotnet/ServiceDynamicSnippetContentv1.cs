@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     public partial class ServiceDynamicSnippetContentv1 : Pulumi.CustomResource
     {
         /// <summary>
-        /// The VCL code that specifies exactly what the snippet does.
+        /// The VCL code that specifies exactly what the snippet does
         /// </summary>
         [Output("content")]
         public Output<string> Content { get; private set; } = null!;
@@ -88,7 +88,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceDynamicSnippetContentv1Args : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The VCL code that specifies exactly what the snippet does.
+        /// The VCL code that specifies exactly what the snippet does
         /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
@@ -113,7 +113,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceDynamicSnippetContentv1State : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The VCL code that specifies exactly what the snippet does.
+        /// The VCL code that specifies exactly what the snippet does
         /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }

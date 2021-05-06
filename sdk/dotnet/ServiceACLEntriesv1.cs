@@ -32,7 +32,7 @@ namespace Pulumi.Fastly
         public Output<string> AclId { get; private set; } = null!;
 
         /// <summary>
-        /// A Set ACL entries that are applied to the service. Defined below
+        /// ACL Entries
         /// </summary>
         [Output("entries")]
         public Output<ImmutableArray<Outputs.ServiceACLEntriesv1Entry>> Entries { get; private set; } = null!;
@@ -99,7 +99,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceACLEntriesv1EntryArgs>? _entries;
 
         /// <summary>
-        /// A Set ACL entries that are applied to the service. Defined below
+        /// ACL Entries
         /// </summary>
         public InputList<Inputs.ServiceACLEntriesv1EntryArgs> Entries
         {
@@ -130,7 +130,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceACLEntriesv1EntryGetArgs>? _entries;
 
         /// <summary>
-        /// A Set ACL entries that are applied to the service. Defined below
+        /// ACL Entries
         /// </summary>
         public InputList<Inputs.ServiceACLEntriesv1EntryGetArgs> Entries
         {

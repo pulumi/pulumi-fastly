@@ -17,9 +17,21 @@ import (
 // traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
 // on their documentation site for guidance.
 //
+// ## Example Usage
+// ### package block
+//
+// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on
+// [Compute@Edge](https://www.fastly.com/products/edge-compute/serverless)
+//
+// [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+// [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+// [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+// [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+// [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
+//
 // ## Import
 //
-// Fastly Service can be imported using their service ID, e.g.
+// Fastly Services can be imported using their service ID, e.g.
 //
 // ```sh
 //  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
@@ -27,108 +39,52 @@ import (
 type ServiceCompute struct {
 	pulumi.CustomResourceState
 
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
-	// The currently active version of your Fastly Service.
-	ActiveVersion pulumi.IntOutput `pulumi:"activeVersion"`
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends ServiceComputeBackendArrayOutput `pulumi:"backends"`
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings ServiceComputeBigqueryloggingArrayOutput `pulumi:"bigqueryloggings"`
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// The currently active version of your Fastly Service
+	ActiveVersion       pulumi.IntOutput                            `pulumi:"activeVersion"`
+	Backends            ServiceComputeBackendArrayOutput            `pulumi:"backends"`
+	Bigqueryloggings    ServiceComputeBigqueryloggingArrayOutput    `pulumi:"bigqueryloggings"`
 	Blobstorageloggings ServiceComputeBlobstorageloggingArrayOutput `pulumi:"blobstorageloggings"`
-	ClonedVersion       pulumi.IntOutput                            `pulumi:"clonedVersion"`
-	// An optional comment about the Domain.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// The latest cloned version by the provider
+	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
+	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
+	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings ServiceComputeGcsloggingArrayOutput `pulumi:"gcsloggings"`
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks ServiceComputeHealthcheckArrayOutput `pulumi:"healthchecks"`
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings ServiceComputeHttpsloggingArrayOutput `pulumi:"httpsloggings"`
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries ServiceComputeLogentryArrayOutput `pulumi:"logentries"`
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles ServiceComputeLoggingCloudfileArrayOutput `pulumi:"loggingCloudfiles"`
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs ServiceComputeLoggingDatadogArrayOutput `pulumi:"loggingDatadogs"`
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans ServiceComputeLoggingDigitaloceanArrayOutput `pulumi:"loggingDigitaloceans"`
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           pulumi.BoolPtrOutput                          `pulumi:"forceDestroy"`
+	Gcsloggings            ServiceComputeGcsloggingArrayOutput           `pulumi:"gcsloggings"`
+	Healthchecks           ServiceComputeHealthcheckArrayOutput          `pulumi:"healthchecks"`
+	Httpsloggings          ServiceComputeHttpsloggingArrayOutput         `pulumi:"httpsloggings"`
+	Logentries             ServiceComputeLogentryArrayOutput             `pulumi:"logentries"`
+	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs        ServiceComputeLoggingDatadogArrayOutput       `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayOutput  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayOutput `pulumi:"loggingElasticsearches"`
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps ServiceComputeLoggingFtpArrayOutput `pulumi:"loggingFtps"`
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs ServiceComputeLoggingGooglepubsubArrayOutput `pulumi:"loggingGooglepubsubs"`
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku ServiceComputeLoggingHerokuArrayOutput `pulumi:"loggingHeroku"`
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs ServiceComputeLoggingHoneycombArrayOutput `pulumi:"loggingHoneycombs"`
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas ServiceComputeLoggingKafkaArrayOutput `pulumi:"loggingKafkas"`
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses ServiceComputeLoggingKineseArrayOutput `pulumi:"loggingKineses"`
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies ServiceComputeLoggingLogglyArrayOutput `pulumi:"loggingLogglies"`
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles ServiceComputeLoggingLogshuttleArrayOutput `pulumi:"loggingLogshuttles"`
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics ServiceComputeLoggingNewrelicArrayOutput `pulumi:"loggingNewrelics"`
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks ServiceComputeLoggingOpenstackArrayOutput `pulumi:"loggingOpenstacks"`
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs ServiceComputeLoggingScalyrArrayOutput `pulumi:"loggingScalyrs"`
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps ServiceComputeLoggingSftpArrayOutput `pulumi:"loggingSftps"`
-	// The unique name of the Kinesis logging endpoint.
+	LoggingFtps            ServiceComputeLoggingFtpArrayOutput           `pulumi:"loggingFtps"`
+	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayOutput  `pulumi:"loggingGooglepubsubs"`
+	LoggingHeroku          ServiceComputeLoggingHerokuArrayOutput        `pulumi:"loggingHeroku"`
+	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayOutput     `pulumi:"loggingHoneycombs"`
+	LoggingKafkas          ServiceComputeLoggingKafkaArrayOutput         `pulumi:"loggingKafkas"`
+	LoggingKineses         ServiceComputeLoggingKineseArrayOutput        `pulumi:"loggingKineses"`
+	LoggingLogglies        ServiceComputeLoggingLogglyArrayOutput        `pulumi:"loggingLogglies"`
+	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayOutput    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayOutput      `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayOutput     `pulumi:"loggingOpenstacks"`
+	LoggingScalyrs         ServiceComputeLoggingScalyrArrayOutput        `pulumi:"loggingScalyrs"`
+	LoggingSftps           ServiceComputeLoggingSftpArrayOutput          `pulumi:"loggingSftps"`
+	// The unique name for the Service to create
 	Name pulumi.StringOutput `pulumi:"name"`
-	// A Wasm deployment package to upload.
-	// Defined below.
-	Package ServiceComputePackageOutput `pulumi:"package"`
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+	Package     ServiceComputePackageOutput         `pulumi:"package"`
 	Papertrails ServiceComputePapertrailArrayOutput `pulumi:"papertrails"`
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings ServiceComputeS3loggingArrayOutput `pulumi:"s3loggings"`
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks ServiceComputeSplunkArrayOutput `pulumi:"splunks"`
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics ServiceComputeSumologicArrayOutput `pulumi:"sumologics"`
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs ServiceComputeSyslogArrayOutput `pulumi:"syslogs"`
-	// Description field for the version.
+	S3loggings  ServiceComputeS3loggingArrayOutput  `pulumi:"s3loggings"`
+	Splunks     ServiceComputeSplunkArrayOutput     `pulumi:"splunks"`
+	Sumologics  ServiceComputeSumologicArrayOutput  `pulumi:"sumologics"`
+	Syslogs     ServiceComputeSyslogArrayOutput     `pulumi:"syslogs"`
+	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
 }
 
@@ -139,6 +95,9 @@ func NewServiceCompute(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Backends == nil {
+		return nil, errors.New("invalid value for required argument 'Backends'")
+	}
 	if args.Domains == nil {
 		return nil, errors.New("invalid value for required argument 'Domains'")
 	}
@@ -167,214 +126,102 @@ func GetServiceCompute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceCompute resources.
 type serviceComputeState struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
-	// The currently active version of your Fastly Service.
-	ActiveVersion *int `pulumi:"activeVersion"`
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends []ServiceComputeBackend `pulumi:"backends"`
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings []ServiceComputeBigquerylogging `pulumi:"bigqueryloggings"`
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// The currently active version of your Fastly Service
+	ActiveVersion       *int                               `pulumi:"activeVersion"`
+	Backends            []ServiceComputeBackend            `pulumi:"backends"`
+	Bigqueryloggings    []ServiceComputeBigquerylogging    `pulumi:"bigqueryloggings"`
 	Blobstorageloggings []ServiceComputeBlobstoragelogging `pulumi:"blobstorageloggings"`
-	ClonedVersion       *int                               `pulumi:"clonedVersion"`
-	// An optional comment about the Domain.
-	Comment *string `pulumi:"comment"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// The latest cloned version by the provider
+	ClonedVersion *int `pulumi:"clonedVersion"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      *string                    `pulumi:"comment"`
+	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
+	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings []ServiceComputeGcslogging `pulumi:"gcsloggings"`
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks []ServiceComputeHealthcheck `pulumi:"healthchecks"`
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings []ServiceComputeHttpslogging `pulumi:"httpsloggings"`
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries []ServiceComputeLogentry `pulumi:"logentries"`
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles []ServiceComputeLoggingCloudfile `pulumi:"loggingCloudfiles"`
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs []ServiceComputeLoggingDatadog `pulumi:"loggingDatadogs"`
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans []ServiceComputeLoggingDigitalocean `pulumi:"loggingDigitaloceans"`
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
+	Gcsloggings            []ServiceComputeGcslogging           `pulumi:"gcsloggings"`
+	Healthchecks           []ServiceComputeHealthcheck          `pulumi:"healthchecks"`
+	Httpsloggings          []ServiceComputeHttpslogging         `pulumi:"httpsloggings"`
+	Logentries             []ServiceComputeLogentry             `pulumi:"logentries"`
+	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs        []ServiceComputeLoggingDatadog       `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans   []ServiceComputeLoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches []ServiceComputeLoggingElasticsearch `pulumi:"loggingElasticsearches"`
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps []ServiceComputeLoggingFtp `pulumi:"loggingFtps"`
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs []ServiceComputeLoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku []ServiceComputeLoggingHeroku `pulumi:"loggingHeroku"`
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs []ServiceComputeLoggingHoneycomb `pulumi:"loggingHoneycombs"`
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas []ServiceComputeLoggingKafka `pulumi:"loggingKafkas"`
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses []ServiceComputeLoggingKinese `pulumi:"loggingKineses"`
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies []ServiceComputeLoggingLoggly `pulumi:"loggingLogglies"`
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles []ServiceComputeLoggingLogshuttle `pulumi:"loggingLogshuttles"`
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics []ServiceComputeLoggingNewrelic `pulumi:"loggingNewrelics"`
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks []ServiceComputeLoggingOpenstack `pulumi:"loggingOpenstacks"`
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs []ServiceComputeLoggingScalyr `pulumi:"loggingScalyrs"`
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps []ServiceComputeLoggingSftp `pulumi:"loggingSftps"`
-	// The unique name of the Kinesis logging endpoint.
+	LoggingFtps            []ServiceComputeLoggingFtp           `pulumi:"loggingFtps"`
+	LoggingGooglepubsubs   []ServiceComputeLoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
+	LoggingHeroku          []ServiceComputeLoggingHeroku        `pulumi:"loggingHeroku"`
+	LoggingHoneycombs      []ServiceComputeLoggingHoneycomb     `pulumi:"loggingHoneycombs"`
+	LoggingKafkas          []ServiceComputeLoggingKafka         `pulumi:"loggingKafkas"`
+	LoggingKineses         []ServiceComputeLoggingKinese        `pulumi:"loggingKineses"`
+	LoggingLogglies        []ServiceComputeLoggingLoggly        `pulumi:"loggingLogglies"`
+	LoggingLogshuttles     []ServiceComputeLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics       []ServiceComputeLoggingNewrelic      `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks      []ServiceComputeLoggingOpenstack     `pulumi:"loggingOpenstacks"`
+	LoggingScalyrs         []ServiceComputeLoggingScalyr        `pulumi:"loggingScalyrs"`
+	LoggingSftps           []ServiceComputeLoggingSftp          `pulumi:"loggingSftps"`
+	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
-	// A Wasm deployment package to upload.
-	// Defined below.
-	Package *ServiceComputePackage `pulumi:"package"`
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+	Package     *ServiceComputePackage     `pulumi:"package"`
 	Papertrails []ServiceComputePapertrail `pulumi:"papertrails"`
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings []ServiceComputeS3logging `pulumi:"s3loggings"`
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks []ServiceComputeSplunk `pulumi:"splunks"`
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics []ServiceComputeSumologic `pulumi:"sumologics"`
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs []ServiceComputeSyslog `pulumi:"syslogs"`
-	// Description field for the version.
+	S3loggings  []ServiceComputeS3logging  `pulumi:"s3loggings"`
+	Splunks     []ServiceComputeSplunk     `pulumi:"splunks"`
+	Sumologics  []ServiceComputeSumologic  `pulumi:"sumologics"`
+	Syslogs     []ServiceComputeSyslog     `pulumi:"syslogs"`
+	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
 
 type ServiceComputeState struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
-	// The currently active version of your Fastly Service.
-	ActiveVersion pulumi.IntPtrInput
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends ServiceComputeBackendArrayInput
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings ServiceComputeBigqueryloggingArrayInput
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// The currently active version of your Fastly Service
+	ActiveVersion       pulumi.IntPtrInput
+	Backends            ServiceComputeBackendArrayInput
+	Bigqueryloggings    ServiceComputeBigqueryloggingArrayInput
 	Blobstorageloggings ServiceComputeBlobstorageloggingArrayInput
-	ClonedVersion       pulumi.IntPtrInput
-	// An optional comment about the Domain.
-	Comment pulumi.StringPtrInput
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// The latest cloned version by the provider
+	ClonedVersion pulumi.IntPtrInput
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      pulumi.StringPtrInput
+	Dictionaries ServiceComputeDictionaryArrayInput
+	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy pulumi.BoolPtrInput
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings ServiceComputeGcsloggingArrayInput
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks ServiceComputeHealthcheckArrayInput
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings ServiceComputeHttpsloggingArrayInput
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries ServiceComputeLogentryArrayInput
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles ServiceComputeLoggingCloudfileArrayInput
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs ServiceComputeLoggingDatadogArrayInput
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans ServiceComputeLoggingDigitaloceanArrayInput
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           pulumi.BoolPtrInput
+	Gcsloggings            ServiceComputeGcsloggingArrayInput
+	Healthchecks           ServiceComputeHealthcheckArrayInput
+	Httpsloggings          ServiceComputeHttpsloggingArrayInput
+	Logentries             ServiceComputeLogentryArrayInput
+	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput
+	LoggingDatadogs        ServiceComputeLoggingDatadogArrayInput
+	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayInput
 	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayInput
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps ServiceComputeLoggingFtpArrayInput
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs ServiceComputeLoggingGooglepubsubArrayInput
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku ServiceComputeLoggingHerokuArrayInput
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs ServiceComputeLoggingHoneycombArrayInput
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas ServiceComputeLoggingKafkaArrayInput
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses ServiceComputeLoggingKineseArrayInput
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies ServiceComputeLoggingLogglyArrayInput
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles ServiceComputeLoggingLogshuttleArrayInput
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics ServiceComputeLoggingNewrelicArrayInput
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks ServiceComputeLoggingOpenstackArrayInput
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs ServiceComputeLoggingScalyrArrayInput
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps ServiceComputeLoggingSftpArrayInput
-	// The unique name of the Kinesis logging endpoint.
+	LoggingFtps            ServiceComputeLoggingFtpArrayInput
+	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayInput
+	LoggingHeroku          ServiceComputeLoggingHerokuArrayInput
+	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayInput
+	LoggingKafkas          ServiceComputeLoggingKafkaArrayInput
+	LoggingKineses         ServiceComputeLoggingKineseArrayInput
+	LoggingLogglies        ServiceComputeLoggingLogglyArrayInput
+	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayInput
+	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayInput
+	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayInput
+	LoggingScalyrs         ServiceComputeLoggingScalyrArrayInput
+	LoggingSftps           ServiceComputeLoggingSftpArrayInput
+	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
-	// A Wasm deployment package to upload.
-	// Defined below.
-	Package ServiceComputePackagePtrInput
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+	Package     ServiceComputePackagePtrInput
 	Papertrails ServiceComputePapertrailArrayInput
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings ServiceComputeS3loggingArrayInput
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks ServiceComputeSplunkArrayInput
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics ServiceComputeSumologicArrayInput
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs ServiceComputeSyslogArrayInput
-	// Description field for the version.
+	S3loggings  ServiceComputeS3loggingArrayInput
+	Splunks     ServiceComputeSplunkArrayInput
+	Sumologics  ServiceComputeSumologicArrayInput
+	Syslogs     ServiceComputeSyslogArrayInput
+	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
 
@@ -383,209 +230,95 @@ func (ServiceComputeState) ElementType() reflect.Type {
 }
 
 type serviceComputeArgs struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
-	Activate *bool `pulumi:"activate"`
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends []ServiceComputeBackend `pulumi:"backends"`
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings []ServiceComputeBigquerylogging `pulumi:"bigqueryloggings"`
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate            *bool                              `pulumi:"activate"`
+	Backends            []ServiceComputeBackend            `pulumi:"backends"`
+	Bigqueryloggings    []ServiceComputeBigquerylogging    `pulumi:"bigqueryloggings"`
 	Blobstorageloggings []ServiceComputeBlobstoragelogging `pulumi:"blobstorageloggings"`
-	// An optional comment about the Domain.
-	Comment *string `pulumi:"comment"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      *string                    `pulumi:"comment"`
+	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
+	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings []ServiceComputeGcslogging `pulumi:"gcsloggings"`
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks []ServiceComputeHealthcheck `pulumi:"healthchecks"`
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings []ServiceComputeHttpslogging `pulumi:"httpsloggings"`
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries []ServiceComputeLogentry `pulumi:"logentries"`
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles []ServiceComputeLoggingCloudfile `pulumi:"loggingCloudfiles"`
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs []ServiceComputeLoggingDatadog `pulumi:"loggingDatadogs"`
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans []ServiceComputeLoggingDigitalocean `pulumi:"loggingDigitaloceans"`
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
+	Gcsloggings            []ServiceComputeGcslogging           `pulumi:"gcsloggings"`
+	Healthchecks           []ServiceComputeHealthcheck          `pulumi:"healthchecks"`
+	Httpsloggings          []ServiceComputeHttpslogging         `pulumi:"httpsloggings"`
+	Logentries             []ServiceComputeLogentry             `pulumi:"logentries"`
+	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs        []ServiceComputeLoggingDatadog       `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans   []ServiceComputeLoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches []ServiceComputeLoggingElasticsearch `pulumi:"loggingElasticsearches"`
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps []ServiceComputeLoggingFtp `pulumi:"loggingFtps"`
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs []ServiceComputeLoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku []ServiceComputeLoggingHeroku `pulumi:"loggingHeroku"`
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs []ServiceComputeLoggingHoneycomb `pulumi:"loggingHoneycombs"`
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas []ServiceComputeLoggingKafka `pulumi:"loggingKafkas"`
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses []ServiceComputeLoggingKinese `pulumi:"loggingKineses"`
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies []ServiceComputeLoggingLoggly `pulumi:"loggingLogglies"`
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles []ServiceComputeLoggingLogshuttle `pulumi:"loggingLogshuttles"`
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics []ServiceComputeLoggingNewrelic `pulumi:"loggingNewrelics"`
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks []ServiceComputeLoggingOpenstack `pulumi:"loggingOpenstacks"`
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs []ServiceComputeLoggingScalyr `pulumi:"loggingScalyrs"`
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps []ServiceComputeLoggingSftp `pulumi:"loggingSftps"`
-	// The unique name of the Kinesis logging endpoint.
+	LoggingFtps            []ServiceComputeLoggingFtp           `pulumi:"loggingFtps"`
+	LoggingGooglepubsubs   []ServiceComputeLoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
+	LoggingHeroku          []ServiceComputeLoggingHeroku        `pulumi:"loggingHeroku"`
+	LoggingHoneycombs      []ServiceComputeLoggingHoneycomb     `pulumi:"loggingHoneycombs"`
+	LoggingKafkas          []ServiceComputeLoggingKafka         `pulumi:"loggingKafkas"`
+	LoggingKineses         []ServiceComputeLoggingKinese        `pulumi:"loggingKineses"`
+	LoggingLogglies        []ServiceComputeLoggingLoggly        `pulumi:"loggingLogglies"`
+	LoggingLogshuttles     []ServiceComputeLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics       []ServiceComputeLoggingNewrelic      `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks      []ServiceComputeLoggingOpenstack     `pulumi:"loggingOpenstacks"`
+	LoggingScalyrs         []ServiceComputeLoggingScalyr        `pulumi:"loggingScalyrs"`
+	LoggingSftps           []ServiceComputeLoggingSftp          `pulumi:"loggingSftps"`
+	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
-	// A Wasm deployment package to upload.
-	// Defined below.
-	Package ServiceComputePackage `pulumi:"package"`
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+	Package     ServiceComputePackage      `pulumi:"package"`
 	Papertrails []ServiceComputePapertrail `pulumi:"papertrails"`
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings []ServiceComputeS3logging `pulumi:"s3loggings"`
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks []ServiceComputeSplunk `pulumi:"splunks"`
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics []ServiceComputeSumologic `pulumi:"sumologics"`
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs []ServiceComputeSyslog `pulumi:"syslogs"`
-	// Description field for the version.
+	S3loggings  []ServiceComputeS3logging  `pulumi:"s3loggings"`
+	Splunks     []ServiceComputeSplunk     `pulumi:"splunks"`
+	Sumologics  []ServiceComputeSumologic  `pulumi:"sumologics"`
+	Syslogs     []ServiceComputeSyslog     `pulumi:"syslogs"`
+	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
 
 // The set of arguments for constructing a ServiceCompute resource.
 type ServiceComputeArgs struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
-	Activate pulumi.BoolPtrInput
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends ServiceComputeBackendArrayInput
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings ServiceComputeBigqueryloggingArrayInput
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate            pulumi.BoolPtrInput
+	Backends            ServiceComputeBackendArrayInput
+	Bigqueryloggings    ServiceComputeBigqueryloggingArrayInput
 	Blobstorageloggings ServiceComputeBlobstorageloggingArrayInput
-	// An optional comment about the Domain.
-	Comment pulumi.StringPtrInput
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      pulumi.StringPtrInput
+	Dictionaries ServiceComputeDictionaryArrayInput
+	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy pulumi.BoolPtrInput
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings ServiceComputeGcsloggingArrayInput
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks ServiceComputeHealthcheckArrayInput
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings ServiceComputeHttpsloggingArrayInput
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries ServiceComputeLogentryArrayInput
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles ServiceComputeLoggingCloudfileArrayInput
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs ServiceComputeLoggingDatadogArrayInput
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans ServiceComputeLoggingDigitaloceanArrayInput
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           pulumi.BoolPtrInput
+	Gcsloggings            ServiceComputeGcsloggingArrayInput
+	Healthchecks           ServiceComputeHealthcheckArrayInput
+	Httpsloggings          ServiceComputeHttpsloggingArrayInput
+	Logentries             ServiceComputeLogentryArrayInput
+	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput
+	LoggingDatadogs        ServiceComputeLoggingDatadogArrayInput
+	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayInput
 	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayInput
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps ServiceComputeLoggingFtpArrayInput
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs ServiceComputeLoggingGooglepubsubArrayInput
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku ServiceComputeLoggingHerokuArrayInput
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs ServiceComputeLoggingHoneycombArrayInput
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas ServiceComputeLoggingKafkaArrayInput
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses ServiceComputeLoggingKineseArrayInput
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies ServiceComputeLoggingLogglyArrayInput
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles ServiceComputeLoggingLogshuttleArrayInput
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics ServiceComputeLoggingNewrelicArrayInput
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks ServiceComputeLoggingOpenstackArrayInput
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs ServiceComputeLoggingScalyrArrayInput
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps ServiceComputeLoggingSftpArrayInput
-	// The unique name of the Kinesis logging endpoint.
+	LoggingFtps            ServiceComputeLoggingFtpArrayInput
+	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayInput
+	LoggingHeroku          ServiceComputeLoggingHerokuArrayInput
+	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayInput
+	LoggingKafkas          ServiceComputeLoggingKafkaArrayInput
+	LoggingKineses         ServiceComputeLoggingKineseArrayInput
+	LoggingLogglies        ServiceComputeLoggingLogglyArrayInput
+	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayInput
+	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayInput
+	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayInput
+	LoggingScalyrs         ServiceComputeLoggingScalyrArrayInput
+	LoggingSftps           ServiceComputeLoggingSftpArrayInput
+	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
-	// A Wasm deployment package to upload.
-	// Defined below.
-	Package ServiceComputePackageInput
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+	Package     ServiceComputePackageInput
 	Papertrails ServiceComputePapertrailArrayInput
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings ServiceComputeS3loggingArrayInput
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks ServiceComputeSplunkArrayInput
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics ServiceComputeSumologicArrayInput
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs ServiceComputeSyslogArrayInput
-	// Description field for the version.
+	S3loggings  ServiceComputeS3loggingArrayInput
+	Splunks     ServiceComputeSplunkArrayInput
+	Sumologics  ServiceComputeSumologicArrayInput
+	Syslogs     ServiceComputeSyslogArrayInput
+	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
 

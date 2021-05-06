@@ -13,19 +13,19 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingDigitaloceanArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The AWS access key to be used to write to the stream.
+        /// Your DigitalOcean Spaces account access key
         /// </summary>
         [Input("accessKey", required: true)]
         public Input<string> AccessKey { get; set; } = null!;
 
         /// <summary>
-        /// The name of your Cloud Files container.
+        /// The name of the DigitalOcean Space
         /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        /// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
@@ -43,31 +43,31 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload logs to
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -79,7 +79,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
@@ -91,13 +91,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// Your DigitalOcean Spaces account secret key
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

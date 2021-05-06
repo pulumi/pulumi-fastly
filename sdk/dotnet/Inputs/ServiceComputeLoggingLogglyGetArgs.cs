@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingLogglyGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;

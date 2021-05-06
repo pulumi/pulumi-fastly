@@ -43,15 +43,24 @@ export interface GetWafRulesArgs {
  * A collection of values returned by getWafRules.
  */
 export interface GetWafRulesResult {
+    /**
+     * A list of modsecurity rules IDs to be excluded from the data set.
+     */
     readonly excludeModsecRuleIds?: number[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A list of publishers to be used as filters for the data set.
+     */
     readonly publishers?: string[];
     /**
-     * The Web Application Firewall's rules result set.
+     * The list of rules that results from any given combination of filters.
      */
     readonly rules: outputs.GetWafRulesRule[];
+    /**
+     * A list of tags to be used as filters for the data set.
+     */
     readonly tags?: string[];
 }

@@ -13,58 +13,64 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class ServiceComputeLoggingKafka
     {
+        /// <summary>
+        /// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        /// </summary>
         public readonly string? AuthMethod;
         /// <summary>
-        /// A comma-separated list of IP addresses or hostnames of Kafka brokers.
+        /// A comma-separated list of IP addresses or hostnames of Kafka brokers
         /// </summary>
         public readonly string Brokers;
         /// <summary>
-        /// The codec used for compression of your logs. One of: gzip, snappy, lz4.
+        /// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         /// </summary>
         public readonly string? CompressionCodec;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        /// </summary>
         public readonly bool? ParseLogKeyvals;
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// SASL Pass
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        /// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         /// </summary>
         public readonly int? RequestMaxBytes;
         /// <summary>
-        /// The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+        /// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
         /// </summary>
         public readonly string? RequiredAcks;
         /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// A secure certificate to authenticate the server with. Must be in PEM format
         /// </summary>
         public readonly string? TlsCaCert;
         /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format.
+        /// The client certificate used to make authenticated requests. Must be in PEM format
         /// </summary>
         public readonly string? TlsClientCert;
         /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format.
+        /// The client private key used to make authenticated requests. Must be in PEM format
         /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Kafka topic to send logs to
         /// </summary>
         public readonly string Topic;
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either true or false.
+        /// Whether to use TLS for secure logging. Can be either `true` or `false`
         /// </summary>
         public readonly bool? UseTls;
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// SASL User
         /// </summary>
         public readonly string? User;
 

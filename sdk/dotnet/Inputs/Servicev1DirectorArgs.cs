@@ -25,43 +25,43 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// Load balancing weight for the backends. Default `100`.
+        /// Load balancing weight for the backends. Default `100`
         /// </summary>
         [Input("capacity")]
         public Input<int>? Capacity { get; set; }
 
         /// <summary>
-        /// An optional comment about the Director.
+        /// An optional comment about the Director
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+        /// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
         /// </summary>
         [Input("quorum")]
         public Input<int>? Quorum { get; set; }
 
         /// <summary>
-        /// How many backends to search if it fails. Default `5`.
+        /// How many backends to search if it fails. Default `5`
         /// </summary>
         [Input("retries")]
         public Input<int>? Retries { get; set; }
 
         /// <summary>
-        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
         /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
 
         /// <summary>
-        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
         /// </summary>
         [Input("type")]
         public Input<int>? Type { get; set; }

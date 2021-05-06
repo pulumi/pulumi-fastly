@@ -13,31 +13,31 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingKineseGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The AWS access key to be used to write to the stream.
+        /// The AWS access key to be used to write to the stream
         /// </summary>
         [Input("accessKey", required: true)]
         public Input<string> AccessKey { get; set; } = null!;
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The AWS region the stream resides in. (Default: `us-east-1`).
+        /// The AWS region the stream resides in. (Default: `us-east-1`)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The AWS secret access key to authenticate with
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Kinesis stream name
         /// </summary>
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;

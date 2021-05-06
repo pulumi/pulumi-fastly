@@ -51,7 +51,7 @@ export class ServiceACLEntriesv1 extends pulumi.CustomResource {
      */
     public readonly aclId!: pulumi.Output<string>;
     /**
-     * A Set ACL entries that are applied to the service. Defined below
+     * ACL Entries
      */
     public readonly entries!: pulumi.Output<outputs.ServiceACLEntriesv1Entry[] | undefined>;
     /**
@@ -103,7 +103,7 @@ export interface ServiceACLEntriesv1State {
      */
     readonly aclId?: pulumi.Input<string>;
     /**
-     * A Set ACL entries that are applied to the service. Defined below
+     * ACL Entries
      */
     readonly entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
     /**
@@ -121,7 +121,7 @@ export interface ServiceACLEntriesv1Args {
      */
     readonly aclId: pulumi.Input<string>;
     /**
-     * A Set ACL entries that are applied to the service. Defined below
+     * ACL Entries
      */
     readonly entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
     /**

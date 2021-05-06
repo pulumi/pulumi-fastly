@@ -18,9 +18,9 @@ class Userv1Args:
                  role: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Userv1 resource.
-        :param pulumi.Input[str] login: The email address, which is the login name, of the User.
-        :param pulumi.Input[str] name: The real life name of the user.
-        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        :param pulumi.Input[str] login: The email address, which is the login name, of the User
+        :param pulumi.Input[str] name: The real life name of the user
+        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         pulumi.set(__self__, "login", login)
         if name is not None:
@@ -32,7 +32,7 @@ class Userv1Args:
     @pulumi.getter
     def login(self) -> pulumi.Input[str]:
         """
-        The email address, which is the login name, of the User.
+        The email address, which is the login name, of the User
         """
         return pulumi.get(self, "login")
 
@@ -44,7 +44,7 @@ class Userv1Args:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The real life name of the user.
+        The real life name of the user
         """
         return pulumi.get(self, "name")
 
@@ -56,7 +56,7 @@ class Userv1Args:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         return pulumi.get(self, "role")
 
@@ -73,9 +73,9 @@ class _Userv1State:
                  role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Userv1 resources.
-        :param pulumi.Input[str] login: The email address, which is the login name, of the User.
-        :param pulumi.Input[str] name: The real life name of the user.
-        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        :param pulumi.Input[str] login: The email address, which is the login name, of the User
+        :param pulumi.Input[str] name: The real life name of the user
+        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         if login is not None:
             pulumi.set(__self__, "login", login)
@@ -88,7 +88,7 @@ class _Userv1State:
     @pulumi.getter
     def login(self) -> Optional[pulumi.Input[str]]:
         """
-        The email address, which is the login name, of the User.
+        The email address, which is the login name, of the User
         """
         return pulumi.get(self, "login")
 
@@ -100,7 +100,7 @@ class _Userv1State:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The real life name of the user.
+        The real life name of the user
         """
         return pulumi.get(self, "name")
 
@@ -112,7 +112,7 @@ class _Userv1State:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         return pulumi.get(self, "role")
 
@@ -137,6 +137,8 @@ class Userv1(pulumi.CustomResource):
 
         ## Example Usage
 
+        Basic usage:
+
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -154,9 +156,9 @@ class Userv1(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] login: The email address, which is the login name, of the User.
-        :param pulumi.Input[str] name: The real life name of the user.
-        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        :param pulumi.Input[str] login: The email address, which is the login name, of the User
+        :param pulumi.Input[str] name: The real life name of the user
+        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         ...
     @overload
@@ -170,6 +172,8 @@ class Userv1(pulumi.CustomResource):
         The User resource requires a login and name, and optionally a role.
 
         ## Example Usage
+
+        Basic usage:
 
         ```python
         import pulumi
@@ -241,9 +245,9 @@ class Userv1(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] login: The email address, which is the login name, of the User.
-        :param pulumi.Input[str] name: The real life name of the user.
-        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        :param pulumi.Input[str] login: The email address, which is the login name, of the User
+        :param pulumi.Input[str] name: The real life name of the user
+        :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -258,7 +262,7 @@ class Userv1(pulumi.CustomResource):
     @pulumi.getter
     def login(self) -> pulumi.Output[str]:
         """
-        The email address, which is the login name, of the User.
+        The email address, which is the login name, of the User
         """
         return pulumi.get(self, "login")
 
@@ -266,7 +270,7 @@ class Userv1(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The real life name of the user.
+        The real life name of the user
         """
         return pulumi.get(self, "name")
 
@@ -274,7 +278,7 @@ class Userv1(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[Optional[str]]:
         """
-        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         return pulumi.get(self, "role")
 
