@@ -53,6 +53,9 @@ namespace Pulumi.Fastly.Outputs
         /// The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         /// </summary>
         public readonly string? SecretKey;
+        /// <summary>
+        /// A list of host keys for all hosts we can connect to over SFTP
+        /// </summary>
         public readonly string SshKnownHosts;
         /// <summary>
         /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)

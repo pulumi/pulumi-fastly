@@ -18,6 +18,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("action")]
         public Input<string>? Action { get; set; }
 
+        /// <summary>
+        /// Disable collapsed forwarding, so you don't wait for other objects to origin
+        /// </summary>
         [Input("bypassBusyWait")]
         public Input<bool>? BypassBusyWait { get; set; }
 
@@ -51,6 +54,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("hashKeys")]
         public Input<string>? HashKeys { get; set; }
 
+        /// <summary>
+        /// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+        /// </summary>
         [Input("maxStaleAge")]
         public Input<int>? MaxStaleAge { get; set; }
 

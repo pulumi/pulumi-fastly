@@ -17,8 +17,17 @@ namespace Pulumi.Fastly.Outputs
         /// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        /// </summary>
         public readonly string? TlsCaCert;
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format.
+        /// </summary>
         public readonly string? TlsClientCert;
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format.
+        /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
         /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)

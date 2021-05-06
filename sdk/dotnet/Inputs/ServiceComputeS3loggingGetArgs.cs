@@ -66,15 +66,27 @@ namespace Pulumi.Fastly.Inputs
         [Input("redundancy")]
         public Input<string>? Redundancy { get; set; }
 
+        /// <summary>
+        /// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        /// </summary>
         [Input("s3AccessKey")]
         public Input<string>? S3AccessKey { get; set; }
 
+        /// <summary>
+        /// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        /// </summary>
         [Input("s3SecretKey")]
         public Input<string>? S3SecretKey { get; set; }
 
+        /// <summary>
+        /// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        /// </summary>
         [Input("serverSideEncryption")]
         public Input<string>? ServerSideEncryption { get; set; }
 
+        /// <summary>
+        /// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        /// </summary>
         [Input("serverSideEncryptionKmsKeyId")]
         public Input<string>? ServerSideEncryptionKmsKeyId { get; set; }
 

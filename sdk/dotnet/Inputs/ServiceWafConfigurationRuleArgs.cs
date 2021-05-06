@@ -12,6 +12,9 @@ namespace Pulumi.Fastly.Inputs
 
     public sealed class ServiceWafConfigurationRuleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Web Application Firewall rule's modsecurity ID
+        /// </summary>
         [Input("modsecRuleId", required: true)]
         public Input<int> ModsecRuleId { get; set; } = null!;
 

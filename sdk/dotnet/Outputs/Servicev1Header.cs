@@ -25,6 +25,9 @@ namespace Pulumi.Fastly.Outputs
         /// The name of the header that is going to be affected by the Action
         /// </summary>
         public readonly string Destination;
+        /// <summary>
+        /// Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        /// </summary>
         public readonly bool? IgnoreIfSet;
         /// <summary>
         /// Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource

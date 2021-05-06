@@ -53,14 +53,29 @@ namespace Pulumi.Fastly.Outputs
         /// Where in the generated VCL the logging call should be placed
         /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// The maximum number of bytes sent in one request
+        /// </summary>
         public readonly int? RequestMaxBytes;
+        /// <summary>
+        /// The maximum number of logs sent in one request
+        /// </summary>
         public readonly int? RequestMaxEntries;
         /// <summary>
         /// The name of the condition to apply
         /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format
+        /// </summary>
         public readonly string? TlsCaCert;
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format
+        /// </summary>
         public readonly string? TlsClientCert;
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format
+        /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
         /// Used during the TLS handshake to validate the certificate

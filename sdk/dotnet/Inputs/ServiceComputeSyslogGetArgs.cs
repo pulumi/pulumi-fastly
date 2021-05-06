@@ -36,12 +36,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }
 

@@ -108,6 +108,7 @@
                 },
                 "betweenBytesTimeout": {
                     "type": "integer",
+                    "description": "How long to wait between bytes in milliseconds. Default `10000`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -134,6 +135,7 @@
                 },
                 "firstByteTimeout": {
                     "type": "integer",
+                    "description": "How long to wait for the first bytes in milliseconds. Default `15000`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -160,6 +162,7 @@
                 },
                 "maxTlsVersion": {
                     "type": "string",
+                    "description": "Maximum allowed TLS version on SSL connections to this backend.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -168,6 +171,7 @@
                 },
                 "minTlsVersion": {
                     "type": "string",
+                    "description": "Minimum allowed TLS version on SSL connections to this backend.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -212,6 +216,7 @@
                 },
                 "sslCaCert": {
                     "type": "string",
+                    "description": "CA certificate attached to origin.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -220,6 +225,7 @@
                 },
                 "sslCertHostname": {
                     "type": "string",
+                    "description": "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -228,6 +234,7 @@
                 },
                 "sslCheckCert": {
                     "type": "boolean",
+                    "description": "Be strict about checking SSL certs. Default `true`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -245,6 +252,7 @@
                 },
                 "sslClientCert": {
                     "type": "string",
+                    "description": "Client certificate attached to origin. Used when connecting to the backend\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -253,6 +261,7 @@
                 },
                 "sslClientKey": {
                     "type": "string",
+                    "description": "Client key attached to origin. Used when connecting to the backend\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -271,6 +280,7 @@
                 },
                 "sslSniHostname": {
                     "type": "string",
+                    "description": "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -822,6 +832,7 @@
                 },
                 "requestMaxBytes": {
                     "type": "integer",
+                    "description": "The maximum number of bytes sent in one request\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -830,6 +841,7 @@
                 },
                 "requestMaxEntries": {
                     "type": "integer",
+                    "description": "The maximum number of logs sent in one request\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -838,6 +850,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -846,6 +859,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -854,6 +868,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1226,6 +1241,7 @@
                 },
                 "requestMaxBytes": {
                     "type": "integer",
+                    "description": "The maximum number of logs sent in one request. Defaults to `0` for unbounded\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1234,6 +1250,7 @@
                 },
                 "requestMaxEntries": {
                     "type": "integer",
+                    "description": "The maximum number of bytes sent in one request. Defaults to `0` for unbounded\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1242,6 +1259,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1250,6 +1268,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1258,6 +1277,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1581,6 +1601,7 @@
                 },
                 "parseLogKeyvals": {
                     "type": "boolean",
+                    "description": "Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1598,6 +1619,7 @@
                 },
                 "requestMaxBytes": {
                     "type": "integer",
+                    "description": "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1615,6 +1637,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1623,6 +1646,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1631,6 +1655,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2069,6 +2094,7 @@
                 },
                 "sshKnownHosts": {
                     "type": "string",
+                    "description": "A list of host keys for all hosts we can connect to over SFTP\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2258,6 +2284,7 @@
                 },
                 "s3AccessKey": {
                     "type": "string",
+                    "description": "AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2266,6 +2293,7 @@
                 },
                 "s3SecretKey": {
                     "type": "string",
+                    "description": "AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2274,6 +2302,7 @@
                 },
                 "serverSideEncryption": {
                     "type": "string",
+                    "description": "Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2282,6 +2311,7 @@
                 },
                 "serverSideEncryptionKmsKeyId": {
                     "type": "string",
+                    "description": "Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2317,6 +2347,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2325,6 +2356,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2333,6 +2365,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2450,6 +2483,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2458,6 +2492,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2466,6 +2501,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2510,6 +2546,7 @@
             "properties": {
                 "modsecRuleId": {
                     "type": "integer",
+                    "description": "The Web Application Firewall rule's modsecurity ID\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2575,6 +2612,7 @@
                     "items": {
                         "type": "integer"
                     },
+                    "description": "Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2682,6 +2720,7 @@
                 },
                 "betweenBytesTimeout": {
                     "type": "integer",
+                    "description": "How long to wait between bytes in milliseconds. Default `10000`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2708,6 +2747,7 @@
                 },
                 "firstByteTimeout": {
                     "type": "integer",
+                    "description": "How long to wait for the first bytes in milliseconds. Default `15000`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2734,6 +2774,7 @@
                 },
                 "maxTlsVersion": {
                     "type": "string",
+                    "description": "Maximum allowed TLS version on SSL connections to this backend.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2742,6 +2783,7 @@
                 },
                 "minTlsVersion": {
                     "type": "string",
+                    "description": "Minimum allowed TLS version on SSL connections to this backend.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2795,6 +2837,7 @@
                 },
                 "sslCaCert": {
                     "type": "string",
+                    "description": "CA certificate attached to origin.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2803,6 +2846,7 @@
                 },
                 "sslCertHostname": {
                     "type": "string",
+                    "description": "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2811,6 +2855,7 @@
                 },
                 "sslCheckCert": {
                     "type": "boolean",
+                    "description": "Be strict about checking SSL certs. Default `true`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2828,6 +2873,7 @@
                 },
                 "sslClientCert": {
                     "type": "string",
+                    "description": "Client certificate attached to origin. Used when connecting to the backend\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2836,6 +2882,7 @@
                 },
                 "sslClientKey": {
                     "type": "string",
+                    "description": "Client key attached to origin. Used when connecting to the backend\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2854,6 +2901,7 @@
                 },
                 "sslSniHostname": {
                     "type": "string",
+                    "description": "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3637,6 +3685,7 @@
                 },
                 "ignoreIfSet": {
                     "type": "boolean",
+                    "description": "Don't add the header if it is already. (Only applies to `set` action.). Default `false`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3940,6 +3989,7 @@
                 },
                 "requestMaxBytes": {
                     "type": "integer",
+                    "description": "The maximum number of bytes sent in one request\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3948,6 +3998,7 @@
                 },
                 "requestMaxEntries": {
                     "type": "integer",
+                    "description": "The maximum number of logs sent in one request\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3965,6 +4016,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3973,6 +4025,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3981,6 +4034,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4524,6 +4578,7 @@
                 },
                 "requestMaxBytes": {
                     "type": "integer",
+                    "description": "The maximum number of logs sent in one request. Defaults to `0` for unbounded\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4532,6 +4587,7 @@
                 },
                 "requestMaxEntries": {
                     "type": "integer",
+                    "description": "The maximum number of bytes sent in one request. Defaults to `0` for unbounded\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4549,6 +4605,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4557,6 +4614,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4565,6 +4623,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5050,6 +5109,7 @@
                 },
                 "parseLogKeyvals": {
                     "type": "boolean",
+                    "description": "Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5076,6 +5136,7 @@
                 },
                 "requestMaxBytes": {
                     "type": "integer",
+                    "description": "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5102,6 +5163,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5110,6 +5172,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5118,6 +5181,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5808,6 +5872,7 @@
                 },
                 "sshKnownHosts": {
                     "type": "string",
+                    "description": "A list of host keys for all hosts we can connect to over SFTP\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5928,6 +5993,7 @@
                 },
                 "bypassBusyWait": {
                     "type": "boolean",
+                    "description": "Disable collapsed forwarding, so you don't wait for other objects to origin\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5981,6 +6047,7 @@
                 },
                 "maxStaleAge": {
                     "type": "integer",
+                    "description": "How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6221,6 +6288,7 @@
                 },
                 "s3AccessKey": {
                     "type": "string",
+                    "description": "AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6229,6 +6297,7 @@
                 },
                 "s3SecretKey": {
                     "type": "string",
+                    "description": "AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6237,6 +6306,7 @@
                 },
                 "serverSideEncryption": {
                     "type": "string",
+                    "description": "Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6245,6 +6315,7 @@
                 },
                 "serverSideEncryptionKmsKeyId": {
                     "type": "string",
+                    "description": "Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6362,6 +6433,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6370,6 +6442,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6378,6 +6451,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6567,6 +6641,7 @@
                 },
                 "tlsCaCert": {
                     "type": "string",
+                    "description": "A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6575,6 +6650,7 @@
                 },
                 "tlsClientCert": {
                     "type": "string",
+                    "description": "The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6583,6 +6659,7 @@
                 },
                 "tlsClientKey": {
                     "type": "string",
+                    "description": "The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -9019,7 +9096,7 @@
                         "items": {
                             "type": "integer"
                         },
-                        "description": "Exclusion filter by WAF rule's ModSecurity ID.\n"
+                        "description": "A list of modsecurity rules IDs to be excluded from the data set.\n"
                     },
                     "publishers": {
                         "type": "array",

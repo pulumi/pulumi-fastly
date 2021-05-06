@@ -96,6 +96,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// A list of host keys for all hosts we can connect to over SFTP
+        /// </summary>
         [Input("sshKnownHosts", required: true)]
         public Input<string> SshKnownHosts { get; set; } = null!;
 

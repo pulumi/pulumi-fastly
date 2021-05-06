@@ -24,6 +24,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("autoLoadbalance")]
         public Input<bool>? AutoLoadbalance { get; set; }
 
+        /// <summary>
+        /// How long to wait between bytes in milliseconds. Default `10000`
+        /// </summary>
         [Input("betweenBytesTimeout")]
         public Input<int>? BetweenBytesTimeout { get; set; }
 
@@ -39,6 +42,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("errorThreshold")]
         public Input<int>? ErrorThreshold { get; set; }
 
+        /// <summary>
+        /// How long to wait for the first bytes in milliseconds. Default `15000`
+        /// </summary>
         [Input("firstByteTimeout")]
         public Input<int>? FirstByteTimeout { get; set; }
 
@@ -54,9 +60,15 @@ namespace Pulumi.Fastly.Inputs
         [Input("maxConn")]
         public Input<int>? MaxConn { get; set; }
 
+        /// <summary>
+        /// Maximum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         [Input("maxTlsVersion")]
         public Input<string>? MaxTlsVersion { get; set; }
 
+        /// <summary>
+        /// Minimum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         [Input("minTlsVersion")]
         public Input<string>? MinTlsVersion { get; set; }
 
@@ -84,12 +96,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("shield")]
         public Input<string>? Shield { get; set; }
 
+        /// <summary>
+        /// CA certificate attached to origin.
+        /// </summary>
         [Input("sslCaCert")]
         public Input<string>? SslCaCert { get; set; }
 
+        /// <summary>
+        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        /// </summary>
         [Input("sslCertHostname")]
         public Input<string>? SslCertHostname { get; set; }
 
+        /// <summary>
+        /// Be strict about checking SSL certs. Default `true`
+        /// </summary>
         [Input("sslCheckCert")]
         public Input<bool>? SslCheckCert { get; set; }
 
@@ -99,9 +120,15 @@ namespace Pulumi.Fastly.Inputs
         [Input("sslCiphers")]
         public Input<string>? SslCiphers { get; set; }
 
+        /// <summary>
+        /// Client certificate attached to origin. Used when connecting to the backend
+        /// </summary>
         [Input("sslClientCert")]
         public Input<string>? SslClientCert { get; set; }
 
+        /// <summary>
+        /// Client key attached to origin. Used when connecting to the backend
+        /// </summary>
         [Input("sslClientKey")]
         public Input<string>? SslClientKey { get; set; }
 
@@ -111,6 +138,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("sslHostname")]
         public Input<string>? SslHostname { get; set; }
 
+        /// <summary>
+        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        /// </summary>
         [Input("sslSniHostname")]
         public Input<string>? SslSniHostname { get; set; }
 

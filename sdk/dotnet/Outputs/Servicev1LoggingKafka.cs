@@ -37,6 +37,9 @@ namespace Pulumi.Fastly.Outputs
         /// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        /// </summary>
         public readonly bool? ParseLogKeyvals;
         /// <summary>
         /// SASL Pass
@@ -46,6 +49,9 @@ namespace Pulumi.Fastly.Outputs
         /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
+        /// <summary>
+        /// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+        /// </summary>
         public readonly int? RequestMaxBytes;
         /// <summary>
         /// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
@@ -55,8 +61,17 @@ namespace Pulumi.Fastly.Outputs
         /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format
+        /// </summary>
         public readonly string? TlsCaCert;
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format
+        /// </summary>
         public readonly string? TlsClientCert;
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format
+        /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
         /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)

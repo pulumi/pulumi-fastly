@@ -54,9 +54,15 @@ namespace Pulumi.Fastly.Inputs
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
+        /// <summary>
+        /// The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        /// </summary>
         [Input("requestMaxBytes")]
         public Input<int>? RequestMaxBytes { get; set; }
 
+        /// <summary>
+        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        /// </summary>
         [Input("requestMaxEntries")]
         public Input<int>? RequestMaxEntries { get; set; }
 
@@ -66,12 +72,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format
+        /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format
+        /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format
+        /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }
 

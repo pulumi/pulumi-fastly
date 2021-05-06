@@ -51,6 +51,9 @@ export interface ServiceComputeBackend {
      * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
      */
     autoLoadbalance?: boolean;
+    /**
+     * How long to wait between bytes in milliseconds. Default `10000`
+     */
     betweenBytesTimeout?: number;
     /**
      * How long to wait for a timeout in milliseconds. Default `1000`
@@ -60,6 +63,9 @@ export interface ServiceComputeBackend {
      * Number of errors to allow before the Backend is marked as down. Default `0`
      */
     errorThreshold?: number;
+    /**
+     * How long to wait for the first bytes in milliseconds. Default `15000`
+     */
     firstByteTimeout?: number;
     /**
      * Name of a defined `healthcheck` to assign to this backend
@@ -69,7 +75,13 @@ export interface ServiceComputeBackend {
      * Maximum number of connections for this Backend. Default `200`
      */
     maxConn?: number;
+    /**
+     * Maximum allowed TLS version on SSL connections to this backend.
+     */
     maxTlsVersion?: string;
+    /**
+     * Minimum allowed TLS version on SSL connections to this backend.
+     */
     minTlsVersion?: string;
     /**
      * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -87,14 +99,29 @@ export interface ServiceComputeBackend {
      * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      */
     shield?: string;
+    /**
+     * CA certificate attached to origin.
+     */
     sslCaCert?: string;
+    /**
+     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     */
     sslCertHostname?: string;
+    /**
+     * Be strict about checking SSL certs. Default `true`
+     */
     sslCheckCert?: boolean;
     /**
      * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
      */
     sslCiphers?: string;
+    /**
+     * Client certificate attached to origin. Used when connecting to the backend
+     */
     sslClientCert?: string;
+    /**
+     * Client key attached to origin. Used when connecting to the backend
+     */
     sslClientKey?: string;
     /**
      * Used for both SNI during the TLS handshake and to validate the cert
@@ -102,6 +129,9 @@ export interface ServiceComputeBackend {
      * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
      */
     sslHostname?: string;
+    /**
+     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     */
     sslSniHostname?: string;
     /**
      * Whether or not to use SSL to reach the Backend. Default `false`
@@ -329,10 +359,25 @@ export interface ServiceComputeHttpslogging {
      * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
+    /**
+     * The maximum number of bytes sent in one request
+     */
     requestMaxBytes?: number;
+    /**
+     * The maximum number of logs sent in one request
+     */
     requestMaxEntries?: number;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
     tlsClientKey?: string;
     /**
      * Used during the TLS handshake to validate the certificate
@@ -489,10 +534,25 @@ export interface ServiceComputeLoggingElasticsearch {
      * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
      */
     pipeline?: string;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded
+     */
     requestMaxBytes?: number;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+     */
     requestMaxEntries?: number;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
     tlsClientKey?: string;
     /**
      * The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
@@ -625,18 +685,33 @@ export interface ServiceComputeLoggingKafka {
      * The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
+    /**
+     * Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+     */
     parseLogKeyvals?: boolean;
     /**
      * SASL Pass
      */
     password?: string;
+    /**
+     * Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+     */
     requestMaxBytes?: number;
     /**
      * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
      */
     requiredAcks?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
     tlsClientKey?: string;
     /**
      * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
@@ -819,6 +894,9 @@ export interface ServiceComputeLoggingSftp {
      * The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      */
     secretKey?: string;
+    /**
+     * A list of host keys for all hosts we can connect to over SFTP
+     */
     sshKnownHosts: string;
     /**
      * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -890,9 +968,21 @@ export interface ServiceComputeS3logging {
      * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
      */
     redundancy?: string;
+    /**
+     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     */
     s3AccessKey?: string;
+    /**
+     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     */
     s3SecretKey?: string;
+    /**
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+     */
     serverSideEncryption?: string;
+    /**
+     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     */
     serverSideEncryptionKmsKeyId?: string;
     /**
      * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -905,8 +995,17 @@ export interface ServiceComputeSplunk {
      * A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
     tlsClientKey?: string;
     /**
      * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
@@ -954,8 +1053,17 @@ export interface ServiceComputeSyslog {
      * The port associated with the address where the Syslog endpoint can be accessed. Default `514`
      */
     port?: number;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+     */
     tlsClientKey?: string;
     /**
      * Used during the TLS handshake to validate the certificate
@@ -972,6 +1080,9 @@ export interface ServiceComputeSyslog {
 }
 
 export interface ServiceWafConfigurationRule {
+    /**
+     * The Web Application Firewall rule's modsecurity ID
+     */
     modsecRuleId: number;
     /**
      * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
@@ -992,6 +1103,9 @@ export interface ServiceWafConfigurationRuleExclusion {
      * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
      */
     exclusionType: string;
+    /**
+     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+     */
     modsecRuleIds?: number[];
     /**
      * The name of rule exclusion
@@ -1027,6 +1141,9 @@ export interface Servicev1Backend {
      * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
      */
     autoLoadbalance?: boolean;
+    /**
+     * How long to wait between bytes in milliseconds. Default `10000`
+     */
     betweenBytesTimeout?: number;
     /**
      * How long to wait for a timeout in milliseconds. Default `1000`
@@ -1036,6 +1153,9 @@ export interface Servicev1Backend {
      * Number of errors to allow before the Backend is marked as down. Default `0`
      */
     errorThreshold?: number;
+    /**
+     * How long to wait for the first bytes in milliseconds. Default `15000`
+     */
     firstByteTimeout?: number;
     /**
      * Name of a defined `healthcheck` to assign to this backend
@@ -1045,7 +1165,13 @@ export interface Servicev1Backend {
      * Maximum number of connections for this Backend. Default `200`
      */
     maxConn?: number;
+    /**
+     * Maximum allowed TLS version on SSL connections to this backend.
+     */
     maxTlsVersion?: string;
+    /**
+     * Minimum allowed TLS version on SSL connections to this backend.
+     */
     minTlsVersion?: string;
     /**
      * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -1067,14 +1193,29 @@ export interface Servicev1Backend {
      * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      */
     shield?: string;
+    /**
+     * CA certificate attached to origin.
+     */
     sslCaCert?: string;
+    /**
+     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     */
     sslCertHostname?: string;
+    /**
+     * Be strict about checking SSL certs. Default `true`
+     */
     sslCheckCert?: boolean;
     /**
      * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
      */
     sslCiphers?: string;
+    /**
+     * Client certificate attached to origin. Used when connecting to the backend
+     */
     sslClientCert?: string;
+    /**
+     * Client key attached to origin. Used when connecting to the backend
+     */
     sslClientKey?: string;
     /**
      * Used for both SNI during the TLS handshake and to validate the cert
@@ -1082,6 +1223,9 @@ export interface Servicev1Backend {
      * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
      */
     sslHostname?: string;
+    /**
+     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     */
     sslSniHostname?: string;
     /**
      * Whether or not to use SSL to reach the Backend. Default `false`
@@ -1401,6 +1545,9 @@ export interface Servicev1Header {
      * The name of the header that is going to be affected by the Action
      */
     destination: string;
+    /**
+     * Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+     */
     ignoreIfSet?: boolean;
     /**
      * Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
@@ -1524,14 +1671,29 @@ export interface Servicev1Httpslogging {
      * Where in the generated VCL the logging call should be placed
      */
     placement?: string;
+    /**
+     * The maximum number of bytes sent in one request
+     */
     requestMaxBytes?: number;
+    /**
+     * The maximum number of logs sent in one request
+     */
     requestMaxEntries?: number;
     /**
      * The name of the condition to apply
      */
     responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
     tlsClientKey?: string;
     /**
      * Used during the TLS handshake to validate the certificate
@@ -1764,14 +1926,29 @@ export interface Servicev1LoggingElasticsearch {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded
+     */
     requestMaxBytes?: number;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+     */
     requestMaxEntries?: number;
     /**
      * The name of the condition to apply
      */
     responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
     tlsClientKey?: string;
     /**
      * The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
@@ -1976,6 +2153,9 @@ export interface Servicev1LoggingKafka {
      * The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
+    /**
+     * Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+     */
     parseLogKeyvals?: boolean;
     /**
      * SASL Pass
@@ -1985,6 +2165,9 @@ export interface Servicev1LoggingKafka {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
+    /**
+     * Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+     */
     requestMaxBytes?: number;
     /**
      * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
@@ -1994,8 +2177,17 @@ export interface Servicev1LoggingKafka {
      * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
     tlsClientKey?: string;
     /**
      * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
@@ -2290,6 +2482,9 @@ export interface Servicev1LoggingSftp {
      * The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      */
     secretKey?: string;
+    /**
+     * A list of host keys for all hosts we can connect to over SFTP
+     */
     sshKnownHosts: string;
     /**
      * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -2337,6 +2532,9 @@ export interface Servicev1RequestSetting {
      * Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
      */
     action?: string;
+    /**
+     * Disable collapsed forwarding, so you don't wait for other objects to origin
+     */
     bypassBusyWait?: boolean;
     /**
      * Sets the host header
@@ -2358,6 +2556,9 @@ export interface Servicev1RequestSetting {
      * Comma separated list of varnish request object fields that should be in the hash key
      */
     hashKeys?: string;
+    /**
+     * How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+     */
     maxStaleAge?: number;
     /**
      * Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
@@ -2461,9 +2662,21 @@ export interface Servicev1S3logging {
      * Name of blockAttributes condition to apply this logging.
      */
     responseCondition?: string;
+    /**
+     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     */
     s3AccessKey?: string;
+    /**
+     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     */
     s3SecretKey?: string;
+    /**
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+     */
     serverSideEncryption?: string;
+    /**
+     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     */
     serverSideEncryptionKmsKeyId?: string;
     /**
      * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -2511,8 +2724,17 @@ export interface Servicev1Splunk {
      * The name of the condition to apply
      */
     responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
     tlsClientKey?: string;
     /**
      * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
@@ -2592,8 +2814,17 @@ export interface Servicev1Syslog {
      * Name of blockAttributes condition to apply this logging.
      */
     responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+     */
     tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+     */
     tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+     */
     tlsClientKey?: string;
     /**
      * Used during the TLS handshake to validate the certificate

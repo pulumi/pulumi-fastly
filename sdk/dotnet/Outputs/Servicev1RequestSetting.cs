@@ -17,6 +17,9 @@ namespace Pulumi.Fastly.Outputs
         /// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
         /// </summary>
         public readonly string? Action;
+        /// <summary>
+        /// Disable collapsed forwarding, so you don't wait for other objects to origin
+        /// </summary>
         public readonly bool? BypassBusyWait;
         /// <summary>
         /// Sets the host header
@@ -38,6 +41,9 @@ namespace Pulumi.Fastly.Outputs
         /// Comma separated list of varnish request object fields that should be in the hash key
         /// </summary>
         public readonly string? HashKeys;
+        /// <summary>
+        /// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+        /// </summary>
         public readonly int? MaxStaleAge;
         /// <summary>
         /// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource

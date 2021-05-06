@@ -26,6 +26,10 @@ namespace Pulumi.Fastly.Inputs
 
         [Input("modsecRuleIds")]
         private InputList<int>? _modsecRuleIds;
+
+        /// <summary>
+        /// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+        /// </summary>
         public InputList<int> ModsecRuleIds
         {
             get => _modsecRuleIds ?? (_modsecRuleIds = new InputList<int>());

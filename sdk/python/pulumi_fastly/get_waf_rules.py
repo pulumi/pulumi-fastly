@@ -89,7 +89,7 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
     """
     Use this data source to access information about an existing resource.
 
-    :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
+    :param Sequence[int] exclude_modsec_rule_ids: A list of modsecurity rules IDs to be excluded from the data set.
     :param Sequence[str] publishers: A list of publishers to be used as filters for the data set.
     :param Sequence[str] tags: A list of tags to be used as filters for the data set.
     """

@@ -21,6 +21,9 @@ namespace Pulumi.Fastly.Outputs
         /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
         /// </summary>
         public readonly bool? AutoLoadbalance;
+        /// <summary>
+        /// How long to wait between bytes in milliseconds. Default `10000`
+        /// </summary>
         public readonly int? BetweenBytesTimeout;
         /// <summary>
         /// How long to wait for a timeout in milliseconds. Default `1000`
@@ -30,6 +33,9 @@ namespace Pulumi.Fastly.Outputs
         /// Number of errors to allow before the Backend is marked as down. Default `0`
         /// </summary>
         public readonly int? ErrorThreshold;
+        /// <summary>
+        /// How long to wait for the first bytes in milliseconds. Default `15000`
+        /// </summary>
         public readonly int? FirstByteTimeout;
         /// <summary>
         /// Name of a defined `healthcheck` to assign to this backend
@@ -39,7 +45,13 @@ namespace Pulumi.Fastly.Outputs
         /// Maximum number of connections for this Backend. Default `200`
         /// </summary>
         public readonly int? MaxConn;
+        /// <summary>
+        /// Maximum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         public readonly string? MaxTlsVersion;
+        /// <summary>
+        /// Minimum allowed TLS version on SSL connections to this backend.
+        /// </summary>
         public readonly string? MinTlsVersion;
         /// <summary>
         /// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -61,19 +73,37 @@ namespace Pulumi.Fastly.Outputs
         /// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         /// </summary>
         public readonly string? Shield;
+        /// <summary>
+        /// CA certificate attached to origin.
+        /// </summary>
         public readonly string? SslCaCert;
+        /// <summary>
+        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        /// </summary>
         public readonly string? SslCertHostname;
+        /// <summary>
+        /// Be strict about checking SSL certs. Default `true`
+        /// </summary>
         public readonly bool? SslCheckCert;
         /// <summary>
         /// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
         /// </summary>
         public readonly string? SslCiphers;
+        /// <summary>
+        /// Client certificate attached to origin. Used when connecting to the backend
+        /// </summary>
         public readonly string? SslClientCert;
+        /// <summary>
+        /// Client key attached to origin. Used when connecting to the backend
+        /// </summary>
         public readonly string? SslClientKey;
         /// <summary>
         /// Used for both SNI during the TLS handshake and to validate the cert
         /// </summary>
         public readonly string? SslHostname;
+        /// <summary>
+        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        /// </summary>
         public readonly string? SslSniHostname;
         /// <summary>
         /// Whether or not to use SSL to reach the Backend. Default `false`

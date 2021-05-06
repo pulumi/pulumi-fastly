@@ -22,7 +22,7 @@ namespace Pulumi.Fastly
         private List<int>? _excludeModsecRuleIds;
 
         /// <summary>
-        /// Exclusion filter by WAF rule's ModSecurity ID.
+        /// A list of modsecurity rules IDs to be excluded from the data set.
         /// </summary>
         public List<int> ExcludeModsecRuleIds
         {

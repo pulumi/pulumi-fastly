@@ -147,18 +147,22 @@ type ServiceComputeBackend struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address string `pulumi:"address"`
 	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
-	AutoLoadbalance     *bool `pulumi:"autoLoadbalance"`
-	BetweenBytesTimeout *int  `pulumi:"betweenBytesTimeout"`
+	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`
+	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
 	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold   *int `pulumi:"errorThreshold"`
+	ErrorThreshold *int `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
 	// Maximum number of connections for this Backend. Default `200`
-	MaxConn       *int    `pulumi:"maxConn"`
+	MaxConn *int `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -167,18 +171,24 @@ type ServiceComputeBackend struct {
 	// The port number on which the Backend responds. Default `80`
 	Port *int `pulumi:"port"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
-	Shield          *string `pulumi:"shield"`
-	SslCaCert       *string `pulumi:"sslCaCert"`
+	Shield *string `pulumi:"shield"`
+	// CA certificate attached to origin.
+	SslCaCert *string `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
 	SslCertHostname *string `pulumi:"sslCertHostname"`
-	SslCheckCert    *bool   `pulumi:"sslCheckCert"`
+	// Be strict about checking SSL certs. Default `true`
+	SslCheckCert *bool `pulumi:"sslCheckCert"`
 	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
-	SslCiphers    *string `pulumi:"sslCiphers"`
+	SslCiphers *string `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert *string `pulumi:"sslClientCert"`
-	SslClientKey  *string `pulumi:"sslClientKey"`
+	// Client key attached to origin. Used when connecting to the backend
+	SslClientKey *string `pulumi:"sslClientKey"`
 	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname    *string `pulumi:"sslHostname"`
+	SslHostname *string `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
 	SslSniHostname *string `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl *bool `pulumi:"useSsl"`
@@ -201,18 +211,22 @@ type ServiceComputeBackendArgs struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address pulumi.StringInput `pulumi:"address"`
 	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
-	AutoLoadbalance     pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
-	BetweenBytesTimeout pulumi.IntPtrInput  `pulumi:"betweenBytesTimeout"`
+	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`
+	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
 	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold   pulumi.IntPtrInput `pulumi:"errorThreshold"`
+	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
 	// Maximum number of connections for this Backend. Default `200`
-	MaxConn       pulumi.IntPtrInput    `pulumi:"maxConn"`
+	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -221,18 +235,24 @@ type ServiceComputeBackendArgs struct {
 	// The port number on which the Backend responds. Default `80`
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
-	Shield          pulumi.StringPtrInput `pulumi:"shield"`
-	SslCaCert       pulumi.StringPtrInput `pulumi:"sslCaCert"`
+	Shield pulumi.StringPtrInput `pulumi:"shield"`
+	// CA certificate attached to origin.
+	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
-	SslCheckCert    pulumi.BoolPtrInput   `pulumi:"sslCheckCert"`
+	// Be strict about checking SSL certs. Default `true`
+	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
 	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
-	SslCiphers    pulumi.StringPtrInput `pulumi:"sslCiphers"`
+	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
-	SslClientKey  pulumi.StringPtrInput `pulumi:"sslClientKey"`
+	// Client key attached to origin. Used when connecting to the backend
+	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
 	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname    pulumi.StringPtrInput `pulumi:"sslHostname"`
+	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
@@ -301,6 +321,7 @@ func (o ServiceComputeBackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
 }
 
+// How long to wait between bytes in milliseconds. Default `10000`
 func (o ServiceComputeBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
 }
@@ -315,6 +336,7 @@ func (o ServiceComputeBackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
+// How long to wait for the first bytes in milliseconds. Default `15000`
 func (o ServiceComputeBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.FirstByteTimeout }).(pulumi.IntPtrOutput)
 }
@@ -329,10 +351,12 @@ func (o ServiceComputeBackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
+// Maximum allowed TLS version on SSL connections to this backend.
 func (o ServiceComputeBackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
 }
 
+// Minimum allowed TLS version on SSL connections to this backend.
 func (o ServiceComputeBackendOutput) MinTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
 }
@@ -357,14 +381,17 @@ func (o ServiceComputeBackendOutput) Shield() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
 
+// CA certificate attached to origin.
 func (o ServiceComputeBackendOutput) SslCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
 }
 
+// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
 func (o ServiceComputeBackendOutput) SslCertHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
 }
 
+// Be strict about checking SSL certs. Default `true`
 func (o ServiceComputeBackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
 }
@@ -374,10 +401,12 @@ func (o ServiceComputeBackendOutput) SslCiphers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
 }
 
+// Client certificate attached to origin. Used when connecting to the backend
 func (o ServiceComputeBackendOutput) SslClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslClientCert }).(pulumi.StringPtrOutput)
 }
 
+// Client key attached to origin. Used when connecting to the backend
 func (o ServiceComputeBackendOutput) SslClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
 }
@@ -389,6 +418,7 @@ func (o ServiceComputeBackendOutput) SslHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
 }
 
+// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
 func (o ServiceComputeBackendOutput) SslSniHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
 }
@@ -1349,12 +1379,17 @@ type ServiceComputeHttpslogging struct {
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method *string `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name              string  `pulumi:"name"`
-	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
-	TlsCaCert         *string `pulumi:"tlsCaCert"`
-	TlsClientCert     *string `pulumi:"tlsClientCert"`
-	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	Name string `pulumi:"name"`
+	// The maximum number of bytes sent in one request
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request
+	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// URL that log data will be sent to. Must use the https protocol
@@ -1386,12 +1421,17 @@ type ServiceComputeHttpsloggingArgs struct {
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name              pulumi.StringInput    `pulumi:"name"`
-	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
-	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// The maximum number of bytes sent in one request
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request
+	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// URL that log data will be sent to. Must use the https protocol
@@ -1484,22 +1524,27 @@ func (o ServiceComputeHttpsloggingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The maximum number of bytes sent in one request
 func (o ServiceComputeHttpsloggingOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
+// The maximum number of logs sent in one request
 func (o ServiceComputeHttpsloggingOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format
 func (o ServiceComputeHttpsloggingOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format
 func (o ServiceComputeHttpsloggingOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format
 func (o ServiceComputeHttpsloggingOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -2155,12 +2200,17 @@ type ServiceComputeLoggingElasticsearch struct {
 	// BasicAuth password for Elasticsearch
 	Password *string `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-	Pipeline          *string `pulumi:"pipeline"`
-	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
-	TlsCaCert         *string `pulumi:"tlsCaCert"`
-	TlsClientCert     *string `pulumi:"tlsClientCert"`
-	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	Pipeline *string `pulumi:"pipeline"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// The Elasticsearch URL to stream logs to
@@ -2188,12 +2238,17 @@ type ServiceComputeLoggingElasticsearchArgs struct {
 	// BasicAuth password for Elasticsearch
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-	Pipeline          pulumi.StringPtrInput `pulumi:"pipeline"`
-	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
-	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// The Elasticsearch URL to stream logs to
@@ -2273,22 +2328,27 @@ func (o ServiceComputeLoggingElasticsearchOutput) Pipeline() pulumi.StringPtrOut
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
 }
 
+// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 func (o ServiceComputeLoggingElasticsearchOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
+// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
 func (o ServiceComputeLoggingElasticsearchOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format
 func (o ServiceComputeLoggingElasticsearchOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format
 func (o ServiceComputeLoggingElasticsearchOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format
 func (o ServiceComputeLoggingElasticsearchOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -2886,16 +2946,21 @@ type ServiceComputeLoggingKafka struct {
 	// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name            string `pulumi:"name"`
-	ParseLogKeyvals *bool  `pulumi:"parseLogKeyvals"`
+	Name string `pulumi:"name"`
+	// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+	ParseLogKeyvals *bool `pulumi:"parseLogKeyvals"`
 	// SASL Pass
-	Password        *string `pulumi:"password"`
-	RequestMaxBytes *int    `pulumi:"requestMaxBytes"`
+	Password *string `pulumi:"password"`
+	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
-	RequiredAcks  *string `pulumi:"requiredAcks"`
-	TlsCaCert     *string `pulumi:"tlsCaCert"`
+	RequiredAcks *string `pulumi:"requiredAcks"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
 	TlsClientCert *string `pulumi:"tlsClientCert"`
-	TlsClientKey  *string `pulumi:"tlsClientKey"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// The Kafka topic to send logs to
@@ -2925,16 +2990,21 @@ type ServiceComputeLoggingKafkaArgs struct {
 	// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name            pulumi.StringInput  `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
 	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
 	// SASL Pass
-	Password        pulumi.StringPtrInput `pulumi:"password"`
-	RequestMaxBytes pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
-	RequiredAcks  pulumi.StringPtrInput `pulumi:"requiredAcks"`
-	TlsCaCert     pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
 	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey  pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// The Kafka topic to send logs to
@@ -3016,6 +3086,7 @@ func (o ServiceComputeLoggingKafkaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
 func (o ServiceComputeLoggingKafkaOutput) ParseLogKeyvals() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *bool { return v.ParseLogKeyvals }).(pulumi.BoolPtrOutput)
 }
@@ -3025,6 +3096,7 @@ func (o ServiceComputeLoggingKafkaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 func (o ServiceComputeLoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
@@ -3034,14 +3106,17 @@ func (o ServiceComputeLoggingKafkaOutput) RequiredAcks() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.RequiredAcks }).(pulumi.StringPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format
 func (o ServiceComputeLoggingKafkaOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format
 func (o ServiceComputeLoggingKafkaOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format
 func (o ServiceComputeLoggingKafkaOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -3868,8 +3943,9 @@ type ServiceComputeLoggingSftp struct {
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
-	SecretKey     *string `pulumi:"secretKey"`
-	SshKnownHosts string  `pulumi:"sshKnownHosts"`
+	SecretKey *string `pulumi:"secretKey"`
+	// A list of host keys for all hosts we can connect to over SFTP
+	SshKnownHosts string `pulumi:"sshKnownHosts"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server
@@ -3907,8 +3983,9 @@ type ServiceComputeLoggingSftpArgs struct {
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
-	SecretKey     pulumi.StringPtrInput `pulumi:"secretKey"`
-	SshKnownHosts pulumi.StringInput    `pulumi:"sshKnownHosts"`
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// A list of host keys for all hosts we can connect to over SFTP
+	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server
@@ -4016,6 +4093,7 @@ func (o ServiceComputeLoggingSftpOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// A list of host keys for all hosts we can connect to over SFTP
 func (o ServiceComputeLoggingSftpOutput) SshKnownHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.SshKnownHosts }).(pulumi.StringOutput)
 }
@@ -4329,10 +4407,14 @@ type ServiceComputeS3logging struct {
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
-	Redundancy                   *string `pulumi:"redundancy"`
-	S3AccessKey                  *string `pulumi:"s3AccessKey"`
-	S3SecretKey                  *string `pulumi:"s3SecretKey"`
-	ServerSideEncryption         *string `pulumi:"serverSideEncryption"`
+	Redundancy *string `pulumi:"redundancy"`
+	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+	S3AccessKey *string `pulumi:"s3AccessKey"`
+	// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+	S3SecretKey *string `pulumi:"s3SecretKey"`
+	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
+	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
 	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -4367,10 +4449,14 @@ type ServiceComputeS3loggingArgs struct {
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
-	Redundancy                   pulumi.StringPtrInput `pulumi:"redundancy"`
-	S3AccessKey                  pulumi.StringPtrInput `pulumi:"s3AccessKey"`
-	S3SecretKey                  pulumi.StringPtrInput `pulumi:"s3SecretKey"`
-	ServerSideEncryption         pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
+	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
+	// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+	S3SecretKey pulumi.StringPtrInput `pulumi:"s3SecretKey"`
+	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
 	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -4472,18 +4558,22 @@ func (o ServiceComputeS3loggingOutput) Redundancy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }
 
+// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
 func (o ServiceComputeS3loggingOutput) S3AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.S3AccessKey }).(pulumi.StringPtrOutput)
 }
 
+// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
 func (o ServiceComputeS3loggingOutput) S3SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
 func (o ServiceComputeS3loggingOutput) ServerSideEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
 }
 
+// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 func (o ServiceComputeS3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
@@ -4515,10 +4605,13 @@ func (o ServiceComputeS3loggingArrayOutput) Index(i pulumi.IntInput) ServiceComp
 
 type ServiceComputeSplunk struct {
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name          string  `pulumi:"name"`
-	TlsCaCert     *string `pulumi:"tlsCaCert"`
+	Name string `pulumi:"name"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
 	TlsClientCert *string `pulumi:"tlsClientCert"`
-	TlsClientKey  *string `pulumi:"tlsClientKey"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// The Splunk token to be used for authentication
@@ -4540,10 +4633,13 @@ type ServiceComputeSplunkInput interface {
 
 type ServiceComputeSplunkArgs struct {
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name          pulumi.StringInput    `pulumi:"name"`
-	TlsCaCert     pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
 	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey  pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// The Splunk token to be used for authentication
@@ -4608,14 +4704,17 @@ func (o ServiceComputeSplunkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
 func (o ServiceComputeSplunkOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeSplunkOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format.
 func (o ServiceComputeSplunkOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -4778,10 +4877,13 @@ type ServiceComputeSyslog struct {
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
-	Port          *int    `pulumi:"port"`
-	TlsCaCert     *string `pulumi:"tlsCaCert"`
+	Port *int `pulumi:"port"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
 	TlsClientCert *string `pulumi:"tlsClientCert"`
-	TlsClientKey  *string `pulumi:"tlsClientKey"`
+	// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// Whether to prepend each message with a specific token
@@ -4809,10 +4911,13 @@ type ServiceComputeSyslogArgs struct {
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
-	Port          pulumi.IntPtrInput    `pulumi:"port"`
-	TlsCaCert     pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
 	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey  pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// Whether to prepend each message with a specific token
@@ -4892,14 +4997,17 @@ func (o ServiceComputeSyslogOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
 func (o ServiceComputeSyslogOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
 func (o ServiceComputeSyslogOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
 func (o ServiceComputeSyslogOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -4940,6 +5048,7 @@ func (o ServiceComputeSyslogArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 }
 
 type ServiceWafConfigurationRule struct {
+	// The Web Application Firewall rule's modsecurity ID
 	ModsecRuleId int `pulumi:"modsecRuleId"`
 	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
 	Revision *int `pulumi:"revision"`
@@ -4959,6 +5068,7 @@ type ServiceWafConfigurationRuleInput interface {
 }
 
 type ServiceWafConfigurationRuleArgs struct {
+	// The Web Application Firewall rule's modsecurity ID
 	ModsecRuleId pulumi.IntInput `pulumi:"modsecRuleId"`
 	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
 	Revision pulumi.IntPtrInput `pulumi:"revision"`
@@ -5017,6 +5127,7 @@ func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutputWi
 	return o
 }
 
+// The Web Application Firewall rule's modsecurity ID
 func (o ServiceWafConfigurationRuleOutput) ModsecRuleId() pulumi.IntOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRule) int { return v.ModsecRuleId }).(pulumi.IntOutput)
 }
@@ -5056,7 +5167,8 @@ type ServiceWafConfigurationRuleExclusion struct {
 	Condition string `pulumi:"condition"`
 	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
 	ExclusionType string `pulumi:"exclusionType"`
-	ModsecRuleIds []int  `pulumi:"modsecRuleIds"`
+	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+	ModsecRuleIds []int `pulumi:"modsecRuleIds"`
 	// The name of rule exclusion
 	Name string `pulumi:"name"`
 	// The numeric ID assigned to the WAF Rule Exclusion
@@ -5078,7 +5190,8 @@ type ServiceWafConfigurationRuleExclusionArgs struct {
 	// A conditional expression in VCL used to determine if the condition is met
 	Condition pulumi.StringInput `pulumi:"condition"`
 	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-	ExclusionType pulumi.StringInput   `pulumi:"exclusionType"`
+	ExclusionType pulumi.StringInput `pulumi:"exclusionType"`
+	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
 	ModsecRuleIds pulumi.IntArrayInput `pulumi:"modsecRuleIds"`
 	// The name of rule exclusion
 	Name pulumi.StringInput `pulumi:"name"`
@@ -5147,6 +5260,7 @@ func (o ServiceWafConfigurationRuleExclusionOutput) ExclusionType() pulumi.Strin
 	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.ExclusionType }).(pulumi.StringOutput)
 }
 
+// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
 func (o ServiceWafConfigurationRuleExclusionOutput) ModsecRuleIds() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) []int { return v.ModsecRuleIds }).(pulumi.IntArrayOutput)
 }
@@ -5300,18 +5414,22 @@ type Servicev1Backend struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address string `pulumi:"address"`
 	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
-	AutoLoadbalance     *bool `pulumi:"autoLoadbalance"`
-	BetweenBytesTimeout *int  `pulumi:"betweenBytesTimeout"`
+	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`
+	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
 	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold   *int `pulumi:"errorThreshold"`
+	ErrorThreshold *int `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
 	// Maximum number of connections for this Backend. Default `200`
-	MaxConn       *int    `pulumi:"maxConn"`
+	MaxConn *int `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -5322,18 +5440,24 @@ type Servicev1Backend struct {
 	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition *string `pulumi:"requestCondition"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
-	Shield          *string `pulumi:"shield"`
-	SslCaCert       *string `pulumi:"sslCaCert"`
+	Shield *string `pulumi:"shield"`
+	// CA certificate attached to origin.
+	SslCaCert *string `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
 	SslCertHostname *string `pulumi:"sslCertHostname"`
-	SslCheckCert    *bool   `pulumi:"sslCheckCert"`
+	// Be strict about checking SSL certs. Default `true`
+	SslCheckCert *bool `pulumi:"sslCheckCert"`
 	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
-	SslCiphers    *string `pulumi:"sslCiphers"`
+	SslCiphers *string `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert *string `pulumi:"sslClientCert"`
-	SslClientKey  *string `pulumi:"sslClientKey"`
+	// Client key attached to origin. Used when connecting to the backend
+	SslClientKey *string `pulumi:"sslClientKey"`
 	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname    *string `pulumi:"sslHostname"`
+	SslHostname *string `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
 	SslSniHostname *string `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl *bool `pulumi:"useSsl"`
@@ -5356,18 +5480,22 @@ type Servicev1BackendArgs struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address pulumi.StringInput `pulumi:"address"`
 	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
-	AutoLoadbalance     pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
-	BetweenBytesTimeout pulumi.IntPtrInput  `pulumi:"betweenBytesTimeout"`
+	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
+	// How long to wait between bytes in milliseconds. Default `10000`
+	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
 	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold   pulumi.IntPtrInput `pulumi:"errorThreshold"`
+	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
+	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
 	// Maximum number of connections for this Backend. Default `200`
-	MaxConn       pulumi.IntPtrInput    `pulumi:"maxConn"`
+	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -5378,18 +5506,24 @@ type Servicev1BackendArgs struct {
 	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
-	Shield          pulumi.StringPtrInput `pulumi:"shield"`
-	SslCaCert       pulumi.StringPtrInput `pulumi:"sslCaCert"`
+	Shield pulumi.StringPtrInput `pulumi:"shield"`
+	// CA certificate attached to origin.
+	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
+	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
-	SslCheckCert    pulumi.BoolPtrInput   `pulumi:"sslCheckCert"`
+	// Be strict about checking SSL certs. Default `true`
+	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
 	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
-	SslCiphers    pulumi.StringPtrInput `pulumi:"sslCiphers"`
+	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
+	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
-	SslClientKey  pulumi.StringPtrInput `pulumi:"sslClientKey"`
+	// Client key attached to origin. Used when connecting to the backend
+	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
 	// Used for both SNI during the TLS handshake and to validate the cert
 	//
 	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname    pulumi.StringPtrInput `pulumi:"sslHostname"`
+	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
+	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
@@ -5458,6 +5592,7 @@ func (o Servicev1BackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
 }
 
+// How long to wait between bytes in milliseconds. Default `10000`
 func (o Servicev1BackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
 }
@@ -5472,6 +5607,7 @@ func (o Servicev1BackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
+// How long to wait for the first bytes in milliseconds. Default `15000`
 func (o Servicev1BackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.FirstByteTimeout }).(pulumi.IntPtrOutput)
 }
@@ -5486,10 +5622,12 @@ func (o Servicev1BackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
+// Maximum allowed TLS version on SSL connections to this backend.
 func (o Servicev1BackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
 }
 
+// Minimum allowed TLS version on SSL connections to this backend.
 func (o Servicev1BackendOutput) MinTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
 }
@@ -5519,14 +5657,17 @@ func (o Servicev1BackendOutput) Shield() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.Shield }).(pulumi.StringPtrOutput)
 }
 
+// CA certificate attached to origin.
 func (o Servicev1BackendOutput) SslCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
 }
 
+// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
 func (o Servicev1BackendOutput) SslCertHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
 }
 
+// Be strict about checking SSL certs. Default `true`
 func (o Servicev1BackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
 }
@@ -5536,10 +5677,12 @@ func (o Servicev1BackendOutput) SslCiphers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
 }
 
+// Client certificate attached to origin. Used when connecting to the backend
 func (o Servicev1BackendOutput) SslClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslClientCert }).(pulumi.StringPtrOutput)
 }
 
+// Client key attached to origin. Used when connecting to the backend
 func (o Servicev1BackendOutput) SslClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
 }
@@ -5551,6 +5694,7 @@ func (o Servicev1BackendOutput) SslHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
 }
 
+// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
 func (o Servicev1BackendOutput) SslSniHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
 }
@@ -7072,7 +7216,8 @@ type Servicev1Header struct {
 	CacheCondition *string `pulumi:"cacheCondition"`
 	// The name of the header that is going to be affected by the Action
 	Destination string `pulumi:"destination"`
-	IgnoreIfSet *bool  `pulumi:"ignoreIfSet"`
+	// Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+	IgnoreIfSet *bool `pulumi:"ignoreIfSet"`
 	// Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Lower priorities execute first. Default: `100`
@@ -7108,7 +7253,8 @@ type Servicev1HeaderArgs struct {
 	// Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
 	CacheCondition pulumi.StringPtrInput `pulumi:"cacheCondition"`
 	// The name of the header that is going to be affected by the Action
-	Destination pulumi.StringInput  `pulumi:"destination"`
+	Destination pulumi.StringInput `pulumi:"destination"`
+	// Don't add the header if it is already. (Only applies to `set` action.). Default `false`
 	IgnoreIfSet pulumi.BoolPtrInput `pulumi:"ignoreIfSet"`
 	// Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -7194,6 +7340,7 @@ func (o Servicev1HeaderOutput) Destination() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Header) string { return v.Destination }).(pulumi.StringOutput)
 }
 
+// Don't add the header if it is already. (Only applies to `set` action.). Default `false`
 func (o Servicev1HeaderOutput) IgnoreIfSet() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Header) *bool { return v.IgnoreIfSet }).(pulumi.BoolPtrOutput)
 }
@@ -7465,14 +7612,19 @@ type Servicev1Httpslogging struct {
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed
-	Placement         *string `pulumi:"placement"`
-	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
+	Placement *string `pulumi:"placement"`
+	// The maximum number of bytes sent in one request
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request
+	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
 	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
-	TlsCaCert         *string `pulumi:"tlsCaCert"`
-	TlsClientCert     *string `pulumi:"tlsClientCert"`
-	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// URL that log data will be sent to. Must use the https protocol
@@ -7510,14 +7662,19 @@ type Servicev1HttpsloggingArgs struct {
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed
-	Placement         pulumi.StringPtrInput `pulumi:"placement"`
-	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The maximum number of bytes sent in one request
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
+	// The maximum number of logs sent in one request
+	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
 	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// URL that log data will be sent to. Must use the https protocol
@@ -7625,10 +7782,12 @@ func (o Servicev1HttpsloggingOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The maximum number of bytes sent in one request
 func (o Servicev1HttpsloggingOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
+// The maximum number of logs sent in one request
 func (o Servicev1HttpsloggingOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
@@ -7638,14 +7797,17 @@ func (o Servicev1HttpsloggingOutput) ResponseCondition() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format
 func (o Servicev1HttpsloggingOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format
 func (o Servicev1HttpsloggingOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format
 func (o Servicev1HttpsloggingOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -8451,14 +8613,19 @@ type Servicev1LoggingElasticsearch struct {
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline *string `pulumi:"pipeline"`
 	// Where in the generated VCL the logging call should be placed.
-	Placement         *string `pulumi:"placement"`
-	RequestMaxBytes   *int    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries *int    `pulumi:"requestMaxEntries"`
+	Placement *string `pulumi:"placement"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+	RequestMaxEntries *int `pulumi:"requestMaxEntries"`
 	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
-	TlsCaCert         *string `pulumi:"tlsCaCert"`
-	TlsClientCert     *string `pulumi:"tlsClientCert"`
-	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// The Elasticsearch URL to stream logs to
@@ -8492,14 +8659,19 @@ type Servicev1LoggingElasticsearchArgs struct {
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
 	// Where in the generated VCL the logging call should be placed.
-	Placement         pulumi.StringPtrInput `pulumi:"placement"`
-	RequestMaxBytes   pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
-	RequestMaxEntries pulumi.IntPtrInput    `pulumi:"requestMaxEntries"`
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
+	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+	RequestMaxEntries pulumi.IntPtrInput `pulumi:"requestMaxEntries"`
 	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// The Elasticsearch URL to stream logs to
@@ -8594,10 +8766,12 @@ func (o Servicev1LoggingElasticsearchOutput) Placement() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 func (o Servicev1LoggingElasticsearchOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
+// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
 func (o Servicev1LoggingElasticsearchOutput) RequestMaxEntries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *int { return v.RequestMaxEntries }).(pulumi.IntPtrOutput)
 }
@@ -8607,14 +8781,17 @@ func (o Servicev1LoggingElasticsearchOutput) ResponseCondition() pulumi.StringPt
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format
 func (o Servicev1LoggingElasticsearchOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format
 func (o Servicev1LoggingElasticsearchOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format
 func (o Servicev1LoggingElasticsearchOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingElasticsearch) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -9360,20 +9537,25 @@ type Servicev1LoggingKafka struct {
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name            string `pulumi:"name"`
-	ParseLogKeyvals *bool  `pulumi:"parseLogKeyvals"`
+	Name string `pulumi:"name"`
+	// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+	ParseLogKeyvals *bool `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password *string `pulumi:"password"`
 	// Where in the generated VCL the logging call should be placed.
-	Placement       *string `pulumi:"placement"`
-	RequestMaxBytes *int    `pulumi:"requestMaxBytes"`
+	Placement *string `pulumi:"placement"`
+	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
 	RequiredAcks *string `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	TlsCaCert         *string `pulumi:"tlsCaCert"`
-	TlsClientCert     *string `pulumi:"tlsClientCert"`
-	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// The Kafka topic to send logs to
@@ -9407,20 +9589,25 @@ type Servicev1LoggingKafkaArgs struct {
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-	Name            pulumi.StringInput  `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
 	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Where in the generated VCL the logging call should be placed.
-	Placement       pulumi.StringPtrInput `pulumi:"placement"`
-	RequestMaxBytes pulumi.IntPtrInput    `pulumi:"requestMaxBytes"`
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
 	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// The Kafka topic to send logs to
@@ -9512,6 +9699,7 @@ func (o Servicev1LoggingKafkaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
 func (o Servicev1LoggingKafkaOutput) ParseLogKeyvals() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *bool { return v.ParseLogKeyvals }).(pulumi.BoolPtrOutput)
 }
@@ -9526,6 +9714,7 @@ func (o Servicev1LoggingKafkaOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 func (o Servicev1LoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
@@ -9540,14 +9729,17 @@ func (o Servicev1LoggingKafkaOutput) ResponseCondition() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format
 func (o Servicev1LoggingKafkaOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format
 func (o Servicev1LoggingKafkaOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format
 func (o Servicev1LoggingKafkaOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingKafka) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -10598,8 +10790,9 @@ type Servicev1LoggingSftp struct {
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
-	SecretKey     *string `pulumi:"secretKey"`
-	SshKnownHosts string  `pulumi:"sshKnownHosts"`
+	SecretKey *string `pulumi:"secretKey"`
+	// A list of host keys for all hosts we can connect to over SFTP
+	SshKnownHosts string `pulumi:"sshKnownHosts"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server
@@ -10645,8 +10838,9 @@ type Servicev1LoggingSftpArgs struct {
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
-	SecretKey     pulumi.StringPtrInput `pulumi:"secretKey"`
-	SshKnownHosts pulumi.StringInput    `pulumi:"sshKnownHosts"`
+	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
+	// A list of host keys for all hosts we can connect to over SFTP
+	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server
@@ -10774,6 +10968,7 @@ func (o Servicev1LoggingSftpOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// A list of host keys for all hosts we can connect to over SFTP
 func (o Servicev1LoggingSftpOutput) SshKnownHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) string { return v.SshKnownHosts }).(pulumi.StringOutput)
 }
@@ -10961,8 +11156,9 @@ func (o Servicev1PapertrailArrayOutput) Index(i pulumi.IntInput) Servicev1Papert
 
 type Servicev1RequestSetting struct {
 	// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
-	Action         *string `pulumi:"action"`
-	BypassBusyWait *bool   `pulumi:"bypassBusyWait"`
+	Action *string `pulumi:"action"`
+	// Disable collapsed forwarding, so you don't wait for other objects to origin
+	BypassBusyWait *bool `pulumi:"bypassBusyWait"`
 	// Sets the host header
 	DefaultHost *string `pulumi:"defaultHost"`
 	// Force a cache miss for the request. If specified, can be `true` or `false`
@@ -10972,8 +11168,9 @@ type Servicev1RequestSetting struct {
 	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
 	GeoHeaders *bool `pulumi:"geoHeaders"`
 	// Comma separated list of varnish request object fields that should be in the hash key
-	HashKeys    *string `pulumi:"hashKeys"`
-	MaxStaleAge *int    `pulumi:"maxStaleAge"`
+	HashKeys *string `pulumi:"hashKeys"`
+	// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+	MaxStaleAge *int `pulumi:"maxStaleAge"`
 	// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Name of already defined `condition` to determine if this request setting should be applied
@@ -10997,8 +11194,9 @@ type Servicev1RequestSettingInput interface {
 
 type Servicev1RequestSettingArgs struct {
 	// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
-	Action         pulumi.StringPtrInput `pulumi:"action"`
-	BypassBusyWait pulumi.BoolPtrInput   `pulumi:"bypassBusyWait"`
+	Action pulumi.StringPtrInput `pulumi:"action"`
+	// Disable collapsed forwarding, so you don't wait for other objects to origin
+	BypassBusyWait pulumi.BoolPtrInput `pulumi:"bypassBusyWait"`
 	// Sets the host header
 	DefaultHost pulumi.StringPtrInput `pulumi:"defaultHost"`
 	// Force a cache miss for the request. If specified, can be `true` or `false`
@@ -11008,8 +11206,9 @@ type Servicev1RequestSettingArgs struct {
 	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
 	GeoHeaders pulumi.BoolPtrInput `pulumi:"geoHeaders"`
 	// Comma separated list of varnish request object fields that should be in the hash key
-	HashKeys    pulumi.StringPtrInput `pulumi:"hashKeys"`
-	MaxStaleAge pulumi.IntPtrInput    `pulumi:"maxStaleAge"`
+	HashKeys pulumi.StringPtrInput `pulumi:"hashKeys"`
+	// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+	MaxStaleAge pulumi.IntPtrInput `pulumi:"maxStaleAge"`
 	// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Name of already defined `condition` to determine if this request setting should be applied
@@ -11076,6 +11275,7 @@ func (o Servicev1RequestSettingOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
 
+// Disable collapsed forwarding, so you don't wait for other objects to origin
 func (o Servicev1RequestSettingOutput) BypassBusyWait() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.BypassBusyWait }).(pulumi.BoolPtrOutput)
 }
@@ -11105,6 +11305,7 @@ func (o Servicev1RequestSettingOutput) HashKeys() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *string { return v.HashKeys }).(pulumi.StringPtrOutput)
 }
 
+// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
 func (o Servicev1RequestSettingOutput) MaxStaleAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *int { return v.MaxStaleAge }).(pulumi.IntPtrOutput)
 }
@@ -11326,10 +11527,14 @@ type Servicev1S3logging struct {
 	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
 	Redundancy *string `pulumi:"redundancy"`
 	// Name of blockAttributes condition to apply this logging.
-	ResponseCondition            *string `pulumi:"responseCondition"`
-	S3AccessKey                  *string `pulumi:"s3AccessKey"`
-	S3SecretKey                  *string `pulumi:"s3SecretKey"`
-	ServerSideEncryption         *string `pulumi:"serverSideEncryption"`
+	ResponseCondition *string `pulumi:"responseCondition"`
+	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+	S3AccessKey *string `pulumi:"s3AccessKey"`
+	// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+	S3SecretKey *string `pulumi:"s3SecretKey"`
+	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
+	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
 	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -11372,10 +11577,14 @@ type Servicev1S3loggingArgs struct {
 	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
 	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
 	// Name of blockAttributes condition to apply this logging.
-	ResponseCondition            pulumi.StringPtrInput `pulumi:"responseCondition"`
-	S3AccessKey                  pulumi.StringPtrInput `pulumi:"s3AccessKey"`
-	S3SecretKey                  pulumi.StringPtrInput `pulumi:"s3SecretKey"`
-	ServerSideEncryption         pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
+	// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+	S3SecretKey pulumi.StringPtrInput `pulumi:"s3SecretKey"`
+	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
+	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
 	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -11497,18 +11706,22 @@ func (o Servicev1S3loggingOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
 func (o Servicev1S3loggingOutput) S3AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.S3AccessKey }).(pulumi.StringPtrOutput)
 }
 
+// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
 func (o Servicev1S3loggingOutput) S3SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.S3SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
 func (o Servicev1S3loggingOutput) ServerSideEncryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
 }
 
+// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 func (o Servicev1S3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
@@ -11673,9 +11886,12 @@ type Servicev1Splunk struct {
 	Placement *string `pulumi:"placement"`
 	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
-	TlsCaCert         *string `pulumi:"tlsCaCert"`
-	TlsClientCert     *string `pulumi:"tlsClientCert"`
-	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// The Splunk token to be used for authentication
@@ -11706,9 +11922,12 @@ type Servicev1SplunkArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format.
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format.
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// The Splunk token to be used for authentication
@@ -11793,14 +12012,17 @@ func (o Servicev1SplunkOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
 func (o Servicev1SplunkOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format.
 func (o Servicev1SplunkOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format.
 func (o Servicev1SplunkOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Splunk) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }
@@ -12008,9 +12230,12 @@ type Servicev1Syslog struct {
 	Port *int `pulumi:"port"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	TlsCaCert         *string `pulumi:"tlsCaCert"`
-	TlsClientCert     *string `pulumi:"tlsClientCert"`
-	TlsClientKey      *string `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+	TlsCaCert *string `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+	TlsClientCert *string `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+	TlsClientKey *string `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname *string `pulumi:"tlsHostname"`
 	// Whether to prepend each message with a specific token
@@ -12047,9 +12272,12 @@ type Servicev1SyslogArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	TlsCaCert         pulumi.StringPtrInput `pulumi:"tlsCaCert"`
-	TlsClientCert     pulumi.StringPtrInput `pulumi:"tlsClientCert"`
-	TlsClientKey      pulumi.StringPtrInput `pulumi:"tlsClientKey"`
+	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
+	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+	TlsClientCert pulumi.StringPtrInput `pulumi:"tlsClientCert"`
+	// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+	TlsClientKey pulumi.StringPtrInput `pulumi:"tlsClientKey"`
 	// Used during the TLS handshake to validate the certificate
 	TlsHostname pulumi.StringPtrInput `pulumi:"tlsHostname"`
 	// Whether to prepend each message with a specific token
@@ -12149,14 +12377,17 @@ func (o Servicev1SyslogOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
+// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
 func (o Servicev1SyslogOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
 }
 
+// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
 func (o Servicev1SyslogOutput) TlsClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsClientCert }).(pulumi.StringPtrOutput)
 }
 
+// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
 func (o Servicev1SyslogOutput) TlsClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.TlsClientKey }).(pulumi.StringPtrOutput)
 }

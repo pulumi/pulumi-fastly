@@ -13,6 +13,9 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class ServiceWafConfigurationRule
     {
+        /// <summary>
+        /// The Web Application Firewall rule's modsecurity ID
+        /// </summary>
         public readonly int ModsecRuleId;
         /// <summary>
         /// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided

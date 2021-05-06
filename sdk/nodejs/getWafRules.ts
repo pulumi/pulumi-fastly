@@ -26,7 +26,7 @@ export function getWafRules(args?: GetWafRulesArgs, opts?: pulumi.InvokeOptions)
  */
 export interface GetWafRulesArgs {
     /**
-     * Exclusion filter by WAF rule's ModSecurity ID.
+     * A list of modsecurity rules IDs to be excluded from the data set.
      */
     readonly excludeModsecRuleIds?: number[];
     /**

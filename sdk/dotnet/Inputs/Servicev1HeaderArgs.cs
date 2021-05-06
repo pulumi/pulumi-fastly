@@ -30,6 +30,9 @@ namespace Pulumi.Fastly.Inputs
         [Input("destination", required: true)]
         public Input<string> Destination { get; set; } = null!;
 
+        /// <summary>
+        /// Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        /// </summary>
         [Input("ignoreIfSet")]
         public Input<bool>? IgnoreIfSet { get; set; }
 

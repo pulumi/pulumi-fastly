@@ -45,8 +45,17 @@ namespace Pulumi.Fastly.Outputs
         /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
+        /// <summary>
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        /// </summary>
         public readonly string? TlsCaCert;
+        /// <summary>
+        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        /// </summary>
         public readonly string? TlsClientCert;
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
         /// Used during the TLS handshake to validate the certificate

@@ -236,15 +236,25 @@ class ServiceComputeBackend(dict):
         :param str address: An IPv4, hostname, or IPv6 address for the Backend
         :param str name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
         :param bool auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param int connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
         :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
+        :param int first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param str healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param int max_conn: Maximum number of connections for this Backend. Default `200`
+        :param str max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
+        :param str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param str override_host: The hostname to override the Host header
         :param int port: The port number on which the Backend responds. Default `80`
         :param str shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+        :param str ssl_ca_cert: CA certificate attached to origin.
+        :param str ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        :param bool ssl_check_cert: Be strict about checking SSL certs. Default `true`
         :param str ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        :param str ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
+        :param str ssl_client_key: Client key attached to origin. Used when connecting to the backend
         :param str ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
+        :param str ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
         :param bool use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param int weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
@@ -322,6 +332,9 @@ class ServiceComputeBackend(dict):
     @property
     @pulumi.getter(name="betweenBytesTimeout")
     def between_bytes_timeout(self) -> Optional[int]:
+        """
+        How long to wait between bytes in milliseconds. Default `10000`
+        """
         return pulumi.get(self, "between_bytes_timeout")
 
     @property
@@ -343,6 +356,9 @@ class ServiceComputeBackend(dict):
     @property
     @pulumi.getter(name="firstByteTimeout")
     def first_byte_timeout(self) -> Optional[int]:
+        """
+        How long to wait for the first bytes in milliseconds. Default `15000`
+        """
         return pulumi.get(self, "first_byte_timeout")
 
     @property
@@ -364,11 +380,17 @@ class ServiceComputeBackend(dict):
     @property
     @pulumi.getter(name="maxTlsVersion")
     def max_tls_version(self) -> Optional[str]:
+        """
+        Maximum allowed TLS version on SSL connections to this backend.
+        """
         return pulumi.get(self, "max_tls_version")
 
     @property
     @pulumi.getter(name="minTlsVersion")
     def min_tls_version(self) -> Optional[str]:
+        """
+        Minimum allowed TLS version on SSL connections to this backend.
+        """
         return pulumi.get(self, "min_tls_version")
 
     @property
@@ -398,16 +420,25 @@ class ServiceComputeBackend(dict):
     @property
     @pulumi.getter(name="sslCaCert")
     def ssl_ca_cert(self) -> Optional[str]:
+        """
+        CA certificate attached to origin.
+        """
         return pulumi.get(self, "ssl_ca_cert")
 
     @property
     @pulumi.getter(name="sslCertHostname")
     def ssl_cert_hostname(self) -> Optional[str]:
+        """
+        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        """
         return pulumi.get(self, "ssl_cert_hostname")
 
     @property
     @pulumi.getter(name="sslCheckCert")
     def ssl_check_cert(self) -> Optional[bool]:
+        """
+        Be strict about checking SSL certs. Default `true`
+        """
         return pulumi.get(self, "ssl_check_cert")
 
     @property
@@ -421,11 +452,17 @@ class ServiceComputeBackend(dict):
     @property
     @pulumi.getter(name="sslClientCert")
     def ssl_client_cert(self) -> Optional[str]:
+        """
+        Client certificate attached to origin. Used when connecting to the backend
+        """
         return pulumi.get(self, "ssl_client_cert")
 
     @property
     @pulumi.getter(name="sslClientKey")
     def ssl_client_key(self) -> Optional[str]:
+        """
+        Client key attached to origin. Used when connecting to the backend
+        """
         return pulumi.get(self, "ssl_client_key")
 
     @property
@@ -439,6 +476,9 @@ class ServiceComputeBackend(dict):
     @property
     @pulumi.getter(name="sslSniHostname")
     def ssl_sni_hostname(self) -> Optional[str]:
+        """
+        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        """
         return pulumi.get(self, "ssl_sni_hostname")
 
     @property
@@ -1171,6 +1211,11 @@ class ServiceComputeHttpslogging(dict):
         :param str json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         :param str message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
         :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        :param int request_max_bytes: The maximum number of bytes sent in one request
+        :param int request_max_entries: The maximum number of logs sent in one request
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: Used during the TLS handshake to validate the certificate
         """
         pulumi.set(__self__, "name", name)
@@ -1267,26 +1312,41 @@ class ServiceComputeHttpslogging(dict):
     @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request
+        """
         return pulumi.get(self, "request_max_bytes")
 
     @property
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[int]:
+        """
+        The maximum number of logs sent in one request
+        """
         return pulumi.get(self, "request_max_entries")
 
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -1783,6 +1843,11 @@ class ServiceComputeLoggingElasticsearch(dict):
         :param str url: The Elasticsearch URL to stream logs to
         :param str password: BasicAuth password for Elasticsearch
         :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        :param int request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        :param int request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         :param str user: BasicAuth username for Elasticsearch
         """
@@ -1851,26 +1916,41 @@ class ServiceComputeLoggingElasticsearch(dict):
     @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        """
         return pulumi.get(self, "request_max_bytes")
 
     @property
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        """
         return pulumi.get(self, "request_max_entries")
 
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -2267,8 +2347,13 @@ class ServiceComputeLoggingKafka(dict):
         :param str topic: The Kafka topic to send logs to
         :param str auth_method: SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
         :param str compression_codec: The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
+        :param bool parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param str password: SASL Pass
+        :param int request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         :param str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         :param bool use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
         :param str user: SASL User
@@ -2344,6 +2429,9 @@ class ServiceComputeLoggingKafka(dict):
     @property
     @pulumi.getter(name="parseLogKeyvals")
     def parse_log_keyvals(self) -> Optional[bool]:
+        """
+        Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        """
         return pulumi.get(self, "parse_log_keyvals")
 
     @property
@@ -2357,6 +2445,9 @@ class ServiceComputeLoggingKafka(dict):
     @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[int]:
+        """
+        Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+        """
         return pulumi.get(self, "request_max_bytes")
 
     @property
@@ -2370,16 +2461,25 @@ class ServiceComputeLoggingKafka(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -2836,6 +2936,7 @@ class ServiceComputeLoggingSftp(dict):
         :param str address: The SFTP address to stream logs to
         :param str name: The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        :param str ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP
         :param str user: The username for the server
         :param int gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
         :param str message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
@@ -2895,6 +2996,9 @@ class ServiceComputeLoggingSftp(dict):
     @property
     @pulumi.getter(name="sshKnownHosts")
     def ssh_known_hosts(self) -> str:
+        """
+        A list of host keys for all hosts we can connect to over SFTP
+        """
         return pulumi.get(self, "ssh_known_hosts")
 
     @property
@@ -3113,6 +3217,10 @@ class ServiceComputeS3logging(dict):
         :param int period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        :param str s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
         :param str timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -3217,21 +3325,33 @@ class ServiceComputeS3logging(dict):
     @property
     @pulumi.getter(name="s3AccessKey")
     def s3_access_key(self) -> Optional[str]:
+        """
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        """
         return pulumi.get(self, "s3_access_key")
 
     @property
     @pulumi.getter(name="s3SecretKey")
     def s3_secret_key(self) -> Optional[str]:
+        """
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        """
         return pulumi.get(self, "s3_secret_key")
 
     @property
     @pulumi.getter(name="serverSideEncryption")
     def server_side_encryption(self) -> Optional[str]:
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        """
         return pulumi.get(self, "server_side_encryption")
 
     @property
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[str]:
+        """
+        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
     @property
@@ -3280,6 +3400,9 @@ class ServiceComputeSplunk(dict):
         :param str name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str token: The Splunk token to be used for authentication
         :param str url: The Splunk URL to stream logs to
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         pulumi.set(__self__, "name", name)
@@ -3321,16 +3444,25 @@ class ServiceComputeSplunk(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format.
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format.
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -3445,6 +3577,9 @@ class ServiceComputeSyslog(dict):
         :param str name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         :param int port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
         :param str tls_hostname: Used during the TLS handshake to validate the certificate
         :param str token: Whether to prepend each message with a specific token
         :param bool use_tls: Whether to use TLS for secure logging. Default `false`
@@ -3503,16 +3638,25 @@ class ServiceComputeSyslog(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -3564,6 +3708,7 @@ class ServiceWafConfigurationRule(dict):
                  status: str,
                  revision: Optional[int] = None):
         """
+        :param int modsec_rule_id: The Web Application Firewall rule's modsecurity ID
         :param str status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
         :param int revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
         """
@@ -3575,6 +3720,9 @@ class ServiceWafConfigurationRule(dict):
     @property
     @pulumi.getter(name="modsecRuleId")
     def modsec_rule_id(self) -> int:
+        """
+        The Web Application Firewall rule's modsecurity ID
+        """
         return pulumi.get(self, "modsec_rule_id")
 
     @property
@@ -3625,6 +3773,7 @@ class ServiceWafConfigurationRuleExclusion(dict):
         :param str condition: A conditional expression in VCL used to determine if the condition is met
         :param str exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
         :param str name: The name of rule exclusion
+        :param Sequence[int] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
         :param int number: The numeric ID assigned to the WAF Rule Exclusion
         """
         pulumi.set(__self__, "condition", condition)
@@ -3662,6 +3811,9 @@ class ServiceWafConfigurationRuleExclusion(dict):
     @property
     @pulumi.getter(name="modsecRuleIds")
     def modsec_rule_ids(self) -> Optional[Sequence[int]]:
+        """
+        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+        """
         return pulumi.get(self, "modsec_rule_ids")
 
     @property
@@ -3819,16 +3971,26 @@ class Servicev1Backend(dict):
         :param str address: An IPv4, hostname, or IPv6 address for the Backend
         :param str name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
         :param bool auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param int connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
         :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
+        :param int first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param str healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param int max_conn: Maximum number of connections for this Backend. Default `200`
+        :param str max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
+        :param str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param str override_host: The hostname to override the Host header
         :param int port: The port number on which the Backend responds. Default `80`
         :param str request_condition: Name of a condition, which if met, will select this backend during a request.
         :param str shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+        :param str ssl_ca_cert: CA certificate attached to origin.
+        :param str ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        :param bool ssl_check_cert: Be strict about checking SSL certs. Default `true`
         :param str ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        :param str ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
+        :param str ssl_client_key: Client key attached to origin. Used when connecting to the backend
         :param str ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
+        :param str ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
         :param bool use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param int weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
@@ -3908,6 +4070,9 @@ class Servicev1Backend(dict):
     @property
     @pulumi.getter(name="betweenBytesTimeout")
     def between_bytes_timeout(self) -> Optional[int]:
+        """
+        How long to wait between bytes in milliseconds. Default `10000`
+        """
         return pulumi.get(self, "between_bytes_timeout")
 
     @property
@@ -3929,6 +4094,9 @@ class Servicev1Backend(dict):
     @property
     @pulumi.getter(name="firstByteTimeout")
     def first_byte_timeout(self) -> Optional[int]:
+        """
+        How long to wait for the first bytes in milliseconds. Default `15000`
+        """
         return pulumi.get(self, "first_byte_timeout")
 
     @property
@@ -3950,11 +4118,17 @@ class Servicev1Backend(dict):
     @property
     @pulumi.getter(name="maxTlsVersion")
     def max_tls_version(self) -> Optional[str]:
+        """
+        Maximum allowed TLS version on SSL connections to this backend.
+        """
         return pulumi.get(self, "max_tls_version")
 
     @property
     @pulumi.getter(name="minTlsVersion")
     def min_tls_version(self) -> Optional[str]:
+        """
+        Minimum allowed TLS version on SSL connections to this backend.
+        """
         return pulumi.get(self, "min_tls_version")
 
     @property
@@ -3992,16 +4166,25 @@ class Servicev1Backend(dict):
     @property
     @pulumi.getter(name="sslCaCert")
     def ssl_ca_cert(self) -> Optional[str]:
+        """
+        CA certificate attached to origin.
+        """
         return pulumi.get(self, "ssl_ca_cert")
 
     @property
     @pulumi.getter(name="sslCertHostname")
     def ssl_cert_hostname(self) -> Optional[str]:
+        """
+        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        """
         return pulumi.get(self, "ssl_cert_hostname")
 
     @property
     @pulumi.getter(name="sslCheckCert")
     def ssl_check_cert(self) -> Optional[bool]:
+        """
+        Be strict about checking SSL certs. Default `true`
+        """
         return pulumi.get(self, "ssl_check_cert")
 
     @property
@@ -4015,11 +4198,17 @@ class Servicev1Backend(dict):
     @property
     @pulumi.getter(name="sslClientCert")
     def ssl_client_cert(self) -> Optional[str]:
+        """
+        Client certificate attached to origin. Used when connecting to the backend
+        """
         return pulumi.get(self, "ssl_client_cert")
 
     @property
     @pulumi.getter(name="sslClientKey")
     def ssl_client_key(self) -> Optional[str]:
+        """
+        Client key attached to origin. Used when connecting to the backend
+        """
         return pulumi.get(self, "ssl_client_key")
 
     @property
@@ -4033,6 +4222,9 @@ class Servicev1Backend(dict):
     @property
     @pulumi.getter(name="sslSniHostname")
     def ssl_sni_hostname(self) -> Optional[str]:
+        """
+        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        """
         return pulumi.get(self, "ssl_sni_hostname")
 
     @property
@@ -5098,6 +5290,7 @@ class Servicev1Header(dict):
         :param str name: Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
         :param str type: The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
         :param str cache_condition: Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        :param bool ignore_if_set: Don't add the header if it is already. (Only applies to `set` action.). Default `false`
         :param int priority: Lower priorities execute first. Default: `100`
         :param str regex: Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
         :param str request_condition: Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
@@ -5169,6 +5362,9 @@ class Servicev1Header(dict):
     @property
     @pulumi.getter(name="ignoreIfSet")
     def ignore_if_set(self) -> Optional[bool]:
+        """
+        Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        """
         return pulumi.get(self, "ignore_if_set")
 
     @property
@@ -5451,7 +5647,12 @@ class Servicev1Httpslogging(dict):
         :param str message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
         :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         :param str placement: Where in the generated VCL the logging call should be placed
+        :param int request_max_bytes: The maximum number of bytes sent in one request
+        :param int request_max_entries: The maximum number of logs sent in one request
         :param str response_condition: The name of the condition to apply
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: Used during the TLS handshake to validate the certificate
         """
         pulumi.set(__self__, "name", name)
@@ -5580,11 +5781,17 @@ class Servicev1Httpslogging(dict):
     @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request
+        """
         return pulumi.get(self, "request_max_bytes")
 
     @property
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[int]:
+        """
+        The maximum number of logs sent in one request
+        """
         return pulumi.get(self, "request_max_entries")
 
     @property
@@ -5598,16 +5805,25 @@ class Servicev1Httpslogging(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -6338,7 +6554,12 @@ class Servicev1LoggingElasticsearch(dict):
         :param str password: BasicAuth password for Elasticsearch
         :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         :param str placement: Where in the generated VCL the logging call should be placed.
+        :param int request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        :param int request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         :param str response_condition: The name of the condition to apply
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         :param str user: BasicAuth username for Elasticsearch
         """
@@ -6439,11 +6660,17 @@ class Servicev1LoggingElasticsearch(dict):
     @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        """
         return pulumi.get(self, "request_max_bytes")
 
     @property
     @pulumi.getter(name="requestMaxEntries")
     def request_max_entries(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        """
         return pulumi.get(self, "request_max_entries")
 
     @property
@@ -6457,16 +6684,25 @@ class Servicev1LoggingElasticsearch(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -7111,10 +7347,15 @@ class Servicev1LoggingKafka(dict):
         :param str compression_codec: The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param bool parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param str password: SASL Pass
         :param str placement: Where in the generated VCL the logging call should be placed.
+        :param int request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         :param str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         :param bool use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
         :param str user: SASL User
@@ -7214,6 +7455,9 @@ class Servicev1LoggingKafka(dict):
     @property
     @pulumi.getter(name="parseLogKeyvals")
     def parse_log_keyvals(self) -> Optional[bool]:
+        """
+        Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        """
         return pulumi.get(self, "parse_log_keyvals")
 
     @property
@@ -7235,6 +7479,9 @@ class Servicev1LoggingKafka(dict):
     @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[int]:
+        """
+        Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+        """
         return pulumi.get(self, "request_max_bytes")
 
     @property
@@ -7256,16 +7503,25 @@ class Servicev1LoggingKafka(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -8102,6 +8358,7 @@ class Servicev1LoggingSftp(dict):
         :param str address: The SFTP address to stream logs to
         :param str name: The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        :param str ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP
         :param str user: The username for the server
         :param str format: Apache-style string or VCL variables to use for log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
@@ -8173,6 +8430,9 @@ class Servicev1LoggingSftp(dict):
     @property
     @pulumi.getter(name="sshKnownHosts")
     def ssh_known_hosts(self) -> str:
+        """
+        A list of host keys for all hosts we can connect to over SFTP
+        """
         return pulumi.get(self, "ssh_known_hosts")
 
     @property
@@ -8438,11 +8698,13 @@ class Servicev1RequestSetting(dict):
         """
         :param str name: Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
         :param str action: Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
+        :param bool bypass_busy_wait: Disable collapsed forwarding, so you don't wait for other objects to origin
         :param str default_host: Sets the host header
         :param bool force_miss: Force a cache miss for the request. If specified, can be `true` or `false`
         :param bool force_ssl: Forces the request to use SSL (Redirects a non-SSL request to SSL)
         :param bool geo_headers: Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         :param str hash_keys: Comma separated list of varnish request object fields that should be in the hash key
+        :param int max_stale_age: How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
         :param str request_condition: Name of already defined `condition` to determine if this request setting should be applied
         :param bool timer_support: Injects the X-Timer info into the request for viewing origin fetch durations
         :param str xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
@@ -8490,6 +8752,9 @@ class Servicev1RequestSetting(dict):
     @property
     @pulumi.getter(name="bypassBusyWait")
     def bypass_busy_wait(self) -> Optional[bool]:
+        """
+        Disable collapsed forwarding, so you don't wait for other objects to origin
+        """
         return pulumi.get(self, "bypass_busy_wait")
 
     @property
@@ -8535,6 +8800,9 @@ class Servicev1RequestSetting(dict):
     @property
     @pulumi.getter(name="maxStaleAge")
     def max_stale_age(self) -> Optional[int]:
+        """
+        How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+        """
         return pulumi.get(self, "max_stale_age")
 
     @property
@@ -8745,6 +9013,10 @@ class Servicev1S3logging(dict):
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
         :param str response_condition: Name of blockAttributes condition to apply this logging.
+        :param str s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
         :param str timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -8889,21 +9161,33 @@ class Servicev1S3logging(dict):
     @property
     @pulumi.getter(name="s3AccessKey")
     def s3_access_key(self) -> Optional[str]:
+        """
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        """
         return pulumi.get(self, "s3_access_key")
 
     @property
     @pulumi.getter(name="s3SecretKey")
     def s3_secret_key(self) -> Optional[str]:
+        """
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        """
         return pulumi.get(self, "s3_secret_key")
 
     @property
     @pulumi.getter(name="serverSideEncryption")
     def server_side_encryption(self) -> Optional[str]:
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        """
         return pulumi.get(self, "server_side_encryption")
 
     @property
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[str]:
+        """
+        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
     @property
@@ -9016,6 +9300,9 @@ class Servicev1Splunk(dict):
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         :param str placement: Where in the generated VCL the logging call should be placed
         :param str response_condition: The name of the condition to apply
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         pulumi.set(__self__, "name", name)
@@ -9097,16 +9384,25 @@ class Servicev1Splunk(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format.
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format.
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property
@@ -9285,6 +9581,9 @@ class Servicev1Syslog(dict):
         :param str placement: Where in the generated VCL the logging call should be placed.
         :param int port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         :param str response_condition: Name of blockAttributes condition to apply this logging.
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
         :param str tls_hostname: Used during the TLS handshake to validate the certificate
         :param str token: Whether to prepend each message with a specific token
         :param bool use_tls: Whether to use TLS for secure logging. Default `false`
@@ -9383,16 +9682,25 @@ class Servicev1Syslog(dict):
     @property
     @pulumi.getter(name="tlsCaCert")
     def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        """
         return pulumi.get(self, "tls_ca_cert")
 
     @property
     @pulumi.getter(name="tlsClientCert")
     def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        """
         return pulumi.get(self, "tls_client_cert")
 
     @property
     @pulumi.getter(name="tlsClientKey")
     def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        """
         return pulumi.get(self, "tls_client_key")
 
     @property

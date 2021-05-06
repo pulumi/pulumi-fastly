@@ -49,9 +49,21 @@ namespace Pulumi.Fastly.Outputs
         /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
         /// </summary>
         public readonly string? Redundancy;
+        /// <summary>
+        /// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        /// </summary>
         public readonly string? S3AccessKey;
+        /// <summary>
+        /// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        /// </summary>
         public readonly string? S3SecretKey;
+        /// <summary>
+        /// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        /// </summary>
         public readonly string? ServerSideEncryption;
+        /// <summary>
+        /// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        /// </summary>
         public readonly string? ServerSideEncryptionKmsKeyId;
         /// <summary>
         /// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
