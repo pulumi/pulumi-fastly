@@ -33,6 +33,9 @@ class GetFastlyIpRangesResult:
     @property
     @pulumi.getter(name="cidrBlocks")
     def cidr_blocks(self) -> Sequence[str]:
+        """
+        The lexically ordered list of ipv4 CIDR blocks.
+        """
         return pulumi.get(self, "cidr_blocks")
 
     @property
@@ -46,6 +49,9 @@ class GetFastlyIpRangesResult:
     @property
     @pulumi.getter(name="ipv6CidrBlocks")
     def ipv6_cidr_blocks(self) -> Sequence[str]:
+        """
+        The lexically ordered list of ipv6 CIDR blocks.
+        """
         return pulumi.get(self, "ipv6_cidr_blocks")
 
 

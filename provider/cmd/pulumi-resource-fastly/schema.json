@@ -9066,7 +9066,8 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The lexically ordered list of ipv4 CIDR blocks.\n"
                     },
                     "id": {
                         "type": "string",
@@ -9076,7 +9077,8 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The lexically ordered list of ipv6 CIDR blocks.\n"
                     }
                 },
                 "type": "object",
@@ -9096,21 +9098,21 @@
                         "items": {
                             "type": "integer"
                         },
-                        "description": "A list of modsecurity rules IDs to be excluded from the data set.\n"
+                        "description": "Exclusion filter by WAF rule's ModSecurity ID.\n"
                     },
                     "publishers": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "A list of publishers to be used as filters for the data set.\n"
+                        "description": "Inclusion filter by WAF rule's publishers.\n"
                     },
                     "tags": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "A list of tags to be used as filters for the data set.\n"
+                        "description": "Inclusion filter by WAF rule's tags.\n"
                     }
                 },
                 "type": "object"
@@ -9122,7 +9124,8 @@
                         "type": "array",
                         "items": {
                             "type": "integer"
-                        }
+                        },
+                        "description": "A list of modsecurity rules IDs to be excluded from the data set.\n"
                     },
                     "id": {
                         "type": "string",
@@ -9132,20 +9135,22 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "A list of publishers to be used as filters for the data set.\n"
                     },
                     "rules": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/getWafRulesRule:getWafRulesRule"
                         },
-                        "description": "The Web Application Firewall's rules result set.\n"
+                        "description": "The list of rules that results from any given combination of filters.\n"
                     },
                     "tags": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "A list of tags to be used as filters for the data set.\n"
                     }
                 },
                 "type": "object",

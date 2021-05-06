@@ -64,8 +64,10 @@ func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFa
 
 // A collection of values returned by getFastlyIpRanges.
 type GetFastlyIpRangesResult struct {
+	// The lexically ordered list of ipv4 CIDR blocks.
 	CidrBlocks []string `pulumi:"cidrBlocks"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The lexically ordered list of ipv6 CIDR blocks.
 	Ipv6CidrBlocks []string `pulumi:"ipv6CidrBlocks"`
 }

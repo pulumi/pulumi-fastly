@@ -18,21 +18,24 @@ func GetWafRules(ctx *pulumi.Context, args *GetWafRulesArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getWafRules.
 type GetWafRulesArgs struct {
-	// A list of modsecurity rules IDs to be excluded from the data set.
+	// Exclusion filter by WAF rule's ModSecurity ID.
 	ExcludeModsecRuleIds []int `pulumi:"excludeModsecRuleIds"`
-	// A list of publishers to be used as filters for the data set.
+	// Inclusion filter by WAF rule's publishers.
 	Publishers []string `pulumi:"publishers"`
-	// A list of tags to be used as filters for the data set.
+	// Inclusion filter by WAF rule's tags.
 	Tags []string `pulumi:"tags"`
 }
 
 // A collection of values returned by getWafRules.
 type GetWafRulesResult struct {
+	// A list of modsecurity rules IDs to be excluded from the data set.
 	ExcludeModsecRuleIds []int `pulumi:"excludeModsecRuleIds"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// A list of publishers to be used as filters for the data set.
 	Publishers []string `pulumi:"publishers"`
-	// The Web Application Firewall's rules result set.
+	// The list of rules that results from any given combination of filters.
 	Rules []GetWafRulesRule `pulumi:"rules"`
-	Tags  []string          `pulumi:"tags"`
+	// A list of tags to be used as filters for the data set.
+	Tags []string `pulumi:"tags"`
 }
