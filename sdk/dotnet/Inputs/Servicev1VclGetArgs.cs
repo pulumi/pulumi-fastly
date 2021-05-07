@@ -13,21 +13,19 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1VclGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The custom VCL code to upload.
+        /// The custom VCL code to upload
         /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
         /// <summary>
-        /// If `true`, use this block as the main configuration. If
-        /// `false`, use this block as an includable library. Only a single VCL block can be
-        /// marked as the main block. Default is `false`.
+        /// If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
         /// </summary>
         [Input("main")]
         public Input<bool>? Main { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

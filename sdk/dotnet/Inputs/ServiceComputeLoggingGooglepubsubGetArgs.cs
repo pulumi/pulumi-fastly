@@ -13,31 +13,31 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingGooglepubsubGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The ID of your Google Cloud Platform project.
+        /// The ID of your Google Cloud Platform project
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Google Cloud Pub/Sub topic to which logs will be published
         /// </summary>
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;
 
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         /// </summary>
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;

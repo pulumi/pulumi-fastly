@@ -15,7 +15,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
 // 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -51,6 +51,8 @@ import (
 // 	return pulumiArr
 // }
 // ```
+//
+// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
 func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFastlyIpRangesResult, error) {
 	var rv GetFastlyIpRangesResult
 	err := ctx.Invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, &rv, opts...)

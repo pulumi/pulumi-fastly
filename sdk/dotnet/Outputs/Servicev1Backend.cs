@@ -14,39 +14,35 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Backend
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// An IPv4, hostname, or IPv6 address for the Backend
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// Denotes if this Backend should be
-        /// included in the pool of backends that requests are load balanced against.
-        /// Default `true`.
+        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
         /// </summary>
         public readonly bool? AutoLoadbalance;
         /// <summary>
-        /// How long to wait between bytes in milliseconds. Default `10000`.
+        /// How long to wait between bytes in milliseconds. Default `10000`
         /// </summary>
         public readonly int? BetweenBytesTimeout;
         /// <summary>
-        /// How long to wait for a timeout in milliseconds.
-        /// Default `1000`
+        /// How long to wait for a timeout in milliseconds. Default `1000`
         /// </summary>
         public readonly int? ConnectTimeout;
         /// <summary>
-        /// Number of errors to allow before the Backend is marked as down. Default `0`.
+        /// Number of errors to allow before the Backend is marked as down. Default `0`
         /// </summary>
         public readonly int? ErrorThreshold;
         /// <summary>
-        /// How long to wait for the first bytes in milliseconds. Default `15000`.
+        /// How long to wait for the first bytes in milliseconds. Default `15000`
         /// </summary>
         public readonly int? FirstByteTimeout;
         /// <summary>
-        /// Name of a defined `healthcheck` to assign to this backend.
+        /// Name of a defined `healthcheck` to assign to this backend
         /// </summary>
         public readonly string? Healthcheck;
         /// <summary>
-        /// Maximum number of connections for this Backend.
-        /// Default `200`.
+        /// Maximum number of connections for this Backend. Default `200`
         /// </summary>
         public readonly int? MaxConn;
         /// <summary>
@@ -58,23 +54,23 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? MinTlsVersion;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The hostname to override the Host header.
+        /// The hostname to override the Host header
         /// </summary>
         public readonly string? OverrideHost;
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port number on which the Backend responds. Default `80`
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// Name of a condition, which if met, will select this backend during a request.
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>
-        /// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+        /// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         /// </summary>
         public readonly string? Shield;
         /// <summary>
@@ -82,39 +78,39 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? SslCaCert;
         /// <summary>
-        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
         /// </summary>
         public readonly string? SslCertHostname;
         /// <summary>
-        /// Be strict about checking SSL certs. Default `true`.
+        /// Be strict about checking SSL certs. Default `true`
         /// </summary>
         public readonly bool? SslCheckCert;
         /// <summary>
-        /// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+        /// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
         /// </summary>
         public readonly string? SslCiphers;
         /// <summary>
-        /// Client certificate attached to origin. Used when connecting to the backend.
+        /// Client certificate attached to origin. Used when connecting to the backend
         /// </summary>
         public readonly string? SslClientCert;
         /// <summary>
-        /// Client key attached to origin. Used when connecting to the backend.
+        /// Client key attached to origin. Used when connecting to the backend
         /// </summary>
         public readonly string? SslClientKey;
         /// <summary>
-        /// Used for both SNI during the TLS handshake and to validate the cert.
+        /// Used for both SNI during the TLS handshake and to validate the cert
         /// </summary>
         public readonly string? SslHostname;
         /// <summary>
-        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
         /// </summary>
         public readonly string? SslSniHostname;
         /// <summary>
-        /// Whether or not to use SSL to reach the backend. Default `false`.
+        /// Whether or not to use SSL to reach the Backend. Default `false`
         /// </summary>
         public readonly bool? UseSsl;
         /// <summary>
-        /// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+        /// The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         /// </summary>
         public readonly int? Weight;
 

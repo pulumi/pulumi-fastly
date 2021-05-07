@@ -10,6 +10,14 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+    /// 
+    /// &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+    /// 
+    /// If this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+    /// 
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
     /// This is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
@@ -17,10 +25,6 @@ namespace Pulumi.Fastly
     /// ```sh
     ///  $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
     /// ```
-    /// 
-    ///  If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-    /// 
-    ///  The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
     /// </summary>
     [FastlyResourceType("fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1")]
     public partial class ServiceDictionaryItemsv1 : Pulumi.CustomResource

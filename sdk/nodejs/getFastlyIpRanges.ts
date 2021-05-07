@@ -24,6 +24,8 @@ import * as utilities from "./utilities";
  *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
  * }]});
  * ```
+ *
+ * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
 export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
     if (!opts) {

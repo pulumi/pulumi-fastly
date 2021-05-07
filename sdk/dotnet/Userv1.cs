@@ -16,6 +16,8 @@ namespace Pulumi.Fastly
     /// 
     /// ## Example Usage
     /// 
+    /// Basic usage:
+    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Fastly = Pulumi.Fastly;
@@ -45,19 +47,19 @@ namespace Pulumi.Fastly
     public partial class Userv1 : Pulumi.CustomResource
     {
         /// <summary>
-        /// The email address, which is the login name, of the User.
+        /// The email address, which is the login name, of the User
         /// </summary>
         [Output("login")]
         public Output<string> Login { get; private set; } = null!;
 
         /// <summary>
-        /// The real life name of the user.
+        /// The real life name of the user
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        /// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         /// </summary>
         [Output("role")]
         public Output<string?> Role { get; private set; } = null!;
@@ -109,19 +111,19 @@ namespace Pulumi.Fastly
     public sealed class Userv1Args : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The email address, which is the login name, of the User.
+        /// The email address, which is the login name, of the User
         /// </summary>
         [Input("login", required: true)]
         public Input<string> Login { get; set; } = null!;
 
         /// <summary>
-        /// The real life name of the user.
+        /// The real life name of the user
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        /// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
@@ -134,19 +136,19 @@ namespace Pulumi.Fastly
     public sealed class Userv1State : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The email address, which is the login name, of the User.
+        /// The email address, which is the login name, of the User
         /// </summary>
         [Input("login")]
         public Input<string>? Login { get; set; }
 
         /// <summary>
-        /// The real life name of the user.
+        /// The real life name of the user
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do).
+        /// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

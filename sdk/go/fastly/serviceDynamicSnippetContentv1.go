@@ -11,6 +11,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
+//
+// > **Warning:** This provider will take precedence over any changes you make through the API. Such changes are likely to be reversed if you run the provider again.
+//
+// If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
+//
+// ## Example Usage
+//
 // ## Import
 //
 // This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content_v1.content` The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
@@ -18,12 +26,10 @@ import (
 // ```sh
 //  $ pulumi import fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1 content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
 // ```
-//
-//  If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content_v1.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content_v1.content
 type ServiceDynamicSnippetContentv1 struct {
 	pulumi.CustomResourceState
 
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content pulumi.StringOutput `pulumi:"content"`
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
@@ -69,7 +75,7 @@ func GetServiceDynamicSnippetContentv1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceDynamicSnippetContentv1 resources.
 type serviceDynamicSnippetContentv1State struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content *string `pulumi:"content"`
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId *string `pulumi:"serviceId"`
@@ -78,7 +84,7 @@ type serviceDynamicSnippetContentv1State struct {
 }
 
 type ServiceDynamicSnippetContentv1State struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content pulumi.StringPtrInput
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId pulumi.StringPtrInput
@@ -91,7 +97,7 @@ func (ServiceDynamicSnippetContentv1State) ElementType() reflect.Type {
 }
 
 type serviceDynamicSnippetContentv1Args struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content string `pulumi:"content"`
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId string `pulumi:"serviceId"`
@@ -101,7 +107,7 @@ type serviceDynamicSnippetContentv1Args struct {
 
 // The set of arguments for constructing a ServiceDynamicSnippetContentv1 resource.
 type ServiceDynamicSnippetContentv1Args struct {
-	// The VCL code that specifies exactly what the snippet does.
+	// The VCL code that specifies exactly what the snippet does
 	Content pulumi.StringInput
 	// The ID of the service that the dynamic snippet belongs to
 	ServiceId pulumi.StringInput

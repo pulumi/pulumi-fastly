@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingHerokuGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -43,13 +43,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The URL to stream logs to
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

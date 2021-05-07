@@ -14,35 +14,35 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Logentry
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port number configured in Logentries
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// Use token based authentication (https://logentries.com/doc/input-token/)
         /// </summary>
         public readonly string Token;
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either true or false.
+        /// Whether to use TLS for secure logging
         /// </summary>
         public readonly bool? UseTls;
 

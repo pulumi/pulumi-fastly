@@ -13,8 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1GzipGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
@@ -23,8 +22,7 @@ namespace Pulumi.Fastly.Inputs
         private InputList<string>? _contentTypes;
 
         /// <summary>
-        /// The content-type for each type of content you wish to
-        /// have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+        /// The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
         /// </summary>
         public InputList<string> ContentTypes
         {
@@ -36,8 +34,7 @@ namespace Pulumi.Fastly.Inputs
         private InputList<string>? _extensions;
 
         /// <summary>
-        /// File extensions for each file type to dynamically
-        /// gzip. Example: `["css", "js"]`.
+        /// File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
         /// </summary>
         public InputList<string> Extensions
         {
@@ -46,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

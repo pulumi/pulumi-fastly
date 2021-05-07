@@ -4,6 +4,19 @@
 
 # Export this package's modules as members:
 from .get_fastly_ip_ranges import *
+from .get_tls_activation import *
+from .get_tls_activation_ids import *
+from .get_tls_certificate import *
+from .get_tls_certificate_ids import *
+from .get_tls_configuration import *
+from .get_tls_configuration_ids import *
+from .get_tls_domain import *
+from .get_tls_platform_certificate import *
+from .get_tls_platform_certificate_ids import *
+from .get_tls_private_key import *
+from .get_tls_private_key_ids import *
+from .get_tls_subscription import *
+from .get_tls_subscription_ids import *
 from .get_waf_rules import *
 from .provider import *
 from .service_acl_entriesv1 import *
@@ -12,6 +25,12 @@ from .service_dictionary_itemsv1 import *
 from .service_dynamic_snippet_contentv1 import *
 from .service_waf_configuration import *
 from .servicev1 import *
+from .tls_activation import *
+from .tls_certificate import *
+from .tls_platform_certificate import *
+from .tls_private_key import *
+from .tls_subscription import *
+from .tls_subscription_validation import *
 from .userv1 import *
 from ._inputs import *
 from . import outputs
@@ -45,6 +64,18 @@ def _register_module():
                 return ServiceWafConfiguration(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "fastly:index/servicev1:Servicev1":
                 return Servicev1(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/tlsActivation:TlsActivation":
+                return TlsActivation(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/tlsCertificate:TlsCertificate":
+                return TlsCertificate(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate":
+                return TlsPlatformCertificate(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/tlsPrivateKey:TlsPrivateKey":
+                return TlsPrivateKey(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/tlsSubscription:TlsSubscription":
+                return TlsSubscription(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
+                return TlsSubscriptionValidation(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "fastly:index/userv1:Userv1":
                 return Userv1(name, pulumi.ResourceOptions(urn=urn))
             else:
@@ -58,6 +89,12 @@ def _register_module():
     pulumi.runtime.register_resource_module("fastly", "index/serviceDynamicSnippetContentv1", _module_instance)
     pulumi.runtime.register_resource_module("fastly", "index/serviceWafConfiguration", _module_instance)
     pulumi.runtime.register_resource_module("fastly", "index/servicev1", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/tlsActivation", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/tlsCertificate", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/tlsPlatformCertificate", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/tlsPrivateKey", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/tlsSubscription", _module_instance)
+    pulumi.runtime.register_resource_module("fastly", "index/tlsSubscriptionValidation", _module_instance)
     pulumi.runtime.register_resource_module("fastly", "index/userv1", _module_instance)
 
 

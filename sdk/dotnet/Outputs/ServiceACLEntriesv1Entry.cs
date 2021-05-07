@@ -17,6 +17,9 @@ namespace Pulumi.Fastly.Outputs
         /// A personal freeform descriptive note
         /// </summary>
         public readonly string? Comment;
+        /// <summary>
+        /// The unique ID of the entry
+        /// </summary>
         public readonly string? Id;
         /// <summary>
         /// An IP address that is the focus for the ACL

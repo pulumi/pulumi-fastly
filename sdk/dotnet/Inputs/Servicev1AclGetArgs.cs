@@ -13,13 +13,19 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1AclGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the ACL.
+        /// The ID of the ACL
         /// </summary>
         [Input("aclId")]
         public Input<string>? AclId { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        /// </summary>
+        [Input("forceDestroy")]
+        public Input<bool>? ForceDestroy { get; set; }
+
+        /// <summary>
+        /// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
