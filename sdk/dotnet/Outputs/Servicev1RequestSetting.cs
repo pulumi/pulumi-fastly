@@ -14,59 +14,51 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1RequestSetting
     {
         /// <summary>
-        /// Allows you to terminate request handling and immediately
-        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
         /// </summary>
         public readonly string? Action;
         /// <summary>
-        /// Disable collapsed forwarding, so you don't wait
-        /// for other objects to origin.
+        /// Disable collapsed forwarding, so you don't wait for other objects to origin
         /// </summary>
         public readonly bool? BypassBusyWait;
         /// <summary>
-        /// Sets the host header.
+        /// Sets the host header
         /// </summary>
         public readonly string? DefaultHost;
         /// <summary>
-        /// Force a cache miss for the request. If specified,
-        /// can be `true` or `false`.
+        /// Force a cache miss for the request. If specified, can be `true` or `false`
         /// </summary>
         public readonly bool? ForceMiss;
         /// <summary>
-        /// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+        /// Forces the request to use SSL (Redirects a non-SSL request to SSL)
         /// </summary>
         public readonly bool? ForceSsl;
         /// <summary>
-        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and
-        /// Fastly-Geo-Region into the request headers.
+        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         /// </summary>
         public readonly bool? GeoHeaders;
         /// <summary>
-        /// Comma separated list of varnish request object fields
-        /// that should be in the hash key.
+        /// Comma separated list of varnish request object fields that should be in the hash key
         /// </summary>
         public readonly string? HashKeys;
         /// <summary>
-        /// How old an object is allowed to be to serve
-        /// `stale-if-error` or `stale-while-revalidate`, in seconds.
+        /// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
         /// </summary>
         public readonly int? MaxStaleAge;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// Name of already defined `condition` to determine if this request setting should be applied
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>
-        /// Injects the X-Timer info into the request for
-        /// viewing origin fetch durations.
+        /// Injects the X-Timer info into the request for viewing origin fetch durations
         /// </summary>
         public readonly bool? TimerSupport;
         /// <summary>
-        /// X-Forwarded-For, should be `clear`, `leave`, `append`,
-        /// `append_all`, or `overwrite`. Default `append`.
+        /// X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         /// </summary>
         public readonly string? Xff;
 

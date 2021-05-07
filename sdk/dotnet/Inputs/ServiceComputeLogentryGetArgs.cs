@@ -13,25 +13,25 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLogentryGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port number configured in Logentries
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// Use token based authentication (https://logentries.com/doc/input-token/)
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either true or false.
+        /// Whether to use TLS for secure logging
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }

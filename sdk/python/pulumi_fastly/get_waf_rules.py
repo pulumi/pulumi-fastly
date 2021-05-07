@@ -40,6 +40,9 @@ class GetWafRulesResult:
     @property
     @pulumi.getter(name="excludeModsecRuleIds")
     def exclude_modsec_rule_ids(self) -> Optional[Sequence[int]]:
+        """
+        A list of modsecurity rules IDs to be excluded from the data set.
+        """
         return pulumi.get(self, "exclude_modsec_rule_ids")
 
     @property
@@ -53,19 +56,25 @@ class GetWafRulesResult:
     @property
     @pulumi.getter
     def publishers(self) -> Optional[Sequence[str]]:
+        """
+        A list of publishers to be used as filters for the data set.
+        """
         return pulumi.get(self, "publishers")
 
     @property
     @pulumi.getter
     def rules(self) -> Sequence['outputs.GetWafRulesRuleResult']:
         """
-        The Web Application Firewall's rules result set.
+        The list of rules that results from any given combination of filters.
         """
         return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
+        """
+        A list of tags to be used as filters for the data set.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -87,7 +96,9 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
                   tags: Optional[Sequence[str]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWafRulesResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
+    They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
+
 
     :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
     :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.

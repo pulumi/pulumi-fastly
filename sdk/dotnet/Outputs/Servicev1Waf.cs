@@ -13,17 +13,20 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class Servicev1Waf
     {
+        /// <summary>
+        /// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
+        /// </summary>
         public readonly bool? Disabled;
         /// <summary>
-        /// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         /// </summary>
         public readonly string? PrefetchCondition;
         /// <summary>
-        /// The name of the response object used by the Web Application Firewall.
+        /// The name of the response object used by the Web Application Firewall
         /// </summary>
         public readonly string ResponseObject;
         /// <summary>
-        /// The ID of the WAF.
+        /// The ID of the WAF
         /// </summary>
         public readonly string? WafId;
 

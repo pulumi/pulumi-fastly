@@ -14,39 +14,46 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingKinese
     {
         /// <summary>
-        /// The AWS access key to be used to write to the stream.
+        /// The AWS access key to be used to write to the stream
         /// </summary>
-        public readonly string AccessKey;
+        public readonly string? AccessKey;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        /// </summary>
+        public readonly string? IamRole;
+        /// <summary>
+        /// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The AWS region the stream resides in. (Default: `us-east-1`).
+        /// The AWS region the stream resides in. (Default: `us-east-1`)
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The AWS secret access key to authenticate with
         /// </summary>
-        public readonly string SecretKey;
+        public readonly string? SecretKey;
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Kinesis stream name
         /// </summary>
         public readonly string Topic;
 
         [OutputConstructor]
         private ServiceComputeLoggingKinese(
-            string accessKey,
+            string? accessKey,
+
+            string? iamRole,
 
             string name,
 
             string? region,
 
-            string secretKey,
+            string? secretKey,
 
             string topic)
         {
             AccessKey = accessKey;
+            IamRole = iamRole;
             Name = name;
             Region = region;
             SecretKey = secretKey;

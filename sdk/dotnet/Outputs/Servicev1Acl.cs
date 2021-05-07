@@ -14,11 +14,15 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Acl
     {
         /// <summary>
-        /// The ID of the ACL.
+        /// The ID of the ACL
         /// </summary>
         public readonly string? AclId;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        /// </summary>
+        public readonly bool? ForceDestroy;
+        /// <summary>
+        /// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
         /// </summary>
         public readonly string Name;
 
@@ -26,9 +30,12 @@ namespace Pulumi.Fastly.Outputs
         private Servicev1Acl(
             string? aclId,
 
+            bool? forceDestroy,
+
             string name)
         {
             AclId = aclId;
+            ForceDestroy = forceDestroy;
             Name = name;
         }
     }

@@ -14,15 +14,15 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingLogshuttle
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The data authentication token associated with this endpoint
         /// </summary>
         public readonly string Token;
         /// <summary>
-        /// Your OpenStack auth url.
+        /// Your Log Shuttle endpoint URL
         /// </summary>
         public readonly string Url;
 

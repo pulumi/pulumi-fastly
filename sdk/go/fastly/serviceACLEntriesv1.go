@@ -11,6 +11,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+//
+// > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+//
+// If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
+//
+// ## Example Usage
+//
 // ## Import
 //
 // This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
@@ -18,16 +26,12 @@ import (
 // ```sh
 //  $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
 // ```
-//
-//  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-//
-//  The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
 type ServiceACLEntriesv1 struct {
 	pulumi.CustomResourceState
 
 	// The ID of the ACL that the items belong to
 	AclId pulumi.StringOutput `pulumi:"aclId"`
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries ServiceACLEntriesv1EntryArrayOutput `pulumi:"entries"`
 	// The ID of the Service that the ACL belongs to
 	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
@@ -70,7 +74,7 @@ func GetServiceACLEntriesv1(ctx *pulumi.Context,
 type serviceACLEntriesv1State struct {
 	// The ID of the ACL that the items belong to
 	AclId *string `pulumi:"aclId"`
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries []ServiceACLEntriesv1Entry `pulumi:"entries"`
 	// The ID of the Service that the ACL belongs to
 	ServiceId *string `pulumi:"serviceId"`
@@ -79,7 +83,7 @@ type serviceACLEntriesv1State struct {
 type ServiceACLEntriesv1State struct {
 	// The ID of the ACL that the items belong to
 	AclId pulumi.StringPtrInput
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries ServiceACLEntriesv1EntryArrayInput
 	// The ID of the Service that the ACL belongs to
 	ServiceId pulumi.StringPtrInput
@@ -92,7 +96,7 @@ func (ServiceACLEntriesv1State) ElementType() reflect.Type {
 type serviceACLEntriesv1Args struct {
 	// The ID of the ACL that the items belong to
 	AclId string `pulumi:"aclId"`
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries []ServiceACLEntriesv1Entry `pulumi:"entries"`
 	// The ID of the Service that the ACL belongs to
 	ServiceId string `pulumi:"serviceId"`
@@ -102,7 +106,7 @@ type serviceACLEntriesv1Args struct {
 type ServiceACLEntriesv1Args struct {
 	// The ID of the ACL that the items belong to
 	AclId pulumi.StringInput
-	// A Set ACL entries that are applied to the service. Defined below
+	// ACL Entries
 	Entries ServiceACLEntriesv1EntryArrayInput
 	// The ID of the Service that the ACL belongs to
 	ServiceId pulumi.StringInput

@@ -13,22 +13,25 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1DictionaryGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the dictionary.
+        /// The ID of the dictionary
         /// </summary>
         [Input("dictionaryId")]
         public Input<string>? DictionaryId { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        /// </summary>
+        [Input("forceDestroy")]
+        public Input<bool>? ForceDestroy { get; set; }
+
+        /// <summary>
+        /// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
-        /// via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
-        /// dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
-        /// the items are managed outside of the provider.
+        /// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider
         /// </summary>
         [Input("writeOnly")]
         public Input<bool>? WriteOnly { get; set; }

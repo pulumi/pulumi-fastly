@@ -14,15 +14,15 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeSumologic
     {
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The URL to Sumologic collector endpoint
         /// </summary>
         public readonly string Url;
 

@@ -10,6 +10,14 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+    /// 
+    /// &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+    /// 
+    /// If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+    /// 
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
     /// This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
@@ -17,10 +25,6 @@ namespace Pulumi.Fastly
     /// ```sh
     ///  $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
     /// ```
-    /// 
-    ///  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-    /// 
-    ///  The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
     /// </summary>
     [FastlyResourceType("fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1")]
     public partial class ServiceACLEntriesv1 : Pulumi.CustomResource
@@ -32,7 +36,7 @@ namespace Pulumi.Fastly
         public Output<string> AclId { get; private set; } = null!;
 
         /// <summary>
-        /// A Set ACL entries that are applied to the service. Defined below
+        /// ACL Entries
         /// </summary>
         [Output("entries")]
         public Output<ImmutableArray<Outputs.ServiceACLEntriesv1Entry>> Entries { get; private set; } = null!;
@@ -99,7 +103,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceACLEntriesv1EntryArgs>? _entries;
 
         /// <summary>
-        /// A Set ACL entries that are applied to the service. Defined below
+        /// ACL Entries
         /// </summary>
         public InputList<Inputs.ServiceACLEntriesv1EntryArgs> Entries
         {
@@ -130,7 +134,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceACLEntriesv1EntryGetArgs>? _entries;
 
         /// <summary>
-        /// A Set ACL entries that are applied to the service. Defined below
+        /// ACL Entries
         /// </summary>
         public InputList<Inputs.ServiceACLEntriesv1EntryGetArgs> Entries
         {

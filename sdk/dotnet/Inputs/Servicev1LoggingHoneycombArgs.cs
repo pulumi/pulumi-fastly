@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingHoneycombArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Honeycomb Dataset you want to log to.
+        /// The Honeycomb Dataset you want to log to
         /// </summary>
         [Input("dataset", required: true)]
         public Input<string> Dataset { get; set; } = null!;
 
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -49,7 +49,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Write Key from the Account page of your Honeycomb account
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;

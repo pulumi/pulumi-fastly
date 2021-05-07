@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Comment;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         /// </summary>
         public readonly string Name;
 

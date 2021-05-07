@@ -13,31 +13,43 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeSplunkGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// The client certificate used to make authenticated requests. Must be in PEM format.
+        /// </summary>
+        [Input("tlsClientCert")]
+        public Input<string>? TlsClientCert { get; set; }
+
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format.
+        /// </summary>
+        [Input("tlsClientKey")]
+        public Input<string>? TlsClientKey { get; set; }
+
+        /// <summary>
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Splunk token to be used for authentication
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;
 
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The Splunk URL to stream logs to
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

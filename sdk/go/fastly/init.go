@@ -32,6 +32,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceWafConfiguration{}
 	case "fastly:index/servicev1:Servicev1":
 		r = &Servicev1{}
+	case "fastly:index/tlsActivation:TlsActivation":
+		r = &TlsActivation{}
+	case "fastly:index/tlsCertificate:TlsCertificate":
+		r = &TlsCertificate{}
+	case "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate":
+		r = &TlsPlatformCertificate{}
+	case "fastly:index/tlsPrivateKey:TlsPrivateKey":
+		r = &TlsPrivateKey{}
+	case "fastly:index/tlsSubscription:TlsSubscription":
+		r = &TlsSubscription{}
+	case "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
+		r = &TlsSubscriptionValidation{}
 	case "fastly:index/userv1:Userv1":
 		r = &Userv1{}
 	default:
@@ -93,6 +105,36 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/servicev1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tlsActivation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tlsCertificate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tlsPlatformCertificate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tlsPrivateKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tlsSubscription",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tlsSubscriptionValidation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

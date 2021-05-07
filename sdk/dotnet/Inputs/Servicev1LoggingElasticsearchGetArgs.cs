@@ -13,97 +13,97 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingElasticsearchGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// The name of the Elasticsearch index to send documents (logs) to.
+        /// The name of the Elasticsearch index to send documents (logs) to
         /// </summary>
         [Input("index", required: true)]
         public Input<string> Index { get; set; } = null!;
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// BasicAuth password for Elasticsearch
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
         /// <summary>
-        /// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+        /// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         /// </summary>
         [Input("pipeline")]
         public Input<string>? Pipeline { get; set; }
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+        /// The maximum number of logs sent in one request. Defaults to `0` for unbounded
         /// </summary>
         [Input("requestMaxBytes")]
         public Input<int>? RequestMaxBytes { get; set; }
 
         /// <summary>
-        /// The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+        /// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         /// </summary>
         [Input("requestMaxEntries")]
         public Input<int>? RequestMaxEntries { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of the condition to apply
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// A secure certificate to authenticate the server with. Must be in PEM format
         /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
         /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format.
+        /// The client certificate used to make authenticated requests. Must be in PEM format
         /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
         /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format.
+        /// The client private key used to make authenticated requests. Must be in PEM format
         /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }
 
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The Elasticsearch URL to stream logs to
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// BasicAuth username for Elasticsearch
         /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }

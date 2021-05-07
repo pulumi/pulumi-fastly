@@ -22,7 +22,7 @@ class ServiceACLEntriesv1Args:
         The set of arguments for constructing a ServiceACLEntriesv1 resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: ACL Entries
         """
         pulumi.set(__self__, "acl_id", acl_id)
         pulumi.set(__self__, "service_id", service_id)
@@ -57,7 +57,7 @@ class ServiceACLEntriesv1Args:
     @pulumi.getter
     def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]:
         """
-        A Set ACL entries that are applied to the service. Defined below
+        ACL Entries
         """
         return pulumi.get(self, "entries")
 
@@ -75,7 +75,7 @@ class _ServiceACLEntriesv1State:
         """
         Input properties used for looking up and filtering ServiceACLEntriesv1 resources.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]] entries: ACL Entries
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
         if acl_id is not None:
@@ -101,7 +101,7 @@ class _ServiceACLEntriesv1State:
     @pulumi.getter
     def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesv1EntryArgs']]]]:
         """
-        A Set ACL entries that are applied to the service. Defined below
+        ACL Entries
         """
         return pulumi.get(self, "entries")
 
@@ -132,6 +132,50 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+
+        ## Example Usage
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        myacl_name = config.get("myaclName")
+        if myacl_name is None:
+            myacl_name = "My ACL"
+        myservice = fastly.Servicev1("myservice",
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            acls=[fastly.Servicev1AclArgs(
+                name=myacl_name,
+            )],
+            force_destroy=True)
+        entries = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acls if d.name == myacl_name})]:
+            entries.append(fastly.ServiceACLEntriesv1(f"entries-{range['key']}",
+                service_id=myservice.id,
+                acl_id=range["value"],
+                entries=[fastly.ServiceACLEntriesv1EntryArgs(
+                    ip="127.0.0.1",
+                    subnet="24",
+                    negated=False,
+                    comment="ALC Entry 1",
+                )]))
+        ```
+
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
@@ -140,14 +184,10 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
          $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
         ```
 
-         If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
-         The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: ACL Entries
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
         ...
@@ -157,6 +197,50 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
                  args: ServiceACLEntriesv1Args,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+
+        ## Example Usage
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        myacl_name = config.get("myaclName")
+        if myacl_name is None:
+            myacl_name = "My ACL"
+        myservice = fastly.Servicev1("myservice",
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            acls=[fastly.Servicev1AclArgs(
+                name=myacl_name,
+            )],
+            force_destroy=True)
+        entries = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acls if d.name == myacl_name})]:
+            entries.append(fastly.ServiceACLEntriesv1(f"entries-{range['key']}",
+                service_id=myservice.id,
+                acl_id=range["value"],
+                entries=[fastly.ServiceACLEntriesv1EntryArgs(
+                    ip="127.0.0.1",
+                    subnet="24",
+                    negated=False,
+                    comment="ALC Entry 1",
+                )]))
+        ```
+
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
@@ -164,10 +248,6 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         ```sh
          $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
         ```
-
-         If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
-         The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
 
         :param str resource_name: The name of the resource.
         :param ServiceACLEntriesv1Args args: The arguments to use to populate this resource's properties.
@@ -227,7 +307,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: A Set ACL entries that are applied to the service. Defined below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceACLEntriesv1EntryArgs']]]] entries: ACL Entries
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -251,7 +331,7 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
     @pulumi.getter
     def entries(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceACLEntriesv1Entry']]]:
         """
-        A Set ACL entries that are applied to the service. Defined below
+        ACL Entries
         """
         return pulumi.get(self, "entries")
 

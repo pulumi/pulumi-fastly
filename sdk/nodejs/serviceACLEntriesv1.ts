@@ -6,6 +6,109 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
+ * Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+ *
+ * > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+ *
+ * If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
+ *
+ * ## Example Usage
+ * ### Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const myaclName = config.get("myaclName") || "My ACL";
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domains: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         port: 80,
+ *     }],
+ *     acls: [{
+ *         name: myaclName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const entries: fastly.ServiceACLEntriesv1[];
+ * for (const range of Object.entries(myservice.acls.apply(acls => acls.filter(d => d.name == myaclName).reduce((__obj, d) => { ...__obj, [d.name]: d }))).map(([k, v]) => {key: k, value: v})) {
+ *     entries.push(new fastly.ServiceACLEntriesv1(`entries-${range.key}`, {
+ *         serviceId: myservice.id,
+ *         aclId: range.value.aclId,
+ *         entries: [{
+ *             ip: "127.0.0.1",
+ *             subnet: "24",
+ *             negated: false,
+ *             comment: "ALC Entry 1",
+ *         }],
+ *     }));
+ * }
+ * ```
+ * ### Complex object usage:
+ *
+ * The following example demonstrates the use of dynamic nested blocks to create ACL entries.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const aclName = "my_acl";
+ * const aclEntries = [
+ *     {
+ *         ip: "1.2.3.4",
+ *         comment: "acl_entry_1",
+ *     },
+ *     {
+ *         ip: "1.2.3.5",
+ *         comment: "acl_entry_2",
+ *     },
+ *     {
+ *         ip: "1.2.3.6",
+ *         comment: "acl_entry_3",
+ *     },
+ * ];
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domains: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "1.2.3.4",
+ *         name: "localhost",
+ *         port: 80,
+ *     }],
+ *     acls: [{
+ *         name: aclName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const entries: fastly.ServiceACLEntriesv1[];
+ * for (const range of Object.entries(myservice.acls.apply(acls => acls.filter(d => d.name == aclName).reduce((__obj, d) => { ...__obj, [d.name]: d }))).map(([k, v]) => {key: k, value: v})) {
+ *     entries.push(new fastly.ServiceACLEntriesv1(`entries-${range.key}`, {
+ *         serviceId: myservice.id,
+ *         aclId: range.value.aclId,
+ *         dynamic: [{
+ *             forEach: aclEntries.map(e => {
+ *                 ip: e.ip,
+ *                 comment: e.comment,
+ *             }),
+ *             content: [{
+ *                 ip: entry.value.ip,
+ *                 subnet: 22,
+ *                 comment: entry.value.comment,
+ *                 negated: false,
+ *             }],
+ *         }],
+ *     }));
+ * }
+ * ```
+ *
  * ## Import
  *
  * This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
@@ -13,10 +116,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
  * ```
- *
- *  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
- *
- *  The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries_v1.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries_v1.entries
  */
 export class ServiceACLEntriesv1 extends pulumi.CustomResource {
     /**
@@ -51,7 +150,7 @@ export class ServiceACLEntriesv1 extends pulumi.CustomResource {
      */
     public readonly aclId!: pulumi.Output<string>;
     /**
-     * A Set ACL entries that are applied to the service. Defined below
+     * ACL Entries
      */
     public readonly entries!: pulumi.Output<outputs.ServiceACLEntriesv1Entry[] | undefined>;
     /**
@@ -103,7 +202,7 @@ export interface ServiceACLEntriesv1State {
      */
     readonly aclId?: pulumi.Input<string>;
     /**
-     * A Set ACL entries that are applied to the service. Defined below
+     * ACL Entries
      */
     readonly entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
     /**
@@ -121,7 +220,7 @@ export interface ServiceACLEntriesv1Args {
      */
     readonly aclId: pulumi.Input<string>;
     /**
-     * A Set ACL entries that are applied to the service. Defined below
+     * ACL Entries
      */
     readonly entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
     /**

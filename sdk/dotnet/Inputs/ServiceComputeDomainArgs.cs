@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

@@ -13,25 +13,25 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1ConditionArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+        /// A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// The statement used to determine if the condition is met.
+        /// The statement used to determine if the condition is met
         /// </summary>
         [Input("statement", required: true)]
         public Input<string> Statement { get; set; } = null!;
 
         /// <summary>
-        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+        /// Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

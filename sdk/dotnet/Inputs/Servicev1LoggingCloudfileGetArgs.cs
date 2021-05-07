@@ -13,16 +13,22 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1LoggingCloudfileGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The AWS access key to be used to write to the stream.
+        /// Your Cloud File account access key
         /// </summary>
         [Input("accessKey", required: true)]
         public Input<string> AccessKey { get; set; } = null!;
 
         /// <summary>
-        /// The name of your Cloud Files container.
+        /// The name of your Cloud Files container
         /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
+
+        /// <summary>
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        /// </summary>
+        [Input("compressionCodec")]
+        public Input<string>? CompressionCodec { get; set; }
 
         /// <summary>
         /// Apache style log formatting.
@@ -37,31 +43,31 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
         /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload logs to
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -73,13 +79,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The AWS region the stream resides in. (Default: `us-east-1`).
+        /// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -91,13 +97,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// The username for your Cloud Files account
         /// </summary>
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;

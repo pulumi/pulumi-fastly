@@ -14,39 +14,47 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Splunk
     {
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of the condition to apply
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         /// </summary>
         public readonly string? TlsCaCert;
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// The client certificate used to make authenticated requests. Must be in PEM format.
+        /// </summary>
+        public readonly string? TlsClientCert;
+        /// <summary>
+        /// The client private key used to make authenticated requests. Must be in PEM format.
+        /// </summary>
+        public readonly string? TlsClientKey;
+        /// <summary>
+        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Splunk token to be used for authentication
         /// </summary>
         public readonly string Token;
         /// <summary>
-        /// Your OpenStack auth url.
+        /// The Splunk URL to stream logs to
         /// </summary>
         public readonly string Url;
 
@@ -64,6 +72,10 @@ namespace Pulumi.Fastly.Outputs
 
             string? tlsCaCert,
 
+            string? tlsClientCert,
+
+            string? tlsClientKey,
+
             string? tlsHostname,
 
             string token,
@@ -76,6 +88,8 @@ namespace Pulumi.Fastly.Outputs
             Placement = placement;
             ResponseCondition = responseCondition;
             TlsCaCert = tlsCaCert;
+            TlsClientCert = tlsClientCert;
+            TlsClientKey = tlsClientKey;
             TlsHostname = tlsHostname;
             Token = token;
             Url = url;

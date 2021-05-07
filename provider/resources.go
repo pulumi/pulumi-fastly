@@ -20,12 +20,9 @@ import (
 	"unicode"
 
 	"github.com/fastly/terraform-provider-fastly/fastly"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-fastly/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 )
 
@@ -63,31 +60,22 @@ func makeResource(mod string, res string) tokens.Type {
 	return makeType(mod+"/"+fn, res)
 }
 
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
-
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(fastly.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(fastly.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                    p,
-		Name:                 "fastly",
-		Description:          "A Pulumi package for creating and managing fastly cloud resources.",
-		Keywords:             []string{"pulumi", "fastly"},
-		License:              "Apache-2.0",
-		Homepage:             "https://pulumi.io",
-		Repository:           "https://github.com/pulumi/pulumi-fastly",
-		GitHubOrg:            "fastly",
-		Config:               map[string]*tfbridge.SchemaInfo{},
-		PreConfigureCallback: preConfigureCallback,
+		P:           p,
+		Name:        "fastly",
+		Description: "A Pulumi package for creating and managing fastly cloud resources.",
+		Keywords:    []string{"pulumi", "fastly"},
+		License:     "Apache-2.0",
+		Homepage:    "https://pulumi.io",
+		Repository:  "https://github.com/pulumi/pulumi-fastly",
+		GitHubOrg:   "fastly",
+		Config:      map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"fastly_service_v1": {
 				Tok: makeResource(mainMod, "Servicev1"),
@@ -109,16 +97,35 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"fastly_service_waf_configuration": {Tok: makeResource(mainMod, "ServiceWafConfiguration")},
+			"fastly_service_waf_configuration":   {Tok: makeResource(mainMod, "ServiceWafConfiguration")},
+			"fastly_tls_activation":              {Tok: makeResource(mainMod, "TlsActivation")},
+			"fastly_tls_certificate":             {Tok: makeResource(mainMod, "TlsCertificate")},
+			"fastly_tls_platform_certificate":    {Tok: makeResource(mainMod, "TlsPlatformCertificate")},
+			"fastly_tls_private_key":             {Tok: makeResource(mainMod, "TlsPrivateKey")},
+			"fastly_tls_subscription":            {Tok: makeResource(mainMod, "TlsSubscription")},
+			"fastly_tls_subscription_validation": {Tok: makeResource(mainMod, "TlsSubscriptionValidation")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"fastly_ip_ranges": {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
-			"fastly_waf_rules": {Tok: makeDataSource(mainMod, "getWafRules")},
+			"fastly_ip_ranges":                    {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
+			"fastly_waf_rules":                    {Tok: makeDataSource(mainMod, "getWafRules")},
+			"fastly_tls_activation":               {Tok: makeDataSource(mainMod, "getTlsActivation")},
+			"fastly_tls_activation_ids":           {Tok: makeDataSource(mainMod, "getTlsActivationIds")},
+			"fastly_tls_certificate":              {Tok: makeDataSource(mainMod, "getTlsCertificate")},
+			"fastly_tls_certificate_ids":          {Tok: makeDataSource(mainMod, "getTlsCertificateIds")},
+			"fastly_tls_configuration":            {Tok: makeDataSource(mainMod, "getTlsConfiguration")},
+			"fastly_tls_configuration_ids":        {Tok: makeDataSource(mainMod, "getTlsConfigurationIds")},
+			"fastly_tls_domain":                   {Tok: makeDataSource(mainMod, "getTlsDomain")},
+			"fastly_tls_platform_certificate":     {Tok: makeDataSource(mainMod, "getTlsPlatformCertificate")},
+			"fastly_tls_platform_certificate_ids": {Tok: makeDataSource(mainMod, "getTlsPlatformCertificateIds")},
+			"fastly_tls_private_key":              {Tok: makeDataSource(mainMod, "getTlsPrivateKey")},
+			"fastly_tls_private_key_ids":          {Tok: makeDataSource(mainMod, "getTlsPrivateKeyIds")},
+			"fastly_tls_subscription":             {Tok: makeDataSource(mainMod, "getTlsSubscription")},
+			"fastly_tls_subscription_ids":         {Tok: makeDataSource(mainMod, "getTlsSubscriptionIds")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0-alpha.0",
+				"@pulumi/pulumi": "^3.0.0",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
@@ -127,7 +134,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
-				"pulumi": ">=3.0.0a1,<4.0.0",
+				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
@@ -141,7 +148,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "3.*-*",
+				"Pulumi":                       "3.*",
 				"System.Collections.Immutable": "1.6.0",
 			},
 			Namespaces: map[string]string{

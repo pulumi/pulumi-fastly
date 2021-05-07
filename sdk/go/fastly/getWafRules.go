@@ -7,6 +7,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
+// They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
 func GetWafRules(ctx *pulumi.Context, args *GetWafRulesArgs, opts ...pulumi.InvokeOption) (*GetWafRulesResult, error) {
 	var rv GetWafRulesResult
 	err := ctx.Invoke("fastly:index/getWafRules:getWafRules", args, &rv, opts...)
@@ -28,11 +30,14 @@ type GetWafRulesArgs struct {
 
 // A collection of values returned by getWafRules.
 type GetWafRulesResult struct {
+	// A list of modsecurity rules IDs to be excluded from the data set.
 	ExcludeModsecRuleIds []int `pulumi:"excludeModsecRuleIds"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// A list of publishers to be used as filters for the data set.
 	Publishers []string `pulumi:"publishers"`
-	// The Web Application Firewall's rules result set.
+	// The list of rules that results from any given combination of filters.
 	Rules []GetWafRulesRule `pulumi:"rules"`
-	Tags  []string          `pulumi:"tags"`
+	// A list of tags to be used as filters for the data set.
+	Tags []string `pulumi:"tags"`
 }
