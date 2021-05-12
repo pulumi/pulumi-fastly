@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.29.1 of the Fastly Terraform Provider
+_(none)_
 
 ---
+
+## 3.1.0 (2021-05-12)
+* Upgrade to v0.29.1 of the Fastly Terraform Provider
 
 ## 3.0.0 (2021-04-19)
 * Depend on Pulumi 3.0, which includes improvements to Python resource arguments and key translation, Go SDK performance,
