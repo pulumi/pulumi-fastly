@@ -130,6 +130,85 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        If this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+
+        ## Example Usage
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict_name = config.get("mydictName")
+        if mydict_name is None:
+            mydict_name = "My Dictionary"
+        myservice = fastly.Servicev1("myservice",
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            dictionaries=[fastly.Servicev1DictionaryArgs(
+                name=mydict_name,
+            )],
+            force_destroy=True)
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict_name})]:
+            items.append(fastly.ServiceDictionaryItemsv1(f"items-{range['key']}",
+                service_id=myservice.id,
+                dictionary_id=range["value"],
+                items={
+                    "key1": "value1",
+                    "key2": "value2",
+                }))
+        ```
+        ### Complex object usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict = config.get_object("mydict")
+        if mydict is None:
+            mydict = {
+                "name": "My Dictionary",
+                "items": {
+                    "key1": "value1x",
+                    "key2": "value2x",
+                },
+            }
+        myservice = fastly.Servicev1("myservice",
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            dictionaries=[fastly.Servicev1DictionaryArgs(
+                name=mydict["name"],
+            )],
+            force_destroy=True)
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict.name})]:
+            items.append(fastly.ServiceDictionaryItemsv1(f"items-{range['key']}",
+                service_id=myservice.id,
+                dictionary_id=range["value"],
+                items=mydict["items"]))
+        ```
+
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
@@ -137,10 +216,6 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         ```sh
          $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
         ```
-
-         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
-         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -155,6 +230,85 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
                  args: ServiceDictionaryItemsv1Args,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        If this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+
+        ## Example Usage
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict_name = config.get("mydictName")
+        if mydict_name is None:
+            mydict_name = "My Dictionary"
+        myservice = fastly.Servicev1("myservice",
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            dictionaries=[fastly.Servicev1DictionaryArgs(
+                name=mydict_name,
+            )],
+            force_destroy=True)
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict_name})]:
+            items.append(fastly.ServiceDictionaryItemsv1(f"items-{range['key']}",
+                service_id=myservice.id,
+                dictionary_id=range["value"],
+                items={
+                    "key1": "value1",
+                    "key2": "value2",
+                }))
+        ```
+        ### Complex object usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict = config.get_object("mydict")
+        if mydict is None:
+            mydict = {
+                "name": "My Dictionary",
+                "items": {
+                    "key1": "value1x",
+                    "key2": "value2x",
+                },
+            }
+        myservice = fastly.Servicev1("myservice",
+            domains=[fastly.Servicev1DomainArgs(
+                name="demo.notexample.com",
+                comment="demo",
+            )],
+            backends=[fastly.Servicev1BackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                port=80,
+            )],
+            dictionaries=[fastly.Servicev1DictionaryArgs(
+                name=mydict["name"],
+            )],
+            force_destroy=True)
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict.name})]:
+            items.append(fastly.ServiceDictionaryItemsv1(f"items-{range['key']}",
+                service_id=myservice.id,
+                dictionary_id=range["value"],
+                items=mydict["items"]))
+        ```
+
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
@@ -162,10 +316,6 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         ```sh
          $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
         ```
-
-         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
-         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items_v1.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items_v1.items
 
         :param str resource_name: The name of the resource.
         :param ServiceDictionaryItemsv1Args args: The arguments to use to populate this resource's properties.

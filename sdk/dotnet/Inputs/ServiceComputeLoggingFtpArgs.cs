@@ -13,67 +13,73 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingFtpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// The FTP address to stream logs to
         /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        /// </summary>
+        [Input("compressionCodec")]
+        public Input<string>? CompressionCodec { get; set; }
+
+        /// <summary>
+        /// Gzip Compression level. Default `0`
         /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted (default: `classic`)
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred.
+        /// The password for the server (for anonymous use an email address)
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload log files to. If the path ends in `/` then it is treated as a directory
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently the logs should be transferred, in seconds (Default `3600`)
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port number. Default: `21`
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
 
         /// <summary>
-        /// The username for your Cloud Files account.
+        /// The username for the server (can be `anonymous`)
         /// </summary>
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;

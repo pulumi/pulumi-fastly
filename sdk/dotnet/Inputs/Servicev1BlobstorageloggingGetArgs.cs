@@ -13,85 +13,97 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1BlobstorageloggingGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique Azure Blob Storage namespace in which your data objects are stored.
+        /// The unique Azure Blob Storage namespace in which your data objects are stored
         /// </summary>
         [Input("accountName", required: true)]
         public Input<string> AccountName { get; set; } = null!;
 
         /// <summary>
-        /// The name of the Azure Blob Storage container in which to store logs.
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        /// </summary>
+        [Input("compressionCodec")]
+        public Input<string>? CompressionCodec { get; set; }
+
+        /// <summary>
+        /// The name of the Azure Blob Storage container in which to store logs
         /// </summary>
         [Input("container", required: true)]
         public Input<string> Container { get; set; } = null!;
 
         /// <summary>
-        /// Apache style log formatting.
+        /// Maximum size of an uploaded log file, if non-zero.
+        /// </summary>
+        [Input("fileMaxBytes")]
+        public Input<int>? FileMaxBytes { get; set; }
+
+        /// <summary>
+        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// What level of GZIP encoding to have when dumping logs (default 0, no compression).
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The path to upload logs to.
+        /// The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+        /// How frequently the logs should be transferred in seconds. Default `3600`
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of the condition to apply
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+        /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
         /// </summary>
         [Input("sasToken", required: true)]
         public Input<string> SasToken { get; set; } = null!;
 
         /// <summary>
-        /// The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

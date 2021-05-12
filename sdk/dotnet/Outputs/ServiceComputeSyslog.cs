@@ -14,43 +14,43 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeSyslog
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// A hostname or IPv4 address of the Syslog endpoint
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         /// </summary>
         public readonly string? TlsCaCert;
         /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format.
+        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
         /// </summary>
         public readonly string? TlsClientCert;
         /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format.
+        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
         /// </summary>
         public readonly string? TlsClientKey;
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// Used during the TLS handshake to validate the certificate
         /// </summary>
         public readonly string? TlsHostname;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// Whether to prepend each message with a specific token
         /// </summary>
         public readonly string? Token;
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either true or false.
+        /// Whether to use TLS for secure logging. Default `false`
         /// </summary>
         public readonly bool? UseTls;
 

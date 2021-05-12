@@ -4,6 +4,12 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
+export interface GetTlsConfigurationDnsRecord {
+    recordType: string;
+    recordValue: string;
+    region: string;
+}
+
 export interface GetWafRulesRule {
     /**
      * The rule's latest revision.
@@ -24,6 +30,9 @@ export interface ServiceACLEntriesv1Entry {
      * A personal freeform descriptive note
      */
     comment?: string;
+    /**
+     * The unique ID of the entry
+     */
     id: string;
     /**
      * An IP address that is the focus for the ACL
@@ -41,39 +50,35 @@ export interface ServiceACLEntriesv1Entry {
 
 export interface ServiceComputeBackend {
     /**
-     * The SFTP address to stream logs to.
+     * An IPv4, hostname, or IPv6 address for the Backend
      */
     address: string;
     /**
-     * Denotes if this Backend should be
-     * included in the pool of backends that requests are load balanced against.
-     * Default `true`.
+     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
      */
     autoLoadbalance?: boolean;
     /**
-     * How long to wait between bytes in milliseconds. Default `10000`.
+     * How long to wait between bytes in milliseconds. Default `10000`
      */
     betweenBytesTimeout?: number;
     /**
-     * How long to wait for a timeout in milliseconds.
-     * Default `1000`
+     * How long to wait for a timeout in milliseconds. Default `1000`
      */
     connectTimeout?: number;
     /**
-     * Number of errors to allow before the Backend is marked as down. Default `0`.
+     * Number of errors to allow before the Backend is marked as down. Default `0`
      */
     errorThreshold?: number;
     /**
-     * How long to wait for the first bytes in milliseconds. Default `15000`.
+     * How long to wait for the first bytes in milliseconds. Default `15000`
      */
     firstByteTimeout?: number;
     /**
-     * Name of a defined `healthcheck` to assign to this backend.
+     * Name of a defined `healthcheck` to assign to this backend
      */
     healthcheck?: string;
     /**
-     * Maximum number of connections for this Backend.
-     * Default `200`.
+     * Maximum number of connections for this Backend. Default `200`
      */
     maxConn?: number;
     /**
@@ -85,19 +90,19 @@ export interface ServiceComputeBackend {
      */
     minTlsVersion?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The hostname to override the Host header.
+     * The hostname to override the Host header
      */
     overrideHost?: string;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port number on which the Backend responds. Default `80`
      */
     port?: number;
     /**
-     * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+     * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      */
     shield?: string;
     /**
@@ -105,114 +110,144 @@ export interface ServiceComputeBackend {
      */
     sslCaCert?: string;
     /**
-     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
      */
     sslCertHostname?: string;
     /**
-     * Be strict about checking SSL certs. Default `true`.
+     * Be strict about checking SSL certs. Default `true`
      */
     sslCheckCert?: boolean;
     /**
-     * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+     * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
      */
     sslCiphers?: string;
     /**
-     * Client certificate attached to origin. Used when connecting to the backend.
+     * Client certificate attached to origin. Used when connecting to the backend
      */
     sslClientCert?: string;
     /**
-     * Client key attached to origin. Used when connecting to the backend.
+     * Client key attached to origin. Used when connecting to the backend
      */
     sslClientKey?: string;
     /**
-     * Used for both SNI during the TLS handshake and to validate the cert.
+     * Used for both SNI during the TLS handshake and to validate the cert
      *
      * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
      */
     sslHostname?: string;
     /**
-     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
      */
     sslSniHostname?: string;
     /**
-     * Whether or not to use SSL to reach the backend. Default `false`.
+     * Whether or not to use SSL to reach the Backend. Default `false`
      */
     useSsl?: boolean;
     /**
-     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
      */
     weight?: number;
 }
 
 export interface ServiceComputeBigquerylogging {
     /**
-     * The Honeycomb Dataset you want to log to.
+     * The ID of your BigQuery dataset
      */
     dataset: string;
     /**
-     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
      */
     email: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The ID of your Google Cloud Platform project.
+     * The ID of your GCP project
      */
     projectId: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
      */
     secretKey: string;
     /**
-     * The ID of your BigQuery table.
+     * The ID of your BigQuery table
      */
     table: string;
+    /**
+     * BigQuery table name suffix template
+     */
     template?: string;
 }
 
 export interface ServiceComputeBlobstoragelogging {
     /**
-     * The unique Azure Blob Storage namespace in which your data objects are stored.
+     * The unique Azure Blob Storage namespace in which your data objects are stored
      */
     accountName: string;
     /**
-     * The name of the Azure Blob Storage container in which to store logs.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * The name of the Azure Blob Storage container in which to store logs
      */
     container: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * Maximum size of an uploaded log file, if non-zero.
+     */
+    fileMaxBytes?: number;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred in seconds. Default `3600`
      */
     period?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
      */
     sasToken: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
      */
     timestampFormat?: string;
+}
+
+export interface ServiceComputeDictionary {
+    /**
+     * The ID of the dictionary
+     */
+    dictionaryId: string;
+    /**
+     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     */
+    forceDestroy?: boolean;
+    /**
+     * A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+     */
+    name: string;
+    /**
+     * If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
+     */
+    writeOnly?: boolean;
 }
 
 export interface ServiceComputeDomain {
@@ -221,808 +256,803 @@ export interface ServiceComputeDomain {
      */
     comment?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
      */
     name: string;
 }
 
 export interface ServiceComputeGcslogging {
     /**
-     * The name of your Cloud Files container.
+     * The name of the bucket in which to store the logs
      */
     bucketName: string;
     /**
-     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
      */
     email?: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred, in seconds (Default 3600)
      */
     period?: number;
     /**
-     * The AWS secret access key to authenticate with.
+     * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      */
     secretKey?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
 
 export interface ServiceComputeHealthcheck {
     /**
-     * How often to run the Healthcheck in milliseconds. Default `5000`.
+     * How often to run the Healthcheck in milliseconds. Default `5000`
      */
     checkInterval?: number;
     /**
-     * The status code expected from the host. Default `200`.
+     * The status code expected from the host. Default `200`
      */
     expectedResponse?: number;
     /**
-     * The Host header to send for this Healthcheck.
+     * The Host header to send for this Healthcheck
      */
     host: string;
     /**
-     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
      */
     httpVersion?: string;
     /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `2`.
+     * When loading a config, the initial number of probes to be seen as OK. Default `2`
      */
     initial?: number;
     /**
-     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     * Which HTTP method to use. Default `HEAD`
      */
     method?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * The path to check
      */
     path: string;
     /**
-     * How many Healthchecks must succeed to be considered healthy. Default `3`.
+     * How many Healthchecks must succeed to be considered healthy. Default `3`
      */
     threshold?: number;
     /**
-     * Timeout in milliseconds. Default `500`.
+     * Timeout in milliseconds. Default `500`
      */
     timeout?: number;
     /**
-     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
      */
     window?: number;
 }
 
 export interface ServiceComputeHttpslogging {
     /**
-     * Value of the `Content-Type` header sent with the request.
+     * Value of the `Content-Type` header sent with the request
      */
     contentType?: string;
     /**
-     * Custom header sent with the request.
+     * Custom header sent with the request
      */
     headerName?: string;
     /**
-     * Value of the custom header sent with the request.
+     * Value of the custom header sent with the request
      */
     headerValue?: string;
     /**
-     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
      */
     jsonFormat?: string;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
      */
     messageType?: string;
     /**
-     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
      */
     method?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     * The maximum number of bytes sent in one request
      */
     requestMaxBytes?: number;
     /**
-     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     * The maximum number of logs sent in one request
      */
     requestMaxEntries?: number;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
+     * A secure certificate to authenticate the server with. Must be in PEM format
      */
     tlsCaCert?: string;
     /**
-     * The client certificate used to make authenticated requests. Must be in PEM format.
+     * The client certificate used to make authenticated requests. Must be in PEM format
      */
     tlsClientCert?: string;
     /**
-     * The client private key used to make authenticated requests. Must be in PEM format.
+     * The client private key used to make authenticated requests. Must be in PEM format
      */
     tlsClientKey?: string;
     /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     * Used during the TLS handshake to validate the certificate
      */
     tlsHostname?: string;
     /**
-     * Your OpenStack auth url.
+     * URL that log data will be sent to. Must use the https protocol
      */
     url: string;
 }
 
 export interface ServiceComputeLogentry {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port number configured in Logentries
      */
     port?: number;
     /**
-     * The data authentication token associated with this endpoint.
+     * Use token based authentication (https://logentries.com/doc/input-token/)
      */
     token: string;
     /**
-     * Whether to use TLS for secure logging. Can be either true or false.
+     * Whether to use TLS for secure logging
      */
     useTls?: boolean;
 }
 
 export interface ServiceComputeLoggingCloudfile {
     /**
-     * The AWS access key to be used to write to the stream.
+     * Your Cloud File account access key
      */
     accessKey: string;
     /**
-     * The name of your Cloud Files container.
+     * The name of your Cloud Files container
      */
     bucketName: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * What level of GZIP encoding to have when dumping logs (default `0`, no compression)
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * The path to upload logs to
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
      */
     period?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
      */
     region?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
-     * The username for your Cloud Files account.
+     * The username for your Cloud Files account
      */
     user: string;
 }
 
 export interface ServiceComputeLoggingDatadog {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
+     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
     region?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The API key from your Datadog account
      */
     token: string;
 }
 
 export interface ServiceComputeLoggingDigitalocean {
     /**
-     * The AWS access key to be used to write to the stream.
+     * Your DigitalOcean Spaces account access key
      */
     accessKey: string;
     /**
-     * The name of your Cloud Files container.
+     * The name of the DigitalOcean Space
      */
     bucketName: string;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
      */
     domain?: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * The path to upload logs to
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
      */
     period?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * Your DigitalOcean Spaces account secret key
      */
     secretKey: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
 
 export interface ServiceComputeLoggingElasticsearch {
     /**
-     * The name of the Elasticsearch index to send documents (logs) to.
+     * The name of the Elasticsearch index to send documents (logs) to
      */
     index: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     * BasicAuth password for Elasticsearch
      */
     password?: string;
     /**
-     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
+     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
      */
     pipeline?: string;
     /**
-     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded
      */
     requestMaxBytes?: number;
     /**
-     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded
      */
     requestMaxEntries?: number;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
+     * A secure certificate to authenticate the server with. Must be in PEM format
      */
     tlsCaCert?: string;
     /**
-     * The client certificate used to make authenticated requests. Must be in PEM format.
+     * The client certificate used to make authenticated requests. Must be in PEM format
      */
     tlsClientCert?: string;
     /**
-     * The client private key used to make authenticated requests. Must be in PEM format.
+     * The client private key used to make authenticated requests. Must be in PEM format
      */
     tlsClientKey?: string;
     /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     * The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
      */
     tlsHostname?: string;
     /**
-     * Your OpenStack auth url.
+     * The Elasticsearch URL to stream logs to
      */
     url: string;
     /**
-     * The username for your Cloud Files account.
+     * BasicAuth username for Elasticsearch
      */
     user?: string;
 }
 
 export interface ServiceComputeLoggingFtp {
     /**
-     * The SFTP address to stream logs to.
+     * The FTP address to stream logs to
      */
     address: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * Gzip Compression level. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted (default: `classic`)
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     * The password for the server (for anonymous use an email address)
      */
     password: string;
     /**
-     * The path to upload logs to.
+     * The path to upload log files to. If the path ends in `/` then it is treated as a directory
      */
     path: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred, in seconds (Default `3600`)
      */
     period?: number;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port number. Default: `21`
      */
     port?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
-     * The username for your Cloud Files account.
+     * The username for the server (can be `anonymous`)
      */
     user: string;
 }
 
 export interface ServiceComputeLoggingGooglepubsub {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The ID of your Google Cloud Platform project.
+     * The ID of your Google Cloud Platform project
      */
     projectId: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
      */
     secretKey: string;
     /**
-     * The Kinesis stream name.
+     * The Google Cloud Pub/Sub topic to which logs will be published
      */
     topic: string;
     /**
-     * The username for your Cloud Files account.
+     * Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
      */
     user: string;
 }
 
 export interface ServiceComputeLoggingHeroku {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
      */
     token: string;
     /**
-     * Your OpenStack auth url.
+     * The URL to stream logs to
      */
     url: string;
 }
 
 export interface ServiceComputeLoggingHoneycomb {
     /**
-     * The Honeycomb Dataset you want to log to.
+     * The Honeycomb Dataset you want to log to
      */
     dataset: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The Write Key from the Account page of your Honeycomb account
      */
     token: string;
 }
 
 export interface ServiceComputeLoggingKafka {
+    /**
+     * SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+     */
     authMethod?: string;
     /**
-     * A comma-separated list of IP addresses or hostnames of Kafka brokers.
+     * A comma-separated list of IP addresses or hostnames of Kafka brokers
      */
     brokers: string;
     /**
-     * The codec used for compression of your logs. One of: gzip, snappy, lz4.
+     * The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
      */
     compressionCodec?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
+    /**
+     * Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+     */
     parseLogKeyvals?: boolean;
     /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     * SASL Pass
      */
     password?: string;
     /**
-     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     * Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      */
     requestMaxBytes?: number;
     /**
-     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
      */
     requiredAcks?: string;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
+     * A secure certificate to authenticate the server with. Must be in PEM format
      */
     tlsCaCert?: string;
     /**
-     * The client certificate used to make authenticated requests. Must be in PEM format.
+     * The client certificate used to make authenticated requests. Must be in PEM format
      */
     tlsClientCert?: string;
     /**
-     * The client private key used to make authenticated requests. Must be in PEM format.
+     * The client private key used to make authenticated requests. Must be in PEM format
      */
     tlsClientKey?: string;
     /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
      */
     tlsHostname?: string;
     /**
-     * The Kinesis stream name.
+     * The Kafka topic to send logs to
      */
     topic: string;
     /**
-     * Whether to use TLS for secure logging. Can be either true or false.
+     * Whether to use TLS for secure logging. Can be either `true` or `false`
      */
     useTls?: boolean;
     /**
-     * The username for your Cloud Files account.
+     * SASL User
      */
     user?: string;
 }
 
 export interface ServiceComputeLoggingKinese {
     /**
-     * The AWS access key to be used to write to the stream.
+     * The AWS access key to be used to write to the stream
      */
-    accessKey: string;
+    accessKey?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
+     */
+    iamRole?: string;
+    /**
+     * The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
+     * The AWS region the stream resides in. (Default: `us-east-1`)
      */
     region?: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * The AWS secret access key to authenticate with
      */
-    secretKey: string;
+    secretKey?: string;
     /**
-     * The Kinesis stream name.
+     * The Kinesis stream name
      */
     topic: string;
 }
 
 export interface ServiceComputeLoggingLoggly {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
      */
     token: string;
 }
 
 export interface ServiceComputeLoggingLogshuttle {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The data authentication token associated with this endpoint
      */
     token: string;
     /**
-     * Your OpenStack auth url.
+     * Your Log Shuttle endpoint URL
      */
     url: string;
 }
 
 export interface ServiceComputeLoggingNewrelic {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The Insert API key from the Account page of your New Relic account
      */
     token: string;
 }
 
 export interface ServiceComputeLoggingOpenstack {
     /**
-     * The AWS access key to be used to write to the stream.
+     * Your OpenStack account access key
      */
     accessKey: string;
     /**
-     * The name of your Cloud Files container.
+     * The name of your OpenStack container
      */
     bucketName: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred, in seconds. Default `3600`
      */
     period?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
-     * Your OpenStack auth url.
+     * Your OpenStack auth url
      */
     url: string;
     /**
-     * The username for your Cloud Files account.
+     * The username for your OpenStack account
      */
     user: string;
 }
 
 export interface ServiceComputeLoggingScalyr {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
+     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
     region?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The token to use for authentication (https://www.scalyr.com/keys)
      */
     token: string;
 }
 
 export interface ServiceComputeLoggingSftp {
     /**
-     * The SFTP address to stream logs to.
+     * The SFTP address to stream logs to
      */
     address: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      */
     password?: string;
     /**
-     * The path to upload logs to.
+     * The path to upload log files to. If the path ends in `/` then it is treated as a directory
      */
     path: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
      */
     period?: number;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port the SFTP service listens on. (Default: `22`)
      */
     port?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      */
     secretKey?: string;
     /**
-     * A list of host keys for all hosts we can connect to over SFTP.
+     * A list of host keys for all hosts we can connect to over SFTP
      */
     sshKnownHosts: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
-     * The username for your Cloud Files account.
+     * The username for the server
      */
     user: string;
 }
 
 export interface ServiceComputePackage {
     /**
-     * The path to the Wasm deployment package within your local filesystem.
+     * The path to the Wasm deployment package within your local filesystem
      */
     filename: string;
+    /**
+     * Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
+     */
     sourceCodeHash: string;
 }
 
 export interface ServiceComputePapertrail {
     /**
-     * The SFTP address to stream logs to.
+     * The address of the Papertrail endpoint
      */
     address: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port associated with the address where the Papertrail endpoint can be accessed
      */
     port: number;
 }
 
 export interface ServiceComputeS3logging {
     /**
-     * The name of your Cloud Files container.
+     * The name of the bucket in which to store the logs
      */
     bucketName: string;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
      */
     domain?: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
      */
     messageType?: string;
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred, in seconds. Default `3600`
      */
     period?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
      */
     redundancy?: string;
     /**
-     * AWS Access Key of an account with the required
-     * permissions to post logs. It is **strongly** recommended you create a separate
-     * IAM user with permissions to only operate on this Bucket. This key will be
-     * not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
      */
     s3AccessKey?: string;
     /**
-     * AWS Secret Key of an account with the required
-     * permissions to post logs. It is **strongly** recommended you create a separate
-     * IAM user with permissions to only operate on this Bucket. This secret will be
-     * not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     */
+    s3IamRole?: string;
+    /**
+     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
      */
     s3SecretKey?: string;
+    /**
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+     */
     serverSideEncryption?: string;
+    /**
+     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     */
     serverSideEncryptionKmsKeyId?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
 
 export interface ServiceComputeSplunk {
     /**
-     * The unique name of the Kinesis logging endpoint.
+     * A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
-     */
-    tlsCaCert?: string;
-    /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-     */
-    tlsHostname?: string;
-    /**
-     * The data authentication token associated with this endpoint.
-     */
-    token: string;
-    /**
-     * Your OpenStack auth url.
-     */
-    url: string;
-}
-
-export interface ServiceComputeSumologic {
-    /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-     */
-    messageType?: string;
-    /**
-     * The unique name of the Kinesis logging endpoint.
-     */
-    name: string;
-    /**
-     * Your OpenStack auth url.
-     */
-    url: string;
-}
-
-export interface ServiceComputeSyslog {
-    /**
-     * The SFTP address to stream logs to.
-     */
-    address: string;
-    /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-     */
-    messageType?: string;
-    /**
-     * The unique name of the Kinesis logging endpoint.
-     */
-    name: string;
-    /**
-     * The port the SFTP service listens on. (Default: `22`).
-     */
-    port?: number;
-    /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
      */
     tlsCaCert?: string;
     /**
@@ -1034,103 +1064,161 @@ export interface ServiceComputeSyslog {
      */
     tlsClientKey?: string;
     /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
      */
     tlsHostname?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The Splunk token to be used for authentication
+     */
+    token: string;
+    /**
+     * The Splunk URL to stream logs to
+     */
+    url: string;
+}
+
+export interface ServiceComputeSumologic {
+    /**
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * The URL to Sumologic collector endpoint
+     */
+    url: string;
+}
+
+export interface ServiceComputeSyslog {
+    /**
+     * A hostname or IPv4 address of the Syslog endpoint
+     */
+    address: string;
+    /**
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+     */
+    port?: number;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+     */
+    tlsClientKey?: string;
+    /**
+     * Used during the TLS handshake to validate the certificate
+     */
+    tlsHostname?: string;
+    /**
+     * Whether to prepend each message with a specific token
      */
     token?: string;
     /**
-     * Whether to use TLS for secure logging. Can be either true or false.
+     * Whether to use TLS for secure logging. Default `false`
      */
     useTls?: boolean;
 }
 
 export interface ServiceWafConfigurationRule {
     /**
-     * The Web Application Firewall rule's modsecurity ID.
+     * The Web Application Firewall rule's modsecurity ID
      */
     modsecRuleId: number;
     /**
-     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided.
+     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
      */
     revision: number;
     /**
-     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`).
+     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
      */
     status: string;
 }
 
 export interface ServiceWafConfigurationRuleExclusion {
     /**
-     * A conditional expression in VCL used to determine if the condition is met.
+     * A conditional expression in VCL used to determine if the condition is met
      */
     condition: string;
     /**
-     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall.
+     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
      */
     exclusionType: string;
     /**
-     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded.
+     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
      */
     modsecRuleIds?: number[];
     /**
-     * The name of rule exclusion.
+     * The name of rule exclusion
      */
     name: string;
     /**
-     * The numeric ID assigned to the WAF Rule Exclusion.
+     * The numeric ID assigned to the WAF Rule Exclusion
      */
     number: number;
 }
 
 export interface Servicev1Acl {
     /**
-     * The ID of the ACL.
+     * The ID of the ACL
      */
     aclId: string;
     /**
-     * A unique name to identify this dictionary.
+     * Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+     */
+    forceDestroy?: boolean;
+    /**
+     * A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
      */
     name: string;
 }
 
 export interface Servicev1Backend {
     /**
-     * The SFTP address to stream logs to.
+     * An IPv4, hostname, or IPv6 address for the Backend
      */
     address: string;
     /**
-     * Denotes if this Backend should be
-     * included in the pool of backends that requests are load balanced against.
-     * Default `true`.
+     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
      */
     autoLoadbalance?: boolean;
     /**
-     * How long to wait between bytes in milliseconds. Default `10000`.
+     * How long to wait between bytes in milliseconds. Default `10000`
      */
     betweenBytesTimeout?: number;
     /**
-     * How long to wait for a timeout in milliseconds.
-     * Default `1000`
+     * How long to wait for a timeout in milliseconds. Default `1000`
      */
     connectTimeout?: number;
     /**
-     * Number of errors to allow before the Backend is marked as down. Default `0`.
+     * Number of errors to allow before the Backend is marked as down. Default `0`
      */
     errorThreshold?: number;
     /**
-     * How long to wait for the first bytes in milliseconds. Default `15000`.
+     * How long to wait for the first bytes in milliseconds. Default `15000`
      */
     firstByteTimeout?: number;
     /**
-     * Name of a defined `healthcheck` to assign to this backend.
+     * Name of a defined `healthcheck` to assign to this backend
      */
     healthcheck?: string;
     /**
-     * Maximum number of connections for this Backend.
-     * Default `200`.
+     * Maximum number of connections for this Backend. Default `200`
      */
     maxConn?: number;
     /**
@@ -1142,23 +1230,23 @@ export interface Servicev1Backend {
      */
     minTlsVersion?: string;
     /**
-     * A unique name to identify this dictionary.
+     * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The hostname to override the Host header.
+     * The hostname to override the Host header
      */
     overrideHost?: string;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port number on which the Backend responds. Default `80`
      */
     port?: number;
     /**
-     * Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+     * Name of a condition, which if met, will select this backend during a request.
      */
     requestCondition?: string;
     /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+     * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      */
     shield?: string;
     /**
@@ -1166,205 +1254,212 @@ export interface Servicev1Backend {
      */
     sslCaCert?: string;
     /**
-     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.
+     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
      */
     sslCertHostname?: string;
     /**
-     * Be strict about checking SSL certs. Default `true`.
+     * Be strict about checking SSL certs. Default `true`
      */
     sslCheckCert?: boolean;
     /**
-     * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend.
+     * Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
      */
     sslCiphers?: string;
     /**
-     * Client certificate attached to origin. Used when connecting to the backend.
+     * Client certificate attached to origin. Used when connecting to the backend
      */
     sslClientCert?: string;
     /**
-     * Client key attached to origin. Used when connecting to the backend.
+     * Client key attached to origin. Used when connecting to the backend
      */
     sslClientKey?: string;
     /**
-     * Used for both SNI during the TLS handshake and to validate the cert.
+     * Used for both SNI during the TLS handshake and to validate the cert
      *
      * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
      */
     sslHostname?: string;
     /**
-     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.
+     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
      */
     sslSniHostname?: string;
     /**
-     * Whether or not to use SSL to reach the backend. Default `false`.
+     * Whether or not to use SSL to reach the Backend. Default `false`
      */
     useSsl?: boolean;
     /**
-     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives `weight / total` of the traffic. Default `100`.
+     * The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
      */
     weight?: number;
 }
 
 export interface Servicev1Bigquerylogging {
     /**
-     * The Honeycomb Dataset you want to log to.
+     * The ID of your BigQuery dataset
      */
     dataset: string;
     /**
-     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
      */
     email: string;
     /**
-     * Apache style log formatting.
+     * The logging format desired.
      */
     format?: string;
     /**
-     * A unique name to identify this dictionary.
+     * A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
-     * The ID of your Google Cloud Platform project.
+     * The ID of your GCP project
      */
     projectId: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Name of a condition to apply this logging.
      */
     responseCondition?: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
      */
     secretKey: string;
     /**
-     * The ID of your BigQuery table.
+     * The ID of your BigQuery table
      */
     table: string;
     /**
-     * Big query table name suffix template. If set will be interpreted as a strftime compatible string and used as the [Template Suffix for your table](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables).
+     * BigQuery table name suffix template
      */
     template?: string;
 }
 
 export interface Servicev1Blobstoragelogging {
     /**
-     * The unique Azure Blob Storage namespace in which your data objects are stored.
+     * The unique Azure Blob Storage namespace in which your data objects are stored
      */
     accountName: string;
     /**
-     * The name of the Azure Blob Storage container in which to store logs.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * The name of the Azure Blob Storage container in which to store logs
      */
     container: string;
     /**
-     * Apache style log formatting.
+     * Maximum size of an uploaded log file, if non-zero.
+     */
+    fileMaxBytes?: number;
+    /**
+     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
      */
     formatVersion?: number;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
      */
     messageType?: string;
     /**
-     * A unique name to identify this dictionary.
+     * A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred in seconds. Default `3600`
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: string;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * The name of the condition to apply
      */
     responseCondition?: string;
     /**
-     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work.
+     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
      */
     sasToken: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
      */
     timestampFormat?: string;
 }
 
 export interface Servicev1CacheSetting {
     /**
-     * Allows you to terminate request handling and immediately
-     * perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+     * One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
      */
     action?: string;
     /**
-     * Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-     * see [Fastly's Documentation on Conditionals][fastly-conditionals].
+     * Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
      */
     cacheCondition?: string;
     /**
-     * A unique name to identify this dictionary.
+     * Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Max "Time To Live" for stale (unreachable) objects.
+     * Max "Time To Live" for stale (unreachable) objects
      */
     staleTtl?: number;
     /**
-     * The Time-To-Live (TTL) for the object.
+     * The Time-To-Live (TTL) for the object
      */
     ttl?: number;
 }
 
 export interface Servicev1Condition {
     /**
-     * A unique name to identify this dictionary.
+     * The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+     * A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
      */
     priority?: number;
     /**
-     * The statement used to determine if the condition is met.
+     * The statement used to determine if the condition is met
      */
     statement: string;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+     * Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
      */
     type: string;
 }
 
 export interface Servicev1Dictionary {
     /**
-     * The ID of the dictionary.
+     * The ID of the dictionary
      */
     dictionaryId: string;
     /**
-     * A unique name to identify this dictionary.
+     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     */
+    forceDestroy?: boolean;
+    /**
+     * A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
      */
     name: string;
     /**
-     * If `true`, the dictionary is a private dictionary, and items are not readable in the UI or
-     * via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the
-     * dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if
-     * the items are managed outside of the provider.
+     * If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider
      */
     writeOnly?: boolean;
 }
@@ -1375,745 +1470,358 @@ export interface Servicev1Director {
      */
     backends: string[];
     /**
-     * Load balancing weight for the backends. Default `100`.
+     * Load balancing weight for the backends. Default `100`
      */
     capacity?: number;
     /**
-     * An optional comment about the Director.
+     * An optional comment about the Director
      */
     comment?: string;
     /**
-     * A unique name to identify this dictionary.
+     * Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`.
+     * Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
      */
     quorum?: number;
     /**
-     * How many backends to search if it fails. Default `5`.
+     * How many backends to search if it fails. Default `5`
      */
     retries?: number;
     /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response.
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
      */
     shield?: string;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+     * Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
      */
     type?: number;
 }
 
 export interface Servicev1Domain {
     /**
-     * An optional comment about the Director.
+     * An optional comment about the Domain.
      */
     comment?: string;
     /**
-     * A unique name to identify this dictionary.
+     * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
      */
     name: string;
 }
 
 export interface Servicev1Dynamicsnippet {
     /**
-     * A unique name to identify this dictionary.
+     * A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+     * Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
      */
     priority?: number;
     /**
-     * The ID of the dynamic snippet.
+     * The ID of the dynamic snippet
      */
     snippetId: string;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
      */
     type: string;
 }
 
 export interface Servicev1Gcslogging {
     /**
-     * The name of your Cloud Files container.
+     * The name of the bucket in which to store the logs
      */
     bucketName: string;
     /**
-     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
      */
     email?: string;
     /**
-     * Apache style log formatting.
+     * Apache-style string or VCL variables to use for log formatting
      */
     format?: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
      */
     messageType?: string;
     /**
-     * A unique name to identify this dictionary.
+     * A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred, in seconds (Default 3600)
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Name of a condition to apply this logging.
      */
     responseCondition?: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      */
     secretKey?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
 
 export interface Servicev1Gzip {
     /**
-     * Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-     * see [Fastly's Documentation on Conditionals][fastly-conditionals].
+     * Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
      */
     cacheCondition?: string;
     /**
-     * The content-type for each type of content you wish to
-     * have dynamically gzip'ed. Example: `["text/html", "text/css"]`.
+     * The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
      */
     contentTypes?: string[];
     /**
-     * File extensions for each file type to dynamically
-     * gzip. Example: `["css", "js"]`.
+     * File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
      */
     extensions?: string[];
     /**
-     * A unique name to identify this dictionary.
+     * A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
 }
 
 export interface Servicev1Header {
     /**
-     * Allows you to terminate request handling and immediately
-     * perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+     * The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
      */
     action: string;
     /**
-     * Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-     * see [Fastly's Documentation on Conditionals][fastly-conditionals].
+     * Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
      */
     cacheCondition?: string;
     /**
-     * The name of the header that is going to be affected by the Action.
+     * The name of the header that is going to be affected by the Action
      */
     destination: string;
     /**
-     * Do not add the header if it is already present. (Only applies to the `set` action.). Default `false`.
+     * Don't add the header if it is already. (Only applies to `set` action.). Default `false`
      */
     ignoreIfSet?: boolean;
     /**
-     * A unique name to identify this dictionary.
+     * Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+     * Lower priorities execute first. Default: `100`
      */
     priority?: number;
     /**
-     * Regular expression to use (Only applies to the `regex` and `regexRepeat` actions.)
+     * Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
      */
     regex: string;
     /**
-     * Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+     * Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
      */
     requestCondition?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
      */
     responseCondition?: string;
     /**
-     * Variable to be used as a source for the header
-     * content. (Does not apply to the `delete` action.)
+     * Variable to be used as a source for the header content (Does not apply to `delete` action.)
      */
     source: string;
     /**
-     * Value to substitute in place of regular expression. (Only applies to the `regex` and `regexRepeat` actions.)
+     * Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
      */
     substitution: string;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+     * The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
      */
     type: string;
 }
 
 export interface Servicev1Healthcheck {
     /**
-     * How often to run the Healthcheck in milliseconds. Default `5000`.
+     * How often to run the Healthcheck in milliseconds. Default `5000`
      */
     checkInterval?: number;
     /**
-     * The status code expected from the host. Default `200`.
+     * The status code expected from the host. Default `200`
      */
     expectedResponse?: number;
     /**
-     * The Host header to send for this Healthcheck.
+     * The Host header to send for this Healthcheck
      */
     host: string;
     /**
-     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`.
+     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
      */
     httpVersion?: string;
     /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `2`.
+     * When loading a config, the initial number of probes to be seen as OK. Default `2`
      */
     initial?: number;
     /**
-     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     * Which HTTP method to use. Default `HEAD`
      */
     method?: string;
     /**
-     * A unique name to identify this dictionary.
+     * A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * The path to check
      */
     path: string;
     /**
-     * How many Healthchecks must succeed to be considered healthy. Default `3`.
+     * How many Healthchecks must succeed to be considered healthy. Default `3`
      */
     threshold?: number;
     /**
-     * Timeout in milliseconds. Default `500`.
+     * Timeout in milliseconds. Default `500`
      */
     timeout?: number;
     /**
-     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`.
+     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
      */
     window?: number;
 }
 
 export interface Servicev1Httpslogging {
     /**
-     * The MIME type of the content.
+     * Value of the `Content-Type` header sent with the request
      */
     contentType?: string;
     /**
-     * Apache style log formatting.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
      */
     formatVersion?: number;
     /**
-     * Custom header sent with the request.
+     * Custom header sent with the request
      */
     headerName?: string;
     /**
-     * Value of the custom header sent with the request.
+     * Value of the custom header sent with the request
      */
     headerValue?: string;
     /**
-     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`).
+     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
      */
     jsonFormat?: string;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
      */
     messageType?: string;
     /**
-     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`.
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
      */
     method?: string;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: string;
     /**
-     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     * The maximum number of bytes sent in one request
      */
     requestMaxBytes?: number;
     /**
-     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
+     * The maximum number of logs sent in one request
      */
     requestMaxEntries?: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * The name of the condition to apply
      */
     responseCondition?: string;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
+     * A secure certificate to authenticate the server with. Must be in PEM format
      */
     tlsCaCert?: string;
     /**
-     * The client certificate used to make authenticated requests. Must be in PEM format.
+     * The client certificate used to make authenticated requests. Must be in PEM format
      */
     tlsClientCert?: string;
     /**
-     * The client private key used to make authenticated requests. Must be in PEM format.
+     * The client private key used to make authenticated requests. Must be in PEM format
      */
     tlsClientKey?: string;
     /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     * Used during the TLS handshake to validate the certificate
      */
     tlsHostname?: string;
     /**
-     * Your OpenStack auth url.
+     * URL that log data will be sent to. Must use the https protocol
      */
     url: string;
 }
 
 export interface Servicev1Logentry {
     /**
-     * Apache style log formatting.
+     * Apache-style string or VCL variables to use for log formatting
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
      */
     formatVersion?: number;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port number configured in Logentries
      */
     port?: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Name of blockAttributes condition to apply this logging.
      */
     responseCondition?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * Use token based authentication (https://logentries.com/doc/input-token/)
      */
     token: string;
     /**
-     * Whether to use TLS for secure logging. Can be either true or false.
+     * Whether to use TLS for secure logging
      */
     useTls?: boolean;
 }
 
 export interface Servicev1LoggingCloudfile {
     /**
-     * The AWS access key to be used to write to the stream.
+     * Your Cloud File account access key
      */
     accessKey: string;
     /**
-     * The name of your Cloud Files container.
+     * The name of your Cloud Files container
      */
     bucketName: string;
     /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
-     */
-    gzipLevel?: number;
-    /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-     */
-    messageType?: string;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * The path to upload logs to.
-     */
-    path?: string;
-    /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-     */
-    period?: number;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-     */
-    publicKey?: string;
-    /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
-     */
-    region?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-     */
-    timestampFormat?: string;
-    /**
-     * The username for your Cloud Files account.
-     */
-    user: string;
-}
-
-export interface Servicev1LoggingDatadog {
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
-     */
-    region?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * The data authentication token associated with this endpoint.
-     */
-    token: string;
-}
-
-export interface Servicev1LoggingDigitalocean {
-    /**
-     * The AWS access key to be used to write to the stream.
-     */
-    accessKey: string;
-    /**
-     * The name of your Cloud Files container.
-     */
-    bucketName: string;
-    /**
-     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-     */
-    domain?: string;
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
-     */
-    gzipLevel?: number;
-    /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-     */
-    messageType?: string;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * The path to upload logs to.
-     */
-    path?: string;
-    /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-     */
-    period?: number;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-     */
-    publicKey?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * The AWS secret access key to authenticate with.
-     */
-    secretKey: string;
-    /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-     */
-    timestampFormat?: string;
-}
-
-export interface Servicev1LoggingElasticsearch {
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * The name of the Elasticsearch index to send documents (logs) to.
-     */
-    index: string;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
-     */
-    password?: string;
-    /**
-     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.
-     */
-    pipeline?: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
-     */
-    requestMaxBytes?: number;
-    /**
-     * The maximum number of logs sent in one request. Defaults to `0` for unbounded.
-     */
-    requestMaxEntries?: number;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
-     */
-    tlsCaCert?: string;
-    /**
-     * The client certificate used to make authenticated requests. Must be in PEM format.
-     */
-    tlsClientCert?: string;
-    /**
-     * The client private key used to make authenticated requests. Must be in PEM format.
-     */
-    tlsClientKey?: string;
-    /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-     */
-    tlsHostname?: string;
-    /**
-     * Your OpenStack auth url.
-     */
-    url: string;
-    /**
-     * The username for your Cloud Files account.
-     */
-    user?: string;
-}
-
-export interface Servicev1LoggingFtp {
-    /**
-     * The SFTP address to stream logs to.
-     */
-    address: string;
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
-     */
-    gzipLevel?: number;
-    /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-     */
-    messageType?: string;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
-     */
-    password: string;
-    /**
-     * The path to upload logs to.
-     */
-    path: string;
-    /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
-     */
-    period?: number;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The port the SFTP service listens on. (Default: `22`).
-     */
-    port?: number;
-    /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
-     */
-    publicKey?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
-     */
-    timestampFormat?: string;
-    /**
-     * The username for your Cloud Files account.
-     */
-    user: string;
-}
-
-export interface Servicev1LoggingGooglepubsub {
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The ID of your Google Cloud Platform project.
-     */
-    projectId: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * The AWS secret access key to authenticate with.
-     */
-    secretKey: string;
-    /**
-     * The Kinesis stream name.
-     */
-    topic: string;
-    /**
-     * The username for your Cloud Files account.
-     */
-    user: string;
-}
-
-export interface Servicev1LoggingHeroku {
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * The data authentication token associated with this endpoint.
-     */
-    token: string;
-    /**
-     * Your OpenStack auth url.
-     */
-    url: string;
-}
-
-export interface Servicev1LoggingHoneycomb {
-    /**
-     * The Honeycomb Dataset you want to log to.
-     */
-    dataset: string;
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * The data authentication token associated with this endpoint.
-     */
-    token: string;
-}
-
-export interface Servicev1LoggingKafka {
-    authMethod?: string;
-    /**
-     * A comma-separated list of IP addresses or hostnames of Kafka brokers.
-     */
-    brokers: string;
-    /**
-     * The codec used for compression of your logs. One of: gzip, snappy, lz4.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: string;
     /**
@@ -2125,83 +1833,35 @@ export interface Servicev1LoggingKafka {
      */
     formatVersion?: number;
     /**
-     * A unique name to identify this dictionary.
+     * What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
-    parseLogKeyvals?: boolean;
     /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     * The path to upload logs to
      */
-    password?: string;
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+     */
+    period?: number;
     /**
      * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
     placement?: string;
     /**
-     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded.
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
-    requestMaxBytes?: number;
+    publicKey?: string;
     /**
-     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1	Wait for all in-sync replicas to respond.
-     */
-    requiredAcks?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
-     */
-    tlsCaCert?: string;
-    /**
-     * The client certificate used to make authenticated requests. Must be in PEM format.
-     */
-    tlsClientCert?: string;
-    /**
-     * The client private key used to make authenticated requests. Must be in PEM format.
-     */
-    tlsClientKey?: string;
-    /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-     */
-    tlsHostname?: string;
-    /**
-     * The Kinesis stream name.
-     */
-    topic: string;
-    /**
-     * Whether to use TLS for secure logging. Can be either true or false.
-     */
-    useTls?: boolean;
-    /**
-     * The username for your Cloud Files account.
-     */
-    user?: string;
-}
-
-export interface Servicev1LoggingKinese {
-    /**
-     * The AWS access key to be used to write to the stream.
-     */
-    accessKey: string;
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
      */
     region?: string;
     /**
@@ -2209,16 +1869,63 @@ export interface Servicev1LoggingKinese {
      */
     responseCondition?: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
-    secretKey: string;
+    timestampFormat?: string;
     /**
-     * The Kinesis stream name.
+     * The username for your Cloud Files account
      */
-    topic: string;
+    user: string;
 }
 
-export interface Servicev1LoggingLoggly {
+export interface Servicev1LoggingDatadog {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+     */
+    region?: string;
+    /**
+     * The name of the condition to apply.
+     */
+    responseCondition?: string;
+    /**
+     * The API key from your Datadog account
+     */
+    token: string;
+}
+
+export interface Servicev1LoggingDigitalocean {
+    /**
+     * Your DigitalOcean Spaces account access key
+     */
+    accessKey: string;
+    /**
+     * The name of the DigitalOcean Space
+     */
+    bucketName: string;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     */
+    domain?: string;
     /**
      * Apache style log formatting.
      */
@@ -2228,7 +1935,231 @@ export interface Servicev1LoggingLoggly {
      */
     formatVersion?: number;
     /**
-     * A unique name to identify this dictionary.
+     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     */
+    messageType?: string;
+    /**
+     * The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * The path to upload logs to
+     */
+    path?: string;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+     */
+    period?: number;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * Your DigitalOcean Spaces account secret key
+     */
+    secretKey: string;
+    /**
+     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: string;
+}
+
+export interface Servicev1LoggingElasticsearch {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+     */
+    formatVersion?: number;
+    /**
+     * The name of the Elasticsearch index to send documents (logs) to
+     */
+    index: string;
+    /**
+     * The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * BasicAuth password for Elasticsearch
+     */
+    password?: string;
+    /**
+     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+     */
+    pipeline?: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded
+     */
+    requestMaxBytes?: number;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+     */
+    requestMaxEntries?: number;
+    /**
+     * The name of the condition to apply
+     */
+    responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+     */
+    tlsHostname?: string;
+    /**
+     * The Elasticsearch URL to stream logs to
+     */
+    url: string;
+    /**
+     * BasicAuth username for Elasticsearch
+     */
+    user?: string;
+}
+
+export interface Servicev1LoggingFtp {
+    /**
+     * The FTP address to stream logs to
+     */
+    address: string;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+     */
+    formatVersion?: number;
+    /**
+     * Gzip Compression level. Default `0`
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted (default: `classic`)
+     */
+    messageType?: string;
+    /**
+     * The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * The password for the server (for anonymous use an email address)
+     */
+    password: string;
+    /**
+     * The path to upload log files to. If the path ends in `/` then it is treated as a directory
+     */
+    path: string;
+    /**
+     * How frequently the logs should be transferred, in seconds (Default `3600`)
+     */
+    period?: number;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The port number. Default: `21`
+     */
+    port?: number;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: string;
+    /**
+     * The name of the condition to apply.
+     */
+    responseCondition?: string;
+    /**
+     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: string;
+    /**
+     * The username for the server (can be `anonymous`)
+     */
+    user: string;
+}
+
+export interface Servicev1LoggingGooglepubsub {
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+     */
+    formatVersion?: number;
+    /**
+     * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The ID of your Google Cloud Platform project
+     */
+    projectId: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+     */
+    secretKey: string;
+    /**
+     * The Google Cloud Pub/Sub topic to which logs will be published
+     */
+    topic: string;
+    /**
+     * Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+     */
+    user: string;
+}
+
+export interface Servicev1LoggingHeroku {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
@@ -2240,7 +2171,191 @@ export interface Servicev1LoggingLoggly {
      */
     responseCondition?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
+     */
+    token: string;
+    /**
+     * The URL to stream logs to
+     */
+    url: string;
+}
+
+export interface Servicev1LoggingHoneycomb {
+    /**
+     * The Honeycomb Dataset you want to log to
+     */
+    dataset: string;
+    /**
+     * Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The Write Key from the Account page of your Honeycomb account
+     */
+    token: string;
+}
+
+export interface Servicev1LoggingKafka {
+    /**
+     * SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+     */
+    authMethod?: string;
+    /**
+     * A comma-separated list of IP addresses or hostnames of Kafka brokers
+     */
+    brokers: string;
+    /**
+     * The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
+     */
+    compressionCodec?: string;
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+     */
+    formatVersion?: number;
+    /**
+     * The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+     */
+    parseLogKeyvals?: boolean;
+    /**
+     * SASL Pass
+     */
+    password?: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+     */
+    requestMaxBytes?: number;
+    /**
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+     */
+    requiredAcks?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientKey?: string;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+     */
+    tlsHostname?: string;
+    /**
+     * The Kafka topic to send logs to
+     */
+    topic: string;
+    /**
+     * Whether to use TLS for secure logging. Can be either `true` or `false`
+     */
+    useTls?: boolean;
+    /**
+     * SASL User
+     */
+    user?: string;
+}
+
+export interface Servicev1LoggingKinese {
+    /**
+     * The AWS access key to be used to write to the stream
+     */
+    accessKey?: string;
+    /**
+     * Apache style log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
+     */
+    iamRole?: string;
+    /**
+     * The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The AWS region the stream resides in. (Default: `us-east-1`)
+     */
+    region?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The AWS secret access key to authenticate with
+     */
+    secretKey?: string;
+    /**
+     * The Kinesis stream name
+     */
+    topic: string;
+}
+
+export interface Servicev1LoggingLoggly {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: string;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: string;
+    /**
+     * The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
      */
     token: string;
 }
@@ -2255,7 +2370,7 @@ export interface Servicev1LoggingLogshuttle {
      */
     formatVersion?: number;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
@@ -2267,18 +2382,18 @@ export interface Servicev1LoggingLogshuttle {
      */
     responseCondition?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The data authentication token associated with this endpoint
      */
     token: string;
     /**
-     * Your OpenStack auth url.
+     * Your Log Shuttle endpoint URL
      */
     url: string;
 }
 
 export interface Servicev1LoggingNewrelic {
     /**
-     * Apache style log formatting.
+     * Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
      */
     format?: string;
     /**
@@ -2286,32 +2401,36 @@ export interface Servicev1LoggingNewrelic {
      */
     formatVersion?: number;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * The name of the condition to apply.
      */
     responseCondition?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The Insert API key from the Account page of your New Relic account
      */
     token: string;
 }
 
 export interface Servicev1LoggingOpenstack {
     /**
-     * The AWS access key to be used to write to the stream.
+     * Your OpenStack account access key
      */
     accessKey: string;
     /**
-     * The name of your Cloud Files container.
+     * The name of your OpenStack container
      */
     bucketName: string;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
     /**
      * Apache style log formatting.
      */
@@ -2321,23 +2440,23 @@ export interface Servicev1LoggingOpenstack {
      */
     formatVersion?: number;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
      */
     messageType?: string;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred, in seconds. Default `3600`
      */
     period?: number;
     /**
@@ -2345,7 +2464,7 @@ export interface Servicev1LoggingOpenstack {
      */
     placement?: string;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
@@ -2353,15 +2472,15 @@ export interface Servicev1LoggingOpenstack {
      */
     responseCondition?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
-     * Your OpenStack auth url.
+     * Your OpenStack auth url
      */
     url: string;
     /**
-     * The username for your Cloud Files account.
+     * The username for your OpenStack account
      */
     user: string;
 }
@@ -2372,19 +2491,19 @@ export interface Servicev1LoggingScalyr {
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
      */
     formatVersion?: number;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
-     * The AWS region the stream resides in. (Default: `us-east-1`).
+     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
     region?: string;
     /**
@@ -2392,405 +2511,324 @@ export interface Servicev1LoggingScalyr {
      */
     responseCondition?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The token to use for authentication (https://www.scalyr.com/keys)
      */
     token: string;
 }
 
 export interface Servicev1LoggingSftp {
     /**
-     * The SFTP address to stream logs to.
+     * The SFTP address to stream logs to
      */
     address: string;
     /**
-     * Apache style log formatting.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
      */
     formatVersion?: number;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
      */
     messageType?: string;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred.
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      */
     password?: string;
     /**
-     * The path to upload logs to.
+     * The path to upload log files to. If the path ends in `/` then it is treated as a directory
      */
     path: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port the SFTP service listens on. (Default: `22`)
      */
     port?: number;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * The name of the condition to apply.
      */
     responseCondition?: string;
     /**
-     * The AWS secret access key to authenticate with.
+     * The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      */
     secretKey?: string;
     /**
-     * A list of host keys for all hosts we can connect to over SFTP.
+     * A list of host keys for all hosts we can connect to over SFTP
      */
     sshKnownHosts: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
-     * The username for your Cloud Files account.
+     * The username for the server
      */
     user: string;
 }
 
 export interface Servicev1Papertrail {
     /**
-     * The SFTP address to stream logs to.
+     * The address of the Papertrail endpoint
      */
     address: string;
     /**
-     * Apache style log formatting.
+     * A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
      */
     format?: string;
     /**
-     * A unique name to identify this dictionary.
+     * The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`
+     */
+    formatVersion?: number;
+    /**
+     * A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
      */
     placement?: string;
     /**
-     * The port the SFTP service listens on. (Default: `22`).
+     * The port associated with the address where the Papertrail endpoint can be accessed
      */
     port: number;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute
      */
     responseCondition?: string;
 }
 
 export interface Servicev1RequestSetting {
     /**
-     * Allows you to terminate request handling and immediately
-     * perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+     * Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
      */
     action?: string;
     /**
-     * Disable collapsed forwarding, so you don't wait
-     * for other objects to origin.
+     * Disable collapsed forwarding, so you don't wait for other objects to origin
      */
     bypassBusyWait?: boolean;
     /**
-     * Sets the host header.
+     * Sets the host header
      */
     defaultHost?: string;
     /**
-     * Force a cache miss for the request. If specified,
-     * can be `true` or `false`.
+     * Force a cache miss for the request. If specified, can be `true` or `false`
      */
     forceMiss?: boolean;
     /**
-     * Forces the request to use SSL (Redirects a non-SSL request to SSL).
+     * Forces the request to use SSL (Redirects a non-SSL request to SSL)
      */
     forceSsl?: boolean;
     /**
-     * Injects Fastly-Geo-Country, Fastly-Geo-City, and
-     * Fastly-Geo-Region into the request headers.
+     * Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
      */
     geoHeaders?: boolean;
     /**
-     * Comma separated list of varnish request object fields
-     * that should be in the hash key.
+     * Comma separated list of varnish request object fields that should be in the hash key
      */
     hashKeys?: string;
     /**
-     * How old an object is allowed to be to serve
-     * `stale-if-error` or `stale-while-revalidate`, in seconds.
+     * How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
      */
     maxStaleAge?: number;
     /**
-     * A unique name to identify this dictionary.
+     * Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+     * Name of already defined `condition` to determine if this request setting should be applied
      */
     requestCondition?: string;
     /**
-     * Injects the X-Timer info into the request for
-     * viewing origin fetch durations.
+     * Injects the X-Timer info into the request for viewing origin fetch durations
      */
     timerSupport?: boolean;
     /**
-     * X-Forwarded-For, should be `clear`, `leave`, `append`,
-     * `appendAll`, or `overwrite`. Default `append`.
+     * X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
      */
     xff?: string;
 }
 
 export interface Servicev1ResponseObject {
     /**
-     * Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-     * see [Fastly's Documentation on Conditionals][fastly-conditionals].
+     * Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
      */
     cacheCondition?: string;
     /**
-     * The custom VCL code to upload.
+     * The content to deliver for the response object
      */
     content?: string;
     /**
-     * The MIME type of the content.
+     * The MIME type of the content
      */
     contentType?: string;
     /**
-     * A unique name to identify this dictionary.
+     * A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+     * Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
      */
     requestCondition?: string;
     /**
-     * The HTTP Response. Default `Ok`.
+     * The HTTP Response. Default `OK`
      */
     response?: string;
     /**
-     * The HTTP Status Code. Default `200`.
+     * The HTTP Status Code. Default `200`
      */
     status?: number;
 }
 
 export interface Servicev1S3logging {
     /**
-     * The name of your Cloud Files container.
+     * The name of the bucket in which to store the logs
      */
     bucketName: string;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
      */
     domain?: string;
     /**
-     * Apache style log formatting.
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
      */
     formatVersion?: number;
     /**
-     * What level of GZIP encoding to have when dumping logs (default 0, no compression).
+     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
      */
     messageType?: string;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * The path to upload logs to.
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
      */
     path?: string;
     /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default 3600).
+     * How frequently the logs should be transferred, in seconds. Default `3600`
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk.
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: string;
     /**
-     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`.
+     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
      */
     redundancy?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * Name of blockAttributes condition to apply this logging.
      */
     responseCondition?: string;
     /**
-     * AWS Access Key of an account with the required
-     * permissions to post logs. It is **strongly** recommended you create a separate
-     * IAM user with permissions to only operate on this Bucket. This key will be
-     * not be encrypted. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`.
+     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
      */
     s3AccessKey?: string;
     /**
-     * AWS Secret Key of an account with the required
-     * permissions to post logs. It is **strongly** recommended you create a separate
-     * IAM user with permissions to only operate on this Bucket. This secret will be
-     * not be encrypted. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`.
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     */
+    s3IamRole?: string;
+    /**
+     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
      */
     s3SecretKey?: string;
     /**
-     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`.
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
      */
     serverSideEncryption?: string;
     /**
-     * Server-side KMS Key ID. Must be set if `serverSideEncryption` is set to `aws:kms`.
+     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
      */
     serverSideEncryptionKmsKeyId?: string;
     /**
-     * The strftime specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`).
+     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
 
 export interface Servicev1Snippet {
     /**
-     * The custom VCL code to upload.
+     * The VCL code that specifies exactly what the snippet does
      */
     content: string;
     /**
-     * A unique name to identify this dictionary.
+     * A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Priority determines the ordering for multiple snippets. Lower numbers execute first.  Defaults to `100`.
+     * Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
      */
     priority?: number;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`).
+     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
      */
     type: string;
 }
 
 export interface Servicev1Splunk {
     /**
-     * Apache style log formatting.
+     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
      */
     format?: string;
     /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
      */
     formatVersion?: number;
     /**
-     * A unique name to identify this dictionary.
+     * A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: string;
     /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     * The name of the condition to apply
      */
     responseCondition?: string;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
-     */
-    tlsCaCert?: string;
-    /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
-     */
-    tlsHostname?: string;
-    /**
-     * The data authentication token associated with this endpoint.
-     */
-    token: string;
-    /**
-     * Your OpenStack auth url.
-     */
-    url: string;
-}
-
-export interface Servicev1Sumologic {
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-     */
-    messageType?: string;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * Your OpenStack auth url.
-     */
-    url: string;
-}
-
-export interface Servicev1Syslog {
-    /**
-     * The SFTP address to stream logs to.
-     */
-    address: string;
-    /**
-     * Apache style log formatting.
-     */
-    format?: string;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: number;
-    /**
-     * How the message should be formatted. One of: classic (default), loggly, logplex or blank.
-     */
-    messageType?: string;
-    /**
-     * A unique name to identify this dictionary.
-     */
-    name: string;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: string;
-    /**
-     * The port the SFTP service listens on. (Default: `22`).
-     */
-    port?: number;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: string;
-    /**
-     * A secure certificate to authenticate the server with. Must be in PEM format.
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
      */
     tlsCaCert?: string;
     /**
@@ -2802,48 +2840,154 @@ export interface Servicev1Syslog {
      */
     tlsClientKey?: string;
     /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
      */
     tlsHostname?: string;
     /**
-     * The data authentication token associated with this endpoint.
+     * The Splunk token to be used for authentication
+     */
+    token: string;
+    /**
+     * The Splunk URL to stream logs to
+     */
+    url: string;
+}
+
+export interface Servicev1Sumologic {
+    /**
+     * Apache-style string or VCL variables to use for log formatting
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
+     */
+    formatVersion?: number;
+    /**
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: string;
+    /**
+     * The URL to Sumologic collector endpoint
+     */
+    url: string;
+}
+
+export interface Servicev1Syslog {
+    /**
+     * A hostname or IPv4 address of the Syslog endpoint
+     */
+    address: string;
+    /**
+     * Apache-style string or VCL variables to use for log formatting
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format. Can be either 1 or 2. (Default: 1)
+     */
+    formatVersion?: number;
+    /**
+     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     */
+    messageType?: string;
+    /**
+     * A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+     */
+    port?: number;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: string;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+     */
+    tlsCaCert?: string;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+     */
+    tlsClientCert?: string;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+     */
+    tlsClientKey?: string;
+    /**
+     * Used during the TLS handshake to validate the certificate
+     */
+    tlsHostname?: string;
+    /**
+     * Whether to prepend each message with a specific token
      */
     token?: string;
     /**
-     * Whether to use TLS for secure logging. Can be either true or false.
+     * Whether to use TLS for secure logging. Default `false`
      */
     useTls?: boolean;
 }
 
 export interface Servicev1Vcl {
     /**
-     * The custom VCL code to upload.
+     * The custom VCL code to upload
      */
     content: string;
     /**
-     * If `true`, use this block as the main configuration. If
-     * `false`, use this block as an includable library. Only a single VCL block can be
-     * marked as the main block. Default is `false`.
+     * If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
      */
     main?: boolean;
     /**
-     * A unique name to identify this dictionary.
+     * A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
 }
 
 export interface Servicev1Waf {
+    /**
+     * A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
+     */
     disabled?: boolean;
     /**
-     * The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals].
+     * The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
      */
     prefetchCondition?: string;
     /**
-     * The name of the response object used by the Web Application Firewall.
+     * The name of the response object used by the Web Application Firewall
      */
     responseObject: string;
     /**
-     * The ID of the WAF.
+     * The ID of the WAF
      */
     wafId: string;
+}
+
+export interface TlsSubscriptionManagedHttpChallenge {
+    /**
+     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+     */
+    recordName: string;
+    /**
+     * The type of DNS record to add, e.g. `A`, or `CNAME`.
+     */
+    recordType: string;
+    /**
+     * A list with the value(s) to which the DNS record should point.
+     */
+    recordValues: string[];
 }

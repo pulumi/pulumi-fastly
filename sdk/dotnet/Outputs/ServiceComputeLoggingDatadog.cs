@@ -14,15 +14,15 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingDatadog
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The AWS region the stream resides in. (Default: `us-east-1`).
+        /// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The API key from your Datadog account
         /// </summary>
         public readonly string Token;
 

@@ -16,9 +16,21 @@ namespace Pulumi.Fastly
     /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
     /// on their documentation site for guidance.
     /// 
+    /// ## Example Usage
+    /// ### package block
+    /// 
+    /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on
+    /// [Compute@Edge](https://www.fastly.com/products/edge-compute/serverless)
+    /// 
+    /// [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+    /// [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+    /// [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+    /// [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+    /// [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
+    /// 
     /// ## Import
     /// 
-    /// Fastly Service can be imported using their service ID, e.g.
+    /// Fastly Services can be imported using their service ID, e.g.
     /// 
     /// ```sh
     ///  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
@@ -28,250 +40,142 @@ namespace Pulumi.Fastly
     public partial class ServiceCompute : Pulumi.CustomResource
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Output("activate")]
         public Output<bool?> Activate { get; private set; } = null!;
 
         /// <summary>
-        /// The currently active version of your Fastly Service.
+        /// The currently active version of your Fastly Service
         /// </summary>
         [Output("activeVersion")]
         public Output<int> ActiveVersion { get; private set; } = null!;
 
-        /// <summary>
-        /// A set of Backends to service requests from your Domains.
-        /// Defined below. Backends must be defined in this argument, or defined in the
-        /// `vcl` argument below
-        /// </summary>
         [Output("backends")]
         public Output<ImmutableArray<Outputs.ServiceComputeBackend>> Backends { get; private set; } = null!;
 
-        /// <summary>
-        /// A BigQuery endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("bigqueryloggings")]
         public Output<ImmutableArray<Outputs.ServiceComputeBigquerylogging>> Bigqueryloggings { get; private set; } = null!;
 
-        /// <summary>
-        /// An Azure Blob Storage endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("blobstorageloggings")]
         public Output<ImmutableArray<Outputs.ServiceComputeBlobstoragelogging>> Blobstorageloggings { get; private set; } = null!;
 
+        /// <summary>
+        /// The latest cloned version by the provider
+        /// </summary>
         [Output("clonedVersion")]
         public Output<int> ClonedVersion { get; private set; } = null!;
 
         /// <summary>
-        /// An optional comment about the Domain.
+        /// Description field for the service. Default `Managed by Terraform`
         /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
 
+        [Output("dictionaries")]
+        public Output<ImmutableArray<Outputs.ServiceComputeDictionary>> Dictionaries { get; private set; } = null!;
+
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        /// A set of Domain names to serve as entry points for your Service
         /// </summary>
         [Output("domains")]
         public Output<ImmutableArray<Outputs.ServiceComputeDomain>> Domains { get; private set; } = null!;
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In
-        /// order to destroy the Service, set `force_destroy` to `true`. Default `false`.
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
-        /// <summary>
-        /// A gcs endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("gcsloggings")]
         public Output<ImmutableArray<Outputs.ServiceComputeGcslogging>> Gcsloggings { get; private set; } = null!;
 
-        /// <summary>
-        /// Name of a defined `healthcheck` to assign to this backend.
-        /// </summary>
         [Output("healthchecks")]
         public Output<ImmutableArray<Outputs.ServiceComputeHealthcheck>> Healthchecks { get; private set; } = null!;
 
-        /// <summary>
-        /// An HTTPS endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("httpsloggings")]
         public Output<ImmutableArray<Outputs.ServiceComputeHttpslogging>> Httpsloggings { get; private set; } = null!;
 
-        /// <summary>
-        /// A logentries endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("logentries")]
         public Output<ImmutableArray<Outputs.ServiceComputeLogentry>> Logentries { get; private set; } = null!;
 
-        /// <summary>
-        /// A Rackspace Cloud Files endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingCloudfiles")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingCloudfile>> LoggingCloudfiles { get; private set; } = null!;
 
-        /// <summary>
-        /// A Datadog endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingDatadogs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingDatadog>> LoggingDatadogs { get; private set; } = null!;
 
-        /// <summary>
-        /// A DigitalOcean Spaces endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingDigitaloceans")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingDigitalocean>> LoggingDigitaloceans { get; private set; } = null!;
 
-        /// <summary>
-        /// An Elasticsearch endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingElasticsearches")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingElasticsearch>> LoggingElasticsearches { get; private set; } = null!;
 
-        /// <summary>
-        /// An FTP endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingFtps")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingFtp>> LoggingFtps { get; private set; } = null!;
 
-        /// <summary>
-        /// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingGooglepubsubs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingGooglepubsub>> LoggingGooglepubsubs { get; private set; } = null!;
 
-        /// <summary>
-        /// A Heroku endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingHeroku")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingHeroku>> LoggingHeroku { get; private set; } = null!;
 
-        /// <summary>
-        /// A Honeycomb endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingHoneycombs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingHoneycomb>> LoggingHoneycombs { get; private set; } = null!;
 
-        /// <summary>
-        /// A Kafka endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingKafkas")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingKafka>> LoggingKafkas { get; private set; } = null!;
 
-        /// <summary>
-        /// A Kinesis endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingKineses")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingKinese>> LoggingKineses { get; private set; } = null!;
 
-        /// <summary>
-        /// A Loggly endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingLogglies")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingLoggly>> LoggingLogglies { get; private set; } = null!;
 
-        /// <summary>
-        /// A Log Shuttle endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingLogshuttles")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingLogshuttle>> LoggingLogshuttles { get; private set; } = null!;
 
-        /// <summary>
-        /// A New Relic endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingNewrelics")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingNewrelic>> LoggingNewrelics { get; private set; } = null!;
 
-        /// <summary>
-        /// An OpenStack endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingOpenstacks")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingOpenstack>> LoggingOpenstacks { get; private set; } = null!;
 
-        /// <summary>
-        /// A Scalyr endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingScalyrs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingScalyr>> LoggingScalyrs { get; private set; } = null!;
 
-        /// <summary>
-        /// An SFTP endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         [Output("loggingSftps")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingSftp>> LoggingSftps { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name for the Service to create
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A Wasm deployment package to upload.
-        /// Defined below.
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Output("package")]
         public Output<Outputs.ServiceComputePackage> Package { get; private set; } = null!;
 
-        /// <summary>
-        /// A Papertrail endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("papertrails")]
         public Output<ImmutableArray<Outputs.ServiceComputePapertrail>> Papertrails { get; private set; } = null!;
 
-        /// <summary>
-        /// A set of S3 Buckets to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("s3loggings")]
         public Output<ImmutableArray<Outputs.ServiceComputeS3logging>> S3loggings { get; private set; } = null!;
 
-        /// <summary>
-        /// A Splunk endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("splunks")]
         public Output<ImmutableArray<Outputs.ServiceComputeSplunk>> Splunks { get; private set; } = null!;
 
-        /// <summary>
-        /// A Sumologic endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("sumologics")]
         public Output<ImmutableArray<Outputs.ServiceComputeSumologic>> Sumologics { get; private set; } = null!;
 
-        /// <summary>
-        /// A syslog endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         [Output("syslogs")]
         public Output<ImmutableArray<Outputs.ServiceComputeSyslog>> Syslogs { get; private set; } = null!;
 
         /// <summary>
-        /// Description field for the version.
+        /// Description field for the version
         /// </summary>
         [Output("versionComment")]
         public Output<string?> VersionComment { get; private set; } = null!;
@@ -323,19 +227,13 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
 
-        [Input("backends")]
+        [Input("backends", required: true)]
         private InputList<Inputs.ServiceComputeBackendArgs>? _backends;
-
-        /// <summary>
-        /// A set of Backends to service requests from your Domains.
-        /// Defined below. Backends must be defined in this argument, or defined in the
-        /// `vcl` argument below
-        /// </summary>
         public InputList<Inputs.ServiceComputeBackendArgs> Backends
         {
             get => _backends ?? (_backends = new InputList<Inputs.ServiceComputeBackendArgs>());
@@ -344,11 +242,6 @@ namespace Pulumi.Fastly
 
         [Input("bigqueryloggings")]
         private InputList<Inputs.ServiceComputeBigqueryloggingArgs>? _bigqueryloggings;
-
-        /// <summary>
-        /// A BigQuery endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeBigqueryloggingArgs> Bigqueryloggings
         {
             get => _bigqueryloggings ?? (_bigqueryloggings = new InputList<Inputs.ServiceComputeBigqueryloggingArgs>());
@@ -357,11 +250,6 @@ namespace Pulumi.Fastly
 
         [Input("blobstorageloggings")]
         private InputList<Inputs.ServiceComputeBlobstorageloggingArgs>? _blobstorageloggings;
-
-        /// <summary>
-        /// An Azure Blob Storage endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeBlobstorageloggingArgs> Blobstorageloggings
         {
             get => _blobstorageloggings ?? (_blobstorageloggings = new InputList<Inputs.ServiceComputeBlobstorageloggingArgs>());
@@ -369,16 +257,24 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// An optional comment about the Domain.
+        /// Description field for the service. Default `Managed by Terraform`
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
+
+        [Input("dictionaries")]
+        private InputList<Inputs.ServiceComputeDictionaryArgs>? _dictionaries;
+        public InputList<Inputs.ServiceComputeDictionaryArgs> Dictionaries
+        {
+            get => _dictionaries ?? (_dictionaries = new InputList<Inputs.ServiceComputeDictionaryArgs>());
+            set => _dictionaries = value;
+        }
 
         [Input("domains", required: true)]
         private InputList<Inputs.ServiceComputeDomainArgs>? _domains;
 
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        /// A set of Domain names to serve as entry points for your Service
         /// </summary>
         public InputList<Inputs.ServiceComputeDomainArgs> Domains
         {
@@ -387,19 +283,13 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In
-        /// order to destroy the Service, set `force_destroy` to `true`. Default `false`.
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
         [Input("gcsloggings")]
         private InputList<Inputs.ServiceComputeGcsloggingArgs>? _gcsloggings;
-
-        /// <summary>
-        /// A gcs endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeGcsloggingArgs> Gcsloggings
         {
             get => _gcsloggings ?? (_gcsloggings = new InputList<Inputs.ServiceComputeGcsloggingArgs>());
@@ -408,10 +298,6 @@ namespace Pulumi.Fastly
 
         [Input("healthchecks")]
         private InputList<Inputs.ServiceComputeHealthcheckArgs>? _healthchecks;
-
-        /// <summary>
-        /// Name of a defined `healthcheck` to assign to this backend.
-        /// </summary>
         public InputList<Inputs.ServiceComputeHealthcheckArgs> Healthchecks
         {
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceComputeHealthcheckArgs>());
@@ -420,11 +306,6 @@ namespace Pulumi.Fastly
 
         [Input("httpsloggings")]
         private InputList<Inputs.ServiceComputeHttpsloggingArgs>? _httpsloggings;
-
-        /// <summary>
-        /// An HTTPS endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeHttpsloggingArgs> Httpsloggings
         {
             get => _httpsloggings ?? (_httpsloggings = new InputList<Inputs.ServiceComputeHttpsloggingArgs>());
@@ -433,11 +314,6 @@ namespace Pulumi.Fastly
 
         [Input("logentries")]
         private InputList<Inputs.ServiceComputeLogentryArgs>? _logentries;
-
-        /// <summary>
-        /// A logentries endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLogentryArgs> Logentries
         {
             get => _logentries ?? (_logentries = new InputList<Inputs.ServiceComputeLogentryArgs>());
@@ -446,11 +322,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingCloudfiles")]
         private InputList<Inputs.ServiceComputeLoggingCloudfileArgs>? _loggingCloudfiles;
-
-        /// <summary>
-        /// A Rackspace Cloud Files endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingCloudfileArgs> LoggingCloudfiles
         {
             get => _loggingCloudfiles ?? (_loggingCloudfiles = new InputList<Inputs.ServiceComputeLoggingCloudfileArgs>());
@@ -459,11 +330,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingDatadogs")]
         private InputList<Inputs.ServiceComputeLoggingDatadogArgs>? _loggingDatadogs;
-
-        /// <summary>
-        /// A Datadog endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingDatadogArgs> LoggingDatadogs
         {
             get => _loggingDatadogs ?? (_loggingDatadogs = new InputList<Inputs.ServiceComputeLoggingDatadogArgs>());
@@ -472,11 +338,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingDigitaloceans")]
         private InputList<Inputs.ServiceComputeLoggingDigitaloceanArgs>? _loggingDigitaloceans;
-
-        /// <summary>
-        /// A DigitalOcean Spaces endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingDigitaloceanArgs> LoggingDigitaloceans
         {
             get => _loggingDigitaloceans ?? (_loggingDigitaloceans = new InputList<Inputs.ServiceComputeLoggingDigitaloceanArgs>());
@@ -485,11 +346,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingElasticsearches")]
         private InputList<Inputs.ServiceComputeLoggingElasticsearchArgs>? _loggingElasticsearches;
-
-        /// <summary>
-        /// An Elasticsearch endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingElasticsearchArgs> LoggingElasticsearches
         {
             get => _loggingElasticsearches ?? (_loggingElasticsearches = new InputList<Inputs.ServiceComputeLoggingElasticsearchArgs>());
@@ -498,11 +354,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingFtps")]
         private InputList<Inputs.ServiceComputeLoggingFtpArgs>? _loggingFtps;
-
-        /// <summary>
-        /// An FTP endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingFtpArgs> LoggingFtps
         {
             get => _loggingFtps ?? (_loggingFtps = new InputList<Inputs.ServiceComputeLoggingFtpArgs>());
@@ -511,11 +362,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingGooglepubsubs")]
         private InputList<Inputs.ServiceComputeLoggingGooglepubsubArgs>? _loggingGooglepubsubs;
-
-        /// <summary>
-        /// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingGooglepubsubArgs> LoggingGooglepubsubs
         {
             get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.ServiceComputeLoggingGooglepubsubArgs>());
@@ -524,11 +370,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingHeroku")]
         private InputList<Inputs.ServiceComputeLoggingHerokuArgs>? _loggingHeroku;
-
-        /// <summary>
-        /// A Heroku endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingHerokuArgs> LoggingHeroku
         {
             get => _loggingHeroku ?? (_loggingHeroku = new InputList<Inputs.ServiceComputeLoggingHerokuArgs>());
@@ -537,11 +378,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingHoneycombs")]
         private InputList<Inputs.ServiceComputeLoggingHoneycombArgs>? _loggingHoneycombs;
-
-        /// <summary>
-        /// A Honeycomb endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingHoneycombArgs> LoggingHoneycombs
         {
             get => _loggingHoneycombs ?? (_loggingHoneycombs = new InputList<Inputs.ServiceComputeLoggingHoneycombArgs>());
@@ -550,11 +386,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingKafkas")]
         private InputList<Inputs.ServiceComputeLoggingKafkaArgs>? _loggingKafkas;
-
-        /// <summary>
-        /// A Kafka endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingKafkaArgs> LoggingKafkas
         {
             get => _loggingKafkas ?? (_loggingKafkas = new InputList<Inputs.ServiceComputeLoggingKafkaArgs>());
@@ -563,11 +394,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingKineses")]
         private InputList<Inputs.ServiceComputeLoggingKineseArgs>? _loggingKineses;
-
-        /// <summary>
-        /// A Kinesis endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingKineseArgs> LoggingKineses
         {
             get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.ServiceComputeLoggingKineseArgs>());
@@ -576,11 +402,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingLogglies")]
         private InputList<Inputs.ServiceComputeLoggingLogglyArgs>? _loggingLogglies;
-
-        /// <summary>
-        /// A Loggly endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingLogglyArgs> LoggingLogglies
         {
             get => _loggingLogglies ?? (_loggingLogglies = new InputList<Inputs.ServiceComputeLoggingLogglyArgs>());
@@ -589,11 +410,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingLogshuttles")]
         private InputList<Inputs.ServiceComputeLoggingLogshuttleArgs>? _loggingLogshuttles;
-
-        /// <summary>
-        /// A Log Shuttle endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingLogshuttleArgs> LoggingLogshuttles
         {
             get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.ServiceComputeLoggingLogshuttleArgs>());
@@ -602,11 +418,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingNewrelics")]
         private InputList<Inputs.ServiceComputeLoggingNewrelicArgs>? _loggingNewrelics;
-
-        /// <summary>
-        /// A New Relic endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingNewrelicArgs> LoggingNewrelics
         {
             get => _loggingNewrelics ?? (_loggingNewrelics = new InputList<Inputs.ServiceComputeLoggingNewrelicArgs>());
@@ -615,11 +426,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingOpenstacks")]
         private InputList<Inputs.ServiceComputeLoggingOpenstackArgs>? _loggingOpenstacks;
-
-        /// <summary>
-        /// An OpenStack endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingOpenstackArgs> LoggingOpenstacks
         {
             get => _loggingOpenstacks ?? (_loggingOpenstacks = new InputList<Inputs.ServiceComputeLoggingOpenstackArgs>());
@@ -628,11 +434,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingScalyrs")]
         private InputList<Inputs.ServiceComputeLoggingScalyrArgs>? _loggingScalyrs;
-
-        /// <summary>
-        /// A Scalyr endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingScalyrArgs> LoggingScalyrs
         {
             get => _loggingScalyrs ?? (_loggingScalyrs = new InputList<Inputs.ServiceComputeLoggingScalyrArgs>());
@@ -641,11 +442,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingSftps")]
         private InputList<Inputs.ServiceComputeLoggingSftpArgs>? _loggingSftps;
-
-        /// <summary>
-        /// An SFTP endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingSftpArgs> LoggingSftps
         {
             get => _loggingSftps ?? (_loggingSftps = new InputList<Inputs.ServiceComputeLoggingSftpArgs>());
@@ -653,25 +449,19 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name for the Service to create
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A Wasm deployment package to upload.
-        /// Defined below.
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Input("package", required: true)]
         public Input<Inputs.ServiceComputePackageArgs> Package { get; set; } = null!;
 
         [Input("papertrails")]
         private InputList<Inputs.ServiceComputePapertrailArgs>? _papertrails;
-
-        /// <summary>
-        /// A Papertrail endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputePapertrailArgs> Papertrails
         {
             get => _papertrails ?? (_papertrails = new InputList<Inputs.ServiceComputePapertrailArgs>());
@@ -680,11 +470,6 @@ namespace Pulumi.Fastly
 
         [Input("s3loggings")]
         private InputList<Inputs.ServiceComputeS3loggingArgs>? _s3loggings;
-
-        /// <summary>
-        /// A set of S3 Buckets to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeS3loggingArgs> S3loggings
         {
             get => _s3loggings ?? (_s3loggings = new InputList<Inputs.ServiceComputeS3loggingArgs>());
@@ -693,11 +478,6 @@ namespace Pulumi.Fastly
 
         [Input("splunks")]
         private InputList<Inputs.ServiceComputeSplunkArgs>? _splunks;
-
-        /// <summary>
-        /// A Splunk endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeSplunkArgs> Splunks
         {
             get => _splunks ?? (_splunks = new InputList<Inputs.ServiceComputeSplunkArgs>());
@@ -706,11 +486,6 @@ namespace Pulumi.Fastly
 
         [Input("sumologics")]
         private InputList<Inputs.ServiceComputeSumologicArgs>? _sumologics;
-
-        /// <summary>
-        /// A Sumologic endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeSumologicArgs> Sumologics
         {
             get => _sumologics ?? (_sumologics = new InputList<Inputs.ServiceComputeSumologicArgs>());
@@ -719,11 +494,6 @@ namespace Pulumi.Fastly
 
         [Input("syslogs")]
         private InputList<Inputs.ServiceComputeSyslogArgs>? _syslogs;
-
-        /// <summary>
-        /// A syslog endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeSyslogArgs> Syslogs
         {
             get => _syslogs ?? (_syslogs = new InputList<Inputs.ServiceComputeSyslogArgs>());
@@ -731,7 +501,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Description field for the version.
+        /// Description field for the version
         /// </summary>
         [Input("versionComment")]
         public Input<string>? VersionComment { get; set; }
@@ -744,25 +514,19 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
 
         /// <summary>
-        /// The currently active version of your Fastly Service.
+        /// The currently active version of your Fastly Service
         /// </summary>
         [Input("activeVersion")]
         public Input<int>? ActiveVersion { get; set; }
 
         [Input("backends")]
         private InputList<Inputs.ServiceComputeBackendGetArgs>? _backends;
-
-        /// <summary>
-        /// A set of Backends to service requests from your Domains.
-        /// Defined below. Backends must be defined in this argument, or defined in the
-        /// `vcl` argument below
-        /// </summary>
         public InputList<Inputs.ServiceComputeBackendGetArgs> Backends
         {
             get => _backends ?? (_backends = new InputList<Inputs.ServiceComputeBackendGetArgs>());
@@ -771,11 +535,6 @@ namespace Pulumi.Fastly
 
         [Input("bigqueryloggings")]
         private InputList<Inputs.ServiceComputeBigqueryloggingGetArgs>? _bigqueryloggings;
-
-        /// <summary>
-        /// A BigQuery endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeBigqueryloggingGetArgs> Bigqueryloggings
         {
             get => _bigqueryloggings ?? (_bigqueryloggings = new InputList<Inputs.ServiceComputeBigqueryloggingGetArgs>());
@@ -784,31 +543,37 @@ namespace Pulumi.Fastly
 
         [Input("blobstorageloggings")]
         private InputList<Inputs.ServiceComputeBlobstorageloggingGetArgs>? _blobstorageloggings;
-
-        /// <summary>
-        /// An Azure Blob Storage endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeBlobstorageloggingGetArgs> Blobstorageloggings
         {
             get => _blobstorageloggings ?? (_blobstorageloggings = new InputList<Inputs.ServiceComputeBlobstorageloggingGetArgs>());
             set => _blobstorageloggings = value;
         }
 
+        /// <summary>
+        /// The latest cloned version by the provider
+        /// </summary>
         [Input("clonedVersion")]
         public Input<int>? ClonedVersion { get; set; }
 
         /// <summary>
-        /// An optional comment about the Domain.
+        /// Description field for the service. Default `Managed by Terraform`
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
+
+        [Input("dictionaries")]
+        private InputList<Inputs.ServiceComputeDictionaryGetArgs>? _dictionaries;
+        public InputList<Inputs.ServiceComputeDictionaryGetArgs> Dictionaries
+        {
+            get => _dictionaries ?? (_dictionaries = new InputList<Inputs.ServiceComputeDictionaryGetArgs>());
+            set => _dictionaries = value;
+        }
 
         [Input("domains")]
         private InputList<Inputs.ServiceComputeDomainGetArgs>? _domains;
 
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+        /// A set of Domain names to serve as entry points for your Service
         /// </summary>
         public InputList<Inputs.ServiceComputeDomainGetArgs> Domains
         {
@@ -817,19 +582,13 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In
-        /// order to destroy the Service, set `force_destroy` to `true`. Default `false`.
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
         [Input("gcsloggings")]
         private InputList<Inputs.ServiceComputeGcsloggingGetArgs>? _gcsloggings;
-
-        /// <summary>
-        /// A gcs endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeGcsloggingGetArgs> Gcsloggings
         {
             get => _gcsloggings ?? (_gcsloggings = new InputList<Inputs.ServiceComputeGcsloggingGetArgs>());
@@ -838,10 +597,6 @@ namespace Pulumi.Fastly
 
         [Input("healthchecks")]
         private InputList<Inputs.ServiceComputeHealthcheckGetArgs>? _healthchecks;
-
-        /// <summary>
-        /// Name of a defined `healthcheck` to assign to this backend.
-        /// </summary>
         public InputList<Inputs.ServiceComputeHealthcheckGetArgs> Healthchecks
         {
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceComputeHealthcheckGetArgs>());
@@ -850,11 +605,6 @@ namespace Pulumi.Fastly
 
         [Input("httpsloggings")]
         private InputList<Inputs.ServiceComputeHttpsloggingGetArgs>? _httpsloggings;
-
-        /// <summary>
-        /// An HTTPS endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeHttpsloggingGetArgs> Httpsloggings
         {
             get => _httpsloggings ?? (_httpsloggings = new InputList<Inputs.ServiceComputeHttpsloggingGetArgs>());
@@ -863,11 +613,6 @@ namespace Pulumi.Fastly
 
         [Input("logentries")]
         private InputList<Inputs.ServiceComputeLogentryGetArgs>? _logentries;
-
-        /// <summary>
-        /// A logentries endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLogentryGetArgs> Logentries
         {
             get => _logentries ?? (_logentries = new InputList<Inputs.ServiceComputeLogentryGetArgs>());
@@ -876,11 +621,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingCloudfiles")]
         private InputList<Inputs.ServiceComputeLoggingCloudfileGetArgs>? _loggingCloudfiles;
-
-        /// <summary>
-        /// A Rackspace Cloud Files endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingCloudfileGetArgs> LoggingCloudfiles
         {
             get => _loggingCloudfiles ?? (_loggingCloudfiles = new InputList<Inputs.ServiceComputeLoggingCloudfileGetArgs>());
@@ -889,11 +629,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingDatadogs")]
         private InputList<Inputs.ServiceComputeLoggingDatadogGetArgs>? _loggingDatadogs;
-
-        /// <summary>
-        /// A Datadog endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingDatadogGetArgs> LoggingDatadogs
         {
             get => _loggingDatadogs ?? (_loggingDatadogs = new InputList<Inputs.ServiceComputeLoggingDatadogGetArgs>());
@@ -902,11 +637,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingDigitaloceans")]
         private InputList<Inputs.ServiceComputeLoggingDigitaloceanGetArgs>? _loggingDigitaloceans;
-
-        /// <summary>
-        /// A DigitalOcean Spaces endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingDigitaloceanGetArgs> LoggingDigitaloceans
         {
             get => _loggingDigitaloceans ?? (_loggingDigitaloceans = new InputList<Inputs.ServiceComputeLoggingDigitaloceanGetArgs>());
@@ -915,11 +645,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingElasticsearches")]
         private InputList<Inputs.ServiceComputeLoggingElasticsearchGetArgs>? _loggingElasticsearches;
-
-        /// <summary>
-        /// An Elasticsearch endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingElasticsearchGetArgs> LoggingElasticsearches
         {
             get => _loggingElasticsearches ?? (_loggingElasticsearches = new InputList<Inputs.ServiceComputeLoggingElasticsearchGetArgs>());
@@ -928,11 +653,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingFtps")]
         private InputList<Inputs.ServiceComputeLoggingFtpGetArgs>? _loggingFtps;
-
-        /// <summary>
-        /// An FTP endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingFtpGetArgs> LoggingFtps
         {
             get => _loggingFtps ?? (_loggingFtps = new InputList<Inputs.ServiceComputeLoggingFtpGetArgs>());
@@ -941,11 +661,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingGooglepubsubs")]
         private InputList<Inputs.ServiceComputeLoggingGooglepubsubGetArgs>? _loggingGooglepubsubs;
-
-        /// <summary>
-        /// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingGooglepubsubGetArgs> LoggingGooglepubsubs
         {
             get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.ServiceComputeLoggingGooglepubsubGetArgs>());
@@ -954,11 +669,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingHeroku")]
         private InputList<Inputs.ServiceComputeLoggingHerokuGetArgs>? _loggingHeroku;
-
-        /// <summary>
-        /// A Heroku endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingHerokuGetArgs> LoggingHeroku
         {
             get => _loggingHeroku ?? (_loggingHeroku = new InputList<Inputs.ServiceComputeLoggingHerokuGetArgs>());
@@ -967,11 +677,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingHoneycombs")]
         private InputList<Inputs.ServiceComputeLoggingHoneycombGetArgs>? _loggingHoneycombs;
-
-        /// <summary>
-        /// A Honeycomb endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingHoneycombGetArgs> LoggingHoneycombs
         {
             get => _loggingHoneycombs ?? (_loggingHoneycombs = new InputList<Inputs.ServiceComputeLoggingHoneycombGetArgs>());
@@ -980,11 +685,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingKafkas")]
         private InputList<Inputs.ServiceComputeLoggingKafkaGetArgs>? _loggingKafkas;
-
-        /// <summary>
-        /// A Kafka endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingKafkaGetArgs> LoggingKafkas
         {
             get => _loggingKafkas ?? (_loggingKafkas = new InputList<Inputs.ServiceComputeLoggingKafkaGetArgs>());
@@ -993,11 +693,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingKineses")]
         private InputList<Inputs.ServiceComputeLoggingKineseGetArgs>? _loggingKineses;
-
-        /// <summary>
-        /// A Kinesis endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingKineseGetArgs> LoggingKineses
         {
             get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.ServiceComputeLoggingKineseGetArgs>());
@@ -1006,11 +701,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingLogglies")]
         private InputList<Inputs.ServiceComputeLoggingLogglyGetArgs>? _loggingLogglies;
-
-        /// <summary>
-        /// A Loggly endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingLogglyGetArgs> LoggingLogglies
         {
             get => _loggingLogglies ?? (_loggingLogglies = new InputList<Inputs.ServiceComputeLoggingLogglyGetArgs>());
@@ -1019,11 +709,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingLogshuttles")]
         private InputList<Inputs.ServiceComputeLoggingLogshuttleGetArgs>? _loggingLogshuttles;
-
-        /// <summary>
-        /// A Log Shuttle endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingLogshuttleGetArgs> LoggingLogshuttles
         {
             get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.ServiceComputeLoggingLogshuttleGetArgs>());
@@ -1032,11 +717,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingNewrelics")]
         private InputList<Inputs.ServiceComputeLoggingNewrelicGetArgs>? _loggingNewrelics;
-
-        /// <summary>
-        /// A New Relic endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingNewrelicGetArgs> LoggingNewrelics
         {
             get => _loggingNewrelics ?? (_loggingNewrelics = new InputList<Inputs.ServiceComputeLoggingNewrelicGetArgs>());
@@ -1045,11 +725,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingOpenstacks")]
         private InputList<Inputs.ServiceComputeLoggingOpenstackGetArgs>? _loggingOpenstacks;
-
-        /// <summary>
-        /// An OpenStack endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingOpenstackGetArgs> LoggingOpenstacks
         {
             get => _loggingOpenstacks ?? (_loggingOpenstacks = new InputList<Inputs.ServiceComputeLoggingOpenstackGetArgs>());
@@ -1058,11 +733,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingScalyrs")]
         private InputList<Inputs.ServiceComputeLoggingScalyrGetArgs>? _loggingScalyrs;
-
-        /// <summary>
-        /// A Scalyr endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingScalyrGetArgs> LoggingScalyrs
         {
             get => _loggingScalyrs ?? (_loggingScalyrs = new InputList<Inputs.ServiceComputeLoggingScalyrGetArgs>());
@@ -1071,11 +741,6 @@ namespace Pulumi.Fastly
 
         [Input("loggingSftps")]
         private InputList<Inputs.ServiceComputeLoggingSftpGetArgs>? _loggingSftps;
-
-        /// <summary>
-        /// An SFTP endpoint to send streaming logs to.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeLoggingSftpGetArgs> LoggingSftps
         {
             get => _loggingSftps ?? (_loggingSftps = new InputList<Inputs.ServiceComputeLoggingSftpGetArgs>());
@@ -1083,25 +748,19 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name for the Service to create
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A Wasm deployment package to upload.
-        /// Defined below.
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }
 
         [Input("papertrails")]
         private InputList<Inputs.ServiceComputePapertrailGetArgs>? _papertrails;
-
-        /// <summary>
-        /// A Papertrail endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputePapertrailGetArgs> Papertrails
         {
             get => _papertrails ?? (_papertrails = new InputList<Inputs.ServiceComputePapertrailGetArgs>());
@@ -1110,11 +769,6 @@ namespace Pulumi.Fastly
 
         [Input("s3loggings")]
         private InputList<Inputs.ServiceComputeS3loggingGetArgs>? _s3loggings;
-
-        /// <summary>
-        /// A set of S3 Buckets to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeS3loggingGetArgs> S3loggings
         {
             get => _s3loggings ?? (_s3loggings = new InputList<Inputs.ServiceComputeS3loggingGetArgs>());
@@ -1123,11 +777,6 @@ namespace Pulumi.Fastly
 
         [Input("splunks")]
         private InputList<Inputs.ServiceComputeSplunkGetArgs>? _splunks;
-
-        /// <summary>
-        /// A Splunk endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeSplunkGetArgs> Splunks
         {
             get => _splunks ?? (_splunks = new InputList<Inputs.ServiceComputeSplunkGetArgs>());
@@ -1136,11 +785,6 @@ namespace Pulumi.Fastly
 
         [Input("sumologics")]
         private InputList<Inputs.ServiceComputeSumologicGetArgs>? _sumologics;
-
-        /// <summary>
-        /// A Sumologic endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeSumologicGetArgs> Sumologics
         {
             get => _sumologics ?? (_sumologics = new InputList<Inputs.ServiceComputeSumologicGetArgs>());
@@ -1149,11 +793,6 @@ namespace Pulumi.Fastly
 
         [Input("syslogs")]
         private InputList<Inputs.ServiceComputeSyslogGetArgs>? _syslogs;
-
-        /// <summary>
-        /// A syslog endpoint to send streaming logs too.
-        /// Defined below.
-        /// </summary>
         public InputList<Inputs.ServiceComputeSyslogGetArgs> Syslogs
         {
             get => _syslogs ?? (_syslogs = new InputList<Inputs.ServiceComputeSyslogGetArgs>());
@@ -1161,7 +800,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Description field for the version.
+        /// Description field for the version
         /// </summary>
         [Input("versionComment")]
         public Input<string>? VersionComment { get; set; }

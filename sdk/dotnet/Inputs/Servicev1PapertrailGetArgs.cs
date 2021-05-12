@@ -13,37 +13,43 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1PapertrailGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// The address of the Papertrail endpoint
         /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Apache style log formatting.
+        /// A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        /// </summary>
+        [Input("formatVersion")]
+        public Input<int>? FormatVersion { get; set; }
+
+        /// <summary>
+        /// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port associated with the address where the Papertrail endpoint can be accessed
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }

@@ -14,27 +14,31 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1Papertrail
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// The address of the Papertrail endpoint
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// Apache style log formatting.
+        /// A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        /// </summary>
+        public readonly int? FormatVersion;
+        /// <summary>
+        /// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port associated with the address where the Papertrail endpoint can be accessed
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// The name of an existing condition in the configured endpoint, or leave blank to always execute
         /// </summary>
         public readonly string? ResponseCondition;
 
@@ -43,6 +47,8 @@ namespace Pulumi.Fastly.Outputs
             string address,
 
             string? format,
+
+            int? formatVersion,
 
             string name,
 
@@ -54,6 +60,7 @@ namespace Pulumi.Fastly.Outputs
         {
             Address = address;
             Format = format;
+            FormatVersion = formatVersion;
             Name = name;
             Placement = placement;
             Port = port;

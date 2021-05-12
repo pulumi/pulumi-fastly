@@ -5,6 +5,101 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
+ *
+ * > **Warning:** This provider will take precedence over any changes you make through the API. Such changes are likely to be reversed if you run the provider again.
+ *
+ * If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
+ *
+ * ## Example Usage
+ * ### Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domains: [{
+ *         name: "snippet.fastlytestdomain.com",
+ *         comment: "snippet test",
+ *     }],
+ *     backends: [{
+ *         address: "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         port: 80,
+ *     }],
+ *     dynamicsnippets: [{
+ *         name: "My Dynamic Snippet",
+ *         type: "recv",
+ *         priority: 110,
+ *     }],
+ *     defaultHost: "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
+ *     forceDestroy: true,
+ * });
+ * const myDynContent: fastly.ServiceDynamicSnippetContentv1[];
+ * for (const range of Object.entries(myservice.dynamicsnippets.apply(dynamicsnippets => dynamicsnippets.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => { ...__obj, [d.name]: d }))).map(([k, v]) => {key: k, value: v})) {
+ *     myDynContent.push(new fastly.ServiceDynamicSnippetContentv1(`myDynContent-${range.key}`, {
+ *         serviceId: myservice.id,
+ *         snippetId: range.value.snippetId,
+ *         content: `if ( req.url ) {
+ *  set req.http.my-snippet-test-header = "true";
+ * }`,
+ *     }));
+ * }
+ * ```
+ * ### Multiple dynamic snippets:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const myservice = new fastly.Servicev1("myservice", {
+ *     domains: [{
+ *         name: "snippet.fastlytestdomain.com",
+ *         comment: "snippet test",
+ *     }],
+ *     backends: [{
+ *         address: "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         port: 80,
+ *     }],
+ *     dynamicsnippets: [
+ *         {
+ *             name: "My Dynamic Snippet One",
+ *             type: "recv",
+ *             priority: 110,
+ *         },
+ *         {
+ *             name: "My Dynamic Snippet Two",
+ *             type: "recv",
+ *             priority: 110,
+ *         },
+ *     ],
+ *     defaultHost: "tftesting.tftesting.net.s3-website-us-west-2.amazonaws.com",
+ *     forceDestroy: true,
+ * });
+ * const myDynContentOne: fastly.ServiceDynamicSnippetContentv1[];
+ * for (const range of Object.entries(myservice.dynamicsnippets.apply(dynamicsnippets => dynamicsnippets.filter(d => d.name == "My Dynamic Snippet One").reduce((__obj, d) => { ...__obj, [d.name]: d }))).map(([k, v]) => {key: k, value: v})) {
+ *     myDynContentOne.push(new fastly.ServiceDynamicSnippetContentv1(`myDynContentOne-${range.key}`, {
+ *         serviceId: myservice.id,
+ *         snippetId: range.value.snippetId,
+ *         content: `if ( req.url ) {
+ *  set req.http.my-snippet-test-header-one = "true";
+ * }`,
+ *     }));
+ * }
+ * const myDynContentTwo: fastly.ServiceDynamicSnippetContentv1[];
+ * for (const range of Object.entries(myservice.dynamicsnippets.apply(dynamicsnippets => dynamicsnippets.filter(d => d.name == "My Dynamic Snippet Two").reduce((__obj, d) => { ...__obj, [d.name]: d }))).map(([k, v]) => {key: k, value: v})) {
+ *     myDynContentTwo.push(new fastly.ServiceDynamicSnippetContentv1(`myDynContentTwo-${range.key}`, {
+ *         serviceId: myservice.id,
+ *         snippetId: range.value.snippetId,
+ *         content: `if ( req.url ) {
+ *  set req.http.my-snippet-test-header-two = "true";
+ * }`,
+ *     }));
+ * }
+ * ```
+ *
  * ## Import
  *
  * This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content_v1.content` The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
@@ -12,8 +107,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1 content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
  * ```
- *
- *  If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content_v1.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content_v1.content
  */
 export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
     /**
@@ -44,7 +137,7 @@ export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
     }
 
     /**
-     * The VCL code that specifies exactly what the snippet does.
+     * The VCL code that specifies exactly what the snippet does
      */
     public readonly content!: pulumi.Output<string>;
     /**
@@ -99,7 +192,7 @@ export class ServiceDynamicSnippetContentv1 extends pulumi.CustomResource {
  */
 export interface ServiceDynamicSnippetContentv1State {
     /**
-     * The VCL code that specifies exactly what the snippet does.
+     * The VCL code that specifies exactly what the snippet does
      */
     readonly content?: pulumi.Input<string>;
     /**
@@ -117,7 +210,7 @@ export interface ServiceDynamicSnippetContentv1State {
  */
 export interface ServiceDynamicSnippetContentv1Args {
     /**
-     * The VCL code that specifies exactly what the snippet does.
+     * The VCL code that specifies exactly what the snippet does
      */
     readonly content: pulumi.Input<string>;
     /**

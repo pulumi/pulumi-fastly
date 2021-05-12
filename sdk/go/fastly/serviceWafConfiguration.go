@@ -11,6 +11,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Defines a set of Web Application Firewall configuration options that can be used to populate a service WAF. This resource will configure rules, thresholds and other settings for a WAF.
+//
+// > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+//
+// ## Adding a WAF to an existing service
+//
+// > **Warning:** A two-phase change is required when adding a WAF to an existing service
+//
+// When adding a `waf` to an existing `Servicev1` and at the same time adding a `ServiceWafConfiguration`
+// resource with `wafId = fastly_service_v1.demo.waf[0].waf_id` might result with the in the following error:
+//
+// > fastly_service_v1.demo.waf is empty list of object
+//
+// For this scenario, it's recommended to split the changes into two distinct steps:
+//
+// 1. Add the `waf` block to the `Servicev1` and apply the changes
+// 2. Add the `ServiceWafConfiguration` to the HCL and apply the changes
+//
 // ## Import
 //
 // This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf` The resource ID should be the WAF ID.
@@ -18,72 +36,68 @@ import (
 // ```sh
 //  $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
 // ```
-//
-//  If Terraform is already managing a remote WAF configurations against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_waf_configuration.waf` from the Terraform state file. $ terraform state rm fastly_service_waf_configuration.waf
 type ServiceWafConfiguration struct {
 	pulumi.CustomResourceState
 
-	// Allowed HTTP versions.
+	// Allowed HTTP versions
 	AllowedHttpVersions pulumi.StringOutput `pulumi:"allowedHttpVersions"`
-	// A space-separated list of HTTP method names.
+	// A space-separated list of HTTP method names
 	AllowedMethods pulumi.StringOutput `pulumi:"allowedMethods"`
-	// Allowed request content types.
+	// Allowed request content types
 	AllowedRequestContentType pulumi.StringOutput `pulumi:"allowedRequestContentType"`
-	// Allowed request content type charset.
+	// Allowed request content type charset
 	AllowedRequestContentTypeCharset pulumi.StringOutput `pulumi:"allowedRequestContentTypeCharset"`
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	ArgLength pulumi.IntOutput `pulumi:"argLength"`
-	// The maximum allowed argument name length.
+	// The maximum allowed argument name length
 	ArgNameLength pulumi.IntOutput `pulumi:"argNameLength"`
-	// The maximum allowed size of all files.
+	// The maximum allowed size of all files
 	CombinedFileSizes pulumi.IntOutput `pulumi:"combinedFileSizes"`
-	// Score value to add for critical anomalies.
+	// Score value to add for critical anomalies
 	CriticalAnomalyScore pulumi.IntOutput `pulumi:"criticalAnomalyScore"`
-	// CRS validate UTF8 encoding.
+	// CRS validate UTF8 encoding
 	CrsValidateUtf8Encoding pulumi.BoolOutput `pulumi:"crsValidateUtf8Encoding"`
-	// Score value to add for error anomalies.
+	// Score value to add for error anomalies
 	ErrorAnomalyScore pulumi.IntOutput `pulumi:"errorAnomalyScore"`
-	// A space-separated list of country codes in ISO 3166-1 (two-letter) format.
+	// A space-separated list of country codes in ISO 3166-1 (two-letter) format
 	HighRiskCountryCodes pulumi.StringOutput `pulumi:"highRiskCountryCodes"`
-	// HTTP violation threshold.
+	// HTTP violation threshold
 	HttpViolationScoreThreshold pulumi.IntOutput `pulumi:"httpViolationScoreThreshold"`
-	// Inbound anomaly threshold.
+	// Inbound anomaly threshold
 	InboundAnomalyScoreThreshold pulumi.IntOutput `pulumi:"inboundAnomalyScoreThreshold"`
-	// Local file inclusion attack threshold.
+	// Local file inclusion attack threshold
 	LfiScoreThreshold pulumi.IntOutput `pulumi:"lfiScoreThreshold"`
-	// The maximum allowed file size, in bytes.
+	// The maximum allowed file size, in bytes
 	MaxFileSize pulumi.IntOutput `pulumi:"maxFileSize"`
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	MaxNumArgs pulumi.IntOutput `pulumi:"maxNumArgs"`
-	// Score value to add for notice anomalies.
+	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntOutput `pulumi:"noticeAnomalyScore"`
-	// The configured paranoia level.
+	// The configured paranoia level
 	ParanoiaLevel pulumi.IntOutput `pulumi:"paranoiaLevel"`
-	// PHP injection threshold.
+	// PHP injection threshold
 	PhpInjectionScoreThreshold pulumi.IntOutput `pulumi:"phpInjectionScoreThreshold"`
-	// Remote code execution threshold.
+	// Remote code execution threshold
 	RceScoreThreshold pulumi.IntOutput `pulumi:"rceScoreThreshold"`
-	// A space-separated list of allowed file extensions.
+	// A space-separated list of allowed file extensions
 	RestrictedExtensions pulumi.StringOutput `pulumi:"restrictedExtensions"`
-	// A space-separated list of allowed header names.
+	// A space-separated list of allowed header names
 	RestrictedHeaders pulumi.StringOutput `pulumi:"restrictedHeaders"`
-	// Remote file inclusion attack threshold.
-	RfiScoreThreshold pulumi.IntOutput `pulumi:"rfiScoreThreshold"`
-	// The Web Application Firewall's rule exclusions. Defined below
-	RuleExclusions ServiceWafConfigurationRuleExclusionArrayOutput `pulumi:"ruleExclusions"`
-	// The Web Application Firewall's active rules. Defined below
-	Rules ServiceWafConfigurationRuleArrayOutput `pulumi:"rules"`
-	// Session fixation attack threshold.
+	// Remote file inclusion attack threshold
+	RfiScoreThreshold pulumi.IntOutput                                `pulumi:"rfiScoreThreshold"`
+	RuleExclusions    ServiceWafConfigurationRuleExclusionArrayOutput `pulumi:"ruleExclusions"`
+	Rules             ServiceWafConfigurationRuleArrayOutput          `pulumi:"rules"`
+	// Session fixation attack threshold
 	SessionFixationScoreThreshold pulumi.IntOutput `pulumi:"sessionFixationScoreThreshold"`
-	// SQL injection attack threshold.
+	// SQL injection attack threshold
 	SqlInjectionScoreThreshold pulumi.IntOutput `pulumi:"sqlInjectionScoreThreshold"`
-	// The maximum size of argument names and values.
+	// The maximum size of argument names and values
 	TotalArgLength pulumi.IntOutput `pulumi:"totalArgLength"`
-	// The ID of the Web Application Firewall that the configuration belongs to.
+	// The ID of the Web Application Firewall that the configuration belongs to
 	WafId pulumi.StringOutput `pulumi:"wafId"`
-	// Score value to add for warning anomalies.
+	// Score value to add for warning anomalies
 	WarningAnomalyScore pulumi.IntOutput `pulumi:"warningAnomalyScore"`
-	// XSS attack threshold.
+	// XSS attack threshold
 	XssScoreThreshold pulumi.IntOutput `pulumi:"xssScoreThreshold"`
 }
 
@@ -119,132 +133,128 @@ func GetServiceWafConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceWafConfiguration resources.
 type serviceWafConfigurationState struct {
-	// Allowed HTTP versions.
+	// Allowed HTTP versions
 	AllowedHttpVersions *string `pulumi:"allowedHttpVersions"`
-	// A space-separated list of HTTP method names.
+	// A space-separated list of HTTP method names
 	AllowedMethods *string `pulumi:"allowedMethods"`
-	// Allowed request content types.
+	// Allowed request content types
 	AllowedRequestContentType *string `pulumi:"allowedRequestContentType"`
-	// Allowed request content type charset.
+	// Allowed request content type charset
 	AllowedRequestContentTypeCharset *string `pulumi:"allowedRequestContentTypeCharset"`
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	ArgLength *int `pulumi:"argLength"`
-	// The maximum allowed argument name length.
+	// The maximum allowed argument name length
 	ArgNameLength *int `pulumi:"argNameLength"`
-	// The maximum allowed size of all files.
+	// The maximum allowed size of all files
 	CombinedFileSizes *int `pulumi:"combinedFileSizes"`
-	// Score value to add for critical anomalies.
+	// Score value to add for critical anomalies
 	CriticalAnomalyScore *int `pulumi:"criticalAnomalyScore"`
-	// CRS validate UTF8 encoding.
+	// CRS validate UTF8 encoding
 	CrsValidateUtf8Encoding *bool `pulumi:"crsValidateUtf8Encoding"`
-	// Score value to add for error anomalies.
+	// Score value to add for error anomalies
 	ErrorAnomalyScore *int `pulumi:"errorAnomalyScore"`
-	// A space-separated list of country codes in ISO 3166-1 (two-letter) format.
+	// A space-separated list of country codes in ISO 3166-1 (two-letter) format
 	HighRiskCountryCodes *string `pulumi:"highRiskCountryCodes"`
-	// HTTP violation threshold.
+	// HTTP violation threshold
 	HttpViolationScoreThreshold *int `pulumi:"httpViolationScoreThreshold"`
-	// Inbound anomaly threshold.
+	// Inbound anomaly threshold
 	InboundAnomalyScoreThreshold *int `pulumi:"inboundAnomalyScoreThreshold"`
-	// Local file inclusion attack threshold.
+	// Local file inclusion attack threshold
 	LfiScoreThreshold *int `pulumi:"lfiScoreThreshold"`
-	// The maximum allowed file size, in bytes.
+	// The maximum allowed file size, in bytes
 	MaxFileSize *int `pulumi:"maxFileSize"`
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	MaxNumArgs *int `pulumi:"maxNumArgs"`
-	// Score value to add for notice anomalies.
+	// Score value to add for notice anomalies
 	NoticeAnomalyScore *int `pulumi:"noticeAnomalyScore"`
-	// The configured paranoia level.
+	// The configured paranoia level
 	ParanoiaLevel *int `pulumi:"paranoiaLevel"`
-	// PHP injection threshold.
+	// PHP injection threshold
 	PhpInjectionScoreThreshold *int `pulumi:"phpInjectionScoreThreshold"`
-	// Remote code execution threshold.
+	// Remote code execution threshold
 	RceScoreThreshold *int `pulumi:"rceScoreThreshold"`
-	// A space-separated list of allowed file extensions.
+	// A space-separated list of allowed file extensions
 	RestrictedExtensions *string `pulumi:"restrictedExtensions"`
-	// A space-separated list of allowed header names.
+	// A space-separated list of allowed header names
 	RestrictedHeaders *string `pulumi:"restrictedHeaders"`
-	// Remote file inclusion attack threshold.
-	RfiScoreThreshold *int `pulumi:"rfiScoreThreshold"`
-	// The Web Application Firewall's rule exclusions. Defined below
-	RuleExclusions []ServiceWafConfigurationRuleExclusion `pulumi:"ruleExclusions"`
-	// The Web Application Firewall's active rules. Defined below
-	Rules []ServiceWafConfigurationRule `pulumi:"rules"`
-	// Session fixation attack threshold.
+	// Remote file inclusion attack threshold
+	RfiScoreThreshold *int                                   `pulumi:"rfiScoreThreshold"`
+	RuleExclusions    []ServiceWafConfigurationRuleExclusion `pulumi:"ruleExclusions"`
+	Rules             []ServiceWafConfigurationRule          `pulumi:"rules"`
+	// Session fixation attack threshold
 	SessionFixationScoreThreshold *int `pulumi:"sessionFixationScoreThreshold"`
-	// SQL injection attack threshold.
+	// SQL injection attack threshold
 	SqlInjectionScoreThreshold *int `pulumi:"sqlInjectionScoreThreshold"`
-	// The maximum size of argument names and values.
+	// The maximum size of argument names and values
 	TotalArgLength *int `pulumi:"totalArgLength"`
-	// The ID of the Web Application Firewall that the configuration belongs to.
+	// The ID of the Web Application Firewall that the configuration belongs to
 	WafId *string `pulumi:"wafId"`
-	// Score value to add for warning anomalies.
+	// Score value to add for warning anomalies
 	WarningAnomalyScore *int `pulumi:"warningAnomalyScore"`
-	// XSS attack threshold.
+	// XSS attack threshold
 	XssScoreThreshold *int `pulumi:"xssScoreThreshold"`
 }
 
 type ServiceWafConfigurationState struct {
-	// Allowed HTTP versions.
+	// Allowed HTTP versions
 	AllowedHttpVersions pulumi.StringPtrInput
-	// A space-separated list of HTTP method names.
+	// A space-separated list of HTTP method names
 	AllowedMethods pulumi.StringPtrInput
-	// Allowed request content types.
+	// Allowed request content types
 	AllowedRequestContentType pulumi.StringPtrInput
-	// Allowed request content type charset.
+	// Allowed request content type charset
 	AllowedRequestContentTypeCharset pulumi.StringPtrInput
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	ArgLength pulumi.IntPtrInput
-	// The maximum allowed argument name length.
+	// The maximum allowed argument name length
 	ArgNameLength pulumi.IntPtrInput
-	// The maximum allowed size of all files.
+	// The maximum allowed size of all files
 	CombinedFileSizes pulumi.IntPtrInput
-	// Score value to add for critical anomalies.
+	// Score value to add for critical anomalies
 	CriticalAnomalyScore pulumi.IntPtrInput
-	// CRS validate UTF8 encoding.
+	// CRS validate UTF8 encoding
 	CrsValidateUtf8Encoding pulumi.BoolPtrInput
-	// Score value to add for error anomalies.
+	// Score value to add for error anomalies
 	ErrorAnomalyScore pulumi.IntPtrInput
-	// A space-separated list of country codes in ISO 3166-1 (two-letter) format.
+	// A space-separated list of country codes in ISO 3166-1 (two-letter) format
 	HighRiskCountryCodes pulumi.StringPtrInput
-	// HTTP violation threshold.
+	// HTTP violation threshold
 	HttpViolationScoreThreshold pulumi.IntPtrInput
-	// Inbound anomaly threshold.
+	// Inbound anomaly threshold
 	InboundAnomalyScoreThreshold pulumi.IntPtrInput
-	// Local file inclusion attack threshold.
+	// Local file inclusion attack threshold
 	LfiScoreThreshold pulumi.IntPtrInput
-	// The maximum allowed file size, in bytes.
+	// The maximum allowed file size, in bytes
 	MaxFileSize pulumi.IntPtrInput
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	MaxNumArgs pulumi.IntPtrInput
-	// Score value to add for notice anomalies.
+	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntPtrInput
-	// The configured paranoia level.
+	// The configured paranoia level
 	ParanoiaLevel pulumi.IntPtrInput
-	// PHP injection threshold.
+	// PHP injection threshold
 	PhpInjectionScoreThreshold pulumi.IntPtrInput
-	// Remote code execution threshold.
+	// Remote code execution threshold
 	RceScoreThreshold pulumi.IntPtrInput
-	// A space-separated list of allowed file extensions.
+	// A space-separated list of allowed file extensions
 	RestrictedExtensions pulumi.StringPtrInput
-	// A space-separated list of allowed header names.
+	// A space-separated list of allowed header names
 	RestrictedHeaders pulumi.StringPtrInput
-	// Remote file inclusion attack threshold.
+	// Remote file inclusion attack threshold
 	RfiScoreThreshold pulumi.IntPtrInput
-	// The Web Application Firewall's rule exclusions. Defined below
-	RuleExclusions ServiceWafConfigurationRuleExclusionArrayInput
-	// The Web Application Firewall's active rules. Defined below
-	Rules ServiceWafConfigurationRuleArrayInput
-	// Session fixation attack threshold.
+	RuleExclusions    ServiceWafConfigurationRuleExclusionArrayInput
+	Rules             ServiceWafConfigurationRuleArrayInput
+	// Session fixation attack threshold
 	SessionFixationScoreThreshold pulumi.IntPtrInput
-	// SQL injection attack threshold.
+	// SQL injection attack threshold
 	SqlInjectionScoreThreshold pulumi.IntPtrInput
-	// The maximum size of argument names and values.
+	// The maximum size of argument names and values
 	TotalArgLength pulumi.IntPtrInput
-	// The ID of the Web Application Firewall that the configuration belongs to.
+	// The ID of the Web Application Firewall that the configuration belongs to
 	WafId pulumi.StringPtrInput
-	// Score value to add for warning anomalies.
+	// Score value to add for warning anomalies
 	WarningAnomalyScore pulumi.IntPtrInput
-	// XSS attack threshold.
+	// XSS attack threshold
 	XssScoreThreshold pulumi.IntPtrInput
 }
 
@@ -253,133 +263,129 @@ func (ServiceWafConfigurationState) ElementType() reflect.Type {
 }
 
 type serviceWafConfigurationArgs struct {
-	// Allowed HTTP versions.
+	// Allowed HTTP versions
 	AllowedHttpVersions *string `pulumi:"allowedHttpVersions"`
-	// A space-separated list of HTTP method names.
+	// A space-separated list of HTTP method names
 	AllowedMethods *string `pulumi:"allowedMethods"`
-	// Allowed request content types.
+	// Allowed request content types
 	AllowedRequestContentType *string `pulumi:"allowedRequestContentType"`
-	// Allowed request content type charset.
+	// Allowed request content type charset
 	AllowedRequestContentTypeCharset *string `pulumi:"allowedRequestContentTypeCharset"`
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	ArgLength *int `pulumi:"argLength"`
-	// The maximum allowed argument name length.
+	// The maximum allowed argument name length
 	ArgNameLength *int `pulumi:"argNameLength"`
-	// The maximum allowed size of all files.
+	// The maximum allowed size of all files
 	CombinedFileSizes *int `pulumi:"combinedFileSizes"`
-	// Score value to add for critical anomalies.
+	// Score value to add for critical anomalies
 	CriticalAnomalyScore *int `pulumi:"criticalAnomalyScore"`
-	// CRS validate UTF8 encoding.
+	// CRS validate UTF8 encoding
 	CrsValidateUtf8Encoding *bool `pulumi:"crsValidateUtf8Encoding"`
-	// Score value to add for error anomalies.
+	// Score value to add for error anomalies
 	ErrorAnomalyScore *int `pulumi:"errorAnomalyScore"`
-	// A space-separated list of country codes in ISO 3166-1 (two-letter) format.
+	// A space-separated list of country codes in ISO 3166-1 (two-letter) format
 	HighRiskCountryCodes *string `pulumi:"highRiskCountryCodes"`
-	// HTTP violation threshold.
+	// HTTP violation threshold
 	HttpViolationScoreThreshold *int `pulumi:"httpViolationScoreThreshold"`
-	// Inbound anomaly threshold.
+	// Inbound anomaly threshold
 	InboundAnomalyScoreThreshold *int `pulumi:"inboundAnomalyScoreThreshold"`
-	// Local file inclusion attack threshold.
+	// Local file inclusion attack threshold
 	LfiScoreThreshold *int `pulumi:"lfiScoreThreshold"`
-	// The maximum allowed file size, in bytes.
+	// The maximum allowed file size, in bytes
 	MaxFileSize *int `pulumi:"maxFileSize"`
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	MaxNumArgs *int `pulumi:"maxNumArgs"`
-	// Score value to add for notice anomalies.
+	// Score value to add for notice anomalies
 	NoticeAnomalyScore *int `pulumi:"noticeAnomalyScore"`
-	// The configured paranoia level.
+	// The configured paranoia level
 	ParanoiaLevel *int `pulumi:"paranoiaLevel"`
-	// PHP injection threshold.
+	// PHP injection threshold
 	PhpInjectionScoreThreshold *int `pulumi:"phpInjectionScoreThreshold"`
-	// Remote code execution threshold.
+	// Remote code execution threshold
 	RceScoreThreshold *int `pulumi:"rceScoreThreshold"`
-	// A space-separated list of allowed file extensions.
+	// A space-separated list of allowed file extensions
 	RestrictedExtensions *string `pulumi:"restrictedExtensions"`
-	// A space-separated list of allowed header names.
+	// A space-separated list of allowed header names
 	RestrictedHeaders *string `pulumi:"restrictedHeaders"`
-	// Remote file inclusion attack threshold.
-	RfiScoreThreshold *int `pulumi:"rfiScoreThreshold"`
-	// The Web Application Firewall's rule exclusions. Defined below
-	RuleExclusions []ServiceWafConfigurationRuleExclusion `pulumi:"ruleExclusions"`
-	// The Web Application Firewall's active rules. Defined below
-	Rules []ServiceWafConfigurationRule `pulumi:"rules"`
-	// Session fixation attack threshold.
+	// Remote file inclusion attack threshold
+	RfiScoreThreshold *int                                   `pulumi:"rfiScoreThreshold"`
+	RuleExclusions    []ServiceWafConfigurationRuleExclusion `pulumi:"ruleExclusions"`
+	Rules             []ServiceWafConfigurationRule          `pulumi:"rules"`
+	// Session fixation attack threshold
 	SessionFixationScoreThreshold *int `pulumi:"sessionFixationScoreThreshold"`
-	// SQL injection attack threshold.
+	// SQL injection attack threshold
 	SqlInjectionScoreThreshold *int `pulumi:"sqlInjectionScoreThreshold"`
-	// The maximum size of argument names and values.
+	// The maximum size of argument names and values
 	TotalArgLength *int `pulumi:"totalArgLength"`
-	// The ID of the Web Application Firewall that the configuration belongs to.
+	// The ID of the Web Application Firewall that the configuration belongs to
 	WafId string `pulumi:"wafId"`
-	// Score value to add for warning anomalies.
+	// Score value to add for warning anomalies
 	WarningAnomalyScore *int `pulumi:"warningAnomalyScore"`
-	// XSS attack threshold.
+	// XSS attack threshold
 	XssScoreThreshold *int `pulumi:"xssScoreThreshold"`
 }
 
 // The set of arguments for constructing a ServiceWafConfiguration resource.
 type ServiceWafConfigurationArgs struct {
-	// Allowed HTTP versions.
+	// Allowed HTTP versions
 	AllowedHttpVersions pulumi.StringPtrInput
-	// A space-separated list of HTTP method names.
+	// A space-separated list of HTTP method names
 	AllowedMethods pulumi.StringPtrInput
-	// Allowed request content types.
+	// Allowed request content types
 	AllowedRequestContentType pulumi.StringPtrInput
-	// Allowed request content type charset.
+	// Allowed request content type charset
 	AllowedRequestContentTypeCharset pulumi.StringPtrInput
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	ArgLength pulumi.IntPtrInput
-	// The maximum allowed argument name length.
+	// The maximum allowed argument name length
 	ArgNameLength pulumi.IntPtrInput
-	// The maximum allowed size of all files.
+	// The maximum allowed size of all files
 	CombinedFileSizes pulumi.IntPtrInput
-	// Score value to add for critical anomalies.
+	// Score value to add for critical anomalies
 	CriticalAnomalyScore pulumi.IntPtrInput
-	// CRS validate UTF8 encoding.
+	// CRS validate UTF8 encoding
 	CrsValidateUtf8Encoding pulumi.BoolPtrInput
-	// Score value to add for error anomalies.
+	// Score value to add for error anomalies
 	ErrorAnomalyScore pulumi.IntPtrInput
-	// A space-separated list of country codes in ISO 3166-1 (two-letter) format.
+	// A space-separated list of country codes in ISO 3166-1 (two-letter) format
 	HighRiskCountryCodes pulumi.StringPtrInput
-	// HTTP violation threshold.
+	// HTTP violation threshold
 	HttpViolationScoreThreshold pulumi.IntPtrInput
-	// Inbound anomaly threshold.
+	// Inbound anomaly threshold
 	InboundAnomalyScoreThreshold pulumi.IntPtrInput
-	// Local file inclusion attack threshold.
+	// Local file inclusion attack threshold
 	LfiScoreThreshold pulumi.IntPtrInput
-	// The maximum allowed file size, in bytes.
+	// The maximum allowed file size, in bytes
 	MaxFileSize pulumi.IntPtrInput
-	// The maximum number of arguments allowed.
+	// The maximum number of arguments allowed
 	MaxNumArgs pulumi.IntPtrInput
-	// Score value to add for notice anomalies.
+	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntPtrInput
-	// The configured paranoia level.
+	// The configured paranoia level
 	ParanoiaLevel pulumi.IntPtrInput
-	// PHP injection threshold.
+	// PHP injection threshold
 	PhpInjectionScoreThreshold pulumi.IntPtrInput
-	// Remote code execution threshold.
+	// Remote code execution threshold
 	RceScoreThreshold pulumi.IntPtrInput
-	// A space-separated list of allowed file extensions.
+	// A space-separated list of allowed file extensions
 	RestrictedExtensions pulumi.StringPtrInput
-	// A space-separated list of allowed header names.
+	// A space-separated list of allowed header names
 	RestrictedHeaders pulumi.StringPtrInput
-	// Remote file inclusion attack threshold.
+	// Remote file inclusion attack threshold
 	RfiScoreThreshold pulumi.IntPtrInput
-	// The Web Application Firewall's rule exclusions. Defined below
-	RuleExclusions ServiceWafConfigurationRuleExclusionArrayInput
-	// The Web Application Firewall's active rules. Defined below
-	Rules ServiceWafConfigurationRuleArrayInput
-	// Session fixation attack threshold.
+	RuleExclusions    ServiceWafConfigurationRuleExclusionArrayInput
+	Rules             ServiceWafConfigurationRuleArrayInput
+	// Session fixation attack threshold
 	SessionFixationScoreThreshold pulumi.IntPtrInput
-	// SQL injection attack threshold.
+	// SQL injection attack threshold
 	SqlInjectionScoreThreshold pulumi.IntPtrInput
-	// The maximum size of argument names and values.
+	// The maximum size of argument names and values
 	TotalArgLength pulumi.IntPtrInput
-	// The ID of the Web Application Firewall that the configuration belongs to.
+	// The ID of the Web Application Firewall that the configuration belongs to
 	WafId pulumi.StringInput
-	// Score value to add for warning anomalies.
+	// Score value to add for warning anomalies
 	WarningAnomalyScore pulumi.IntPtrInput
-	// XSS attack threshold.
+	// XSS attack threshold
 	XssScoreThreshold pulumi.IntPtrInput
 }
 

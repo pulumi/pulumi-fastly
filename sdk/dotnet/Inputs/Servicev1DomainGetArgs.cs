@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1DomainGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An optional comment about the Director.
+        /// An optional comment about the Domain.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

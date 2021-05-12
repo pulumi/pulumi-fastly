@@ -46,6 +46,8 @@ namespace Pulumi.Fastly
         /// 
         /// }
         /// ```
+        /// 
+        /// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

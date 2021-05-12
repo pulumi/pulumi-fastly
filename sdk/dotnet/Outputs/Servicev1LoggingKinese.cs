@@ -14,9 +14,9 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1LoggingKinese
     {
         /// <summary>
-        /// The AWS access key to be used to write to the stream.
+        /// The AWS access key to be used to write to the stream
         /// </summary>
-        public readonly string AccessKey;
+        public readonly string? AccessKey;
         /// <summary>
         /// Apache style log formatting.
         /// </summary>
@@ -26,7 +26,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        /// </summary>
+        public readonly string? IamRole;
+        /// <summary>
+        /// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -34,7 +38,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Placement;
         /// <summary>
-        /// The AWS region the stream resides in. (Default: `us-east-1`).
+        /// The AWS region the stream resides in. (Default: `us-east-1`)
         /// </summary>
         public readonly string? Region;
         /// <summary>
@@ -42,21 +46,23 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// The AWS secret access key to authenticate with.
+        /// The AWS secret access key to authenticate with
         /// </summary>
-        public readonly string SecretKey;
+        public readonly string? SecretKey;
         /// <summary>
-        /// The Kinesis stream name.
+        /// The Kinesis stream name
         /// </summary>
         public readonly string Topic;
 
         [OutputConstructor]
         private Servicev1LoggingKinese(
-            string accessKey,
+            string? accessKey,
 
             string? format,
 
             int? formatVersion,
+
+            string? iamRole,
 
             string name,
 
@@ -66,13 +72,14 @@ namespace Pulumi.Fastly.Outputs
 
             string? responseCondition,
 
-            string secretKey,
+            string? secretKey,
 
             string topic)
         {
             AccessKey = accessKey;
             Format = format;
             FormatVersion = formatVersion;
+            IamRole = iamRole;
             Name = name;
             Placement = placement;
             Region = region;

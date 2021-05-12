@@ -13,19 +13,19 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputePapertrailArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// The address of the Papertrail endpoint
         /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port associated with the address where the Papertrail endpoint can be accessed
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;

@@ -6,9 +6,212 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
+ * Provides a Fastly Service, representing the configuration for a website, app,
+ * API, or anything else to be served through Fastly. A Service encompasses Domains
+ * and Backends.
+ *
+ * The Service resource requires a domain name that is correctly set up to direct
+ * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
+ * on their documentation site for guidance.
+ *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "localhost",
+ *         port: 80,
+ *     }],
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "demo.notexample.com",
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
+ * Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [{
+ *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+ *         name: "AWS S3 hosting",
+ *         overrideHost: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+ *         port: 80,
+ *     }],
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "demo.notexample.com",
+ *     }],
+ *     forceDestroy: true,
+ *     gzips: [{
+ *         contentTypes: [
+ *             "text/html",
+ *             "text/css",
+ *         ],
+ *         extensions: [
+ *             "css",
+ *             "js",
+ *         ],
+ *         name: "file extensions and content types",
+ *     }],
+ *     headers: [{
+ *         action: "delete",
+ *         destination: "http.x-amz-request-id",
+ *         name: "remove x-amz-request-id",
+ *         type: "cache",
+ *     }],
+ * });
+ * const website = new aws.s3.Bucket("website", {
+ *     acl: "public-read",
+ *     website: {
+ *         errorDocument: "error.html",
+ *         indexDocument: "index.html",
+ *     },
+ * });
+ * ```
+ *
+ * Basic usage with [custom
+ * VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ * import * as fs from "fs";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "localhost",
+ *         port: 80,
+ *     }],
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "demo.notexample.com",
+ *     }],
+ *     forceDestroy: true,
+ *     vcls: [
+ *         {
+ *             content: fs.readFileSync(`./my_custom_main.vcl`, "utf-8"),
+ *             main: true,
+ *             name: "my_custom_main_vcl",
+ *         },
+ *         {
+ *             content: fs.readFileSync(`./my_custom_library.vcl`, "utf-8"),
+ *             name: "my_custom_library_vcl",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [
+ *         {
+ *             address: "127.0.0.1",
+ *             name: "origin1",
+ *             port: 80,
+ *         },
+ *         {
+ *             address: "127.0.0.2",
+ *             name: "origin2",
+ *             port: 80,
+ *         },
+ *     ],
+ *     directors: [{
+ *         backends: [
+ *             "origin1",
+ *             "origin2",
+ *         ],
+ *         name: "mydirector",
+ *         quorum: 0,
+ *         type: 3,
+ *     }],
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "demo.notexample.com",
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
+ * Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             statement: "req.backend.is_origin",
+ *             type: "PREFETCH",
+ *         },
+ *         // This condition will always be false
+ *         // adding it to the response object created below
+ *         // prevents Fastly from returning a 403 on all of your traffic.
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     domains: [{
+ *         comment: "demo",
+ *         name: "example.com",
+ *     }],
+ *     forceDestroy: true,
+ *     responseObjects: [{
+ *         content: "<html><body>Forbidden</body></html>",
+ *         contentType: "text/html",
+ *         name: "WAF_Response",
+ *         requestCondition: "WAF_always_false",
+ *         response: "Forbidden",
+ *         status: 403,
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ * });
+ * ```
+ *
+ * > **Note:** For an AWS S3 Bucket, the Backend address is
+ * `<domain>.s3-website-<region>.amazonaws.com`. The `overrideHost` attribute
+ * should be set to `<bucket_name>.s3-website-<region>.amazonaws.com` in the `backend` block. See the
+ * Fastly documentation on [Amazon S3][fastly-s3].
+ *
+ * [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+ * [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+ * [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+ * [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+ * [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
+ *
  * ## Import
  *
- * Fastly Service can be imported using their service ID, e.g.
+ * Fastly Services can be imported using their service ID, e.g.
  *
  * ```sh
  *  $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
@@ -42,252 +245,86 @@ export class Servicev1 extends pulumi.CustomResource {
         return obj['__pulumiType'] === Servicev1.__pulumiType;
     }
 
-    /**
-     * A set of ACL configuration blocks.
-     * Defined below.
-     */
     public readonly acls!: pulumi.Output<outputs.Servicev1Acl[] | undefined>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
     public readonly activate!: pulumi.Output<boolean | undefined>;
     /**
-     * The currently active version of your Fastly Service.
+     * The currently active version of your Fastly Service
      */
     public /*out*/ readonly activeVersion!: pulumi.Output<number>;
-    /**
-     * A set of Backends to service requests from your Domains.
-     * Defined below. Backends must be defined in this argument, or defined in the
-     * `vcl` argument below
-     */
-    public readonly backends!: pulumi.Output<outputs.Servicev1Backend[] | undefined>;
-    /**
-     * A BigQuery endpoint to send streaming logs too.
-     * Defined below.
-     */
+    public readonly backends!: pulumi.Output<outputs.Servicev1Backend[]>;
     public readonly bigqueryloggings!: pulumi.Output<outputs.Servicev1Bigquerylogging[] | undefined>;
-    /**
-     * An Azure Blob Storage endpoint to send streaming logs too.
-     * Defined below.
-     */
     public readonly blobstorageloggings!: pulumi.Output<outputs.Servicev1Blobstoragelogging[] | undefined>;
-    /**
-     * A set of Cache Settings, allowing you to override.
-     * Defined below.
-     */
     public readonly cacheSettings!: pulumi.Output<outputs.Servicev1CacheSetting[] | undefined>;
     /**
-     * The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+     * The latest cloned version by the provider
      */
     public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
     /**
-     * An optional comment about the Director.
+     * Description field for the service. Default `Managed by Terraform`
      */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * A set of conditions to add logic to any basic
-     * configuration object in this service. Defined below.
-     */
     public readonly conditions!: pulumi.Output<outputs.Servicev1Condition[] | undefined>;
     /**
-     * Sets the host header.
+     * The default hostname
      */
     public readonly defaultHost!: pulumi.Output<string>;
     /**
-     * The default Time-to-live (TTL) for
-     * requests.
+     * The default Time-to-live (TTL) for requests
      */
     public readonly defaultTtl!: pulumi.Output<number | undefined>;
-    /**
-     * A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-     * Defined below.
-     */
     public readonly dictionaries!: pulumi.Output<outputs.Servicev1Dictionary[] | undefined>;
-    /**
-     * A director to allow more control over balancing traffic over backends.
-     * when an item is not to be cached based on an above `condition`.
-     * Defined below
-     */
     public readonly directors!: pulumi.Output<outputs.Servicev1Director[] | undefined>;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     * A set of Domain names to serve as entry points for your Service
      */
     public readonly domains!: pulumi.Output<outputs.Servicev1Domain[]>;
-    /**
-     * A set of custom, "dynamic" VCL Snippet configuration blocks.
-     * Defined below.
-     */
     public readonly dynamicsnippets!: pulumi.Output<outputs.Servicev1Dynamicsnippet[] | undefined>;
     /**
-     * Services that are active cannot be destroyed. In
-     * order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
-    /**
-     * A gcs endpoint to send streaming logs too.
-     * Defined below.
-     */
     public readonly gcsloggings!: pulumi.Output<outputs.Servicev1Gcslogging[] | undefined>;
-    /**
-     * A set of gzip rules to control automatic gzipping of
-     * content. Defined below.
-     */
     public readonly gzips!: pulumi.Output<outputs.Servicev1Gzip[] | undefined>;
-    /**
-     * A set of Headers to manipulate for each request.
-     * Defined below.
-     */
     public readonly headers!: pulumi.Output<outputs.Servicev1Header[] | undefined>;
-    /**
-     * Name of a defined `healthcheck` to assign to this backend.
-     */
     public readonly healthchecks!: pulumi.Output<outputs.Servicev1Healthcheck[] | undefined>;
-    /**
-     * An HTTPS endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly httpsloggings!: pulumi.Output<outputs.Servicev1Httpslogging[] | undefined>;
-    /**
-     * A logentries endpoint to send streaming logs too.
-     * Defined below.
-     */
     public readonly logentries!: pulumi.Output<outputs.Servicev1Logentry[] | undefined>;
-    /**
-     * A Rackspace Cloud Files endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingCloudfiles!: pulumi.Output<outputs.Servicev1LoggingCloudfile[] | undefined>;
-    /**
-     * A Datadog endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingDatadogs!: pulumi.Output<outputs.Servicev1LoggingDatadog[] | undefined>;
-    /**
-     * A DigitalOcean Spaces endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingDigitaloceans!: pulumi.Output<outputs.Servicev1LoggingDigitalocean[] | undefined>;
-    /**
-     * An Elasticsearch endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingElasticsearches!: pulumi.Output<outputs.Servicev1LoggingElasticsearch[] | undefined>;
-    /**
-     * An FTP endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingFtps!: pulumi.Output<outputs.Servicev1LoggingFtp[] | undefined>;
-    /**
-     * A Google Cloud Pub/Sub endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingGooglepubsubs!: pulumi.Output<outputs.Servicev1LoggingGooglepubsub[] | undefined>;
-    /**
-     * A Heroku endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingHeroku!: pulumi.Output<outputs.Servicev1LoggingHeroku[] | undefined>;
-    /**
-     * A Honeycomb endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingHoneycombs!: pulumi.Output<outputs.Servicev1LoggingHoneycomb[] | undefined>;
-    /**
-     * A Kafka endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingKafkas!: pulumi.Output<outputs.Servicev1LoggingKafka[] | undefined>;
-    /**
-     * A Kinesis endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingKineses!: pulumi.Output<outputs.Servicev1LoggingKinese[] | undefined>;
-    /**
-     * A Loggly endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingLogglies!: pulumi.Output<outputs.Servicev1LoggingLoggly[] | undefined>;
-    /**
-     * A Log Shuttle endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingLogshuttles!: pulumi.Output<outputs.Servicev1LoggingLogshuttle[] | undefined>;
-    /**
-     * A New Relic endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingNewrelics!: pulumi.Output<outputs.Servicev1LoggingNewrelic[] | undefined>;
-    /**
-     * An OpenStack endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingOpenstacks!: pulumi.Output<outputs.Servicev1LoggingOpenstack[] | undefined>;
-    /**
-     * A Scalyr endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingScalyrs!: pulumi.Output<outputs.Servicev1LoggingScalyr[] | undefined>;
-    /**
-     * An SFTP endpoint to send streaming logs to.
-     * Defined below.
-     */
     public readonly loggingSftps!: pulumi.Output<outputs.Servicev1LoggingSftp[] | undefined>;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name for the Service to create
      */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * A Papertrail endpoint to send streaming logs too.
-     * Defined below.
-     */
     public readonly papertrails!: pulumi.Output<outputs.Servicev1Papertrail[] | undefined>;
-    /**
-     * A set of Request modifiers.
-     * Defined below
-     */
     public readonly requestSettings!: pulumi.Output<outputs.Servicev1RequestSetting[] | undefined>;
-    /**
-     * The name of the response object used by the Web Application Firewall.
-     */
     public readonly responseObjects!: pulumi.Output<outputs.Servicev1ResponseObject[] | undefined>;
-    /**
-     * A set of S3 Buckets to send streaming logs too.
-     * Defined below.
-     */
     public readonly s3loggings!: pulumi.Output<outputs.Servicev1S3logging[] | undefined>;
-    /**
-     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-     * Defined below.
-     */
     public readonly snippets!: pulumi.Output<outputs.Servicev1Snippet[] | undefined>;
-    /**
-     * A Splunk endpoint to send streaming logs too.
-     * Defined below.
-     */
     public readonly splunks!: pulumi.Output<outputs.Servicev1Splunk[] | undefined>;
-    /**
-     * A Sumologic endpoint to send streaming logs too.
-     * Defined below.
-     */
     public readonly sumologics!: pulumi.Output<outputs.Servicev1Sumologic[] | undefined>;
-    /**
-     * A syslog endpoint to send streaming logs too.
-     * Defined below.
-     */
     public readonly syslogs!: pulumi.Output<outputs.Servicev1Syslog[] | undefined>;
-    /**
-     * A set of custom VCL configuration blocks.
-     * Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-     */
     public readonly vcls!: pulumi.Output<outputs.Servicev1Vcl[] | undefined>;
     /**
-     * Description field for the version.
+     * Description field for the version
      */
     public readonly versionComment!: pulumi.Output<string | undefined>;
-    /**
-     * A WAF configuration block.
-     * Defined below.
-     */
     public readonly waf!: pulumi.Output<outputs.Servicev1Waf | undefined>;
 
     /**
@@ -356,6 +393,9 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["waf"] = state ? state.waf : undefined;
         } else {
             const args = argsOrState as Servicev1Args | undefined;
+            if ((!args || args.backends === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'backends'");
+            }
             if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
@@ -422,252 +462,86 @@ export class Servicev1 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Servicev1 resources.
  */
 export interface Servicev1State {
-    /**
-     * A set of ACL configuration blocks.
-     * Defined below.
-     */
     readonly acls?: pulumi.Input<pulumi.Input<inputs.Servicev1Acl>[]>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
     readonly activate?: pulumi.Input<boolean>;
     /**
-     * The currently active version of your Fastly Service.
+     * The currently active version of your Fastly Service
      */
     readonly activeVersion?: pulumi.Input<number>;
-    /**
-     * A set of Backends to service requests from your Domains.
-     * Defined below. Backends must be defined in this argument, or defined in the
-     * `vcl` argument below
-     */
     readonly backends?: pulumi.Input<pulumi.Input<inputs.Servicev1Backend>[]>;
-    /**
-     * A BigQuery endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly bigqueryloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Bigquerylogging>[]>;
-    /**
-     * An Azure Blob Storage endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly blobstorageloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Blobstoragelogging>[]>;
-    /**
-     * A set of Cache Settings, allowing you to override.
-     * Defined below.
-     */
     readonly cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;
     /**
-     * The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+     * The latest cloned version by the provider
      */
     readonly clonedVersion?: pulumi.Input<number>;
     /**
-     * An optional comment about the Director.
+     * Description field for the service. Default `Managed by Terraform`
      */
     readonly comment?: pulumi.Input<string>;
-    /**
-     * A set of conditions to add logic to any basic
-     * configuration object in this service. Defined below.
-     */
     readonly conditions?: pulumi.Input<pulumi.Input<inputs.Servicev1Condition>[]>;
     /**
-     * Sets the host header.
+     * The default hostname
      */
     readonly defaultHost?: pulumi.Input<string>;
     /**
-     * The default Time-to-live (TTL) for
-     * requests.
+     * The default Time-to-live (TTL) for requests
      */
     readonly defaultTtl?: pulumi.Input<number>;
-    /**
-     * A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-     * Defined below.
-     */
     readonly dictionaries?: pulumi.Input<pulumi.Input<inputs.Servicev1Dictionary>[]>;
-    /**
-     * A director to allow more control over balancing traffic over backends.
-     * when an item is not to be cached based on an above `condition`.
-     * Defined below
-     */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     * A set of Domain names to serve as entry points for your Service
      */
     readonly domains?: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
-    /**
-     * A set of custom, "dynamic" VCL Snippet configuration blocks.
-     * Defined below.
-     */
     readonly dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Dynamicsnippet>[]>;
     /**
-     * Services that are active cannot be destroyed. In
-     * order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     readonly forceDestroy?: pulumi.Input<boolean>;
-    /**
-     * A gcs endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly gcsloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Gcslogging>[]>;
-    /**
-     * A set of gzip rules to control automatic gzipping of
-     * content. Defined below.
-     */
     readonly gzips?: pulumi.Input<pulumi.Input<inputs.Servicev1Gzip>[]>;
-    /**
-     * A set of Headers to manipulate for each request.
-     * Defined below.
-     */
     readonly headers?: pulumi.Input<pulumi.Input<inputs.Servicev1Header>[]>;
-    /**
-     * Name of a defined `healthcheck` to assign to this backend.
-     */
     readonly healthchecks?: pulumi.Input<pulumi.Input<inputs.Servicev1Healthcheck>[]>;
-    /**
-     * An HTTPS endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly httpsloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Httpslogging>[]>;
-    /**
-     * A logentries endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
-    /**
-     * A Rackspace Cloud Files endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingCloudfile>[]>;
-    /**
-     * A Datadog endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDatadog>[]>;
-    /**
-     * A DigitalOcean Spaces endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDigitalocean>[]>;
-    /**
-     * An Elasticsearch endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingElasticsearch>[]>;
-    /**
-     * An FTP endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingFtps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingFtp>[]>;
-    /**
-     * A Google Cloud Pub/Sub endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingGooglepubsub>[]>;
-    /**
-     * A Heroku endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingHeroku?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHeroku>[]>;
-    /**
-     * A Honeycomb endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHoneycomb>[]>;
-    /**
-     * A Kafka endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKafka>[]>;
-    /**
-     * A Kinesis endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingKineses?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKinese>[]>;
-    /**
-     * A Loggly endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingLogglies?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLoggly>[]>;
-    /**
-     * A Log Shuttle endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLogshuttle>[]>;
-    /**
-     * A New Relic endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingNewrelic>[]>;
-    /**
-     * An OpenStack endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingOpenstack>[]>;
-    /**
-     * A Scalyr endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingScalyr>[]>;
-    /**
-     * An SFTP endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingSftps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingSftp>[]>;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name for the Service to create
      */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A Papertrail endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly papertrails?: pulumi.Input<pulumi.Input<inputs.Servicev1Papertrail>[]>;
-    /**
-     * A set of Request modifiers.
-     * Defined below
-     */
     readonly requestSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1RequestSetting>[]>;
-    /**
-     * The name of the response object used by the Web Application Firewall.
-     */
     readonly responseObjects?: pulumi.Input<pulumi.Input<inputs.Servicev1ResponseObject>[]>;
-    /**
-     * A set of S3 Buckets to send streaming logs too.
-     * Defined below.
-     */
     readonly s3loggings?: pulumi.Input<pulumi.Input<inputs.Servicev1S3logging>[]>;
-    /**
-     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-     * Defined below.
-     */
     readonly snippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Snippet>[]>;
-    /**
-     * A Splunk endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly splunks?: pulumi.Input<pulumi.Input<inputs.Servicev1Splunk>[]>;
-    /**
-     * A Sumologic endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly sumologics?: pulumi.Input<pulumi.Input<inputs.Servicev1Sumologic>[]>;
-    /**
-     * A syslog endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
-    /**
-     * A set of custom VCL configuration blocks.
-     * Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-     */
     readonly vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;
     /**
-     * Description field for the version.
+     * Description field for the version
      */
     readonly versionComment?: pulumi.Input<string>;
-    /**
-     * A WAF configuration block.
-     * Defined below.
-     */
     readonly waf?: pulumi.Input<inputs.Servicev1Waf>;
 }
 
@@ -675,243 +549,77 @@ export interface Servicev1State {
  * The set of arguments for constructing a Servicev1 resource.
  */
 export interface Servicev1Args {
-    /**
-     * A set of ACL configuration blocks.
-     * Defined below.
-     */
     readonly acls?: pulumi.Input<pulumi.Input<inputs.Servicev1Acl>[]>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
     readonly activate?: pulumi.Input<boolean>;
-    /**
-     * A set of Backends to service requests from your Domains.
-     * Defined below. Backends must be defined in this argument, or defined in the
-     * `vcl` argument below
-     */
-    readonly backends?: pulumi.Input<pulumi.Input<inputs.Servicev1Backend>[]>;
-    /**
-     * A BigQuery endpoint to send streaming logs too.
-     * Defined below.
-     */
+    readonly backends: pulumi.Input<pulumi.Input<inputs.Servicev1Backend>[]>;
     readonly bigqueryloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Bigquerylogging>[]>;
-    /**
-     * An Azure Blob Storage endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly blobstorageloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Blobstoragelogging>[]>;
-    /**
-     * A set of Cache Settings, allowing you to override.
-     * Defined below.
-     */
     readonly cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;
     /**
-     * An optional comment about the Director.
+     * Description field for the service. Default `Managed by Terraform`
      */
     readonly comment?: pulumi.Input<string>;
-    /**
-     * A set of conditions to add logic to any basic
-     * configuration object in this service. Defined below.
-     */
     readonly conditions?: pulumi.Input<pulumi.Input<inputs.Servicev1Condition>[]>;
     /**
-     * Sets the host header.
+     * The default hostname
      */
     readonly defaultHost?: pulumi.Input<string>;
     /**
-     * The default Time-to-live (TTL) for
-     * requests.
+     * The default Time-to-live (TTL) for requests
      */
     readonly defaultTtl?: pulumi.Input<number>;
-    /**
-     * A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-     * Defined below.
-     */
     readonly dictionaries?: pulumi.Input<pulumi.Input<inputs.Servicev1Dictionary>[]>;
-    /**
-     * A director to allow more control over balancing traffic over backends.
-     * when an item is not to be cached based on an above `condition`.
-     * Defined below
-     */
     readonly directors?: pulumi.Input<pulumi.Input<inputs.Servicev1Director>[]>;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
+     * A set of Domain names to serve as entry points for your Service
      */
     readonly domains: pulumi.Input<pulumi.Input<inputs.Servicev1Domain>[]>;
-    /**
-     * A set of custom, "dynamic" VCL Snippet configuration blocks.
-     * Defined below.
-     */
     readonly dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Dynamicsnippet>[]>;
     /**
-     * Services that are active cannot be destroyed. In
-     * order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     readonly forceDestroy?: pulumi.Input<boolean>;
-    /**
-     * A gcs endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly gcsloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Gcslogging>[]>;
-    /**
-     * A set of gzip rules to control automatic gzipping of
-     * content. Defined below.
-     */
     readonly gzips?: pulumi.Input<pulumi.Input<inputs.Servicev1Gzip>[]>;
-    /**
-     * A set of Headers to manipulate for each request.
-     * Defined below.
-     */
     readonly headers?: pulumi.Input<pulumi.Input<inputs.Servicev1Header>[]>;
-    /**
-     * Name of a defined `healthcheck` to assign to this backend.
-     */
     readonly healthchecks?: pulumi.Input<pulumi.Input<inputs.Servicev1Healthcheck>[]>;
-    /**
-     * An HTTPS endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly httpsloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Httpslogging>[]>;
-    /**
-     * A logentries endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly logentries?: pulumi.Input<pulumi.Input<inputs.Servicev1Logentry>[]>;
-    /**
-     * A Rackspace Cloud Files endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingCloudfile>[]>;
-    /**
-     * A Datadog endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDatadog>[]>;
-    /**
-     * A DigitalOcean Spaces endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingDigitalocean>[]>;
-    /**
-     * An Elasticsearch endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingElasticsearch>[]>;
-    /**
-     * An FTP endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingFtps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingFtp>[]>;
-    /**
-     * A Google Cloud Pub/Sub endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingGooglepubsub>[]>;
-    /**
-     * A Heroku endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingHeroku?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHeroku>[]>;
-    /**
-     * A Honeycomb endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingHoneycomb>[]>;
-    /**
-     * A Kafka endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingKafkas?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKafka>[]>;
-    /**
-     * A Kinesis endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingKineses?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingKinese>[]>;
-    /**
-     * A Loggly endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingLogglies?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLoggly>[]>;
-    /**
-     * A Log Shuttle endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingLogshuttle>[]>;
-    /**
-     * A New Relic endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingNewrelic>[]>;
-    /**
-     * An OpenStack endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingOpenstack>[]>;
-    /**
-     * A Scalyr endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingScalyr>[]>;
-    /**
-     * An SFTP endpoint to send streaming logs to.
-     * Defined below.
-     */
     readonly loggingSftps?: pulumi.Input<pulumi.Input<inputs.Servicev1LoggingSftp>[]>;
     /**
-     * A unique name to identify this dictionary.
+     * The unique name for the Service to create
      */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A Papertrail endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly papertrails?: pulumi.Input<pulumi.Input<inputs.Servicev1Papertrail>[]>;
-    /**
-     * A set of Request modifiers.
-     * Defined below
-     */
     readonly requestSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1RequestSetting>[]>;
-    /**
-     * The name of the response object used by the Web Application Firewall.
-     */
     readonly responseObjects?: pulumi.Input<pulumi.Input<inputs.Servicev1ResponseObject>[]>;
-    /**
-     * A set of S3 Buckets to send streaming logs too.
-     * Defined below.
-     */
     readonly s3loggings?: pulumi.Input<pulumi.Input<inputs.Servicev1S3logging>[]>;
-    /**
-     * A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-     * Defined below.
-     */
     readonly snippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Snippet>[]>;
-    /**
-     * A Splunk endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly splunks?: pulumi.Input<pulumi.Input<inputs.Servicev1Splunk>[]>;
-    /**
-     * A Sumologic endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly sumologics?: pulumi.Input<pulumi.Input<inputs.Servicev1Sumologic>[]>;
-    /**
-     * A syslog endpoint to send streaming logs too.
-     * Defined below.
-     */
     readonly syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
-    /**
-     * A set of custom VCL configuration blocks.
-     * Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-     */
     readonly vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;
     /**
-     * Description field for the version.
+     * Description field for the version
      */
     readonly versionComment?: pulumi.Input<string>;
-    /**
-     * A WAF configuration block.
-     * Defined below.
-     */
     readonly waf?: pulumi.Input<inputs.Servicev1Waf>;
 }

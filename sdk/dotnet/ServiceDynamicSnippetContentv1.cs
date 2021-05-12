@@ -10,6 +10,14 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
+    /// 
+    /// &gt; **Warning:** This provider will take precedence over any changes you make through the API. Such changes are likely to be reversed if you run the provider again.
+    /// 
+    /// If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+    /// 
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
     /// This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content_v1.content` The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
@@ -17,14 +25,12 @@ namespace Pulumi.Fastly
     /// ```sh
     ///  $ pulumi import fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1 content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
     /// ```
-    /// 
-    ///  If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content_v1.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content_v1.content
     /// </summary>
     [FastlyResourceType("fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1")]
     public partial class ServiceDynamicSnippetContentv1 : Pulumi.CustomResource
     {
         /// <summary>
-        /// The VCL code that specifies exactly what the snippet does.
+        /// The VCL code that specifies exactly what the snippet does
         /// </summary>
         [Output("content")]
         public Output<string> Content { get; private set; } = null!;
@@ -88,7 +94,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceDynamicSnippetContentv1Args : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The VCL code that specifies exactly what the snippet does.
+        /// The VCL code that specifies exactly what the snippet does
         /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
@@ -113,7 +119,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceDynamicSnippetContentv1State : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The VCL code that specifies exactly what the snippet does.
+        /// The VCL code that specifies exactly what the snippet does
         /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }

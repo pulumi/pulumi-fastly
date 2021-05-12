@@ -13,85 +13,85 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1SyslogArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The SFTP address to stream logs to.
+        /// A hostname or IPv4 address of the Syslog endpoint
         /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Apache style log formatting.
+        /// Apache-style string or VCL variables to use for log formatting
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        /// The version of the custom logging format. Can be either 1 or 2. (Default: 1)
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. One of: classic (default), loggly, logplex or blank.
+        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }
 
         /// <summary>
-        /// The port the SFTP service listens on. (Default: `22`).
+        /// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// A secure certificate to authenticate the server with. Must be in PEM format.
+        /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         /// </summary>
         [Input("tlsCaCert")]
         public Input<string>? TlsCaCert { get; set; }
 
         /// <summary>
-        /// The client certificate used to make authenticated requests. Must be in PEM format.
+        /// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
         /// </summary>
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
         /// <summary>
-        /// The client private key used to make authenticated requests. Must be in PEM format.
+        /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
         /// </summary>
         [Input("tlsClientKey")]
         public Input<string>? TlsClientKey { get; set; }
 
         /// <summary>
-        /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).
+        /// Used during the TLS handshake to validate the certificate
         /// </summary>
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// Whether to prepend each message with a specific token
         /// </summary>
         [Input("token")]
         public Input<string>? Token { get; set; }
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either true or false.
+        /// Whether to use TLS for secure logging. Default `false`
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }

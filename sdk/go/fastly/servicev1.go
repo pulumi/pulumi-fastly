@@ -11,9 +11,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides a Fastly Service, representing the configuration for a website, app,
+// API, or anything else to be served through Fastly. A Service encompasses Domains
+// and Backends.
+//
+// The Service resource requires a domain name that is correctly set up to direct
+// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
+// on their documentation site for guidance.
+//
 // ## Import
 //
-// Fastly Service can be imported using their service ID, e.g.
+// Fastly Services can be imported using their service ID, e.g.
 //
 // ```sh
 //  $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
@@ -21,151 +29,67 @@ import (
 type Servicev1 struct {
 	pulumi.CustomResourceState
 
-	// A set of ACL configuration blocks.
-	// Defined below.
 	Acls Servicev1AclArrayOutput `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
-	// The currently active version of your Fastly Service.
-	ActiveVersion pulumi.IntOutput `pulumi:"activeVersion"`
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends Servicev1BackendArrayOutput `pulumi:"backends"`
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings Servicev1BigqueryloggingArrayOutput `pulumi:"bigqueryloggings"`
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// The currently active version of your Fastly Service
+	ActiveVersion       pulumi.IntOutput                       `pulumi:"activeVersion"`
+	Backends            Servicev1BackendArrayOutput            `pulumi:"backends"`
+	Bigqueryloggings    Servicev1BigqueryloggingArrayOutput    `pulumi:"bigqueryloggings"`
 	Blobstorageloggings Servicev1BlobstorageloggingArrayOutput `pulumi:"blobstorageloggings"`
-	// A set of Cache Settings, allowing you to override.
-	// Defined below.
-	CacheSettings Servicev1CacheSettingArrayOutput `pulumi:"cacheSettings"`
-	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+	CacheSettings       Servicev1CacheSettingArrayOutput       `pulumi:"cacheSettings"`
+	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
-	// An optional comment about the Director.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// A set of conditions to add logic to any basic
-	// configuration object in this service. Defined below.
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    pulumi.StringPtrOutput        `pulumi:"comment"`
 	Conditions Servicev1ConditionArrayOutput `pulumi:"conditions"`
-	// Sets the host header.
+	// The default hostname
 	DefaultHost pulumi.StringOutput `pulumi:"defaultHost"`
-	// The default Time-to-live (TTL) for
-	// requests.
-	DefaultTtl pulumi.IntPtrOutput `pulumi:"defaultTtl"`
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-	// Defined below.
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   pulumi.IntPtrOutput            `pulumi:"defaultTtl"`
 	Dictionaries Servicev1DictionaryArrayOutput `pulumi:"dictionaries"`
-	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`.
-	// Defined below
-	Directors Servicev1DirectorArrayOutput `pulumi:"directors"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-	Domains Servicev1DomainArrayOutput `pulumi:"domains"`
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.
-	// Defined below.
+	Directors    Servicev1DirectorArrayOutput   `pulumi:"directors"`
+	// A set of Domain names to serve as entry points for your Service
+	Domains         Servicev1DomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets Servicev1DynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings Servicev1GcsloggingArrayOutput `pulumi:"gcsloggings"`
-	// A set of gzip rules to control automatic gzipping of
-	// content. Defined below.
-	Gzips Servicev1GzipArrayOutput `pulumi:"gzips"`
-	// A set of Headers to manipulate for each request.
-	// Defined below.
-	Headers Servicev1HeaderArrayOutput `pulumi:"headers"`
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks Servicev1HealthcheckArrayOutput `pulumi:"healthchecks"`
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings Servicev1HttpsloggingArrayOutput `pulumi:"httpsloggings"`
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries Servicev1LogentryArrayOutput `pulumi:"logentries"`
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles Servicev1LoggingCloudfileArrayOutput `pulumi:"loggingCloudfiles"`
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs Servicev1LoggingDatadogArrayOutput `pulumi:"loggingDatadogs"`
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans Servicev1LoggingDigitaloceanArrayOutput `pulumi:"loggingDigitaloceans"`
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           pulumi.BoolPtrOutput                     `pulumi:"forceDestroy"`
+	Gcsloggings            Servicev1GcsloggingArrayOutput           `pulumi:"gcsloggings"`
+	Gzips                  Servicev1GzipArrayOutput                 `pulumi:"gzips"`
+	Headers                Servicev1HeaderArrayOutput               `pulumi:"headers"`
+	Healthchecks           Servicev1HealthcheckArrayOutput          `pulumi:"healthchecks"`
+	Httpsloggings          Servicev1HttpsloggingArrayOutput         `pulumi:"httpsloggings"`
+	Logentries             Servicev1LogentryArrayOutput             `pulumi:"logentries"`
+	LoggingCloudfiles      Servicev1LoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs        Servicev1LoggingDatadogArrayOutput       `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans   Servicev1LoggingDigitaloceanArrayOutput  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches Servicev1LoggingElasticsearchArrayOutput `pulumi:"loggingElasticsearches"`
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps Servicev1LoggingFtpArrayOutput `pulumi:"loggingFtps"`
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayOutput `pulumi:"loggingGooglepubsubs"`
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku Servicev1LoggingHerokuArrayOutput `pulumi:"loggingHeroku"`
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs Servicev1LoggingHoneycombArrayOutput `pulumi:"loggingHoneycombs"`
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas Servicev1LoggingKafkaArrayOutput `pulumi:"loggingKafkas"`
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses Servicev1LoggingKineseArrayOutput `pulumi:"loggingKineses"`
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies Servicev1LoggingLogglyArrayOutput `pulumi:"loggingLogglies"`
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles Servicev1LoggingLogshuttleArrayOutput `pulumi:"loggingLogshuttles"`
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics Servicev1LoggingNewrelicArrayOutput `pulumi:"loggingNewrelics"`
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks Servicev1LoggingOpenstackArrayOutput `pulumi:"loggingOpenstacks"`
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs Servicev1LoggingScalyrArrayOutput `pulumi:"loggingScalyrs"`
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps Servicev1LoggingSftpArrayOutput `pulumi:"loggingSftps"`
-	// A unique name to identify this dictionary.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
-	Papertrails Servicev1PapertrailArrayOutput `pulumi:"papertrails"`
-	// A set of Request modifiers.
-	// Defined below
+	LoggingFtps            Servicev1LoggingFtpArrayOutput           `pulumi:"loggingFtps"`
+	LoggingGooglepubsubs   Servicev1LoggingGooglepubsubArrayOutput  `pulumi:"loggingGooglepubsubs"`
+	LoggingHeroku          Servicev1LoggingHerokuArrayOutput        `pulumi:"loggingHeroku"`
+	LoggingHoneycombs      Servicev1LoggingHoneycombArrayOutput     `pulumi:"loggingHoneycombs"`
+	LoggingKafkas          Servicev1LoggingKafkaArrayOutput         `pulumi:"loggingKafkas"`
+	LoggingKineses         Servicev1LoggingKineseArrayOutput        `pulumi:"loggingKineses"`
+	LoggingLogglies        Servicev1LoggingLogglyArrayOutput        `pulumi:"loggingLogglies"`
+	LoggingLogshuttles     Servicev1LoggingLogshuttleArrayOutput    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics       Servicev1LoggingNewrelicArrayOutput      `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks      Servicev1LoggingOpenstackArrayOutput     `pulumi:"loggingOpenstacks"`
+	LoggingScalyrs         Servicev1LoggingScalyrArrayOutput        `pulumi:"loggingScalyrs"`
+	LoggingSftps           Servicev1LoggingSftpArrayOutput          `pulumi:"loggingSftps"`
+	// The unique name for the Service to create
+	Name            pulumi.StringOutput                `pulumi:"name"`
+	Papertrails     Servicev1PapertrailArrayOutput     `pulumi:"papertrails"`
 	RequestSettings Servicev1RequestSettingArrayOutput `pulumi:"requestSettings"`
-	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayOutput `pulumi:"responseObjects"`
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings Servicev1S3loggingArrayOutput `pulumi:"s3loggings"`
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-	// Defined below.
-	Snippets Servicev1SnippetArrayOutput `pulumi:"snippets"`
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks Servicev1SplunkArrayOutput `pulumi:"splunks"`
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics Servicev1SumologicArrayOutput `pulumi:"sumologics"`
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs Servicev1SyslogArrayOutput `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks.
-	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-	Vcls Servicev1VclArrayOutput `pulumi:"vcls"`
-	// Description field for the version.
+	S3loggings      Servicev1S3loggingArrayOutput      `pulumi:"s3loggings"`
+	Snippets        Servicev1SnippetArrayOutput        `pulumi:"snippets"`
+	Splunks         Servicev1SplunkArrayOutput         `pulumi:"splunks"`
+	Sumologics      Servicev1SumologicArrayOutput      `pulumi:"sumologics"`
+	Syslogs         Servicev1SyslogArrayOutput         `pulumi:"syslogs"`
+	Vcls            Servicev1VclArrayOutput            `pulumi:"vcls"`
+	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
-	// A WAF configuration block.
-	// Defined below.
-	Waf Servicev1WafPtrOutput `pulumi:"waf"`
+	Waf            Servicev1WafPtrOutput  `pulumi:"waf"`
 }
 
 // NewServicev1 registers a new resource with the given unique name, arguments, and options.
@@ -175,6 +99,9 @@ func NewServicev1(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Backends == nil {
+		return nil, errors.New("invalid value for required argument 'Backends'")
+	}
 	if args.Domains == nil {
 		return nil, errors.New("invalid value for required argument 'Domains'")
 	}
@@ -200,299 +127,131 @@ func GetServicev1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Servicev1 resources.
 type servicev1State struct {
-	// A set of ACL configuration blocks.
-	// Defined below.
 	Acls []Servicev1Acl `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
-	// The currently active version of your Fastly Service.
-	ActiveVersion *int `pulumi:"activeVersion"`
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends []Servicev1Backend `pulumi:"backends"`
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings []Servicev1Bigquerylogging `pulumi:"bigqueryloggings"`
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// The currently active version of your Fastly Service
+	ActiveVersion       *int                          `pulumi:"activeVersion"`
+	Backends            []Servicev1Backend            `pulumi:"backends"`
+	Bigqueryloggings    []Servicev1Bigquerylogging    `pulumi:"bigqueryloggings"`
 	Blobstorageloggings []Servicev1Blobstoragelogging `pulumi:"blobstorageloggings"`
-	// A set of Cache Settings, allowing you to override.
-	// Defined below.
-	CacheSettings []Servicev1CacheSetting `pulumi:"cacheSettings"`
-	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+	CacheSettings       []Servicev1CacheSetting       `pulumi:"cacheSettings"`
+	// The latest cloned version by the provider
 	ClonedVersion *int `pulumi:"clonedVersion"`
-	// An optional comment about the Director.
-	Comment *string `pulumi:"comment"`
-	// A set of conditions to add logic to any basic
-	// configuration object in this service. Defined below.
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    *string              `pulumi:"comment"`
 	Conditions []Servicev1Condition `pulumi:"conditions"`
-	// Sets the host header.
+	// The default hostname
 	DefaultHost *string `pulumi:"defaultHost"`
-	// The default Time-to-live (TTL) for
-	// requests.
-	DefaultTtl *int `pulumi:"defaultTtl"`
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-	// Defined below.
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   *int                  `pulumi:"defaultTtl"`
 	Dictionaries []Servicev1Dictionary `pulumi:"dictionaries"`
-	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`.
-	// Defined below
-	Directors []Servicev1Director `pulumi:"directors"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-	Domains []Servicev1Domain `pulumi:"domains"`
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.
-	// Defined below.
+	Directors    []Servicev1Director   `pulumi:"directors"`
+	// A set of Domain names to serve as entry points for your Service
+	Domains         []Servicev1Domain         `pulumi:"domains"`
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings []Servicev1Gcslogging `pulumi:"gcsloggings"`
-	// A set of gzip rules to control automatic gzipping of
-	// content. Defined below.
-	Gzips []Servicev1Gzip `pulumi:"gzips"`
-	// A set of Headers to manipulate for each request.
-	// Defined below.
-	Headers []Servicev1Header `pulumi:"headers"`
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings []Servicev1Httpslogging `pulumi:"httpsloggings"`
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries []Servicev1Logentry `pulumi:"logentries"`
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles []Servicev1LoggingCloudfile `pulumi:"loggingCloudfiles"`
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs []Servicev1LoggingDatadog `pulumi:"loggingDatadogs"`
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans []Servicev1LoggingDigitalocean `pulumi:"loggingDigitaloceans"`
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           *bool                           `pulumi:"forceDestroy"`
+	Gcsloggings            []Servicev1Gcslogging           `pulumi:"gcsloggings"`
+	Gzips                  []Servicev1Gzip                 `pulumi:"gzips"`
+	Headers                []Servicev1Header               `pulumi:"headers"`
+	Healthchecks           []Servicev1Healthcheck          `pulumi:"healthchecks"`
+	Httpsloggings          []Servicev1Httpslogging         `pulumi:"httpsloggings"`
+	Logentries             []Servicev1Logentry             `pulumi:"logentries"`
+	LoggingCloudfiles      []Servicev1LoggingCloudfile     `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs        []Servicev1LoggingDatadog       `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans   []Servicev1LoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches []Servicev1LoggingElasticsearch `pulumi:"loggingElasticsearches"`
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps []Servicev1LoggingFtp `pulumi:"loggingFtps"`
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs []Servicev1LoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku []Servicev1LoggingHeroku `pulumi:"loggingHeroku"`
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs []Servicev1LoggingHoneycomb `pulumi:"loggingHoneycombs"`
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses []Servicev1LoggingKinese `pulumi:"loggingKineses"`
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles []Servicev1LoggingLogshuttle `pulumi:"loggingLogshuttles"`
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics []Servicev1LoggingNewrelic `pulumi:"loggingNewrelics"`
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks []Servicev1LoggingOpenstack `pulumi:"loggingOpenstacks"`
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs []Servicev1LoggingScalyr `pulumi:"loggingScalyrs"`
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps []Servicev1LoggingSftp `pulumi:"loggingSftps"`
-	// A unique name to identify this dictionary.
-	Name *string `pulumi:"name"`
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
-	Papertrails []Servicev1Papertrail `pulumi:"papertrails"`
-	// A set of Request modifiers.
-	// Defined below
+	LoggingFtps            []Servicev1LoggingFtp           `pulumi:"loggingFtps"`
+	LoggingGooglepubsubs   []Servicev1LoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
+	LoggingHeroku          []Servicev1LoggingHeroku        `pulumi:"loggingHeroku"`
+	LoggingHoneycombs      []Servicev1LoggingHoneycomb     `pulumi:"loggingHoneycombs"`
+	LoggingKafkas          []Servicev1LoggingKafka         `pulumi:"loggingKafkas"`
+	LoggingKineses         []Servicev1LoggingKinese        `pulumi:"loggingKineses"`
+	LoggingLogglies        []Servicev1LoggingLoggly        `pulumi:"loggingLogglies"`
+	LoggingLogshuttles     []Servicev1LoggingLogshuttle    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics       []Servicev1LoggingNewrelic      `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks      []Servicev1LoggingOpenstack     `pulumi:"loggingOpenstacks"`
+	LoggingScalyrs         []Servicev1LoggingScalyr        `pulumi:"loggingScalyrs"`
+	LoggingSftps           []Servicev1LoggingSftp          `pulumi:"loggingSftps"`
+	// The unique name for the Service to create
+	Name            *string                   `pulumi:"name"`
+	Papertrails     []Servicev1Papertrail     `pulumi:"papertrails"`
 	RequestSettings []Servicev1RequestSetting `pulumi:"requestSettings"`
-	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects []Servicev1ResponseObject `pulumi:"responseObjects"`
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings []Servicev1S3logging `pulumi:"s3loggings"`
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-	// Defined below.
-	Snippets []Servicev1Snippet `pulumi:"snippets"`
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks []Servicev1Splunk `pulumi:"splunks"`
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics []Servicev1Sumologic `pulumi:"sumologics"`
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs []Servicev1Syslog `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks.
-	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-	Vcls []Servicev1Vcl `pulumi:"vcls"`
-	// Description field for the version.
-	VersionComment *string `pulumi:"versionComment"`
-	// A WAF configuration block.
-	// Defined below.
-	Waf *Servicev1Waf `pulumi:"waf"`
+	S3loggings      []Servicev1S3logging      `pulumi:"s3loggings"`
+	Snippets        []Servicev1Snippet        `pulumi:"snippets"`
+	Splunks         []Servicev1Splunk         `pulumi:"splunks"`
+	Sumologics      []Servicev1Sumologic      `pulumi:"sumologics"`
+	Syslogs         []Servicev1Syslog         `pulumi:"syslogs"`
+	Vcls            []Servicev1Vcl            `pulumi:"vcls"`
+	// Description field for the version
+	VersionComment *string       `pulumi:"versionComment"`
+	Waf            *Servicev1Waf `pulumi:"waf"`
 }
 
 type Servicev1State struct {
-	// A set of ACL configuration blocks.
-	// Defined below.
 	Acls Servicev1AclArrayInput
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
-	// The currently active version of your Fastly Service.
-	ActiveVersion pulumi.IntPtrInput
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends Servicev1BackendArrayInput
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings Servicev1BigqueryloggingArrayInput
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// The currently active version of your Fastly Service
+	ActiveVersion       pulumi.IntPtrInput
+	Backends            Servicev1BackendArrayInput
+	Bigqueryloggings    Servicev1BigqueryloggingArrayInput
 	Blobstorageloggings Servicev1BlobstorageloggingArrayInput
-	// A set of Cache Settings, allowing you to override.
-	// Defined below.
-	CacheSettings Servicev1CacheSettingArrayInput
-	// The latest cloned version by the provider. The value gets only set after running `pulumi up`.
+	CacheSettings       Servicev1CacheSettingArrayInput
+	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	// An optional comment about the Director.
-	Comment pulumi.StringPtrInput
-	// A set of conditions to add logic to any basic
-	// configuration object in this service. Defined below.
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    pulumi.StringPtrInput
 	Conditions Servicev1ConditionArrayInput
-	// Sets the host header.
+	// The default hostname
 	DefaultHost pulumi.StringPtrInput
-	// The default Time-to-live (TTL) for
-	// requests.
-	DefaultTtl pulumi.IntPtrInput
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-	// Defined below.
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   pulumi.IntPtrInput
 	Dictionaries Servicev1DictionaryArrayInput
-	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`.
-	// Defined below
-	Directors Servicev1DirectorArrayInput
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-	Domains Servicev1DomainArrayInput
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.
-	// Defined below.
+	Directors    Servicev1DirectorArrayInput
+	// A set of Domain names to serve as entry points for your Service
+	Domains         Servicev1DomainArrayInput
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy pulumi.BoolPtrInput
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings Servicev1GcsloggingArrayInput
-	// A set of gzip rules to control automatic gzipping of
-	// content. Defined below.
-	Gzips Servicev1GzipArrayInput
-	// A set of Headers to manipulate for each request.
-	// Defined below.
-	Headers Servicev1HeaderArrayInput
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks Servicev1HealthcheckArrayInput
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings Servicev1HttpsloggingArrayInput
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries Servicev1LogentryArrayInput
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles Servicev1LoggingCloudfileArrayInput
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs Servicev1LoggingDatadogArrayInput
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans Servicev1LoggingDigitaloceanArrayInput
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           pulumi.BoolPtrInput
+	Gcsloggings            Servicev1GcsloggingArrayInput
+	Gzips                  Servicev1GzipArrayInput
+	Headers                Servicev1HeaderArrayInput
+	Healthchecks           Servicev1HealthcheckArrayInput
+	Httpsloggings          Servicev1HttpsloggingArrayInput
+	Logentries             Servicev1LogentryArrayInput
+	LoggingCloudfiles      Servicev1LoggingCloudfileArrayInput
+	LoggingDatadogs        Servicev1LoggingDatadogArrayInput
+	LoggingDigitaloceans   Servicev1LoggingDigitaloceanArrayInput
 	LoggingElasticsearches Servicev1LoggingElasticsearchArrayInput
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps Servicev1LoggingFtpArrayInput
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayInput
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku Servicev1LoggingHerokuArrayInput
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs Servicev1LoggingHoneycombArrayInput
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas Servicev1LoggingKafkaArrayInput
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses Servicev1LoggingKineseArrayInput
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies Servicev1LoggingLogglyArrayInput
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles Servicev1LoggingLogshuttleArrayInput
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics Servicev1LoggingNewrelicArrayInput
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks Servicev1LoggingOpenstackArrayInput
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs Servicev1LoggingScalyrArrayInput
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps Servicev1LoggingSftpArrayInput
-	// A unique name to identify this dictionary.
-	Name pulumi.StringPtrInput
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
-	Papertrails Servicev1PapertrailArrayInput
-	// A set of Request modifiers.
-	// Defined below
+	LoggingFtps            Servicev1LoggingFtpArrayInput
+	LoggingGooglepubsubs   Servicev1LoggingGooglepubsubArrayInput
+	LoggingHeroku          Servicev1LoggingHerokuArrayInput
+	LoggingHoneycombs      Servicev1LoggingHoneycombArrayInput
+	LoggingKafkas          Servicev1LoggingKafkaArrayInput
+	LoggingKineses         Servicev1LoggingKineseArrayInput
+	LoggingLogglies        Servicev1LoggingLogglyArrayInput
+	LoggingLogshuttles     Servicev1LoggingLogshuttleArrayInput
+	LoggingNewrelics       Servicev1LoggingNewrelicArrayInput
+	LoggingOpenstacks      Servicev1LoggingOpenstackArrayInput
+	LoggingScalyrs         Servicev1LoggingScalyrArrayInput
+	LoggingSftps           Servicev1LoggingSftpArrayInput
+	// The unique name for the Service to create
+	Name            pulumi.StringPtrInput
+	Papertrails     Servicev1PapertrailArrayInput
 	RequestSettings Servicev1RequestSettingArrayInput
-	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayInput
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings Servicev1S3loggingArrayInput
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-	// Defined below.
-	Snippets Servicev1SnippetArrayInput
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks Servicev1SplunkArrayInput
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics Servicev1SumologicArrayInput
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs Servicev1SyslogArrayInput
-	// A set of custom VCL configuration blocks.
-	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-	Vcls Servicev1VclArrayInput
-	// Description field for the version.
+	S3loggings      Servicev1S3loggingArrayInput
+	Snippets        Servicev1SnippetArrayInput
+	Splunks         Servicev1SplunkArrayInput
+	Sumologics      Servicev1SumologicArrayInput
+	Syslogs         Servicev1SyslogArrayInput
+	Vcls            Servicev1VclArrayInput
+	// Description field for the version
 	VersionComment pulumi.StringPtrInput
-	// A WAF configuration block.
-	// Defined below.
-	Waf Servicev1WafPtrInput
+	Waf            Servicev1WafPtrInput
 }
 
 func (Servicev1State) ElementType() reflect.Type {
@@ -500,292 +259,124 @@ func (Servicev1State) ElementType() reflect.Type {
 }
 
 type servicev1Args struct {
-	// A set of ACL configuration blocks.
-	// Defined below.
 	Acls []Servicev1Acl `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
-	Activate *bool `pulumi:"activate"`
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends []Servicev1Backend `pulumi:"backends"`
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings []Servicev1Bigquerylogging `pulumi:"bigqueryloggings"`
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate            *bool                         `pulumi:"activate"`
+	Backends            []Servicev1Backend            `pulumi:"backends"`
+	Bigqueryloggings    []Servicev1Bigquerylogging    `pulumi:"bigqueryloggings"`
 	Blobstorageloggings []Servicev1Blobstoragelogging `pulumi:"blobstorageloggings"`
-	// A set of Cache Settings, allowing you to override.
-	// Defined below.
-	CacheSettings []Servicev1CacheSetting `pulumi:"cacheSettings"`
-	// An optional comment about the Director.
-	Comment *string `pulumi:"comment"`
-	// A set of conditions to add logic to any basic
-	// configuration object in this service. Defined below.
+	CacheSettings       []Servicev1CacheSetting       `pulumi:"cacheSettings"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    *string              `pulumi:"comment"`
 	Conditions []Servicev1Condition `pulumi:"conditions"`
-	// Sets the host header.
+	// The default hostname
 	DefaultHost *string `pulumi:"defaultHost"`
-	// The default Time-to-live (TTL) for
-	// requests.
-	DefaultTtl *int `pulumi:"defaultTtl"`
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-	// Defined below.
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   *int                  `pulumi:"defaultTtl"`
 	Dictionaries []Servicev1Dictionary `pulumi:"dictionaries"`
-	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`.
-	// Defined below
-	Directors []Servicev1Director `pulumi:"directors"`
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-	Domains []Servicev1Domain `pulumi:"domains"`
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.
-	// Defined below.
+	Directors    []Servicev1Director   `pulumi:"directors"`
+	// A set of Domain names to serve as entry points for your Service
+	Domains         []Servicev1Domain         `pulumi:"domains"`
 	Dynamicsnippets []Servicev1Dynamicsnippet `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings []Servicev1Gcslogging `pulumi:"gcsloggings"`
-	// A set of gzip rules to control automatic gzipping of
-	// content. Defined below.
-	Gzips []Servicev1Gzip `pulumi:"gzips"`
-	// A set of Headers to manipulate for each request.
-	// Defined below.
-	Headers []Servicev1Header `pulumi:"headers"`
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks []Servicev1Healthcheck `pulumi:"healthchecks"`
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings []Servicev1Httpslogging `pulumi:"httpsloggings"`
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries []Servicev1Logentry `pulumi:"logentries"`
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles []Servicev1LoggingCloudfile `pulumi:"loggingCloudfiles"`
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs []Servicev1LoggingDatadog `pulumi:"loggingDatadogs"`
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans []Servicev1LoggingDigitalocean `pulumi:"loggingDigitaloceans"`
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           *bool                           `pulumi:"forceDestroy"`
+	Gcsloggings            []Servicev1Gcslogging           `pulumi:"gcsloggings"`
+	Gzips                  []Servicev1Gzip                 `pulumi:"gzips"`
+	Headers                []Servicev1Header               `pulumi:"headers"`
+	Healthchecks           []Servicev1Healthcheck          `pulumi:"healthchecks"`
+	Httpsloggings          []Servicev1Httpslogging         `pulumi:"httpsloggings"`
+	Logentries             []Servicev1Logentry             `pulumi:"logentries"`
+	LoggingCloudfiles      []Servicev1LoggingCloudfile     `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs        []Servicev1LoggingDatadog       `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans   []Servicev1LoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches []Servicev1LoggingElasticsearch `pulumi:"loggingElasticsearches"`
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps []Servicev1LoggingFtp `pulumi:"loggingFtps"`
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs []Servicev1LoggingGooglepubsub `pulumi:"loggingGooglepubsubs"`
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku []Servicev1LoggingHeroku `pulumi:"loggingHeroku"`
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs []Servicev1LoggingHoneycomb `pulumi:"loggingHoneycombs"`
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas []Servicev1LoggingKafka `pulumi:"loggingKafkas"`
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses []Servicev1LoggingKinese `pulumi:"loggingKineses"`
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies []Servicev1LoggingLoggly `pulumi:"loggingLogglies"`
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles []Servicev1LoggingLogshuttle `pulumi:"loggingLogshuttles"`
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics []Servicev1LoggingNewrelic `pulumi:"loggingNewrelics"`
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks []Servicev1LoggingOpenstack `pulumi:"loggingOpenstacks"`
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs []Servicev1LoggingScalyr `pulumi:"loggingScalyrs"`
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps []Servicev1LoggingSftp `pulumi:"loggingSftps"`
-	// A unique name to identify this dictionary.
-	Name *string `pulumi:"name"`
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
-	Papertrails []Servicev1Papertrail `pulumi:"papertrails"`
-	// A set of Request modifiers.
-	// Defined below
+	LoggingFtps            []Servicev1LoggingFtp           `pulumi:"loggingFtps"`
+	LoggingGooglepubsubs   []Servicev1LoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
+	LoggingHeroku          []Servicev1LoggingHeroku        `pulumi:"loggingHeroku"`
+	LoggingHoneycombs      []Servicev1LoggingHoneycomb     `pulumi:"loggingHoneycombs"`
+	LoggingKafkas          []Servicev1LoggingKafka         `pulumi:"loggingKafkas"`
+	LoggingKineses         []Servicev1LoggingKinese        `pulumi:"loggingKineses"`
+	LoggingLogglies        []Servicev1LoggingLoggly        `pulumi:"loggingLogglies"`
+	LoggingLogshuttles     []Servicev1LoggingLogshuttle    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics       []Servicev1LoggingNewrelic      `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks      []Servicev1LoggingOpenstack     `pulumi:"loggingOpenstacks"`
+	LoggingScalyrs         []Servicev1LoggingScalyr        `pulumi:"loggingScalyrs"`
+	LoggingSftps           []Servicev1LoggingSftp          `pulumi:"loggingSftps"`
+	// The unique name for the Service to create
+	Name            *string                   `pulumi:"name"`
+	Papertrails     []Servicev1Papertrail     `pulumi:"papertrails"`
 	RequestSettings []Servicev1RequestSetting `pulumi:"requestSettings"`
-	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects []Servicev1ResponseObject `pulumi:"responseObjects"`
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings []Servicev1S3logging `pulumi:"s3loggings"`
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-	// Defined below.
-	Snippets []Servicev1Snippet `pulumi:"snippets"`
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks []Servicev1Splunk `pulumi:"splunks"`
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics []Servicev1Sumologic `pulumi:"sumologics"`
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs []Servicev1Syslog `pulumi:"syslogs"`
-	// A set of custom VCL configuration blocks.
-	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-	Vcls []Servicev1Vcl `pulumi:"vcls"`
-	// Description field for the version.
-	VersionComment *string `pulumi:"versionComment"`
-	// A WAF configuration block.
-	// Defined below.
-	Waf *Servicev1Waf `pulumi:"waf"`
+	S3loggings      []Servicev1S3logging      `pulumi:"s3loggings"`
+	Snippets        []Servicev1Snippet        `pulumi:"snippets"`
+	Splunks         []Servicev1Splunk         `pulumi:"splunks"`
+	Sumologics      []Servicev1Sumologic      `pulumi:"sumologics"`
+	Syslogs         []Servicev1Syslog         `pulumi:"syslogs"`
+	Vcls            []Servicev1Vcl            `pulumi:"vcls"`
+	// Description field for the version
+	VersionComment *string       `pulumi:"versionComment"`
+	Waf            *Servicev1Waf `pulumi:"waf"`
 }
 
 // The set of arguments for constructing a Servicev1 resource.
 type Servicev1Args struct {
-	// A set of ACL configuration blocks.
-	// Defined below.
 	Acls Servicev1AclArrayInput
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to false. Default true.
-	Activate pulumi.BoolPtrInput
-	// A set of Backends to service requests from your Domains.
-	// Defined below. Backends must be defined in this argument, or defined in the
-	// `vcl` argument below
-	Backends Servicev1BackendArrayInput
-	// A BigQuery endpoint to send streaming logs too.
-	// Defined below.
-	Bigqueryloggings Servicev1BigqueryloggingArrayInput
-	// An Azure Blob Storage endpoint to send streaming logs too.
-	// Defined below.
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate            pulumi.BoolPtrInput
+	Backends            Servicev1BackendArrayInput
+	Bigqueryloggings    Servicev1BigqueryloggingArrayInput
 	Blobstorageloggings Servicev1BlobstorageloggingArrayInput
-	// A set of Cache Settings, allowing you to override.
-	// Defined below.
-	CacheSettings Servicev1CacheSettingArrayInput
-	// An optional comment about the Director.
-	Comment pulumi.StringPtrInput
-	// A set of conditions to add logic to any basic
-	// configuration object in this service. Defined below.
+	CacheSettings       Servicev1CacheSettingArrayInput
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    pulumi.StringPtrInput
 	Conditions Servicev1ConditionArrayInput
-	// Sets the host header.
+	// The default hostname
 	DefaultHost pulumi.StringPtrInput
-	// The default Time-to-live (TTL) for
-	// requests.
-	DefaultTtl pulumi.IntPtrInput
-	// A set of dictionaries that allow the storing of key values pair for use within VCL functions.
-	// Defined below.
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   pulumi.IntPtrInput
 	Dictionaries Servicev1DictionaryArrayInput
-	// A director to allow more control over balancing traffic over backends.
-	// when an item is not to be cached based on an above `condition`.
-	// Defined below
-	Directors Servicev1DirectorArrayInput
-	// The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").
-	Domains Servicev1DomainArrayInput
-	// A set of custom, "dynamic" VCL Snippet configuration blocks.
-	// Defined below.
+	Directors    Servicev1DirectorArrayInput
+	// A set of Domain names to serve as entry points for your Service
+	Domains         Servicev1DomainArrayInput
 	Dynamicsnippets Servicev1DynamicsnippetArrayInput
-	// Services that are active cannot be destroyed. In
-	// order to destroy the Service, set `forceDestroy` to `true`. Default `false`.
-	ForceDestroy pulumi.BoolPtrInput
-	// A gcs endpoint to send streaming logs too.
-	// Defined below.
-	Gcsloggings Servicev1GcsloggingArrayInput
-	// A set of gzip rules to control automatic gzipping of
-	// content. Defined below.
-	Gzips Servicev1GzipArrayInput
-	// A set of Headers to manipulate for each request.
-	// Defined below.
-	Headers Servicev1HeaderArrayInput
-	// Name of a defined `healthcheck` to assign to this backend.
-	Healthchecks Servicev1HealthcheckArrayInput
-	// An HTTPS endpoint to send streaming logs to.
-	// Defined below.
-	Httpsloggings Servicev1HttpsloggingArrayInput
-	// A logentries endpoint to send streaming logs too.
-	// Defined below.
-	Logentries Servicev1LogentryArrayInput
-	// A Rackspace Cloud Files endpoint to send streaming logs to.
-	// Defined below.
-	LoggingCloudfiles Servicev1LoggingCloudfileArrayInput
-	// A Datadog endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDatadogs Servicev1LoggingDatadogArrayInput
-	// A DigitalOcean Spaces endpoint to send streaming logs to.
-	// Defined below.
-	LoggingDigitaloceans Servicev1LoggingDigitaloceanArrayInput
-	// An Elasticsearch endpoint to send streaming logs to.
-	// Defined below.
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	ForceDestroy           pulumi.BoolPtrInput
+	Gcsloggings            Servicev1GcsloggingArrayInput
+	Gzips                  Servicev1GzipArrayInput
+	Headers                Servicev1HeaderArrayInput
+	Healthchecks           Servicev1HealthcheckArrayInput
+	Httpsloggings          Servicev1HttpsloggingArrayInput
+	Logentries             Servicev1LogentryArrayInput
+	LoggingCloudfiles      Servicev1LoggingCloudfileArrayInput
+	LoggingDatadogs        Servicev1LoggingDatadogArrayInput
+	LoggingDigitaloceans   Servicev1LoggingDigitaloceanArrayInput
 	LoggingElasticsearches Servicev1LoggingElasticsearchArrayInput
-	// An FTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingFtps Servicev1LoggingFtpArrayInput
-	// A Google Cloud Pub/Sub endpoint to send streaming logs to.
-	// Defined below.
-	LoggingGooglepubsubs Servicev1LoggingGooglepubsubArrayInput
-	// A Heroku endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHeroku Servicev1LoggingHerokuArrayInput
-	// A Honeycomb endpoint to send streaming logs to.
-	// Defined below.
-	LoggingHoneycombs Servicev1LoggingHoneycombArrayInput
-	// A Kafka endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKafkas Servicev1LoggingKafkaArrayInput
-	// A Kinesis endpoint to send streaming logs to.
-	// Defined below.
-	LoggingKineses Servicev1LoggingKineseArrayInput
-	// A Loggly endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogglies Servicev1LoggingLogglyArrayInput
-	// A Log Shuttle endpoint to send streaming logs to.
-	// Defined below.
-	LoggingLogshuttles Servicev1LoggingLogshuttleArrayInput
-	// A New Relic endpoint to send streaming logs to.
-	// Defined below.
-	LoggingNewrelics Servicev1LoggingNewrelicArrayInput
-	// An OpenStack endpoint to send streaming logs to.
-	// Defined below.
-	LoggingOpenstacks Servicev1LoggingOpenstackArrayInput
-	// A Scalyr endpoint to send streaming logs to.
-	// Defined below.
-	LoggingScalyrs Servicev1LoggingScalyrArrayInput
-	// An SFTP endpoint to send streaming logs to.
-	// Defined below.
-	LoggingSftps Servicev1LoggingSftpArrayInput
-	// A unique name to identify this dictionary.
-	Name pulumi.StringPtrInput
-	// A Papertrail endpoint to send streaming logs too.
-	// Defined below.
-	Papertrails Servicev1PapertrailArrayInput
-	// A set of Request modifiers.
-	// Defined below
+	LoggingFtps            Servicev1LoggingFtpArrayInput
+	LoggingGooglepubsubs   Servicev1LoggingGooglepubsubArrayInput
+	LoggingHeroku          Servicev1LoggingHerokuArrayInput
+	LoggingHoneycombs      Servicev1LoggingHoneycombArrayInput
+	LoggingKafkas          Servicev1LoggingKafkaArrayInput
+	LoggingKineses         Servicev1LoggingKineseArrayInput
+	LoggingLogglies        Servicev1LoggingLogglyArrayInput
+	LoggingLogshuttles     Servicev1LoggingLogshuttleArrayInput
+	LoggingNewrelics       Servicev1LoggingNewrelicArrayInput
+	LoggingOpenstacks      Servicev1LoggingOpenstackArrayInput
+	LoggingScalyrs         Servicev1LoggingScalyrArrayInput
+	LoggingSftps           Servicev1LoggingSftpArrayInput
+	// The unique name for the Service to create
+	Name            pulumi.StringPtrInput
+	Papertrails     Servicev1PapertrailArrayInput
 	RequestSettings Servicev1RequestSettingArrayInput
-	// The name of the response object used by the Web Application Firewall.
 	ResponseObjects Servicev1ResponseObjectArrayInput
-	// A set of S3 Buckets to send streaming logs too.
-	// Defined below.
-	S3loggings Servicev1S3loggingArrayInput
-	// A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks.
-	// Defined below.
-	Snippets Servicev1SnippetArrayInput
-	// A Splunk endpoint to send streaming logs too.
-	// Defined below.
-	Splunks Servicev1SplunkArrayInput
-	// A Sumologic endpoint to send streaming logs too.
-	// Defined below.
-	Sumologics Servicev1SumologicArrayInput
-	// A syslog endpoint to send streaming logs too.
-	// Defined below.
-	Syslogs Servicev1SyslogArrayInput
-	// A set of custom VCL configuration blocks.
-	// Defined below. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.
-	Vcls Servicev1VclArrayInput
-	// Description field for the version.
+	S3loggings      Servicev1S3loggingArrayInput
+	Snippets        Servicev1SnippetArrayInput
+	Splunks         Servicev1SplunkArrayInput
+	Sumologics      Servicev1SumologicArrayInput
+	Syslogs         Servicev1SyslogArrayInput
+	Vcls            Servicev1VclArrayInput
+	// Description field for the version
 	VersionComment pulumi.StringPtrInput
-	// A WAF configuration block.
-	// Defined below.
-	Waf Servicev1WafPtrInput
+	Waf            Servicev1WafPtrInput
 }
 
 func (Servicev1Args) ElementType() reflect.Type {

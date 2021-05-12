@@ -13,44 +13,43 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1ResponseObjectGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals,
-        /// see [Fastly's Documentation on Conditionals][fastly-conditionals].
+        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
 
         /// <summary>
-        /// The custom VCL code to upload.
+        /// The content to deliver for the response object
         /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
         /// <summary>
-        /// The MIME type of the content.
+        /// The MIME type of the content
         /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
         /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
         /// <summary>
-        /// The HTTP Response. Default `Ok`.
+        /// The HTTP Response. Default `OK`
         /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
         /// <summary>
-        /// The HTTP Status Code. Default `200`.
+        /// The HTTP Status Code. Default `200`
         /// </summary>
         [Input("status")]
         public Input<int>? Status { get; set; }

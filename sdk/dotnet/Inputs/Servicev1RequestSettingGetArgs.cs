@@ -13,81 +13,73 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1RequestSettingGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Allows you to terminate request handling and immediately
-        /// perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely).
+        /// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
         /// <summary>
-        /// Disable collapsed forwarding, so you don't wait
-        /// for other objects to origin.
+        /// Disable collapsed forwarding, so you don't wait for other objects to origin
         /// </summary>
         [Input("bypassBusyWait")]
         public Input<bool>? BypassBusyWait { get; set; }
 
         /// <summary>
-        /// Sets the host header.
+        /// Sets the host header
         /// </summary>
         [Input("defaultHost")]
         public Input<string>? DefaultHost { get; set; }
 
         /// <summary>
-        /// Force a cache miss for the request. If specified,
-        /// can be `true` or `false`.
+        /// Force a cache miss for the request. If specified, can be `true` or `false`
         /// </summary>
         [Input("forceMiss")]
         public Input<bool>? ForceMiss { get; set; }
 
         /// <summary>
-        /// Forces the request to use SSL (Redirects a non-SSL request to SSL).
+        /// Forces the request to use SSL (Redirects a non-SSL request to SSL)
         /// </summary>
         [Input("forceSsl")]
         public Input<bool>? ForceSsl { get; set; }
 
         /// <summary>
-        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and
-        /// Fastly-Geo-Region into the request headers.
+        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         /// </summary>
         [Input("geoHeaders")]
         public Input<bool>? GeoHeaders { get; set; }
 
         /// <summary>
-        /// Comma separated list of varnish request object fields
-        /// that should be in the hash key.
+        /// Comma separated list of varnish request object fields that should be in the hash key
         /// </summary>
         [Input("hashKeys")]
         public Input<string>? HashKeys { get; set; }
 
         /// <summary>
-        /// How old an object is allowed to be to serve
-        /// `stale-if-error` or `stale-while-revalidate`, in seconds.
+        /// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
         /// </summary>
         [Input("maxStaleAge")]
         public Input<int>? MaxStaleAge { get; set; }
 
         /// <summary>
-        /// A unique name to identify this dictionary.
+        /// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`.
+        /// Name of already defined `condition` to determine if this request setting should be applied
         /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
         /// <summary>
-        /// Injects the X-Timer info into the request for
-        /// viewing origin fetch durations.
+        /// Injects the X-Timer info into the request for viewing origin fetch durations
         /// </summary>
         [Input("timerSupport")]
         public Input<bool>? TimerSupport { get; set; }
 
         /// <summary>
-        /// X-Forwarded-For, should be `clear`, `leave`, `append`,
-        /// `append_all`, or `overwrite`. Default `append`.
+        /// X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         /// </summary>
         [Input("xff")]
         public Input<string>? Xff { get; set; }

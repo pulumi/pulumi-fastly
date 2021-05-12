@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingNewrelicGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Insert API key from the Account page of your New Relic account
         /// </summary>
         [Input("token", required: true)]
         public Input<string> Token { get; set; } = null!;

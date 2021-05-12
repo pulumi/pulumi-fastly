@@ -14,15 +14,15 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingHoneycomb
     {
         /// <summary>
-        /// The Honeycomb Dataset you want to log to.
+        /// The Honeycomb Dataset you want to log to
         /// </summary>
         public readonly string Dataset;
         /// <summary>
-        /// The unique name of the Kinesis logging endpoint.
+        /// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The data authentication token associated with this endpoint.
+        /// The Write Key from the Account page of your Honeycomb account
         /// </summary>
         public readonly string Token;
 
