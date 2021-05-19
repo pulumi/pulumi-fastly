@@ -80,6 +80,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dictionaries!: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
+    public readonly directors!: pulumi.Output<outputs.ServiceComputeDirector[] | undefined>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
@@ -147,6 +148,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["clonedVersion"] = state ? state.clonedVersion : undefined;
             inputs["comment"] = state ? state.comment : undefined;
             inputs["dictionaries"] = state ? state.dictionaries : undefined;
+            inputs["directors"] = state ? state.directors : undefined;
             inputs["domains"] = state ? state.domains : undefined;
             inputs["forceDestroy"] = state ? state.forceDestroy : undefined;
             inputs["gcsloggings"] = state ? state.gcsloggings : undefined;
@@ -194,6 +196,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["blobstorageloggings"] = args ? args.blobstorageloggings : undefined;
             inputs["comment"] = args ? args.comment : undefined;
             inputs["dictionaries"] = args ? args.dictionaries : undefined;
+            inputs["directors"] = args ? args.directors : undefined;
             inputs["domains"] = args ? args.domains : undefined;
             inputs["forceDestroy"] = args ? args.forceDestroy : undefined;
             inputs["gcsloggings"] = args ? args.gcsloggings : undefined;
@@ -258,6 +261,7 @@ export interface ServiceComputeState {
      */
     readonly comment?: pulumi.Input<string>;
     readonly dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
+    readonly directors?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDirector>[]>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
@@ -321,6 +325,7 @@ export interface ServiceComputeArgs {
      */
     readonly comment?: pulumi.Input<string>;
     readonly dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
+    readonly directors?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDirector>[]>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */

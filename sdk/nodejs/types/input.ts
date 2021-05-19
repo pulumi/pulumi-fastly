@@ -229,6 +229,41 @@ export interface ServiceComputeDictionary {
     writeOnly?: pulumi.Input<boolean>;
 }
 
+export interface ServiceComputeDirector {
+    /**
+     * Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+     */
+    backends: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Load balancing weight for the backends. Default `100`
+     */
+    capacity?: pulumi.Input<number>;
+    /**
+     * An optional comment about the Director
+     */
+    comment?: pulumi.Input<string>;
+    /**
+     * Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+     */
+    quorum?: pulumi.Input<number>;
+    /**
+     * How many backends to search if it fails. Default `5`
+     */
+    retries?: pulumi.Input<number>;
+    /**
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+     */
+    shield?: pulumi.Input<string>;
+    /**
+     * Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+     */
+    type?: pulumi.Input<number>;
+}
+
 export interface ServiceComputeDomain {
     /**
      * An optional comment about the Domain.

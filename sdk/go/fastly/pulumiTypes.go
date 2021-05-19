@@ -924,6 +924,166 @@ func (o ServiceComputeDictionaryArrayOutput) Index(i pulumi.IntInput) ServiceCom
 	}).(ServiceComputeDictionaryOutput)
 }
 
+type ServiceComputeDirector struct {
+	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+	Backends []string `pulumi:"backends"`
+	// Load balancing weight for the backends. Default `100`
+	Capacity *int `pulumi:"capacity"`
+	// An optional comment about the Director
+	Comment *string `pulumi:"comment"`
+	// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+	Quorum *int `pulumi:"quorum"`
+	// How many backends to search if it fails. Default `5`
+	Retries *int `pulumi:"retries"`
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+	Shield *string `pulumi:"shield"`
+	// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+	Type *int `pulumi:"type"`
+}
+
+// ServiceComputeDirectorInput is an input type that accepts ServiceComputeDirectorArgs and ServiceComputeDirectorOutput values.
+// You can construct a concrete instance of `ServiceComputeDirectorInput` via:
+//
+//          ServiceComputeDirectorArgs{...}
+type ServiceComputeDirectorInput interface {
+	pulumi.Input
+
+	ToServiceComputeDirectorOutput() ServiceComputeDirectorOutput
+	ToServiceComputeDirectorOutputWithContext(context.Context) ServiceComputeDirectorOutput
+}
+
+type ServiceComputeDirectorArgs struct {
+	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+	Backends pulumi.StringArrayInput `pulumi:"backends"`
+	// Load balancing weight for the backends. Default `100`
+	Capacity pulumi.IntPtrInput `pulumi:"capacity"`
+	// An optional comment about the Director
+	Comment pulumi.StringPtrInput `pulumi:"comment"`
+	// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+	Quorum pulumi.IntPtrInput `pulumi:"quorum"`
+	// How many backends to search if it fails. Default `5`
+	Retries pulumi.IntPtrInput `pulumi:"retries"`
+	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+	Shield pulumi.StringPtrInput `pulumi:"shield"`
+	// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+	Type pulumi.IntPtrInput `pulumi:"type"`
+}
+
+func (ServiceComputeDirectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeDirector)(nil)).Elem()
+}
+
+func (i ServiceComputeDirectorArgs) ToServiceComputeDirectorOutput() ServiceComputeDirectorOutput {
+	return i.ToServiceComputeDirectorOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeDirectorArgs) ToServiceComputeDirectorOutputWithContext(ctx context.Context) ServiceComputeDirectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDirectorOutput)
+}
+
+// ServiceComputeDirectorArrayInput is an input type that accepts ServiceComputeDirectorArray and ServiceComputeDirectorArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeDirectorArrayInput` via:
+//
+//          ServiceComputeDirectorArray{ ServiceComputeDirectorArgs{...} }
+type ServiceComputeDirectorArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeDirectorArrayOutput() ServiceComputeDirectorArrayOutput
+	ToServiceComputeDirectorArrayOutputWithContext(context.Context) ServiceComputeDirectorArrayOutput
+}
+
+type ServiceComputeDirectorArray []ServiceComputeDirectorInput
+
+func (ServiceComputeDirectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeDirector)(nil)).Elem()
+}
+
+func (i ServiceComputeDirectorArray) ToServiceComputeDirectorArrayOutput() ServiceComputeDirectorArrayOutput {
+	return i.ToServiceComputeDirectorArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeDirectorArray) ToServiceComputeDirectorArrayOutputWithContext(ctx context.Context) ServiceComputeDirectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDirectorArrayOutput)
+}
+
+type ServiceComputeDirectorOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeDirectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeDirector)(nil)).Elem()
+}
+
+func (o ServiceComputeDirectorOutput) ToServiceComputeDirectorOutput() ServiceComputeDirectorOutput {
+	return o
+}
+
+func (o ServiceComputeDirectorOutput) ToServiceComputeDirectorOutputWithContext(ctx context.Context) ServiceComputeDirectorOutput {
+	return o
+}
+
+// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+func (o ServiceComputeDirectorOutput) Backends() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) []string { return v.Backends }).(pulumi.StringArrayOutput)
+}
+
+// Load balancing weight for the backends. Default `100`
+func (o ServiceComputeDirectorOutput) Capacity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) *int { return v.Capacity }).(pulumi.IntPtrOutput)
+}
+
+// An optional comment about the Director
+func (o ServiceComputeDirectorOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) *string { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceComputeDirectorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+func (o ServiceComputeDirectorOutput) Quorum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) *int { return v.Quorum }).(pulumi.IntPtrOutput)
+}
+
+// How many backends to search if it fails. Default `5`
+func (o ServiceComputeDirectorOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) *int { return v.Retries }).(pulumi.IntPtrOutput)
+}
+
+// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+func (o ServiceComputeDirectorOutput) Shield() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) *string { return v.Shield }).(pulumi.StringPtrOutput)
+}
+
+// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+func (o ServiceComputeDirectorOutput) Type() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeDirector) *int { return v.Type }).(pulumi.IntPtrOutput)
+}
+
+type ServiceComputeDirectorArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeDirectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeDirector)(nil)).Elem()
+}
+
+func (o ServiceComputeDirectorArrayOutput) ToServiceComputeDirectorArrayOutput() ServiceComputeDirectorArrayOutput {
+	return o
+}
+
+func (o ServiceComputeDirectorArrayOutput) ToServiceComputeDirectorArrayOutputWithContext(ctx context.Context) ServiceComputeDirectorArrayOutput {
+	return o
+}
+
+func (o ServiceComputeDirectorArrayOutput) Index(i pulumi.IntInput) ServiceComputeDirectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeDirector {
+		return vs[0].([]ServiceComputeDirector)[vs[1].(int)]
+	}).(ServiceComputeDirectorOutput)
+}
+
 type ServiceComputeDomain struct {
 	// An optional comment about the Domain.
 	Comment *string `pulumi:"comment"`
@@ -13285,6 +13445,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeBlobstorageloggingArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDictionaryOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDictionaryArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeDirectorOutput{})
+	pulumi.RegisterOutputType(ServiceComputeDirectorArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeGcsloggingOutput{})

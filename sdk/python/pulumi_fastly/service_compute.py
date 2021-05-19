@@ -23,6 +23,7 @@ class ServiceComputeArgs:
                  blobstorageloggings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBlobstorageloggingArgs']]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
+                 directors: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  gcsloggings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeGcsloggingArgs']]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
@@ -74,6 +75,8 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "comment", comment)
         if dictionaries is not None:
             pulumi.set(__self__, "dictionaries", dictionaries)
+        if directors is not None:
+            pulumi.set(__self__, "directors", directors)
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
         if gcsloggings is not None:
@@ -214,6 +217,15 @@ class ServiceComputeArgs:
     @dictionaries.setter
     def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
+
+    @property
+    @pulumi.getter
+    def directors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]:
+        return pulumi.get(self, "directors")
+
+    @directors.setter
+    def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]):
+        pulumi.set(self, "directors", value)
 
     @property
     @pulumi.getter(name="forceDestroy")
@@ -488,6 +500,7 @@ class _ServiceComputeState:
                  cloned_version: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
+                 directors: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  gcsloggings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeGcsloggingArgs']]]] = None,
@@ -546,6 +559,8 @@ class _ServiceComputeState:
             pulumi.set(__self__, "comment", comment)
         if dictionaries is not None:
             pulumi.set(__self__, "dictionaries", dictionaries)
+        if directors is not None:
+            pulumi.set(__self__, "directors", directors)
         if domains is not None:
             pulumi.set(__self__, "domains", domains)
         if force_destroy is not None:
@@ -690,6 +705,15 @@ class _ServiceComputeState:
     @dictionaries.setter
     def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
+
+    @property
+    @pulumi.getter
+    def directors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]:
+        return pulumi.get(self, "directors")
+
+    @directors.setter
+    def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]):
+        pulumi.set(self, "directors", value)
 
     @property
     @pulumi.getter
@@ -988,6 +1012,7 @@ class ServiceCompute(pulumi.CustomResource):
                  blobstorageloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeBlobstorageloggingArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
+                 directors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDirectorArgs']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  gcsloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeGcsloggingArgs']]]]] = None,
@@ -1110,6 +1135,7 @@ class ServiceCompute(pulumi.CustomResource):
                  blobstorageloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeBlobstorageloggingArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
+                 directors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDirectorArgs']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  gcsloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeGcsloggingArgs']]]]] = None,
@@ -1160,6 +1186,7 @@ class ServiceCompute(pulumi.CustomResource):
             __props__.__dict__["blobstorageloggings"] = blobstorageloggings
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dictionaries"] = dictionaries
+            __props__.__dict__["directors"] = directors
             if domains is None and not opts.urn:
                 raise TypeError("Missing required property 'domains'")
             __props__.__dict__["domains"] = domains
@@ -1214,6 +1241,7 @@ class ServiceCompute(pulumi.CustomResource):
             cloned_version: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
+            directors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDirectorArgs']]]]] = None,
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
             gcsloggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeGcsloggingArgs']]]]] = None,
@@ -1273,6 +1301,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["cloned_version"] = cloned_version
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dictionaries"] = dictionaries
+        __props__.__dict__["directors"] = directors
         __props__.__dict__["domains"] = domains
         __props__.__dict__["force_destroy"] = force_destroy
         __props__.__dict__["gcsloggings"] = gcsloggings
@@ -1356,6 +1385,11 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def dictionaries(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeDictionary']]]:
         return pulumi.get(self, "dictionaries")
+
+    @property
+    @pulumi.getter
+    def directors(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeDirector']]]:
+        return pulumi.get(self, "directors")
 
     @property
     @pulumi.getter

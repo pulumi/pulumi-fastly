@@ -51,6 +51,7 @@ type ServiceCompute struct {
 	// Description field for the service. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
 	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
+	Directors    ServiceComputeDirectorArrayOutput   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -138,6 +139,7 @@ type serviceComputeState struct {
 	// Description field for the service. Default `Managed by Terraform`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
+	Directors    []ServiceComputeDirector   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -188,6 +190,7 @@ type ServiceComputeState struct {
 	// Description field for the service. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
+	Directors    ServiceComputeDirectorArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -238,6 +241,7 @@ type serviceComputeArgs struct {
 	// Description field for the service. Default `Managed by Terraform`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
+	Directors    []ServiceComputeDirector   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -285,6 +289,7 @@ type ServiceComputeArgs struct {
 	// Description field for the service. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
+	Directors    ServiceComputeDirectorArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
