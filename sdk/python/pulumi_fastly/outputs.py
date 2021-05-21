@@ -14,6 +14,7 @@ __all__ = [
     'ServiceComputeBigquerylogging',
     'ServiceComputeBlobstoragelogging',
     'ServiceComputeDictionary',
+    'ServiceComputeDirector',
     'ServiceComputeDomain',
     'ServiceComputeGcslogging',
     'ServiceComputeHealthcheck',
@@ -855,6 +856,107 @@ class ServiceComputeDictionary(dict):
         If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
         """
         return pulumi.get(self, "write_only")
+
+
+@pulumi.output_type
+class ServiceComputeDirector(dict):
+    def __init__(__self__, *,
+                 backends: Sequence[str],
+                 name: str,
+                 capacity: Optional[int] = None,
+                 comment: Optional[str] = None,
+                 quorum: Optional[int] = None,
+                 retries: Optional[int] = None,
+                 shield: Optional[str] = None,
+                 type: Optional[int] = None):
+        """
+        :param Sequence[str] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        :param str name: Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+        :param int capacity: Load balancing weight for the backends. Default `100`
+        :param str comment: An optional comment about the Director
+        :param int quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+        :param int retries: How many backends to search if it fails. Default `5`
+        :param str shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+        :param int type: Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+        """
+        pulumi.set(__self__, "backends", backends)
+        pulumi.set(__self__, "name", name)
+        if capacity is not None:
+            pulumi.set(__self__, "capacity", capacity)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if quorum is not None:
+            pulumi.set(__self__, "quorum", quorum)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+        if shield is not None:
+            pulumi.set(__self__, "shield", shield)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def backends(self) -> Sequence[str]:
+        """
+        Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        """
+        return pulumi.get(self, "backends")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def capacity(self) -> Optional[int]:
+        """
+        Load balancing weight for the backends. Default `100`
+        """
+        return pulumi.get(self, "capacity")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        An optional comment about the Director
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def quorum(self) -> Optional[int]:
+        """
+        Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+        """
+        return pulumi.get(self, "quorum")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[int]:
+        """
+        How many backends to search if it fails. Default `5`
+        """
+        return pulumi.get(self, "retries")
+
+    @property
+    @pulumi.getter
+    def shield(self) -> Optional[str]:
+        """
+        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+        """
+        return pulumi.get(self, "shield")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[int]:
+        """
+        Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

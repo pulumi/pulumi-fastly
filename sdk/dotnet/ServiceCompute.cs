@@ -75,6 +75,9 @@ namespace Pulumi.Fastly
         [Output("dictionaries")]
         public Output<ImmutableArray<Outputs.ServiceComputeDictionary>> Dictionaries { get; private set; } = null!;
 
+        [Output("directors")]
+        public Output<ImmutableArray<Outputs.ServiceComputeDirector>> Directors { get; private set; } = null!;
+
         /// <summary>
         /// A set of Domain names to serve as entry points for your Service
         /// </summary>
@@ -268,6 +271,14 @@ namespace Pulumi.Fastly
         {
             get => _dictionaries ?? (_dictionaries = new InputList<Inputs.ServiceComputeDictionaryArgs>());
             set => _dictionaries = value;
+        }
+
+        [Input("directors")]
+        private InputList<Inputs.ServiceComputeDirectorArgs>? _directors;
+        public InputList<Inputs.ServiceComputeDirectorArgs> Directors
+        {
+            get => _directors ?? (_directors = new InputList<Inputs.ServiceComputeDirectorArgs>());
+            set => _directors = value;
         }
 
         [Input("domains", required: true)]
@@ -567,6 +578,14 @@ namespace Pulumi.Fastly
         {
             get => _dictionaries ?? (_dictionaries = new InputList<Inputs.ServiceComputeDictionaryGetArgs>());
             set => _dictionaries = value;
+        }
+
+        [Input("directors")]
+        private InputList<Inputs.ServiceComputeDirectorGetArgs>? _directors;
+        public InputList<Inputs.ServiceComputeDirectorGetArgs> Directors
+        {
+            get => _directors ?? (_directors = new InputList<Inputs.ServiceComputeDirectorGetArgs>());
+            set => _directors = value;
         }
 
         [Input("domains")]
