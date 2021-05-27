@@ -25,6 +25,14 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * Fastly API Key from https://app.fastly.com/#account
+     */
+    public readonly apiKey!: pulumi.Output<string | undefined>;
+    /**
+     * Fastly API URL
+     */
+    public readonly baseUrl!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -54,9 +62,9 @@ export interface ProviderArgs {
     /**
      * Fastly API Key from https://app.fastly.com/#account
      */
-    readonly apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * Fastly API URL
      */
-    readonly baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string>;
 }

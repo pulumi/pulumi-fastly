@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *
  * const example = pulumi.output(fastly.getTlsCertificate({
  *     name: "example.com",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getTlsCertificate(args?: GetTlsCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsCertificateResult> {
@@ -50,23 +50,23 @@ export interface GetTlsCertificateArgs {
     /**
      * Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
      */
-    readonly domains?: string[];
+    domains?: string[];
     /**
      * Unique ID assigned to certificate by Fastly
      */
-    readonly id?: string;
+    id?: string;
     /**
      * The hostname for which a certificate was issued.
      */
-    readonly issuedTo?: string;
+    issuedTo?: string;
     /**
      * The certificate authority that issued the certificate.
      */
-    readonly issuer?: string;
+    issuer?: string;
     /**
      * Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
      */
-    readonly name?: string;
+    name?: string;
 }
 
 /**

@@ -274,121 +274,121 @@ export interface ServiceWafConfigurationState {
     /**
      * Allowed HTTP versions
      */
-    readonly allowedHttpVersions?: pulumi.Input<string>;
+    allowedHttpVersions?: pulumi.Input<string>;
     /**
      * A space-separated list of HTTP method names
      */
-    readonly allowedMethods?: pulumi.Input<string>;
+    allowedMethods?: pulumi.Input<string>;
     /**
      * Allowed request content types
      */
-    readonly allowedRequestContentType?: pulumi.Input<string>;
+    allowedRequestContentType?: pulumi.Input<string>;
     /**
      * Allowed request content type charset
      */
-    readonly allowedRequestContentTypeCharset?: pulumi.Input<string>;
+    allowedRequestContentTypeCharset?: pulumi.Input<string>;
     /**
      * The maximum number of arguments allowed
      */
-    readonly argLength?: pulumi.Input<number>;
+    argLength?: pulumi.Input<number>;
     /**
      * The maximum allowed argument name length
      */
-    readonly argNameLength?: pulumi.Input<number>;
+    argNameLength?: pulumi.Input<number>;
     /**
      * The maximum allowed size of all files
      */
-    readonly combinedFileSizes?: pulumi.Input<number>;
+    combinedFileSizes?: pulumi.Input<number>;
     /**
      * Score value to add for critical anomalies
      */
-    readonly criticalAnomalyScore?: pulumi.Input<number>;
+    criticalAnomalyScore?: pulumi.Input<number>;
     /**
      * CRS validate UTF8 encoding
      */
-    readonly crsValidateUtf8Encoding?: pulumi.Input<boolean>;
+    crsValidateUtf8Encoding?: pulumi.Input<boolean>;
     /**
      * Score value to add for error anomalies
      */
-    readonly errorAnomalyScore?: pulumi.Input<number>;
+    errorAnomalyScore?: pulumi.Input<number>;
     /**
      * A space-separated list of country codes in ISO 3166-1 (two-letter) format
      */
-    readonly highRiskCountryCodes?: pulumi.Input<string>;
+    highRiskCountryCodes?: pulumi.Input<string>;
     /**
      * HTTP violation threshold
      */
-    readonly httpViolationScoreThreshold?: pulumi.Input<number>;
+    httpViolationScoreThreshold?: pulumi.Input<number>;
     /**
      * Inbound anomaly threshold
      */
-    readonly inboundAnomalyScoreThreshold?: pulumi.Input<number>;
+    inboundAnomalyScoreThreshold?: pulumi.Input<number>;
     /**
      * Local file inclusion attack threshold
      */
-    readonly lfiScoreThreshold?: pulumi.Input<number>;
+    lfiScoreThreshold?: pulumi.Input<number>;
     /**
      * The maximum allowed file size, in bytes
      */
-    readonly maxFileSize?: pulumi.Input<number>;
+    maxFileSize?: pulumi.Input<number>;
     /**
      * The maximum number of arguments allowed
      */
-    readonly maxNumArgs?: pulumi.Input<number>;
+    maxNumArgs?: pulumi.Input<number>;
     /**
      * Score value to add for notice anomalies
      */
-    readonly noticeAnomalyScore?: pulumi.Input<number>;
+    noticeAnomalyScore?: pulumi.Input<number>;
     /**
      * The configured paranoia level
      */
-    readonly paranoiaLevel?: pulumi.Input<number>;
+    paranoiaLevel?: pulumi.Input<number>;
     /**
      * PHP injection threshold
      */
-    readonly phpInjectionScoreThreshold?: pulumi.Input<number>;
+    phpInjectionScoreThreshold?: pulumi.Input<number>;
     /**
      * Remote code execution threshold
      */
-    readonly rceScoreThreshold?: pulumi.Input<number>;
+    rceScoreThreshold?: pulumi.Input<number>;
     /**
      * A space-separated list of allowed file extensions
      */
-    readonly restrictedExtensions?: pulumi.Input<string>;
+    restrictedExtensions?: pulumi.Input<string>;
     /**
      * A space-separated list of allowed header names
      */
-    readonly restrictedHeaders?: pulumi.Input<string>;
+    restrictedHeaders?: pulumi.Input<string>;
     /**
      * Remote file inclusion attack threshold
      */
-    readonly rfiScoreThreshold?: pulumi.Input<number>;
-    readonly ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
-    readonly rules?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRule>[]>;
+    rfiScoreThreshold?: pulumi.Input<number>;
+    ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRule>[]>;
     /**
      * Session fixation attack threshold
      */
-    readonly sessionFixationScoreThreshold?: pulumi.Input<number>;
+    sessionFixationScoreThreshold?: pulumi.Input<number>;
     /**
      * SQL injection attack threshold
      */
-    readonly sqlInjectionScoreThreshold?: pulumi.Input<number>;
+    sqlInjectionScoreThreshold?: pulumi.Input<number>;
     /**
      * The maximum size of argument names and values
      */
-    readonly totalArgLength?: pulumi.Input<number>;
+    totalArgLength?: pulumi.Input<number>;
     /**
      * The ID of the Web Application Firewall that the configuration belongs to
      */
-    readonly wafId?: pulumi.Input<string>;
+    wafId?: pulumi.Input<string>;
     /**
      * Score value to add for warning anomalies
      */
-    readonly warningAnomalyScore?: pulumi.Input<number>;
+    warningAnomalyScore?: pulumi.Input<number>;
     /**
      * XSS attack threshold
      */
-    readonly xssScoreThreshold?: pulumi.Input<number>;
+    xssScoreThreshold?: pulumi.Input<number>;
 }
 
 /**
@@ -398,119 +398,119 @@ export interface ServiceWafConfigurationArgs {
     /**
      * Allowed HTTP versions
      */
-    readonly allowedHttpVersions?: pulumi.Input<string>;
+    allowedHttpVersions?: pulumi.Input<string>;
     /**
      * A space-separated list of HTTP method names
      */
-    readonly allowedMethods?: pulumi.Input<string>;
+    allowedMethods?: pulumi.Input<string>;
     /**
      * Allowed request content types
      */
-    readonly allowedRequestContentType?: pulumi.Input<string>;
+    allowedRequestContentType?: pulumi.Input<string>;
     /**
      * Allowed request content type charset
      */
-    readonly allowedRequestContentTypeCharset?: pulumi.Input<string>;
+    allowedRequestContentTypeCharset?: pulumi.Input<string>;
     /**
      * The maximum number of arguments allowed
      */
-    readonly argLength?: pulumi.Input<number>;
+    argLength?: pulumi.Input<number>;
     /**
      * The maximum allowed argument name length
      */
-    readonly argNameLength?: pulumi.Input<number>;
+    argNameLength?: pulumi.Input<number>;
     /**
      * The maximum allowed size of all files
      */
-    readonly combinedFileSizes?: pulumi.Input<number>;
+    combinedFileSizes?: pulumi.Input<number>;
     /**
      * Score value to add for critical anomalies
      */
-    readonly criticalAnomalyScore?: pulumi.Input<number>;
+    criticalAnomalyScore?: pulumi.Input<number>;
     /**
      * CRS validate UTF8 encoding
      */
-    readonly crsValidateUtf8Encoding?: pulumi.Input<boolean>;
+    crsValidateUtf8Encoding?: pulumi.Input<boolean>;
     /**
      * Score value to add for error anomalies
      */
-    readonly errorAnomalyScore?: pulumi.Input<number>;
+    errorAnomalyScore?: pulumi.Input<number>;
     /**
      * A space-separated list of country codes in ISO 3166-1 (two-letter) format
      */
-    readonly highRiskCountryCodes?: pulumi.Input<string>;
+    highRiskCountryCodes?: pulumi.Input<string>;
     /**
      * HTTP violation threshold
      */
-    readonly httpViolationScoreThreshold?: pulumi.Input<number>;
+    httpViolationScoreThreshold?: pulumi.Input<number>;
     /**
      * Inbound anomaly threshold
      */
-    readonly inboundAnomalyScoreThreshold?: pulumi.Input<number>;
+    inboundAnomalyScoreThreshold?: pulumi.Input<number>;
     /**
      * Local file inclusion attack threshold
      */
-    readonly lfiScoreThreshold?: pulumi.Input<number>;
+    lfiScoreThreshold?: pulumi.Input<number>;
     /**
      * The maximum allowed file size, in bytes
      */
-    readonly maxFileSize?: pulumi.Input<number>;
+    maxFileSize?: pulumi.Input<number>;
     /**
      * The maximum number of arguments allowed
      */
-    readonly maxNumArgs?: pulumi.Input<number>;
+    maxNumArgs?: pulumi.Input<number>;
     /**
      * Score value to add for notice anomalies
      */
-    readonly noticeAnomalyScore?: pulumi.Input<number>;
+    noticeAnomalyScore?: pulumi.Input<number>;
     /**
      * The configured paranoia level
      */
-    readonly paranoiaLevel?: pulumi.Input<number>;
+    paranoiaLevel?: pulumi.Input<number>;
     /**
      * PHP injection threshold
      */
-    readonly phpInjectionScoreThreshold?: pulumi.Input<number>;
+    phpInjectionScoreThreshold?: pulumi.Input<number>;
     /**
      * Remote code execution threshold
      */
-    readonly rceScoreThreshold?: pulumi.Input<number>;
+    rceScoreThreshold?: pulumi.Input<number>;
     /**
      * A space-separated list of allowed file extensions
      */
-    readonly restrictedExtensions?: pulumi.Input<string>;
+    restrictedExtensions?: pulumi.Input<string>;
     /**
      * A space-separated list of allowed header names
      */
-    readonly restrictedHeaders?: pulumi.Input<string>;
+    restrictedHeaders?: pulumi.Input<string>;
     /**
      * Remote file inclusion attack threshold
      */
-    readonly rfiScoreThreshold?: pulumi.Input<number>;
-    readonly ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
-    readonly rules?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRule>[]>;
+    rfiScoreThreshold?: pulumi.Input<number>;
+    ruleExclusions?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRuleExclusion>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.ServiceWafConfigurationRule>[]>;
     /**
      * Session fixation attack threshold
      */
-    readonly sessionFixationScoreThreshold?: pulumi.Input<number>;
+    sessionFixationScoreThreshold?: pulumi.Input<number>;
     /**
      * SQL injection attack threshold
      */
-    readonly sqlInjectionScoreThreshold?: pulumi.Input<number>;
+    sqlInjectionScoreThreshold?: pulumi.Input<number>;
     /**
      * The maximum size of argument names and values
      */
-    readonly totalArgLength?: pulumi.Input<number>;
+    totalArgLength?: pulumi.Input<number>;
     /**
      * The ID of the Web Application Firewall that the configuration belongs to
      */
-    readonly wafId: pulumi.Input<string>;
+    wafId: pulumi.Input<string>;
     /**
      * Score value to add for warning anomalies
      */
-    readonly warningAnomalyScore?: pulumi.Input<number>;
+    warningAnomalyScore?: pulumi.Input<number>;
     /**
      * XSS attack threshold
      */
-    readonly xssScoreThreshold?: pulumi.Input<number>;
+    xssScoreThreshold?: pulumi.Input<number>;
 }

@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * const domain = pulumi.output(fastly.getTlsDomain({
  *     domain: "example.com",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getTlsDomain(args: GetTlsDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsDomainResult> {
@@ -39,7 +39,7 @@ export interface GetTlsDomainArgs {
     /**
      * Domain name to look up activations, certificates and subscriptions for.
      */
-    readonly domain: string;
+    domain: string;
 }
 
 /**

@@ -19,6 +19,19 @@ namespace Pulumi.Fastly
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>
+        /// Fastly API Key from https://app.fastly.com/#account
+        /// </summary>
+        [Output("apiKey")]
+        public Output<string?> ApiKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Fastly API URL
+        /// </summary>
+        [Output("baseUrl")]
+        public Output<string?> BaseUrl { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
         ///

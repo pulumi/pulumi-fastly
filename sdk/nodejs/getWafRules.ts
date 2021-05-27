@@ -32,15 +32,15 @@ export interface GetWafRulesArgs {
     /**
      * Exclusion filter by WAF rule's ModSecurity ID.
      */
-    readonly excludeModsecRuleIds?: number[];
+    excludeModsecRuleIds?: number[];
     /**
      * Inclusion filter by WAF rule's publishers.
      */
-    readonly publishers?: string[];
+    publishers?: string[];
     /**
      * Inclusion filter by WAF rule's tags.
      */
-    readonly tags?: string[];
+    tags?: string[];
 }
 
 /**

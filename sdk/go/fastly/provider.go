@@ -16,6 +16,11 @@ import (
 // [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 type Provider struct {
 	pulumi.ProviderResourceState
+
+	// Fastly API Key from https://app.fastly.com/#account
+	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// Fastly API URL
+	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.

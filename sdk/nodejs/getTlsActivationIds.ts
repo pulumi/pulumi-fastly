@@ -44,7 +44,7 @@ export interface GetTlsActivationIdsArgs {
     /**
      * ID of TLS certificate used to filter activations
      */
-    readonly certificateId?: string;
+    certificateId?: string;
 }
 
 /**

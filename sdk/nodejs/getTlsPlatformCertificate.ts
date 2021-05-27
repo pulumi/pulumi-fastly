@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *
  * const example = pulumi.output(fastly.getTlsPlatformCertificate({
  *     domains: ["example.com"],
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getTlsPlatformCertificate(args?: GetTlsPlatformCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsPlatformCertificateResult> {
@@ -47,11 +47,11 @@ export interface GetTlsPlatformCertificateArgs {
     /**
      * Domains that are listed in any certificate's Subject Alternative Names (SAN) list.
      */
-    readonly domains?: string[];
+    domains?: string[];
     /**
      * Unique ID assigned to certificate by Fastly. Conflicts with all the other filters.
      */
-    readonly id?: string;
+    id?: string;
 }
 
 /**
