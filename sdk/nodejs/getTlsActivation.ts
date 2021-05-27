@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *
  * const example = pulumi.output(fastly.getTlsActivation({
  *     domain: "example.com",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getTlsActivation(args?: GetTlsActivationArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationResult> {
@@ -49,19 +49,19 @@ export interface GetTlsActivationArgs {
     /**
      * ID of the TLS Certificate used.
      */
-    readonly certificateId?: string;
+    certificateId?: string;
     /**
      * ID of the TLS Configuration used.
      */
-    readonly configurationId?: string;
+    configurationId?: string;
     /**
      * Domain that TLS was enabled on.
      */
-    readonly domain?: string;
+    domain?: string;
     /**
      * Fastly Activation ID. Conflicts with all other filters.
      */
-    readonly id?: string;
+    id?: string;
 }
 
 /**

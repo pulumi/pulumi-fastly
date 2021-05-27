@@ -118,3 +118,19 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        Fastly API Key from https://app.fastly.com/#account
+        """
+        return pulumi.get(self, "api_key")
+
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Fastly API URL
+        """
+        return pulumi.get(self, "base_url")
+

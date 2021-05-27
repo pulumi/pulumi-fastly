@@ -136,19 +136,19 @@ export interface TlsActivationState {
     /**
      * ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
      */
-    readonly certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string>;
     /**
      * ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
      */
-    readonly configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string>;
     /**
      * Time-stamp (GMT) when TLS was enabled.
      */
-    readonly createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string>;
     /**
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
-    readonly domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string>;
 }
 
 /**
@@ -158,13 +158,13 @@ export interface TlsActivationArgs {
     /**
      * ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
      */
-    readonly certificateId: pulumi.Input<string>;
+    certificateId: pulumi.Input<string>;
     /**
      * ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
      */
-    readonly configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string>;
     /**
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
-    readonly domain: pulumi.Input<string>;
+    domain: pulumi.Input<string>;
 }

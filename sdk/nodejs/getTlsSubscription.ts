@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * const example = pulumi.output(fastly.getTlsSubscription({
  *     domains: ["example.com"],
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getTlsSubscription(args?: GetTlsSubscriptionArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionResult> {
@@ -43,19 +43,19 @@ export interface GetTlsSubscriptionArgs {
     /**
      * The entity that issues and certifies the TLS certificates for the subscription.
      */
-    readonly certificateAuthority?: string;
+    certificateAuthority?: string;
     /**
      * ID of TLS configuration used to terminate TLS traffic.
      */
-    readonly configurationId?: string;
+    configurationId?: string;
     /**
      * List of domains on which to enable TLS.
      */
-    readonly domains?: string[];
+    domains?: string[];
     /**
      * ID of TLS subscription. Conflicts with all the other filters.
      */
-    readonly id?: string;
+    id?: string;
 }
 
 /**

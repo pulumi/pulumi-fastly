@@ -110,15 +110,15 @@ export interface Userv1State {
     /**
      * The email address, which is the login name, of the User
      */
-    readonly login?: pulumi.Input<string>;
+    login?: pulumi.Input<string>;
     /**
      * The real life name of the user
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
 }
 
 /**
@@ -128,13 +128,13 @@ export interface Userv1Args {
     /**
      * The email address, which is the login name, of the User
      */
-    readonly login: pulumi.Input<string>;
+    login: pulumi.Input<string>;
     /**
      * The real life name of the user
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
 }

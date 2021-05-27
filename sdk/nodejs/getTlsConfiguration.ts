@@ -53,27 +53,27 @@ export interface GetTlsConfigurationArgs {
     /**
      * Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
      */
-    readonly default?: boolean;
+    default?: boolean;
     /**
      * HTTP protocols available on the TLS configuration.
      */
-    readonly httpProtocols?: string[];
+    httpProtocols?: string[];
     /**
      * ID of the TLS configuration obtained from the Fastly API or another data source. Conflicts with all the other filters.
      */
-    readonly id?: string;
+    id?: string;
     /**
      * Custom name of the TLS configuration.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * TLS protocols available on the TLS configuration.
      */
-    readonly tlsProtocols?: string[];
+    tlsProtocols?: string[];
     /**
      * Whether the configuration should support the `PLATFORM` or `CUSTOM` TLS service.
      */
-    readonly tlsService?: string;
+    tlsService?: string;
 }
 
 /**

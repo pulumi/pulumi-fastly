@@ -200,15 +200,15 @@ export interface ServiceACLEntriesv1State {
     /**
      * The ID of the ACL that the items belong to
      */
-    readonly aclId?: pulumi.Input<string>;
+    aclId?: pulumi.Input<string>;
     /**
      * ACL Entries
      */
-    readonly entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
+    entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
     /**
      * The ID of the Service that the ACL belongs to
      */
-    readonly serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string>;
 }
 
 /**
@@ -218,13 +218,13 @@ export interface ServiceACLEntriesv1Args {
     /**
      * The ID of the ACL that the items belong to
      */
-    readonly aclId: pulumi.Input<string>;
+    aclId: pulumi.Input<string>;
     /**
      * ACL Entries
      */
-    readonly entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
+    entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesv1Entry>[]>;
     /**
      * The ID of the Service that the ACL belongs to
      */
-    readonly serviceId: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }

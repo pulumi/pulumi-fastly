@@ -53,27 +53,27 @@ export interface GetTlsPrivateKeyArgs {
     /**
      * Timestamp (GMT) when the private key was created.
      */
-    readonly createdAt?: string;
+    createdAt?: string;
     /**
      * Fastly private key ID. Conflicts with all the other filters
      */
-    readonly id?: string;
+    id?: string;
     /**
      * The key length used to generate the private key.
      */
-    readonly keyLength?: number;
+    keyLength?: number;
     /**
      * The algorithm used to generate the private key. Must be RSA.
      */
-    readonly keyType?: string;
+    keyType?: string;
     /**
      * The human-readable name assigned to the private key when uploaded.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * A hash of the associated public key, useful for safely identifying it.
      */
-    readonly publicKeySha1?: string;
+    publicKeySha1?: string;
 }
 
 /**

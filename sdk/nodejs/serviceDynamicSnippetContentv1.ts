@@ -194,15 +194,15 @@ export interface ServiceDynamicSnippetContentv1State {
     /**
      * The VCL code that specifies exactly what the snippet does
      */
-    readonly content?: pulumi.Input<string>;
+    content?: pulumi.Input<string>;
     /**
      * The ID of the service that the dynamic snippet belongs to
      */
-    readonly serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string>;
     /**
      * The ID of the dynamic snippet that the content belong to
      */
-    readonly snippetId?: pulumi.Input<string>;
+    snippetId?: pulumi.Input<string>;
 }
 
 /**
@@ -212,13 +212,13 @@ export interface ServiceDynamicSnippetContentv1Args {
     /**
      * The VCL code that specifies exactly what the snippet does
      */
-    readonly content: pulumi.Input<string>;
+    content: pulumi.Input<string>;
     /**
      * The ID of the service that the dynamic snippet belongs to
      */
-    readonly serviceId: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
     /**
      * The ID of the dynamic snippet that the content belong to
      */
-    readonly snippetId: pulumi.Input<string>;
+    snippetId: pulumi.Input<string>;
 }

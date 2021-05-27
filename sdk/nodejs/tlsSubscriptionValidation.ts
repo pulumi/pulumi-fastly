@@ -122,7 +122,7 @@ export interface TlsSubscriptionValidationState {
     /**
      * The ID of the TLS Subscription that should be validated.
      */
-    readonly subscriptionId?: pulumi.Input<string>;
+    subscriptionId?: pulumi.Input<string>;
 }
 
 /**
@@ -132,5 +132,5 @@ export interface TlsSubscriptionValidationArgs {
     /**
      * The ID of the TLS Subscription that should be validated.
      */
-    readonly subscriptionId: pulumi.Input<string>;
+    subscriptionId: pulumi.Input<string>;
 }

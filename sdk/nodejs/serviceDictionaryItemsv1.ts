@@ -177,15 +177,15 @@ export interface ServiceDictionaryItemsv1State {
     /**
      * The ID of the dictionary that the items belong to
      */
-    readonly dictionaryId?: pulumi.Input<string>;
+    dictionaryId?: pulumi.Input<string>;
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    readonly items?: pulumi.Input<{[key: string]: any}>;
+    items?: pulumi.Input<{[key: string]: any}>;
     /**
      * The ID of the service that the dictionary belongs to
      */
-    readonly serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string>;
 }
 
 /**
@@ -195,13 +195,13 @@ export interface ServiceDictionaryItemsv1Args {
     /**
      * The ID of the dictionary that the items belong to
      */
-    readonly dictionaryId: pulumi.Input<string>;
+    dictionaryId: pulumi.Input<string>;
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    readonly items?: pulumi.Input<{[key: string]: any}>;
+    items?: pulumi.Input<{[key: string]: any}>;
     /**
      * The ID of the service that the dictionary belongs to
      */
-    readonly serviceId: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }
