@@ -336,7 +336,7 @@ export interface ServiceComputeHealthcheck {
      */
     httpVersion?: pulumi.Input<string>;
     /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `2`
+     * When loading a config, the initial number of probes to be seen as OK. Default `3`
      */
     initial?: pulumi.Input<number>;
     /**
@@ -995,6 +995,10 @@ export interface ServiceComputePapertrail {
 
 export interface ServiceComputeS3logging {
     /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     */
+    acl?: pulumi.Input<string>;
+    /**
      * The name of the bucket in which to store the logs
      */
     bucketName: pulumi.Input<string>;
@@ -1031,7 +1035,7 @@ export interface ServiceComputeS3logging {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
      */
     redundancy?: pulumi.Input<string>;
     /**
@@ -1686,7 +1690,7 @@ export interface Servicev1Healthcheck {
      */
     httpVersion?: pulumi.Input<string>;
     /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `2`
+     * When loading a config, the initial number of probes to be seen as OK. Default `3`
      */
     initial?: pulumi.Input<number>;
     /**
@@ -2720,6 +2724,10 @@ export interface Servicev1ResponseObject {
 
 export interface Servicev1S3logging {
     /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     */
+    acl?: pulumi.Input<string>;
+    /**
      * The name of the bucket in which to store the logs
      */
     bucketName: pulumi.Input<string>;
@@ -2768,7 +2776,7 @@ export interface Servicev1S3logging {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
      */
     redundancy?: pulumi.Input<string>;
     /**

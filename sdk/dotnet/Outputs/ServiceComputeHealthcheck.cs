@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? HttpVersion;
         /// <summary>
-        /// When loading a config, the initial number of probes to be seen as OK. Default `2`
+        /// When loading a config, the initial number of probes to be seen as OK. Default `3`
         /// </summary>
         public readonly int? Initial;
         /// <summary>

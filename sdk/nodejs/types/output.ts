@@ -357,7 +357,7 @@ export interface ServiceComputeHealthcheck {
      */
     httpVersion?: string;
     /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `2`
+     * When loading a config, the initial number of probes to be seen as OK. Default `3`
      */
     initial?: number;
     /**
@@ -1016,6 +1016,10 @@ export interface ServiceComputePapertrail {
 
 export interface ServiceComputeS3logging {
     /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     */
+    acl?: string;
+    /**
      * The name of the bucket in which to store the logs
      */
     bucketName: string;
@@ -1052,7 +1056,7 @@ export interface ServiceComputeS3logging {
      */
     publicKey?: string;
     /**
-     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
      */
     redundancy?: string;
     /**
@@ -1707,7 +1711,7 @@ export interface Servicev1Healthcheck {
      */
     httpVersion?: string;
     /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `2`
+     * When loading a config, the initial number of probes to be seen as OK. Default `3`
      */
     initial?: number;
     /**
@@ -2741,6 +2745,10 @@ export interface Servicev1ResponseObject {
 
 export interface Servicev1S3logging {
     /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     */
+    acl?: string;
+    /**
      * The name of the bucket in which to store the logs
      */
     bucketName: string;
@@ -2789,7 +2797,7 @@ export interface Servicev1S3logging {
      */
     publicKey?: string;
     /**
-     * The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
      */
     redundancy?: string;
     /**

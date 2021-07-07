@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? HttpVersion { get; set; }
 
         /// <summary>
-        /// When loading a config, the initial number of probes to be seen as OK. Default `2`
+        /// When loading a config, the initial number of probes to be seen as OK. Default `3`
         /// </summary>
         [Input("initial")]
         public Input<int>? Initial { get; set; }

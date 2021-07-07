@@ -808,7 +808,7 @@
                 },
                 "initial": {
                     "type": "integer",
-                    "description": "When loading a config, the initial number of probes to be seen as OK. Default `2`\n",
+                    "description": "When loading a config, the initial number of probes to be seen as OK. Default `3`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2366,6 +2366,15 @@
         },
         "fastly:index/ServiceComputeS3logging:ServiceComputeS3logging": {
             "properties": {
+                "acl": {
+                    "type": "string",
+                    "description": "The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "bucketName": {
                     "type": "string",
                     "description": "The name of the bucket in which to store the logs\n",
@@ -2449,7 +2458,7 @@
                 },
                 "redundancy": {
                     "type": "string",
-                    "description": "The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`\n",
+                    "description": "The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4037,7 +4046,7 @@
                 },
                 "initial": {
                     "type": "integer",
-                    "description": "When loading a config, the initial number of probes to be seen as OK. Default `2`\n",
+                    "description": "When loading a config, the initial number of probes to be seen as OK. Default `3`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6432,6 +6441,15 @@
         },
         "fastly:index/Servicev1S3logging:Servicev1S3logging": {
             "properties": {
+                "acl": {
+                    "type": "string",
+                    "description": "The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "bucketName": {
                     "type": "string",
                     "description": "The name of the bucket in which to store the logs\n",
@@ -6542,7 +6560,7 @@
                 },
                 "redundancy": {
                     "type": "string",
-                    "description": "The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`\n",
+                    "description": "The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -10856,8 +10874,7 @@
                 "fastly": "Fastly"
             },
             "packageReferences": {
-                "Pulumi": "3.*",
-                "System.Collections.Immutable": "1.6.0"
+                "Pulumi": "3.*"
             }
         },
         "go": {
