@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class Servicev1S3loggingGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        /// </summary>
+        [Input("acl")]
+        public Input<string>? Acl { get; set; }
+
+        /// <summary>
         /// The name of the bucket in which to store the logs
         /// </summary>
         [Input("bucketName", required: true)]
@@ -85,7 +91,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        /// The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
         /// </summary>
         [Input("redundancy")]
         public Input<string>? Redundancy { get; set; }

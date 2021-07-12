@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class Servicev1S3logging
     {
         /// <summary>
+        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        /// </summary>
+        public readonly string? Acl;
+        /// <summary>
         /// The name of the bucket in which to store the logs
         /// </summary>
         public readonly string BucketName;
@@ -62,7 +66,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? PublicKey;
         /// <summary>
-        /// The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        /// The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
         /// </summary>
         public readonly string? Redundancy;
         /// <summary>
@@ -96,6 +100,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private Servicev1S3logging(
+            string? acl,
+
             string bucketName,
 
             string? compressionCodec,
@@ -136,6 +142,7 @@ namespace Pulumi.Fastly.Outputs
 
             string? timestampFormat)
         {
+            Acl = acl;
             BucketName = bucketName;
             CompressionCodec = compressionCodec;
             Domain = domain;

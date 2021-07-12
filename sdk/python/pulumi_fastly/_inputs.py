@@ -1302,7 +1302,7 @@ class ServiceComputeHealthcheckArgs:
         :param pulumi.Input[int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
         :param pulumi.Input[int] expected_response: The status code expected from the host. Default `200`
         :param pulumi.Input[str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `2`
+        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
         :param pulumi.Input[str] method: Which HTTP method to use. Default `HEAD`
         :param pulumi.Input[int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
         :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`
@@ -1404,7 +1404,7 @@ class ServiceComputeHealthcheckArgs:
     @pulumi.getter
     def initial(self) -> Optional[pulumi.Input[int]]:
         """
-        When loading a config, the initial number of probes to be seen as OK. Default `2`
+        When loading a config, the initial number of probes to be seen as OK. Default `3`
         """
         return pulumi.get(self, "initial")
 
@@ -3817,6 +3817,7 @@ class ServiceComputeS3loggingArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  name: pulumi.Input[str],
+                 acl: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  gzip_level: Optional[pulumi.Input[int]] = None,
@@ -3834,6 +3835,7 @@ class ServiceComputeS3loggingArgs:
         """
         :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[str] name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
@@ -3841,7 +3843,7 @@ class ServiceComputeS3loggingArgs:
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        :param pulumi.Input[str] redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
         :param pulumi.Input[str] s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         :param pulumi.Input[str] s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
         :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
@@ -3851,6 +3853,8 @@ class ServiceComputeS3loggingArgs:
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
+        if acl is not None:
+            pulumi.set(__self__, "acl", acl)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
@@ -3903,6 +3907,18 @@ class ServiceComputeS3loggingArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def acl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        """
+        return pulumi.get(self, "acl")
+
+    @acl.setter
+    def acl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acl", value)
 
     @property
     @pulumi.getter(name="compressionCodec")
@@ -3992,7 +4008,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter
     def redundancy(self) -> Optional[pulumi.Input[str]]:
         """
-        The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
         """
         return pulumi.get(self, "redundancy")
 
@@ -6389,7 +6405,7 @@ class Servicev1HealthcheckArgs:
         :param pulumi.Input[int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
         :param pulumi.Input[int] expected_response: The status code expected from the host. Default `200`
         :param pulumi.Input[str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `2`
+        :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
         :param pulumi.Input[str] method: Which HTTP method to use. Default `HEAD`
         :param pulumi.Input[int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
         :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`
@@ -6491,7 +6507,7 @@ class Servicev1HealthcheckArgs:
     @pulumi.getter
     def initial(self) -> Optional[pulumi.Input[int]]:
         """
-        When loading a config, the initial number of probes to be seen as OK. Default `2`
+        When loading a config, the initial number of probes to be seen as OK. Default `3`
         """
         return pulumi.get(self, "initial")
 
@@ -10398,6 +10414,7 @@ class Servicev1S3loggingArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  name: pulumi.Input[str],
+                 acl: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
@@ -10419,6 +10436,7 @@ class Servicev1S3loggingArgs:
         """
         :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[str] name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
@@ -10429,7 +10447,7 @@ class Servicev1S3loggingArgs:
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] redundancy: The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        :param pulumi.Input[str] redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
         :param pulumi.Input[str] s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         :param pulumi.Input[str] s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
@@ -10440,6 +10458,8 @@ class Servicev1S3loggingArgs:
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
+        if acl is not None:
+            pulumi.set(__self__, "acl", acl)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
@@ -10500,6 +10520,18 @@ class Servicev1S3loggingArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def acl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        """
+        return pulumi.get(self, "acl")
+
+    @acl.setter
+    def acl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acl", value)
 
     @property
     @pulumi.getter(name="compressionCodec")
@@ -10625,7 +10657,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter
     def redundancy(self) -> Optional[pulumi.Input[str]]:
         """
-        The S3 redundancy level. Should be formatted; one of: `standard`, `reduced_redundancy` or null. Default `null`
+        The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
         """
         return pulumi.get(self, "redundancy")
 

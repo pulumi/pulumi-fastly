@@ -1377,7 +1377,7 @@ type ServiceComputeHealthcheck struct {
 	Host string `pulumi:"host"`
 	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion *string `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`
+	// When loading a config, the initial number of probes to be seen as OK. Default `3`
 	Initial *int `pulumi:"initial"`
 	// Which HTTP method to use. Default `HEAD`
 	Method *string `pulumi:"method"`
@@ -1413,7 +1413,7 @@ type ServiceComputeHealthcheckArgs struct {
 	Host pulumi.StringInput `pulumi:"host"`
 	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`
+	// When loading a config, the initial number of probes to be seen as OK. Default `3`
 	Initial pulumi.IntPtrInput `pulumi:"initial"`
 	// Which HTTP method to use. Default `HEAD`
 	Method pulumi.StringPtrInput `pulumi:"method"`
@@ -1500,7 +1500,7 @@ func (o ServiceComputeHealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
 }
 
-// When loading a config, the initial number of probes to be seen as OK. Default `2`
+// When loading a config, the initial number of probes to be seen as OK. Default `3`
 func (o ServiceComputeHealthcheckOutput) Initial() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
 }
@@ -4638,6 +4638,8 @@ func (o ServiceComputePapertrailArrayOutput) Index(i pulumi.IntInput) ServiceCom
 }
 
 type ServiceComputeS3logging struct {
+	// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+	Acl *string `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -4656,7 +4658,7 @@ type ServiceComputeS3logging struct {
 	Period *int `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
 	Redundancy *string `pulumi:"redundancy"`
 	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
 	S3AccessKey *string `pulumi:"s3AccessKey"`
@@ -4684,6 +4686,8 @@ type ServiceComputeS3loggingInput interface {
 }
 
 type ServiceComputeS3loggingArgs struct {
+	// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+	Acl pulumi.StringPtrInput `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -4702,7 +4706,7 @@ type ServiceComputeS3loggingArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
 	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
 	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
 	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
@@ -4769,6 +4773,11 @@ func (o ServiceComputeS3loggingOutput) ToServiceComputeS3loggingOutputWithContex
 	return o
 }
 
+// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+func (o ServiceComputeS3loggingOutput) Acl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Acl }).(pulumi.StringPtrOutput)
+}
+
 // The name of the bucket in which to store the logs
 func (o ServiceComputeS3loggingOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) string { return v.BucketName }).(pulumi.StringOutput)
@@ -4814,7 +4823,7 @@ func (o ServiceComputeS3loggingOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
 func (o ServiceComputeS3loggingOutput) Redundancy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }
@@ -7710,7 +7719,7 @@ type Servicev1Healthcheck struct {
 	Host string `pulumi:"host"`
 	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion *string `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`
+	// When loading a config, the initial number of probes to be seen as OK. Default `3`
 	Initial *int `pulumi:"initial"`
 	// Which HTTP method to use. Default `HEAD`
 	Method *string `pulumi:"method"`
@@ -7746,7 +7755,7 @@ type Servicev1HealthcheckArgs struct {
 	Host pulumi.StringInput `pulumi:"host"`
 	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
 	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `2`
+	// When loading a config, the initial number of probes to be seen as OK. Default `3`
 	Initial pulumi.IntPtrInput `pulumi:"initial"`
 	// Which HTTP method to use. Default `HEAD`
 	Method pulumi.StringPtrInput `pulumi:"method"`
@@ -7833,7 +7842,7 @@ func (o Servicev1HealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
 }
 
-// When loading a config, the initial number of probes to be seen as OK. Default `2`
+// When loading a config, the initial number of probes to be seen as OK. Default `3`
 func (o Servicev1HealthcheckOutput) Initial() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Healthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
 }
@@ -11852,6 +11861,8 @@ func (o Servicev1ResponseObjectArrayOutput) Index(i pulumi.IntInput) Servicev1Re
 }
 
 type Servicev1S3logging struct {
+	// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+	Acl *string `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -11876,7 +11887,7 @@ type Servicev1S3logging struct {
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
 	Redundancy *string `pulumi:"redundancy"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -11906,6 +11917,8 @@ type Servicev1S3loggingInput interface {
 }
 
 type Servicev1S3loggingArgs struct {
+	// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+	Acl pulumi.StringPtrInput `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -11930,7 +11943,7 @@ type Servicev1S3loggingArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
 	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -11999,6 +12012,11 @@ func (o Servicev1S3loggingOutput) ToServicev1S3loggingOutputWithContext(ctx cont
 	return o
 }
 
+// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+func (o Servicev1S3loggingOutput) Acl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Acl }).(pulumi.StringPtrOutput)
+}
+
 // The name of the bucket in which to store the logs
 func (o Servicev1S3loggingOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1S3logging) string { return v.BucketName }).(pulumi.StringOutput)
@@ -12059,7 +12077,7 @@ func (o Servicev1S3loggingOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The S3 redundancy level. Should be formatted; one of: `standard`, `reducedRedundancy` or null. Default `null`
+// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
 func (o Servicev1S3loggingOutput) Redundancy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }
