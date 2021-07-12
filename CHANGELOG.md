@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.32.0 of the Fastly Terraform Provider
+_(none)_
 
 ---
+
+## 3.4.0 (2021-07-12)
+* Upgrade to v0.32.0 of the Fastly Terraform Provider
 
 ## 3.3.0 (2021-05-27)
 * Upgrade to v3.2.1 of the pulumi-terraform-bridge
