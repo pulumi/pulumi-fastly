@@ -44,7 +44,7 @@ type Servicev1 struct {
 	Comment    pulumi.StringPtrOutput        `pulumi:"comment"`
 	Conditions Servicev1ConditionArrayOutput `pulumi:"conditions"`
 	// The default hostname
-	DefaultHost pulumi.StringOutput `pulumi:"defaultHost"`
+	DefaultHost pulumi.StringPtrOutput `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for requests
 	DefaultTtl   pulumi.IntPtrOutput            `pulumi:"defaultTtl"`
 	Dictionaries Servicev1DictionaryArrayOutput `pulumi:"dictionaries"`

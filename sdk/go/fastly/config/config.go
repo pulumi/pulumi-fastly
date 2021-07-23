@@ -17,3 +17,8 @@ func GetApiKey(ctx *pulumi.Context) string {
 func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "fastly:baseUrl")
 }
+
+// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+func GetNoAuth(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "fastly:noAuth")
+}

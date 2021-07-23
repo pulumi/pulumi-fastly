@@ -11,6 +11,7 @@ from .. import _utilities
 __all__ = [
     'api_key',
     'base_url',
+    'no_auth',
 ]
 
 __config__ = pulumi.Config('fastly')
@@ -23,5 +24,10 @@ Fastly API Key from https://app.fastly.com/#account
 base_url = __config__.get('baseUrl')
 """
 Fastly API URL
+"""
+
+no_auth = __config__.get('noAuth')
+"""
+Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
 """
 

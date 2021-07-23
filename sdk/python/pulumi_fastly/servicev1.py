@@ -2105,7 +2105,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultHost")
-    def default_host(self) -> pulumi.Output[str]:
+    def default_host(self) -> pulumi.Output[Optional[str]]:
         """
         The default hostname
         """

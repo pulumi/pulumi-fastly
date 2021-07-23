@@ -14,16 +14,20 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  api_key: Optional[pulumi.Input[str]] = None,
-                 base_url: Optional[pulumi.Input[str]] = None):
+                 base_url: Optional[pulumi.Input[str]] = None,
+                 no_auth: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] api_key: Fastly API Key from https://app.fastly.com/#account
         :param pulumi.Input[str] base_url: Fastly API URL
+        :param pulumi.Input[bool] no_auth: Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
+        if no_auth is not None:
+            pulumi.set(__self__, "no_auth", no_auth)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -49,6 +53,18 @@ class ProviderArgs:
     def base_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "base_url", value)
 
+    @property
+    @pulumi.getter(name="noAuth")
+    def no_auth(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        """
+        return pulumi.get(self, "no_auth")
+
+    @no_auth.setter
+    def no_auth(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_auth", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -57,6 +73,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
+                 no_auth: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         The provider type for the fastly package. By default, resources use package-wide configuration
@@ -68,6 +85,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key: Fastly API Key from https://app.fastly.com/#account
         :param pulumi.Input[str] base_url: Fastly API URL
+        :param pulumi.Input[bool] no_auth: Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
         """
         ...
     @overload
@@ -98,6 +116,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
+                 no_auth: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -112,6 +131,7 @@ class Provider(pulumi.ProviderResource):
 
             __props__.__dict__["api_key"] = api_key
             __props__.__dict__["base_url"] = base_url
+            __props__.__dict__["no_auth"] = pulumi.Output.from_input(no_auth).apply(pulumi.runtime.to_json) if no_auth is not None else None
         super(Provider, __self__).__init__(
             'fastly',
             resource_name,

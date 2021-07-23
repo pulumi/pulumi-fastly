@@ -15,7 +15,7 @@ import (
 //
 // DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
 //
-// There are two options for doing this: the `managedDnsChallenge`, which is the default method; and the `managedHttpChallenges`, which points production traffic to Fastly.
+// There are two options for doing this: the `managedDnsChallenges`, which is the default method; and the `managedHttpChallenges`, which points production traffic to Fastly.
 //
 // > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
 //
@@ -46,7 +46,11 @@ type TlsSubscription struct {
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate pulumi.BoolPtrOutput `pulumi:"forceUpdate"`
 	// The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
+	//
+	// Deprecated: Use 'managed_dns_challenges' attribute instead
 	ManagedDnsChallenge pulumi.StringMapOutput `pulumi:"managedDnsChallenge"`
+	// A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+	ManagedDnsChallenges TlsSubscriptionManagedDnsChallengeArrayOutput `pulumi:"managedDnsChallenges"`
 	// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
 	ManagedHttpChallenges TlsSubscriptionManagedHttpChallengeArrayOutput `pulumi:"managedHttpChallenges"`
 	// The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
@@ -105,7 +109,11 @@ type tlsSubscriptionState struct {
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate *bool `pulumi:"forceUpdate"`
 	// The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
+	//
+	// Deprecated: Use 'managed_dns_challenges' attribute instead
 	ManagedDnsChallenge map[string]string `pulumi:"managedDnsChallenge"`
+	// A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+	ManagedDnsChallenges []TlsSubscriptionManagedDnsChallenge `pulumi:"managedDnsChallenges"`
 	// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
 	ManagedHttpChallenges []TlsSubscriptionManagedHttpChallenge `pulumi:"managedHttpChallenges"`
 	// The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
@@ -130,7 +138,11 @@ type TlsSubscriptionState struct {
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate pulumi.BoolPtrInput
 	// The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
+	//
+	// Deprecated: Use 'managed_dns_challenges' attribute instead
 	ManagedDnsChallenge pulumi.StringMapInput
+	// A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+	ManagedDnsChallenges TlsSubscriptionManagedDnsChallengeArrayInput
 	// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
 	ManagedHttpChallenges TlsSubscriptionManagedHttpChallengeArrayInput
 	// The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.

@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  *
  * DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
  *
- * There are two options for doing this: the `managedDnsChallenge`, which is the default method; and the `managedHttpChallenges`, which points production traffic to Fastly.
+ * There are two options for doing this: the `managedDnsChallenges`, which is the default method; and the `managedHttpChallenges`, which points production traffic to Fastly.
  *
  * > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
  *
@@ -67,14 +67,17 @@ import * as utilities from "./utilities";
  *     privateZone: false,
  * });
  * // Set up DNS record for managed DNS domain validation method
- * const domainValidation = new aws.route53.Record("domainValidation", {
- *     name: exampleTlsSubscription.managedDnsChallenge.recordName,
- *     type: exampleTlsSubscription.managedDnsChallenge.recordType,
- *     zoneId: demo.then(demo => demo.id),
- *     allowOverwrite: true,
- *     records: [exampleTlsSubscription.managedDnsChallenge.recordValue],
- *     ttl: 60,
- * });
+ * const domainValidation: aws.route53.Record[];
+ * for (const range of Object.entries(exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.reduce((__obj, domain) => { ...__obj, [domain.recordName]: domain }))).map(([k, v]) => {key: k, value: v})) {
+ *     domainValidation.push(new aws.route53.Record(`domainValidation-${range.key}`, {
+ *         name: range.value.recordName,
+ *         type: range.value.recordType,
+ *         zoneId: demo.then(demo => demo.id),
+ *         allowOverwrite: true,
+ *         records: [range.value.recordValue],
+ *         ttl: 60,
+ *     }));
+ * }
  * // Resource that other resources can depend on if they require the certificate to be issued
  * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", {subscriptionId: exampleTlsSubscription.id}, {
  *     dependsOn: [domainValidation],
@@ -147,8 +150,14 @@ export class TlsSubscription extends pulumi.CustomResource {
     public readonly forceUpdate!: pulumi.Output<boolean | undefined>;
     /**
      * The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
+     *
+     * @deprecated Use 'managed_dns_challenges' attribute instead
      */
     public /*out*/ readonly managedDnsChallenge!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+     */
+    public /*out*/ readonly managedDnsChallenges!: pulumi.Output<outputs.TlsSubscriptionManagedDnsChallenge[]>;
     /**
      * A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
      */
@@ -183,6 +192,7 @@ export class TlsSubscription extends pulumi.CustomResource {
             inputs["forceDestroy"] = state ? state.forceDestroy : undefined;
             inputs["forceUpdate"] = state ? state.forceUpdate : undefined;
             inputs["managedDnsChallenge"] = state ? state.managedDnsChallenge : undefined;
+            inputs["managedDnsChallenges"] = state ? state.managedDnsChallenges : undefined;
             inputs["managedHttpChallenges"] = state ? state.managedHttpChallenges : undefined;
             inputs["state"] = state ? state.state : undefined;
             inputs["updatedAt"] = state ? state.updatedAt : undefined;
@@ -202,6 +212,7 @@ export class TlsSubscription extends pulumi.CustomResource {
             inputs["forceUpdate"] = args ? args.forceUpdate : undefined;
             inputs["createdAt"] = undefined /*out*/;
             inputs["managedDnsChallenge"] = undefined /*out*/;
+            inputs["managedDnsChallenges"] = undefined /*out*/;
             inputs["managedHttpChallenges"] = undefined /*out*/;
             inputs["state"] = undefined /*out*/;
             inputs["updatedAt"] = undefined /*out*/;
@@ -247,8 +258,14 @@ export interface TlsSubscriptionState {
     forceUpdate?: pulumi.Input<boolean>;
     /**
      * The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
+     *
+     * @deprecated Use 'managed_dns_challenges' attribute instead
      */
     managedDnsChallenge?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+     */
+    managedDnsChallenges?: pulumi.Input<pulumi.Input<inputs.TlsSubscriptionManagedDnsChallenge>[]>;
     /**
      * A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
      */
