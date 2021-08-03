@@ -70,6 +70,12 @@ namespace Pulumi.Fastly
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
 
+        /// <summary>
+        /// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        /// </summary>
+        [Input("noAuth", json: true)]
+        public Input<bool>? NoAuth { get; set; }
+
         public ProviderArgs()
         {
         }

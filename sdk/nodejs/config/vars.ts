@@ -14,3 +14,7 @@ export let apiKey: string | undefined = __config.get("apiKey");
  * Fastly API URL
  */
 export let baseUrl: string | undefined = __config.get("baseUrl");
+/**
+ * Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+ */
+export let noAuth: boolean | undefined = __config.getObject<boolean>("noAuth");

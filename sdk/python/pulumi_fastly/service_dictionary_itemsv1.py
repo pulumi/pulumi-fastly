@@ -136,6 +136,10 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
 
         If this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
 
+        ## Limitations
+
+        - `write_only` dictionaries are not supported
+
         ## Example Usage
         ### Basic usage:
 
@@ -235,6 +239,10 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
 
         If this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+
+        ## Limitations
+
+        - `write_only` dictionaries are not supported
 
         ## Example Usage
         ### Basic usage:

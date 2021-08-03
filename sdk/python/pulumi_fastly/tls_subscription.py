@@ -125,6 +125,7 @@ class _TlsSubscriptionState:
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  force_update: Optional[pulumi.Input[bool]] = None,
                  managed_dns_challenge: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 managed_dns_challenges: Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedDnsChallengeArgs']]]] = None,
                  managed_http_challenges: Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedHttpChallengeArgs']]]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
@@ -138,6 +139,7 @@ class _TlsSubscriptionState:
         :param pulumi.Input[bool] force_destroy: Always delete subscription, even when active domains are present. Defaults to false.
         :param pulumi.Input[bool] force_update: Always update subscription, even when active domains are present. Defaults to false.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] managed_dns_challenge: The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        :param pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedDnsChallengeArgs']]] managed_dns_challenges: A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
         :param pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedHttpChallengeArgs']]] managed_http_challenges: A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
         :param pulumi.Input[str] state: The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
         :param pulumi.Input[str] updated_at: Timestamp (GMT) when the subscription was updated.
@@ -157,7 +159,12 @@ class _TlsSubscriptionState:
         if force_update is not None:
             pulumi.set(__self__, "force_update", force_update)
         if managed_dns_challenge is not None:
+            warnings.warn("""Use 'managed_dns_challenges' attribute instead""", DeprecationWarning)
+            pulumi.log.warn("""managed_dns_challenge is deprecated: Use 'managed_dns_challenges' attribute instead""")
+        if managed_dns_challenge is not None:
             pulumi.set(__self__, "managed_dns_challenge", managed_dns_challenge)
+        if managed_dns_challenges is not None:
+            pulumi.set(__self__, "managed_dns_challenges", managed_dns_challenges)
         if managed_http_challenges is not None:
             pulumi.set(__self__, "managed_http_challenges", managed_http_challenges)
         if state is not None:
@@ -262,6 +269,18 @@ class _TlsSubscriptionState:
         pulumi.set(self, "managed_dns_challenge", value)
 
     @property
+    @pulumi.getter(name="managedDnsChallenges")
+    def managed_dns_challenges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedDnsChallengeArgs']]]]:
+        """
+        A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        """
+        return pulumi.get(self, "managed_dns_challenges")
+
+    @managed_dns_challenges.setter
+    def managed_dns_challenges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedDnsChallengeArgs']]]]):
+        pulumi.set(self, "managed_dns_challenges", value)
+
+    @property
     @pulumi.getter(name="managedHttpChallenges")
     def managed_http_challenges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedHttpChallengeArgs']]]]:
         """
@@ -315,7 +334,7 @@ class TlsSubscription(pulumi.CustomResource):
 
         DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
 
-        There are two options for doing this: the `managed_dns_challenge`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
+        There are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
 
         > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
 
@@ -366,13 +385,15 @@ class TlsSubscription(pulumi.CustomResource):
         demo = aws.route53.get_zone(name=domain_name,
             private_zone=False)
         # Set up DNS record for managed DNS domain validation method
-        domain_validation = aws.route53.Record("domainValidation",
-            name=example_tls_subscription.managed_dns_challenge["recordName"],
-            type=example_tls_subscription.managed_dns_challenge["recordType"],
-            zone_id=demo.id,
-            allow_overwrite=True,
-            records=[example_tls_subscription.managed_dns_challenge["recordValue"]],
-            ttl=60)
+        domain_validation = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain.recordName: domain for domain in example_tls_subscription.managedDnsChallenges})]:
+            domain_validation.append(aws.route53.Record(f"domainValidation-{range['key']}",
+                name=range["value"],
+                type=range["value"],
+                zone_id=demo.id,
+                allow_overwrite=True,
+                records=[range["value"]],
+                ttl=60))
         # Resource that other resources can depend on if they require the certificate to be issued
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", subscription_id=example_tls_subscription.id,
         opts=pulumi.ResourceOptions(depends_on=[domain_validation]))
@@ -406,7 +427,7 @@ class TlsSubscription(pulumi.CustomResource):
 
         DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
 
-        There are two options for doing this: the `managed_dns_challenge`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
+        There are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
 
         > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
 
@@ -457,13 +478,15 @@ class TlsSubscription(pulumi.CustomResource):
         demo = aws.route53.get_zone(name=domain_name,
             private_zone=False)
         # Set up DNS record for managed DNS domain validation method
-        domain_validation = aws.route53.Record("domainValidation",
-            name=example_tls_subscription.managed_dns_challenge["recordName"],
-            type=example_tls_subscription.managed_dns_challenge["recordType"],
-            zone_id=demo.id,
-            allow_overwrite=True,
-            records=[example_tls_subscription.managed_dns_challenge["recordValue"]],
-            ttl=60)
+        domain_validation = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain.recordName: domain for domain in example_tls_subscription.managedDnsChallenges})]:
+            domain_validation.append(aws.route53.Record(f"domainValidation-{range['key']}",
+                name=range["value"],
+                type=range["value"],
+                zone_id=demo.id,
+                allow_overwrite=True,
+                records=[range["value"]],
+                ttl=60))
         # Resource that other resources can depend on if they require the certificate to be issued
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", subscription_id=example_tls_subscription.id,
         opts=pulumi.ResourceOptions(depends_on=[domain_validation]))
@@ -522,6 +545,7 @@ class TlsSubscription(pulumi.CustomResource):
             __props__.__dict__["force_update"] = force_update
             __props__.__dict__["created_at"] = None
             __props__.__dict__["managed_dns_challenge"] = None
+            __props__.__dict__["managed_dns_challenges"] = None
             __props__.__dict__["managed_http_challenges"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["updated_at"] = None
@@ -543,6 +567,7 @@ class TlsSubscription(pulumi.CustomResource):
             force_destroy: Optional[pulumi.Input[bool]] = None,
             force_update: Optional[pulumi.Input[bool]] = None,
             managed_dns_challenge: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            managed_dns_challenges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TlsSubscriptionManagedDnsChallengeArgs']]]]] = None,
             managed_http_challenges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TlsSubscriptionManagedHttpChallengeArgs']]]]] = None,
             state: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'TlsSubscription':
@@ -561,6 +586,7 @@ class TlsSubscription(pulumi.CustomResource):
         :param pulumi.Input[bool] force_destroy: Always delete subscription, even when active domains are present. Defaults to false.
         :param pulumi.Input[bool] force_update: Always update subscription, even when active domains are present. Defaults to false.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] managed_dns_challenge: The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TlsSubscriptionManagedDnsChallengeArgs']]]] managed_dns_challenges: A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TlsSubscriptionManagedHttpChallengeArgs']]]] managed_http_challenges: A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
         :param pulumi.Input[str] state: The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
         :param pulumi.Input[str] updated_at: Timestamp (GMT) when the subscription was updated.
@@ -577,6 +603,7 @@ class TlsSubscription(pulumi.CustomResource):
         __props__.__dict__["force_destroy"] = force_destroy
         __props__.__dict__["force_update"] = force_update
         __props__.__dict__["managed_dns_challenge"] = managed_dns_challenge
+        __props__.__dict__["managed_dns_challenges"] = managed_dns_challenges
         __props__.__dict__["managed_http_challenges"] = managed_http_challenges
         __props__.__dict__["state"] = state
         __props__.__dict__["updated_at"] = updated_at
@@ -645,6 +672,14 @@ class TlsSubscription(pulumi.CustomResource):
         The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
         """
         return pulumi.get(self, "managed_dns_challenge")
+
+    @property
+    @pulumi.getter(name="managedDnsChallenges")
+    def managed_dns_challenges(self) -> pulumi.Output[Sequence['outputs.TlsSubscriptionManagedDnsChallenge']]:
+        """
+        A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        """
+        return pulumi.get(self, "managed_dns_challenges")
 
     @property
     @pulumi.getter(name="managedHttpChallenges")

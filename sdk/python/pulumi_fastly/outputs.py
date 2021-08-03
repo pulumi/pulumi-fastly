@@ -86,6 +86,7 @@ __all__ = [
     'Servicev1Syslog',
     'Servicev1Vcl',
     'Servicev1Waf',
+    'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
     'GetTlsConfigurationDnsRecordResult',
     'GetWafRulesRuleResult',
@@ -10294,6 +10295,70 @@ class Servicev1Waf(dict):
         The ID of the WAF
         """
         return pulumi.get(self, "waf_id")
+
+
+@pulumi.output_type
+class TlsSubscriptionManagedDnsChallenge(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "recordName":
+            suggest = "record_name"
+        elif key == "recordType":
+            suggest = "record_type"
+        elif key == "recordValue":
+            suggest = "record_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TlsSubscriptionManagedDnsChallenge. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TlsSubscriptionManagedDnsChallenge.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TlsSubscriptionManagedDnsChallenge.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 record_name: Optional[str] = None,
+                 record_type: Optional[str] = None,
+                 record_value: Optional[str] = None):
+        """
+        :param str record_name: The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        :param str record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
+        :param str record_value: The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        """
+        if record_name is not None:
+            pulumi.set(__self__, "record_name", record_name)
+        if record_type is not None:
+            pulumi.set(__self__, "record_type", record_type)
+        if record_value is not None:
+            pulumi.set(__self__, "record_value", record_value)
+
+    @property
+    @pulumi.getter(name="recordName")
+    def record_name(self) -> Optional[str]:
+        """
+        The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        """
+        return pulumi.get(self, "record_name")
+
+    @property
+    @pulumi.getter(name="recordType")
+    def record_type(self) -> Optional[str]:
+        """
+        The type of DNS record to add, e.g. `A`, or `CNAME`.
+        """
+        return pulumi.get(self, "record_type")
+
+    @property
+    @pulumi.getter(name="recordValue")
+    def record_value(self) -> Optional[str]:
+        """
+        The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        """
+        return pulumi.get(self, "record_value")
 
 
 @pulumi.output_type

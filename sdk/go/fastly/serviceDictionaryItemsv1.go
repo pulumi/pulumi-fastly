@@ -17,6 +17,10 @@ import (
 //
 // If this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
 //
+// ## Limitations
+//
+// - `writeOnly` dictionaries are not supported
+//
 // ## Example Usage
 //
 // ## Import

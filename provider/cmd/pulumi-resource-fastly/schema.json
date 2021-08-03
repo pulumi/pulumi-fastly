@@ -21,6 +21,10 @@
             "baseUrl": {
                 "type": "string",
                 "description": "Fastly API URL\n"
+            },
+            "noAuth": {
+                "type": "boolean",
+                "description": "Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`\n"
             }
         }
     },
@@ -7087,6 +7091,47 @@
                 }
             }
         },
+        "fastly:index/TlsSubscriptionManagedDnsChallenge:TlsSubscriptionManagedDnsChallenge": {
+            "properties": {
+                "recordName": {
+                    "type": "string",
+                    "description": "The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "recordType": {
+                    "type": "string",
+                    "description": "The type of DNS record to add, e.g. `A`, or `CNAME`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "recordValue": {
+                    "type": "string",
+                    "description": "The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "recordName",
+                        "recordType",
+                        "recordValue"
+                    ]
+                }
+            }
+        },
         "fastly:index/TlsSubscriptionManagedHttpChallenge:TlsSubscriptionManagedHttpChallenge": {
             "properties": {
                 "recordName": {
@@ -7223,6 +7268,10 @@
             "baseUrl": {
                 "type": "string",
                 "description": "Fastly API URL\n"
+            },
+            "noAuth": {
+                "type": "boolean",
+                "description": "Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`\n"
             }
         },
         "inputProperties": {
@@ -7233,6 +7282,10 @@
             "baseUrl": {
                 "type": "string",
                 "description": "Fastly API URL\n"
+            },
+            "noAuth": {
+                "type": "boolean",
+                "description": "Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`\n"
             }
         }
     },
@@ -7979,7 +8032,7 @@
             }
         },
         "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1": {
-            "description": "Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.\n\n\n\u003e **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.\n\nIf this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst config = new pulumi.Config();\nconst mydictName = config.get(\"mydictName\") || \"My Dictionary\";\nconst myservice = new fastly.Servicev1(\"myservice\", {\n    domains: [{\n        name: \"demo.notexample.com\",\n        comment: \"demo\",\n    }],\n    backends: [{\n        address: \"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name: \"AWS S3 hosting\",\n        port: 80,\n    }],\n    dictionaries: [{\n        name: mydictName,\n    }],\n    forceDestroy: true,\n});\nconst items: fastly.ServiceDictionaryItemsv1[];\nfor (const range of Object.entries(myservice.dictionaries.apply(dictionaries =\u003e dictionaries.filter(d =\u003e d.name == mydictName).reduce((__obj, d) =\u003e { ...__obj, [d.name]: d }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    items.push(new fastly.ServiceDictionaryItemsv1(`items-${range.key}`, {\n        serviceId: myservice.id,\n        dictionaryId: range.value.dictionaryId,\n        items: {\n            key1: \"value1\",\n            key2: \"value2\",\n        },\n    }));\n}\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nconfig = pulumi.Config()\nmydict_name = config.get(\"mydictName\")\nif mydict_name is None:\n    mydict_name = \"My Dictionary\"\nmyservice = fastly.Servicev1(\"myservice\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"demo.notexample.com\",\n        comment=\"demo\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name=\"AWS S3 hosting\",\n        port=80,\n    )],\n    dictionaries=[fastly.Servicev1DictionaryArgs(\n        name=mydict_name,\n    )],\n    force_destroy=True)\nitems = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict_name})]:\n    items.append(fastly.ServiceDictionaryItemsv1(f\"items-{range['key']}\",\n        service_id=myservice.id,\n        dictionary_id=range[\"value\"],\n        items={\n            \"key1\": \"value1\",\n            \"key2\": \"value2\",\n        }))\n```\n{{% /example %}}\n{{% example %}}\n### Complex object usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst config = new pulumi.Config();\nconst mydict = config.getObject(\"mydict\") || {\n    name: \"My Dictionary\",\n    items: {\n        key1: \"value1x\",\n        key2: \"value2x\",\n    },\n};\nconst myservice = new fastly.Servicev1(\"myservice\", {\n    domains: [{\n        name: \"demo.notexample.com\",\n        comment: \"demo\",\n    }],\n    backends: [{\n        address: \"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name: \"AWS S3 hosting\",\n        port: 80,\n    }],\n    dictionaries: [{\n        name: mydict.name,\n    }],\n    forceDestroy: true,\n});\nconst items: fastly.ServiceDictionaryItemsv1[];\nfor (const range of Object.entries(myservice.dictionaries.apply(dictionaries =\u003e dictionaries.filter(d =\u003e d.name == mydict.name).reduce((__obj, d) =\u003e { ...__obj, [d.name]: d }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    items.push(new fastly.ServiceDictionaryItemsv1(`items-${range.key}`, {\n        serviceId: myservice.id,\n        dictionaryId: range.value.dictionaryId,\n        items: mydict.items,\n    }));\n}\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nconfig = pulumi.Config()\nmydict = config.get_object(\"mydict\")\nif mydict is None:\n    mydict = {\n        \"name\": \"My Dictionary\",\n        \"items\": {\n            \"key1\": \"value1x\",\n            \"key2\": \"value2x\",\n        },\n    }\nmyservice = fastly.Servicev1(\"myservice\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"demo.notexample.com\",\n        comment=\"demo\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name=\"AWS S3 hosting\",\n        port=80,\n    )],\n    dictionaries=[fastly.Servicev1DictionaryArgs(\n        name=mydict[\"name\"],\n    )],\n    force_destroy=True)\nitems = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict.name})]:\n    items.append(fastly.ServiceDictionaryItemsv1(f\"items-{range['key']}\",\n        service_id=myservice.id,\n        dictionary_id=range[\"value\"],\n        items=mydict[\"items\"]))\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
+            "description": "Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.\n\n\n\u003e **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.\n\nIf this provider is being used to populate the initial content of a dictionary which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.\n\n## Limitations\n\n- `write_only` dictionaries are not supported\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst config = new pulumi.Config();\nconst mydictName = config.get(\"mydictName\") || \"My Dictionary\";\nconst myservice = new fastly.Servicev1(\"myservice\", {\n    domains: [{\n        name: \"demo.notexample.com\",\n        comment: \"demo\",\n    }],\n    backends: [{\n        address: \"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name: \"AWS S3 hosting\",\n        port: 80,\n    }],\n    dictionaries: [{\n        name: mydictName,\n    }],\n    forceDestroy: true,\n});\nconst items: fastly.ServiceDictionaryItemsv1[];\nfor (const range of Object.entries(myservice.dictionaries.apply(dictionaries =\u003e dictionaries.filter(d =\u003e d.name == mydictName).reduce((__obj, d) =\u003e { ...__obj, [d.name]: d }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    items.push(new fastly.ServiceDictionaryItemsv1(`items-${range.key}`, {\n        serviceId: myservice.id,\n        dictionaryId: range.value.dictionaryId,\n        items: {\n            key1: \"value1\",\n            key2: \"value2\",\n        },\n    }));\n}\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nconfig = pulumi.Config()\nmydict_name = config.get(\"mydictName\")\nif mydict_name is None:\n    mydict_name = \"My Dictionary\"\nmyservice = fastly.Servicev1(\"myservice\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"demo.notexample.com\",\n        comment=\"demo\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name=\"AWS S3 hosting\",\n        port=80,\n    )],\n    dictionaries=[fastly.Servicev1DictionaryArgs(\n        name=mydict_name,\n    )],\n    force_destroy=True)\nitems = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict_name})]:\n    items.append(fastly.ServiceDictionaryItemsv1(f\"items-{range['key']}\",\n        service_id=myservice.id,\n        dictionary_id=range[\"value\"],\n        items={\n            \"key1\": \"value1\",\n            \"key2\": \"value2\",\n        }))\n```\n{{% /example %}}\n{{% example %}}\n### Complex object usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst config = new pulumi.Config();\nconst mydict = config.getObject(\"mydict\") || {\n    name: \"My Dictionary\",\n    items: {\n        key1: \"value1x\",\n        key2: \"value2x\",\n    },\n};\nconst myservice = new fastly.Servicev1(\"myservice\", {\n    domains: [{\n        name: \"demo.notexample.com\",\n        comment: \"demo\",\n    }],\n    backends: [{\n        address: \"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name: \"AWS S3 hosting\",\n        port: 80,\n    }],\n    dictionaries: [{\n        name: mydict.name,\n    }],\n    forceDestroy: true,\n});\nconst items: fastly.ServiceDictionaryItemsv1[];\nfor (const range of Object.entries(myservice.dictionaries.apply(dictionaries =\u003e dictionaries.filter(d =\u003e d.name == mydict.name).reduce((__obj, d) =\u003e { ...__obj, [d.name]: d }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    items.push(new fastly.ServiceDictionaryItemsv1(`items-${range.key}`, {\n        serviceId: myservice.id,\n        dictionaryId: range.value.dictionaryId,\n        items: mydict.items,\n    }));\n}\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nconfig = pulumi.Config()\nmydict = config.get_object(\"mydict\")\nif mydict is None:\n    mydict = {\n        \"name\": \"My Dictionary\",\n        \"items\": {\n            \"key1\": \"value1x\",\n            \"key2\": \"value2x\",\n        },\n    }\nmyservice = fastly.Servicev1(\"myservice\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"demo.notexample.com\",\n        comment=\"demo\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name=\"AWS S3 hosting\",\n        port=80,\n    )],\n    dictionaries=[fastly.Servicev1DictionaryArgs(\n        name=mydict[\"name\"],\n    )],\n    force_destroy=True)\nitems = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionaries if d.name == mydict.name})]:\n    items.append(fastly.ServiceDictionaryItemsv1(f\"items-{range['key']}\",\n        service_id=myservice.id,\n        dictionary_id=range[\"value\"],\n        items=mydict[\"items\"]))\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_dictionary_items_v1.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1 items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "dictionaryId": {
                     "type": "string",
@@ -8828,7 +8881,6 @@
                 "activeVersion",
                 "backends",
                 "clonedVersion",
-                "defaultHost",
                 "domains",
                 "name"
             ],
@@ -9819,7 +9871,7 @@
             }
         },
         "fastly:index/tlsSubscription:TlsSubscription": {
-            "description": "Enables TLS on a domain using a certificate managed by Fastly.\n\nDNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.\n\nThere are two options for doing this: the `managed_dns_challenge`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.\n\n\u003e See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.\n\nThe example below demonstrates usage with AWS Route53 to configure DNS, and the `fastly.TlsSubscriptionValidation` resource to wait for validation to complete.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleServicev1 = new fastly.Servicev1(\"exampleServicev1\", {\n    domains: [{\n        name: \"example.com\",\n    }],\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n    }],\n    forceDestroy: true,\n});\nconst exampleTlsSubscription = new fastly.TlsSubscription(\"exampleTlsSubscription\", {\n    domains: exampleServicev1.domains.apply(domains =\u003e domains.map(domain =\u003e domain.name)),\n    certificateAuthority: \"lets-encrypt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_servicev1 = fastly.Servicev1(\"exampleServicev1\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"example.com\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n    )],\n    force_destroy=True)\nexample_tls_subscription = fastly.TlsSubscription(\"exampleTlsSubscription\",\n    domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),\n    certificate_authority=\"lets-encrypt\")\n```\n\nUsage with AWS Route 53:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst domainName = \"example.com\";\nconst exampleServicev1 = new fastly.Servicev1(\"exampleServicev1\", {\n    domains: [{\n        name: domainName,\n    }],\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n    }],\n    forceDestroy: true,\n});\nconst exampleTlsSubscription = new fastly.TlsSubscription(\"exampleTlsSubscription\", {\n    domains: exampleServicev1.domains.apply(domains =\u003e domains.map(domain =\u003e domain.name)),\n    certificateAuthority: \"lets-encrypt\",\n});\nconst demo = aws.route53.getZone({\n    name: domainName,\n    privateZone: false,\n});\n// Set up DNS record for managed DNS domain validation method\nconst domainValidation = new aws.route53.Record(\"domainValidation\", {\n    name: exampleTlsSubscription.managedDnsChallenge.recordName,\n    type: exampleTlsSubscription.managedDnsChallenge.recordType,\n    zoneId: demo.then(demo =\u003e demo.id),\n    allowOverwrite: true,\n    records: [exampleTlsSubscription.managedDnsChallenge.recordValue],\n    ttl: 60,\n});\n// Resource that other resources can depend on if they require the certificate to be issued\nconst exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation(\"exampleTlsSubscriptionValidation\", {subscriptionId: exampleTlsSubscription.id}, {\n    dependsOn: [domainValidation],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\ndomain_name = \"example.com\"\nexample_servicev1 = fastly.Servicev1(\"exampleServicev1\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=domain_name,\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n    )],\n    force_destroy=True)\nexample_tls_subscription = fastly.TlsSubscription(\"exampleTlsSubscription\",\n    domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),\n    certificate_authority=\"lets-encrypt\")\ndemo = aws.route53.get_zone(name=domain_name,\n    private_zone=False)\n# Set up DNS record for managed DNS domain validation method\ndomain_validation = aws.route53.Record(\"domainValidation\",\n    name=example_tls_subscription.managed_dns_challenge[\"recordName\"],\n    type=example_tls_subscription.managed_dns_challenge[\"recordType\"],\n    zone_id=demo.id,\n    allow_overwrite=True,\n    records=[example_tls_subscription.managed_dns_challenge[\"recordValue\"]],\n    ttl=60)\n# Resource that other resources can depend on if they require the certificate to be issued\nexample_tls_subscription_validation = fastly.TlsSubscriptionValidation(\"exampleTlsSubscriptionValidation\", subscription_id=example_tls_subscription.id,\nopts=pulumi.ResourceOptions(depends_on=[domain_validation]))\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA subscription can be imported using its Fastly subscription ID, e.g.\n\n```sh\n $ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx\n```\n\n ",
+            "description": "Enables TLS on a domain using a certificate managed by Fastly.\n\nDNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.\n\nThere are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.\n\n\u003e See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.\n\nThe example below demonstrates usage with AWS Route53 to configure DNS, and the `fastly.TlsSubscriptionValidation` resource to wait for validation to complete.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleServicev1 = new fastly.Servicev1(\"exampleServicev1\", {\n    domains: [{\n        name: \"example.com\",\n    }],\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n    }],\n    forceDestroy: true,\n});\nconst exampleTlsSubscription = new fastly.TlsSubscription(\"exampleTlsSubscription\", {\n    domains: exampleServicev1.domains.apply(domains =\u003e domains.map(domain =\u003e domain.name)),\n    certificateAuthority: \"lets-encrypt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_servicev1 = fastly.Servicev1(\"exampleServicev1\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"example.com\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n    )],\n    force_destroy=True)\nexample_tls_subscription = fastly.TlsSubscription(\"exampleTlsSubscription\",\n    domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),\n    certificate_authority=\"lets-encrypt\")\n```\n\nUsage with AWS Route 53:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst domainName = \"example.com\";\nconst exampleServicev1 = new fastly.Servicev1(\"exampleServicev1\", {\n    domains: [{\n        name: domainName,\n    }],\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n    }],\n    forceDestroy: true,\n});\nconst exampleTlsSubscription = new fastly.TlsSubscription(\"exampleTlsSubscription\", {\n    domains: exampleServicev1.domains.apply(domains =\u003e domains.map(domain =\u003e domain.name)),\n    certificateAuthority: \"lets-encrypt\",\n});\nconst demo = aws.route53.getZone({\n    name: domainName,\n    privateZone: false,\n});\n// Set up DNS record for managed DNS domain validation method\nconst domainValidation: aws.route53.Record[];\nfor (const range of Object.entries(exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges =\u003e managedDnsChallenges.reduce((__obj, domain) =\u003e { ...__obj, [domain.recordName]: domain }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    domainValidation.push(new aws.route53.Record(`domainValidation-${range.key}`, {\n        name: range.value.recordName,\n        type: range.value.recordType,\n        zoneId: demo.then(demo =\u003e demo.id),\n        allowOverwrite: true,\n        records: [range.value.recordValue],\n        ttl: 60,\n    }));\n}\n// Resource that other resources can depend on if they require the certificate to be issued\nconst exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation(\"exampleTlsSubscriptionValidation\", {subscriptionId: exampleTlsSubscription.id}, {\n    dependsOn: [domainValidation],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\ndomain_name = \"example.com\"\nexample_servicev1 = fastly.Servicev1(\"exampleServicev1\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=domain_name,\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n    )],\n    force_destroy=True)\nexample_tls_subscription = fastly.TlsSubscription(\"exampleTlsSubscription\",\n    domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),\n    certificate_authority=\"lets-encrypt\")\ndemo = aws.route53.get_zone(name=domain_name,\n    private_zone=False)\n# Set up DNS record for managed DNS domain validation method\ndomain_validation = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate({domain.recordName: domain for domain in example_tls_subscription.managedDnsChallenges})]:\n    domain_validation.append(aws.route53.Record(f\"domainValidation-{range['key']}\",\n        name=range[\"value\"],\n        type=range[\"value\"],\n        zone_id=demo.id,\n        allow_overwrite=True,\n        records=[range[\"value\"]],\n        ttl=60))\n# Resource that other resources can depend on if they require the certificate to be issued\nexample_tls_subscription_validation = fastly.TlsSubscriptionValidation(\"exampleTlsSubscriptionValidation\", subscription_id=example_tls_subscription.id,\nopts=pulumi.ResourceOptions(depends_on=[domain_validation]))\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA subscription can be imported using its Fastly subscription ID, e.g.\n\n```sh\n $ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "certificateAuthority": {
                     "type": "string",
@@ -9857,7 +9909,15 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.\n"
+                    "description": "The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.\n",
+                    "deprecationMessage": "Use 'managed_dns_challenges' attribute instead"
+                },
+                "managedDnsChallenges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/TlsSubscriptionManagedDnsChallenge:TlsSubscriptionManagedDnsChallenge"
+                    },
+                    "description": "A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.\n"
                 },
                 "managedHttpChallenges": {
                     "type": "array",
@@ -9882,6 +9942,7 @@
                 "createdAt",
                 "domains",
                 "managedDnsChallenge",
+                "managedDnsChallenges",
                 "managedHttpChallenges",
                 "state",
                 "updatedAt"
@@ -9958,7 +10019,15 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.\n"
+                        "description": "The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.\n",
+                        "deprecationMessage": "Use 'managed_dns_challenges' attribute instead"
+                    },
+                    "managedDnsChallenges": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/TlsSubscriptionManagedDnsChallenge:TlsSubscriptionManagedDnsChallenge"
+                        },
+                        "description": "A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.\n"
                     },
                     "managedHttpChallenges": {
                         "type": "array",

@@ -374,7 +374,7 @@ namespace Pulumi.Fastly
         /// The default hostname
         /// </summary>
         [Output("defaultHost")]
-        public Output<string> DefaultHost { get; private set; } = null!;
+        public Output<string?> DefaultHost { get; private set; } = null!;
 
         /// <summary>
         /// The default Time-to-live (TTL) for requests

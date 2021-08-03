@@ -14,7 +14,7 @@ namespace Pulumi.Fastly
     /// 
     /// DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
     /// 
-    /// There are two options for doing this: the `managed_dns_challenge`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
+    /// There are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
     /// 
     /// &gt; See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
     /// 
@@ -78,6 +78,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("managedDnsChallenge")]
         public Output<ImmutableDictionary<string, string>> ManagedDnsChallenge { get; private set; } = null!;
+
+        /// <summary>
+        /// A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        /// </summary>
+        [Output("managedDnsChallenges")]
+        public Output<ImmutableArray<Outputs.TlsSubscriptionManagedDnsChallenge>> ManagedDnsChallenges { get; private set; } = null!;
 
         /// <summary>
         /// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
@@ -246,10 +252,23 @@ namespace Pulumi.Fastly
         /// <summary>
         /// The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
         /// </summary>
+        [Obsolete(@"Use 'managed_dns_challenges' attribute instead")]
         public InputMap<string> ManagedDnsChallenge
         {
             get => _managedDnsChallenge ?? (_managedDnsChallenge = new InputMap<string>());
             set => _managedDnsChallenge = value;
+        }
+
+        [Input("managedDnsChallenges")]
+        private InputList<Inputs.TlsSubscriptionManagedDnsChallengeGetArgs>? _managedDnsChallenges;
+
+        /// <summary>
+        /// A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        /// </summary>
+        public InputList<Inputs.TlsSubscriptionManagedDnsChallengeGetArgs> ManagedDnsChallenges
+        {
+            get => _managedDnsChallenges ?? (_managedDnsChallenges = new InputList<Inputs.TlsSubscriptionManagedDnsChallengeGetArgs>());
+            set => _managedDnsChallenges = value;
         }
 
         [Input("managedHttpChallenges")]

@@ -18,5 +18,10 @@ namespace Pulumi.Fastly
         /// </summary>
         public static string? BaseUrl { get; set; } = __config.Get("baseUrl");
 
+        /// <summary>
+        /// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        /// </summary>
+        public static bool? NoAuth { get; set; } = __config.GetBoolean("noAuth");
+
     }
 }

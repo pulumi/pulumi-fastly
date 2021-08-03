@@ -13116,6 +13116,121 @@ func (o Servicev1WafPtrOutput) WafId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type TlsSubscriptionManagedDnsChallenge struct {
+	// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+	RecordName *string `pulumi:"recordName"`
+	// The type of DNS record to add, e.g. `A`, or `CNAME`.
+	RecordType *string `pulumi:"recordType"`
+	// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+	RecordValue *string `pulumi:"recordValue"`
+}
+
+// TlsSubscriptionManagedDnsChallengeInput is an input type that accepts TlsSubscriptionManagedDnsChallengeArgs and TlsSubscriptionManagedDnsChallengeOutput values.
+// You can construct a concrete instance of `TlsSubscriptionManagedDnsChallengeInput` via:
+//
+//          TlsSubscriptionManagedDnsChallengeArgs{...}
+type TlsSubscriptionManagedDnsChallengeInput interface {
+	pulumi.Input
+
+	ToTlsSubscriptionManagedDnsChallengeOutput() TlsSubscriptionManagedDnsChallengeOutput
+	ToTlsSubscriptionManagedDnsChallengeOutputWithContext(context.Context) TlsSubscriptionManagedDnsChallengeOutput
+}
+
+type TlsSubscriptionManagedDnsChallengeArgs struct {
+	// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+	RecordName pulumi.StringPtrInput `pulumi:"recordName"`
+	// The type of DNS record to add, e.g. `A`, or `CNAME`.
+	RecordType pulumi.StringPtrInput `pulumi:"recordType"`
+	// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+	RecordValue pulumi.StringPtrInput `pulumi:"recordValue"`
+}
+
+func (TlsSubscriptionManagedDnsChallengeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TlsSubscriptionManagedDnsChallenge)(nil)).Elem()
+}
+
+func (i TlsSubscriptionManagedDnsChallengeArgs) ToTlsSubscriptionManagedDnsChallengeOutput() TlsSubscriptionManagedDnsChallengeOutput {
+	return i.ToTlsSubscriptionManagedDnsChallengeOutputWithContext(context.Background())
+}
+
+func (i TlsSubscriptionManagedDnsChallengeArgs) ToTlsSubscriptionManagedDnsChallengeOutputWithContext(ctx context.Context) TlsSubscriptionManagedDnsChallengeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionManagedDnsChallengeOutput)
+}
+
+// TlsSubscriptionManagedDnsChallengeArrayInput is an input type that accepts TlsSubscriptionManagedDnsChallengeArray and TlsSubscriptionManagedDnsChallengeArrayOutput values.
+// You can construct a concrete instance of `TlsSubscriptionManagedDnsChallengeArrayInput` via:
+//
+//          TlsSubscriptionManagedDnsChallengeArray{ TlsSubscriptionManagedDnsChallengeArgs{...} }
+type TlsSubscriptionManagedDnsChallengeArrayInput interface {
+	pulumi.Input
+
+	ToTlsSubscriptionManagedDnsChallengeArrayOutput() TlsSubscriptionManagedDnsChallengeArrayOutput
+	ToTlsSubscriptionManagedDnsChallengeArrayOutputWithContext(context.Context) TlsSubscriptionManagedDnsChallengeArrayOutput
+}
+
+type TlsSubscriptionManagedDnsChallengeArray []TlsSubscriptionManagedDnsChallengeInput
+
+func (TlsSubscriptionManagedDnsChallengeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TlsSubscriptionManagedDnsChallenge)(nil)).Elem()
+}
+
+func (i TlsSubscriptionManagedDnsChallengeArray) ToTlsSubscriptionManagedDnsChallengeArrayOutput() TlsSubscriptionManagedDnsChallengeArrayOutput {
+	return i.ToTlsSubscriptionManagedDnsChallengeArrayOutputWithContext(context.Background())
+}
+
+func (i TlsSubscriptionManagedDnsChallengeArray) ToTlsSubscriptionManagedDnsChallengeArrayOutputWithContext(ctx context.Context) TlsSubscriptionManagedDnsChallengeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionManagedDnsChallengeArrayOutput)
+}
+
+type TlsSubscriptionManagedDnsChallengeOutput struct{ *pulumi.OutputState }
+
+func (TlsSubscriptionManagedDnsChallengeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TlsSubscriptionManagedDnsChallenge)(nil)).Elem()
+}
+
+func (o TlsSubscriptionManagedDnsChallengeOutput) ToTlsSubscriptionManagedDnsChallengeOutput() TlsSubscriptionManagedDnsChallengeOutput {
+	return o
+}
+
+func (o TlsSubscriptionManagedDnsChallengeOutput) ToTlsSubscriptionManagedDnsChallengeOutputWithContext(ctx context.Context) TlsSubscriptionManagedDnsChallengeOutput {
+	return o
+}
+
+// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+func (o TlsSubscriptionManagedDnsChallengeOutput) RecordName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TlsSubscriptionManagedDnsChallenge) *string { return v.RecordName }).(pulumi.StringPtrOutput)
+}
+
+// The type of DNS record to add, e.g. `A`, or `CNAME`.
+func (o TlsSubscriptionManagedDnsChallengeOutput) RecordType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TlsSubscriptionManagedDnsChallenge) *string { return v.RecordType }).(pulumi.StringPtrOutput)
+}
+
+// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+func (o TlsSubscriptionManagedDnsChallengeOutput) RecordValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TlsSubscriptionManagedDnsChallenge) *string { return v.RecordValue }).(pulumi.StringPtrOutput)
+}
+
+type TlsSubscriptionManagedDnsChallengeArrayOutput struct{ *pulumi.OutputState }
+
+func (TlsSubscriptionManagedDnsChallengeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TlsSubscriptionManagedDnsChallenge)(nil)).Elem()
+}
+
+func (o TlsSubscriptionManagedDnsChallengeArrayOutput) ToTlsSubscriptionManagedDnsChallengeArrayOutput() TlsSubscriptionManagedDnsChallengeArrayOutput {
+	return o
+}
+
+func (o TlsSubscriptionManagedDnsChallengeArrayOutput) ToTlsSubscriptionManagedDnsChallengeArrayOutputWithContext(ctx context.Context) TlsSubscriptionManagedDnsChallengeArrayOutput {
+	return o
+}
+
+func (o TlsSubscriptionManagedDnsChallengeArrayOutput) Index(i pulumi.IntInput) TlsSubscriptionManagedDnsChallengeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TlsSubscriptionManagedDnsChallenge {
+		return vs[0].([]TlsSubscriptionManagedDnsChallenge)[vs[1].(int)]
+	}).(TlsSubscriptionManagedDnsChallengeOutput)
+}
+
 type TlsSubscriptionManagedHttpChallenge struct {
 	// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
 	RecordName *string `pulumi:"recordName"`
@@ -13607,6 +13722,8 @@ func init() {
 	pulumi.RegisterOutputType(Servicev1VclArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1WafOutput{})
 	pulumi.RegisterOutputType(Servicev1WafPtrOutput{})
+	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeOutput{})
+	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})

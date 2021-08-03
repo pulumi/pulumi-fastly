@@ -47,6 +47,7 @@ export class Provider extends pulumi.ProviderResource {
         {
             inputs["apiKey"] = args ? args.apiKey : undefined;
             inputs["baseUrl"] = args ? args.baseUrl : undefined;
+            inputs["noAuth"] = pulumi.output(args ? args.noAuth : undefined).apply(JSON.stringify);
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -67,4 +68,8 @@ export interface ProviderArgs {
      * Fastly API URL
      */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+     */
+    noAuth?: pulumi.Input<boolean>;
 }

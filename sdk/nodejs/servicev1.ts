@@ -270,7 +270,7 @@ export class Servicev1 extends pulumi.CustomResource {
     /**
      * The default hostname
      */
-    public readonly defaultHost!: pulumi.Output<string>;
+    public readonly defaultHost!: pulumi.Output<string | undefined>;
     /**
      * The default Time-to-live (TTL) for requests
      */

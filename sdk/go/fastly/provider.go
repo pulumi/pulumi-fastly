@@ -43,6 +43,8 @@ type providerArgs struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// Fastly API URL
 	BaseUrl *string `pulumi:"baseUrl"`
+	// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+	NoAuth *bool `pulumi:"noAuth"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -51,6 +53,8 @@ type ProviderArgs struct {
 	ApiKey pulumi.StringPtrInput
 	// Fastly API URL
 	BaseUrl pulumi.StringPtrInput
+	// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+	NoAuth pulumi.BoolPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
