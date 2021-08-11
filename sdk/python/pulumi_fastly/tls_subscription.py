@@ -386,14 +386,15 @@ class TlsSubscription(pulumi.CustomResource):
             private_zone=False)
         # Set up DNS record for managed DNS domain validation method
         domain_validation = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain.recordName: domain for domain in example_tls_subscription.managedDnsChallenges})]:
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain: [obj for obj in example_tls_subscription.managedDnsChallenges if obj.recordName == f_acme-challenge.{domain}][0] for domain in example_tls_subscription.domains})]:
             domain_validation.append(aws.route53.Record(f"domainValidation-{range['key']}",
                 name=range["value"],
                 type=range["value"],
                 zone_id=demo.id,
                 allow_overwrite=True,
                 records=[range["value"]],
-                ttl=60))
+                ttl=60,
+                opts=pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
         # Resource that other resources can depend on if they require the certificate to be issued
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", subscription_id=example_tls_subscription.id,
         opts=pulumi.ResourceOptions(depends_on=[domain_validation]))
@@ -479,14 +480,15 @@ class TlsSubscription(pulumi.CustomResource):
             private_zone=False)
         # Set up DNS record for managed DNS domain validation method
         domain_validation = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain.recordName: domain for domain in example_tls_subscription.managedDnsChallenges})]:
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain: [obj for obj in example_tls_subscription.managedDnsChallenges if obj.recordName == f_acme-challenge.{domain}][0] for domain in example_tls_subscription.domains})]:
             domain_validation.append(aws.route53.Record(f"domainValidation-{range['key']}",
                 name=range["value"],
                 type=range["value"],
                 zone_id=demo.id,
                 allow_overwrite=True,
                 records=[range["value"]],
-                ttl=60))
+                ttl=60,
+                opts=pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
         # Resource that other resources can depend on if they require the certificate to be issued
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", subscription_id=example_tls_subscription.id,
         opts=pulumi.ResourceOptions(depends_on=[domain_validation]))

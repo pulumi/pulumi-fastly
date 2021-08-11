@@ -324,6 +324,12 @@ namespace Pulumi.Fastly
     /// ```sh
     ///  $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx
     /// ```
+    /// 
+    ///  By default, either the active version will be imported, or the latest version if no version is active. Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import fastly:index/servicev1:Servicev1 demo xxxxxxxxxxxxxxxxxxxx@2
+    /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/servicev1:Servicev1")]
     public partial class Servicev1 : Pulumi.CustomResource
