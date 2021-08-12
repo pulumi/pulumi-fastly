@@ -36,6 +36,12 @@ import (
 // ```sh
 //  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
 // ```
+//
+//  By default, either the active version will be imported, or the latest version if no version is active. Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
+//
+// ```sh
+//  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx@2
+// ```
 type ServiceCompute struct {
 	pulumi.CustomResourceState
 

@@ -68,7 +68,7 @@ import * as utilities from "./utilities";
  * });
  * // Set up DNS record for managed DNS domain validation method
  * const domainValidation: aws.route53.Record[];
- * for (const range of Object.entries(exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.reduce((__obj, domain) => { ...__obj, [domain.recordName]: domain }))).map(([k, v]) => {key: k, value: v})) {
+ * for (const range of Object.entries(exampleTlsSubscription.domains.apply(domains => domains.reduce((__obj, domain) => { ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => obj))[0] }))).map(([k, v]) => {key: k, value: v})) {
  *     domainValidation.push(new aws.route53.Record(`domainValidation-${range.key}`, {
  *         name: range.value.recordName,
  *         type: range.value.recordType,
@@ -76,7 +76,9 @@ import * as utilities from "./utilities";
  *         allowOverwrite: true,
  *         records: [range.value.recordValue],
  *         ttl: 60,
- *     }));
+ *     }, {
+ *     dependsOn: [exampleTlsSubscription],
+ * }));
  * }
  * // Resource that other resources can depend on if they require the certificate to be issued
  * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", {subscriptionId: exampleTlsSubscription.id}, {
