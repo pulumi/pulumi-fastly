@@ -260,7 +260,7 @@ export class Servicev1 extends pulumi.CustomResource {
      * The currently active version of your Fastly Service
      */
     public /*out*/ readonly activeVersion!: pulumi.Output<number>;
-    public readonly backends!: pulumi.Output<outputs.Servicev1Backend[]>;
+    public readonly backends!: pulumi.Output<outputs.Servicev1Backend[] | undefined>;
     public readonly bigqueryloggings!: pulumi.Output<outputs.Servicev1Bigquerylogging[] | undefined>;
     public readonly blobstorageloggings!: pulumi.Output<outputs.Servicev1Blobstoragelogging[] | undefined>;
     public readonly cacheSettings!: pulumi.Output<outputs.Servicev1CacheSetting[] | undefined>;
@@ -399,9 +399,6 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["waf"] = state ? state.waf : undefined;
         } else {
             const args = argsOrState as Servicev1Args | undefined;
-            if ((!args || args.backends === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'backends'");
-            }
             if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
@@ -560,7 +557,7 @@ export interface Servicev1Args {
      * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
-    backends: pulumi.Input<pulumi.Input<inputs.Servicev1Backend>[]>;
+    backends?: pulumi.Input<pulumi.Input<inputs.Servicev1Backend>[]>;
     bigqueryloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Bigquerylogging>[]>;
     blobstorageloggings?: pulumi.Input<pulumi.Input<inputs.Servicev1Blobstoragelogging>[]>;
     cacheSettings?: pulumi.Input<pulumi.Input<inputs.Servicev1CacheSetting>[]>;

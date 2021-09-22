@@ -3744,6 +3744,8 @@ func (o ServiceComputeLoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) Ser
 type ServiceComputeLoggingNewrelic struct {
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// The region that log data will be sent to. Default: `US`
+	Region *string `pulumi:"region"`
 	// The Insert API key from the Account page of your New Relic account
 	Token string `pulumi:"token"`
 }
@@ -3762,6 +3764,8 @@ type ServiceComputeLoggingNewrelicInput interface {
 type ServiceComputeLoggingNewrelicArgs struct {
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// The region that log data will be sent to. Default: `US`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The Insert API key from the Account page of your New Relic account
 	Token pulumi.StringInput `pulumi:"token"`
 }
@@ -3820,6 +3824,11 @@ func (o ServiceComputeLoggingNewrelicOutput) ToServiceComputeLoggingNewrelicOutp
 // The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingNewrelicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The region that log data will be sent to. Default: `US`
+func (o ServiceComputeLoggingNewrelicOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The Insert API key from the Account page of your New Relic account
@@ -10596,6 +10605,8 @@ type Servicev1LoggingNewrelic struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// The region that log data will be sent to. Default: `US`
+	Region *string `pulumi:"region"`
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The Insert API key from the Account page of your New Relic account
@@ -10622,6 +10633,8 @@ type Servicev1LoggingNewrelicArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The region that log data will be sent to. Default: `US`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The Insert API key from the Account page of your New Relic account
@@ -10697,6 +10710,11 @@ func (o Servicev1LoggingNewrelicOutput) Name() pulumi.StringOutput {
 // Where in the generated VCL the logging call should be placed.
 func (o Servicev1LoggingNewrelicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingNewrelic) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// The region that log data will be sent to. Default: `US`
+func (o Servicev1LoggingNewrelicOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Servicev1LoggingNewrelic) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The name of the condition to apply.
@@ -11525,6 +11543,8 @@ type Servicev1RequestSetting struct {
 	// Forces the request to use SSL (Redirects a non-SSL request to SSL)
 	ForceSsl *bool `pulumi:"forceSsl"`
 	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
+	//
+	// Deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release
 	GeoHeaders *bool `pulumi:"geoHeaders"`
 	// Comma separated list of varnish request object fields that should be in the hash key
 	HashKeys *string `pulumi:"hashKeys"`
@@ -11563,6 +11583,8 @@ type Servicev1RequestSettingArgs struct {
 	// Forces the request to use SSL (Redirects a non-SSL request to SSL)
 	ForceSsl pulumi.BoolPtrInput `pulumi:"forceSsl"`
 	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
+	//
+	// Deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release
 	GeoHeaders pulumi.BoolPtrInput `pulumi:"geoHeaders"`
 	// Comma separated list of varnish request object fields that should be in the hash key
 	HashKeys pulumi.StringPtrInput `pulumi:"hashKeys"`
@@ -11655,6 +11677,8 @@ func (o Servicev1RequestSettingOutput) ForceSsl() pulumi.BoolPtrOutput {
 }
 
 // Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
+//
+// Deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release
 func (o Servicev1RequestSettingOutput) GeoHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1RequestSetting) *bool { return v.GeoHeaders }).(pulumi.BoolPtrOutput)
 }

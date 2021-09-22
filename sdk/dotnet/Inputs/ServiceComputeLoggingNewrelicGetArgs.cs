@@ -19,6 +19,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
+        /// The region that log data will be sent to. Default: `US`
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The Insert API key from the Account page of your New Relic account
         /// </summary>
         [Input("token", required: true)]

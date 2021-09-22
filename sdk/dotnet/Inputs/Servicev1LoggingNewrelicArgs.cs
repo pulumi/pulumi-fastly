@@ -37,6 +37,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Placement { get; set; }
 
         /// <summary>
+        /// The region that log data will be sent to. Default: `US`
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The name of the condition to apply.
         /// </summary>
         [Input("responseCondition")]

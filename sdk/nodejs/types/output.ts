@@ -858,6 +858,10 @@ export interface ServiceComputeLoggingNewrelic {
      */
     name: string;
     /**
+     * The region that log data will be sent to. Default: `US`
+     */
+    region?: string;
+    /**
      * The Insert API key from the Account page of your New Relic account
      */
     token: string;
@@ -2448,6 +2452,10 @@ export interface Servicev1LoggingNewrelic {
      */
     placement?: string;
     /**
+     * The region that log data will be sent to. Default: `US`
+     */
+    region?: string;
+    /**
      * The name of the condition to apply.
      */
     responseCondition?: string;
@@ -2684,6 +2692,8 @@ export interface Servicev1RequestSetting {
     forceSsl?: boolean;
     /**
      * Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
+     *
+     * @deprecated 'geo_headers' attribute has been deprecated and will be removed in the next major version release
      */
     geoHeaders?: boolean;
     /**

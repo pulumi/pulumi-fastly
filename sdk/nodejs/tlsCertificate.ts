@@ -46,7 +46,7 @@ export class TlsCertificate extends pulumi.CustomResource {
     }
 
     /**
-     * PEM-formatted certificate.
+     * PEM-formatted certificate, optionally including any intermediary certificates.
      */
     public readonly certificateBody!: pulumi.Output<string>;
     /**
@@ -137,7 +137,7 @@ export class TlsCertificate extends pulumi.CustomResource {
  */
 export interface TlsCertificateState {
     /**
-     * PEM-formatted certificate.
+     * PEM-formatted certificate, optionally including any intermediary certificates.
      */
     certificateBody?: pulumi.Input<string>;
     /**
@@ -183,7 +183,7 @@ export interface TlsCertificateState {
  */
 export interface TlsCertificateArgs {
     /**
-     * PEM-formatted certificate.
+     * PEM-formatted certificate, optionally including any intermediary certificates.
      */
     certificateBody: pulumi.Input<string>;
     /**

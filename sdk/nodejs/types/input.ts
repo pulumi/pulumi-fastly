@@ -837,6 +837,10 @@ export interface ServiceComputeLoggingNewrelic {
      */
     name: pulumi.Input<string>;
     /**
+     * The region that log data will be sent to. Default: `US`
+     */
+    region?: pulumi.Input<string>;
+    /**
      * The Insert API key from the Account page of your New Relic account
      */
     token: pulumi.Input<string>;
@@ -2427,6 +2431,10 @@ export interface Servicev1LoggingNewrelic {
      */
     placement?: pulumi.Input<string>;
     /**
+     * The region that log data will be sent to. Default: `US`
+     */
+    region?: pulumi.Input<string>;
+    /**
      * The name of the condition to apply.
      */
     responseCondition?: pulumi.Input<string>;
@@ -2663,6 +2671,8 @@ export interface Servicev1RequestSetting {
     forceSsl?: pulumi.Input<boolean>;
     /**
      * Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
+     *
+     * @deprecated 'geo_headers' attribute has been deprecated and will be removed in the next major version release
      */
     geoHeaders?: pulumi.Input<boolean>;
     /**

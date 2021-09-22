@@ -15,10 +15,10 @@ __all__ = ['Servicev1Args', 'Servicev1']
 @pulumi.input_type
 class Servicev1Args:
     def __init__(__self__, *,
-                 backends: pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]],
                  domains: pulumi.Input[Sequence[pulumi.Input['Servicev1DomainArgs']]],
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1AclArgs']]]] = None,
                  activate: Optional[pulumi.Input[bool]] = None,
+                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]] = None,
                  bigqueryloggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BigqueryloggingArgs']]]] = None,
                  blobstorageloggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BlobstorageloggingArgs']]]] = None,
                  cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1CacheSettingArgs']]]] = None,
@@ -75,12 +75,13 @@ class Servicev1Args:
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[str] version_comment: Description field for the version
         """
-        pulumi.set(__self__, "backends", backends)
         pulumi.set(__self__, "domains", domains)
         if acls is not None:
             pulumi.set(__self__, "acls", acls)
         if activate is not None:
             pulumi.set(__self__, "activate", activate)
+        if backends is not None:
+            pulumi.set(__self__, "backends", backends)
         if bigqueryloggings is not None:
             pulumi.set(__self__, "bigqueryloggings", bigqueryloggings)
         if blobstorageloggings is not None:
@@ -174,15 +175,6 @@ class Servicev1Args:
 
     @property
     @pulumi.getter
-    def backends(self) -> pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]:
-        return pulumi.get(self, "backends")
-
-    @backends.setter
-    def backends(self, value: pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]):
-        pulumi.set(self, "backends", value)
-
-    @property
-    @pulumi.getter
     def domains(self) -> pulumi.Input[Sequence[pulumi.Input['Servicev1DomainArgs']]]:
         """
         A set of Domain names to serve as entry points for your Service
@@ -213,6 +205,15 @@ class Servicev1Args:
     @activate.setter
     def activate(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "activate", value)
+
+    @property
+    @pulumi.getter
+    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]]:
+        return pulumi.get(self, "backends")
+
+    @backends.setter
+    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1BackendArgs']]]]):
+        pulumi.set(self, "backends", value)
 
     @property
     @pulumi.getter
@@ -1864,8 +1865,6 @@ class Servicev1(pulumi.CustomResource):
 
             __props__.__dict__["acls"] = acls
             __props__.__dict__["activate"] = activate
-            if backends is None and not opts.urn:
-                raise TypeError("Missing required property 'backends'")
             __props__.__dict__["backends"] = backends
             __props__.__dict__["bigqueryloggings"] = bigqueryloggings
             __props__.__dict__["blobstorageloggings"] = blobstorageloggings
@@ -2076,7 +2075,7 @@ class Servicev1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def backends(self) -> pulumi.Output[Sequence['outputs.Servicev1Backend']]:
+    def backends(self) -> pulumi.Output[Optional[Sequence['outputs.Servicev1Backend']]]:
         return pulumi.get(self, "backends")
 
     @property

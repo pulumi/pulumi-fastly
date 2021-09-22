@@ -17,7 +17,7 @@ class TlsCertificateArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TlsCertificate resource.
-        :param pulumi.Input[str] certificate_body: PEM-formatted certificate.
+        :param pulumi.Input[str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
         :param pulumi.Input[str] name: Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
         """
         pulumi.set(__self__, "certificate_body", certificate_body)
@@ -28,7 +28,7 @@ class TlsCertificateArgs:
     @pulumi.getter(name="certificateBody")
     def certificate_body(self) -> pulumi.Input[str]:
         """
-        PEM-formatted certificate.
+        PEM-formatted certificate, optionally including any intermediary certificates.
         """
         return pulumi.get(self, "certificate_body")
 
@@ -64,7 +64,7 @@ class _TlsCertificateState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TlsCertificate resources.
-        :param pulumi.Input[str] certificate_body: PEM-formatted certificate.
+        :param pulumi.Input[str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
         :param pulumi.Input[str] created_at: Timestamp (GMT) when the certificate was created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] domains: All the domains (including wildcard domains) that are listed in the certificate's Subject Alternative Names (SAN) list.
         :param pulumi.Input[str] issued_to: The hostname for which a certificate was issued.
@@ -100,7 +100,7 @@ class _TlsCertificateState:
     @pulumi.getter(name="certificateBody")
     def certificate_body(self) -> Optional[pulumi.Input[str]]:
         """
-        PEM-formatted certificate.
+        PEM-formatted certificate, optionally including any intermediary certificates.
         """
         return pulumi.get(self, "certificate_body")
 
@@ -240,7 +240,7 @@ class TlsCertificate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_body: PEM-formatted certificate.
+        :param pulumi.Input[str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
         :param pulumi.Input[str] name: Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
         """
         ...
@@ -330,7 +330,7 @@ class TlsCertificate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_body: PEM-formatted certificate.
+        :param pulumi.Input[str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
         :param pulumi.Input[str] created_at: Timestamp (GMT) when the certificate was created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] domains: All the domains (including wildcard domains) that are listed in the certificate's Subject Alternative Names (SAN) list.
         :param pulumi.Input[str] issued_to: The hostname for which a certificate was issued.
@@ -361,7 +361,7 @@ class TlsCertificate(pulumi.CustomResource):
     @pulumi.getter(name="certificateBody")
     def certificate_body(self) -> pulumi.Output[str]:
         """
-        PEM-formatted certificate.
+        PEM-formatted certificate, optionally including any intermediary certificates.
         """
         return pulumi.get(self, "certificate_body")
 
