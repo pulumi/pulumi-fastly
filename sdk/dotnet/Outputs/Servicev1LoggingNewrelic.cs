@@ -30,6 +30,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Placement;
         /// <summary>
+        /// The region that log data will be sent to. Default: `US`
+        /// </summary>
+        public readonly string? Region;
+        /// <summary>
         /// The name of the condition to apply.
         /// </summary>
         public readonly string? ResponseCondition;
@@ -48,6 +52,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? placement,
 
+            string? region,
+
             string? responseCondition,
 
             string token)
@@ -56,6 +62,7 @@ namespace Pulumi.Fastly.Outputs
             FormatVersion = formatVersion;
             Name = name;
             Placement = placement;
+            Region = region;
             ResponseCondition = responseCondition;
             Token = token;
         }

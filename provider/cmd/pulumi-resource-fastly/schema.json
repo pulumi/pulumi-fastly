@@ -1987,6 +1987,15 @@
                         }
                     }
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region that log data will be sent to. Default: `US`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "token": {
                     "type": "string",
                     "description": "The Insert API key from the Account page of your New Relic account\n",
@@ -5756,6 +5765,15 @@
                         }
                     }
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region that log data will be sent to. Default: `US`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "responseCondition": {
                     "type": "string",
                     "description": "The name of the condition to apply.\n",
@@ -6306,6 +6324,7 @@
                 "geoHeaders": {
                     "type": "boolean",
                     "description": "Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers\n",
+                    "deprecationMessage": "'geo_headers' attribute has been deprecated and will be removed in the next major version release",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -8879,7 +8898,6 @@
             },
             "required": [
                 "activeVersion",
-                "backends",
                 "clonedVersion",
                 "domains",
                 "name"
@@ -9165,7 +9183,6 @@
                 }
             },
             "requiredInputs": [
-                "backends",
                 "domains"
             ],
             "stateInputs": {
@@ -9533,7 +9550,7 @@
             "properties": {
                 "certificateBody": {
                     "type": "string",
-                    "description": "PEM-formatted certificate.\n"
+                    "description": "PEM-formatted certificate, optionally including any intermediary certificates.\n"
                 },
                 "createdAt": {
                     "type": "string",
@@ -9590,7 +9607,7 @@
             "inputProperties": {
                 "certificateBody": {
                     "type": "string",
-                    "description": "PEM-formatted certificate.\n"
+                    "description": "PEM-formatted certificate, optionally including any intermediary certificates.\n"
                 },
                 "name": {
                     "type": "string",
@@ -9605,7 +9622,7 @@
                 "properties": {
                     "certificateBody": {
                         "type": "string",
-                        "description": "PEM-formatted certificate.\n"
+                        "description": "PEM-formatted certificate, optionally including any intermediary certificates.\n"
                     },
                     "createdAt": {
                         "type": "string",

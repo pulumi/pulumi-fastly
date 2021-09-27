@@ -2871,13 +2871,17 @@ class ServiceComputeLoggingLogshuttle(dict):
 class ServiceComputeLoggingNewrelic(dict):
     def __init__(__self__, *,
                  name: str,
-                 token: str):
+                 token: str,
+                 region: Optional[str] = None):
         """
         :param str name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str token: The Insert API key from the Account page of your New Relic account
+        :param str region: The region that log data will be sent to. Default: `US`
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -2894,6 +2898,14 @@ class ServiceComputeLoggingNewrelic(dict):
         The Insert API key from the Account page of your New Relic account
         """
         return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -8298,6 +8310,7 @@ class Servicev1LoggingNewrelic(dict):
                  format: Optional[str] = None,
                  format_version: Optional[int] = None,
                  placement: Optional[str] = None,
+                 region: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
         :param str name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -8305,6 +8318,7 @@ class Servicev1LoggingNewrelic(dict):
         :param str format: Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str region: The region that log data will be sent to. Default: `US`
         :param str response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "name", name)
@@ -8315,6 +8329,8 @@ class Servicev1LoggingNewrelic(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -8357,6 +8373,14 @@ class Servicev1LoggingNewrelic(dict):
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="responseCondition")

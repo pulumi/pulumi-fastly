@@ -3217,13 +3217,17 @@ class ServiceComputeLoggingLogshuttleArgs:
 class ServiceComputeLoggingNewrelicArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 token: pulumi.Input[str]):
+                 token: pulumi.Input[str],
+                 region: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] token: The Insert API key from the Account page of your New Relic account
+        :param pulumi.Input[str] region: The region that log data will be sent to. Default: `US`
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -3248,6 +3252,18 @@ class ServiceComputeLoggingNewrelicArgs:
     @token.setter
     def token(self, value: pulumi.Input[str]):
         pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
@@ -9220,6 +9236,7 @@ class Servicev1LoggingNewrelicArgs:
                  format: Optional[pulumi.Input[str]] = None,
                  format_version: Optional[pulumi.Input[int]] = None,
                  placement: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -9227,6 +9244,7 @@ class Servicev1LoggingNewrelicArgs:
         :param pulumi.Input[str] format: Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] region: The region that log data will be sent to. Default: `US`
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "name", name)
@@ -9237,6 +9255,8 @@ class Servicev1LoggingNewrelicArgs:
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -9299,6 +9319,18 @@ class Servicev1LoggingNewrelicArgs:
     @placement.setter
     def placement(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "placement", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter(name="responseCondition")
@@ -10134,6 +10166,9 @@ class Servicev1RequestSettingArgs:
             pulumi.set(__self__, "force_miss", force_miss)
         if force_ssl is not None:
             pulumi.set(__self__, "force_ssl", force_ssl)
+        if geo_headers is not None:
+            warnings.warn("""'geo_headers' attribute has been deprecated and will be removed in the next major version release""", DeprecationWarning)
+            pulumi.log.warn("""geo_headers is deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release""")
         if geo_headers is not None:
             pulumi.set(__self__, "geo_headers", geo_headers)
         if hash_keys is not None:

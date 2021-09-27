@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     public partial class TlsCertificate : Pulumi.CustomResource
     {
         /// <summary>
-        /// PEM-formatted certificate.
+        /// PEM-formatted certificate, optionally including any intermediary certificates.
         /// </summary>
         [Output("certificateBody")]
         public Output<string> CertificateBody { get; private set; } = null!;
@@ -132,7 +132,7 @@ namespace Pulumi.Fastly
     public sealed class TlsCertificateArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// PEM-formatted certificate.
+        /// PEM-formatted certificate, optionally including any intermediary certificates.
         /// </summary>
         [Input("certificateBody", required: true)]
         public Input<string> CertificateBody { get; set; } = null!;
@@ -151,7 +151,7 @@ namespace Pulumi.Fastly
     public sealed class TlsCertificateState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// PEM-formatted certificate.
+        /// PEM-formatted certificate, optionally including any intermediary certificates.
         /// </summary>
         [Input("certificateBody")]
         public Input<string>? CertificateBody { get; set; }

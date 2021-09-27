@@ -577,7 +577,7 @@ namespace Pulumi.Fastly
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
 
-        [Input("backends", required: true)]
+        [Input("backends")]
         private InputList<Inputs.Servicev1BackendArgs>? _backends;
         public InputList<Inputs.Servicev1BackendArgs> Backends
         {

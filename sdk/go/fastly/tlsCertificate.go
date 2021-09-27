@@ -25,7 +25,7 @@ import (
 type TlsCertificate struct {
 	pulumi.CustomResourceState
 
-	// PEM-formatted certificate.
+	// PEM-formatted certificate, optionally including any intermediary certificates.
 	CertificateBody pulumi.StringOutput `pulumi:"certificateBody"`
 	// Timestamp (GMT) when the certificate was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -79,7 +79,7 @@ func GetTlsCertificate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TlsCertificate resources.
 type tlsCertificateState struct {
-	// PEM-formatted certificate.
+	// PEM-formatted certificate, optionally including any intermediary certificates.
 	CertificateBody *string `pulumi:"certificateBody"`
 	// Timestamp (GMT) when the certificate was created.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -102,7 +102,7 @@ type tlsCertificateState struct {
 }
 
 type TlsCertificateState struct {
-	// PEM-formatted certificate.
+	// PEM-formatted certificate, optionally including any intermediary certificates.
 	CertificateBody pulumi.StringPtrInput
 	// Timestamp (GMT) when the certificate was created.
 	CreatedAt pulumi.StringPtrInput
@@ -129,7 +129,7 @@ func (TlsCertificateState) ElementType() reflect.Type {
 }
 
 type tlsCertificateArgs struct {
-	// PEM-formatted certificate.
+	// PEM-formatted certificate, optionally including any intermediary certificates.
 	CertificateBody string `pulumi:"certificateBody"`
 	// Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
 	Name *string `pulumi:"name"`
@@ -137,7 +137,7 @@ type tlsCertificateArgs struct {
 
 // The set of arguments for constructing a TlsCertificate resource.
 type TlsCertificateArgs struct {
-	// PEM-formatted certificate.
+	// PEM-formatted certificate, optionally including any intermediary certificates.
 	CertificateBody pulumi.StringInput
 	// Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
 	Name pulumi.StringPtrInput

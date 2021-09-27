@@ -18,6 +18,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The region that log data will be sent to. Default: `US`
+        /// </summary>
+        public readonly string? Region;
+        /// <summary>
         /// The Insert API key from the Account page of your New Relic account
         /// </summary>
         public readonly string Token;
@@ -26,9 +30,12 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeLoggingNewrelic(
             string name,
 
+            string? region,
+
             string token)
         {
             Name = name;
+            Region = region;
             Token = token;
         }
     }
