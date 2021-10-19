@@ -11,14 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
-//
-// > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
-//
-// If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
-//
-// ## Example Usage
-//
 // ## Import
 //
 // This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.

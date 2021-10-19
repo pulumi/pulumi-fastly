@@ -178,7 +178,7 @@ type ServiceComputeBackend struct {
 	SslCertHostname *string `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert *bool `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	// Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
 	SslCiphers *string `pulumi:"sslCiphers"`
 	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert *string `pulumi:"sslClientCert"`
@@ -242,7 +242,7 @@ type ServiceComputeBackendArgs struct {
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	// Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
 	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
 	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
@@ -396,7 +396,7 @@ func (o ServiceComputeBackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
 }
 
-// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+// Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
 func (o ServiceComputeBackendOutput) SslCiphers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
 }
@@ -807,7 +807,7 @@ type ServiceComputeDictionary struct {
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
 	Name string `pulumi:"name"`
-	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
 	WriteOnly *bool `pulumi:"writeOnly"`
 }
 
@@ -829,7 +829,7 @@ type ServiceComputeDictionaryArgs struct {
 	ForceDestroy pulumi.BoolPtrInput `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
 	Name pulumi.StringInput `pulumi:"name"`
-	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
 	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
 }
 
@@ -899,7 +899,7 @@ func (o ServiceComputeDictionaryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeDictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
+// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
 func (o ServiceComputeDictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeDictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }
@@ -5731,7 +5731,7 @@ type Servicev1Backend struct {
 	SslCertHostname *string `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert *bool `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	// Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
 	SslCiphers *string `pulumi:"sslCiphers"`
 	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert *string `pulumi:"sslClientCert"`
@@ -5797,7 +5797,7 @@ type Servicev1BackendArgs struct {
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
-	// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+	// Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
 	SslCiphers pulumi.StringPtrInput `pulumi:"sslCiphers"`
 	// Client certificate attached to origin. Used when connecting to the backend
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
@@ -5956,7 +5956,7 @@ func (o Servicev1BackendOutput) SslCheckCert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *bool { return v.SslCheckCert }).(pulumi.BoolPtrOutput)
 }
 
-// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+// Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
 func (o Servicev1BackendOutput) SslCiphers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Backend) *string { return v.SslCiphers }).(pulumi.StringPtrOutput)
 }
@@ -6687,7 +6687,7 @@ type Servicev1Dictionary struct {
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
 	Name string `pulumi:"name"`
-	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
 	WriteOnly *bool `pulumi:"writeOnly"`
 }
 
@@ -6709,7 +6709,7 @@ type Servicev1DictionaryArgs struct {
 	ForceDestroy pulumi.BoolPtrInput `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
 	Name pulumi.StringInput `pulumi:"name"`
-	// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
 	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
 }
 
@@ -6779,7 +6779,7 @@ func (o Servicev1DictionaryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Dictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider
+// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
 func (o Servicev1DictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Servicev1Dictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }

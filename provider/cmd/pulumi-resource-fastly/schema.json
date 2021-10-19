@@ -247,7 +247,7 @@
                 },
                 "sslCiphers": {
                     "type": "string",
-                    "description": "Comma separated list of OpenSSL Ciphers to try when negotiating to the backend\n",
+                    "description": "Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -542,7 +542,7 @@
                 },
                 "writeOnly": {
                     "type": "boolean",
-                    "description": "If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider\n",
+                    "description": "If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `fastly.ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3069,7 +3069,7 @@
                 },
                 "sslCiphers": {
                     "type": "string",
-                    "description": "Comma separated list of OpenSSL Ciphers to try when negotiating to the backend\n",
+                    "description": "Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3526,7 +3526,7 @@
                 },
                 "writeOnly": {
                     "type": "boolean",
-                    "description": "If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider\n",
+                    "description": "If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `fastly.ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -7310,7 +7310,7 @@
     },
     "resources": {
         "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1": {
-            "description": "Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.\n\n\u003e **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.\n\nIf this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst config = new pulumi.Config();\nconst myaclName = config.get(\"myaclName\") || \"My ACL\";\nconst myservice = new fastly.Servicev1(\"myservice\", {\n    domains: [{\n        name: \"demo.notexample.com\",\n        comment: \"demo\",\n    }],\n    backends: [{\n        address: \"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name: \"AWS S3 hosting\",\n        port: 80,\n    }],\n    acls: [{\n        name: myaclName,\n    }],\n    forceDestroy: true,\n});\nconst entries: fastly.ServiceACLEntriesv1[];\nfor (const range of Object.entries(myservice.acls.apply(acls =\u003e acls.filter(d =\u003e d.name == myaclName).reduce((__obj, d) =\u003e { ...__obj, [d.name]: d }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    entries.push(new fastly.ServiceACLEntriesv1(`entries-${range.key}`, {\n        serviceId: myservice.id,\n        aclId: range.value.aclId,\n        entries: [{\n            ip: \"127.0.0.1\",\n            subnet: \"24\",\n            negated: false,\n            comment: \"ALC Entry 1\",\n        }],\n    }));\n}\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nconfig = pulumi.Config()\nmyacl_name = config.get(\"myaclName\")\nif myacl_name is None:\n    myacl_name = \"My ACL\"\nmyservice = fastly.Servicev1(\"myservice\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"demo.notexample.com\",\n        comment=\"demo\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"demo.notexample.com.s3-website-us-west-2.amazonaws.com\",\n        name=\"AWS S3 hosting\",\n        port=80,\n    )],\n    acls=[fastly.Servicev1AclArgs(\n        name=myacl_name,\n    )],\n    force_destroy=True)\nentries = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate({d.name: d for d in myservice.acls if d.name == myacl_name})]:\n    entries.append(fastly.ServiceACLEntriesv1(f\"entries-{range['key']}\",\n        service_id=myservice.id,\n        acl_id=range[\"value\"],\n        entries=[fastly.ServiceACLEntriesv1EntryArgs(\n            ip=\"127.0.0.1\",\n            subnet=\"24\",\n            negated=False,\n            comment=\"ALC Entry 1\",\n        )]))\n```\n{{% /example %}}\n{{% example %}}\n### Complex object usage:\n\nThe following example demonstrates the use of dynamic nested blocks to create ACL entries.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst aclName = \"my_acl\";\nconst aclEntries = [\n    {\n        ip: \"1.2.3.4\",\n        comment: \"acl_entry_1\",\n    },\n    {\n        ip: \"1.2.3.5\",\n        comment: \"acl_entry_2\",\n    },\n    {\n        ip: \"1.2.3.6\",\n        comment: \"acl_entry_3\",\n    },\n];\nconst myservice = new fastly.Servicev1(\"myservice\", {\n    domains: [{\n        name: \"demo.notexample.com\",\n        comment: \"demo\",\n    }],\n    backends: [{\n        address: \"1.2.3.4\",\n        name: \"localhost\",\n        port: 80,\n    }],\n    acls: [{\n        name: aclName,\n    }],\n    forceDestroy: true,\n});\nconst entries: fastly.ServiceACLEntriesv1[];\nfor (const range of Object.entries(myservice.acls.apply(acls =\u003e acls.filter(d =\u003e d.name == aclName).reduce((__obj, d) =\u003e { ...__obj, [d.name]: d }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    entries.push(new fastly.ServiceACLEntriesv1(`entries-${range.key}`, {\n        serviceId: myservice.id,\n        aclId: range.value.aclId,\n        dynamic: [{\n            forEach: aclEntries.map(e =\u003e {\n                ip: e.ip,\n                comment: e.comment,\n            }),\n            content: [{\n                ip: entry.value.ip,\n                subnet: 22,\n                comment: entry.value.comment,\n                negated: false,\n            }],\n        }],\n    }));\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
+            "description": "\n\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1 entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "aclId": {
                     "type": "string",
@@ -7412,6 +7412,14 @@
                     "type": "string",
                     "description": "Description field for the service. Default `Managed by Terraform`\n"
                 },
+                "defaultHost": {
+                    "type": "string",
+                    "description": "The default hostname\n"
+                },
+                "defaultTtl": {
+                    "type": "integer",
+                    "description": "The default Time-to-live (TTL) for requests\n"
+                },
                 "dictionaries": {
                     "type": "array",
                     "items": {
@@ -7580,6 +7588,14 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeSplunk:ServiceComputeSplunk"
                     }
+                },
+                "staleIfError": {
+                    "type": "boolean",
+                    "description": "Enables serving a stale object if there is an error\n"
+                },
+                "staleIfErrorTtl": {
+                    "type": "integer",
+                    "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
                 },
                 "sumologics": {
                     "type": "array",
@@ -7633,6 +7649,14 @@
                     "type": "string",
                     "description": "Description field for the service. Default `Managed by Terraform`\n"
                 },
+                "defaultHost": {
+                    "type": "string",
+                    "description": "The default hostname\n"
+                },
+                "defaultTtl": {
+                    "type": "integer",
+                    "description": "The default Time-to-live (TTL) for requests\n"
+                },
                 "dictionaries": {
                     "type": "array",
                     "items": {
@@ -7801,6 +7825,14 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeSplunk:ServiceComputeSplunk"
                     }
+                },
+                "staleIfError": {
+                    "type": "boolean",
+                    "description": "Enables serving a stale object if there is an error\n"
+                },
+                "staleIfErrorTtl": {
+                    "type": "integer",
+                    "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
                 },
                 "sumologics": {
                     "type": "array",
@@ -7860,6 +7892,14 @@
                     "comment": {
                         "type": "string",
                         "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    },
+                    "defaultHost": {
+                        "type": "string",
+                        "description": "The default hostname\n"
+                    },
+                    "defaultTtl": {
+                        "type": "integer",
+                        "description": "The default Time-to-live (TTL) for requests\n"
                     },
                     "dictionaries": {
                         "type": "array",
@@ -8029,6 +8069,14 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceComputeSplunk:ServiceComputeSplunk"
                         }
+                    },
+                    "staleIfError": {
+                        "type": "boolean",
+                        "description": "Enables serving a stale object if there is an error\n"
+                    },
+                    "staleIfErrorTtl": {
+                        "type": "integer",
+                        "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
                     },
                     "sumologics": {
                         "type": "array",
@@ -8870,6 +8918,14 @@
                         "$ref": "#/types/fastly:index/Servicev1Splunk:Servicev1Splunk"
                     }
                 },
+                "staleIfError": {
+                    "type": "boolean",
+                    "description": "Enables serving a stale object if there is an error\n"
+                },
+                "staleIfErrorTtl": {
+                    "type": "integer",
+                    "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
+                },
                 "sumologics": {
                     "type": "array",
                     "items": {
@@ -9155,6 +9211,14 @@
                     "items": {
                         "$ref": "#/types/fastly:index/Servicev1Splunk:Servicev1Splunk"
                     }
+                },
+                "staleIfError": {
+                    "type": "boolean",
+                    "description": "Enables serving a stale object if there is an error\n"
+                },
+                "staleIfErrorTtl": {
+                    "type": "integer",
+                    "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
                 },
                 "sumologics": {
                     "type": "array",
@@ -9448,6 +9512,14 @@
                         "items": {
                             "$ref": "#/types/fastly:index/Servicev1Splunk:Servicev1Splunk"
                         }
+                    },
+                    "staleIfError": {
+                        "type": "boolean",
+                        "description": "Enables serving a stale object if there is an error\n"
+                    },
+                    "staleIfErrorTtl": {
+                        "type": "integer",
+                        "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
                     },
                     "sumologics": {
                         "type": "array",

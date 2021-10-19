@@ -132,50 +132,6 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
-
-        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
-
-        If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
-
-        ## Example Usage
-        ### Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        config = pulumi.Config()
-        myacl_name = config.get("myaclName")
-        if myacl_name is None:
-            myacl_name = "My ACL"
-        myservice = fastly.Servicev1("myservice",
-            domains=[fastly.Servicev1DomainArgs(
-                name="demo.notexample.com",
-                comment="demo",
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
-                name="AWS S3 hosting",
-                port=80,
-            )],
-            acls=[fastly.Servicev1AclArgs(
-                name=myacl_name,
-            )],
-            force_destroy=True)
-        entries = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acls if d.name == myacl_name})]:
-            entries.append(fastly.ServiceACLEntriesv1(f"entries-{range['key']}",
-                service_id=myservice.id,
-                acl_id=range["value"],
-                entries=[fastly.ServiceACLEntriesv1EntryArgs(
-                    ip="127.0.0.1",
-                    subnet="24",
-                    negated=False,
-                    comment="ALC Entry 1",
-                )]))
-        ```
-
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
@@ -197,50 +153,6 @@ class ServiceACLEntriesv1(pulumi.CustomResource):
                  args: ServiceACLEntriesv1Args,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
-
-        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
-
-        If this provider is being used to populate the initial content of an ACL which you intend to manage via API or UI, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
-
-        ## Example Usage
-        ### Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        config = pulumi.Config()
-        myacl_name = config.get("myaclName")
-        if myacl_name is None:
-            myacl_name = "My ACL"
-        myservice = fastly.Servicev1("myservice",
-            domains=[fastly.Servicev1DomainArgs(
-                name="demo.notexample.com",
-                comment="demo",
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
-                name="AWS S3 hosting",
-                port=80,
-            )],
-            acls=[fastly.Servicev1AclArgs(
-                name=myacl_name,
-            )],
-            force_destroy=True)
-        entries = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acls if d.name == myacl_name})]:
-            entries.append(fastly.ServiceACLEntriesv1(f"entries-{range['key']}",
-                service_id=myservice.id,
-                acl_id=range["value"],
-                entries=[fastly.ServiceACLEntriesv1EntryArgs(
-                    ip="127.0.0.1",
-                    subnet="24",
-                    negated=False,
-                    comment="ALC Entry 1",
-                )]))
-        ```
-
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_acl_entries_v1.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.

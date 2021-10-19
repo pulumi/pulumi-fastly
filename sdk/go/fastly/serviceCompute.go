@@ -55,7 +55,11 @@ type ServiceCompute struct {
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
 	// Description field for the service. Default `Managed by Terraform`
-	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
+	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// The default hostname
+	DefaultHost pulumi.StringPtrOutput `pulumi:"defaultHost"`
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   pulumi.IntPtrOutput                 `pulumi:"defaultTtl"`
 	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
 	Directors    ServiceComputeDirectorArrayOutput   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
@@ -89,8 +93,12 @@ type ServiceCompute struct {
 	Papertrails ServiceComputePapertrailArrayOutput `pulumi:"papertrails"`
 	S3loggings  ServiceComputeS3loggingArrayOutput  `pulumi:"s3loggings"`
 	Splunks     ServiceComputeSplunkArrayOutput     `pulumi:"splunks"`
-	Sumologics  ServiceComputeSumologicArrayOutput  `pulumi:"sumologics"`
-	Syslogs     ServiceComputeSyslogArrayOutput     `pulumi:"syslogs"`
+	// Enables serving a stale object if there is an error
+	StaleIfError pulumi.BoolPtrOutput `pulumi:"staleIfError"`
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl pulumi.IntPtrOutput                `pulumi:"staleIfErrorTtl"`
+	Sumologics      ServiceComputeSumologicArrayOutput `pulumi:"sumologics"`
+	Syslogs         ServiceComputeSyslogArrayOutput    `pulumi:"syslogs"`
 	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
 }
@@ -143,7 +151,11 @@ type serviceComputeState struct {
 	// The latest cloned version by the provider
 	ClonedVersion *int `pulumi:"clonedVersion"`
 	// Description field for the service. Default `Managed by Terraform`
-	Comment      *string                    `pulumi:"comment"`
+	Comment *string `pulumi:"comment"`
+	// The default hostname
+	DefaultHost *string `pulumi:"defaultHost"`
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   *int                       `pulumi:"defaultTtl"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	Directors    []ServiceComputeDirector   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
@@ -177,8 +189,12 @@ type serviceComputeState struct {
 	Papertrails []ServiceComputePapertrail `pulumi:"papertrails"`
 	S3loggings  []ServiceComputeS3logging  `pulumi:"s3loggings"`
 	Splunks     []ServiceComputeSplunk     `pulumi:"splunks"`
-	Sumologics  []ServiceComputeSumologic  `pulumi:"sumologics"`
-	Syslogs     []ServiceComputeSyslog     `pulumi:"syslogs"`
+	// Enables serving a stale object if there is an error
+	StaleIfError *bool `pulumi:"staleIfError"`
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl *int                      `pulumi:"staleIfErrorTtl"`
+	Sumologics      []ServiceComputeSumologic `pulumi:"sumologics"`
+	Syslogs         []ServiceComputeSyslog    `pulumi:"syslogs"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -194,7 +210,11 @@ type ServiceComputeState struct {
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
 	// Description field for the service. Default `Managed by Terraform`
-	Comment      pulumi.StringPtrInput
+	Comment pulumi.StringPtrInput
+	// The default hostname
+	DefaultHost pulumi.StringPtrInput
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   pulumi.IntPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
 	Directors    ServiceComputeDirectorArrayInput
 	// A set of Domain names to serve as entry points for your Service
@@ -228,8 +248,12 @@ type ServiceComputeState struct {
 	Papertrails ServiceComputePapertrailArrayInput
 	S3loggings  ServiceComputeS3loggingArrayInput
 	Splunks     ServiceComputeSplunkArrayInput
-	Sumologics  ServiceComputeSumologicArrayInput
-	Syslogs     ServiceComputeSyslogArrayInput
+	// Enables serving a stale object if there is an error
+	StaleIfError pulumi.BoolPtrInput
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl pulumi.IntPtrInput
+	Sumologics      ServiceComputeSumologicArrayInput
+	Syslogs         ServiceComputeSyslogArrayInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
@@ -245,7 +269,11 @@ type serviceComputeArgs struct {
 	Bigqueryloggings    []ServiceComputeBigquerylogging    `pulumi:"bigqueryloggings"`
 	Blobstorageloggings []ServiceComputeBlobstoragelogging `pulumi:"blobstorageloggings"`
 	// Description field for the service. Default `Managed by Terraform`
-	Comment      *string                    `pulumi:"comment"`
+	Comment *string `pulumi:"comment"`
+	// The default hostname
+	DefaultHost *string `pulumi:"defaultHost"`
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   *int                       `pulumi:"defaultTtl"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	Directors    []ServiceComputeDirector   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
@@ -279,8 +307,12 @@ type serviceComputeArgs struct {
 	Papertrails []ServiceComputePapertrail `pulumi:"papertrails"`
 	S3loggings  []ServiceComputeS3logging  `pulumi:"s3loggings"`
 	Splunks     []ServiceComputeSplunk     `pulumi:"splunks"`
-	Sumologics  []ServiceComputeSumologic  `pulumi:"sumologics"`
-	Syslogs     []ServiceComputeSyslog     `pulumi:"syslogs"`
+	// Enables serving a stale object if there is an error
+	StaleIfError *bool `pulumi:"staleIfError"`
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl *int                      `pulumi:"staleIfErrorTtl"`
+	Sumologics      []ServiceComputeSumologic `pulumi:"sumologics"`
+	Syslogs         []ServiceComputeSyslog    `pulumi:"syslogs"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -293,7 +325,11 @@ type ServiceComputeArgs struct {
 	Bigqueryloggings    ServiceComputeBigqueryloggingArrayInput
 	Blobstorageloggings ServiceComputeBlobstorageloggingArrayInput
 	// Description field for the service. Default `Managed by Terraform`
-	Comment      pulumi.StringPtrInput
+	Comment pulumi.StringPtrInput
+	// The default hostname
+	DefaultHost pulumi.StringPtrInput
+	// The default Time-to-live (TTL) for requests
+	DefaultTtl   pulumi.IntPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
 	Directors    ServiceComputeDirectorArrayInput
 	// A set of Domain names to serve as entry points for your Service
@@ -327,8 +363,12 @@ type ServiceComputeArgs struct {
 	Papertrails ServiceComputePapertrailArrayInput
 	S3loggings  ServiceComputeS3loggingArrayInput
 	Splunks     ServiceComputeSplunkArrayInput
-	Sumologics  ServiceComputeSumologicArrayInput
-	Syslogs     ServiceComputeSyslogArrayInput
+	// Enables serving a stale object if there is an error
+	StaleIfError pulumi.BoolPtrInput
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl pulumi.IntPtrInput
+	Sumologics      ServiceComputeSumologicArrayInput
+	Syslogs         ServiceComputeSyslogArrayInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }

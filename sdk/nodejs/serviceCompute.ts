@@ -85,6 +85,14 @@ export class ServiceCompute extends pulumi.CustomResource {
      * Description field for the service. Default `Managed by Terraform`
      */
     public readonly comment!: pulumi.Output<string | undefined>;
+    /**
+     * The default hostname
+     */
+    public readonly defaultHost!: pulumi.Output<string | undefined>;
+    /**
+     * The default Time-to-live (TTL) for requests
+     */
+    public readonly defaultTtl!: pulumi.Output<number | undefined>;
     public readonly dictionaries!: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
     public readonly directors!: pulumi.Output<outputs.ServiceComputeDirector[] | undefined>;
     /**
@@ -126,6 +134,14 @@ export class ServiceCompute extends pulumi.CustomResource {
     public readonly papertrails!: pulumi.Output<outputs.ServiceComputePapertrail[] | undefined>;
     public readonly s3loggings!: pulumi.Output<outputs.ServiceComputeS3logging[] | undefined>;
     public readonly splunks!: pulumi.Output<outputs.ServiceComputeSplunk[] | undefined>;
+    /**
+     * Enables serving a stale object if there is an error
+     */
+    public readonly staleIfError!: pulumi.Output<boolean | undefined>;
+    /**
+     * The default time-to-live (TTL) for serving the stale object for the version
+     */
+    public readonly staleIfErrorTtl!: pulumi.Output<number | undefined>;
     public readonly sumologics!: pulumi.Output<outputs.ServiceComputeSumologic[] | undefined>;
     public readonly syslogs!: pulumi.Output<outputs.ServiceComputeSyslog[] | undefined>;
     /**
@@ -153,6 +169,8 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["blobstorageloggings"] = state ? state.blobstorageloggings : undefined;
             inputs["clonedVersion"] = state ? state.clonedVersion : undefined;
             inputs["comment"] = state ? state.comment : undefined;
+            inputs["defaultHost"] = state ? state.defaultHost : undefined;
+            inputs["defaultTtl"] = state ? state.defaultTtl : undefined;
             inputs["dictionaries"] = state ? state.dictionaries : undefined;
             inputs["directors"] = state ? state.directors : undefined;
             inputs["domains"] = state ? state.domains : undefined;
@@ -182,6 +200,8 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["papertrails"] = state ? state.papertrails : undefined;
             inputs["s3loggings"] = state ? state.s3loggings : undefined;
             inputs["splunks"] = state ? state.splunks : undefined;
+            inputs["staleIfError"] = state ? state.staleIfError : undefined;
+            inputs["staleIfErrorTtl"] = state ? state.staleIfErrorTtl : undefined;
             inputs["sumologics"] = state ? state.sumologics : undefined;
             inputs["syslogs"] = state ? state.syslogs : undefined;
             inputs["versionComment"] = state ? state.versionComment : undefined;
@@ -201,6 +221,8 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["bigqueryloggings"] = args ? args.bigqueryloggings : undefined;
             inputs["blobstorageloggings"] = args ? args.blobstorageloggings : undefined;
             inputs["comment"] = args ? args.comment : undefined;
+            inputs["defaultHost"] = args ? args.defaultHost : undefined;
+            inputs["defaultTtl"] = args ? args.defaultTtl : undefined;
             inputs["dictionaries"] = args ? args.dictionaries : undefined;
             inputs["directors"] = args ? args.directors : undefined;
             inputs["domains"] = args ? args.domains : undefined;
@@ -230,6 +252,8 @@ export class ServiceCompute extends pulumi.CustomResource {
             inputs["papertrails"] = args ? args.papertrails : undefined;
             inputs["s3loggings"] = args ? args.s3loggings : undefined;
             inputs["splunks"] = args ? args.splunks : undefined;
+            inputs["staleIfError"] = args ? args.staleIfError : undefined;
+            inputs["staleIfErrorTtl"] = args ? args.staleIfErrorTtl : undefined;
             inputs["sumologics"] = args ? args.sumologics : undefined;
             inputs["syslogs"] = args ? args.syslogs : undefined;
             inputs["versionComment"] = args ? args.versionComment : undefined;
@@ -266,6 +290,14 @@ export interface ServiceComputeState {
      * Description field for the service. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string>;
+    /**
+     * The default hostname
+     */
+    defaultHost?: pulumi.Input<string>;
+    /**
+     * The default Time-to-live (TTL) for requests
+     */
+    defaultTtl?: pulumi.Input<number>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
     directors?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDirector>[]>;
     /**
@@ -307,6 +339,14 @@ export interface ServiceComputeState {
     papertrails?: pulumi.Input<pulumi.Input<inputs.ServiceComputePapertrail>[]>;
     s3loggings?: pulumi.Input<pulumi.Input<inputs.ServiceComputeS3logging>[]>;
     splunks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeSplunk>[]>;
+    /**
+     * Enables serving a stale object if there is an error
+     */
+    staleIfError?: pulumi.Input<boolean>;
+    /**
+     * The default time-to-live (TTL) for serving the stale object for the version
+     */
+    staleIfErrorTtl?: pulumi.Input<number>;
     sumologics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeSumologic>[]>;
     syslogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeSyslog>[]>;
     /**
@@ -330,6 +370,14 @@ export interface ServiceComputeArgs {
      * Description field for the service. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string>;
+    /**
+     * The default hostname
+     */
+    defaultHost?: pulumi.Input<string>;
+    /**
+     * The default Time-to-live (TTL) for requests
+     */
+    defaultTtl?: pulumi.Input<number>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
     directors?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDirector>[]>;
     /**
@@ -371,6 +419,14 @@ export interface ServiceComputeArgs {
     papertrails?: pulumi.Input<pulumi.Input<inputs.ServiceComputePapertrail>[]>;
     s3loggings?: pulumi.Input<pulumi.Input<inputs.ServiceComputeS3logging>[]>;
     splunks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeSplunk>[]>;
+    /**
+     * Enables serving a stale object if there is an error
+     */
+    staleIfError?: pulumi.Input<boolean>;
+    /**
+     * The default time-to-live (TTL) for serving the stale object for the version
+     */
+    staleIfErrorTtl?: pulumi.Input<number>;
     sumologics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeSumologic>[]>;
     syslogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeSyslog>[]>;
     /**

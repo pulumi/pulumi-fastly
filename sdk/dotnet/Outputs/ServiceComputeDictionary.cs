@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
+        /// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `fastly.ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
         /// </summary>
         public readonly bool? WriteOnly;
 

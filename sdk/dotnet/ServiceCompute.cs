@@ -78,6 +78,18 @@ namespace Pulumi.Fastly
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
 
+        /// <summary>
+        /// The default hostname
+        /// </summary>
+        [Output("defaultHost")]
+        public Output<string?> DefaultHost { get; private set; } = null!;
+
+        /// <summary>
+        /// The default Time-to-live (TTL) for requests
+        /// </summary>
+        [Output("defaultTtl")]
+        public Output<int?> DefaultTtl { get; private set; } = null!;
+
         [Output("dictionaries")]
         public Output<ImmutableArray<Outputs.ServiceComputeDictionary>> Dictionaries { get; private set; } = null!;
 
@@ -177,6 +189,18 @@ namespace Pulumi.Fastly
         [Output("splunks")]
         public Output<ImmutableArray<Outputs.ServiceComputeSplunk>> Splunks { get; private set; } = null!;
 
+        /// <summary>
+        /// Enables serving a stale object if there is an error
+        /// </summary>
+        [Output("staleIfError")]
+        public Output<bool?> StaleIfError { get; private set; } = null!;
+
+        /// <summary>
+        /// The default time-to-live (TTL) for serving the stale object for the version
+        /// </summary>
+        [Output("staleIfErrorTtl")]
+        public Output<int?> StaleIfErrorTtl { get; private set; } = null!;
+
         [Output("sumologics")]
         public Output<ImmutableArray<Outputs.ServiceComputeSumologic>> Sumologics { get; private set; } = null!;
 
@@ -270,6 +294,18 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
+
+        /// <summary>
+        /// The default hostname
+        /// </summary>
+        [Input("defaultHost")]
+        public Input<string>? DefaultHost { get; set; }
+
+        /// <summary>
+        /// The default Time-to-live (TTL) for requests
+        /// </summary>
+        [Input("defaultTtl")]
+        public Input<int>? DefaultTtl { get; set; }
 
         [Input("dictionaries")]
         private InputList<Inputs.ServiceComputeDictionaryArgs>? _dictionaries;
@@ -501,6 +537,18 @@ namespace Pulumi.Fastly
             set => _splunks = value;
         }
 
+        /// <summary>
+        /// Enables serving a stale object if there is an error
+        /// </summary>
+        [Input("staleIfError")]
+        public Input<bool>? StaleIfError { get; set; }
+
+        /// <summary>
+        /// The default time-to-live (TTL) for serving the stale object for the version
+        /// </summary>
+        [Input("staleIfErrorTtl")]
+        public Input<int>? StaleIfErrorTtl { get; set; }
+
         [Input("sumologics")]
         private InputList<Inputs.ServiceComputeSumologicArgs>? _sumologics;
         public InputList<Inputs.ServiceComputeSumologicArgs> Sumologics
@@ -577,6 +625,18 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
+
+        /// <summary>
+        /// The default hostname
+        /// </summary>
+        [Input("defaultHost")]
+        public Input<string>? DefaultHost { get; set; }
+
+        /// <summary>
+        /// The default Time-to-live (TTL) for requests
+        /// </summary>
+        [Input("defaultTtl")]
+        public Input<int>? DefaultTtl { get; set; }
 
         [Input("dictionaries")]
         private InputList<Inputs.ServiceComputeDictionaryGetArgs>? _dictionaries;
@@ -807,6 +867,18 @@ namespace Pulumi.Fastly
             get => _splunks ?? (_splunks = new InputList<Inputs.ServiceComputeSplunkGetArgs>());
             set => _splunks = value;
         }
+
+        /// <summary>
+        /// Enables serving a stale object if there is an error
+        /// </summary>
+        [Input("staleIfError")]
+        public Input<bool>? StaleIfError { get; set; }
+
+        /// <summary>
+        /// The default time-to-live (TTL) for serving the stale object for the version
+        /// </summary>
+        [Input("staleIfErrorTtl")]
+        public Input<int>? StaleIfErrorTtl { get; set; }
 
         [Input("sumologics")]
         private InputList<Inputs.ServiceComputeSumologicGetArgs>? _sumologics;
