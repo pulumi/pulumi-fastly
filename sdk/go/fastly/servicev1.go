@@ -90,9 +90,13 @@ type Servicev1 struct {
 	S3loggings      Servicev1S3loggingArrayOutput      `pulumi:"s3loggings"`
 	Snippets        Servicev1SnippetArrayOutput        `pulumi:"snippets"`
 	Splunks         Servicev1SplunkArrayOutput         `pulumi:"splunks"`
-	Sumologics      Servicev1SumologicArrayOutput      `pulumi:"sumologics"`
-	Syslogs         Servicev1SyslogArrayOutput         `pulumi:"syslogs"`
-	Vcls            Servicev1VclArrayOutput            `pulumi:"vcls"`
+	// Enables serving a stale object if there is an error
+	StaleIfError pulumi.BoolPtrOutput `pulumi:"staleIfError"`
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl pulumi.IntPtrOutput           `pulumi:"staleIfErrorTtl"`
+	Sumologics      Servicev1SumologicArrayOutput `pulumi:"sumologics"`
+	Syslogs         Servicev1SyslogArrayOutput    `pulumi:"syslogs"`
+	Vcls            Servicev1VclArrayOutput       `pulumi:"vcls"`
 	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
 	Waf            Servicev1WafPtrOutput  `pulumi:"waf"`
@@ -185,9 +189,13 @@ type servicev1State struct {
 	S3loggings      []Servicev1S3logging      `pulumi:"s3loggings"`
 	Snippets        []Servicev1Snippet        `pulumi:"snippets"`
 	Splunks         []Servicev1Splunk         `pulumi:"splunks"`
-	Sumologics      []Servicev1Sumologic      `pulumi:"sumologics"`
-	Syslogs         []Servicev1Syslog         `pulumi:"syslogs"`
-	Vcls            []Servicev1Vcl            `pulumi:"vcls"`
+	// Enables serving a stale object if there is an error
+	StaleIfError *bool `pulumi:"staleIfError"`
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl *int                 `pulumi:"staleIfErrorTtl"`
+	Sumologics      []Servicev1Sumologic `pulumi:"sumologics"`
+	Syslogs         []Servicev1Syslog    `pulumi:"syslogs"`
+	Vcls            []Servicev1Vcl       `pulumi:"vcls"`
 	// Description field for the version
 	VersionComment *string       `pulumi:"versionComment"`
 	Waf            *Servicev1Waf `pulumi:"waf"`
@@ -249,6 +257,10 @@ type Servicev1State struct {
 	S3loggings      Servicev1S3loggingArrayInput
 	Snippets        Servicev1SnippetArrayInput
 	Splunks         Servicev1SplunkArrayInput
+	// Enables serving a stale object if there is an error
+	StaleIfError pulumi.BoolPtrInput
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl pulumi.IntPtrInput
 	Sumologics      Servicev1SumologicArrayInput
 	Syslogs         Servicev1SyslogArrayInput
 	Vcls            Servicev1VclArrayInput
@@ -313,9 +325,13 @@ type servicev1Args struct {
 	S3loggings      []Servicev1S3logging      `pulumi:"s3loggings"`
 	Snippets        []Servicev1Snippet        `pulumi:"snippets"`
 	Splunks         []Servicev1Splunk         `pulumi:"splunks"`
-	Sumologics      []Servicev1Sumologic      `pulumi:"sumologics"`
-	Syslogs         []Servicev1Syslog         `pulumi:"syslogs"`
-	Vcls            []Servicev1Vcl            `pulumi:"vcls"`
+	// Enables serving a stale object if there is an error
+	StaleIfError *bool `pulumi:"staleIfError"`
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl *int                 `pulumi:"staleIfErrorTtl"`
+	Sumologics      []Servicev1Sumologic `pulumi:"sumologics"`
+	Syslogs         []Servicev1Syslog    `pulumi:"syslogs"`
+	Vcls            []Servicev1Vcl       `pulumi:"vcls"`
 	// Description field for the version
 	VersionComment *string       `pulumi:"versionComment"`
 	Waf            *Servicev1Waf `pulumi:"waf"`
@@ -374,6 +390,10 @@ type Servicev1Args struct {
 	S3loggings      Servicev1S3loggingArrayInput
 	Snippets        Servicev1SnippetArrayInput
 	Splunks         Servicev1SplunkArrayInput
+	// Enables serving a stale object if there is an error
+	StaleIfError pulumi.BoolPtrInput
+	// The default time-to-live (TTL) for serving the stale object for the version
+	StaleIfErrorTtl pulumi.IntPtrInput
 	Sumologics      Servicev1SumologicArrayInput
 	Syslogs         Servicev1SyslogArrayInput
 	Vcls            Servicev1VclArrayInput

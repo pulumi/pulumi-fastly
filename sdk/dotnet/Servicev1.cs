@@ -499,6 +499,18 @@ namespace Pulumi.Fastly
         [Output("splunks")]
         public Output<ImmutableArray<Outputs.Servicev1Splunk>> Splunks { get; private set; } = null!;
 
+        /// <summary>
+        /// Enables serving a stale object if there is an error
+        /// </summary>
+        [Output("staleIfError")]
+        public Output<bool?> StaleIfError { get; private set; } = null!;
+
+        /// <summary>
+        /// The default time-to-live (TTL) for serving the stale object for the version
+        /// </summary>
+        [Output("staleIfErrorTtl")]
+        public Output<int?> StaleIfErrorTtl { get; private set; } = null!;
+
         [Output("sumologics")]
         public Output<ImmutableArray<Outputs.Servicev1Sumologic>> Sumologics { get; private set; } = null!;
 
@@ -907,6 +919,18 @@ namespace Pulumi.Fastly
             set => _splunks = value;
         }
 
+        /// <summary>
+        /// Enables serving a stale object if there is an error
+        /// </summary>
+        [Input("staleIfError")]
+        public Input<bool>? StaleIfError { get; set; }
+
+        /// <summary>
+        /// The default time-to-live (TTL) for serving the stale object for the version
+        /// </summary>
+        [Input("staleIfErrorTtl")]
+        public Input<int>? StaleIfErrorTtl { get; set; }
+
         [Input("sumologics")]
         private InputList<Inputs.Servicev1SumologicArgs>? _sumologics;
         public InputList<Inputs.Servicev1SumologicArgs> Sumologics
@@ -1302,6 +1326,18 @@ namespace Pulumi.Fastly
             get => _splunks ?? (_splunks = new InputList<Inputs.Servicev1SplunkGetArgs>());
             set => _splunks = value;
         }
+
+        /// <summary>
+        /// Enables serving a stale object if there is an error
+        /// </summary>
+        [Input("staleIfError")]
+        public Input<bool>? StaleIfError { get; set; }
+
+        /// <summary>
+        /// The default time-to-live (TTL) for serving the stale object for the version
+        /// </summary>
+        [Input("staleIfErrorTtl")]
+        public Input<int>? StaleIfErrorTtl { get; set; }
 
         [Input("sumologics")]
         private InputList<Inputs.Servicev1SumologicGetArgs>? _sumologics;

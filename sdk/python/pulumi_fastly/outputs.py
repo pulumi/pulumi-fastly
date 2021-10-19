@@ -254,7 +254,7 @@ class ServiceComputeBackend(dict):
         :param str ssl_ca_cert: CA certificate attached to origin.
         :param str ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
         :param bool ssl_check_cert: Be strict about checking SSL certs. Default `true`
-        :param str ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        :param str ssl_ciphers: Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         :param str ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
         :param str ssl_client_key: Client key attached to origin. Used when connecting to the backend
         :param str ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
@@ -449,7 +449,7 @@ class ServiceComputeBackend(dict):
     @pulumi.getter(name="sslCiphers")
     def ssl_ciphers(self) -> Optional[str]:
         """
-        Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         """
         return pulumi.get(self, "ssl_ciphers")
 
@@ -816,7 +816,7 @@ class ServiceComputeDictionary(dict):
         :param str name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         :param str dictionary_id: The ID of the dictionary
         :param bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
-        :param bool write_only: If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
+        :param bool write_only: If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
         """
         pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
@@ -854,7 +854,7 @@ class ServiceComputeDictionary(dict):
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[bool]:
         """
-        If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of this provider
+        If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
         """
         return pulumi.get(self, "write_only")
 
@@ -4279,7 +4279,7 @@ class Servicev1Backend(dict):
         :param str ssl_ca_cert: CA certificate attached to origin.
         :param str ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
         :param bool ssl_check_cert: Be strict about checking SSL certs. Default `true`
-        :param str ssl_ciphers: Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        :param str ssl_ciphers: Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         :param str ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
         :param str ssl_client_key: Client key attached to origin. Used when connecting to the backend
         :param str ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
@@ -4484,7 +4484,7 @@ class Servicev1Backend(dict):
     @pulumi.getter(name="sslCiphers")
     def ssl_ciphers(self) -> Optional[str]:
         """
-        Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         """
         return pulumi.get(self, "ssl_ciphers")
 
@@ -5078,7 +5078,7 @@ class Servicev1Dictionary(dict):
         :param str name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         :param str dictionary_id: The ID of the dictionary
         :param bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
-        :param bool write_only: If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider
+        :param bool write_only: If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
         """
         pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
@@ -5116,7 +5116,7 @@ class Servicev1Dictionary(dict):
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[bool]:
         """
-        If `true`, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is `false`. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of the provider
+        If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
         """
         return pulumi.get(self, "write_only")
 

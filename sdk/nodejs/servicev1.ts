@@ -324,6 +324,14 @@ export class Servicev1 extends pulumi.CustomResource {
     public readonly s3loggings!: pulumi.Output<outputs.Servicev1S3logging[] | undefined>;
     public readonly snippets!: pulumi.Output<outputs.Servicev1Snippet[] | undefined>;
     public readonly splunks!: pulumi.Output<outputs.Servicev1Splunk[] | undefined>;
+    /**
+     * Enables serving a stale object if there is an error
+     */
+    public readonly staleIfError!: pulumi.Output<boolean | undefined>;
+    /**
+     * The default time-to-live (TTL) for serving the stale object for the version
+     */
+    public readonly staleIfErrorTtl!: pulumi.Output<number | undefined>;
     public readonly sumologics!: pulumi.Output<outputs.Servicev1Sumologic[] | undefined>;
     public readonly syslogs!: pulumi.Output<outputs.Servicev1Syslog[] | undefined>;
     public readonly vcls!: pulumi.Output<outputs.Servicev1Vcl[] | undefined>;
@@ -392,6 +400,8 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["s3loggings"] = state ? state.s3loggings : undefined;
             inputs["snippets"] = state ? state.snippets : undefined;
             inputs["splunks"] = state ? state.splunks : undefined;
+            inputs["staleIfError"] = state ? state.staleIfError : undefined;
+            inputs["staleIfErrorTtl"] = state ? state.staleIfErrorTtl : undefined;
             inputs["sumologics"] = state ? state.sumologics : undefined;
             inputs["syslogs"] = state ? state.syslogs : undefined;
             inputs["vcls"] = state ? state.vcls : undefined;
@@ -446,6 +456,8 @@ export class Servicev1 extends pulumi.CustomResource {
             inputs["s3loggings"] = args ? args.s3loggings : undefined;
             inputs["snippets"] = args ? args.snippets : undefined;
             inputs["splunks"] = args ? args.splunks : undefined;
+            inputs["staleIfError"] = args ? args.staleIfError : undefined;
+            inputs["staleIfErrorTtl"] = args ? args.staleIfErrorTtl : undefined;
             inputs["sumologics"] = args ? args.sumologics : undefined;
             inputs["syslogs"] = args ? args.syslogs : undefined;
             inputs["vcls"] = args ? args.vcls : undefined;
@@ -538,6 +550,14 @@ export interface Servicev1State {
     s3loggings?: pulumi.Input<pulumi.Input<inputs.Servicev1S3logging>[]>;
     snippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Snippet>[]>;
     splunks?: pulumi.Input<pulumi.Input<inputs.Servicev1Splunk>[]>;
+    /**
+     * Enables serving a stale object if there is an error
+     */
+    staleIfError?: pulumi.Input<boolean>;
+    /**
+     * The default time-to-live (TTL) for serving the stale object for the version
+     */
+    staleIfErrorTtl?: pulumi.Input<number>;
     sumologics?: pulumi.Input<pulumi.Input<inputs.Servicev1Sumologic>[]>;
     syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
     vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;
@@ -617,6 +637,14 @@ export interface Servicev1Args {
     s3loggings?: pulumi.Input<pulumi.Input<inputs.Servicev1S3logging>[]>;
     snippets?: pulumi.Input<pulumi.Input<inputs.Servicev1Snippet>[]>;
     splunks?: pulumi.Input<pulumi.Input<inputs.Servicev1Splunk>[]>;
+    /**
+     * Enables serving a stale object if there is an error
+     */
+    staleIfError?: pulumi.Input<boolean>;
+    /**
+     * The default time-to-live (TTL) for serving the stale object for the version
+     */
+    staleIfErrorTtl?: pulumi.Input<number>;
     sumologics?: pulumi.Input<pulumi.Input<inputs.Servicev1Sumologic>[]>;
     syslogs?: pulumi.Input<pulumi.Input<inputs.Servicev1Syslog>[]>;
     vcls?: pulumi.Input<pulumi.Input<inputs.Servicev1Vcl>[]>;

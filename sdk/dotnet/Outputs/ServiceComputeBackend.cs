@@ -82,7 +82,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? SslCheckCert;
         /// <summary>
-        /// Comma separated list of OpenSSL Ciphers to try when negotiating to the backend
+        /// Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         /// </summary>
         public readonly string? SslCiphers;
         /// <summary>

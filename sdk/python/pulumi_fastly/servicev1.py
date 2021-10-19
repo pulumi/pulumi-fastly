@@ -59,6 +59,8 @@ class Servicev1Args:
                  s3loggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1S3loggingArgs']]]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SnippetArgs']]]] = None,
                  splunks: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SplunkArgs']]]] = None,
+                 stale_if_error: Optional[pulumi.Input[bool]] = None,
+                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]]] = None,
                  syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SyslogArgs']]]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1VclArgs']]]] = None,
@@ -73,6 +75,8 @@ class Servicev1Args:
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
+        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
@@ -162,6 +166,10 @@ class Servicev1Args:
             pulumi.set(__self__, "snippets", snippets)
         if splunks is not None:
             pulumi.set(__self__, "splunks", splunks)
+        if stale_if_error is not None:
+            pulumi.set(__self__, "stale_if_error", stale_if_error)
+        if stale_if_error_ttl is not None:
+            pulumi.set(__self__, "stale_if_error_ttl", stale_if_error_ttl)
         if sumologics is not None:
             pulumi.set(__self__, "sumologics", sumologics)
         if syslogs is not None:
@@ -591,6 +599,30 @@ class Servicev1Args:
         pulumi.set(self, "splunks", value)
 
     @property
+    @pulumi.getter(name="staleIfError")
+    def stale_if_error(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables serving a stale object if there is an error
+        """
+        return pulumi.get(self, "stale_if_error")
+
+    @stale_if_error.setter
+    def stale_if_error(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "stale_if_error", value)
+
+    @property
+    @pulumi.getter(name="staleIfErrorTtl")
+    def stale_if_error_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default time-to-live (TTL) for serving the stale object for the version
+        """
+        return pulumi.get(self, "stale_if_error_ttl")
+
+    @stale_if_error_ttl.setter
+    def stale_if_error_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "stale_if_error_ttl", value)
+
+    @property
     @pulumi.getter
     def sumologics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]]]:
         return pulumi.get(self, "sumologics")
@@ -688,6 +720,8 @@ class _Servicev1State:
                  s3loggings: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1S3loggingArgs']]]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SnippetArgs']]]] = None,
                  splunks: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SplunkArgs']]]] = None,
+                 stale_if_error: Optional[pulumi.Input[bool]] = None,
+                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]]] = None,
                  syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SyslogArgs']]]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1VclArgs']]]] = None,
@@ -704,6 +738,8 @@ class _Servicev1State:
         :param pulumi.Input[Sequence[pulumi.Input['Servicev1DomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
+        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         if acls is not None:
@@ -798,6 +834,10 @@ class _Servicev1State:
             pulumi.set(__self__, "snippets", snippets)
         if splunks is not None:
             pulumi.set(__self__, "splunks", splunks)
+        if stale_if_error is not None:
+            pulumi.set(__self__, "stale_if_error", stale_if_error)
+        if stale_if_error_ttl is not None:
+            pulumi.set(__self__, "stale_if_error_ttl", stale_if_error_ttl)
         if sumologics is not None:
             pulumi.set(__self__, "sumologics", sumologics)
         if syslogs is not None:
@@ -1251,6 +1291,30 @@ class _Servicev1State:
         pulumi.set(self, "splunks", value)
 
     @property
+    @pulumi.getter(name="staleIfError")
+    def stale_if_error(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables serving a stale object if there is an error
+        """
+        return pulumi.get(self, "stale_if_error")
+
+    @stale_if_error.setter
+    def stale_if_error(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "stale_if_error", value)
+
+    @property
+    @pulumi.getter(name="staleIfErrorTtl")
+    def stale_if_error_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default time-to-live (TTL) for serving the stale object for the version
+        """
+        return pulumi.get(self, "stale_if_error_ttl")
+
+    @stale_if_error_ttl.setter
+    def stale_if_error_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "stale_if_error_ttl", value)
+
+    @property
     @pulumi.getter
     def sumologics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Servicev1SumologicArgs']]]]:
         return pulumi.get(self, "sumologics")
@@ -1348,6 +1412,8 @@ class Servicev1(pulumi.CustomResource):
                  s3loggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1S3loggingArgs']]]]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SnippetArgs']]]]] = None,
                  splunks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SplunkArgs']]]]] = None,
+                 stale_if_error: Optional[pulumi.Input[bool]] = None,
+                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SumologicArgs']]]]] = None,
                  syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SyslogArgs']]]]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]]] = None,
@@ -1571,6 +1637,8 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1DomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
+        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         ...
@@ -1846,6 +1914,8 @@ class Servicev1(pulumi.CustomResource):
                  s3loggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1S3loggingArgs']]]]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SnippetArgs']]]]] = None,
                  splunks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SplunkArgs']]]]] = None,
+                 stale_if_error: Optional[pulumi.Input[bool]] = None,
+                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SumologicArgs']]]]] = None,
                  syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SyslogArgs']]]]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]]] = None,
@@ -1909,6 +1979,8 @@ class Servicev1(pulumi.CustomResource):
             __props__.__dict__["s3loggings"] = s3loggings
             __props__.__dict__["snippets"] = snippets
             __props__.__dict__["splunks"] = splunks
+            __props__.__dict__["stale_if_error"] = stale_if_error
+            __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
             __props__.__dict__["sumologics"] = sumologics
             __props__.__dict__["syslogs"] = syslogs
             __props__.__dict__["vcls"] = vcls
@@ -1972,6 +2044,8 @@ class Servicev1(pulumi.CustomResource):
             s3loggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1S3loggingArgs']]]]] = None,
             snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SnippetArgs']]]]] = None,
             splunks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SplunkArgs']]]]] = None,
+            stale_if_error: Optional[pulumi.Input[bool]] = None,
+            stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
             sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SumologicArgs']]]]] = None,
             syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1SyslogArgs']]]]] = None,
             vcls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1VclArgs']]]]] = None,
@@ -1993,6 +2067,8 @@ class Servicev1(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Servicev1DomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
+        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -2045,6 +2121,8 @@ class Servicev1(pulumi.CustomResource):
         __props__.__dict__["s3loggings"] = s3loggings
         __props__.__dict__["snippets"] = snippets
         __props__.__dict__["splunks"] = splunks
+        __props__.__dict__["stale_if_error"] = stale_if_error
+        __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
         __props__.__dict__["sumologics"] = sumologics
         __props__.__dict__["syslogs"] = syslogs
         __props__.__dict__["vcls"] = vcls
@@ -2308,6 +2386,22 @@ class Servicev1(pulumi.CustomResource):
     @pulumi.getter
     def splunks(self) -> pulumi.Output[Optional[Sequence['outputs.Servicev1Splunk']]]:
         return pulumi.get(self, "splunks")
+
+    @property
+    @pulumi.getter(name="staleIfError")
+    def stale_if_error(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enables serving a stale object if there is an error
+        """
+        return pulumi.get(self, "stale_if_error")
+
+    @property
+    @pulumi.getter(name="staleIfErrorTtl")
+    def stale_if_error_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        The default time-to-live (TTL) for serving the stale object for the version
+        """
+        return pulumi.get(self, "stale_if_error_ttl")
 
     @property
     @pulumi.getter
