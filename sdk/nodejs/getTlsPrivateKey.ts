@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -108,4 +107,38 @@ export interface GetTlsPrivateKeyResult {
      * Whether Fastly recommends replacing this private key.
      */
     readonly replace: boolean;
+}
+
+export function getTlsPrivateKeyOutput(args?: GetTlsPrivateKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyResult> {
+    return pulumi.output(args).apply(a => getTlsPrivateKey(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTlsPrivateKey.
+ */
+export interface GetTlsPrivateKeyOutputArgs {
+    /**
+     * Timestamp (GMT) when the private key was created.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Fastly private key ID. Conflicts with all the other filters
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The key length used to generate the private key.
+     */
+    keyLength?: pulumi.Input<number>;
+    /**
+     * The algorithm used to generate the private key. Must be RSA.
+     */
+    keyType?: pulumi.Input<string>;
+    /**
+     * The human-readable name assigned to the private key when uploaded.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * A hash of the associated public key, useful for safely identifying it.
+     */
+    publicKeySha1?: pulumi.Input<string>;
 }

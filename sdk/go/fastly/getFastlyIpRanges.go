@@ -32,8 +32,8 @@ import (
 // 					FromPort:       pulumi.Int(443),
 // 					ToPort:         pulumi.Int(443),
 // 					Protocol:       pulumi.String("tcp"),
-// 					CidrBlocks:     toPulumiStringArray(fastly.CidrBlocks),
-// 					Ipv6CidrBlocks: toPulumiStringArray(fastly.Ipv6CidrBlocks),
+// 					CidrBlocks:     interface{}(fastly.CidrBlocks),
+// 					Ipv6CidrBlocks: interface{}(fastly.Ipv6CidrBlocks),
 // 				},
 // 			},
 // 		})
@@ -42,13 +42,6 @@ import (
 // 		}
 // 		return nil
 // 	})
-// }
-// func toPulumiStringArray(arr []string) pulumi.StringArray {
-// 	var pulumiArr pulumi.StringArray
-// 	for _, v := range arr {
-// 		pulumiArr = append(pulumiArr, pulumi.String(v))
-// 	}
-// 	return pulumiArr
 // }
 // ```
 //

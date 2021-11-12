@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -15,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const exampleTlsCertificateIds = fastly.getTlsCertificateIds({});
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {certificateId: exampleTlsCertificateIds.then(exampleTlsCertificateIds => exampleTlsCertificateIds.ids[0])});
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {certificateId: exampleTlsCertificateIds.then(exampleTlsCertificateIds => exampleTlsCertificateIds.ids?[0])});
  * // ...
  * ```
  */

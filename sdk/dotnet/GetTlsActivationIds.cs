@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -16,6 +17,12 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetTlsActivationIdsResult> InvokeAsync(GetTlsActivationIdsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to get the list of TLS Activation identifiers in Fastly.
+        /// </summary>
+        public static Output<GetTlsActivationIdsResult> Invoke(GetTlsActivationIdsInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -28,6 +35,19 @@ namespace Pulumi.Fastly
         public string? CertificateId { get; set; }
 
         public GetTlsActivationIdsArgs()
+        {
+        }
+    }
+
+    public sealed class GetTlsActivationIdsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// ID of TLS certificate used to filter activations
+        /// </summary>
+        [Input("certificateId")]
+        public Input<string>? CertificateId { get; set; }
+
+        public GetTlsActivationIdsInvokeArgs()
         {
         }
     }

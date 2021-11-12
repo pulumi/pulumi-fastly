@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -113,4 +112,34 @@ export interface GetTlsCertificateResult {
      * Timestamp (GMT) when the certificate was last updated
      */
     readonly updatedAt: string;
+}
+
+export function getTlsCertificateOutput(args?: GetTlsCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsCertificateResult> {
+    return pulumi.output(args).apply(a => getTlsCertificate(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTlsCertificate.
+ */
+export interface GetTlsCertificateOutputArgs {
+    /**
+     * Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
+     */
+    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Unique ID assigned to certificate by Fastly
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The hostname for which a certificate was issued.
+     */
+    issuedTo?: pulumi.Input<string>;
+    /**
+     * The certificate authority that issued the certificate.
+     */
+    issuer?: pulumi.Input<string>;
+    /**
+     * Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
+     */
+    name?: pulumi.Input<string>;
 }

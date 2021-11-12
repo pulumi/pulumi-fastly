@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.LookupTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
+// 		_, err := fastly.LookupTlsPlatformCertificate(ctx, &GetTlsPlatformCertificateArgs{
 // 			Domains: []string{
 // 				"example.com",
 // 			},
@@ -74,4 +77,84 @@ type LookupTlsPlatformCertificateResult struct {
 	Replace bool `pulumi:"replace"`
 	// Timestamp (GMT) when the certificate was last updated.
 	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+func LookupTlsPlatformCertificateOutput(ctx *pulumi.Context, args LookupTlsPlatformCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupTlsPlatformCertificateResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupTlsPlatformCertificateResult, error) {
+			args := v.(LookupTlsPlatformCertificateArgs)
+			r, err := LookupTlsPlatformCertificate(ctx, &args, opts...)
+			return *r, err
+		}).(LookupTlsPlatformCertificateResultOutput)
+}
+
+// A collection of arguments for invoking getTlsPlatformCertificate.
+type LookupTlsPlatformCertificateOutputArgs struct {
+	// Domains that are listed in any certificate's Subject Alternative Names (SAN) list.
+	Domains pulumi.StringArrayInput `pulumi:"domains"`
+	// Unique ID assigned to certificate by Fastly. Conflicts with all the other filters.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (LookupTlsPlatformCertificateOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsPlatformCertificateArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTlsPlatformCertificate.
+type LookupTlsPlatformCertificateResultOutput struct{ *pulumi.OutputState }
+
+func (LookupTlsPlatformCertificateResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsPlatformCertificateResult)(nil)).Elem()
+}
+
+func (o LookupTlsPlatformCertificateResultOutput) ToLookupTlsPlatformCertificateResultOutput() LookupTlsPlatformCertificateResultOutput {
+	return o
+}
+
+func (o LookupTlsPlatformCertificateResultOutput) ToLookupTlsPlatformCertificateResultOutputWithContext(ctx context.Context) LookupTlsPlatformCertificateResultOutput {
+	return o
+}
+
+// ID of TLS configuration used to terminate TLS traffic.
+func (o LookupTlsPlatformCertificateResultOutput) ConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) string { return v.ConfigurationId }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate was created.
+func (o LookupTlsPlatformCertificateResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Domains that are listed in any certificate's Subject Alternative Names (SAN) list.
+func (o LookupTlsPlatformCertificateResultOutput) Domains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) []string { return v.Domains }).(pulumi.StringArrayOutput)
+}
+
+// Unique ID assigned to certificate by Fastly. Conflicts with all the other filters.
+func (o LookupTlsPlatformCertificateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate will expire.
+func (o LookupTlsPlatformCertificateResultOutput) NotAfter() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) string { return v.NotAfter }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate will become valid.
+func (o LookupTlsPlatformCertificateResultOutput) NotBefore() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) string { return v.NotBefore }).(pulumi.StringOutput)
+}
+
+// A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
+func (o LookupTlsPlatformCertificateResultOutput) Replace() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) bool { return v.Replace }).(pulumi.BoolOutput)
+}
+
+// Timestamp (GMT) when the certificate was last updated.
+func (o LookupTlsPlatformCertificateResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPlatformCertificateResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupTlsPlatformCertificateResultOutput{})
 }

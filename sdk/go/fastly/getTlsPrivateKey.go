@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,7 +32,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "demo-private-key"
-// 		demo, err := fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
+// 		demo, err := fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
 // 			Name: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -81,4 +84,87 @@ type LookupTlsPrivateKeyResult struct {
 	PublicKeySha1 string `pulumi:"publicKeySha1"`
 	// Whether Fastly recommends replacing this private key.
 	Replace bool `pulumi:"replace"`
+}
+
+func LookupTlsPrivateKeyOutput(ctx *pulumi.Context, args LookupTlsPrivateKeyOutputArgs, opts ...pulumi.InvokeOption) LookupTlsPrivateKeyResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupTlsPrivateKeyResult, error) {
+			args := v.(LookupTlsPrivateKeyArgs)
+			r, err := LookupTlsPrivateKey(ctx, &args, opts...)
+			return *r, err
+		}).(LookupTlsPrivateKeyResultOutput)
+}
+
+// A collection of arguments for invoking getTlsPrivateKey.
+type LookupTlsPrivateKeyOutputArgs struct {
+	// Timestamp (GMT) when the private key was created.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Fastly private key ID. Conflicts with all the other filters
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The key length used to generate the private key.
+	KeyLength pulumi.IntPtrInput `pulumi:"keyLength"`
+	// The algorithm used to generate the private key. Must be RSA.
+	KeyType pulumi.StringPtrInput `pulumi:"keyType"`
+	// The human-readable name assigned to the private key when uploaded.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// A hash of the associated public key, useful for safely identifying it.
+	PublicKeySha1 pulumi.StringPtrInput `pulumi:"publicKeySha1"`
+}
+
+func (LookupTlsPrivateKeyOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsPrivateKeyArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTlsPrivateKey.
+type LookupTlsPrivateKeyResultOutput struct{ *pulumi.OutputState }
+
+func (LookupTlsPrivateKeyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsPrivateKeyResult)(nil)).Elem()
+}
+
+func (o LookupTlsPrivateKeyResultOutput) ToLookupTlsPrivateKeyResultOutput() LookupTlsPrivateKeyResultOutput {
+	return o
+}
+
+func (o LookupTlsPrivateKeyResultOutput) ToLookupTlsPrivateKeyResultOutputWithContext(ctx context.Context) LookupTlsPrivateKeyResultOutput {
+	return o
+}
+
+// Timestamp (GMT) when the private key was created.
+func (o LookupTlsPrivateKeyResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPrivateKeyResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Fastly private key ID. Conflicts with all the other filters
+func (o LookupTlsPrivateKeyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPrivateKeyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The key length used to generate the private key.
+func (o LookupTlsPrivateKeyResultOutput) KeyLength() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTlsPrivateKeyResult) int { return v.KeyLength }).(pulumi.IntOutput)
+}
+
+// The algorithm used to generate the private key. Must be RSA.
+func (o LookupTlsPrivateKeyResultOutput) KeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPrivateKeyResult) string { return v.KeyType }).(pulumi.StringOutput)
+}
+
+// The human-readable name assigned to the private key when uploaded.
+func (o LookupTlsPrivateKeyResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPrivateKeyResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A hash of the associated public key, useful for safely identifying it.
+func (o LookupTlsPrivateKeyResultOutput) PublicKeySha1() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsPrivateKeyResult) string { return v.PublicKeySha1 }).(pulumi.StringOutput)
+}
+
+// Whether Fastly recommends replacing this private key.
+func (o LookupTlsPrivateKeyResultOutput) Replace() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupTlsPrivateKeyResult) bool { return v.Replace }).(pulumi.BoolOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupTlsPrivateKeyResultOutput{})
 }

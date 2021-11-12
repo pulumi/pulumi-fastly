@@ -12,6 +12,7 @@ __all__ = [
     'GetTlsCertificateResult',
     'AwaitableGetTlsCertificateResult',
     'get_tls_certificate',
+    'get_tls_certificate_output',
 ]
 
 @pulumi.output_type
@@ -204,3 +205,38 @@ def get_tls_certificate(domains: Optional[Sequence[str]] = None,
         serial_number=__ret__.serial_number,
         signature_algorithm=__ret__.signature_algorithm,
         updated_at=__ret__.updated_at)
+
+
+@_utilities.lift_output_func(get_tls_certificate)
+def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                               id: Optional[pulumi.Input[Optional[str]]] = None,
+                               issued_to: Optional[pulumi.Input[Optional[str]]] = None,
+                               issuer: Optional[pulumi.Input[Optional[str]]] = None,
+                               name: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsCertificateResult]:
+    """
+    Use this data source to get information of a TLS certificate for use with other resources.
+
+    > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+    of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+    with any of the others.
+
+    > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example = fastly.get_tls_certificate(name="example.com")
+    ```
+
+
+    :param Sequence[str] domains: Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
+    :param str id: Unique ID assigned to certificate by Fastly
+    :param str issued_to: The hostname for which a certificate was issued.
+    :param str issuer: The certificate authority that issued the certificate.
+    :param str name: Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
+    """
+    ...

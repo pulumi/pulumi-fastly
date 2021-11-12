@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -66,4 +65,18 @@ export interface GetTlsDomainResult {
      * IDs of the subscriptions associated with the domain.
      */
     readonly tlsSubscriptionIds: string[];
+}
+
+export function getTlsDomainOutput(args: GetTlsDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsDomainResult> {
+    return pulumi.output(args).apply(a => getTlsDomain(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTlsDomain.
+ */
+export interface GetTlsDomainOutputArgs {
+    /**
+     * Domain name to look up activations, certificates and subscriptions for.
+     */
+    domain: pulumi.Input<string>;
 }

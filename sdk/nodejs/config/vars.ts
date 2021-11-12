@@ -4,17 +4,39 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("fastly");
+declare var exports: any;
+const __config = new pulumi.Config("fastly");
 
 /**
  * Fastly API Key from https://app.fastly.com/#account
  */
-export let apiKey: string | undefined = __config.get("apiKey");
+export declare const apiKey: string | undefined;
+Object.defineProperty(exports, "apiKey", {
+    get() {
+        return __config.get("apiKey");
+    },
+    enumerable: true,
+});
+
 /**
  * Fastly API URL
  */
-export let baseUrl: string | undefined = __config.get("baseUrl");
+export declare const baseUrl: string | undefined;
+Object.defineProperty(exports, "baseUrl", {
+    get() {
+        return __config.get("baseUrl");
+    },
+    enumerable: true,
+});
+
 /**
  * Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
  */
-export let noAuth: boolean | undefined = __config.getObject<boolean>("noAuth");
+export declare const noAuth: boolean | undefined;
+Object.defineProperty(exports, "noAuth", {
+    get() {
+        return __config.getObject<boolean>("noAuth");
+    },
+    enumerable: true,
+});
+

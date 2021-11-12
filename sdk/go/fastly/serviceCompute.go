@@ -439,7 +439,7 @@ type ServiceComputeArrayInput interface {
 type ServiceComputeArray []ServiceComputeInput
 
 func (ServiceComputeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ServiceCompute)(nil))
+	return reflect.TypeOf((*[]*ServiceCompute)(nil)).Elem()
 }
 
 func (i ServiceComputeArray) ToServiceComputeArrayOutput() ServiceComputeArrayOutput {
@@ -464,7 +464,7 @@ type ServiceComputeMapInput interface {
 type ServiceComputeMap map[string]ServiceComputeInput
 
 func (ServiceComputeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ServiceCompute)(nil))
+	return reflect.TypeOf((*map[string]*ServiceCompute)(nil)).Elem()
 }
 
 func (i ServiceComputeMap) ToServiceComputeMapOutput() ServiceComputeMapOutput {
@@ -475,9 +475,7 @@ func (i ServiceComputeMap) ToServiceComputeMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeMapOutput)
 }
 
-type ServiceComputeOutput struct {
-	*pulumi.OutputState
-}
+type ServiceComputeOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ServiceCompute)(nil))
@@ -496,14 +494,12 @@ func (o ServiceComputeOutput) ToServiceComputePtrOutput() ServiceComputePtrOutpu
 }
 
 func (o ServiceComputeOutput) ToServiceComputePtrOutputWithContext(ctx context.Context) ServiceComputePtrOutput {
-	return o.ApplyT(func(v ServiceCompute) *ServiceCompute {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceCompute) *ServiceCompute {
 		return &v
 	}).(ServiceComputePtrOutput)
 }
 
-type ServiceComputePtrOutput struct {
-	*pulumi.OutputState
-}
+type ServiceComputePtrOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ServiceCompute)(nil))
@@ -515,6 +511,16 @@ func (o ServiceComputePtrOutput) ToServiceComputePtrOutput() ServiceComputePtrOu
 
 func (o ServiceComputePtrOutput) ToServiceComputePtrOutputWithContext(ctx context.Context) ServiceComputePtrOutput {
 	return o
+}
+
+func (o ServiceComputePtrOutput) Elem() ServiceComputeOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceCompute {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceCompute
+		return ret
+	}).(ServiceComputeOutput)
 }
 
 type ServiceComputeArrayOutput struct{ *pulumi.OutputState }
@@ -558,6 +564,10 @@ func (o ServiceComputeMapOutput) MapIndex(k pulumi.StringInput) ServiceComputeOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeInput)(nil)).Elem(), &ServiceCompute{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePtrInput)(nil)).Elem(), &ServiceCompute{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeArrayInput)(nil)).Elem(), ServiceComputeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeMapInput)(nil)).Elem(), ServiceComputeMap{})
 	pulumi.RegisterOutputType(ServiceComputeOutput{})
 	pulumi.RegisterOutputType(ServiceComputePtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeArrayOutput{})

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetTlsDomainResult> InvokeAsync(GetTlsDomainArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var domain = Output.Create(Fastly.GetTlsDomain.InvokeAsync(new Fastly.GetTlsDomainArgs
+        ///         {
+        ///             Domain = "example.com",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetTlsDomainResult> Invoke(GetTlsDomainInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainInvokeArgs(), options.WithVersion());
     }
 
 
@@ -51,6 +81,19 @@ namespace Pulumi.Fastly
         public string Domain { get; set; } = null!;
 
         public GetTlsDomainArgs()
+        {
+        }
+    }
+
+    public sealed class GetTlsDomainInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Domain name to look up activations, certificates and subscriptions for.
+        /// </summary>
+        [Input("domain", required: true)]
+        public Input<string> Domain { get; set; } = null!;
+
+        public GetTlsDomainInvokeArgs()
         {
         }
     }

@@ -13,6 +13,7 @@ __all__ = [
     'GetTlsConfigurationResult',
     'AwaitableGetTlsConfigurationResult',
     'get_tls_configuration',
+    'get_tls_configuration_output',
 ]
 
 @pulumi.output_type
@@ -197,3 +198,42 @@ def get_tls_configuration(default: Optional[bool] = None,
         tls_protocols=__ret__.tls_protocols,
         tls_service=__ret__.tls_service,
         updated_at=__ret__.updated_at)
+
+
+@_utilities.lift_output_func(get_tls_configuration)
+def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]] = None,
+                                 http_protocols: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                 id: Optional[pulumi.Input[Optional[str]]] = None,
+                                 name: Optional[pulumi.Input[Optional[str]]] = None,
+                                 tls_protocols: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                 tls_service: Optional[pulumi.Input[Optional[str]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsConfigurationResult]:
+    """
+    Use this data source to get the ID of a TLS configuration for use with other resources.
+
+    > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+    of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+    with any of the others.
+
+    > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_tls_configuration = fastly.get_tls_configuration(default=True)
+    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration.id)
+    # ...
+    ```
+
+
+    :param bool default: Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
+    :param Sequence[str] http_protocols: HTTP protocols available on the TLS configuration.
+    :param str id: ID of the TLS configuration obtained from the Fastly API or another data source. Conflicts with all the other filters.
+    :param str name: Custom name of the TLS configuration.
+    :param Sequence[str] tls_protocols: TLS protocols available on the TLS configuration.
+    :param str tls_service: Whether the configuration should support the `PLATFORM` or `CUSTOM` TLS service.
+    """
+    ...

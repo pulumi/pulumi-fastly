@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.GetTlsDomain(ctx, &fastly.GetTlsDomainArgs{
+// 		_, err := fastly.GetTlsDomain(ctx, &GetTlsDomainArgs{
 // 			Domain: "example.com",
 // 		}, nil)
 // 		if err != nil {
@@ -58,4 +61,67 @@ type GetTlsDomainResult struct {
 	TlsCertificateIds []string `pulumi:"tlsCertificateIds"`
 	// IDs of the subscriptions associated with the domain.
 	TlsSubscriptionIds []string `pulumi:"tlsSubscriptionIds"`
+}
+
+func GetTlsDomainOutput(ctx *pulumi.Context, args GetTlsDomainOutputArgs, opts ...pulumi.InvokeOption) GetTlsDomainResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetTlsDomainResult, error) {
+			args := v.(GetTlsDomainArgs)
+			r, err := GetTlsDomain(ctx, &args, opts...)
+			return *r, err
+		}).(GetTlsDomainResultOutput)
+}
+
+// A collection of arguments for invoking getTlsDomain.
+type GetTlsDomainOutputArgs struct {
+	// Domain name to look up activations, certificates and subscriptions for.
+	Domain pulumi.StringInput `pulumi:"domain"`
+}
+
+func (GetTlsDomainOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsDomainArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTlsDomain.
+type GetTlsDomainResultOutput struct{ *pulumi.OutputState }
+
+func (GetTlsDomainResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsDomainResult)(nil)).Elem()
+}
+
+func (o GetTlsDomainResultOutput) ToGetTlsDomainResultOutput() GetTlsDomainResultOutput {
+	return o
+}
+
+func (o GetTlsDomainResultOutput) ToGetTlsDomainResultOutputWithContext(ctx context.Context) GetTlsDomainResultOutput {
+	return o
+}
+
+// Domain name to look up activations, certificates and subscriptions for.
+func (o GetTlsDomainResultOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsDomainResult) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTlsDomainResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsDomainResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// IDs of the activations associated with the domain.
+func (o GetTlsDomainResultOutput) TlsActivationIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsDomainResult) []string { return v.TlsActivationIds }).(pulumi.StringArrayOutput)
+}
+
+// IDs of the certificates associated with the domain.
+func (o GetTlsDomainResultOutput) TlsCertificateIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsDomainResult) []string { return v.TlsCertificateIds }).(pulumi.StringArrayOutput)
+}
+
+// IDs of the subscriptions associated with the domain.
+func (o GetTlsDomainResultOutput) TlsSubscriptionIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsDomainResult) []string { return v.TlsSubscriptionIds }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTlsDomainResultOutput{})
 }

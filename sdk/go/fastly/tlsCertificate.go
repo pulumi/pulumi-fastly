@@ -209,7 +209,7 @@ type TlsCertificateArrayInput interface {
 type TlsCertificateArray []TlsCertificateInput
 
 func (TlsCertificateArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*TlsCertificate)(nil))
+	return reflect.TypeOf((*[]*TlsCertificate)(nil)).Elem()
 }
 
 func (i TlsCertificateArray) ToTlsCertificateArrayOutput() TlsCertificateArrayOutput {
@@ -234,7 +234,7 @@ type TlsCertificateMapInput interface {
 type TlsCertificateMap map[string]TlsCertificateInput
 
 func (TlsCertificateMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*TlsCertificate)(nil))
+	return reflect.TypeOf((*map[string]*TlsCertificate)(nil)).Elem()
 }
 
 func (i TlsCertificateMap) ToTlsCertificateMapOutput() TlsCertificateMapOutput {
@@ -245,9 +245,7 @@ func (i TlsCertificateMap) ToTlsCertificateMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(TlsCertificateMapOutput)
 }
 
-type TlsCertificateOutput struct {
-	*pulumi.OutputState
-}
+type TlsCertificateOutput struct{ *pulumi.OutputState }
 
 func (TlsCertificateOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*TlsCertificate)(nil))
@@ -266,14 +264,12 @@ func (o TlsCertificateOutput) ToTlsCertificatePtrOutput() TlsCertificatePtrOutpu
 }
 
 func (o TlsCertificateOutput) ToTlsCertificatePtrOutputWithContext(ctx context.Context) TlsCertificatePtrOutput {
-	return o.ApplyT(func(v TlsCertificate) *TlsCertificate {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TlsCertificate) *TlsCertificate {
 		return &v
 	}).(TlsCertificatePtrOutput)
 }
 
-type TlsCertificatePtrOutput struct {
-	*pulumi.OutputState
-}
+type TlsCertificatePtrOutput struct{ *pulumi.OutputState }
 
 func (TlsCertificatePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**TlsCertificate)(nil))
@@ -285,6 +281,16 @@ func (o TlsCertificatePtrOutput) ToTlsCertificatePtrOutput() TlsCertificatePtrOu
 
 func (o TlsCertificatePtrOutput) ToTlsCertificatePtrOutputWithContext(ctx context.Context) TlsCertificatePtrOutput {
 	return o
+}
+
+func (o TlsCertificatePtrOutput) Elem() TlsCertificateOutput {
+	return o.ApplyT(func(v *TlsCertificate) TlsCertificate {
+		if v != nil {
+			return *v
+		}
+		var ret TlsCertificate
+		return ret
+	}).(TlsCertificateOutput)
 }
 
 type TlsCertificateArrayOutput struct{ *pulumi.OutputState }
@@ -328,6 +334,10 @@ func (o TlsCertificateMapOutput) MapIndex(k pulumi.StringInput) TlsCertificateOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsCertificateInput)(nil)).Elem(), &TlsCertificate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsCertificatePtrInput)(nil)).Elem(), &TlsCertificate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsCertificateArrayInput)(nil)).Elem(), TlsCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsCertificateMapInput)(nil)).Elem(), TlsCertificateMap{})
 	pulumi.RegisterOutputType(TlsCertificateOutput{})
 	pulumi.RegisterOutputType(TlsCertificatePtrOutput{})
 	pulumi.RegisterOutputType(TlsCertificateArrayOutput{})

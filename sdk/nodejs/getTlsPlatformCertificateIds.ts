@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -16,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * const exampleTlsPlatformCertificateIds = fastly.getTlsPlatformCertificateIds({});
  * const exampleTlsPlatformCertificate = exampleTlsPlatformCertificateIds.then(exampleTlsPlatformCertificateIds => fastly.getTlsPlatformCertificate({
- *     id: exampleTlsPlatformCertificateIds.ids[0],
+ *     id: exampleTlsPlatformCertificateIds.ids?[0],
  * }));
  * ```
  */

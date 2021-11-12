@@ -8,26 +8,30 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = [
-    'api_key',
-    'base_url',
-    'no_auth',
-]
+import types
 
 __config__ = pulumi.Config('fastly')
 
-api_key = __config__.get('apiKey')
-"""
-Fastly API Key from https://app.fastly.com/#account
-"""
 
-base_url = __config__.get('baseUrl')
-"""
-Fastly API URL
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def api_key(self) -> Optional[str]:
+        """
+        Fastly API Key from https://app.fastly.com/#account
+        """
+        return __config__.get('apiKey')
 
-no_auth = __config__.get('noAuth')
-"""
-Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
-"""
+    @property
+    def base_url(self) -> Optional[str]:
+        """
+        Fastly API URL
+        """
+        return __config__.get('baseUrl')
+
+    @property
+    def no_auth(self) -> Optional[bool]:
+        """
+        Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        """
+        return __config__.get_bool('noAuth')
 

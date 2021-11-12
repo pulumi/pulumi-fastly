@@ -12,6 +12,7 @@ __all__ = [
     'GetTlsSubscriptionResult',
     'AwaitableGetTlsSubscriptionResult',
     'get_tls_subscription',
+    'get_tls_subscription_output',
 ]
 
 @pulumi.output_type
@@ -169,3 +170,30 @@ def get_tls_subscription(certificate_authority: Optional[str] = None,
         id=__ret__.id,
         state=__ret__.state,
         updated_at=__ret__.updated_at)
+
+
+@_utilities.lift_output_func(get_tls_subscription)
+def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Optional[str]]] = None,
+                                configuration_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                domains: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                id: Optional[pulumi.Input[Optional[str]]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsSubscriptionResult]:
+    """
+    Use this data source to get information about a TLS subscription.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example = fastly.get_tls_subscription(domains=["example.com"])
+    ```
+
+
+    :param str certificate_authority: The entity that issues and certifies the TLS certificates for the subscription.
+    :param str configuration_id: ID of TLS configuration used to terminate TLS traffic.
+    :param Sequence[str] domains: List of domains on which to enable TLS.
+    :param str id: ID of TLS subscription. Conflicts with all the other filters.
+    """
+    ...

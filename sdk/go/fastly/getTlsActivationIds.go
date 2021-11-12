@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,4 +34,57 @@ type GetTlsActivationIdsResult struct {
 	Id string `pulumi:"id"`
 	// List of IDs of the TLS Activations.
 	Ids []string `pulumi:"ids"`
+}
+
+func GetTlsActivationIdsOutput(ctx *pulumi.Context, args GetTlsActivationIdsOutputArgs, opts ...pulumi.InvokeOption) GetTlsActivationIdsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetTlsActivationIdsResult, error) {
+			args := v.(GetTlsActivationIdsArgs)
+			r, err := GetTlsActivationIds(ctx, &args, opts...)
+			return *r, err
+		}).(GetTlsActivationIdsResultOutput)
+}
+
+// A collection of arguments for invoking getTlsActivationIds.
+type GetTlsActivationIdsOutputArgs struct {
+	// ID of TLS certificate used to filter activations
+	CertificateId pulumi.StringPtrInput `pulumi:"certificateId"`
+}
+
+func (GetTlsActivationIdsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsActivationIdsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTlsActivationIds.
+type GetTlsActivationIdsResultOutput struct{ *pulumi.OutputState }
+
+func (GetTlsActivationIdsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsActivationIdsResult)(nil)).Elem()
+}
+
+func (o GetTlsActivationIdsResultOutput) ToGetTlsActivationIdsResultOutput() GetTlsActivationIdsResultOutput {
+	return o
+}
+
+func (o GetTlsActivationIdsResultOutput) ToGetTlsActivationIdsResultOutputWithContext(ctx context.Context) GetTlsActivationIdsResultOutput {
+	return o
+}
+
+// ID of TLS certificate used to filter activations
+func (o GetTlsActivationIdsResultOutput) CertificateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetTlsActivationIdsResult) *string { return v.CertificateId }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTlsActivationIdsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsActivationIdsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IDs of the TLS Activations.
+func (o GetTlsActivationIdsResultOutput) Ids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsActivationIdsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTlsActivationIdsResultOutput{})
 }

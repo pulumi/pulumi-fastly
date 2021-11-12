@@ -9,4 +9,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Fastly.Inputs
 {
+
+    public sealed class TlsSubscriptionManagedDnsChallengeArgs : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        /// </summary>
+        [Input("recordName")]
+        public Input<string>? RecordName { get; set; }
+
+        /// <summary>
+        /// The type of DNS record to add, e.g. `A`, or `CNAME`.
+        /// </summary>
+        [Input("recordType")]
+        public Input<string>? RecordType { get; set; }
+
+        /// <summary>
+        /// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        /// </summary>
+        [Input("recordValue")]
+        public Input<string>? RecordValue { get; set; }
+
+        public TlsSubscriptionManagedDnsChallengeArgs()
+        {
+        }
+    }
 }

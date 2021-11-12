@@ -170,7 +170,7 @@ type ServiceACLEntriesv1ArrayInput interface {
 type ServiceACLEntriesv1Array []ServiceACLEntriesv1Input
 
 func (ServiceACLEntriesv1Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ServiceACLEntriesv1)(nil))
+	return reflect.TypeOf((*[]*ServiceACLEntriesv1)(nil)).Elem()
 }
 
 func (i ServiceACLEntriesv1Array) ToServiceACLEntriesv1ArrayOutput() ServiceACLEntriesv1ArrayOutput {
@@ -195,7 +195,7 @@ type ServiceACLEntriesv1MapInput interface {
 type ServiceACLEntriesv1Map map[string]ServiceACLEntriesv1Input
 
 func (ServiceACLEntriesv1Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ServiceACLEntriesv1)(nil))
+	return reflect.TypeOf((*map[string]*ServiceACLEntriesv1)(nil)).Elem()
 }
 
 func (i ServiceACLEntriesv1Map) ToServiceACLEntriesv1MapOutput() ServiceACLEntriesv1MapOutput {
@@ -206,9 +206,7 @@ func (i ServiceACLEntriesv1Map) ToServiceACLEntriesv1MapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesv1MapOutput)
 }
 
-type ServiceACLEntriesv1Output struct {
-	*pulumi.OutputState
-}
+type ServiceACLEntriesv1Output struct{ *pulumi.OutputState }
 
 func (ServiceACLEntriesv1Output) ElementType() reflect.Type {
 	return reflect.TypeOf((*ServiceACLEntriesv1)(nil))
@@ -227,14 +225,12 @@ func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1PtrOutput() ServiceACLEn
 }
 
 func (o ServiceACLEntriesv1Output) ToServiceACLEntriesv1PtrOutputWithContext(ctx context.Context) ServiceACLEntriesv1PtrOutput {
-	return o.ApplyT(func(v ServiceACLEntriesv1) *ServiceACLEntriesv1 {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceACLEntriesv1) *ServiceACLEntriesv1 {
 		return &v
 	}).(ServiceACLEntriesv1PtrOutput)
 }
 
-type ServiceACLEntriesv1PtrOutput struct {
-	*pulumi.OutputState
-}
+type ServiceACLEntriesv1PtrOutput struct{ *pulumi.OutputState }
 
 func (ServiceACLEntriesv1PtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ServiceACLEntriesv1)(nil))
@@ -246,6 +242,16 @@ func (o ServiceACLEntriesv1PtrOutput) ToServiceACLEntriesv1PtrOutput() ServiceAC
 
 func (o ServiceACLEntriesv1PtrOutput) ToServiceACLEntriesv1PtrOutputWithContext(ctx context.Context) ServiceACLEntriesv1PtrOutput {
 	return o
+}
+
+func (o ServiceACLEntriesv1PtrOutput) Elem() ServiceACLEntriesv1Output {
+	return o.ApplyT(func(v *ServiceACLEntriesv1) ServiceACLEntriesv1 {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceACLEntriesv1
+		return ret
+	}).(ServiceACLEntriesv1Output)
 }
 
 type ServiceACLEntriesv1ArrayOutput struct{ *pulumi.OutputState }
@@ -289,6 +295,10 @@ func (o ServiceACLEntriesv1MapOutput) MapIndex(k pulumi.StringInput) ServiceACLE
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesv1Input)(nil)).Elem(), &ServiceACLEntriesv1{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesv1PtrInput)(nil)).Elem(), &ServiceACLEntriesv1{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesv1ArrayInput)(nil)).Elem(), ServiceACLEntriesv1Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesv1MapInput)(nil)).Elem(), ServiceACLEntriesv1Map{})
 	pulumi.RegisterOutputType(ServiceACLEntriesv1Output{})
 	pulumi.RegisterOutputType(ServiceACLEntriesv1PtrOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesv1ArrayOutput{})

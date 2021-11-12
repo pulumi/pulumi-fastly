@@ -10,6 +10,438 @@ import * as utilities from "./utilities";
  *
  * > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
  *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ * });
+ * ```
+ *
+ * Usage with rules:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ *     rules: [{
+ *         modsecRuleId: 1010090,
+ *         revision: 1,
+ *         status: "log",
+ *     }],
+ * });
+ * ```
+ *
+ * Usage with rule exclusions:
+ *
+ * > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ *     rules: [{
+ *         modsecRuleId: 2029718,
+ *         revision: 1,
+ *         status: "log",
+ *     }],
+ *     ruleExclusions: [{
+ *         name: "index page",
+ *         exclusionType: "rule",
+ *         condition: "req.url.basename == \"index.html\"",
+ *         modsecRuleIds: [2029718],
+ *     }],
+ * });
+ * ```
+ *
+ * Usage with rules from data source:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const typeStatus = config.getObject("typeStatus") || {
+ *     score: "score",
+ *     threshold: "log",
+ *     strict: "log",
+ * };
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const owasp = fastly.getWafRules({
+ *     publishers: ["owasp"],
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ *     dynamic: [{
+ *         forEach: owasp.then(owasp => owasp.rules),
+ *         content: [{
+ *             modsecRuleId: rule.value.modsec_rule_id,
+ *             revision: rule.value.latest_revision_number,
+ *             status: typeStatus[rule.value.type] || "log",
+ *         }],
+ *     }],
+ * });
+ * ```
+ *
+ * Usage with support for individual rule configuration (this is the suggested pattern):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const typeStatus = config.getObject("typeStatus") || {
+ *     score: "score",
+ *     threshold: "log",
+ *     strict: "log",
+ * };
+ * const individualRules = config.getObject("individualRules") || {
+ *     1010020: "block",
+ * };
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const owasp = fastly.getWafRules({
+ *     publishers: ["owasp"],
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 202,
+ *     dynamic: [{
+ *         forEach: owasp.then(owasp => owasp.rules),
+ *         content: [{
+ *             modsecRuleId: rule.value.modsec_rule_id,
+ *             revision: rule.value.latest_revision_number,
+ *             status: individualRules[rule.value.modsec_rule_id] || typeStatus[rule.value.type] || "log",
+ *         }],
+ *     }],
+ * });
+ * ```
+ *
+ * Usage with support for specific rule revision configuration:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const typeStatus = config.getObject("typeStatus") || {
+ *     score: "score",
+ *     threshold: "log",
+ *     strict: "log",
+ * };
+ * const specificRuleRevisions = config.getObject("specificRuleRevisions") || {
+ *     1010020: 1,
+ * };
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const owasp = fastly.getWafRules({
+ *     publishers: ["owasp"],
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 202,
+ *     dynamic: [{
+ *         forEach: owasp.then(owasp => owasp.rules),
+ *         content: [{
+ *             modsecRuleId: rule.value.modsec_rule_id,
+ *             revision: specificRuleRevisions[rule.value.modsec_rule_id] || rule.value.latest_revision_number,
+ *             status: typeStatus[rule.value.type] || "log",
+ *         }],
+ *     }],
+ * });
+ * ```
+ *
+ * Usage omitting rule revision field. The first time this provider is applied, the latest rule revisions are associated with the WAF. Any subsequent apply would not alter the rule revisions.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const typeStatus = config.getObject("typeStatus") || {
+ *     score: "score",
+ *     threshold: "log",
+ *     strict: "log",
+ * };
+ * const individualRules = config.getObject("individualRules") || {
+ *     1010020: "block",
+ * };
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const owasp = fastly.getWafRules({
+ *     publishers: ["owasp"],
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 202,
+ *     dynamic: [{
+ *         forEach: owasp.then(owasp => owasp.rules),
+ *         content: [{
+ *             modsecRuleId: rule.value.modsec_rule_id,
+ *             status: individualRules[rule.value.modsec_rule_id] || typeStatus[rule.value.type] || "log",
+ *         }],
+ *     }],
+ * });
+ * export const rules = waf.rules;
+ * ```
  * ## Adding a WAF to an existing service
  *
  * > **Warning:** A two-phase change is required when adding a WAF to an existing service

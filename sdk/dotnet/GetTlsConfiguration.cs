@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -50,6 +51,46 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetTlsConfigurationResult> InvokeAsync(GetTlsConfigurationArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to get the ID of a TLS configuration for use with other resources.
+        /// 
+        /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+        /// of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        /// with any of the others.
+        /// 
+        /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var exampleTlsConfiguration = Output.Create(Fastly.GetTlsConfiguration.InvokeAsync(new Fastly.GetTlsConfigurationArgs
+        ///         {
+        ///             Default = true,
+        ///         }));
+        ///         var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new Fastly.TlsActivationArgs
+        ///         {
+        ///             ConfigurationId = exampleTlsConfiguration.Apply(exampleTlsConfiguration =&gt; exampleTlsConfiguration.Id),
+        ///         });
+        ///         // ...
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetTlsConfigurationResult> Invoke(GetTlsConfigurationInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationInvokeArgs(), options.WithVersion());
     }
 
 
@@ -104,6 +145,61 @@ namespace Pulumi.Fastly
         public string? TlsService { get; set; }
 
         public GetTlsConfigurationArgs()
+        {
+        }
+    }
+
+    public sealed class GetTlsConfigurationInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
+        /// </summary>
+        [Input("default")]
+        public Input<bool>? Default { get; set; }
+
+        [Input("httpProtocols")]
+        private InputList<string>? _httpProtocols;
+
+        /// <summary>
+        /// HTTP protocols available on the TLS configuration.
+        /// </summary>
+        public InputList<string> HttpProtocols
+        {
+            get => _httpProtocols ?? (_httpProtocols = new InputList<string>());
+            set => _httpProtocols = value;
+        }
+
+        /// <summary>
+        /// ID of the TLS configuration obtained from the Fastly API or another data source. Conflicts with all the other filters.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Custom name of the TLS configuration.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        [Input("tlsProtocols")]
+        private InputList<string>? _tlsProtocols;
+
+        /// <summary>
+        /// TLS protocols available on the TLS configuration.
+        /// </summary>
+        public InputList<string> TlsProtocols
+        {
+            get => _tlsProtocols ?? (_tlsProtocols = new InputList<string>());
+            set => _tlsProtocols = value;
+        }
+
+        /// <summary>
+        /// Whether the configuration should support the `PLATFORM` or `CUSTOM` TLS service.
+        /// </summary>
+        [Input("tlsService")]
+        public Input<string>? TlsService { get; set; }
+
+        public GetTlsConfigurationInvokeArgs()
         {
         }
     }

@@ -8,6 +8,119 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
  * They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
+ *
+ * ## Example Usage
+ *
+ * Usage with publishers Filter:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const owasp = pulumi.output(fastly.getWafRules({
+ *     publishers: ["owasp"],
+ * }));
+ * ```
+ *
+ * Usage with tags filter:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const tag = pulumi.output(fastly.getWafRules({
+ *     tags: [
+ *         "language-html",
+ *         "language-jsp",
+ *     ],
+ * }));
+ * ```
+ *
+ * Usage with exclude filter:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const owaspWithExclusions = pulumi.output(fastly.getWafRules({
+ *     excludeModsecRuleIds: [1010090],
+ *     publishers: ["owasp"],
+ * }));
+ * ```
+ *
+ * Usage without filters:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const all = pulumi.output(fastly.getWafRules());
+ * ```
+ *
+ * Usage with WAF configuration resource:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const typeStatus = config.getObject("typeStatus") || {
+ *     score: "score",
+ *     threshold: "log",
+ *     strict: "log",
+ * };
+ * const demo = new fastly.Servicev1("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: "403",
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const owasp = fastly.getWafRules({
+ *     publishers: ["owasp"],
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ *     dynamic: [{
+ *         forEach: owasp.then(owasp => owasp.rules),
+ *         content: [{
+ *             modsecRuleId: rule.value.modsec_rule_id,
+ *             revision: rule.value.latest_revision_number,
+ *             status: typeStatus[rule.value.type] || "log",
+ *         }],
+ *     }],
+ * });
+ * ```
  */
 export function getWafRules(args?: GetWafRulesArgs, opts?: pulumi.InvokeOptions): Promise<GetWafRulesResult> {
     args = args || {};
@@ -67,4 +180,26 @@ export interface GetWafRulesResult {
      * A list of tags to be used as filters for the data set.
      */
     readonly tags?: string[];
+}
+
+export function getWafRulesOutput(args?: GetWafRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWafRulesResult> {
+    return pulumi.output(args).apply(a => getWafRules(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getWafRules.
+ */
+export interface GetWafRulesOutputArgs {
+    /**
+     * Exclusion filter by WAF rule's ModSecurity ID.
+     */
+    excludeModsecRuleIds?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * Inclusion filter by WAF rule's publishers.
+     */
+    publishers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Inclusion filter by WAF rule's tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

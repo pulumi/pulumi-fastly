@@ -12,6 +12,7 @@ __all__ = [
     'GetTlsActivationIdsResult',
     'AwaitableGetTlsActivationIdsResult',
     'get_tls_activation_ids',
+    'get_tls_activation_ids_output',
 ]
 
 @pulumi.output_type
@@ -71,17 +72,6 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
     """
     Use this data source to get the list of TLS Activation identifiers in Fastly.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=fastly_tls_certificate["example"]["id"])
-    example_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]
-    pulumi.export("activationDomains", [a.domain for a in example_tls_activation])
-    ```
-
 
     :param str certificate_id: ID of TLS certificate used to filter activations
     """
@@ -97,3 +87,15 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
         certificate_id=__ret__.certificate_id,
         id=__ret__.id,
         ids=__ret__.ids)
+
+
+@_utilities.lift_output_func(get_tls_activation_ids)
+def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsActivationIdsResult]:
+    """
+    Use this data source to get the list of TLS Activation identifiers in Fastly.
+
+
+    :param str certificate_id: ID of TLS certificate used to filter activations
+    """
+    ...

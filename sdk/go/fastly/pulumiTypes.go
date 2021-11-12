@@ -4478,7 +4478,7 @@ func (o ServiceComputePackageOutput) ToServiceComputePackagePtrOutput() ServiceC
 }
 
 func (o ServiceComputePackageOutput) ToServiceComputePackagePtrOutputWithContext(ctx context.Context) ServiceComputePackagePtrOutput {
-	return o.ApplyT(func(v ServiceComputePackage) *ServiceComputePackage {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputePackage) *ServiceComputePackage {
 		return &v
 	}).(ServiceComputePackagePtrOutput)
 }
@@ -4508,7 +4508,13 @@ func (o ServiceComputePackagePtrOutput) ToServiceComputePackagePtrOutputWithCont
 }
 
 func (o ServiceComputePackagePtrOutput) Elem() ServiceComputePackageOutput {
-	return o.ApplyT(func(v *ServiceComputePackage) ServiceComputePackage { return *v }).(ServiceComputePackageOutput)
+	return o.ApplyT(func(v *ServiceComputePackage) ServiceComputePackage {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceComputePackage
+		return ret
+	}).(ServiceComputePackageOutput)
 }
 
 // The path to the Wasm deployment package within your local filesystem
@@ -13057,7 +13063,7 @@ func (o Servicev1WafOutput) ToServicev1WafPtrOutput() Servicev1WafPtrOutput {
 }
 
 func (o Servicev1WafOutput) ToServicev1WafPtrOutputWithContext(ctx context.Context) Servicev1WafPtrOutput {
-	return o.ApplyT(func(v Servicev1Waf) *Servicev1Waf {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Servicev1Waf) *Servicev1Waf {
 		return &v
 	}).(Servicev1WafPtrOutput)
 }
@@ -13097,7 +13103,13 @@ func (o Servicev1WafPtrOutput) ToServicev1WafPtrOutputWithContext(ctx context.Co
 }
 
 func (o Servicev1WafPtrOutput) Elem() Servicev1WafOutput {
-	return o.ApplyT(func(v *Servicev1Waf) Servicev1Waf { return *v }).(Servicev1WafOutput)
+	return o.ApplyT(func(v *Servicev1Waf) Servicev1Waf {
+		if v != nil {
+			return *v
+		}
+		var ret Servicev1Waf
+		return ret
+	}).(Servicev1WafOutput)
 }
 
 // A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
@@ -13592,6 +13604,168 @@ func (o GetWafRulesRuleArrayOutput) Index(i pulumi.IntInput) GetWafRulesRuleOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesv1EntryInput)(nil)).Elem(), ServiceACLEntriesv1EntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesv1EntryArrayInput)(nil)).Elem(), ServiceACLEntriesv1EntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendInput)(nil)).Elem(), ServiceComputeBackendArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendArrayInput)(nil)).Elem(), ServiceComputeBackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBigqueryloggingInput)(nil)).Elem(), ServiceComputeBigqueryloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBigqueryloggingArrayInput)(nil)).Elem(), ServiceComputeBigqueryloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBlobstorageloggingInput)(nil)).Elem(), ServiceComputeBlobstorageloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBlobstorageloggingArrayInput)(nil)).Elem(), ServiceComputeBlobstorageloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDictionaryInput)(nil)).Elem(), ServiceComputeDictionaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDictionaryArrayInput)(nil)).Elem(), ServiceComputeDictionaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDirectorInput)(nil)).Elem(), ServiceComputeDirectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDirectorArrayInput)(nil)).Elem(), ServiceComputeDirectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainInput)(nil)).Elem(), ServiceComputeDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainArrayInput)(nil)).Elem(), ServiceComputeDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeGcsloggingInput)(nil)).Elem(), ServiceComputeGcsloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeGcsloggingArrayInput)(nil)).Elem(), ServiceComputeGcsloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHealthcheckInput)(nil)).Elem(), ServiceComputeHealthcheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHealthcheckArrayInput)(nil)).Elem(), ServiceComputeHealthcheckArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHttpsloggingInput)(nil)).Elem(), ServiceComputeHttpsloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHttpsloggingArrayInput)(nil)).Elem(), ServiceComputeHttpsloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLogentryInput)(nil)).Elem(), ServiceComputeLogentryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLogentryArrayInput)(nil)).Elem(), ServiceComputeLogentryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingCloudfileInput)(nil)).Elem(), ServiceComputeLoggingCloudfileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingCloudfileArrayInput)(nil)).Elem(), ServiceComputeLoggingCloudfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingDatadogInput)(nil)).Elem(), ServiceComputeLoggingDatadogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingDatadogArrayInput)(nil)).Elem(), ServiceComputeLoggingDatadogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingDigitaloceanInput)(nil)).Elem(), ServiceComputeLoggingDigitaloceanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingDigitaloceanArrayInput)(nil)).Elem(), ServiceComputeLoggingDigitaloceanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingElasticsearchInput)(nil)).Elem(), ServiceComputeLoggingElasticsearchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingElasticsearchArrayInput)(nil)).Elem(), ServiceComputeLoggingElasticsearchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingFtpInput)(nil)).Elem(), ServiceComputeLoggingFtpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingFtpArrayInput)(nil)).Elem(), ServiceComputeLoggingFtpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGooglepubsubInput)(nil)).Elem(), ServiceComputeLoggingGooglepubsubArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGooglepubsubArrayInput)(nil)).Elem(), ServiceComputeLoggingGooglepubsubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingHerokuInput)(nil)).Elem(), ServiceComputeLoggingHerokuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingHerokuArrayInput)(nil)).Elem(), ServiceComputeLoggingHerokuArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingHoneycombInput)(nil)).Elem(), ServiceComputeLoggingHoneycombArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingHoneycombArrayInput)(nil)).Elem(), ServiceComputeLoggingHoneycombArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingKafkaInput)(nil)).Elem(), ServiceComputeLoggingKafkaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingKafkaArrayInput)(nil)).Elem(), ServiceComputeLoggingKafkaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingKineseInput)(nil)).Elem(), ServiceComputeLoggingKineseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingKineseArrayInput)(nil)).Elem(), ServiceComputeLoggingKineseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingLogglyInput)(nil)).Elem(), ServiceComputeLoggingLogglyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingLogglyArrayInput)(nil)).Elem(), ServiceComputeLoggingLogglyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingLogshuttleInput)(nil)).Elem(), ServiceComputeLoggingLogshuttleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingLogshuttleArrayInput)(nil)).Elem(), ServiceComputeLoggingLogshuttleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingNewrelicInput)(nil)).Elem(), ServiceComputeLoggingNewrelicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingNewrelicArrayInput)(nil)).Elem(), ServiceComputeLoggingNewrelicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingOpenstackInput)(nil)).Elem(), ServiceComputeLoggingOpenstackArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingOpenstackArrayInput)(nil)).Elem(), ServiceComputeLoggingOpenstackArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingScalyrInput)(nil)).Elem(), ServiceComputeLoggingScalyrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingScalyrArrayInput)(nil)).Elem(), ServiceComputeLoggingScalyrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingSftpInput)(nil)).Elem(), ServiceComputeLoggingSftpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingSftpArrayInput)(nil)).Elem(), ServiceComputeLoggingSftpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePackageInput)(nil)).Elem(), ServiceComputePackageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePackagePtrInput)(nil)).Elem(), ServiceComputePackageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePapertrailInput)(nil)).Elem(), ServiceComputePapertrailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePapertrailArrayInput)(nil)).Elem(), ServiceComputePapertrailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeS3loggingInput)(nil)).Elem(), ServiceComputeS3loggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeS3loggingArrayInput)(nil)).Elem(), ServiceComputeS3loggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeSplunkInput)(nil)).Elem(), ServiceComputeSplunkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeSplunkArrayInput)(nil)).Elem(), ServiceComputeSplunkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeSumologicInput)(nil)).Elem(), ServiceComputeSumologicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeSumologicArrayInput)(nil)).Elem(), ServiceComputeSumologicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeSyslogInput)(nil)).Elem(), ServiceComputeSyslogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeSyslogArrayInput)(nil)).Elem(), ServiceComputeSyslogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleInput)(nil)).Elem(), ServiceWafConfigurationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleArrayInput)(nil)).Elem(), ServiceWafConfigurationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleExclusionInput)(nil)).Elem(), ServiceWafConfigurationRuleExclusionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleExclusionArrayInput)(nil)).Elem(), ServiceWafConfigurationRuleExclusionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1AclInput)(nil)).Elem(), Servicev1AclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1AclArrayInput)(nil)).Elem(), Servicev1AclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1BackendInput)(nil)).Elem(), Servicev1BackendArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1BackendArrayInput)(nil)).Elem(), Servicev1BackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1BigqueryloggingInput)(nil)).Elem(), Servicev1BigqueryloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1BigqueryloggingArrayInput)(nil)).Elem(), Servicev1BigqueryloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1BlobstorageloggingInput)(nil)).Elem(), Servicev1BlobstorageloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1BlobstorageloggingArrayInput)(nil)).Elem(), Servicev1BlobstorageloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1CacheSettingInput)(nil)).Elem(), Servicev1CacheSettingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1CacheSettingArrayInput)(nil)).Elem(), Servicev1CacheSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1ConditionInput)(nil)).Elem(), Servicev1ConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1ConditionArrayInput)(nil)).Elem(), Servicev1ConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DictionaryInput)(nil)).Elem(), Servicev1DictionaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DictionaryArrayInput)(nil)).Elem(), Servicev1DictionaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DirectorInput)(nil)).Elem(), Servicev1DirectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DirectorArrayInput)(nil)).Elem(), Servicev1DirectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DomainInput)(nil)).Elem(), Servicev1DomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DomainArrayInput)(nil)).Elem(), Servicev1DomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DynamicsnippetInput)(nil)).Elem(), Servicev1DynamicsnippetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1DynamicsnippetArrayInput)(nil)).Elem(), Servicev1DynamicsnippetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1GcsloggingInput)(nil)).Elem(), Servicev1GcsloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1GcsloggingArrayInput)(nil)).Elem(), Servicev1GcsloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1GzipInput)(nil)).Elem(), Servicev1GzipArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1GzipArrayInput)(nil)).Elem(), Servicev1GzipArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1HeaderInput)(nil)).Elem(), Servicev1HeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1HeaderArrayInput)(nil)).Elem(), Servicev1HeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1HealthcheckInput)(nil)).Elem(), Servicev1HealthcheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1HealthcheckArrayInput)(nil)).Elem(), Servicev1HealthcheckArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1HttpsloggingInput)(nil)).Elem(), Servicev1HttpsloggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1HttpsloggingArrayInput)(nil)).Elem(), Servicev1HttpsloggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LogentryInput)(nil)).Elem(), Servicev1LogentryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LogentryArrayInput)(nil)).Elem(), Servicev1LogentryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingCloudfileInput)(nil)).Elem(), Servicev1LoggingCloudfileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingCloudfileArrayInput)(nil)).Elem(), Servicev1LoggingCloudfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingDatadogInput)(nil)).Elem(), Servicev1LoggingDatadogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingDatadogArrayInput)(nil)).Elem(), Servicev1LoggingDatadogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingDigitaloceanInput)(nil)).Elem(), Servicev1LoggingDigitaloceanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingDigitaloceanArrayInput)(nil)).Elem(), Servicev1LoggingDigitaloceanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingElasticsearchInput)(nil)).Elem(), Servicev1LoggingElasticsearchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingElasticsearchArrayInput)(nil)).Elem(), Servicev1LoggingElasticsearchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingFtpInput)(nil)).Elem(), Servicev1LoggingFtpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingFtpArrayInput)(nil)).Elem(), Servicev1LoggingFtpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingGooglepubsubInput)(nil)).Elem(), Servicev1LoggingGooglepubsubArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingGooglepubsubArrayInput)(nil)).Elem(), Servicev1LoggingGooglepubsubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingHerokuInput)(nil)).Elem(), Servicev1LoggingHerokuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingHerokuArrayInput)(nil)).Elem(), Servicev1LoggingHerokuArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingHoneycombInput)(nil)).Elem(), Servicev1LoggingHoneycombArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingHoneycombArrayInput)(nil)).Elem(), Servicev1LoggingHoneycombArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingKafkaInput)(nil)).Elem(), Servicev1LoggingKafkaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingKafkaArrayInput)(nil)).Elem(), Servicev1LoggingKafkaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingKineseInput)(nil)).Elem(), Servicev1LoggingKineseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingKineseArrayInput)(nil)).Elem(), Servicev1LoggingKineseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingLogglyInput)(nil)).Elem(), Servicev1LoggingLogglyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingLogglyArrayInput)(nil)).Elem(), Servicev1LoggingLogglyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingLogshuttleInput)(nil)).Elem(), Servicev1LoggingLogshuttleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingLogshuttleArrayInput)(nil)).Elem(), Servicev1LoggingLogshuttleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingNewrelicInput)(nil)).Elem(), Servicev1LoggingNewrelicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingNewrelicArrayInput)(nil)).Elem(), Servicev1LoggingNewrelicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingOpenstackInput)(nil)).Elem(), Servicev1LoggingOpenstackArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingOpenstackArrayInput)(nil)).Elem(), Servicev1LoggingOpenstackArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingScalyrInput)(nil)).Elem(), Servicev1LoggingScalyrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingScalyrArrayInput)(nil)).Elem(), Servicev1LoggingScalyrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingSftpInput)(nil)).Elem(), Servicev1LoggingSftpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1LoggingSftpArrayInput)(nil)).Elem(), Servicev1LoggingSftpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1PapertrailInput)(nil)).Elem(), Servicev1PapertrailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1PapertrailArrayInput)(nil)).Elem(), Servicev1PapertrailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1RequestSettingInput)(nil)).Elem(), Servicev1RequestSettingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1RequestSettingArrayInput)(nil)).Elem(), Servicev1RequestSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1ResponseObjectInput)(nil)).Elem(), Servicev1ResponseObjectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1ResponseObjectArrayInput)(nil)).Elem(), Servicev1ResponseObjectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1S3loggingInput)(nil)).Elem(), Servicev1S3loggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1S3loggingArrayInput)(nil)).Elem(), Servicev1S3loggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SnippetInput)(nil)).Elem(), Servicev1SnippetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SnippetArrayInput)(nil)).Elem(), Servicev1SnippetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SplunkInput)(nil)).Elem(), Servicev1SplunkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SplunkArrayInput)(nil)).Elem(), Servicev1SplunkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SumologicInput)(nil)).Elem(), Servicev1SumologicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SumologicArrayInput)(nil)).Elem(), Servicev1SumologicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SyslogInput)(nil)).Elem(), Servicev1SyslogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1SyslogArrayInput)(nil)).Elem(), Servicev1SyslogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1VclInput)(nil)).Elem(), Servicev1VclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1VclArrayInput)(nil)).Elem(), Servicev1VclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1WafInput)(nil)).Elem(), Servicev1WafArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1WafPtrInput)(nil)).Elem(), Servicev1WafArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleInput)(nil)).Elem(), GetWafRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleArrayInput)(nil)).Elem(), GetWafRulesRuleArray{})
 	pulumi.RegisterOutputType(ServiceACLEntriesv1EntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesv1EntryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBackendOutput{})

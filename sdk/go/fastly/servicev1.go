@@ -19,6 +19,297 @@ import (
 // traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
 // on their documentation site for guidance.
 //
+// ## Example Usage
+//
+// Basic usage:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
+// 			Backends: Servicev1BackendArray{
+// 				&Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.1"),
+// 					Name:    pulumi.String("localhost"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 			},
+// 			Domains: Servicev1DomainArray{
+// 				&Servicev1DomainArgs{
+// 					Comment: pulumi.String("demo"),
+// 					Name:    pulumi.String("demo.notexample.com"),
+// 				},
+// 			},
+// 			ForceDestroy: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/s3"
+// 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
+// 			Backends: Servicev1BackendArray{
+// 				&Servicev1BackendArgs{
+// 					Address:      pulumi.String("demo.notexample.com.s3-website-us-west-2.amazonaws.com"),
+// 					Name:         pulumi.String("AWS S3 hosting"),
+// 					OverrideHost: pulumi.String("demo.notexample.com.s3-website-us-west-2.amazonaws.com"),
+// 					Port:         pulumi.Int(80),
+// 				},
+// 			},
+// 			Domains: Servicev1DomainArray{
+// 				&Servicev1DomainArgs{
+// 					Comment: pulumi.String("demo"),
+// 					Name:    pulumi.String("demo.notexample.com"),
+// 				},
+// 			},
+// 			ForceDestroy: pulumi.Bool(true),
+// 			Gzips: Servicev1GzipArray{
+// 				&Servicev1GzipArgs{
+// 					ContentTypes: pulumi.StringArray{
+// 						pulumi.String("text/html"),
+// 						pulumi.String("text/css"),
+// 					},
+// 					Extensions: pulumi.StringArray{
+// 						pulumi.String("css"),
+// 						pulumi.String("js"),
+// 					},
+// 					Name: pulumi.String("file extensions and content types"),
+// 				},
+// 			},
+// 			Headers: Servicev1HeaderArray{
+// 				&Servicev1HeaderArgs{
+// 					Action:      pulumi.String("delete"),
+// 					Destination: pulumi.String("http.x-amz-request-id"),
+// 					Name:        pulumi.String("remove x-amz-request-id"),
+// 					Type:        pulumi.String("cache"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = s3.NewBucket(ctx, "website", &s3.BucketArgs{
+// 			Acl: pulumi.String("public-read"),
+// 			Website: &s3.BucketWebsiteArgs{
+// 				ErrorDocument: pulumi.String("error.html"),
+// 				IndexDocument: pulumi.String("index.html"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Basic usage with [custom
+// VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
+// 			Backends: Servicev1BackendArray{
+// 				&Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.1"),
+// 					Name:    pulumi.String("localhost"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 			},
+// 			Domains: Servicev1DomainArray{
+// 				&Servicev1DomainArgs{
+// 					Comment: pulumi.String("demo"),
+// 					Name:    pulumi.String("demo.notexample.com"),
+// 				},
+// 			},
+// 			ForceDestroy: pulumi.Bool(true),
+// 			Vcls: Servicev1VclArray{
+// 				&Servicev1VclArgs{
+// 					Content: readFileOrPanic(fmt.Sprintf("%v%v", path.Module, "/my_custom_main.vcl")),
+// 					Main:    pulumi.Bool(true),
+// 					Name:    pulumi.String("my_custom_main_vcl"),
+// 				},
+// 				&Servicev1VclArgs{
+// 					Content: readFileOrPanic(fmt.Sprintf("%v%v", path.Module, "/my_custom_library.vcl")),
+// 					Name:    pulumi.String("my_custom_library_vcl"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
+// 			Backends: Servicev1BackendArray{
+// 				&Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.1"),
+// 					Name:    pulumi.String("origin1"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 				&Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.2"),
+// 					Name:    pulumi.String("origin2"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 			},
+// 			Directors: Servicev1DirectorArray{
+// 				&Servicev1DirectorArgs{
+// 					Backends: pulumi.StringArray{
+// 						pulumi.String("origin1"),
+// 						pulumi.String("origin2"),
+// 					},
+// 					Name:   pulumi.String("mydirector"),
+// 					Quorum: pulumi.Int(0),
+// 					Type:   pulumi.Int(3),
+// 				},
+// 			},
+// 			Domains: Servicev1DomainArray{
+// 				&Servicev1DomainArgs{
+// 					Comment: pulumi.String("demo"),
+// 					Name:    pulumi.String("demo.notexample.com"),
+// 				},
+// 			},
+// 			ForceDestroy: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fastly.NewServicev1(ctx, "demo", &fastly.Servicev1Args{
+// 			Backends: Servicev1BackendArray{
+// 				&Servicev1BackendArgs{
+// 					Address: pulumi.String("127.0.0.1"),
+// 					Name:    pulumi.String("origin1"),
+// 					Port:    pulumi.Int(80),
+// 				},
+// 			},
+// 			Conditions: Servicev1ConditionArray{
+// 				&Servicev1ConditionArgs{
+// 					Name:      pulumi.String("WAF_Prefetch"),
+// 					Statement: pulumi.String("req.backend.is_origin"),
+// 					Type:      pulumi.String("PREFETCH"),
+// 				},
+// 				&Servicev1ConditionArgs{
+// 					Name:      pulumi.String("WAF_always_false"),
+// 					Statement: pulumi.String("false"),
+// 					Type:      pulumi.String("REQUEST"),
+// 				},
+// 			},
+// 			Domains: Servicev1DomainArray{
+// 				&Servicev1DomainArgs{
+// 					Comment: pulumi.String("demo"),
+// 					Name:    pulumi.String("example.com"),
+// 				},
+// 			},
+// 			ForceDestroy: pulumi.Bool(true),
+// 			ResponseObjects: Servicev1ResponseObjectArray{
+// 				&Servicev1ResponseObjectArgs{
+// 					Content:          pulumi.String("<html><body>Forbidden</body></html>"),
+// 					ContentType:      pulumi.String("text/html"),
+// 					Name:             pulumi.String("WAF_Response"),
+// 					RequestCondition: pulumi.String("WAF_always_false"),
+// 					Response:         pulumi.String("Forbidden"),
+// 					Status:           pulumi.Int(403),
+// 				},
+// 			},
+// 			Waf: &Servicev1WafArgs{
+// 				PrefetchCondition: pulumi.String("WAF_Prefetch"),
+// 				ResponseObject:    pulumi.String("WAF_Response"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// > **Note:** For an AWS S3 Bucket, the Backend address is
+// `<domain>.s3-website-<region>.amazonaws.com`. The `overrideHost` attribute
+// should be set to `<bucket_name>.s3-website-<region>.amazonaws.com` in the `backend` block. See the
+// Fastly documentation on [Amazon S3][fastly-s3].
+//
+// [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+// [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+// [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+// [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+// [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
+//
 // ## Import
 //
 // Fastly Services can be imported using their service ID, e.g.
@@ -468,7 +759,7 @@ type Servicev1ArrayInput interface {
 type Servicev1Array []Servicev1Input
 
 func (Servicev1Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Servicev1)(nil))
+	return reflect.TypeOf((*[]*Servicev1)(nil)).Elem()
 }
 
 func (i Servicev1Array) ToServicev1ArrayOutput() Servicev1ArrayOutput {
@@ -493,7 +784,7 @@ type Servicev1MapInput interface {
 type Servicev1Map map[string]Servicev1Input
 
 func (Servicev1Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Servicev1)(nil))
+	return reflect.TypeOf((*map[string]*Servicev1)(nil)).Elem()
 }
 
 func (i Servicev1Map) ToServicev1MapOutput() Servicev1MapOutput {
@@ -504,9 +795,7 @@ func (i Servicev1Map) ToServicev1MapOutputWithContext(ctx context.Context) Servi
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1MapOutput)
 }
 
-type Servicev1Output struct {
-	*pulumi.OutputState
-}
+type Servicev1Output struct{ *pulumi.OutputState }
 
 func (Servicev1Output) ElementType() reflect.Type {
 	return reflect.TypeOf((*Servicev1)(nil))
@@ -525,14 +814,12 @@ func (o Servicev1Output) ToServicev1PtrOutput() Servicev1PtrOutput {
 }
 
 func (o Servicev1Output) ToServicev1PtrOutputWithContext(ctx context.Context) Servicev1PtrOutput {
-	return o.ApplyT(func(v Servicev1) *Servicev1 {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Servicev1) *Servicev1 {
 		return &v
 	}).(Servicev1PtrOutput)
 }
 
-type Servicev1PtrOutput struct {
-	*pulumi.OutputState
-}
+type Servicev1PtrOutput struct{ *pulumi.OutputState }
 
 func (Servicev1PtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Servicev1)(nil))
@@ -544,6 +831,16 @@ func (o Servicev1PtrOutput) ToServicev1PtrOutput() Servicev1PtrOutput {
 
 func (o Servicev1PtrOutput) ToServicev1PtrOutputWithContext(ctx context.Context) Servicev1PtrOutput {
 	return o
+}
+
+func (o Servicev1PtrOutput) Elem() Servicev1Output {
+	return o.ApplyT(func(v *Servicev1) Servicev1 {
+		if v != nil {
+			return *v
+		}
+		var ret Servicev1
+		return ret
+	}).(Servicev1Output)
 }
 
 type Servicev1ArrayOutput struct{ *pulumi.OutputState }
@@ -587,6 +884,10 @@ func (o Servicev1MapOutput) MapIndex(k pulumi.StringInput) Servicev1Output {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1Input)(nil)).Elem(), &Servicev1{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1PtrInput)(nil)).Elem(), &Servicev1{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1ArrayInput)(nil)).Elem(), Servicev1Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1MapInput)(nil)).Elem(), Servicev1Map{})
 	pulumi.RegisterOutputType(Servicev1Output{})
 	pulumi.RegisterOutputType(Servicev1PtrOutput{})
 	pulumi.RegisterOutputType(Servicev1ArrayOutput{})
