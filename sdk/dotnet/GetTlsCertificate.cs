@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -45,6 +46,41 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetTlsCertificateResult> InvokeAsync(GetTlsCertificateArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to get information of a TLS certificate for use with other resources.
+        /// 
+        /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+        /// of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        /// with any of the others.
+        /// 
+        /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Fastly.GetTlsCertificate.InvokeAsync(new Fastly.GetTlsCertificateArgs
+        ///         {
+        ///             Name = "example.com",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetTlsCertificateResult> Invoke(GetTlsCertificateInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateInvokeArgs(), options.WithVersion());
     }
 
 
@@ -87,6 +123,49 @@ namespace Pulumi.Fastly
         public string? Name { get; set; }
 
         public GetTlsCertificateArgs()
+        {
+        }
+    }
+
+    public sealed class GetTlsCertificateInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("domains")]
+        private InputList<string>? _domains;
+
+        /// <summary>
+        /// Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
+        /// </summary>
+        public InputList<string> Domains
+        {
+            get => _domains ?? (_domains = new InputList<string>());
+            set => _domains = value;
+        }
+
+        /// <summary>
+        /// Unique ID assigned to certificate by Fastly
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The hostname for which a certificate was issued.
+        /// </summary>
+        [Input("issuedTo")]
+        public Input<string>? IssuedTo { get; set; }
+
+        /// <summary>
+        /// The certificate authority that issued the certificate.
+        /// </summary>
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
+
+        /// <summary>
+        /// Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        public GetTlsCertificateInvokeArgs()
         {
         }
     }

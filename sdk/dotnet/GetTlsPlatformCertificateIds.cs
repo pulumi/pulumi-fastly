@@ -29,7 +29,7 @@ namespace Pulumi.Fastly
         ///         var exampleTlsPlatformCertificateIds = Output.Create(Fastly.GetTlsPlatformCertificateIds.InvokeAsync());
         ///         var exampleTlsPlatformCertificate = exampleTlsPlatformCertificateIds.Apply(exampleTlsPlatformCertificateIds =&gt; Output.Create(Fastly.GetTlsPlatformCertificate.InvokeAsync(new Fastly.GetTlsPlatformCertificateArgs
         ///         {
-        ///             Id = exampleTlsPlatformCertificateIds.Ids[0],
+        ///             Id = exampleTlsPlatformCertificateIds.Ids?[0],
         ///         })));
         ///     }
         /// 

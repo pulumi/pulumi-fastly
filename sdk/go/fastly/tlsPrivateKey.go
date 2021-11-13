@@ -191,7 +191,7 @@ type TlsPrivateKeyArrayInput interface {
 type TlsPrivateKeyArray []TlsPrivateKeyInput
 
 func (TlsPrivateKeyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*TlsPrivateKey)(nil))
+	return reflect.TypeOf((*[]*TlsPrivateKey)(nil)).Elem()
 }
 
 func (i TlsPrivateKeyArray) ToTlsPrivateKeyArrayOutput() TlsPrivateKeyArrayOutput {
@@ -216,7 +216,7 @@ type TlsPrivateKeyMapInput interface {
 type TlsPrivateKeyMap map[string]TlsPrivateKeyInput
 
 func (TlsPrivateKeyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*TlsPrivateKey)(nil))
+	return reflect.TypeOf((*map[string]*TlsPrivateKey)(nil)).Elem()
 }
 
 func (i TlsPrivateKeyMap) ToTlsPrivateKeyMapOutput() TlsPrivateKeyMapOutput {
@@ -227,9 +227,7 @@ func (i TlsPrivateKeyMap) ToTlsPrivateKeyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPrivateKeyMapOutput)
 }
 
-type TlsPrivateKeyOutput struct {
-	*pulumi.OutputState
-}
+type TlsPrivateKeyOutput struct{ *pulumi.OutputState }
 
 func (TlsPrivateKeyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*TlsPrivateKey)(nil))
@@ -248,14 +246,12 @@ func (o TlsPrivateKeyOutput) ToTlsPrivateKeyPtrOutput() TlsPrivateKeyPtrOutput {
 }
 
 func (o TlsPrivateKeyOutput) ToTlsPrivateKeyPtrOutputWithContext(ctx context.Context) TlsPrivateKeyPtrOutput {
-	return o.ApplyT(func(v TlsPrivateKey) *TlsPrivateKey {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TlsPrivateKey) *TlsPrivateKey {
 		return &v
 	}).(TlsPrivateKeyPtrOutput)
 }
 
-type TlsPrivateKeyPtrOutput struct {
-	*pulumi.OutputState
-}
+type TlsPrivateKeyPtrOutput struct{ *pulumi.OutputState }
 
 func (TlsPrivateKeyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**TlsPrivateKey)(nil))
@@ -267,6 +263,16 @@ func (o TlsPrivateKeyPtrOutput) ToTlsPrivateKeyPtrOutput() TlsPrivateKeyPtrOutpu
 
 func (o TlsPrivateKeyPtrOutput) ToTlsPrivateKeyPtrOutputWithContext(ctx context.Context) TlsPrivateKeyPtrOutput {
 	return o
+}
+
+func (o TlsPrivateKeyPtrOutput) Elem() TlsPrivateKeyOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) TlsPrivateKey {
+		if v != nil {
+			return *v
+		}
+		var ret TlsPrivateKey
+		return ret
+	}).(TlsPrivateKeyOutput)
 }
 
 type TlsPrivateKeyArrayOutput struct{ *pulumi.OutputState }
@@ -310,6 +316,10 @@ func (o TlsPrivateKeyMapOutput) MapIndex(k pulumi.StringInput) TlsPrivateKeyOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsPrivateKeyInput)(nil)).Elem(), &TlsPrivateKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsPrivateKeyPtrInput)(nil)).Elem(), &TlsPrivateKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsPrivateKeyArrayInput)(nil)).Elem(), TlsPrivateKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsPrivateKeyMapInput)(nil)).Elem(), TlsPrivateKeyMap{})
 	pulumi.RegisterOutputType(TlsPrivateKeyOutput{})
 	pulumi.RegisterOutputType(TlsPrivateKeyPtrOutput{})
 	pulumi.RegisterOutputType(TlsPrivateKeyArrayOutput{})

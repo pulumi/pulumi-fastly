@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -88,4 +87,30 @@ export interface GetTlsActivationResult {
      * Fastly Activation ID. Conflicts with all other filters.
      */
     readonly id: string;
+}
+
+export function getTlsActivationOutput(args?: GetTlsActivationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationResult> {
+    return pulumi.output(args).apply(a => getTlsActivation(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTlsActivation.
+ */
+export interface GetTlsActivationOutputArgs {
+    /**
+     * ID of the TLS Certificate used.
+     */
+    certificateId?: pulumi.Input<string>;
+    /**
+     * ID of the TLS Configuration used.
+     */
+    configurationId?: pulumi.Input<string>;
+    /**
+     * Domain that TLS was enabled on.
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * Fastly Activation ID. Conflicts with all other filters.
+     */
+    id?: pulumi.Input<string>;
 }

@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,4 +43,71 @@ type GetWafRulesResult struct {
 	Rules []GetWafRulesRule `pulumi:"rules"`
 	// A list of tags to be used as filters for the data set.
 	Tags []string `pulumi:"tags"`
+}
+
+func GetWafRulesOutput(ctx *pulumi.Context, args GetWafRulesOutputArgs, opts ...pulumi.InvokeOption) GetWafRulesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetWafRulesResult, error) {
+			args := v.(GetWafRulesArgs)
+			r, err := GetWafRules(ctx, &args, opts...)
+			return *r, err
+		}).(GetWafRulesResultOutput)
+}
+
+// A collection of arguments for invoking getWafRules.
+type GetWafRulesOutputArgs struct {
+	// Exclusion filter by WAF rule's ModSecurity ID.
+	ExcludeModsecRuleIds pulumi.IntArrayInput `pulumi:"excludeModsecRuleIds"`
+	// Inclusion filter by WAF rule's publishers.
+	Publishers pulumi.StringArrayInput `pulumi:"publishers"`
+	// Inclusion filter by WAF rule's tags.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+}
+
+func (GetWafRulesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWafRulesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getWafRules.
+type GetWafRulesResultOutput struct{ *pulumi.OutputState }
+
+func (GetWafRulesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWafRulesResult)(nil)).Elem()
+}
+
+func (o GetWafRulesResultOutput) ToGetWafRulesResultOutput() GetWafRulesResultOutput {
+	return o
+}
+
+func (o GetWafRulesResultOutput) ToGetWafRulesResultOutputWithContext(ctx context.Context) GetWafRulesResultOutput {
+	return o
+}
+
+// A list of modsecurity rules IDs to be excluded from the data set.
+func (o GetWafRulesResultOutput) ExcludeModsecRuleIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetWafRulesResult) []int { return v.ExcludeModsecRuleIds }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetWafRulesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWafRulesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of publishers to be used as filters for the data set.
+func (o GetWafRulesResultOutput) Publishers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetWafRulesResult) []string { return v.Publishers }).(pulumi.StringArrayOutput)
+}
+
+// The list of rules that results from any given combination of filters.
+func (o GetWafRulesResultOutput) Rules() GetWafRulesRuleArrayOutput {
+	return o.ApplyT(func(v GetWafRulesResult) []GetWafRulesRule { return v.Rules }).(GetWafRulesRuleArrayOutput)
+}
+
+// A list of tags to be used as filters for the data set.
+func (o GetWafRulesResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetWafRulesResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetWafRulesResultOutput{})
 }

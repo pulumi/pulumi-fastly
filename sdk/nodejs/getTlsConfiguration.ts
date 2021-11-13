@@ -117,3 +117,37 @@ export interface GetTlsConfigurationResult {
      */
     readonly updatedAt: string;
 }
+
+export function getTlsConfigurationOutput(args?: GetTlsConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationResult> {
+    return pulumi.output(args).apply(a => getTlsConfiguration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTlsConfiguration.
+ */
+export interface GetTlsConfigurationOutputArgs {
+    /**
+     * Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
+     */
+    default?: pulumi.Input<boolean>;
+    /**
+     * HTTP protocols available on the TLS configuration.
+     */
+    httpProtocols?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the TLS configuration obtained from the Fastly API or another data source. Conflicts with all the other filters.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Custom name of the TLS configuration.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * TLS protocols available on the TLS configuration.
+     */
+    tlsProtocols?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether the configuration should support the `PLATFORM` or `CUSTOM` TLS service.
+     */
+    tlsService?: pulumi.Input<string>;
+}

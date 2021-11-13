@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -42,6 +43,38 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetTlsSubscriptionResult> InvokeAsync(GetTlsSubscriptionArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to get information about a TLS subscription.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Fastly.GetTlsSubscription.InvokeAsync(new Fastly.GetTlsSubscriptionArgs
+        ///         {
+        ///             Domains = 
+        ///             {
+        ///                 "example.com",
+        ///             },
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetTlsSubscriptionResult> Invoke(GetTlsSubscriptionInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionInvokeArgs(), options.WithVersion());
     }
 
 
@@ -78,6 +111,43 @@ namespace Pulumi.Fastly
         public string? Id { get; set; }
 
         public GetTlsSubscriptionArgs()
+        {
+        }
+    }
+
+    public sealed class GetTlsSubscriptionInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The entity that issues and certifies the TLS certificates for the subscription.
+        /// </summary>
+        [Input("certificateAuthority")]
+        public Input<string>? CertificateAuthority { get; set; }
+
+        /// <summary>
+        /// ID of TLS configuration used to terminate TLS traffic.
+        /// </summary>
+        [Input("configurationId")]
+        public Input<string>? ConfigurationId { get; set; }
+
+        [Input("domains")]
+        private InputList<string>? _domains;
+
+        /// <summary>
+        /// List of domains on which to enable TLS.
+        /// </summary>
+        public InputList<string> Domains
+        {
+            get => _domains ?? (_domains = new InputList<string>());
+            set => _domains = value;
+        }
+
+        /// <summary>
+        /// ID of TLS subscription. Conflicts with all the other filters.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        public GetTlsSubscriptionInvokeArgs()
         {
         }
     }

@@ -30,13 +30,13 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		demoServicev1, err := fastly.NewServicev1(ctx, "demoServicev1", &fastly.Servicev1Args{
-// 			Domains: fastly.Servicev1DomainArray{
-// 				&fastly.Servicev1DomainArgs{
+// 			Domains: Servicev1DomainArray{
+// 				&Servicev1DomainArgs{
 // 					Name: pulumi.String("example.com"),
 // 				},
 // 			},
-// 			Backends: fastly.Servicev1BackendArray{
-// 				&fastly.Servicev1BackendArgs{
+// 			Backends: Servicev1BackendArray{
+// 				&Servicev1BackendArgs{
 // 					Address: pulumi.String("127.0.0.1"),
 // 					Name:    pulumi.String("localhost"),
 // 				},
@@ -239,7 +239,7 @@ type TlsActivationArrayInput interface {
 type TlsActivationArray []TlsActivationInput
 
 func (TlsActivationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*TlsActivation)(nil))
+	return reflect.TypeOf((*[]*TlsActivation)(nil)).Elem()
 }
 
 func (i TlsActivationArray) ToTlsActivationArrayOutput() TlsActivationArrayOutput {
@@ -264,7 +264,7 @@ type TlsActivationMapInput interface {
 type TlsActivationMap map[string]TlsActivationInput
 
 func (TlsActivationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*TlsActivation)(nil))
+	return reflect.TypeOf((*map[string]*TlsActivation)(nil)).Elem()
 }
 
 func (i TlsActivationMap) ToTlsActivationMapOutput() TlsActivationMapOutput {
@@ -275,9 +275,7 @@ func (i TlsActivationMap) ToTlsActivationMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(TlsActivationMapOutput)
 }
 
-type TlsActivationOutput struct {
-	*pulumi.OutputState
-}
+type TlsActivationOutput struct{ *pulumi.OutputState }
 
 func (TlsActivationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*TlsActivation)(nil))
@@ -296,14 +294,12 @@ func (o TlsActivationOutput) ToTlsActivationPtrOutput() TlsActivationPtrOutput {
 }
 
 func (o TlsActivationOutput) ToTlsActivationPtrOutputWithContext(ctx context.Context) TlsActivationPtrOutput {
-	return o.ApplyT(func(v TlsActivation) *TlsActivation {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TlsActivation) *TlsActivation {
 		return &v
 	}).(TlsActivationPtrOutput)
 }
 
-type TlsActivationPtrOutput struct {
-	*pulumi.OutputState
-}
+type TlsActivationPtrOutput struct{ *pulumi.OutputState }
 
 func (TlsActivationPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**TlsActivation)(nil))
@@ -315,6 +311,16 @@ func (o TlsActivationPtrOutput) ToTlsActivationPtrOutput() TlsActivationPtrOutpu
 
 func (o TlsActivationPtrOutput) ToTlsActivationPtrOutputWithContext(ctx context.Context) TlsActivationPtrOutput {
 	return o
+}
+
+func (o TlsActivationPtrOutput) Elem() TlsActivationOutput {
+	return o.ApplyT(func(v *TlsActivation) TlsActivation {
+		if v != nil {
+			return *v
+		}
+		var ret TlsActivation
+		return ret
+	}).(TlsActivationOutput)
 }
 
 type TlsActivationArrayOutput struct{ *pulumi.OutputState }
@@ -358,6 +364,10 @@ func (o TlsActivationMapOutput) MapIndex(k pulumi.StringInput) TlsActivationOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationInput)(nil)).Elem(), &TlsActivation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationPtrInput)(nil)).Elem(), &TlsActivation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationArrayInput)(nil)).Elem(), TlsActivationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationMapInput)(nil)).Elem(), TlsActivationMap{})
 	pulumi.RegisterOutputType(TlsActivationOutput{})
 	pulumi.RegisterOutputType(TlsActivationPtrOutput{})
 	pulumi.RegisterOutputType(TlsActivationArrayOutput{})

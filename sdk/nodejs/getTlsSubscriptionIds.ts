@@ -2,24 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
  * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const exampleTlsSubscriptionIds = fastly.getTlsSubscriptionIds({});
- * const exampleTlsSubscription = exampleTlsSubscriptionIds.then(exampleTlsSubscriptionIds => exampleTlsSubscriptionIds.ids.map((v, k) => [k, v]).map(([, ]) => fastly.getTlsSubscription({
- *     id: __value,
- * })));
- * export const subscriptionDomains = exampleTlsSubscription.map(a => a.certificateAuthority);
- * ```
  */
 export function getTlsSubscriptionIds(opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionIdsResult> {
     if (!opts) {

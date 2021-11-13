@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -94,4 +93,30 @@ export interface GetTlsSubscriptionResult {
      * Timestamp (GMT) when subscription was last updated.
      */
     readonly updatedAt: string;
+}
+
+export function getTlsSubscriptionOutput(args?: GetTlsSubscriptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsSubscriptionResult> {
+    return pulumi.output(args).apply(a => getTlsSubscription(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTlsSubscription.
+ */
+export interface GetTlsSubscriptionOutputArgs {
+    /**
+     * The entity that issues and certifies the TLS certificates for the subscription.
+     */
+    certificateAuthority?: pulumi.Input<string>;
+    /**
+     * ID of TLS configuration used to terminate TLS traffic.
+     */
+    configurationId?: pulumi.Input<string>;
+    /**
+     * List of domains on which to enable TLS.
+     */
+    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of TLS subscription. Conflicts with all the other filters.
+     */
+    id?: pulumi.Input<string>;
 }

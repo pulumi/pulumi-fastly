@@ -13,6 +13,7 @@ __all__ = [
     'GetWafRulesResult',
     'AwaitableGetWafRulesResult',
     'get_waf_rules',
+    'get_waf_rules_output',
 ]
 
 @pulumi.output_type
@@ -120,3 +121,20 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
         publishers=__ret__.publishers,
         rules=__ret__.rules,
         tags=__ret__.tags)
+
+
+@_utilities.lift_output_func(get_waf_rules)
+def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
+                         publishers: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                         tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWafRulesResult]:
+    """
+    Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
+    They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
+
+
+    :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
+    :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.
+    :param Sequence[str] tags: Inclusion filter by WAF rule's tags.
+    """
+    ...

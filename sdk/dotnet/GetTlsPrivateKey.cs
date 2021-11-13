@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -49,6 +50,45 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetTlsPrivateKeyResult> InvokeAsync(GetTlsPrivateKeyArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to get information on a TLS Private Key uploaded to Fastly.
+        /// 
+        /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+        ///  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        ///  with any of the others.
+        /// 
+        /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
+        ///  is specific enough to return a single key.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var demo = Output.Create(Fastly.GetTlsPrivateKey.InvokeAsync(new Fastly.GetTlsPrivateKeyArgs
+        ///         {
+        ///             Name = "demo-private-key",
+        ///         }));
+        ///         this.PrivateKeyNeedsReplacing = demo.Apply(demo =&gt; demo.Replace);
+        ///     }
+        /// 
+        ///     [Output("privateKeyNeedsReplacing")]
+        ///     public Output&lt;string&gt; PrivateKeyNeedsReplacing { get; set; }
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetTlsPrivateKeyResult> Invoke(GetTlsPrivateKeyInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithVersion());
     }
 
 
@@ -91,6 +131,49 @@ namespace Pulumi.Fastly
         public string? PublicKeySha1 { get; set; }
 
         public GetTlsPrivateKeyArgs()
+        {
+        }
+    }
+
+    public sealed class GetTlsPrivateKeyInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Timestamp (GMT) when the private key was created.
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Fastly private key ID. Conflicts with all the other filters
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The key length used to generate the private key.
+        /// </summary>
+        [Input("keyLength")]
+        public Input<int>? KeyLength { get; set; }
+
+        /// <summary>
+        /// The algorithm used to generate the private key. Must be RSA.
+        /// </summary>
+        [Input("keyType")]
+        public Input<string>? KeyType { get; set; }
+
+        /// <summary>
+        /// The human-readable name assigned to the private key when uploaded.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// A hash of the associated public key, useful for safely identifying it.
+        /// </summary>
+        [Input("publicKeySha1")]
+        public Input<string>? PublicKeySha1 { get; set; }
+
+        public GetTlsPrivateKeyInvokeArgs()
         {
         }
     }

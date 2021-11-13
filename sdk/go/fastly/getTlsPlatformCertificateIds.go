@@ -26,7 +26,7 @@ import (
 // 			return err
 // 		}
 // 		opt0 := exampleTlsPlatformCertificateIds.Ids[0]
-// 		_, err = fastly.LookupTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
+// 		_, err = fastly.LookupTlsPlatformCertificate(ctx, &GetTlsPlatformCertificateArgs{
 // 			Id: &opt0,
 // 		}, nil)
 // 		if err != nil {

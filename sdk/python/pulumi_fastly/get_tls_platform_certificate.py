@@ -12,6 +12,7 @@ __all__ = [
     'GetTlsPlatformCertificateResult',
     'AwaitableGetTlsPlatformCertificateResult',
     'get_tls_platform_certificate',
+    'get_tls_platform_certificate_output',
 ]
 
 @pulumi.output_type
@@ -169,3 +170,32 @@ def get_tls_platform_certificate(domains: Optional[Sequence[str]] = None,
         not_before=__ret__.not_before,
         replace=__ret__.replace,
         updated_at=__ret__.updated_at)
+
+
+@_utilities.lift_output_func(get_tls_platform_certificate)
+def get_tls_platform_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                        id: Optional[pulumi.Input[Optional[str]]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPlatformCertificateResult]:
+    """
+    Use this data source to get information of a Platform TLS certificate for use with other resources.
+
+    > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+    of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+    with any of the others.
+
+    > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example = fastly.get_tls_platform_certificate(domains=["example.com"])
+    ```
+
+
+    :param Sequence[str] domains: Domains that are listed in any certificate's Subject Alternative Names (SAN) list.
+    :param str id: Unique ID assigned to certificate by Fastly. Conflicts with all the other filters.
+    """
+    ...

@@ -26,7 +26,7 @@ import (
 // 			return err
 // 		}
 // 		opt0 := fastly_tls_private_key_ids.Demo.Ids[0]
-// 		_, err = fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
+// 		_, err = fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
 // 			Id: &opt0,
 // 		}, nil)
 // 		if err != nil {

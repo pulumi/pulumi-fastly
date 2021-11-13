@@ -12,6 +12,7 @@ __all__ = [
     'GetTlsPrivateKeyResult',
     'AwaitableGetTlsPrivateKeyResult',
     'get_tls_private_key',
+    'get_tls_private_key_output',
 ]
 
 @pulumi.output_type
@@ -170,3 +171,42 @@ def get_tls_private_key(created_at: Optional[str] = None,
         name=__ret__.name,
         public_key_sha1=__ret__.public_key_sha1,
         replace=__ret__.replace)
+
+
+@_utilities.lift_output_func(get_tls_private_key)
+def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]] = None,
+                               id: Optional[pulumi.Input[Optional[str]]] = None,
+                               key_length: Optional[pulumi.Input[Optional[int]]] = None,
+                               key_type: Optional[pulumi.Input[Optional[str]]] = None,
+                               name: Optional[pulumi.Input[Optional[str]]] = None,
+                               public_key_sha1: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPrivateKeyResult]:
+    """
+    Use this data source to get information on a TLS Private Key uploaded to Fastly.
+
+    > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+     of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     with any of the others.
+
+    > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
+     is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    demo = fastly.get_tls_private_key(name="demo-private-key")
+    pulumi.export("privateKeyNeedsReplacing", demo.replace)
+    ```
+
+
+    :param str created_at: Timestamp (GMT) when the private key was created.
+    :param str id: Fastly private key ID. Conflicts with all the other filters
+    :param int key_length: The key length used to generate the private key.
+    :param str key_type: The algorithm used to generate the private key. Must be RSA.
+    :param str name: The human-readable name assigned to the private key when uploaded.
+    :param str public_key_sha1: A hash of the associated public key, useful for safely identifying it.
+    """
+    ...

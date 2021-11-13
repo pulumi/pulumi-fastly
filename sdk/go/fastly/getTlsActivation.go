@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +31,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "example.com"
-// 		_, err := fastly.LookupTlsActivation(ctx, &fastly.LookupTlsActivationArgs{
+// 		_, err := fastly.LookupTlsActivation(ctx, &GetTlsActivationArgs{
 // 			Domain: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -71,4 +74,73 @@ type LookupTlsActivationResult struct {
 	Domain string `pulumi:"domain"`
 	// Fastly Activation ID. Conflicts with all other filters.
 	Id string `pulumi:"id"`
+}
+
+func LookupTlsActivationOutput(ctx *pulumi.Context, args LookupTlsActivationOutputArgs, opts ...pulumi.InvokeOption) LookupTlsActivationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupTlsActivationResult, error) {
+			args := v.(LookupTlsActivationArgs)
+			r, err := LookupTlsActivation(ctx, &args, opts...)
+			return *r, err
+		}).(LookupTlsActivationResultOutput)
+}
+
+// A collection of arguments for invoking getTlsActivation.
+type LookupTlsActivationOutputArgs struct {
+	// ID of the TLS Certificate used.
+	CertificateId pulumi.StringPtrInput `pulumi:"certificateId"`
+	// ID of the TLS Configuration used.
+	ConfigurationId pulumi.StringPtrInput `pulumi:"configurationId"`
+	// Domain that TLS was enabled on.
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Fastly Activation ID. Conflicts with all other filters.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (LookupTlsActivationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsActivationArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTlsActivation.
+type LookupTlsActivationResultOutput struct{ *pulumi.OutputState }
+
+func (LookupTlsActivationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsActivationResult)(nil)).Elem()
+}
+
+func (o LookupTlsActivationResultOutput) ToLookupTlsActivationResultOutput() LookupTlsActivationResultOutput {
+	return o
+}
+
+func (o LookupTlsActivationResultOutput) ToLookupTlsActivationResultOutputWithContext(ctx context.Context) LookupTlsActivationResultOutput {
+	return o
+}
+
+// ID of the TLS Certificate used.
+func (o LookupTlsActivationResultOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsActivationResult) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// ID of the TLS Configuration used.
+func (o LookupTlsActivationResultOutput) ConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsActivationResult) string { return v.ConfigurationId }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when TLS was enabled.
+func (o LookupTlsActivationResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsActivationResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Domain that TLS was enabled on.
+func (o LookupTlsActivationResultOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsActivationResult) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Fastly Activation ID. Conflicts with all other filters.
+func (o LookupTlsActivationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsActivationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupTlsActivationResultOutput{})
 }

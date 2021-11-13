@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +31,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "example.com"
-// 		_, err := fastly.LookupTlsCertificate(ctx, &fastly.LookupTlsCertificateArgs{
+// 		_, err := fastly.LookupTlsCertificate(ctx, &GetTlsCertificateArgs{
 // 			Name: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -83,4 +86,100 @@ type LookupTlsCertificateResult struct {
 	SignatureAlgorithm string `pulumi:"signatureAlgorithm"`
 	// Timestamp (GMT) when the certificate was last updated
 	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+func LookupTlsCertificateOutput(ctx *pulumi.Context, args LookupTlsCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupTlsCertificateResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupTlsCertificateResult, error) {
+			args := v.(LookupTlsCertificateArgs)
+			r, err := LookupTlsCertificate(ctx, &args, opts...)
+			return *r, err
+		}).(LookupTlsCertificateResultOutput)
+}
+
+// A collection of arguments for invoking getTlsCertificate.
+type LookupTlsCertificateOutputArgs struct {
+	// Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
+	Domains pulumi.StringArrayInput `pulumi:"domains"`
+	// Unique ID assigned to certificate by Fastly
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The hostname for which a certificate was issued.
+	IssuedTo pulumi.StringPtrInput `pulumi:"issuedTo"`
+	// The certificate authority that issued the certificate.
+	Issuer pulumi.StringPtrInput `pulumi:"issuer"`
+	// Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LookupTlsCertificateOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsCertificateArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTlsCertificate.
+type LookupTlsCertificateResultOutput struct{ *pulumi.OutputState }
+
+func (LookupTlsCertificateResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTlsCertificateResult)(nil)).Elem()
+}
+
+func (o LookupTlsCertificateResultOutput) ToLookupTlsCertificateResultOutput() LookupTlsCertificateResultOutput {
+	return o
+}
+
+func (o LookupTlsCertificateResultOutput) ToLookupTlsCertificateResultOutputWithContext(ctx context.Context) LookupTlsCertificateResultOutput {
+	return o
+}
+
+// Timestamp (GMT) when the certificate was created
+func (o LookupTlsCertificateResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
+func (o LookupTlsCertificateResultOutput) Domains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) []string { return v.Domains }).(pulumi.StringArrayOutput)
+}
+
+// Unique ID assigned to certificate by Fastly
+func (o LookupTlsCertificateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The hostname for which a certificate was issued.
+func (o LookupTlsCertificateResultOutput) IssuedTo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.IssuedTo }).(pulumi.StringOutput)
+}
+
+// The certificate authority that issued the certificate.
+func (o LookupTlsCertificateResultOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
+func (o LookupTlsCertificateResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A recommendation from Fastly indicating the key associated with this certificate is in need of rotation
+func (o LookupTlsCertificateResultOutput) Replace() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) bool { return v.Replace }).(pulumi.BoolOutput)
+}
+
+// A value assigned by the issuer that is unique to a certificate
+func (o LookupTlsCertificateResultOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// The algorithm used to sign the certificate
+func (o LookupTlsCertificateResultOutput) SignatureAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.SignatureAlgorithm }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate was last updated
+func (o LookupTlsCertificateResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTlsCertificateResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupTlsCertificateResultOutput{})
 }

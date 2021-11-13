@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -17,6 +18,13 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetWafRulesResult> InvokeAsync(GetWafRulesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
+        /// They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
+        /// </summary>
+        public static Output<GetWafRulesResult> Invoke(GetWafRulesInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithVersion());
     }
 
 
@@ -59,6 +67,49 @@ namespace Pulumi.Fastly
         }
 
         public GetWafRulesArgs()
+        {
+        }
+    }
+
+    public sealed class GetWafRulesInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("excludeModsecRuleIds")]
+        private InputList<int>? _excludeModsecRuleIds;
+
+        /// <summary>
+        /// Exclusion filter by WAF rule's ModSecurity ID.
+        /// </summary>
+        public InputList<int> ExcludeModsecRuleIds
+        {
+            get => _excludeModsecRuleIds ?? (_excludeModsecRuleIds = new InputList<int>());
+            set => _excludeModsecRuleIds = value;
+        }
+
+        [Input("publishers")]
+        private InputList<string>? _publishers;
+
+        /// <summary>
+        /// Inclusion filter by WAF rule's publishers.
+        /// </summary>
+        public InputList<string> Publishers
+        {
+            get => _publishers ?? (_publishers = new InputList<string>());
+            set => _publishers = value;
+        }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// Inclusion filter by WAF rule's tags.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        public GetWafRulesInvokeArgs()
         {
         }
     }

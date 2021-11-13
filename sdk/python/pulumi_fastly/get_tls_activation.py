@@ -12,6 +12,7 @@ __all__ = [
     'GetTlsActivationResult',
     'AwaitableGetTlsActivationResult',
     'get_tls_activation',
+    'get_tls_activation_output',
 ]
 
 @pulumi.output_type
@@ -136,3 +137,36 @@ def get_tls_activation(certificate_id: Optional[str] = None,
         created_at=__ret__.created_at,
         domain=__ret__.domain,
         id=__ret__.id)
+
+
+@_utilities.lift_output_func(get_tls_activation)
+def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str]]] = None,
+                              configuration_id: Optional[pulumi.Input[Optional[str]]] = None,
+                              domain: Optional[pulumi.Input[Optional[str]]] = None,
+                              id: Optional[pulumi.Input[Optional[str]]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsActivationResult]:
+    """
+    Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
+
+    > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+    of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+    with any of the others.
+
+    > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example = fastly.get_tls_activation(domain="example.com")
+    ```
+
+
+    :param str certificate_id: ID of the TLS Certificate used.
+    :param str configuration_id: ID of the TLS Configuration used.
+    :param str domain: Domain that TLS was enabled on.
+    :param str id: Fastly Activation ID. Conflicts with all other filters.
+    """
+    ...

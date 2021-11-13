@@ -4,6 +4,9 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +31,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := true
-// 		exampleTlsConfiguration, err := fastly.GetTlsConfiguration(ctx, &fastly.GetTlsConfigurationArgs{
+// 		exampleTlsConfiguration, err := fastly.GetTlsConfiguration(ctx, &GetTlsConfigurationArgs{
 // 			Default: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -89,4 +92,97 @@ type GetTlsConfigurationResult struct {
 	TlsService string `pulumi:"tlsService"`
 	// Timestamp (GMT) when the configuration was last updated.
 	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+func GetTlsConfigurationOutput(ctx *pulumi.Context, args GetTlsConfigurationOutputArgs, opts ...pulumi.InvokeOption) GetTlsConfigurationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetTlsConfigurationResult, error) {
+			args := v.(GetTlsConfigurationArgs)
+			r, err := GetTlsConfiguration(ctx, &args, opts...)
+			return *r, err
+		}).(GetTlsConfigurationResultOutput)
+}
+
+// A collection of arguments for invoking getTlsConfiguration.
+type GetTlsConfigurationOutputArgs struct {
+	// Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
+	Default pulumi.BoolPtrInput `pulumi:"default"`
+	// HTTP protocols available on the TLS configuration.
+	HttpProtocols pulumi.StringArrayInput `pulumi:"httpProtocols"`
+	// ID of the TLS configuration obtained from the Fastly API or another data source. Conflicts with all the other filters.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Custom name of the TLS configuration.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// TLS protocols available on the TLS configuration.
+	TlsProtocols pulumi.StringArrayInput `pulumi:"tlsProtocols"`
+	// Whether the configuration should support the `PLATFORM` or `CUSTOM` TLS service.
+	TlsService pulumi.StringPtrInput `pulumi:"tlsService"`
+}
+
+func (GetTlsConfigurationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsConfigurationArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTlsConfiguration.
+type GetTlsConfigurationResultOutput struct{ *pulumi.OutputState }
+
+func (GetTlsConfigurationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsConfigurationResult)(nil)).Elem()
+}
+
+func (o GetTlsConfigurationResultOutput) ToGetTlsConfigurationResultOutput() GetTlsConfigurationResultOutput {
+	return o
+}
+
+func (o GetTlsConfigurationResultOutput) ToGetTlsConfigurationResultOutputWithContext(ctx context.Context) GetTlsConfigurationResultOutput {
+	return o
+}
+
+// Timestamp (GMT) when the configuration was created.
+func (o GetTlsConfigurationResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
+func (o GetTlsConfigurationResultOutput) Default() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) bool { return v.Default }).(pulumi.BoolOutput)
+}
+
+// The available DNS addresses that can be used to enable TLS for a domain. DNS must be configured for a domain for TLS handshakes to succeed. If enabling TLS on an apex domain (e.g. `example.com`) you must create four A records (or four AAAA records for IPv6 support) using the displayed global A record's IP addresses with your DNS provider. For subdomains and wildcard domains (e.g. `www.example.com` or `*.example.com`) you will need to create a relevant CNAME record.
+func (o GetTlsConfigurationResultOutput) DnsRecords() GetTlsConfigurationDnsRecordArrayOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) []GetTlsConfigurationDnsRecord { return v.DnsRecords }).(GetTlsConfigurationDnsRecordArrayOutput)
+}
+
+// HTTP protocols available on the TLS configuration.
+func (o GetTlsConfigurationResultOutput) HttpProtocols() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) []string { return v.HttpProtocols }).(pulumi.StringArrayOutput)
+}
+
+// ID of the TLS configuration obtained from the Fastly API or another data source. Conflicts with all the other filters.
+func (o GetTlsConfigurationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Custom name of the TLS configuration.
+func (o GetTlsConfigurationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// TLS protocols available on the TLS configuration.
+func (o GetTlsConfigurationResultOutput) TlsProtocols() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) []string { return v.TlsProtocols }).(pulumi.StringArrayOutput)
+}
+
+// Whether the configuration should support the `PLATFORM` or `CUSTOM` TLS service.
+func (o GetTlsConfigurationResultOutput) TlsService() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) string { return v.TlsService }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the configuration was last updated.
+func (o GetTlsConfigurationResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsConfigurationResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTlsConfigurationResultOutput{})
 }

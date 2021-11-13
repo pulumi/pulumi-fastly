@@ -12,6 +12,7 @@ __all__ = [
     'GetTlsDomainResult',
     'AwaitableGetTlsDomainResult',
     'get_tls_domain',
+    'get_tls_domain_output',
 ]
 
 @pulumi.output_type
@@ -121,3 +122,24 @@ def get_tls_domain(domain: Optional[str] = None,
         tls_activation_ids=__ret__.tls_activation_ids,
         tls_certificate_ids=__ret__.tls_certificate_ids,
         tls_subscription_ids=__ret__.tls_subscription_ids)
+
+
+@_utilities.lift_output_func(get_tls_domain)
+def get_tls_domain_output(domain: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsDomainResult]:
+    """
+    Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    domain = fastly.get_tls_domain(domain="example.com")
+    ```
+
+
+    :param str domain: Domain name to look up activations, certificates and subscriptions for.
+    """
+    ...
