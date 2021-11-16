@@ -4908,6 +4908,8 @@ type ServiceComputeSplunk struct {
 	Token string `pulumi:"token"`
 	// The Splunk URL to stream logs to
 	Url string `pulumi:"url"`
+	// Whether to use TLS for secure logging. Default: `false`
+	UseTls *bool `pulumi:"useTls"`
 }
 
 // ServiceComputeSplunkInput is an input type that accepts ServiceComputeSplunkArgs and ServiceComputeSplunkOutput values.
@@ -4936,6 +4938,8 @@ type ServiceComputeSplunkArgs struct {
 	Token pulumi.StringInput `pulumi:"token"`
 	// The Splunk URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
+	// Whether to use TLS for secure logging. Default: `false`
+	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
 func (ServiceComputeSplunkArgs) ElementType() reflect.Type {
@@ -5022,6 +5026,11 @@ func (o ServiceComputeSplunkOutput) Token() pulumi.StringOutput {
 // The Splunk URL to stream logs to
 func (o ServiceComputeSplunkOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSplunk) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// Whether to use TLS for secure logging. Default: `false`
+func (o ServiceComputeSplunkOutput) UseTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeSplunk) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
 
 type ServiceComputeSplunkArrayOutput struct{ *pulumi.OutputState }
@@ -12314,6 +12323,8 @@ type Servicev1Splunk struct {
 	Token string `pulumi:"token"`
 	// The Splunk URL to stream logs to
 	Url string `pulumi:"url"`
+	// Whether to use TLS for secure logging. Default: `false`
+	UseTls *bool `pulumi:"useTls"`
 }
 
 // Servicev1SplunkInput is an input type that accepts Servicev1SplunkArgs and Servicev1SplunkOutput values.
@@ -12350,6 +12361,8 @@ type Servicev1SplunkArgs struct {
 	Token pulumi.StringInput `pulumi:"token"`
 	// The Splunk URL to stream logs to
 	Url pulumi.StringInput `pulumi:"url"`
+	// Whether to use TLS for secure logging. Default: `false`
+	UseTls pulumi.BoolPtrInput `pulumi:"useTls"`
 }
 
 func (Servicev1SplunkArgs) ElementType() reflect.Type {
@@ -12456,6 +12469,11 @@ func (o Servicev1SplunkOutput) Token() pulumi.StringOutput {
 // The Splunk URL to stream logs to
 func (o Servicev1SplunkOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Splunk) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// Whether to use TLS for secure logging. Default: `false`
+func (o Servicev1SplunkOutput) UseTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v Servicev1Splunk) *bool { return v.UseTls }).(pulumi.BoolPtrOutput)
 }
 
 type Servicev1SplunkArrayOutput struct{ *pulumi.OutputState }

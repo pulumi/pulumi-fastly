@@ -47,6 +47,7 @@ export class Provider extends pulumi.ProviderResource {
         {
             inputs["apiKey"] = args ? args.apiKey : undefined;
             inputs["baseUrl"] = args ? args.baseUrl : undefined;
+            inputs["forceHttp2"] = pulumi.output(args ? args.forceHttp2 : undefined).apply(JSON.stringify);
             inputs["noAuth"] = pulumi.output(args ? args.noAuth : undefined).apply(JSON.stringify);
         }
         if (!opts.version) {
@@ -68,6 +69,12 @@ export interface ProviderArgs {
      * Fastly API URL
      */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
+     * `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
+     * handshakes. Default: `false`
+     */
+    forceHttp2?: pulumi.Input<boolean>;
     /**
      * Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
      */

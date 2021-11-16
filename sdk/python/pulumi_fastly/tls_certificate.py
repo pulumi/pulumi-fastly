@@ -230,6 +230,35 @@ class TlsCertificate(pulumi.CustomResource):
 
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
 
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_tls as tls
+
+        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
+        cert = tls.SelfSignedCert("cert",
+            key_algorithm=key_private_key.algorithm,
+            private_key_pem=key_private_key.private_key_pem,
+            subjects=[tls.SelfSignedCertSubjectArgs(
+                common_name="example.com",
+            )],
+            is_ca_certificate=True,
+            validity_period_hours=360,
+            allowed_uses=[
+                "cert_signing",
+                "server_auth",
+            ],
+            dns_names=["example.com"])
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
+        example = fastly.TlsCertificate("example", certificate_body=cert.cert_pem,
+        opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+        # The private key has to be present before the certificate can be uploaded
+        ```
+
         ## Import
 
         A certificate can be imported using its Fastly certificate ID, e.g.
@@ -253,6 +282,35 @@ class TlsCertificate(pulumi.CustomResource):
         Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
 
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_tls as tls
+
+        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
+        cert = tls.SelfSignedCert("cert",
+            key_algorithm=key_private_key.algorithm,
+            private_key_pem=key_private_key.private_key_pem,
+            subjects=[tls.SelfSignedCertSubjectArgs(
+                common_name="example.com",
+            )],
+            is_ca_certificate=True,
+            validity_period_hours=360,
+            allowed_uses=[
+                "cert_signing",
+                "server_auth",
+            ],
+            dns_names=["example.com"])
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
+        example = fastly.TlsCertificate("example", certificate_body=cert.cert_pem,
+        opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+        # The private key has to be present before the certificate can be uploaded
+        ```
 
         ## Import
 

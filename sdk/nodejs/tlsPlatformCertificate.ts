@@ -9,6 +9,66 @@ import * as utilities from "./utilities";
  *
  * > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
  *
+ * ## Example Usage
+ *
+ * Basic usage with self-signed CA:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ * import * as tls from "@pulumi/tls";
+ *
+ * const caKey = new tls.PrivateKey("caKey", {algorithm: "RSA"});
+ * const keyPrivateKey = new tls.PrivateKey("keyPrivateKey", {algorithm: "RSA"});
+ * const ca = new tls.SelfSignedCert("ca", {
+ *     keyAlgorithm: caKey.algorithm,
+ *     privateKeyPem: caKey.privateKeyPem,
+ *     subjects: [{
+ *         commonName: "Example CA",
+ *     }],
+ *     isCaCertificate: true,
+ *     validityPeriodHours: 360,
+ *     allowedUses: [
+ *         "cert_signing",
+ *         "server_auth",
+ *     ],
+ * });
+ * const example = new tls.CertRequest("example", {
+ *     keyAlgorithm: keyPrivateKey.algorithm,
+ *     privateKeyPem: keyPrivateKey.privateKeyPem,
+ *     subjects: [{
+ *         commonName: "example.com",
+ *     }],
+ *     dnsNames: [
+ *         "example.com",
+ *         "www.example.com",
+ *     ],
+ * });
+ * const certLocallySignedCert = new tls.LocallySignedCert("certLocallySignedCert", {
+ *     certRequestPem: example.certRequestPem,
+ *     caKeyAlgorithm: caKey.algorithm,
+ *     caPrivateKeyPem: caKey.privateKeyPem,
+ *     caCertPem: ca.certPem,
+ *     validityPeriodHours: 360,
+ *     allowedUses: [
+ *         "cert_signing",
+ *         "server_auth",
+ *     ],
+ * });
+ * const config = fastly.getTlsConfiguration({
+ *     tlsService: "PLATFORM",
+ * });
+ * const keyTlsPrivateKey = new fastly.TlsPrivateKey("keyTlsPrivateKey", {keyPem: keyPrivateKey.privateKeyPem});
+ * const certTlsPlatformCertificate = new fastly.TlsPlatformCertificate("certTlsPlatformCertificate", {
+ *     certificateBody: certLocallySignedCert.certPem,
+ *     intermediatesBlob: ca.certPem,
+ *     configurationId: config.then(config => config.id),
+ *     allowUntrustedRoot: true,
+ * }, {
+ *     dependsOn: [keyTlsPrivateKey],
+ * });
+ * ```
+ *
  * ## Import
  *
  * A certificate can be imported using its Fastly certificate ID, e.g.

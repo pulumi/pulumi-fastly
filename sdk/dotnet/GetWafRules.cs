@@ -12,17 +12,9 @@ namespace Pulumi.Fastly
 {
     public static class GetWafRules
     {
-        /// <summary>
-        /// Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
-        /// They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
-        /// </summary>
         public static Task<GetWafRulesResult> InvokeAsync(GetWafRulesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesArgs(), options.WithVersion());
 
-        /// <summary>
-        /// Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
-        /// They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
-        /// </summary>
         public static Output<GetWafRulesResult> Invoke(GetWafRulesInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithVersion());
     }

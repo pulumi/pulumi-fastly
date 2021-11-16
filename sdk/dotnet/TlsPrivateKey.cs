@@ -14,6 +14,32 @@ namespace Pulumi.Fastly
     /// 
     /// The Private Key resource requires a key in PEM format, and a name to identify it.
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// using Tls = Pulumi.Tls;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demoPrivateKey = new Tls.PrivateKey("demoPrivateKey", new Tls.PrivateKeyArgs
+    ///         {
+    ///             Algorithm = "RSA",
+    ///         });
+    ///         var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new Fastly.TlsPrivateKeyArgs
+    ///         {
+    ///             KeyPem = demoPrivateKey.PrivateKeyPem,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A Private Key can be imported using its ID, e.g.

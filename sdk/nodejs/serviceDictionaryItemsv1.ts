@@ -16,6 +16,28 @@ import * as utilities from "./utilities";
  * - `writeOnly` dictionaries are not supported
  *
  * ## Example Usage
+ * ### Supporting API and UI dictionary updates with ignoreChanges
+ *
+ * The following example demonstrates how the lifecycle `ignoreChanges` field can be used to suppress updates against the
+ * items in a dictionary.  If, after your first deploy, the Fastly API or UI is to be used to manage items in a dictionary, then this will stop this provider realigning the remote state with the initial set of dictionary items defined in your HCL.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * //...
+ * const items: fastly.ServiceDictionaryItemsv1[];
+ * for (const range of Object.entries(.filter(d => d.name == _var.mydict_name).reduce((__obj, d) => { ...__obj, [d.name]: d })).map(([k, v]) => {key: k, value: v})) {
+ *     items.push(new fastly.ServiceDictionaryItemsv1(`items-${range.key}`, {
+ *         serviceId: fastly_service_v1.myservice.id,
+ *         dictionaryId: range.value.dictionaryId,
+ *         items: {
+ *             key1: "value1",
+ *             key2: "value2",
+ *         },
+ *     }));
+ * }
+ * ```
  *
  * ## Import
  *

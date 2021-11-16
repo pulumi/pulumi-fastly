@@ -97,9 +97,7 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
                   tags: Optional[Sequence[str]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWafRulesResult:
     """
-    Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
-    They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
-
+    Use this data source to access information about an existing resource.
 
     :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
     :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.
@@ -129,9 +127,7 @@ def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional
                          tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWafRulesResult]:
     """
-    Use this data source to get the [WAF rules](https://developer.fastly.com/reference/api/waf/rules/) of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
-    They offer protection from injection attacks and cross site scripting amongst other key application-layer attacks.
-
+    Use this data source to access information about an existing resource.
 
     :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
     :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.

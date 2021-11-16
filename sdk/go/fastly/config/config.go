@@ -18,6 +18,13 @@ func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "fastly:baseUrl")
 }
 
+// Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
+// `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
+// handshakes. Default: `false`
+func GetForceHttp2(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "fastly:forceHttp2")
+}
+
 // Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
 func GetNoAuth(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "fastly:noAuth")
