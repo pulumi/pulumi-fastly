@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.38.0 of the Fastly Terraform Provider
+_(none)_
 
 ---
+
+## 3.10.0 (2021-11-18)
+* Upgrade to v0.38.0 of the Fastly Terraform Provider
 
 ## 3.9.0 (2021-11-15)
 * Upgrade to terraform-bridge 3.11.0
