@@ -3669,6 +3669,8 @@ class ServiceComputeSplunk(dict):
             suggest = "tls_client_key"
         elif key == "tlsHostname":
             suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServiceComputeSplunk. Access the value via the '{suggest}' property getter instead.")
@@ -3688,7 +3690,8 @@ class ServiceComputeSplunk(dict):
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
                  tls_client_key: Optional[str] = None,
-                 tls_hostname: Optional[str] = None):
+                 tls_hostname: Optional[str] = None,
+                 use_tls: Optional[bool] = None):
         """
         :param str name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str token: The Splunk token to be used for authentication
@@ -3697,6 +3700,7 @@ class ServiceComputeSplunk(dict):
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        :param bool use_tls: Whether to use TLS for secure logging. Default: `false`
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -3709,6 +3713,8 @@ class ServiceComputeSplunk(dict):
             pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
             pulumi.set(__self__, "tls_hostname", tls_hostname)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -3765,6 +3771,14 @@ class ServiceComputeSplunk(dict):
         The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
+
+    @property
+    @pulumi.getter(name="useTls")
+    def use_tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS for secure logging. Default: `false`
+        """
+        return pulumi.get(self, "use_tls")
 
 
 @pulumi.output_type
@@ -9745,6 +9759,8 @@ class Servicev1Splunk(dict):
             suggest = "tls_client_key"
         elif key == "tlsHostname":
             suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in Servicev1Splunk. Access the value via the '{suggest}' property getter instead.")
@@ -9768,7 +9784,8 @@ class Servicev1Splunk(dict):
                  tls_ca_cert: Optional[str] = None,
                  tls_client_cert: Optional[str] = None,
                  tls_client_key: Optional[str] = None,
-                 tls_hostname: Optional[str] = None):
+                 tls_hostname: Optional[str] = None,
+                 use_tls: Optional[bool] = None):
         """
         :param str name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str token: The Splunk token to be used for authentication
@@ -9781,6 +9798,7 @@ class Servicev1Splunk(dict):
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        :param bool use_tls: Whether to use TLS for secure logging. Default: `false`
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -9801,6 +9819,8 @@ class Servicev1Splunk(dict):
             pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
             pulumi.set(__self__, "tls_hostname", tls_hostname)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -9889,6 +9909,14 @@ class Servicev1Splunk(dict):
         The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
+
+    @property
+    @pulumi.getter(name="useTls")
+    def use_tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS for secure logging. Default: `false`
+        """
+        return pulumi.get(self, "use_tls")
 
 
 @pulumi.output_type

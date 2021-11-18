@@ -14,6 +14,66 @@ namespace Pulumi.Fastly
     /// 
     /// &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// using Tls = Pulumi.Tls;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new Tls.PrivateKeyArgs
+    ///         {
+    ///             Algorithm = "RSA",
+    ///         });
+    ///         var cert = new Tls.SelfSignedCert("cert", new Tls.SelfSignedCertArgs
+    ///         {
+    ///             KeyAlgorithm = keyPrivateKey.Algorithm,
+    ///             PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
+    ///             Subjects = 
+    ///             {
+    ///                 new Tls.Inputs.SelfSignedCertSubjectArgs
+    ///                 {
+    ///                     CommonName = "example.com",
+    ///                 },
+    ///             },
+    ///             IsCaCertificate = true,
+    ///             ValidityPeriodHours = 360,
+    ///             AllowedUses = 
+    ///             {
+    ///                 "cert_signing",
+    ///                 "server_auth",
+    ///             },
+    ///             DnsNames = 
+    ///             {
+    ///                 "example.com",
+    ///             },
+    ///         });
+    ///         var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new Fastly.TlsPrivateKeyArgs
+    ///         {
+    ///             KeyPem = keyPrivateKey.PrivateKeyPem,
+    ///         });
+    ///         var example = new Fastly.TlsCertificate("example", new Fastly.TlsCertificateArgs
+    ///         {
+    ///             CertificateBody = cert.CertPem,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 keyTlsPrivateKey,
+    ///             },
+    ///         });
+    ///         // The private key has to be present before the certificate can be uploaded
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A certificate can be imported using its Fastly certificate ID, e.g.

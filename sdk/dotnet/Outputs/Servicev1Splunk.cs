@@ -57,6 +57,10 @@ namespace Pulumi.Fastly.Outputs
         /// The Splunk URL to stream logs to
         /// </summary>
         public readonly string Url;
+        /// <summary>
+        /// Whether to use TLS for secure logging. Default: `false`
+        /// </summary>
+        public readonly bool? UseTls;
 
         [OutputConstructor]
         private Servicev1Splunk(
@@ -80,7 +84,9 @@ namespace Pulumi.Fastly.Outputs
 
             string token,
 
-            string url)
+            string url,
+
+            bool? useTls)
         {
             Format = format;
             FormatVersion = formatVersion;
@@ -93,6 +99,7 @@ namespace Pulumi.Fastly.Outputs
             TlsHostname = tlsHostname;
             Token = token;
             Url = url;
+            UseTls = useTls;
         }
     }
 }

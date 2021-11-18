@@ -141,6 +141,26 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         - `write_only` dictionaries are not supported
 
         ## Example Usage
+        ### Supporting API and UI dictionary updates with ignore_changes
+
+        The following example demonstrates how the lifecycle `ignore_changes` field can be used to suppress updates against the
+        items in a dictionary.  If, after your first deploy, the Fastly API or UI is to be used to manage items in a dictionary, then this will stop this provider realigning the remote state with the initial set of dictionary items defined in your HCL.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        #...
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in fastly_service_v1.myservice.dictionary if d.name == var.mydict_name})]:
+            items.append(fastly.ServiceDictionaryItemsv1(f"items-{range['key']}",
+                service_id=fastly_service_v1["myservice"]["id"],
+                dictionary_id=range["value"]["dictionaryId"],
+                items={
+                    "key1": "value1",
+                    "key2": "value2",
+                }))
+        ```
 
         ## Import
 
@@ -174,6 +194,26 @@ class ServiceDictionaryItemsv1(pulumi.CustomResource):
         - `write_only` dictionaries are not supported
 
         ## Example Usage
+        ### Supporting API and UI dictionary updates with ignore_changes
+
+        The following example demonstrates how the lifecycle `ignore_changes` field can be used to suppress updates against the
+        items in a dictionary.  If, after your first deploy, the Fastly API or UI is to be used to manage items in a dictionary, then this will stop this provider realigning the remote state with the initial set of dictionary items defined in your HCL.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        #...
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in fastly_service_v1.myservice.dictionary if d.name == var.mydict_name})]:
+            items.append(fastly.ServiceDictionaryItemsv1(f"items-{range['key']}",
+                service_id=fastly_service_v1["myservice"]["id"],
+                dictionary_id=range["value"]["dictionaryId"],
+                items={
+                    "key1": "value1",
+                    "key2": "value2",
+                }))
+        ```
 
         ## Import
 

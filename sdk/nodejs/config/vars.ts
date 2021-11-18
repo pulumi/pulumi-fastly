@@ -30,6 +30,19 @@ Object.defineProperty(exports, "baseUrl", {
 });
 
 /**
+ * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
+ * `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
+ * handshakes. Default: `false`
+ */
+export declare const forceHttp2: boolean | undefined;
+Object.defineProperty(exports, "forceHttp2", {
+    get() {
+        return __config.getObject<boolean>("forceHttp2");
+    },
+    enumerable: true,
+});
+
+/**
  * Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
  */
 export declare const noAuth: boolean | undefined;

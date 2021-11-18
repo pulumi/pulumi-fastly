@@ -1097,6 +1097,10 @@ export interface ServiceComputeSplunk {
      * The Splunk URL to stream logs to
      */
     url: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Default: `false`
+     */
+    useTls?: pulumi.Input<boolean>;
 }
 
 export interface ServiceComputeSumologic {
@@ -2883,6 +2887,10 @@ export interface Servicev1Splunk {
      * The Splunk URL to stream logs to
      */
     url: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Default: `false`
+     */
+    useTls?: pulumi.Input<boolean>;
 }
 
 export interface Servicev1Sumologic {

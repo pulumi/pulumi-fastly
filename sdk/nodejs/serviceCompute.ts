@@ -6,24 +6,6 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Fastly Compute@Edge service. Compute@Edge is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/), which is run at the edge using [Lucet](https://github.com/bytecodealliance/lucet), an open-source WebAssembly runtime created by Fastly. A compute service encompasses Domains and Backends.
- *
- * The Service resource requires a domain name that is correctly set up to direct
- * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
- * on their documentation site for guidance.
- *
- * ## Example Usage
- * ### package block
- *
- * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on
- * [Compute@Edge](https://www.fastly.com/products/edge-compute/serverless)
- *
- * [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
- * [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
- * [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
- * [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
- * [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
- *
  * ## Import
  *
  * Fastly Services can be imported using their service ID, e.g.

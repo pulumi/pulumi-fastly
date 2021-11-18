@@ -1118,6 +1118,10 @@ export interface ServiceComputeSplunk {
      * The Splunk URL to stream logs to
      */
     url: string;
+    /**
+     * Whether to use TLS for secure logging. Default: `false`
+     */
+    useTls?: boolean;
 }
 
 export interface ServiceComputeSumologic {
@@ -2904,6 +2908,10 @@ export interface Servicev1Splunk {
      * The Splunk URL to stream logs to
      */
     url: string;
+    /**
+     * Whether to use TLS for secure logging. Default: `false`
+     */
+    useTls?: boolean;
 }
 
 export interface Servicev1Sumologic {

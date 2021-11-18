@@ -71,6 +71,14 @@ namespace Pulumi.Fastly
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
+        /// Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
+        /// `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
+        /// handshakes. Default: `false`
+        /// </summary>
+        [Input("forceHttp2", json: true)]
+        public Input<bool>? ForceHttp2 { get; set; }
+
+        /// <summary>
         /// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
         /// </summary>
         [Input("noAuth", json: true)]

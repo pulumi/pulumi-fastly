@@ -182,6 +182,19 @@ class TlsPrivateKey(pulumi.CustomResource):
 
         The Private Key resource requires a key in PEM format, and a name to identify it.
 
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_tls as tls
+
+        demo_private_key = tls.PrivateKey("demoPrivateKey", algorithm="RSA")
+        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem=demo_private_key.private_key_pem)
+        ```
+
         ## Import
 
         A Private Key can be imported using its ID, e.g.
@@ -205,6 +218,19 @@ class TlsPrivateKey(pulumi.CustomResource):
         Uploads a Custom TLS Private Key to Fastly. This can be combined with a `fastly_tls_custom_certificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
 
         The Private Key resource requires a key in PEM format, and a name to identify it.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_tls as tls
+
+        demo_private_key = tls.PrivateKey("demoPrivateKey", algorithm="RSA")
+        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem=demo_private_key.private_key_pem)
+        ```
 
         ## Import
 

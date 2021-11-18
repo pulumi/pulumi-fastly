@@ -14,6 +14,102 @@ namespace Pulumi.Fastly
     /// 
     /// &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage with self-signed CA:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// using Tls = Pulumi.Tls;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var caKey = new Tls.PrivateKey("caKey", new Tls.PrivateKeyArgs
+    ///         {
+    ///             Algorithm = "RSA",
+    ///         });
+    ///         var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new Tls.PrivateKeyArgs
+    ///         {
+    ///             Algorithm = "RSA",
+    ///         });
+    ///         var ca = new Tls.SelfSignedCert("ca", new Tls.SelfSignedCertArgs
+    ///         {
+    ///             KeyAlgorithm = caKey.Algorithm,
+    ///             PrivateKeyPem = caKey.PrivateKeyPem,
+    ///             Subjects = 
+    ///             {
+    ///                 new Tls.Inputs.SelfSignedCertSubjectArgs
+    ///                 {
+    ///                     CommonName = "Example CA",
+    ///                 },
+    ///             },
+    ///             IsCaCertificate = true,
+    ///             ValidityPeriodHours = 360,
+    ///             AllowedUses = 
+    ///             {
+    ///                 "cert_signing",
+    ///                 "server_auth",
+    ///             },
+    ///         });
+    ///         var example = new Tls.CertRequest("example", new Tls.CertRequestArgs
+    ///         {
+    ///             KeyAlgorithm = keyPrivateKey.Algorithm,
+    ///             PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
+    ///             Subjects = 
+    ///             {
+    ///                 new Tls.Inputs.CertRequestSubjectArgs
+    ///                 {
+    ///                     CommonName = "example.com",
+    ///                 },
+    ///             },
+    ///             DnsNames = 
+    ///             {
+    ///                 "example.com",
+    ///                 "www.example.com",
+    ///             },
+    ///         });
+    ///         var certLocallySignedCert = new Tls.LocallySignedCert("certLocallySignedCert", new Tls.LocallySignedCertArgs
+    ///         {
+    ///             CertRequestPem = example.CertRequestPem,
+    ///             CaKeyAlgorithm = caKey.Algorithm,
+    ///             CaPrivateKeyPem = caKey.PrivateKeyPem,
+    ///             CaCertPem = ca.CertPem,
+    ///             ValidityPeriodHours = 360,
+    ///             AllowedUses = 
+    ///             {
+    ///                 "cert_signing",
+    ///                 "server_auth",
+    ///             },
+    ///         });
+    ///         var config = Output.Create(Fastly.GetTlsConfiguration.InvokeAsync(new Fastly.GetTlsConfigurationArgs
+    ///         {
+    ///             TlsService = "PLATFORM",
+    ///         }));
+    ///         var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new Fastly.TlsPrivateKeyArgs
+    ///         {
+    ///             KeyPem = keyPrivateKey.PrivateKeyPem,
+    ///         });
+    ///         var certTlsPlatformCertificate = new Fastly.TlsPlatformCertificate("certTlsPlatformCertificate", new Fastly.TlsPlatformCertificateArgs
+    ///         {
+    ///             CertificateBody = certLocallySignedCert.CertPem,
+    ///             IntermediatesBlob = ca.CertPem,
+    ///             ConfigurationId = config.Apply(config =&gt; config.Id),
+    ///             AllowUntrustedRoot = true,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 keyTlsPrivateKey,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A certificate can be imported using its Fastly certificate ID, e.g.

@@ -29,6 +29,15 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('baseUrl')
 
     @property
+    def force_http2(self) -> Optional[bool]:
+        """
+        Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
+        `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
+        handshakes. Default: `false`
+        """
+        return __config__.get_bool('forceHttp2')
+
+    @property
     def no_auth(self) -> Optional[bool]:
         """
         Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`

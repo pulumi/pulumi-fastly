@@ -311,7 +311,6 @@ namespace Pulumi.Fastly
     /// should be set to `&lt;bucket_name&gt;.s3-website-&lt;region&gt;.amazonaws.com` in the `backend` block. See the
     /// Fastly documentation on [Amazon S3][fastly-s3].
     /// 
-    /// [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
     /// [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
     /// [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
     /// [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
