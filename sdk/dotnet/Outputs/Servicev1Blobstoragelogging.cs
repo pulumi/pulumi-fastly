@@ -42,7 +42,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -74,7 +74,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string SasToken;
         /// <summary>
-        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
 

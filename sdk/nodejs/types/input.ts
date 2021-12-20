@@ -181,7 +181,7 @@ export interface ServiceComputeBlobstoragelogging {
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -205,7 +205,7 @@ export interface ServiceComputeBlobstoragelogging {
      */
     sasToken: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -289,11 +289,11 @@ export interface ServiceComputeGcslogging {
      */
     email?: pulumi.Input<string>;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -313,7 +313,7 @@ export interface ServiceComputeGcslogging {
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -383,7 +383,7 @@ export interface ServiceComputeHttpslogging {
      */
     jsonFormat?: pulumi.Input<string>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -457,11 +457,11 @@ export interface ServiceComputeLoggingCloudfile {
      */
     compressionCodec?: pulumi.Input<string>;
     /**
-     * What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -527,11 +527,11 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     domain?: pulumi.Input<string>;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -555,7 +555,7 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     secretKey: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -621,11 +621,11 @@ export interface ServiceComputeLoggingFtp {
      */
     compressionCodec?: pulumi.Input<string>;
     /**
-     * Gzip Compression level. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted (default: `classic`)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -653,7 +653,7 @@ export interface ServiceComputeLoggingFtp {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -860,11 +860,11 @@ export interface ServiceComputeLoggingOpenstack {
      */
     compressionCodec?: pulumi.Input<string>;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -884,7 +884,7 @@ export interface ServiceComputeLoggingOpenstack {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -922,11 +922,11 @@ export interface ServiceComputeLoggingSftp {
      */
     compressionCodec?: pulumi.Input<string>;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1015,11 +1015,11 @@ export interface ServiceComputeS3logging {
      */
     domain?: pulumi.Input<string>;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1063,7 +1063,7 @@ export interface ServiceComputeS3logging {
      */
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -1105,7 +1105,7 @@ export interface ServiceComputeSplunk {
 
 export interface ServiceComputeSumologic {
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1124,7 +1124,7 @@ export interface ServiceComputeSyslog {
      */
     address: pulumi.Input<string>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1392,7 +1392,7 @@ export interface Servicev1Blobstoragelogging {
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1424,7 +1424,7 @@ export interface Servicev1Blobstoragelogging {
      */
     sasToken: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -1573,11 +1573,11 @@ export interface Servicev1Gcslogging {
      */
     format?: pulumi.Input<string>;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1605,7 +1605,7 @@ export interface Servicev1Gcslogging {
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -1753,7 +1753,7 @@ export interface Servicev1Httpslogging {
      */
     jsonFormat?: pulumi.Input<string>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1859,11 +1859,11 @@ export interface Servicev1LoggingCloudfile {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1961,11 +1961,11 @@ export interface Servicev1LoggingDigitalocean {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -1997,7 +1997,7 @@ export interface Servicev1LoggingDigitalocean {
      */
     secretKey: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -2087,11 +2087,11 @@ export interface Servicev1LoggingFtp {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * Gzip Compression level. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted (default: `classic`)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -2127,7 +2127,7 @@ export interface Servicev1LoggingFtp {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -2470,11 +2470,11 @@ export interface Servicev1LoggingOpenstack {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -2502,7 +2502,7 @@ export interface Servicev1LoggingOpenstack {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -2564,11 +2564,11 @@ export interface Servicev1LoggingSftp {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -2762,11 +2762,11 @@ export interface Servicev1S3logging {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -2818,7 +2818,7 @@ export interface Servicev1S3logging {
      */
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -2903,7 +2903,7 @@ export interface Servicev1Sumologic {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -2938,7 +2938,7 @@ export interface Servicev1Syslog {
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**

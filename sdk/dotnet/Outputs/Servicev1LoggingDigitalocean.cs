@@ -38,11 +38,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -74,7 +74,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
 

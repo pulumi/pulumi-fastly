@@ -704,11 +704,11 @@ class ServiceComputeBlobstorageloggingArgs:
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[int] file_max_bytes: Maximum size of an uploaded log file, if non-zero.
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred in seconds. Default `3600`
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "container", container)
@@ -819,7 +819,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -867,7 +867,7 @@ class ServiceComputeBlobstorageloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1135,12 +1135,12 @@ class ServiceComputeGcsloggingArgs:
         :param pulumi.Input[str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] email: The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
-        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default 3600)
         :param pulumi.Input[str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
-        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -1213,7 +1213,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -1225,7 +1225,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -1273,7 +1273,7 @@ class ServiceComputeGcsloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1486,7 +1486,7 @@ class ServiceComputeHttpsloggingArgs:
         :param pulumi.Input[str] header_name: Custom header sent with the request
         :param pulumi.Input[str] header_value: Value of the custom header sent with the request
         :param pulumi.Input[str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request
         :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request
@@ -1598,7 +1598,7 @@ class ServiceComputeHttpsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -1781,8 +1781,8 @@ class ServiceComputeLoggingCloudfileArgs:
         :param pulumi.Input[str] name: The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] user: The username for your Cloud Files account
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
@@ -1874,7 +1874,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -1886,7 +1886,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -2030,12 +2030,12 @@ class ServiceComputeLoggingDigitaloceanArgs:
         :param pulumi.Input[str] secret_key: Your DigitalOcean Spaces account secret key
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -2134,7 +2134,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -2146,7 +2146,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -2194,7 +2194,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -2421,12 +2421,12 @@ class ServiceComputeLoggingFtpArgs:
         :param pulumi.Input[str] path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
         :param pulumi.Input[str] user: The username for the server (can be `anonymous`)
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param pulumi.Input[int] gzip_level: Gzip Compression level. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted (default: `classic`)
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default `3600`)
         :param pulumi.Input[int] port: The port number. Default: `21`
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -2524,7 +2524,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        Gzip Compression level. Default `0`
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -2536,7 +2536,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted (default: `classic`)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -2584,7 +2584,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3288,12 +3288,12 @@ class ServiceComputeLoggingOpenstackArgs:
         :param pulumi.Input[str] url: Your OpenStack auth url
         :param pulumi.Input[str] user: The username for your OpenStack account
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -3391,7 +3391,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -3403,7 +3403,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -3451,7 +3451,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3537,8 +3537,8 @@ class ServiceComputeLoggingSftpArgs:
         :param pulumi.Input[str] ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP
         :param pulumi.Input[str] user: The username for the server
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`)
@@ -3646,7 +3646,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -3658,7 +3658,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -3855,8 +3855,8 @@ class ServiceComputeS3loggingArgs:
         :param pulumi.Input[str] acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
-        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
@@ -3866,7 +3866,7 @@ class ServiceComputeS3loggingArgs:
         :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
         :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -3965,7 +3965,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -3977,7 +3977,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -4097,7 +4097,7 @@ class ServiceComputeS3loggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -4247,7 +4247,7 @@ class ServiceComputeSumologicArgs:
         """
         :param pulumi.Input[str] name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] url: The URL to Sumologic collector endpoint
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "url", url)
@@ -4282,7 +4282,7 @@ class ServiceComputeSumologicArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -4307,7 +4307,7 @@ class ServiceComputeSyslogArgs:
         """
         :param pulumi.Input[str] address: A hostname or IPv4 address of the Syslog endpoint
         :param pulumi.Input[str] name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[int] port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
@@ -4363,7 +4363,7 @@ class ServiceComputeSyslogArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -5245,13 +5245,13 @@ class Servicev1BlobstorageloggingArgs:
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred in seconds. Default `3600`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply
-        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "container", container)
@@ -5394,7 +5394,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -5466,7 +5466,7 @@ class Servicev1BlobstorageloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -5961,14 +5961,14 @@ class Servicev1GcsloggingArgs:
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] email: The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
-        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default 3600)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
         :param pulumi.Input[str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
-        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -6059,7 +6059,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -6071,7 +6071,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -6143,7 +6143,7 @@ class Servicev1GcsloggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -6627,7 +6627,7 @@ class Servicev1HttpsloggingArgs:
         :param pulumi.Input[str] header_name: Custom header sent with the request
         :param pulumi.Input[str] header_value: Value of the custom header sent with the request
         :param pulumi.Input[str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request
@@ -6773,7 +6773,7 @@ class Servicev1HttpsloggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -7050,8 +7050,8 @@ class Servicev1LoggingCloudfileArgs:
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of GZIP encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
@@ -7177,7 +7177,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -7189,7 +7189,7 @@ class Servicev1LoggingCloudfileArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -7427,14 +7427,14 @@ class Servicev1LoggingDigitaloceanArgs:
         :param pulumi.Input[str] domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -7565,7 +7565,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -7577,7 +7577,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -7649,7 +7649,7 @@ class Servicev1LoggingDigitaloceanArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -7946,14 +7946,14 @@ class Servicev1LoggingFtpArgs:
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param pulumi.Input[int] gzip_level: Gzip Compression level. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted (default: `classic`)
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default `3600`)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[int] port: The port number. Default: `21`
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
-        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -8083,7 +8083,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        Gzip Compression level. Default `0`
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -8095,7 +8095,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted (default: `classic`)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -8167,7 +8167,7 @@ class Servicev1LoggingFtpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -9389,14 +9389,14 @@ class Servicev1LoggingOpenstackArgs:
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -9526,7 +9526,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -9538,7 +9538,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -9610,7 +9610,7 @@ class Servicev1LoggingOpenstackArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -9766,8 +9766,8 @@ class Servicev1LoggingSftpArgs:
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param pulumi.Input[int] gzip_level: What level of Gzip encoding to have when dumping logs (default `0`, no compression)
-        :param pulumi.Input[str] message_type: How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
@@ -9909,7 +9909,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -9921,7 +9921,7 @@ class Servicev1LoggingSftpArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -10493,8 +10493,8 @@ class Servicev1S3loggingArgs:
         :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
-        :param pulumi.Input[int] gzip_level: Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
@@ -10506,7 +10506,7 @@ class Servicev1S3loggingArgs:
         :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
         :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        :param pulumi.Input[str] timestamp_format: `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -10637,7 +10637,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="gzipLevel")
     def gzip_level(self) -> Optional[pulumi.Input[int]]:
         """
-        Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
@@ -10649,7 +10649,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -10793,7 +10793,7 @@ class Servicev1S3loggingArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -11081,7 +11081,7 @@ class Servicev1SumologicArgs:
         :param pulumi.Input[str] url: The URL to Sumologic collector endpoint
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
         """
@@ -11150,7 +11150,7 @@ class Servicev1SumologicArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
@@ -11205,7 +11205,7 @@ class Servicev1SyslogArgs:
         :param pulumi.Input[str] name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[int] format_version: The version of the custom logging format. Can be either 1 or 2. (Default: 1)
-        :param pulumi.Input[str] message_type: How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[int] port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
@@ -11295,7 +11295,7 @@ class Servicev1SyslogArgs:
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
-        How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
