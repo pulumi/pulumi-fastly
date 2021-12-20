@@ -30,11 +30,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -62,7 +62,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? SecretKey;
         /// <summary>
-        /// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
 

@@ -615,7 +615,7 @@ type ServiceComputeBlobstoragelogging struct {
 	FileMaxBytes *int `pulumi:"fileMaxBytes"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -627,7 +627,7 @@ type ServiceComputeBlobstoragelogging struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken string `pulumi:"sasToken"`
-	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -653,7 +653,7 @@ type ServiceComputeBlobstorageloggingArgs struct {
 	FileMaxBytes pulumi.IntPtrInput `pulumi:"fileMaxBytes"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -665,7 +665,7 @@ type ServiceComputeBlobstorageloggingArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken pulumi.StringInput `pulumi:"sasToken"`
-	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -745,7 +745,7 @@ func (o ServiceComputeBlobstorageloggingOutput) GzipLevel() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeBlobstorageloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -775,7 +775,7 @@ func (o ServiceComputeBlobstorageloggingOutput) SasToken() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) string { return v.SasToken }).(pulumi.StringOutput)
 }
 
-// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeBlobstorageloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBlobstoragelogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -1197,9 +1197,9 @@ type ServiceComputeGcslogging struct {
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 	Email *string `pulumi:"email"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -1209,7 +1209,7 @@ type ServiceComputeGcslogging struct {
 	Period *int `pulumi:"period"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -1231,9 +1231,9 @@ type ServiceComputeGcsloggingArgs struct {
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
 	Email pulumi.StringPtrInput `pulumi:"email"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -1243,7 +1243,7 @@ type ServiceComputeGcsloggingArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -1313,12 +1313,12 @@ func (o ServiceComputeGcsloggingOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
-// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeGcsloggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeGcsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -1343,7 +1343,7 @@ func (o ServiceComputeGcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeGcsloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeGcslogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -1564,7 +1564,7 @@ type ServiceComputeHttpslogging struct {
 	HeaderValue *string `pulumi:"headerValue"`
 	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat *string `pulumi:"jsonFormat"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method *string `pulumi:"method"`
@@ -1606,7 +1606,7 @@ type ServiceComputeHttpsloggingArgs struct {
 	HeaderValue pulumi.StringPtrInput `pulumi:"headerValue"`
 	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat pulumi.StringPtrInput `pulumi:"jsonFormat"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method pulumi.StringPtrInput `pulumi:"method"`
@@ -1699,7 +1699,7 @@ func (o ServiceComputeHttpsloggingOutput) JsonFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.JsonFormat }).(pulumi.StringPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeHttpsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeHttpslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -1900,9 +1900,9 @@ type ServiceComputeLoggingCloudfile struct {
 	BucketName string `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
-	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -1938,9 +1938,9 @@ type ServiceComputeLoggingCloudfileArgs struct {
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
-	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -2024,12 +2024,12 @@ func (o ServiceComputeLoggingCloudfileOutput) CompressionCodec() pulumi.StringPt
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeLoggingCloudfileOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeLoggingCloudfileOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -2213,9 +2213,9 @@ type ServiceComputeLoggingDigitalocean struct {
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain *string `pulumi:"domain"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -2227,7 +2227,7 @@ type ServiceComputeLoggingDigitalocean struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey string `pulumi:"secretKey"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -2251,9 +2251,9 @@ type ServiceComputeLoggingDigitaloceanArgs struct {
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -2265,7 +2265,7 @@ type ServiceComputeLoggingDigitaloceanArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -2340,12 +2340,12 @@ func (o ServiceComputeLoggingDigitaloceanOutput) Domain() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeLoggingDigitaloceanOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeLoggingDigitaloceanOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -2375,7 +2375,7 @@ func (o ServiceComputeLoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingDigitaloceanOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -2601,9 +2601,9 @@ type ServiceComputeLoggingFtp struct {
 	Address string `pulumi:"address"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
-	// Gzip Compression level. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted (default: `classic`)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -2617,7 +2617,7 @@ type ServiceComputeLoggingFtp struct {
 	Port *int `pulumi:"port"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User string `pulumi:"user"`
@@ -2639,9 +2639,9 @@ type ServiceComputeLoggingFtpArgs struct {
 	Address pulumi.StringInput `pulumi:"address"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
-	// Gzip Compression level. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted (default: `classic`)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -2655,7 +2655,7 @@ type ServiceComputeLoggingFtpArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User pulumi.StringInput `pulumi:"user"`
@@ -2722,12 +2722,12 @@ func (o ServiceComputeLoggingFtpOutput) CompressionCodec() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
 
-// Gzip Compression level. Default `0`
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeLoggingFtpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted (default: `classic`)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeLoggingFtpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -2762,7 +2762,7 @@ func (o ServiceComputeLoggingFtpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingFtpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -3863,9 +3863,9 @@ type ServiceComputeLoggingOpenstack struct {
 	BucketName string `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -3875,7 +3875,7 @@ type ServiceComputeLoggingOpenstack struct {
 	Period *int `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url string `pulumi:"url"`
@@ -3901,9 +3901,9 @@ type ServiceComputeLoggingOpenstackArgs struct {
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -3913,7 +3913,7 @@ type ServiceComputeLoggingOpenstackArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url pulumi.StringInput `pulumi:"url"`
@@ -3987,12 +3987,12 @@ func (o ServiceComputeLoggingOpenstackOutput) CompressionCodec() pulumi.StringPt
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
 
-// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeLoggingOpenstackOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeLoggingOpenstackOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -4017,7 +4017,7 @@ func (o ServiceComputeLoggingOpenstackOutput) PublicKey() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeLoggingOpenstackOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -4172,9 +4172,9 @@ type ServiceComputeLoggingSftp struct {
 	Address string `pulumi:"address"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -4214,9 +4214,9 @@ type ServiceComputeLoggingSftpArgs struct {
 	Address pulumi.StringInput `pulumi:"address"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -4301,12 +4301,12 @@ func (o ServiceComputeLoggingSftpOutput) CompressionCodec() pulumi.StringPtrOutp
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
 
-// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeLoggingSftpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeLoggingSftpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -4661,9 +4661,9 @@ type ServiceComputeS3logging struct {
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain *string `pulumi:"domain"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -4685,7 +4685,7 @@ type ServiceComputeS3logging struct {
 	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -4709,9 +4709,9 @@ type ServiceComputeS3loggingArgs struct {
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -4733,7 +4733,7 @@ type ServiceComputeS3loggingArgs struct {
 	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -4808,12 +4808,12 @@ func (o ServiceComputeS3loggingOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o ServiceComputeS3loggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeS3loggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -4868,7 +4868,7 @@ func (o ServiceComputeS3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.Str
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
 
-// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o ServiceComputeS3loggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeS3logging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -5054,7 +5054,7 @@ func (o ServiceComputeSplunkArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 }
 
 type ServiceComputeSumologic struct {
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -5074,7 +5074,7 @@ type ServiceComputeSumologicInput interface {
 }
 
 type ServiceComputeSumologicArgs struct {
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -5133,7 +5133,7 @@ func (o ServiceComputeSumologicOutput) ToServiceComputeSumologicOutputWithContex
 	return o
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeSumologicOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -5171,7 +5171,7 @@ func (o ServiceComputeSumologicArrayOutput) Index(i pulumi.IntInput) ServiceComp
 type ServiceComputeSyslog struct {
 	// A hostname or IPv4 address of the Syslog endpoint
 	Address string `pulumi:"address"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -5205,7 +5205,7 @@ type ServiceComputeSyslogInput interface {
 type ServiceComputeSyslogArgs struct {
 	// A hostname or IPv4 address of the Syslog endpoint
 	Address pulumi.StringInput `pulumi:"address"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -5281,7 +5281,7 @@ func (o ServiceComputeSyslogOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o ServiceComputeSyslogOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeSyslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -6221,7 +6221,7 @@ type Servicev1Blobstoragelogging struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -6237,7 +6237,7 @@ type Servicev1Blobstoragelogging struct {
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken string `pulumi:"sasToken"`
-	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -6267,7 +6267,7 @@ type Servicev1BlobstorageloggingArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -6283,7 +6283,7 @@ type Servicev1BlobstorageloggingArgs struct {
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken pulumi.StringInput `pulumi:"sasToken"`
-	// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -6373,7 +6373,7 @@ func (o Servicev1BlobstorageloggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1BlobstorageloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -6413,7 +6413,7 @@ func (o Servicev1BlobstorageloggingOutput) SasToken() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) string { return v.SasToken }).(pulumi.StringOutput)
 }
 
-// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1BlobstorageloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Blobstoragelogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -7218,9 +7218,9 @@ type Servicev1Gcslogging struct {
 	Email *string `pulumi:"email"`
 	// Apache-style string or VCL variables to use for log formatting
 	Format *string `pulumi:"format"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -7234,7 +7234,7 @@ type Servicev1Gcslogging struct {
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -7258,9 +7258,9 @@ type Servicev1GcsloggingArgs struct {
 	Email pulumi.StringPtrInput `pulumi:"email"`
 	// Apache-style string or VCL variables to use for log formatting
 	Format pulumi.StringPtrInput `pulumi:"format"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -7274,7 +7274,7 @@ type Servicev1GcsloggingArgs struct {
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -7349,12 +7349,12 @@ func (o Servicev1GcsloggingOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1GcsloggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1GcsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -7389,7 +7389,7 @@ func (o Servicev1GcsloggingOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1GcsloggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Gcslogging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -7934,7 +7934,7 @@ type Servicev1Httpslogging struct {
 	HeaderValue *string `pulumi:"headerValue"`
 	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat *string `pulumi:"jsonFormat"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method *string `pulumi:"method"`
@@ -7984,7 +7984,7 @@ type Servicev1HttpsloggingArgs struct {
 	HeaderValue pulumi.StringPtrInput `pulumi:"headerValue"`
 	// Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
 	JsonFormat pulumi.StringPtrInput `pulumi:"jsonFormat"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
 	Method pulumi.StringPtrInput `pulumi:"method"`
@@ -8091,7 +8091,7 @@ func (o Servicev1HttpsloggingOutput) JsonFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.JsonFormat }).(pulumi.StringPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1HttpsloggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Httpslogging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -8342,9 +8342,9 @@ type Servicev1LoggingCloudfile struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -8388,9 +8388,9 @@ type Servicev1LoggingCloudfileArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -8488,12 +8488,12 @@ func (o Servicev1LoggingCloudfileOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1LoggingCloudfileOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1LoggingCloudfileOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingCloudfile) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -8727,9 +8727,9 @@ type Servicev1LoggingDigitalocean struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -8745,7 +8745,7 @@ type Servicev1LoggingDigitalocean struct {
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey string `pulumi:"secretKey"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -8773,9 +8773,9 @@ type Servicev1LoggingDigitaloceanArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -8791,7 +8791,7 @@ type Servicev1LoggingDigitaloceanArgs struct {
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -8876,12 +8876,12 @@ func (o Servicev1LoggingDigitaloceanOutput) FormatVersion() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1LoggingDigitaloceanOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1LoggingDigitaloceanOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -8921,7 +8921,7 @@ func (o Servicev1LoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingDigitaloceanOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingDigitalocean) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -9187,9 +9187,9 @@ type Servicev1LoggingFtp struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// Gzip Compression level. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted (default: `classic`)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -9207,7 +9207,7 @@ type Servicev1LoggingFtp struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User string `pulumi:"user"`
@@ -9233,9 +9233,9 @@ type Servicev1LoggingFtpArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// Gzip Compression level. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted (default: `classic`)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -9253,7 +9253,7 @@ type Servicev1LoggingFtpArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User pulumi.StringInput `pulumi:"user"`
@@ -9330,12 +9330,12 @@ func (o Servicev1LoggingFtpOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// Gzip Compression level. Default `0`
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1LoggingFtpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted (default: `classic`)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1LoggingFtpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -9380,7 +9380,7 @@ func (o Servicev1LoggingFtpOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingFtpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingFtp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -10773,9 +10773,9 @@ type Servicev1LoggingOpenstack struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -10789,7 +10789,7 @@ type Servicev1LoggingOpenstack struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url string `pulumi:"url"`
@@ -10819,9 +10819,9 @@ type Servicev1LoggingOpenstackArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -10835,7 +10835,7 @@ type Servicev1LoggingOpenstackArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url pulumi.StringInput `pulumi:"url"`
@@ -10919,12 +10919,12 @@ func (o Servicev1LoggingOpenstackOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1LoggingOpenstackOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1LoggingOpenstackOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -10959,7 +10959,7 @@ func (o Servicev1LoggingOpenstackOutput) ResponseCondition() pulumi.StringPtrOut
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1LoggingOpenstackOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingOpenstack) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -11154,9 +11154,9 @@ type Servicev1LoggingSftp struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -11204,9 +11204,9 @@ type Servicev1LoggingSftpArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -11305,12 +11305,12 @@ func (o Servicev1LoggingSftpOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1LoggingSftpOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1LoggingSftpOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1LoggingSftp) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -11912,9 +11912,9 @@ type Servicev1S3logging struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
 	FormatVersion *int `pulumi:"formatVersion"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -11940,7 +11940,7 @@ type Servicev1S3logging struct {
 	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -11968,9 +11968,9 @@ type Servicev1S3loggingArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -11996,7 +11996,7 @@ type Servicev1S3loggingArgs struct {
 	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
-	// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -12081,12 +12081,12 @@ func (o Servicev1S3loggingOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 func (o Servicev1S3loggingOutput) GzipLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1S3loggingOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -12151,7 +12151,7 @@ func (o Servicev1S3loggingOutput) ServerSideEncryptionKmsKeyId() pulumi.StringPt
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
 
-// `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 func (o Servicev1S3loggingOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1S3logging) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -12501,7 +12501,7 @@ type Servicev1Sumologic struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -12529,7 +12529,7 @@ type Servicev1SumologicArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -12602,7 +12602,7 @@ func (o Servicev1SumologicOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1SumologicOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Sumologic) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -12654,7 +12654,7 @@ type Servicev1Syslog struct {
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format. Can be either 1 or 2. (Default: 1)
 	FormatVersion *int `pulumi:"formatVersion"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -12696,7 +12696,7 @@ type Servicev1SyslogArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format. Can be either 1 or 2. (Default: 1)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
-	// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
@@ -12786,7 +12786,7 @@ func (o Servicev1SyslogOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
 }
 
-// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
 func (o Servicev1SyslogOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Syslog) *string { return v.MessageType }).(pulumi.StringPtrOutput)
 }

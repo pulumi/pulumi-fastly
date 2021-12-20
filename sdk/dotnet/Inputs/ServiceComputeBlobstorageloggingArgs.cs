@@ -43,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -79,7 +79,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> SasToken { get; set; } = null!;
 
         /// <summary>
-        /// `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

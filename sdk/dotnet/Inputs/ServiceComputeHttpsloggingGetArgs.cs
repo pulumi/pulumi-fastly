@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? JsonFormat { get; set; }
 
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }

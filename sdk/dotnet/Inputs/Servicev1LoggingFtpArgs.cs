@@ -37,13 +37,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// Gzip Compression level. Default `0`
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         /// </summary>
         [Input("gzipLevel")]
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted (default: `classic`)
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -97,7 +97,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

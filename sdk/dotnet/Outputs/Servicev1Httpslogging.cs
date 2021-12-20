@@ -38,7 +38,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? JsonFormat;
         /// <summary>
-        /// How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>

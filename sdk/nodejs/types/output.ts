@@ -202,7 +202,7 @@ export interface ServiceComputeBlobstoragelogging {
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -226,7 +226,7 @@ export interface ServiceComputeBlobstoragelogging {
      */
     sasToken: string;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -310,11 +310,11 @@ export interface ServiceComputeGcslogging {
      */
     email?: string;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -334,7 +334,7 @@ export interface ServiceComputeGcslogging {
      */
     secretKey?: string;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -404,7 +404,7 @@ export interface ServiceComputeHttpslogging {
      */
     jsonFormat?: string;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -478,11 +478,11 @@ export interface ServiceComputeLoggingCloudfile {
      */
     compressionCodec?: string;
     /**
-     * What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -548,11 +548,11 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     domain?: string;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -576,7 +576,7 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     secretKey: string;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -642,11 +642,11 @@ export interface ServiceComputeLoggingFtp {
      */
     compressionCodec?: string;
     /**
-     * Gzip Compression level. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted (default: `classic`)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -674,7 +674,7 @@ export interface ServiceComputeLoggingFtp {
      */
     publicKey?: string;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
@@ -881,11 +881,11 @@ export interface ServiceComputeLoggingOpenstack {
      */
     compressionCodec?: string;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -905,7 +905,7 @@ export interface ServiceComputeLoggingOpenstack {
      */
     publicKey?: string;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
@@ -943,11 +943,11 @@ export interface ServiceComputeLoggingSftp {
      */
     compressionCodec?: string;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1036,11 +1036,11 @@ export interface ServiceComputeS3logging {
      */
     domain?: string;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1084,7 +1084,7 @@ export interface ServiceComputeS3logging {
      */
     serverSideEncryptionKmsKeyId?: string;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -1126,7 +1126,7 @@ export interface ServiceComputeSplunk {
 
 export interface ServiceComputeSumologic {
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1145,7 +1145,7 @@ export interface ServiceComputeSyslog {
      */
     address: string;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1413,7 +1413,7 @@ export interface Servicev1Blobstoragelogging {
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1445,7 +1445,7 @@ export interface Servicev1Blobstoragelogging {
      */
     sasToken: string;
     /**
-     * `strftime` specified timestamp formatting. Default `%Y-%m-%dT%H:%M:%S.000`
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -1594,11 +1594,11 @@ export interface Servicev1Gcslogging {
      */
     format?: string;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1626,7 +1626,7 @@ export interface Servicev1Gcslogging {
      */
     secretKey?: string;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -1774,7 +1774,7 @@ export interface Servicev1Httpslogging {
      */
     jsonFormat?: string;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1880,11 +1880,11 @@ export interface Servicev1LoggingCloudfile {
      */
     formatVersion?: number;
     /**
-     * What level of GZIP encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -1982,11 +1982,11 @@ export interface Servicev1LoggingDigitalocean {
      */
     formatVersion?: number;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -2018,7 +2018,7 @@ export interface Servicev1LoggingDigitalocean {
      */
     secretKey: string;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -2108,11 +2108,11 @@ export interface Servicev1LoggingFtp {
      */
     formatVersion?: number;
     /**
-     * Gzip Compression level. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted (default: `classic`)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -2148,7 +2148,7 @@ export interface Servicev1LoggingFtp {
      */
     responseCondition?: string;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
@@ -2491,11 +2491,11 @@ export interface Servicev1LoggingOpenstack {
      */
     formatVersion?: number;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -2523,7 +2523,7 @@ export interface Servicev1LoggingOpenstack {
      */
     responseCondition?: string;
     /**
-     * specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
     /**
@@ -2585,11 +2585,11 @@ export interface Servicev1LoggingSftp {
      */
     formatVersion?: number;
     /**
-     * What level of Gzip encoding to have when dumping logs (default `0`, no compression)
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted. One of: `classic` (default), `loggly`, `logplex` or `blank`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -2783,11 +2783,11 @@ export interface Servicev1S3logging {
      */
     formatVersion?: number;
     /**
-     * Level of Gzip compression, from `0-9`. `0` is no compression. `1` is fastest and least compressed, `9` is slowest and most compressed. Default `0`
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -2839,7 +2839,7 @@ export interface Servicev1S3logging {
      */
     serverSideEncryptionKmsKeyId?: string;
     /**
-     * `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: string;
 }
@@ -2924,7 +2924,7 @@ export interface Servicev1Sumologic {
      */
     formatVersion?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`. See [Fastly's Documentation on Sumologic](https://developer.fastly.com/reference/api/logging/sumologic/)
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
@@ -2959,7 +2959,7 @@ export interface Servicev1Syslog {
      */
     formatVersion?: number;
     /**
-     * How the message should be formatted; one of: `classic`, `loggly`, `logplex` or `blank`. Default `classic`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: string;
     /**
