@@ -1550,7 +1550,7 @@ export interface Servicev1Dynamicsnippet {
      */
     snippetId?: pulumi.Input<string>;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
      */
     type: pulumi.Input<string>;
 }
@@ -2837,7 +2837,7 @@ export interface Servicev1Snippet {
      */
     priority?: pulumi.Input<number>;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
      */
     type: pulumi.Input<string>;
 }

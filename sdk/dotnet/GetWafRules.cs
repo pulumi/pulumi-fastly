@@ -34,6 +34,18 @@ namespace Pulumi.Fastly
             set => _excludeModsecRuleIds = value;
         }
 
+        [Input("modsecRuleIds")]
+        private List<int>? _modsecRuleIds;
+
+        /// <summary>
+        /// A list of modsecurity rules IDs to be used as filters for the data set.
+        /// </summary>
+        public List<int> ModsecRuleIds
+        {
+            get => _modsecRuleIds ?? (_modsecRuleIds = new List<int>());
+            set => _modsecRuleIds = value;
+        }
+
         [Input("publishers")]
         private List<string>? _publishers;
 
@@ -75,6 +87,18 @@ namespace Pulumi.Fastly
         {
             get => _excludeModsecRuleIds ?? (_excludeModsecRuleIds = new InputList<int>());
             set => _excludeModsecRuleIds = value;
+        }
+
+        [Input("modsecRuleIds")]
+        private InputList<int>? _modsecRuleIds;
+
+        /// <summary>
+        /// A list of modsecurity rules IDs to be used as filters for the data set.
+        /// </summary>
+        public InputList<int> ModsecRuleIds
+        {
+            get => _modsecRuleIds ?? (_modsecRuleIds = new InputList<int>());
+            set => _modsecRuleIds = value;
         }
 
         [Input("publishers")]
@@ -119,6 +143,10 @@ namespace Pulumi.Fastly
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// A list of modsecurity rules IDs to be used as filters for the data set.
+        /// </summary>
+        public readonly ImmutableArray<int> ModsecRuleIds;
+        /// <summary>
         /// A list of publishers to be used as filters for the data set.
         /// </summary>
         public readonly ImmutableArray<string> Publishers;
@@ -137,6 +165,8 @@ namespace Pulumi.Fastly
 
             string id,
 
+            ImmutableArray<int> modsecRuleIds,
+
             ImmutableArray<string> publishers,
 
             ImmutableArray<Outputs.GetWafRulesRuleResult> rules,
@@ -145,6 +175,7 @@ namespace Pulumi.Fastly
         {
             ExcludeModsecRuleIds = excludeModsecRuleIds;
             Id = id;
+            ModsecRuleIds = modsecRuleIds;
             Publishers = publishers;
             Rules = rules;
             Tags = tags;

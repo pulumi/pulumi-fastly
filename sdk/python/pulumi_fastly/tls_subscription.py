@@ -356,66 +356,6 @@ class TlsSubscription(pulumi.CustomResource):
 
         The example below demonstrates usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        example_servicev1 = fastly.Servicev1("exampleServicev1",
-            domains=[fastly.Servicev1DomainArgs(
-                name="example.com",
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
-            force_destroy=True)
-        example_tls_subscription = fastly.TlsSubscription("exampleTlsSubscription",
-            domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),
-            certificate_authority="lets-encrypt")
-        ```
-
-        Usage with AWS Route 53:
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_fastly as fastly
-
-        domain_name = "example.com"
-        example_servicev1 = fastly.Servicev1("exampleServicev1",
-            domains=[fastly.Servicev1DomainArgs(
-                name=domain_name,
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
-            force_destroy=True)
-        example_tls_subscription = fastly.TlsSubscription("exampleTlsSubscription",
-            domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),
-            certificate_authority="lets-encrypt")
-        demo = aws.route53.get_zone(name=domain_name,
-            private_zone=False)
-        # Set up DNS record for managed DNS domain validation method
-        domain_validation = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain: [obj for obj in example_tls_subscription.managedDnsChallenges if obj.recordName == f_acme-challenge.{domain}][0] for domain in example_tls_subscription.domains})]:
-            domain_validation.append(aws.route53.Record(f"domainValidation-{range['key']}",
-                name=range["value"],
-                type=range["value"],
-                zone_id=demo.id,
-                allow_overwrite=True,
-                records=[range["value"]],
-                ttl=60,
-                opts=pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
-        # Resource that other resources can depend on if they require the certificate to be issued
-        example_tls_subscription_validation = fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", subscription_id=example_tls_subscription.id,
-        opts=pulumi.ResourceOptions(depends_on=[domain_validation]))
-        ```
-
         ## Import
 
         A subscription can be imported using its Fastly subscription ID, e.g.
@@ -449,66 +389,6 @@ class TlsSubscription(pulumi.CustomResource):
         > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
 
         The example below demonstrates usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
-
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        example_servicev1 = fastly.Servicev1("exampleServicev1",
-            domains=[fastly.Servicev1DomainArgs(
-                name="example.com",
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
-            force_destroy=True)
-        example_tls_subscription = fastly.TlsSubscription("exampleTlsSubscription",
-            domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),
-            certificate_authority="lets-encrypt")
-        ```
-
-        Usage with AWS Route 53:
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_fastly as fastly
-
-        domain_name = "example.com"
-        example_servicev1 = fastly.Servicev1("exampleServicev1",
-            domains=[fastly.Servicev1DomainArgs(
-                name=domain_name,
-            )],
-            backends=[fastly.Servicev1BackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
-            force_destroy=True)
-        example_tls_subscription = fastly.TlsSubscription("exampleTlsSubscription",
-            domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),
-            certificate_authority="lets-encrypt")
-        demo = aws.route53.get_zone(name=domain_name,
-            private_zone=False)
-        # Set up DNS record for managed DNS domain validation method
-        domain_validation = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({domain: [obj for obj in example_tls_subscription.managedDnsChallenges if obj.recordName == f_acme-challenge.{domain}][0] for domain in example_tls_subscription.domains})]:
-            domain_validation.append(aws.route53.Record(f"domainValidation-{range['key']}",
-                name=range["value"],
-                type=range["value"],
-                zone_id=demo.id,
-                allow_overwrite=True,
-                records=[range["value"]],
-                ttl=60,
-                opts=pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
-        # Resource that other resources can depend on if they require the certificate to be issued
-        example_tls_subscription_validation = fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", subscription_id=example_tls_subscription.id,
-        opts=pulumi.ResourceOptions(depends_on=[domain_validation]))
-        ```
 
         ## Import
 

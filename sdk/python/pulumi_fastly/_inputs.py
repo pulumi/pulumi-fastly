@@ -5879,7 +5879,7 @@ class Servicev1DynamicsnippetArgs:
                  snippet_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet
         """
@@ -5906,7 +5906,7 @@ class Servicev1DynamicsnippetArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         """
         return pulumi.get(self, "type")
 
@@ -10812,7 +10812,7 @@ class Servicev1SnippetArgs:
         """
         :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[str] name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
         pulumi.set(__self__, "content", content)
@@ -10849,7 +10849,7 @@ class Servicev1SnippetArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         """
         return pulumi.get(self, "type")
 

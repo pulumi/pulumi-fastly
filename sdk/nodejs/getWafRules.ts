@@ -16,6 +16,7 @@ export function getWafRules(args?: GetWafRulesArgs, opts?: pulumi.InvokeOptions)
     }
     return pulumi.runtime.invoke("fastly:index/getWafRules:getWafRules", {
         "excludeModsecRuleIds": args.excludeModsecRuleIds,
+        "modsecRuleIds": args.modsecRuleIds,
         "publishers": args.publishers,
         "tags": args.tags,
     }, opts);
@@ -29,6 +30,10 @@ export interface GetWafRulesArgs {
      * Exclusion filter by WAF rule's ModSecurity ID.
      */
     excludeModsecRuleIds?: number[];
+    /**
+     * A list of modsecurity rules IDs to be used as filters for the data set.
+     */
+    modsecRuleIds?: number[];
     /**
      * Inclusion filter by WAF rule's publishers.
      */
@@ -51,6 +56,10 @@ export interface GetWafRulesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A list of modsecurity rules IDs to be used as filters for the data set.
+     */
+    readonly modsecRuleIds?: number[];
     /**
      * A list of publishers to be used as filters for the data set.
      */
@@ -77,6 +86,10 @@ export interface GetWafRulesOutputArgs {
      * Exclusion filter by WAF rule's ModSecurity ID.
      */
     excludeModsecRuleIds?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * A list of modsecurity rules IDs to be used as filters for the data set.
+     */
+    modsecRuleIds?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * Inclusion filter by WAF rule's publishers.
      */

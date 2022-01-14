@@ -3701,7 +3701,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)\n",
+                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6704,7 +6704,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)\n",
+                    "description": "The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -9990,7 +9990,7 @@
             }
         },
         "fastly:index/tlsSubscription:TlsSubscription": {
-            "description": "Enables TLS on a domain using a certificate managed by Fastly.\n\nDNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.\n\nThere are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.\n\n\u003e See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.\n\nThe example below demonstrates usage with AWS Route53 to configure DNS, and the `fastly.TlsSubscriptionValidation` resource to wait for validation to complete.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleServicev1 = new fastly.Servicev1(\"exampleServicev1\", {\n    domains: [{\n        name: \"example.com\",\n    }],\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n    }],\n    forceDestroy: true,\n});\nconst exampleTlsSubscription = new fastly.TlsSubscription(\"exampleTlsSubscription\", {\n    domains: exampleServicev1.domains.apply(domains =\u003e domains.map(domain =\u003e domain.name)),\n    certificateAuthority: \"lets-encrypt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_servicev1 = fastly.Servicev1(\"exampleServicev1\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=\"example.com\",\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n    )],\n    force_destroy=True)\nexample_tls_subscription = fastly.TlsSubscription(\"exampleTlsSubscription\",\n    domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),\n    certificate_authority=\"lets-encrypt\")\n```\n\nUsage with AWS Route 53:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst domainName = \"example.com\";\nconst exampleServicev1 = new fastly.Servicev1(\"exampleServicev1\", {\n    domains: [{\n        name: domainName,\n    }],\n    backends: [{\n        address: \"127.0.0.1\",\n        name: \"localhost\",\n    }],\n    forceDestroy: true,\n});\nconst exampleTlsSubscription = new fastly.TlsSubscription(\"exampleTlsSubscription\", {\n    domains: exampleServicev1.domains.apply(domains =\u003e domains.map(domain =\u003e domain.name)),\n    certificateAuthority: \"lets-encrypt\",\n});\nconst demo = aws.route53.getZone({\n    name: domainName,\n    privateZone: false,\n});\n// Set up DNS record for managed DNS domain validation method\nconst domainValidation: aws.route53.Record[];\nfor (const range of Object.entries(exampleTlsSubscription.domains.apply(domains =\u003e domains.reduce((__obj, domain) =\u003e { ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges =\u003e managedDnsChallenges.filter(obj =\u003e obj.recordName == `_acme-challenge.${domain}`).map(obj =\u003e obj))[0] }))).map(([k, v]) =\u003e {key: k, value: v})) {\n    domainValidation.push(new aws.route53.Record(`domainValidation-${range.key}`, {\n        name: range.value.recordName,\n        type: range.value.recordType,\n        zoneId: demo.then(demo =\u003e demo.id),\n        allowOverwrite: true,\n        records: [range.value.recordValue],\n        ttl: 60,\n    }, {\n    dependsOn: [exampleTlsSubscription],\n}));\n}\n// Resource that other resources can depend on if they require the certificate to be issued\nconst exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation(\"exampleTlsSubscriptionValidation\", {subscriptionId: exampleTlsSubscription.id}, {\n    dependsOn: [domainValidation],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_fastly as fastly\n\ndomain_name = \"example.com\"\nexample_servicev1 = fastly.Servicev1(\"exampleServicev1\",\n    domains=[fastly.Servicev1DomainArgs(\n        name=domain_name,\n    )],\n    backends=[fastly.Servicev1BackendArgs(\n        address=\"127.0.0.1\",\n        name=\"localhost\",\n    )],\n    force_destroy=True)\nexample_tls_subscription = fastly.TlsSubscription(\"exampleTlsSubscription\",\n    domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),\n    certificate_authority=\"lets-encrypt\")\ndemo = aws.route53.get_zone(name=domain_name,\n    private_zone=False)\n# Set up DNS record for managed DNS domain validation method\ndomain_validation = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate({domain: [obj for obj in example_tls_subscription.managedDnsChallenges if obj.recordName == f_acme-challenge.{domain}][0] for domain in example_tls_subscription.domains})]:\n    domain_validation.append(aws.route53.Record(f\"domainValidation-{range['key']}\",\n        name=range[\"value\"],\n        type=range[\"value\"],\n        zone_id=demo.id,\n        allow_overwrite=True,\n        records=[range[\"value\"]],\n        ttl=60,\n        opts=pulumi.ResourceOptions(depends_on=[example_tls_subscription])))\n# Resource that other resources can depend on if they require the certificate to be issued\nexample_tls_subscription_validation = fastly.TlsSubscriptionValidation(\"exampleTlsSubscriptionValidation\", subscription_id=example_tls_subscription.id,\nopts=pulumi.ResourceOptions(depends_on=[domain_validation]))\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA subscription can be imported using its Fastly subscription ID, e.g.\n\n```sh\n $ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx\n```\n\n ",
+            "description": "Enables TLS on a domain using a certificate managed by Fastly.\n\nDNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.\n\nThere are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.\n\n\u003e See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.\n\nThe example below demonstrates usage with AWS Route53 to configure DNS, and the `fastly.TlsSubscriptionValidation` resource to wait for validation to complete.\n\n\n## Import\n\nA subscription can be imported using its Fastly subscription ID, e.g.\n\n```sh\n $ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx\n```\n\n ",
             "properties": {
                 "certificateAuthority": {
                     "type": "string",
@@ -11002,6 +11002,13 @@
                         },
                         "description": "Exclusion filter by WAF rule's ModSecurity ID.\n"
                     },
+                    "modsecRuleIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "A list of modsecurity rules IDs to be used as filters for the data set.\n"
+                    },
                     "publishers": {
                         "type": "array",
                         "items": {
@@ -11032,6 +11039,13 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "modsecRuleIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "A list of modsecurity rules IDs to be used as filters for the data set.\n"
                     },
                     "publishers": {
                         "type": "array",

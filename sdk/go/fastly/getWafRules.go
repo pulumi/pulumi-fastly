@@ -23,6 +23,8 @@ func GetWafRules(ctx *pulumi.Context, args *GetWafRulesArgs, opts ...pulumi.Invo
 type GetWafRulesArgs struct {
 	// Exclusion filter by WAF rule's ModSecurity ID.
 	ExcludeModsecRuleIds []int `pulumi:"excludeModsecRuleIds"`
+	// A list of modsecurity rules IDs to be used as filters for the data set.
+	ModsecRuleIds []int `pulumi:"modsecRuleIds"`
 	// Inclusion filter by WAF rule's publishers.
 	Publishers []string `pulumi:"publishers"`
 	// Inclusion filter by WAF rule's tags.
@@ -35,6 +37,8 @@ type GetWafRulesResult struct {
 	ExcludeModsecRuleIds []int `pulumi:"excludeModsecRuleIds"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// A list of modsecurity rules IDs to be used as filters for the data set.
+	ModsecRuleIds []int `pulumi:"modsecRuleIds"`
 	// A list of publishers to be used as filters for the data set.
 	Publishers []string `pulumi:"publishers"`
 	// The list of rules that results from any given combination of filters.
@@ -56,6 +60,8 @@ func GetWafRulesOutput(ctx *pulumi.Context, args GetWafRulesOutputArgs, opts ...
 type GetWafRulesOutputArgs struct {
 	// Exclusion filter by WAF rule's ModSecurity ID.
 	ExcludeModsecRuleIds pulumi.IntArrayInput `pulumi:"excludeModsecRuleIds"`
+	// A list of modsecurity rules IDs to be used as filters for the data set.
+	ModsecRuleIds pulumi.IntArrayInput `pulumi:"modsecRuleIds"`
 	// Inclusion filter by WAF rule's publishers.
 	Publishers pulumi.StringArrayInput `pulumi:"publishers"`
 	// Inclusion filter by WAF rule's tags.
@@ -89,6 +95,11 @@ func (o GetWafRulesResultOutput) ExcludeModsecRuleIds() pulumi.IntArrayOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetWafRulesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWafRulesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of modsecurity rules IDs to be used as filters for the data set.
+func (o GetWafRulesResultOutput) ModsecRuleIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetWafRulesResult) []int { return v.ModsecRuleIds }).(pulumi.IntArrayOutput)
 }
 
 // A list of publishers to be used as filters for the data set.
