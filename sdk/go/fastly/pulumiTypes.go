@@ -7092,7 +7092,7 @@ type Servicev1Dynamicsnippet struct {
 	Priority *int `pulumi:"priority"`
 	// The ID of the dynamic snippet
 	SnippetId *string `pulumi:"snippetId"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type string `pulumi:"type"`
 }
 
@@ -7114,7 +7114,7 @@ type Servicev1DynamicsnippetArgs struct {
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// The ID of the dynamic snippet
 	SnippetId pulumi.StringPtrInput `pulumi:"snippetId"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -7184,7 +7184,7 @@ func (o Servicev1DynamicsnippetOutput) SnippetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Servicev1Dynamicsnippet) *string { return v.SnippetId }).(pulumi.StringPtrOutput)
 }
 
-// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 func (o Servicev1DynamicsnippetOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Dynamicsnippet) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -12183,7 +12183,7 @@ type Servicev1Snippet struct {
 	Name string `pulumi:"name"`
 	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 	Priority *int `pulumi:"priority"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type string `pulumi:"type"`
 }
 
@@ -12205,7 +12205,7 @@ type Servicev1SnippetArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+	// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -12275,7 +12275,7 @@ func (o Servicev1SnippetOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Servicev1Snippet) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
 func (o Servicev1SnippetOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v Servicev1Snippet) string { return v.Type }).(pulumi.StringOutput)
 }

@@ -21,13 +21,16 @@ class GetWafRulesResult:
     """
     A collection of values returned by getWafRules.
     """
-    def __init__(__self__, exclude_modsec_rule_ids=None, id=None, publishers=None, rules=None, tags=None):
+    def __init__(__self__, exclude_modsec_rule_ids=None, id=None, modsec_rule_ids=None, publishers=None, rules=None, tags=None):
         if exclude_modsec_rule_ids and not isinstance(exclude_modsec_rule_ids, list):
             raise TypeError("Expected argument 'exclude_modsec_rule_ids' to be a list")
         pulumi.set(__self__, "exclude_modsec_rule_ids", exclude_modsec_rule_ids)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if modsec_rule_ids and not isinstance(modsec_rule_ids, list):
+            raise TypeError("Expected argument 'modsec_rule_ids' to be a list")
+        pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
         if publishers and not isinstance(publishers, list):
             raise TypeError("Expected argument 'publishers' to be a list")
         pulumi.set(__self__, "publishers", publishers)
@@ -53,6 +56,14 @@ class GetWafRulesResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="modsecRuleIds")
+    def modsec_rule_ids(self) -> Optional[Sequence[int]]:
+        """
+        A list of modsecurity rules IDs to be used as filters for the data set.
+        """
+        return pulumi.get(self, "modsec_rule_ids")
 
     @property
     @pulumi.getter
@@ -87,12 +98,14 @@ class AwaitableGetWafRulesResult(GetWafRulesResult):
         return GetWafRulesResult(
             exclude_modsec_rule_ids=self.exclude_modsec_rule_ids,
             id=self.id,
+            modsec_rule_ids=self.modsec_rule_ids,
             publishers=self.publishers,
             rules=self.rules,
             tags=self.tags)
 
 
 def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
+                  modsec_rule_ids: Optional[Sequence[int]] = None,
                   publishers: Optional[Sequence[str]] = None,
                   tags: Optional[Sequence[str]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWafRulesResult:
@@ -100,11 +113,13 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
     Use this data source to access information about an existing resource.
 
     :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
+    :param Sequence[int] modsec_rule_ids: A list of modsecurity rules IDs to be used as filters for the data set.
     :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.
     :param Sequence[str] tags: Inclusion filter by WAF rule's tags.
     """
     __args__ = dict()
     __args__['excludeModsecRuleIds'] = exclude_modsec_rule_ids
+    __args__['modsecRuleIds'] = modsec_rule_ids
     __args__['publishers'] = publishers
     __args__['tags'] = tags
     if opts is None:
@@ -116,6 +131,7 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
     return AwaitableGetWafRulesResult(
         exclude_modsec_rule_ids=__ret__.exclude_modsec_rule_ids,
         id=__ret__.id,
+        modsec_rule_ids=__ret__.modsec_rule_ids,
         publishers=__ret__.publishers,
         rules=__ret__.rules,
         tags=__ret__.tags)
@@ -123,6 +139,7 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
 
 @_utilities.lift_output_func(get_waf_rules)
 def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
+                         modsec_rule_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
                          publishers: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                          tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWafRulesResult]:
@@ -130,6 +147,7 @@ def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional
     Use this data source to access information about an existing resource.
 
     :param Sequence[int] exclude_modsec_rule_ids: Exclusion filter by WAF rule's ModSecurity ID.
+    :param Sequence[int] modsec_rule_ids: A list of modsecurity rules IDs to be used as filters for the data set.
     :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.
     :param Sequence[str] tags: Inclusion filter by WAF rule's tags.
     """
