@@ -6,17 +6,16 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
     public static class GetWafRules
     {
         public static Task<GetWafRulesResult> InvokeAsync(GetWafRulesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesArgs(), options.WithDefaults());
 
         public static Output<GetWafRulesResult> Invoke(GetWafRulesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithDefaults());
     }
 
 

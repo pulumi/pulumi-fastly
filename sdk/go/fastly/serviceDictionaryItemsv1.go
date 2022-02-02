@@ -128,7 +128,7 @@ type ServiceDictionaryItemsv1Input interface {
 }
 
 func (*ServiceDictionaryItemsv1) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDictionaryItemsv1)(nil))
+	return reflect.TypeOf((**ServiceDictionaryItemsv1)(nil)).Elem()
 }
 
 func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output {
@@ -137,35 +137,6 @@ func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1Output() ServiceDic
 
 func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1OutputWithContext(ctx context.Context) ServiceDictionaryItemsv1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1Output)
-}
-
-func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
-	return i.ToServiceDictionaryItemsv1PtrOutputWithContext(context.Background())
-}
-
-func (i *ServiceDictionaryItemsv1) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1PtrOutput)
-}
-
-type ServiceDictionaryItemsv1PtrInput interface {
-	pulumi.Input
-
-	ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput
-	ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput
-}
-
-type serviceDictionaryItemsv1PtrType ServiceDictionaryItemsv1Args
-
-func (*serviceDictionaryItemsv1PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceDictionaryItemsv1)(nil))
-}
-
-func (i *serviceDictionaryItemsv1PtrType) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
-	return i.ToServiceDictionaryItemsv1PtrOutputWithContext(context.Background())
-}
-
-func (i *serviceDictionaryItemsv1PtrType) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsv1PtrOutput)
 }
 
 // ServiceDictionaryItemsv1ArrayInput is an input type that accepts ServiceDictionaryItemsv1Array and ServiceDictionaryItemsv1ArrayOutput values.
@@ -221,7 +192,7 @@ func (i ServiceDictionaryItemsv1Map) ToServiceDictionaryItemsv1MapOutputWithCont
 type ServiceDictionaryItemsv1Output struct{ *pulumi.OutputState }
 
 func (ServiceDictionaryItemsv1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDictionaryItemsv1)(nil))
+	return reflect.TypeOf((**ServiceDictionaryItemsv1)(nil)).Elem()
 }
 
 func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1Output() ServiceDictionaryItemsv1Output {
@@ -232,44 +203,10 @@ func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1OutputWithCont
 	return o
 }
 
-func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
-	return o.ToServiceDictionaryItemsv1PtrOutputWithContext(context.Background())
-}
-
-func (o ServiceDictionaryItemsv1Output) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceDictionaryItemsv1) *ServiceDictionaryItemsv1 {
-		return &v
-	}).(ServiceDictionaryItemsv1PtrOutput)
-}
-
-type ServiceDictionaryItemsv1PtrOutput struct{ *pulumi.OutputState }
-
-func (ServiceDictionaryItemsv1PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceDictionaryItemsv1)(nil))
-}
-
-func (o ServiceDictionaryItemsv1PtrOutput) ToServiceDictionaryItemsv1PtrOutput() ServiceDictionaryItemsv1PtrOutput {
-	return o
-}
-
-func (o ServiceDictionaryItemsv1PtrOutput) ToServiceDictionaryItemsv1PtrOutputWithContext(ctx context.Context) ServiceDictionaryItemsv1PtrOutput {
-	return o
-}
-
-func (o ServiceDictionaryItemsv1PtrOutput) Elem() ServiceDictionaryItemsv1Output {
-	return o.ApplyT(func(v *ServiceDictionaryItemsv1) ServiceDictionaryItemsv1 {
-		if v != nil {
-			return *v
-		}
-		var ret ServiceDictionaryItemsv1
-		return ret
-	}).(ServiceDictionaryItemsv1Output)
-}
-
 type ServiceDictionaryItemsv1ArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceDictionaryItemsv1ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceDictionaryItemsv1)(nil))
+	return reflect.TypeOf((*[]*ServiceDictionaryItemsv1)(nil)).Elem()
 }
 
 func (o ServiceDictionaryItemsv1ArrayOutput) ToServiceDictionaryItemsv1ArrayOutput() ServiceDictionaryItemsv1ArrayOutput {
@@ -281,15 +218,15 @@ func (o ServiceDictionaryItemsv1ArrayOutput) ToServiceDictionaryItemsv1ArrayOutp
 }
 
 func (o ServiceDictionaryItemsv1ArrayOutput) Index(i pulumi.IntInput) ServiceDictionaryItemsv1Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceDictionaryItemsv1 {
-		return vs[0].([]ServiceDictionaryItemsv1)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceDictionaryItemsv1 {
+		return vs[0].([]*ServiceDictionaryItemsv1)[vs[1].(int)]
 	}).(ServiceDictionaryItemsv1Output)
 }
 
 type ServiceDictionaryItemsv1MapOutput struct{ *pulumi.OutputState }
 
 func (ServiceDictionaryItemsv1MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ServiceDictionaryItemsv1)(nil))
+	return reflect.TypeOf((*map[string]*ServiceDictionaryItemsv1)(nil)).Elem()
 }
 
 func (o ServiceDictionaryItemsv1MapOutput) ToServiceDictionaryItemsv1MapOutput() ServiceDictionaryItemsv1MapOutput {
@@ -301,18 +238,16 @@ func (o ServiceDictionaryItemsv1MapOutput) ToServiceDictionaryItemsv1MapOutputWi
 }
 
 func (o ServiceDictionaryItemsv1MapOutput) MapIndex(k pulumi.StringInput) ServiceDictionaryItemsv1Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ServiceDictionaryItemsv1 {
-		return vs[0].(map[string]ServiceDictionaryItemsv1)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ServiceDictionaryItemsv1 {
+		return vs[0].(map[string]*ServiceDictionaryItemsv1)[vs[1].(string)]
 	}).(ServiceDictionaryItemsv1Output)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDictionaryItemsv1Input)(nil)).Elem(), &ServiceDictionaryItemsv1{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDictionaryItemsv1PtrInput)(nil)).Elem(), &ServiceDictionaryItemsv1{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDictionaryItemsv1ArrayInput)(nil)).Elem(), ServiceDictionaryItemsv1Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDictionaryItemsv1MapInput)(nil)).Elem(), ServiceDictionaryItemsv1Map{})
 	pulumi.RegisterOutputType(ServiceDictionaryItemsv1Output{})
-	pulumi.RegisterOutputType(ServiceDictionaryItemsv1PtrOutput{})
 	pulumi.RegisterOutputType(ServiceDictionaryItemsv1ArrayOutput{})
 	pulumi.RegisterOutputType(ServiceDictionaryItemsv1MapOutput{})
 }

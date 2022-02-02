@@ -23,9 +23,7 @@ export function getTlsDomain(args: GetTlsDomainArgs, opts?: pulumi.InvokeOptions
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsDomain:getTlsDomain", {
         "domain": args.domain,
     }, opts);

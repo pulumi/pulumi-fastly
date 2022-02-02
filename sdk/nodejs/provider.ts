@@ -42,18 +42,16 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            inputs["apiKey"] = args ? args.apiKey : undefined;
-            inputs["baseUrl"] = args ? args.baseUrl : undefined;
-            inputs["forceHttp2"] = pulumi.output(args ? args.forceHttp2 : undefined).apply(JSON.stringify);
-            inputs["noAuth"] = pulumi.output(args ? args.noAuth : undefined).apply(JSON.stringify);
+            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
+            resourceInputs["forceHttp2"] = pulumi.output(args ? args.forceHttp2 : undefined).apply(JSON.stringify);
+            resourceInputs["noAuth"] = pulumi.output(args ? args.noAuth : undefined).apply(JSON.stringify);
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

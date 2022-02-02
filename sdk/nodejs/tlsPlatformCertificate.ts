@@ -155,20 +155,20 @@ export class TlsPlatformCertificate extends pulumi.CustomResource {
      */
     constructor(name: string, args: TlsPlatformCertificateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TlsPlatformCertificateArgs | TlsPlatformCertificateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsPlatformCertificateState | undefined;
-            inputs["allowUntrustedRoot"] = state ? state.allowUntrustedRoot : undefined;
-            inputs["certificateBody"] = state ? state.certificateBody : undefined;
-            inputs["configurationId"] = state ? state.configurationId : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["domains"] = state ? state.domains : undefined;
-            inputs["intermediatesBlob"] = state ? state.intermediatesBlob : undefined;
-            inputs["notAfter"] = state ? state.notAfter : undefined;
-            inputs["notBefore"] = state ? state.notBefore : undefined;
-            inputs["replace"] = state ? state.replace : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["allowUntrustedRoot"] = state ? state.allowUntrustedRoot : undefined;
+            resourceInputs["certificateBody"] = state ? state.certificateBody : undefined;
+            resourceInputs["configurationId"] = state ? state.configurationId : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["domains"] = state ? state.domains : undefined;
+            resourceInputs["intermediatesBlob"] = state ? state.intermediatesBlob : undefined;
+            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
+            resourceInputs["notBefore"] = state ? state.notBefore : undefined;
+            resourceInputs["replace"] = state ? state.replace : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as TlsPlatformCertificateArgs | undefined;
             if ((!args || args.certificateBody === undefined) && !opts.urn) {
@@ -180,21 +180,19 @@ export class TlsPlatformCertificate extends pulumi.CustomResource {
             if ((!args || args.intermediatesBlob === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'intermediatesBlob'");
             }
-            inputs["allowUntrustedRoot"] = args ? args.allowUntrustedRoot : undefined;
-            inputs["certificateBody"] = args ? args.certificateBody : undefined;
-            inputs["configurationId"] = args ? args.configurationId : undefined;
-            inputs["intermediatesBlob"] = args ? args.intermediatesBlob : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["domains"] = undefined /*out*/;
-            inputs["notAfter"] = undefined /*out*/;
-            inputs["notBefore"] = undefined /*out*/;
-            inputs["replace"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["allowUntrustedRoot"] = args ? args.allowUntrustedRoot : undefined;
+            resourceInputs["certificateBody"] = args ? args.certificateBody : undefined;
+            resourceInputs["configurationId"] = args ? args.configurationId : undefined;
+            resourceInputs["intermediatesBlob"] = args ? args.intermediatesBlob : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["domains"] = undefined /*out*/;
+            resourceInputs["notAfter"] = undefined /*out*/;
+            resourceInputs["notBefore"] = undefined /*out*/;
+            resourceInputs["replace"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TlsPlatformCertificate.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TlsPlatformCertificate.__pulumiType, name, resourceInputs, opts);
     }
 }
 

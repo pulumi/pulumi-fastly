@@ -30,9 +30,7 @@ export function getTlsActivation(args?: GetTlsActivationArgs, opts?: pulumi.Invo
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsActivation:getTlsActivation", {
         "certificateId": args.certificateId,
         "configurationId": args.configurationId,

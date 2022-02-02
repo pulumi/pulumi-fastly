@@ -24,9 +24,7 @@ export function getTlsPrivateKeyIds(opts?: pulumi.InvokeOptions): Promise<GetTls
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", {
     }, opts);
 }

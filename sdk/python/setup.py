@@ -55,6 +55,7 @@ setup(name='pulumi_fastly',
       package_data={
           'pulumi_fastly': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

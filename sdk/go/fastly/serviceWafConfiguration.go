@@ -401,7 +401,7 @@ type ServiceWafConfigurationInput interface {
 }
 
 func (*ServiceWafConfiguration) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfiguration)(nil))
+	return reflect.TypeOf((**ServiceWafConfiguration)(nil)).Elem()
 }
 
 func (i *ServiceWafConfiguration) ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput {
@@ -410,35 +410,6 @@ func (i *ServiceWafConfiguration) ToServiceWafConfigurationOutput() ServiceWafCo
 
 func (i *ServiceWafConfiguration) ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationOutput)
-}
-
-func (i *ServiceWafConfiguration) ToServiceWafConfigurationPtrOutput() ServiceWafConfigurationPtrOutput {
-	return i.ToServiceWafConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (i *ServiceWafConfiguration) ToServiceWafConfigurationPtrOutputWithContext(ctx context.Context) ServiceWafConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationPtrOutput)
-}
-
-type ServiceWafConfigurationPtrInput interface {
-	pulumi.Input
-
-	ToServiceWafConfigurationPtrOutput() ServiceWafConfigurationPtrOutput
-	ToServiceWafConfigurationPtrOutputWithContext(ctx context.Context) ServiceWafConfigurationPtrOutput
-}
-
-type serviceWafConfigurationPtrType ServiceWafConfigurationArgs
-
-func (*serviceWafConfigurationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceWafConfiguration)(nil))
-}
-
-func (i *serviceWafConfigurationPtrType) ToServiceWafConfigurationPtrOutput() ServiceWafConfigurationPtrOutput {
-	return i.ToServiceWafConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (i *serviceWafConfigurationPtrType) ToServiceWafConfigurationPtrOutputWithContext(ctx context.Context) ServiceWafConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationPtrOutput)
 }
 
 // ServiceWafConfigurationArrayInput is an input type that accepts ServiceWafConfigurationArray and ServiceWafConfigurationArrayOutput values.
@@ -494,7 +465,7 @@ func (i ServiceWafConfigurationMap) ToServiceWafConfigurationMapOutputWithContex
 type ServiceWafConfigurationOutput struct{ *pulumi.OutputState }
 
 func (ServiceWafConfigurationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfiguration)(nil))
+	return reflect.TypeOf((**ServiceWafConfiguration)(nil)).Elem()
 }
 
 func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutput() ServiceWafConfigurationOutput {
@@ -505,44 +476,10 @@ func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutputWithContex
 	return o
 }
 
-func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationPtrOutput() ServiceWafConfigurationPtrOutput {
-	return o.ToServiceWafConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationPtrOutputWithContext(ctx context.Context) ServiceWafConfigurationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceWafConfiguration) *ServiceWafConfiguration {
-		return &v
-	}).(ServiceWafConfigurationPtrOutput)
-}
-
-type ServiceWafConfigurationPtrOutput struct{ *pulumi.OutputState }
-
-func (ServiceWafConfigurationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceWafConfiguration)(nil))
-}
-
-func (o ServiceWafConfigurationPtrOutput) ToServiceWafConfigurationPtrOutput() ServiceWafConfigurationPtrOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationPtrOutput) ToServiceWafConfigurationPtrOutputWithContext(ctx context.Context) ServiceWafConfigurationPtrOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationPtrOutput) Elem() ServiceWafConfigurationOutput {
-	return o.ApplyT(func(v *ServiceWafConfiguration) ServiceWafConfiguration {
-		if v != nil {
-			return *v
-		}
-		var ret ServiceWafConfiguration
-		return ret
-	}).(ServiceWafConfigurationOutput)
-}
-
 type ServiceWafConfigurationArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceWafConfigurationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceWafConfiguration)(nil))
+	return reflect.TypeOf((*[]*ServiceWafConfiguration)(nil)).Elem()
 }
 
 func (o ServiceWafConfigurationArrayOutput) ToServiceWafConfigurationArrayOutput() ServiceWafConfigurationArrayOutput {
@@ -554,15 +491,15 @@ func (o ServiceWafConfigurationArrayOutput) ToServiceWafConfigurationArrayOutput
 }
 
 func (o ServiceWafConfigurationArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceWafConfiguration {
-		return vs[0].([]ServiceWafConfiguration)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceWafConfiguration {
+		return vs[0].([]*ServiceWafConfiguration)[vs[1].(int)]
 	}).(ServiceWafConfigurationOutput)
 }
 
 type ServiceWafConfigurationMapOutput struct{ *pulumi.OutputState }
 
 func (ServiceWafConfigurationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ServiceWafConfiguration)(nil))
+	return reflect.TypeOf((*map[string]*ServiceWafConfiguration)(nil)).Elem()
 }
 
 func (o ServiceWafConfigurationMapOutput) ToServiceWafConfigurationMapOutput() ServiceWafConfigurationMapOutput {
@@ -574,18 +511,16 @@ func (o ServiceWafConfigurationMapOutput) ToServiceWafConfigurationMapOutputWith
 }
 
 func (o ServiceWafConfigurationMapOutput) MapIndex(k pulumi.StringInput) ServiceWafConfigurationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ServiceWafConfiguration {
-		return vs[0].(map[string]ServiceWafConfiguration)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ServiceWafConfiguration {
+		return vs[0].(map[string]*ServiceWafConfiguration)[vs[1].(string)]
 	}).(ServiceWafConfigurationOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationInput)(nil)).Elem(), &ServiceWafConfiguration{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationPtrInput)(nil)).Elem(), &ServiceWafConfiguration{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationArrayInput)(nil)).Elem(), ServiceWafConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationMapInput)(nil)).Elem(), ServiceWafConfigurationMap{})
 	pulumi.RegisterOutputType(ServiceWafConfigurationOutput{})
-	pulumi.RegisterOutputType(ServiceWafConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(ServiceWafConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(ServiceWafConfigurationMapOutput{})
 }

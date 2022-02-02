@@ -31,9 +31,7 @@ export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastl
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", {
     }, opts);
 }

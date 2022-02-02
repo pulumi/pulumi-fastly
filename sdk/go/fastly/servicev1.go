@@ -704,7 +704,7 @@ type Servicev1Input interface {
 }
 
 func (*Servicev1) ElementType() reflect.Type {
-	return reflect.TypeOf((*Servicev1)(nil))
+	return reflect.TypeOf((**Servicev1)(nil)).Elem()
 }
 
 func (i *Servicev1) ToServicev1Output() Servicev1Output {
@@ -713,35 +713,6 @@ func (i *Servicev1) ToServicev1Output() Servicev1Output {
 
 func (i *Servicev1) ToServicev1OutputWithContext(ctx context.Context) Servicev1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(Servicev1Output)
-}
-
-func (i *Servicev1) ToServicev1PtrOutput() Servicev1PtrOutput {
-	return i.ToServicev1PtrOutputWithContext(context.Background())
-}
-
-func (i *Servicev1) ToServicev1PtrOutputWithContext(ctx context.Context) Servicev1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Servicev1PtrOutput)
-}
-
-type Servicev1PtrInput interface {
-	pulumi.Input
-
-	ToServicev1PtrOutput() Servicev1PtrOutput
-	ToServicev1PtrOutputWithContext(ctx context.Context) Servicev1PtrOutput
-}
-
-type servicev1PtrType Servicev1Args
-
-func (*servicev1PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Servicev1)(nil))
-}
-
-func (i *servicev1PtrType) ToServicev1PtrOutput() Servicev1PtrOutput {
-	return i.ToServicev1PtrOutputWithContext(context.Background())
-}
-
-func (i *servicev1PtrType) ToServicev1PtrOutputWithContext(ctx context.Context) Servicev1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Servicev1PtrOutput)
 }
 
 // Servicev1ArrayInput is an input type that accepts Servicev1Array and Servicev1ArrayOutput values.
@@ -797,7 +768,7 @@ func (i Servicev1Map) ToServicev1MapOutputWithContext(ctx context.Context) Servi
 type Servicev1Output struct{ *pulumi.OutputState }
 
 func (Servicev1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*Servicev1)(nil))
+	return reflect.TypeOf((**Servicev1)(nil)).Elem()
 }
 
 func (o Servicev1Output) ToServicev1Output() Servicev1Output {
@@ -808,44 +779,10 @@ func (o Servicev1Output) ToServicev1OutputWithContext(ctx context.Context) Servi
 	return o
 }
 
-func (o Servicev1Output) ToServicev1PtrOutput() Servicev1PtrOutput {
-	return o.ToServicev1PtrOutputWithContext(context.Background())
-}
-
-func (o Servicev1Output) ToServicev1PtrOutputWithContext(ctx context.Context) Servicev1PtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Servicev1) *Servicev1 {
-		return &v
-	}).(Servicev1PtrOutput)
-}
-
-type Servicev1PtrOutput struct{ *pulumi.OutputState }
-
-func (Servicev1PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Servicev1)(nil))
-}
-
-func (o Servicev1PtrOutput) ToServicev1PtrOutput() Servicev1PtrOutput {
-	return o
-}
-
-func (o Servicev1PtrOutput) ToServicev1PtrOutputWithContext(ctx context.Context) Servicev1PtrOutput {
-	return o
-}
-
-func (o Servicev1PtrOutput) Elem() Servicev1Output {
-	return o.ApplyT(func(v *Servicev1) Servicev1 {
-		if v != nil {
-			return *v
-		}
-		var ret Servicev1
-		return ret
-	}).(Servicev1Output)
-}
-
 type Servicev1ArrayOutput struct{ *pulumi.OutputState }
 
 func (Servicev1ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Servicev1)(nil))
+	return reflect.TypeOf((*[]*Servicev1)(nil)).Elem()
 }
 
 func (o Servicev1ArrayOutput) ToServicev1ArrayOutput() Servicev1ArrayOutput {
@@ -857,15 +794,15 @@ func (o Servicev1ArrayOutput) ToServicev1ArrayOutputWithContext(ctx context.Cont
 }
 
 func (o Servicev1ArrayOutput) Index(i pulumi.IntInput) Servicev1Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Servicev1 {
-		return vs[0].([]Servicev1)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Servicev1 {
+		return vs[0].([]*Servicev1)[vs[1].(int)]
 	}).(Servicev1Output)
 }
 
 type Servicev1MapOutput struct{ *pulumi.OutputState }
 
 func (Servicev1MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Servicev1)(nil))
+	return reflect.TypeOf((*map[string]*Servicev1)(nil)).Elem()
 }
 
 func (o Servicev1MapOutput) ToServicev1MapOutput() Servicev1MapOutput {
@@ -877,18 +814,16 @@ func (o Servicev1MapOutput) ToServicev1MapOutputWithContext(ctx context.Context)
 }
 
 func (o Servicev1MapOutput) MapIndex(k pulumi.StringInput) Servicev1Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Servicev1 {
-		return vs[0].(map[string]Servicev1)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Servicev1 {
+		return vs[0].(map[string]*Servicev1)[vs[1].(string)]
 	}).(Servicev1Output)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1Input)(nil)).Elem(), &Servicev1{})
-	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1PtrInput)(nil)).Elem(), &Servicev1{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1ArrayInput)(nil)).Elem(), Servicev1Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Servicev1MapInput)(nil)).Elem(), Servicev1Map{})
 	pulumi.RegisterOutputType(Servicev1Output{})
-	pulumi.RegisterOutputType(Servicev1PtrOutput{})
 	pulumi.RegisterOutputType(Servicev1ArrayOutput{})
 	pulumi.RegisterOutputType(Servicev1MapOutput{})
 }

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -48,7 +47,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsPlatformCertificateResult> InvokeAsync(GetTlsPlatformCertificateArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information of a Platform TLS certificate for use with other resources.
@@ -86,7 +85,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsPlatformCertificateResult> Invoke(GetTlsPlatformCertificateInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -97,13 +97,13 @@ export class ServiceDictionaryItemsv1 extends pulumi.CustomResource {
      */
     constructor(name: string, args: ServiceDictionaryItemsv1Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceDictionaryItemsv1Args | ServiceDictionaryItemsv1State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceDictionaryItemsv1State | undefined;
-            inputs["dictionaryId"] = state ? state.dictionaryId : undefined;
-            inputs["items"] = state ? state.items : undefined;
-            inputs["serviceId"] = state ? state.serviceId : undefined;
+            resourceInputs["dictionaryId"] = state ? state.dictionaryId : undefined;
+            resourceInputs["items"] = state ? state.items : undefined;
+            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
         } else {
             const args = argsOrState as ServiceDictionaryItemsv1Args | undefined;
             if ((!args || args.dictionaryId === undefined) && !opts.urn) {
@@ -112,14 +112,12 @@ export class ServiceDictionaryItemsv1 extends pulumi.CustomResource {
             if ((!args || args.serviceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            inputs["dictionaryId"] = args ? args.dictionaryId : undefined;
-            inputs["items"] = args ? args.items : undefined;
-            inputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["dictionaryId"] = args ? args.dictionaryId : undefined;
+            resourceInputs["items"] = args ? args.items : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ServiceDictionaryItemsv1.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ServiceDictionaryItemsv1.__pulumiType, name, resourceInputs, opts);
     }
 }
 

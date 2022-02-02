@@ -40,7 +40,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsConfigurationIdsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationIdsResult>("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationIdsResult>("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -185,7 +185,7 @@ type TlsActivationInput interface {
 }
 
 func (*TlsActivation) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsActivation)(nil))
+	return reflect.TypeOf((**TlsActivation)(nil)).Elem()
 }
 
 func (i *TlsActivation) ToTlsActivationOutput() TlsActivationOutput {
@@ -194,35 +194,6 @@ func (i *TlsActivation) ToTlsActivationOutput() TlsActivationOutput {
 
 func (i *TlsActivation) ToTlsActivationOutputWithContext(ctx context.Context) TlsActivationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsActivationOutput)
-}
-
-func (i *TlsActivation) ToTlsActivationPtrOutput() TlsActivationPtrOutput {
-	return i.ToTlsActivationPtrOutputWithContext(context.Background())
-}
-
-func (i *TlsActivation) ToTlsActivationPtrOutputWithContext(ctx context.Context) TlsActivationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsActivationPtrOutput)
-}
-
-type TlsActivationPtrInput interface {
-	pulumi.Input
-
-	ToTlsActivationPtrOutput() TlsActivationPtrOutput
-	ToTlsActivationPtrOutputWithContext(ctx context.Context) TlsActivationPtrOutput
-}
-
-type tlsActivationPtrType TlsActivationArgs
-
-func (*tlsActivationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsActivation)(nil))
-}
-
-func (i *tlsActivationPtrType) ToTlsActivationPtrOutput() TlsActivationPtrOutput {
-	return i.ToTlsActivationPtrOutputWithContext(context.Background())
-}
-
-func (i *tlsActivationPtrType) ToTlsActivationPtrOutputWithContext(ctx context.Context) TlsActivationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsActivationPtrOutput)
 }
 
 // TlsActivationArrayInput is an input type that accepts TlsActivationArray and TlsActivationArrayOutput values.
@@ -278,7 +249,7 @@ func (i TlsActivationMap) ToTlsActivationMapOutputWithContext(ctx context.Contex
 type TlsActivationOutput struct{ *pulumi.OutputState }
 
 func (TlsActivationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsActivation)(nil))
+	return reflect.TypeOf((**TlsActivation)(nil)).Elem()
 }
 
 func (o TlsActivationOutput) ToTlsActivationOutput() TlsActivationOutput {
@@ -289,44 +260,10 @@ func (o TlsActivationOutput) ToTlsActivationOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o TlsActivationOutput) ToTlsActivationPtrOutput() TlsActivationPtrOutput {
-	return o.ToTlsActivationPtrOutputWithContext(context.Background())
-}
-
-func (o TlsActivationOutput) ToTlsActivationPtrOutputWithContext(ctx context.Context) TlsActivationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v TlsActivation) *TlsActivation {
-		return &v
-	}).(TlsActivationPtrOutput)
-}
-
-type TlsActivationPtrOutput struct{ *pulumi.OutputState }
-
-func (TlsActivationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsActivation)(nil))
-}
-
-func (o TlsActivationPtrOutput) ToTlsActivationPtrOutput() TlsActivationPtrOutput {
-	return o
-}
-
-func (o TlsActivationPtrOutput) ToTlsActivationPtrOutputWithContext(ctx context.Context) TlsActivationPtrOutput {
-	return o
-}
-
-func (o TlsActivationPtrOutput) Elem() TlsActivationOutput {
-	return o.ApplyT(func(v *TlsActivation) TlsActivation {
-		if v != nil {
-			return *v
-		}
-		var ret TlsActivation
-		return ret
-	}).(TlsActivationOutput)
-}
-
 type TlsActivationArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsActivationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]TlsActivation)(nil))
+	return reflect.TypeOf((*[]*TlsActivation)(nil)).Elem()
 }
 
 func (o TlsActivationArrayOutput) ToTlsActivationArrayOutput() TlsActivationArrayOutput {
@@ -338,15 +275,15 @@ func (o TlsActivationArrayOutput) ToTlsActivationArrayOutputWithContext(ctx cont
 }
 
 func (o TlsActivationArrayOutput) Index(i pulumi.IntInput) TlsActivationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TlsActivation {
-		return vs[0].([]TlsActivation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsActivation {
+		return vs[0].([]*TlsActivation)[vs[1].(int)]
 	}).(TlsActivationOutput)
 }
 
 type TlsActivationMapOutput struct{ *pulumi.OutputState }
 
 func (TlsActivationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]TlsActivation)(nil))
+	return reflect.TypeOf((*map[string]*TlsActivation)(nil)).Elem()
 }
 
 func (o TlsActivationMapOutput) ToTlsActivationMapOutput() TlsActivationMapOutput {
@@ -358,18 +295,16 @@ func (o TlsActivationMapOutput) ToTlsActivationMapOutputWithContext(ctx context.
 }
 
 func (o TlsActivationMapOutput) MapIndex(k pulumi.StringInput) TlsActivationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) TlsActivation {
-		return vs[0].(map[string]TlsActivation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *TlsActivation {
+		return vs[0].(map[string]*TlsActivation)[vs[1].(string)]
 	}).(TlsActivationOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationInput)(nil)).Elem(), &TlsActivation{})
-	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationPtrInput)(nil)).Elem(), &TlsActivation{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationArrayInput)(nil)).Elem(), TlsActivationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsActivationMapInput)(nil)).Elem(), TlsActivationMap{})
 	pulumi.RegisterOutputType(TlsActivationOutput{})
-	pulumi.RegisterOutputType(TlsActivationPtrOutput{})
 	pulumi.RegisterOutputType(TlsActivationArrayOutput{})
 	pulumi.RegisterOutputType(TlsActivationMapOutput{})
 }

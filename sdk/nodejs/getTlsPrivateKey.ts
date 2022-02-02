@@ -32,9 +32,7 @@ export function getTlsPrivateKey(args?: GetTlsPrivateKeyArgs, opts?: pulumi.Invo
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsPrivateKey:getTlsPrivateKey", {
         "createdAt": args.createdAt,
         "id": args.id,

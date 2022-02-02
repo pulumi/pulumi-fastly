@@ -39,7 +39,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsPrivateKeyIdsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyIdsResult>("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyIdsResult>("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -12,9 +12,7 @@ export function getTlsSubscriptionIds(opts?: pulumi.InvokeOptions): Promise<GetT
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", {
     }, opts);
 }
