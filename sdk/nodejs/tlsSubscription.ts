@@ -116,23 +116,23 @@ export class TlsSubscription extends pulumi.CustomResource {
      */
     constructor(name: string, args: TlsSubscriptionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TlsSubscriptionArgs | TlsSubscriptionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsSubscriptionState | undefined;
-            inputs["certificateAuthority"] = state ? state.certificateAuthority : undefined;
-            inputs["certificateId"] = state ? state.certificateId : undefined;
-            inputs["commonName"] = state ? state.commonName : undefined;
-            inputs["configurationId"] = state ? state.configurationId : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["domains"] = state ? state.domains : undefined;
-            inputs["forceDestroy"] = state ? state.forceDestroy : undefined;
-            inputs["forceUpdate"] = state ? state.forceUpdate : undefined;
-            inputs["managedDnsChallenge"] = state ? state.managedDnsChallenge : undefined;
-            inputs["managedDnsChallenges"] = state ? state.managedDnsChallenges : undefined;
-            inputs["managedHttpChallenges"] = state ? state.managedHttpChallenges : undefined;
-            inputs["state"] = state ? state.state : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["certificateAuthority"] = state ? state.certificateAuthority : undefined;
+            resourceInputs["certificateId"] = state ? state.certificateId : undefined;
+            resourceInputs["commonName"] = state ? state.commonName : undefined;
+            resourceInputs["configurationId"] = state ? state.configurationId : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["domains"] = state ? state.domains : undefined;
+            resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
+            resourceInputs["forceUpdate"] = state ? state.forceUpdate : undefined;
+            resourceInputs["managedDnsChallenge"] = state ? state.managedDnsChallenge : undefined;
+            resourceInputs["managedDnsChallenges"] = state ? state.managedDnsChallenges : undefined;
+            resourceInputs["managedHttpChallenges"] = state ? state.managedHttpChallenges : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as TlsSubscriptionArgs | undefined;
             if ((!args || args.certificateAuthority === undefined) && !opts.urn) {
@@ -141,24 +141,22 @@ export class TlsSubscription extends pulumi.CustomResource {
             if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
-            inputs["certificateAuthority"] = args ? args.certificateAuthority : undefined;
-            inputs["commonName"] = args ? args.commonName : undefined;
-            inputs["configurationId"] = args ? args.configurationId : undefined;
-            inputs["domains"] = args ? args.domains : undefined;
-            inputs["forceDestroy"] = args ? args.forceDestroy : undefined;
-            inputs["forceUpdate"] = args ? args.forceUpdate : undefined;
-            inputs["certificateId"] = undefined /*out*/;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["managedDnsChallenge"] = undefined /*out*/;
-            inputs["managedDnsChallenges"] = undefined /*out*/;
-            inputs["managedHttpChallenges"] = undefined /*out*/;
-            inputs["state"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["certificateAuthority"] = args ? args.certificateAuthority : undefined;
+            resourceInputs["commonName"] = args ? args.commonName : undefined;
+            resourceInputs["configurationId"] = args ? args.configurationId : undefined;
+            resourceInputs["domains"] = args ? args.domains : undefined;
+            resourceInputs["forceDestroy"] = args ? args.forceDestroy : undefined;
+            resourceInputs["forceUpdate"] = args ? args.forceUpdate : undefined;
+            resourceInputs["certificateId"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["managedDnsChallenge"] = undefined /*out*/;
+            resourceInputs["managedDnsChallenges"] = undefined /*out*/;
+            resourceInputs["managedHttpChallenges"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TlsSubscription.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TlsSubscription.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -204,7 +204,7 @@ type TlsSubscriptionInput interface {
 }
 
 func (*TlsSubscription) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsSubscription)(nil))
+	return reflect.TypeOf((**TlsSubscription)(nil)).Elem()
 }
 
 func (i *TlsSubscription) ToTlsSubscriptionOutput() TlsSubscriptionOutput {
@@ -213,35 +213,6 @@ func (i *TlsSubscription) ToTlsSubscriptionOutput() TlsSubscriptionOutput {
 
 func (i *TlsSubscription) ToTlsSubscriptionOutputWithContext(ctx context.Context) TlsSubscriptionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionOutput)
-}
-
-func (i *TlsSubscription) ToTlsSubscriptionPtrOutput() TlsSubscriptionPtrOutput {
-	return i.ToTlsSubscriptionPtrOutputWithContext(context.Background())
-}
-
-func (i *TlsSubscription) ToTlsSubscriptionPtrOutputWithContext(ctx context.Context) TlsSubscriptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionPtrOutput)
-}
-
-type TlsSubscriptionPtrInput interface {
-	pulumi.Input
-
-	ToTlsSubscriptionPtrOutput() TlsSubscriptionPtrOutput
-	ToTlsSubscriptionPtrOutputWithContext(ctx context.Context) TlsSubscriptionPtrOutput
-}
-
-type tlsSubscriptionPtrType TlsSubscriptionArgs
-
-func (*tlsSubscriptionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsSubscription)(nil))
-}
-
-func (i *tlsSubscriptionPtrType) ToTlsSubscriptionPtrOutput() TlsSubscriptionPtrOutput {
-	return i.ToTlsSubscriptionPtrOutputWithContext(context.Background())
-}
-
-func (i *tlsSubscriptionPtrType) ToTlsSubscriptionPtrOutputWithContext(ctx context.Context) TlsSubscriptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionPtrOutput)
 }
 
 // TlsSubscriptionArrayInput is an input type that accepts TlsSubscriptionArray and TlsSubscriptionArrayOutput values.
@@ -297,7 +268,7 @@ func (i TlsSubscriptionMap) ToTlsSubscriptionMapOutputWithContext(ctx context.Co
 type TlsSubscriptionOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsSubscription)(nil))
+	return reflect.TypeOf((**TlsSubscription)(nil)).Elem()
 }
 
 func (o TlsSubscriptionOutput) ToTlsSubscriptionOutput() TlsSubscriptionOutput {
@@ -308,44 +279,10 @@ func (o TlsSubscriptionOutput) ToTlsSubscriptionOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o TlsSubscriptionOutput) ToTlsSubscriptionPtrOutput() TlsSubscriptionPtrOutput {
-	return o.ToTlsSubscriptionPtrOutputWithContext(context.Background())
-}
-
-func (o TlsSubscriptionOutput) ToTlsSubscriptionPtrOutputWithContext(ctx context.Context) TlsSubscriptionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v TlsSubscription) *TlsSubscription {
-		return &v
-	}).(TlsSubscriptionPtrOutput)
-}
-
-type TlsSubscriptionPtrOutput struct{ *pulumi.OutputState }
-
-func (TlsSubscriptionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsSubscription)(nil))
-}
-
-func (o TlsSubscriptionPtrOutput) ToTlsSubscriptionPtrOutput() TlsSubscriptionPtrOutput {
-	return o
-}
-
-func (o TlsSubscriptionPtrOutput) ToTlsSubscriptionPtrOutputWithContext(ctx context.Context) TlsSubscriptionPtrOutput {
-	return o
-}
-
-func (o TlsSubscriptionPtrOutput) Elem() TlsSubscriptionOutput {
-	return o.ApplyT(func(v *TlsSubscription) TlsSubscription {
-		if v != nil {
-			return *v
-		}
-		var ret TlsSubscription
-		return ret
-	}).(TlsSubscriptionOutput)
-}
-
 type TlsSubscriptionArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]TlsSubscription)(nil))
+	return reflect.TypeOf((*[]*TlsSubscription)(nil)).Elem()
 }
 
 func (o TlsSubscriptionArrayOutput) ToTlsSubscriptionArrayOutput() TlsSubscriptionArrayOutput {
@@ -357,15 +294,15 @@ func (o TlsSubscriptionArrayOutput) ToTlsSubscriptionArrayOutputWithContext(ctx 
 }
 
 func (o TlsSubscriptionArrayOutput) Index(i pulumi.IntInput) TlsSubscriptionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TlsSubscription {
-		return vs[0].([]TlsSubscription)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsSubscription {
+		return vs[0].([]*TlsSubscription)[vs[1].(int)]
 	}).(TlsSubscriptionOutput)
 }
 
 type TlsSubscriptionMapOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]TlsSubscription)(nil))
+	return reflect.TypeOf((*map[string]*TlsSubscription)(nil)).Elem()
 }
 
 func (o TlsSubscriptionMapOutput) ToTlsSubscriptionMapOutput() TlsSubscriptionMapOutput {
@@ -377,18 +314,16 @@ func (o TlsSubscriptionMapOutput) ToTlsSubscriptionMapOutputWithContext(ctx cont
 }
 
 func (o TlsSubscriptionMapOutput) MapIndex(k pulumi.StringInput) TlsSubscriptionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) TlsSubscription {
-		return vs[0].(map[string]TlsSubscription)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *TlsSubscription {
+		return vs[0].(map[string]*TlsSubscription)[vs[1].(string)]
 	}).(TlsSubscriptionOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionInput)(nil)).Elem(), &TlsSubscription{})
-	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionPtrInput)(nil)).Elem(), &TlsSubscription{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionArrayInput)(nil)).Elem(), TlsSubscriptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionMapInput)(nil)).Elem(), TlsSubscriptionMap{})
 	pulumi.RegisterOutputType(TlsSubscriptionOutput{})
-	pulumi.RegisterOutputType(TlsSubscriptionPtrOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionMapOutput{})
 }

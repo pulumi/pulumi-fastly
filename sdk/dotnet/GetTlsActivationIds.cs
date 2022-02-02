@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -16,13 +15,13 @@ namespace Pulumi.Fastly
         /// Use this data source to get the list of TLS Activation identifiers in Fastly.
         /// </summary>
         public static Task<GetTlsActivationIdsResult> InvokeAsync(GetTlsActivationIdsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the list of TLS Activation identifiers in Fastly.
         /// </summary>
         public static Output<GetTlsActivationIdsResult> Invoke(GetTlsActivationIdsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsInvokeArgs(), options.WithDefaults());
     }
 
 

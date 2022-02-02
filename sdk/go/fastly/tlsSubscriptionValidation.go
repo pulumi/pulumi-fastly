@@ -91,7 +91,7 @@ type TlsSubscriptionValidationInput interface {
 }
 
 func (*TlsSubscriptionValidation) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsSubscriptionValidation)(nil))
+	return reflect.TypeOf((**TlsSubscriptionValidation)(nil)).Elem()
 }
 
 func (i *TlsSubscriptionValidation) ToTlsSubscriptionValidationOutput() TlsSubscriptionValidationOutput {
@@ -100,35 +100,6 @@ func (i *TlsSubscriptionValidation) ToTlsSubscriptionValidationOutput() TlsSubsc
 
 func (i *TlsSubscriptionValidation) ToTlsSubscriptionValidationOutputWithContext(ctx context.Context) TlsSubscriptionValidationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionValidationOutput)
-}
-
-func (i *TlsSubscriptionValidation) ToTlsSubscriptionValidationPtrOutput() TlsSubscriptionValidationPtrOutput {
-	return i.ToTlsSubscriptionValidationPtrOutputWithContext(context.Background())
-}
-
-func (i *TlsSubscriptionValidation) ToTlsSubscriptionValidationPtrOutputWithContext(ctx context.Context) TlsSubscriptionValidationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionValidationPtrOutput)
-}
-
-type TlsSubscriptionValidationPtrInput interface {
-	pulumi.Input
-
-	ToTlsSubscriptionValidationPtrOutput() TlsSubscriptionValidationPtrOutput
-	ToTlsSubscriptionValidationPtrOutputWithContext(ctx context.Context) TlsSubscriptionValidationPtrOutput
-}
-
-type tlsSubscriptionValidationPtrType TlsSubscriptionValidationArgs
-
-func (*tlsSubscriptionValidationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsSubscriptionValidation)(nil))
-}
-
-func (i *tlsSubscriptionValidationPtrType) ToTlsSubscriptionValidationPtrOutput() TlsSubscriptionValidationPtrOutput {
-	return i.ToTlsSubscriptionValidationPtrOutputWithContext(context.Background())
-}
-
-func (i *tlsSubscriptionValidationPtrType) ToTlsSubscriptionValidationPtrOutputWithContext(ctx context.Context) TlsSubscriptionValidationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionValidationPtrOutput)
 }
 
 // TlsSubscriptionValidationArrayInput is an input type that accepts TlsSubscriptionValidationArray and TlsSubscriptionValidationArrayOutput values.
@@ -184,7 +155,7 @@ func (i TlsSubscriptionValidationMap) ToTlsSubscriptionValidationMapOutputWithCo
 type TlsSubscriptionValidationOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionValidationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsSubscriptionValidation)(nil))
+	return reflect.TypeOf((**TlsSubscriptionValidation)(nil)).Elem()
 }
 
 func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationOutput() TlsSubscriptionValidationOutput {
@@ -195,44 +166,10 @@ func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationOutputWithCo
 	return o
 }
 
-func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationPtrOutput() TlsSubscriptionValidationPtrOutput {
-	return o.ToTlsSubscriptionValidationPtrOutputWithContext(context.Background())
-}
-
-func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationPtrOutputWithContext(ctx context.Context) TlsSubscriptionValidationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v TlsSubscriptionValidation) *TlsSubscriptionValidation {
-		return &v
-	}).(TlsSubscriptionValidationPtrOutput)
-}
-
-type TlsSubscriptionValidationPtrOutput struct{ *pulumi.OutputState }
-
-func (TlsSubscriptionValidationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsSubscriptionValidation)(nil))
-}
-
-func (o TlsSubscriptionValidationPtrOutput) ToTlsSubscriptionValidationPtrOutput() TlsSubscriptionValidationPtrOutput {
-	return o
-}
-
-func (o TlsSubscriptionValidationPtrOutput) ToTlsSubscriptionValidationPtrOutputWithContext(ctx context.Context) TlsSubscriptionValidationPtrOutput {
-	return o
-}
-
-func (o TlsSubscriptionValidationPtrOutput) Elem() TlsSubscriptionValidationOutput {
-	return o.ApplyT(func(v *TlsSubscriptionValidation) TlsSubscriptionValidation {
-		if v != nil {
-			return *v
-		}
-		var ret TlsSubscriptionValidation
-		return ret
-	}).(TlsSubscriptionValidationOutput)
-}
-
 type TlsSubscriptionValidationArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionValidationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]TlsSubscriptionValidation)(nil))
+	return reflect.TypeOf((*[]*TlsSubscriptionValidation)(nil)).Elem()
 }
 
 func (o TlsSubscriptionValidationArrayOutput) ToTlsSubscriptionValidationArrayOutput() TlsSubscriptionValidationArrayOutput {
@@ -244,15 +181,15 @@ func (o TlsSubscriptionValidationArrayOutput) ToTlsSubscriptionValidationArrayOu
 }
 
 func (o TlsSubscriptionValidationArrayOutput) Index(i pulumi.IntInput) TlsSubscriptionValidationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TlsSubscriptionValidation {
-		return vs[0].([]TlsSubscriptionValidation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsSubscriptionValidation {
+		return vs[0].([]*TlsSubscriptionValidation)[vs[1].(int)]
 	}).(TlsSubscriptionValidationOutput)
 }
 
 type TlsSubscriptionValidationMapOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionValidationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]TlsSubscriptionValidation)(nil))
+	return reflect.TypeOf((*map[string]*TlsSubscriptionValidation)(nil)).Elem()
 }
 
 func (o TlsSubscriptionValidationMapOutput) ToTlsSubscriptionValidationMapOutput() TlsSubscriptionValidationMapOutput {
@@ -264,18 +201,16 @@ func (o TlsSubscriptionValidationMapOutput) ToTlsSubscriptionValidationMapOutput
 }
 
 func (o TlsSubscriptionValidationMapOutput) MapIndex(k pulumi.StringInput) TlsSubscriptionValidationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) TlsSubscriptionValidation {
-		return vs[0].(map[string]TlsSubscriptionValidation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *TlsSubscriptionValidation {
+		return vs[0].(map[string]*TlsSubscriptionValidation)[vs[1].(string)]
 	}).(TlsSubscriptionValidationOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionValidationInput)(nil)).Elem(), &TlsSubscriptionValidation{})
-	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionValidationPtrInput)(nil)).Elem(), &TlsSubscriptionValidation{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionValidationArrayInput)(nil)).Elem(), TlsSubscriptionValidationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionValidationMapInput)(nil)).Elem(), TlsSubscriptionValidationMap{})
 	pulumi.RegisterOutputType(TlsSubscriptionValidationOutput{})
-	pulumi.RegisterOutputType(TlsSubscriptionValidationPtrOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionValidationArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionValidationMapOutput{})
 }

@@ -64,13 +64,13 @@ export class ServiceACLEntriesv1 extends pulumi.CustomResource {
      */
     constructor(name: string, args: ServiceACLEntriesv1Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceACLEntriesv1Args | ServiceACLEntriesv1State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceACLEntriesv1State | undefined;
-            inputs["aclId"] = state ? state.aclId : undefined;
-            inputs["entries"] = state ? state.entries : undefined;
-            inputs["serviceId"] = state ? state.serviceId : undefined;
+            resourceInputs["aclId"] = state ? state.aclId : undefined;
+            resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
         } else {
             const args = argsOrState as ServiceACLEntriesv1Args | undefined;
             if ((!args || args.aclId === undefined) && !opts.urn) {
@@ -79,14 +79,12 @@ export class ServiceACLEntriesv1 extends pulumi.CustomResource {
             if ((!args || args.serviceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            inputs["aclId"] = args ? args.aclId : undefined;
-            inputs["entries"] = args ? args.entries : undefined;
-            inputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["aclId"] = args ? args.aclId : undefined;
+            resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ServiceACLEntriesv1.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ServiceACLEntriesv1.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -273,7 +273,7 @@ type TlsPlatformCertificateInput interface {
 }
 
 func (*TlsPlatformCertificate) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsPlatformCertificate)(nil))
+	return reflect.TypeOf((**TlsPlatformCertificate)(nil)).Elem()
 }
 
 func (i *TlsPlatformCertificate) ToTlsPlatformCertificateOutput() TlsPlatformCertificateOutput {
@@ -282,35 +282,6 @@ func (i *TlsPlatformCertificate) ToTlsPlatformCertificateOutput() TlsPlatformCer
 
 func (i *TlsPlatformCertificate) ToTlsPlatformCertificateOutputWithContext(ctx context.Context) TlsPlatformCertificateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPlatformCertificateOutput)
-}
-
-func (i *TlsPlatformCertificate) ToTlsPlatformCertificatePtrOutput() TlsPlatformCertificatePtrOutput {
-	return i.ToTlsPlatformCertificatePtrOutputWithContext(context.Background())
-}
-
-func (i *TlsPlatformCertificate) ToTlsPlatformCertificatePtrOutputWithContext(ctx context.Context) TlsPlatformCertificatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsPlatformCertificatePtrOutput)
-}
-
-type TlsPlatformCertificatePtrInput interface {
-	pulumi.Input
-
-	ToTlsPlatformCertificatePtrOutput() TlsPlatformCertificatePtrOutput
-	ToTlsPlatformCertificatePtrOutputWithContext(ctx context.Context) TlsPlatformCertificatePtrOutput
-}
-
-type tlsPlatformCertificatePtrType TlsPlatformCertificateArgs
-
-func (*tlsPlatformCertificatePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsPlatformCertificate)(nil))
-}
-
-func (i *tlsPlatformCertificatePtrType) ToTlsPlatformCertificatePtrOutput() TlsPlatformCertificatePtrOutput {
-	return i.ToTlsPlatformCertificatePtrOutputWithContext(context.Background())
-}
-
-func (i *tlsPlatformCertificatePtrType) ToTlsPlatformCertificatePtrOutputWithContext(ctx context.Context) TlsPlatformCertificatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TlsPlatformCertificatePtrOutput)
 }
 
 // TlsPlatformCertificateArrayInput is an input type that accepts TlsPlatformCertificateArray and TlsPlatformCertificateArrayOutput values.
@@ -366,7 +337,7 @@ func (i TlsPlatformCertificateMap) ToTlsPlatformCertificateMapOutputWithContext(
 type TlsPlatformCertificateOutput struct{ *pulumi.OutputState }
 
 func (TlsPlatformCertificateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TlsPlatformCertificate)(nil))
+	return reflect.TypeOf((**TlsPlatformCertificate)(nil)).Elem()
 }
 
 func (o TlsPlatformCertificateOutput) ToTlsPlatformCertificateOutput() TlsPlatformCertificateOutput {
@@ -377,44 +348,10 @@ func (o TlsPlatformCertificateOutput) ToTlsPlatformCertificateOutputWithContext(
 	return o
 }
 
-func (o TlsPlatformCertificateOutput) ToTlsPlatformCertificatePtrOutput() TlsPlatformCertificatePtrOutput {
-	return o.ToTlsPlatformCertificatePtrOutputWithContext(context.Background())
-}
-
-func (o TlsPlatformCertificateOutput) ToTlsPlatformCertificatePtrOutputWithContext(ctx context.Context) TlsPlatformCertificatePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v TlsPlatformCertificate) *TlsPlatformCertificate {
-		return &v
-	}).(TlsPlatformCertificatePtrOutput)
-}
-
-type TlsPlatformCertificatePtrOutput struct{ *pulumi.OutputState }
-
-func (TlsPlatformCertificatePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**TlsPlatformCertificate)(nil))
-}
-
-func (o TlsPlatformCertificatePtrOutput) ToTlsPlatformCertificatePtrOutput() TlsPlatformCertificatePtrOutput {
-	return o
-}
-
-func (o TlsPlatformCertificatePtrOutput) ToTlsPlatformCertificatePtrOutputWithContext(ctx context.Context) TlsPlatformCertificatePtrOutput {
-	return o
-}
-
-func (o TlsPlatformCertificatePtrOutput) Elem() TlsPlatformCertificateOutput {
-	return o.ApplyT(func(v *TlsPlatformCertificate) TlsPlatformCertificate {
-		if v != nil {
-			return *v
-		}
-		var ret TlsPlatformCertificate
-		return ret
-	}).(TlsPlatformCertificateOutput)
-}
-
 type TlsPlatformCertificateArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsPlatformCertificateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]TlsPlatformCertificate)(nil))
+	return reflect.TypeOf((*[]*TlsPlatformCertificate)(nil)).Elem()
 }
 
 func (o TlsPlatformCertificateArrayOutput) ToTlsPlatformCertificateArrayOutput() TlsPlatformCertificateArrayOutput {
@@ -426,15 +363,15 @@ func (o TlsPlatformCertificateArrayOutput) ToTlsPlatformCertificateArrayOutputWi
 }
 
 func (o TlsPlatformCertificateArrayOutput) Index(i pulumi.IntInput) TlsPlatformCertificateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TlsPlatformCertificate {
-		return vs[0].([]TlsPlatformCertificate)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsPlatformCertificate {
+		return vs[0].([]*TlsPlatformCertificate)[vs[1].(int)]
 	}).(TlsPlatformCertificateOutput)
 }
 
 type TlsPlatformCertificateMapOutput struct{ *pulumi.OutputState }
 
 func (TlsPlatformCertificateMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]TlsPlatformCertificate)(nil))
+	return reflect.TypeOf((*map[string]*TlsPlatformCertificate)(nil)).Elem()
 }
 
 func (o TlsPlatformCertificateMapOutput) ToTlsPlatformCertificateMapOutput() TlsPlatformCertificateMapOutput {
@@ -446,18 +383,16 @@ func (o TlsPlatformCertificateMapOutput) ToTlsPlatformCertificateMapOutputWithCo
 }
 
 func (o TlsPlatformCertificateMapOutput) MapIndex(k pulumi.StringInput) TlsPlatformCertificateOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) TlsPlatformCertificate {
-		return vs[0].(map[string]TlsPlatformCertificate)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *TlsPlatformCertificate {
+		return vs[0].(map[string]*TlsPlatformCertificate)[vs[1].(string)]
 	}).(TlsPlatformCertificateOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsPlatformCertificateInput)(nil)).Elem(), &TlsPlatformCertificate{})
-	pulumi.RegisterInputType(reflect.TypeOf((*TlsPlatformCertificatePtrInput)(nil)).Elem(), &TlsPlatformCertificate{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsPlatformCertificateArrayInput)(nil)).Elem(), TlsPlatformCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsPlatformCertificateMapInput)(nil)).Elem(), TlsPlatformCertificateMap{})
 	pulumi.RegisterOutputType(TlsPlatformCertificateOutput{})
-	pulumi.RegisterOutputType(TlsPlatformCertificatePtrOutput{})
 	pulumi.RegisterOutputType(TlsPlatformCertificateArrayOutput{})
 	pulumi.RegisterOutputType(TlsPlatformCertificateMapOutput{})
 }

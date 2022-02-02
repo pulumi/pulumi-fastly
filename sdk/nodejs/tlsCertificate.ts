@@ -126,40 +126,38 @@ export class TlsCertificate extends pulumi.CustomResource {
      */
     constructor(name: string, args: TlsCertificateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TlsCertificateArgs | TlsCertificateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsCertificateState | undefined;
-            inputs["certificateBody"] = state ? state.certificateBody : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["domains"] = state ? state.domains : undefined;
-            inputs["issuedTo"] = state ? state.issuedTo : undefined;
-            inputs["issuer"] = state ? state.issuer : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["replace"] = state ? state.replace : undefined;
-            inputs["serialNumber"] = state ? state.serialNumber : undefined;
-            inputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["certificateBody"] = state ? state.certificateBody : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["domains"] = state ? state.domains : undefined;
+            resourceInputs["issuedTo"] = state ? state.issuedTo : undefined;
+            resourceInputs["issuer"] = state ? state.issuer : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["replace"] = state ? state.replace : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
+            resourceInputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as TlsCertificateArgs | undefined;
             if ((!args || args.certificateBody === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certificateBody'");
             }
-            inputs["certificateBody"] = args ? args.certificateBody : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["domains"] = undefined /*out*/;
-            inputs["issuedTo"] = undefined /*out*/;
-            inputs["issuer"] = undefined /*out*/;
-            inputs["replace"] = undefined /*out*/;
-            inputs["serialNumber"] = undefined /*out*/;
-            inputs["signatureAlgorithm"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["certificateBody"] = args ? args.certificateBody : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["domains"] = undefined /*out*/;
+            resourceInputs["issuedTo"] = undefined /*out*/;
+            resourceInputs["issuer"] = undefined /*out*/;
+            resourceInputs["replace"] = undefined /*out*/;
+            resourceInputs["serialNumber"] = undefined /*out*/;
+            resourceInputs["signatureAlgorithm"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TlsCertificate.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TlsCertificate.__pulumiType, name, resourceInputs, opts);
     }
 }
 

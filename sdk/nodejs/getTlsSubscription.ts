@@ -24,9 +24,7 @@ export function getTlsSubscription(args?: GetTlsSubscriptionArgs, opts?: pulumi.
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsSubscription:getTlsSubscription", {
         "certificateAuthority": args.certificateAuthority,
         "configurationId": args.configurationId,

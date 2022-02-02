@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -50,7 +49,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsConfigurationResult> InvokeAsync(GetTlsConfigurationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the ID of a TLS configuration for use with other resources.
@@ -90,7 +89,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsConfigurationResult> Invoke(GetTlsConfigurationInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationInvokeArgs(), options.WithDefaults());
     }
 
 

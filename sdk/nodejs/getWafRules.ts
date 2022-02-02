@@ -11,9 +11,7 @@ export function getWafRules(args?: GetWafRulesArgs, opts?: pulumi.InvokeOptions)
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getWafRules:getWafRules", {
         "excludeModsecRuleIds": args.excludeModsecRuleIds,
         "modsecRuleIds": args.modsecRuleIds,

@@ -101,14 +101,14 @@ export class TlsActivation extends pulumi.CustomResource {
      */
     constructor(name: string, args: TlsActivationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TlsActivationArgs | TlsActivationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsActivationState | undefined;
-            inputs["certificateId"] = state ? state.certificateId : undefined;
-            inputs["configurationId"] = state ? state.configurationId : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["certificateId"] = state ? state.certificateId : undefined;
+            resourceInputs["configurationId"] = state ? state.configurationId : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["domain"] = state ? state.domain : undefined;
         } else {
             const args = argsOrState as TlsActivationArgs | undefined;
             if ((!args || args.certificateId === undefined) && !opts.urn) {
@@ -117,15 +117,13 @@ export class TlsActivation extends pulumi.CustomResource {
             if ((!args || args.domain === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
-            inputs["certificateId"] = args ? args.certificateId : undefined;
-            inputs["configurationId"] = args ? args.configurationId : undefined;
-            inputs["domain"] = args ? args.domain : undefined;
-            inputs["createdAt"] = undefined /*out*/;
+            resourceInputs["certificateId"] = args ? args.certificateId : undefined;
+            resourceInputs["configurationId"] = args ? args.configurationId : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TlsActivation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TlsActivation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

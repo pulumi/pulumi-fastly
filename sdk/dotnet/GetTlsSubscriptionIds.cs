@@ -15,7 +15,7 @@ namespace Pulumi.Fastly
         /// Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
         /// </summary>
         public static Task<GetTlsSubscriptionIdsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsSubscriptionIdsResult>("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsSubscriptionIdsResult>("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

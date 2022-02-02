@@ -24,9 +24,7 @@ export function getTlsPlatformCertificateIds(opts?: pulumi.InvokeOptions): Promi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", {
     }, opts);
 }

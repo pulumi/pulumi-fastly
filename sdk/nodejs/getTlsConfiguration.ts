@@ -33,9 +33,7 @@ export function getTlsConfiguration(args?: GetTlsConfigurationArgs, opts?: pulum
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fastly:index/getTlsConfiguration:getTlsConfiguration", {
         "default": args.default,
         "httpProtocols": args.httpProtocols,

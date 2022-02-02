@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -45,7 +44,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsActivationResult> InvokeAsync(GetTlsActivationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
@@ -80,7 +79,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsActivationResult> Invoke(GetTlsActivationInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationInvokeArgs(), options.WithDefaults());
     }
 
 

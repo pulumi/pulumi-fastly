@@ -96,34 +96,32 @@ export class TlsPrivateKey extends pulumi.CustomResource {
      */
     constructor(name: string, args: TlsPrivateKeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TlsPrivateKeyArgs | TlsPrivateKeyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsPrivateKeyState | undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["keyLength"] = state ? state.keyLength : undefined;
-            inputs["keyPem"] = state ? state.keyPem : undefined;
-            inputs["keyType"] = state ? state.keyType : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["publicKeySha1"] = state ? state.publicKeySha1 : undefined;
-            inputs["replace"] = state ? state.replace : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["keyLength"] = state ? state.keyLength : undefined;
+            resourceInputs["keyPem"] = state ? state.keyPem : undefined;
+            resourceInputs["keyType"] = state ? state.keyType : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["publicKeySha1"] = state ? state.publicKeySha1 : undefined;
+            resourceInputs["replace"] = state ? state.replace : undefined;
         } else {
             const args = argsOrState as TlsPrivateKeyArgs | undefined;
             if ((!args || args.keyPem === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'keyPem'");
             }
-            inputs["keyPem"] = args ? args.keyPem : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["keyLength"] = undefined /*out*/;
-            inputs["keyType"] = undefined /*out*/;
-            inputs["publicKeySha1"] = undefined /*out*/;
-            inputs["replace"] = undefined /*out*/;
+            resourceInputs["keyPem"] = args ? args.keyPem : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["keyLength"] = undefined /*out*/;
+            resourceInputs["keyType"] = undefined /*out*/;
+            resourceInputs["publicKeySha1"] = undefined /*out*/;
+            resourceInputs["replace"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TlsPrivateKey.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TlsPrivateKey.__pulumiType, name, resourceInputs, opts);
     }
 }
 

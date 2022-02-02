@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -42,7 +41,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsSubscriptionResult> InvokeAsync(GetTlsSubscriptionArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information about a TLS subscription.
@@ -74,7 +73,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsSubscriptionResult> Invoke(GetTlsSubscriptionInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionInvokeArgs(), options.WithDefaults());
     }
 
 

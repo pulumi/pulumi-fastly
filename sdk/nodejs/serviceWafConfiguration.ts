@@ -620,82 +620,80 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
      */
     constructor(name: string, args: ServiceWafConfigurationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceWafConfigurationArgs | ServiceWafConfigurationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceWafConfigurationState | undefined;
-            inputs["allowedHttpVersions"] = state ? state.allowedHttpVersions : undefined;
-            inputs["allowedMethods"] = state ? state.allowedMethods : undefined;
-            inputs["allowedRequestContentType"] = state ? state.allowedRequestContentType : undefined;
-            inputs["allowedRequestContentTypeCharset"] = state ? state.allowedRequestContentTypeCharset : undefined;
-            inputs["argLength"] = state ? state.argLength : undefined;
-            inputs["argNameLength"] = state ? state.argNameLength : undefined;
-            inputs["combinedFileSizes"] = state ? state.combinedFileSizes : undefined;
-            inputs["criticalAnomalyScore"] = state ? state.criticalAnomalyScore : undefined;
-            inputs["crsValidateUtf8Encoding"] = state ? state.crsValidateUtf8Encoding : undefined;
-            inputs["errorAnomalyScore"] = state ? state.errorAnomalyScore : undefined;
-            inputs["highRiskCountryCodes"] = state ? state.highRiskCountryCodes : undefined;
-            inputs["httpViolationScoreThreshold"] = state ? state.httpViolationScoreThreshold : undefined;
-            inputs["inboundAnomalyScoreThreshold"] = state ? state.inboundAnomalyScoreThreshold : undefined;
-            inputs["lfiScoreThreshold"] = state ? state.lfiScoreThreshold : undefined;
-            inputs["maxFileSize"] = state ? state.maxFileSize : undefined;
-            inputs["maxNumArgs"] = state ? state.maxNumArgs : undefined;
-            inputs["noticeAnomalyScore"] = state ? state.noticeAnomalyScore : undefined;
-            inputs["paranoiaLevel"] = state ? state.paranoiaLevel : undefined;
-            inputs["phpInjectionScoreThreshold"] = state ? state.phpInjectionScoreThreshold : undefined;
-            inputs["rceScoreThreshold"] = state ? state.rceScoreThreshold : undefined;
-            inputs["restrictedExtensions"] = state ? state.restrictedExtensions : undefined;
-            inputs["restrictedHeaders"] = state ? state.restrictedHeaders : undefined;
-            inputs["rfiScoreThreshold"] = state ? state.rfiScoreThreshold : undefined;
-            inputs["ruleExclusions"] = state ? state.ruleExclusions : undefined;
-            inputs["rules"] = state ? state.rules : undefined;
-            inputs["sessionFixationScoreThreshold"] = state ? state.sessionFixationScoreThreshold : undefined;
-            inputs["sqlInjectionScoreThreshold"] = state ? state.sqlInjectionScoreThreshold : undefined;
-            inputs["totalArgLength"] = state ? state.totalArgLength : undefined;
-            inputs["wafId"] = state ? state.wafId : undefined;
-            inputs["warningAnomalyScore"] = state ? state.warningAnomalyScore : undefined;
-            inputs["xssScoreThreshold"] = state ? state.xssScoreThreshold : undefined;
+            resourceInputs["allowedHttpVersions"] = state ? state.allowedHttpVersions : undefined;
+            resourceInputs["allowedMethods"] = state ? state.allowedMethods : undefined;
+            resourceInputs["allowedRequestContentType"] = state ? state.allowedRequestContentType : undefined;
+            resourceInputs["allowedRequestContentTypeCharset"] = state ? state.allowedRequestContentTypeCharset : undefined;
+            resourceInputs["argLength"] = state ? state.argLength : undefined;
+            resourceInputs["argNameLength"] = state ? state.argNameLength : undefined;
+            resourceInputs["combinedFileSizes"] = state ? state.combinedFileSizes : undefined;
+            resourceInputs["criticalAnomalyScore"] = state ? state.criticalAnomalyScore : undefined;
+            resourceInputs["crsValidateUtf8Encoding"] = state ? state.crsValidateUtf8Encoding : undefined;
+            resourceInputs["errorAnomalyScore"] = state ? state.errorAnomalyScore : undefined;
+            resourceInputs["highRiskCountryCodes"] = state ? state.highRiskCountryCodes : undefined;
+            resourceInputs["httpViolationScoreThreshold"] = state ? state.httpViolationScoreThreshold : undefined;
+            resourceInputs["inboundAnomalyScoreThreshold"] = state ? state.inboundAnomalyScoreThreshold : undefined;
+            resourceInputs["lfiScoreThreshold"] = state ? state.lfiScoreThreshold : undefined;
+            resourceInputs["maxFileSize"] = state ? state.maxFileSize : undefined;
+            resourceInputs["maxNumArgs"] = state ? state.maxNumArgs : undefined;
+            resourceInputs["noticeAnomalyScore"] = state ? state.noticeAnomalyScore : undefined;
+            resourceInputs["paranoiaLevel"] = state ? state.paranoiaLevel : undefined;
+            resourceInputs["phpInjectionScoreThreshold"] = state ? state.phpInjectionScoreThreshold : undefined;
+            resourceInputs["rceScoreThreshold"] = state ? state.rceScoreThreshold : undefined;
+            resourceInputs["restrictedExtensions"] = state ? state.restrictedExtensions : undefined;
+            resourceInputs["restrictedHeaders"] = state ? state.restrictedHeaders : undefined;
+            resourceInputs["rfiScoreThreshold"] = state ? state.rfiScoreThreshold : undefined;
+            resourceInputs["ruleExclusions"] = state ? state.ruleExclusions : undefined;
+            resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["sessionFixationScoreThreshold"] = state ? state.sessionFixationScoreThreshold : undefined;
+            resourceInputs["sqlInjectionScoreThreshold"] = state ? state.sqlInjectionScoreThreshold : undefined;
+            resourceInputs["totalArgLength"] = state ? state.totalArgLength : undefined;
+            resourceInputs["wafId"] = state ? state.wafId : undefined;
+            resourceInputs["warningAnomalyScore"] = state ? state.warningAnomalyScore : undefined;
+            resourceInputs["xssScoreThreshold"] = state ? state.xssScoreThreshold : undefined;
         } else {
             const args = argsOrState as ServiceWafConfigurationArgs | undefined;
             if ((!args || args.wafId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'wafId'");
             }
-            inputs["allowedHttpVersions"] = args ? args.allowedHttpVersions : undefined;
-            inputs["allowedMethods"] = args ? args.allowedMethods : undefined;
-            inputs["allowedRequestContentType"] = args ? args.allowedRequestContentType : undefined;
-            inputs["allowedRequestContentTypeCharset"] = args ? args.allowedRequestContentTypeCharset : undefined;
-            inputs["argLength"] = args ? args.argLength : undefined;
-            inputs["argNameLength"] = args ? args.argNameLength : undefined;
-            inputs["combinedFileSizes"] = args ? args.combinedFileSizes : undefined;
-            inputs["criticalAnomalyScore"] = args ? args.criticalAnomalyScore : undefined;
-            inputs["crsValidateUtf8Encoding"] = args ? args.crsValidateUtf8Encoding : undefined;
-            inputs["errorAnomalyScore"] = args ? args.errorAnomalyScore : undefined;
-            inputs["highRiskCountryCodes"] = args ? args.highRiskCountryCodes : undefined;
-            inputs["httpViolationScoreThreshold"] = args ? args.httpViolationScoreThreshold : undefined;
-            inputs["inboundAnomalyScoreThreshold"] = args ? args.inboundAnomalyScoreThreshold : undefined;
-            inputs["lfiScoreThreshold"] = args ? args.lfiScoreThreshold : undefined;
-            inputs["maxFileSize"] = args ? args.maxFileSize : undefined;
-            inputs["maxNumArgs"] = args ? args.maxNumArgs : undefined;
-            inputs["noticeAnomalyScore"] = args ? args.noticeAnomalyScore : undefined;
-            inputs["paranoiaLevel"] = args ? args.paranoiaLevel : undefined;
-            inputs["phpInjectionScoreThreshold"] = args ? args.phpInjectionScoreThreshold : undefined;
-            inputs["rceScoreThreshold"] = args ? args.rceScoreThreshold : undefined;
-            inputs["restrictedExtensions"] = args ? args.restrictedExtensions : undefined;
-            inputs["restrictedHeaders"] = args ? args.restrictedHeaders : undefined;
-            inputs["rfiScoreThreshold"] = args ? args.rfiScoreThreshold : undefined;
-            inputs["ruleExclusions"] = args ? args.ruleExclusions : undefined;
-            inputs["rules"] = args ? args.rules : undefined;
-            inputs["sessionFixationScoreThreshold"] = args ? args.sessionFixationScoreThreshold : undefined;
-            inputs["sqlInjectionScoreThreshold"] = args ? args.sqlInjectionScoreThreshold : undefined;
-            inputs["totalArgLength"] = args ? args.totalArgLength : undefined;
-            inputs["wafId"] = args ? args.wafId : undefined;
-            inputs["warningAnomalyScore"] = args ? args.warningAnomalyScore : undefined;
-            inputs["xssScoreThreshold"] = args ? args.xssScoreThreshold : undefined;
+            resourceInputs["allowedHttpVersions"] = args ? args.allowedHttpVersions : undefined;
+            resourceInputs["allowedMethods"] = args ? args.allowedMethods : undefined;
+            resourceInputs["allowedRequestContentType"] = args ? args.allowedRequestContentType : undefined;
+            resourceInputs["allowedRequestContentTypeCharset"] = args ? args.allowedRequestContentTypeCharset : undefined;
+            resourceInputs["argLength"] = args ? args.argLength : undefined;
+            resourceInputs["argNameLength"] = args ? args.argNameLength : undefined;
+            resourceInputs["combinedFileSizes"] = args ? args.combinedFileSizes : undefined;
+            resourceInputs["criticalAnomalyScore"] = args ? args.criticalAnomalyScore : undefined;
+            resourceInputs["crsValidateUtf8Encoding"] = args ? args.crsValidateUtf8Encoding : undefined;
+            resourceInputs["errorAnomalyScore"] = args ? args.errorAnomalyScore : undefined;
+            resourceInputs["highRiskCountryCodes"] = args ? args.highRiskCountryCodes : undefined;
+            resourceInputs["httpViolationScoreThreshold"] = args ? args.httpViolationScoreThreshold : undefined;
+            resourceInputs["inboundAnomalyScoreThreshold"] = args ? args.inboundAnomalyScoreThreshold : undefined;
+            resourceInputs["lfiScoreThreshold"] = args ? args.lfiScoreThreshold : undefined;
+            resourceInputs["maxFileSize"] = args ? args.maxFileSize : undefined;
+            resourceInputs["maxNumArgs"] = args ? args.maxNumArgs : undefined;
+            resourceInputs["noticeAnomalyScore"] = args ? args.noticeAnomalyScore : undefined;
+            resourceInputs["paranoiaLevel"] = args ? args.paranoiaLevel : undefined;
+            resourceInputs["phpInjectionScoreThreshold"] = args ? args.phpInjectionScoreThreshold : undefined;
+            resourceInputs["rceScoreThreshold"] = args ? args.rceScoreThreshold : undefined;
+            resourceInputs["restrictedExtensions"] = args ? args.restrictedExtensions : undefined;
+            resourceInputs["restrictedHeaders"] = args ? args.restrictedHeaders : undefined;
+            resourceInputs["rfiScoreThreshold"] = args ? args.rfiScoreThreshold : undefined;
+            resourceInputs["ruleExclusions"] = args ? args.ruleExclusions : undefined;
+            resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["sessionFixationScoreThreshold"] = args ? args.sessionFixationScoreThreshold : undefined;
+            resourceInputs["sqlInjectionScoreThreshold"] = args ? args.sqlInjectionScoreThreshold : undefined;
+            resourceInputs["totalArgLength"] = args ? args.totalArgLength : undefined;
+            resourceInputs["wafId"] = args ? args.wafId : undefined;
+            resourceInputs["warningAnomalyScore"] = args ? args.warningAnomalyScore : undefined;
+            resourceInputs["xssScoreThreshold"] = args ? args.xssScoreThreshold : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ServiceWafConfiguration.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ServiceWafConfiguration.__pulumiType, name, resourceInputs, opts);
     }
 }
 

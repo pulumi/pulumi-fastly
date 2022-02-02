@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Fastly
 {
@@ -49,7 +48,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsPrivateKeyResult> InvokeAsync(GetTlsPrivateKeyArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information on a TLS Private Key uploaded to Fastly.
@@ -88,7 +87,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsPrivateKeyResult> Invoke(GetTlsPrivateKeyInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithDefaults());
     }
 
 
