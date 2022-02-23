@@ -493,6 +493,14 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
     }
 
     /**
+     * Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     */
+    public readonly activate!: pulumi.Output<boolean | undefined>;
+    /**
+     * Whether a specific firewall version is currently deployed
+     */
+    public /*out*/ readonly active!: pulumi.Output<boolean>;
+    /**
      * Allowed HTTP versions
      */
     public readonly allowedHttpVersions!: pulumi.Output<string>;
@@ -516,6 +524,10 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
      * The maximum allowed argument name length
      */
     public readonly argNameLength!: pulumi.Output<number>;
+    /**
+     * The latest cloned firewall version by the provider
+     */
+    public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
     /**
      * The maximum allowed size of all files
      */
@@ -560,6 +572,10 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
      * Score value to add for notice anomalies
      */
     public readonly noticeAnomalyScore!: pulumi.Output<number>;
+    /**
+     * The WAF firewall version
+     */
+    public /*out*/ readonly number!: pulumi.Output<number>;
     /**
      * The configured paranoia level
      */
@@ -624,12 +640,15 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceWafConfigurationState | undefined;
+            resourceInputs["activate"] = state ? state.activate : undefined;
+            resourceInputs["active"] = state ? state.active : undefined;
             resourceInputs["allowedHttpVersions"] = state ? state.allowedHttpVersions : undefined;
             resourceInputs["allowedMethods"] = state ? state.allowedMethods : undefined;
             resourceInputs["allowedRequestContentType"] = state ? state.allowedRequestContentType : undefined;
             resourceInputs["allowedRequestContentTypeCharset"] = state ? state.allowedRequestContentTypeCharset : undefined;
             resourceInputs["argLength"] = state ? state.argLength : undefined;
             resourceInputs["argNameLength"] = state ? state.argNameLength : undefined;
+            resourceInputs["clonedVersion"] = state ? state.clonedVersion : undefined;
             resourceInputs["combinedFileSizes"] = state ? state.combinedFileSizes : undefined;
             resourceInputs["criticalAnomalyScore"] = state ? state.criticalAnomalyScore : undefined;
             resourceInputs["crsValidateUtf8Encoding"] = state ? state.crsValidateUtf8Encoding : undefined;
@@ -641,6 +660,7 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             resourceInputs["maxFileSize"] = state ? state.maxFileSize : undefined;
             resourceInputs["maxNumArgs"] = state ? state.maxNumArgs : undefined;
             resourceInputs["noticeAnomalyScore"] = state ? state.noticeAnomalyScore : undefined;
+            resourceInputs["number"] = state ? state.number : undefined;
             resourceInputs["paranoiaLevel"] = state ? state.paranoiaLevel : undefined;
             resourceInputs["phpInjectionScoreThreshold"] = state ? state.phpInjectionScoreThreshold : undefined;
             resourceInputs["rceScoreThreshold"] = state ? state.rceScoreThreshold : undefined;
@@ -660,6 +680,7 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             if ((!args || args.wafId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'wafId'");
             }
+            resourceInputs["activate"] = args ? args.activate : undefined;
             resourceInputs["allowedHttpVersions"] = args ? args.allowedHttpVersions : undefined;
             resourceInputs["allowedMethods"] = args ? args.allowedMethods : undefined;
             resourceInputs["allowedRequestContentType"] = args ? args.allowedRequestContentType : undefined;
@@ -691,6 +712,9 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
             resourceInputs["wafId"] = args ? args.wafId : undefined;
             resourceInputs["warningAnomalyScore"] = args ? args.warningAnomalyScore : undefined;
             resourceInputs["xssScoreThreshold"] = args ? args.xssScoreThreshold : undefined;
+            resourceInputs["active"] = undefined /*out*/;
+            resourceInputs["clonedVersion"] = undefined /*out*/;
+            resourceInputs["number"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceWafConfiguration.__pulumiType, name, resourceInputs, opts);
@@ -701,6 +725,14 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServiceWafConfiguration resources.
  */
 export interface ServiceWafConfigurationState {
+    /**
+     * Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     */
+    activate?: pulumi.Input<boolean>;
+    /**
+     * Whether a specific firewall version is currently deployed
+     */
+    active?: pulumi.Input<boolean>;
     /**
      * Allowed HTTP versions
      */
@@ -725,6 +757,10 @@ export interface ServiceWafConfigurationState {
      * The maximum allowed argument name length
      */
     argNameLength?: pulumi.Input<number>;
+    /**
+     * The latest cloned firewall version by the provider
+     */
+    clonedVersion?: pulumi.Input<number>;
     /**
      * The maximum allowed size of all files
      */
@@ -769,6 +805,10 @@ export interface ServiceWafConfigurationState {
      * Score value to add for notice anomalies
      */
     noticeAnomalyScore?: pulumi.Input<number>;
+    /**
+     * The WAF firewall version
+     */
+    number?: pulumi.Input<number>;
     /**
      * The configured paranoia level
      */
@@ -825,6 +865,10 @@ export interface ServiceWafConfigurationState {
  * The set of arguments for constructing a ServiceWafConfiguration resource.
  */
 export interface ServiceWafConfigurationArgs {
+    /**
+     * Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     */
+    activate?: pulumi.Input<boolean>;
     /**
      * Allowed HTTP versions
      */

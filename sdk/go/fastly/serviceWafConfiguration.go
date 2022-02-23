@@ -39,6 +39,10 @@ import (
 type ServiceWafConfiguration struct {
 	pulumi.CustomResourceState
 
+	// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
+	// Whether a specific firewall version is currently deployed
+	Active pulumi.BoolOutput `pulumi:"active"`
 	// Allowed HTTP versions
 	AllowedHttpVersions pulumi.StringOutput `pulumi:"allowedHttpVersions"`
 	// A space-separated list of HTTP method names
@@ -51,6 +55,8 @@ type ServiceWafConfiguration struct {
 	ArgLength pulumi.IntOutput `pulumi:"argLength"`
 	// The maximum allowed argument name length
 	ArgNameLength pulumi.IntOutput `pulumi:"argNameLength"`
+	// The latest cloned firewall version by the provider
+	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
 	// The maximum allowed size of all files
 	CombinedFileSizes pulumi.IntOutput `pulumi:"combinedFileSizes"`
 	// Score value to add for critical anomalies
@@ -73,6 +79,8 @@ type ServiceWafConfiguration struct {
 	MaxNumArgs pulumi.IntOutput `pulumi:"maxNumArgs"`
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntOutput `pulumi:"noticeAnomalyScore"`
+	// The WAF firewall version
+	Number pulumi.IntOutput `pulumi:"number"`
 	// The configured paranoia level
 	ParanoiaLevel pulumi.IntOutput `pulumi:"paranoiaLevel"`
 	// PHP injection threshold
@@ -133,6 +141,10 @@ func GetServiceWafConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceWafConfiguration resources.
 type serviceWafConfigurationState struct {
+	// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate *bool `pulumi:"activate"`
+	// Whether a specific firewall version is currently deployed
+	Active *bool `pulumi:"active"`
 	// Allowed HTTP versions
 	AllowedHttpVersions *string `pulumi:"allowedHttpVersions"`
 	// A space-separated list of HTTP method names
@@ -145,6 +157,8 @@ type serviceWafConfigurationState struct {
 	ArgLength *int `pulumi:"argLength"`
 	// The maximum allowed argument name length
 	ArgNameLength *int `pulumi:"argNameLength"`
+	// The latest cloned firewall version by the provider
+	ClonedVersion *int `pulumi:"clonedVersion"`
 	// The maximum allowed size of all files
 	CombinedFileSizes *int `pulumi:"combinedFileSizes"`
 	// Score value to add for critical anomalies
@@ -167,6 +181,8 @@ type serviceWafConfigurationState struct {
 	MaxNumArgs *int `pulumi:"maxNumArgs"`
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore *int `pulumi:"noticeAnomalyScore"`
+	// The WAF firewall version
+	Number *int `pulumi:"number"`
 	// The configured paranoia level
 	ParanoiaLevel *int `pulumi:"paranoiaLevel"`
 	// PHP injection threshold
@@ -196,6 +212,10 @@ type serviceWafConfigurationState struct {
 }
 
 type ServiceWafConfigurationState struct {
+	// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate pulumi.BoolPtrInput
+	// Whether a specific firewall version is currently deployed
+	Active pulumi.BoolPtrInput
 	// Allowed HTTP versions
 	AllowedHttpVersions pulumi.StringPtrInput
 	// A space-separated list of HTTP method names
@@ -208,6 +228,8 @@ type ServiceWafConfigurationState struct {
 	ArgLength pulumi.IntPtrInput
 	// The maximum allowed argument name length
 	ArgNameLength pulumi.IntPtrInput
+	// The latest cloned firewall version by the provider
+	ClonedVersion pulumi.IntPtrInput
 	// The maximum allowed size of all files
 	CombinedFileSizes pulumi.IntPtrInput
 	// Score value to add for critical anomalies
@@ -230,6 +252,8 @@ type ServiceWafConfigurationState struct {
 	MaxNumArgs pulumi.IntPtrInput
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntPtrInput
+	// The WAF firewall version
+	Number pulumi.IntPtrInput
 	// The configured paranoia level
 	ParanoiaLevel pulumi.IntPtrInput
 	// PHP injection threshold
@@ -263,6 +287,8 @@ func (ServiceWafConfigurationState) ElementType() reflect.Type {
 }
 
 type serviceWafConfigurationArgs struct {
+	// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate *bool `pulumi:"activate"`
 	// Allowed HTTP versions
 	AllowedHttpVersions *string `pulumi:"allowedHttpVersions"`
 	// A space-separated list of HTTP method names
@@ -327,6 +353,8 @@ type serviceWafConfigurationArgs struct {
 
 // The set of arguments for constructing a ServiceWafConfiguration resource.
 type ServiceWafConfigurationArgs struct {
+	// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	Activate pulumi.BoolPtrInput
 	// Allowed HTTP versions
 	AllowedHttpVersions pulumi.StringPtrInput
 	// A space-separated list of HTTP method names

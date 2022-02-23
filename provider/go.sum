@@ -729,8 +729,8 @@ github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Di
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20211019194827-62530c6537a4 h1:7EyuNFV2RFLBgGUnYjjcTzZL8BOFM4QBy/FJP1jTQxg=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20211019194827-62530c6537a4/go.mod h1:6KbP09YzlB++S6XSUKYl83WyoHVN4MgeoCbPRsdfCtA=
-github.com/pulumi/terraform-provider-fastly v0.16.1-0.20220113234908-46528ce9cd94 h1:isI8IVtiw+C39q8nHpRsxMJTH5smXNTYY97lFIjPlrk=
-github.com/pulumi/terraform-provider-fastly v0.16.1-0.20220113234908-46528ce9cd94/go.mod h1:QHq0Rz1jNcXYY/XPn626tbquGZnZ6OJxmb2f3qcZGrE=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20220222233615-801313f9b1bd h1:8nLUll88RC7FzLMQE5B5aC+H5yWFQi5c/lIcVGkF9mc=
+github.com/pulumi/terraform-provider-fastly v0.16.1-0.20220222233615-801313f9b1bd/go.mod h1:QHq0Rz1jNcXYY/XPn626tbquGZnZ6OJxmb2f3qcZGrE=
 github.com/rivo/uniseg v0.2.0 h1:S1pD9weZBuJdFmowNwbpi7BJ8TNftyUImj/0WQi72jY=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 github.com/rjeczalik/notify v0.9.2 h1:MiTWrPj55mNDHEiIX5YUSKefw/+lCQVoAFmD6oQm5w8=
