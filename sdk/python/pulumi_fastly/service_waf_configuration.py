@@ -16,6 +16,7 @@ __all__ = ['ServiceWafConfigurationArgs', 'ServiceWafConfiguration']
 class ServiceWafConfigurationArgs:
     def __init__(__self__, *,
                  waf_id: pulumi.Input[str],
+                 activate: Optional[pulumi.Input[bool]] = None,
                  allowed_http_versions: Optional[pulumi.Input[str]] = None,
                  allowed_methods: Optional[pulumi.Input[str]] = None,
                  allowed_request_content_type: Optional[pulumi.Input[str]] = None,
@@ -49,6 +50,7 @@ class ServiceWafConfigurationArgs:
         """
         The set of arguments for constructing a ServiceWafConfiguration resource.
         :param pulumi.Input[str] waf_id: The ID of the Web Application Firewall that the configuration belongs to
+        :param pulumi.Input[bool] activate: Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] allowed_http_versions: Allowed HTTP versions
         :param pulumi.Input[str] allowed_methods: A space-separated list of HTTP method names
         :param pulumi.Input[str] allowed_request_content_type: Allowed request content types
@@ -79,6 +81,8 @@ class ServiceWafConfigurationArgs:
         :param pulumi.Input[int] xss_score_threshold: XSS attack threshold
         """
         pulumi.set(__self__, "waf_id", waf_id)
+        if activate is not None:
+            pulumi.set(__self__, "activate", activate)
         if allowed_http_versions is not None:
             pulumi.set(__self__, "allowed_http_versions", allowed_http_versions)
         if allowed_methods is not None:
@@ -151,6 +155,18 @@ class ServiceWafConfigurationArgs:
     @waf_id.setter
     def waf_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "waf_id", value)
+
+    @property
+    @pulumi.getter
+    def activate(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        """
+        return pulumi.get(self, "activate")
+
+    @activate.setter
+    def activate(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "activate", value)
 
     @property
     @pulumi.getter(name="allowedHttpVersions")
@@ -510,12 +526,15 @@ class ServiceWafConfigurationArgs:
 @pulumi.input_type
 class _ServiceWafConfigurationState:
     def __init__(__self__, *,
+                 activate: Optional[pulumi.Input[bool]] = None,
+                 active: Optional[pulumi.Input[bool]] = None,
                  allowed_http_versions: Optional[pulumi.Input[str]] = None,
                  allowed_methods: Optional[pulumi.Input[str]] = None,
                  allowed_request_content_type: Optional[pulumi.Input[str]] = None,
                  allowed_request_content_type_charset: Optional[pulumi.Input[str]] = None,
                  arg_length: Optional[pulumi.Input[int]] = None,
                  arg_name_length: Optional[pulumi.Input[int]] = None,
+                 cloned_version: Optional[pulumi.Input[int]] = None,
                  combined_file_sizes: Optional[pulumi.Input[int]] = None,
                  critical_anomaly_score: Optional[pulumi.Input[int]] = None,
                  crs_validate_utf8_encoding: Optional[pulumi.Input[bool]] = None,
@@ -527,6 +546,7 @@ class _ServiceWafConfigurationState:
                  max_file_size: Optional[pulumi.Input[int]] = None,
                  max_num_args: Optional[pulumi.Input[int]] = None,
                  notice_anomaly_score: Optional[pulumi.Input[int]] = None,
+                 number: Optional[pulumi.Input[int]] = None,
                  paranoia_level: Optional[pulumi.Input[int]] = None,
                  php_injection_score_threshold: Optional[pulumi.Input[int]] = None,
                  rce_score_threshold: Optional[pulumi.Input[int]] = None,
@@ -543,12 +563,15 @@ class _ServiceWafConfigurationState:
                  xss_score_threshold: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ServiceWafConfiguration resources.
+        :param pulumi.Input[bool] activate: Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] active: Whether a specific firewall version is currently deployed
         :param pulumi.Input[str] allowed_http_versions: Allowed HTTP versions
         :param pulumi.Input[str] allowed_methods: A space-separated list of HTTP method names
         :param pulumi.Input[str] allowed_request_content_type: Allowed request content types
         :param pulumi.Input[str] allowed_request_content_type_charset: Allowed request content type charset
         :param pulumi.Input[int] arg_length: The maximum number of arguments allowed
         :param pulumi.Input[int] arg_name_length: The maximum allowed argument name length
+        :param pulumi.Input[int] cloned_version: The latest cloned firewall version by the provider
         :param pulumi.Input[int] combined_file_sizes: The maximum allowed size of all files
         :param pulumi.Input[int] critical_anomaly_score: Score value to add for critical anomalies
         :param pulumi.Input[bool] crs_validate_utf8_encoding: CRS validate UTF8 encoding
@@ -560,6 +583,7 @@ class _ServiceWafConfigurationState:
         :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes
         :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed
         :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies
+        :param pulumi.Input[int] number: The WAF firewall version
         :param pulumi.Input[int] paranoia_level: The configured paranoia level
         :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold
         :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold
@@ -573,6 +597,10 @@ class _ServiceWafConfigurationState:
         :param pulumi.Input[int] warning_anomaly_score: Score value to add for warning anomalies
         :param pulumi.Input[int] xss_score_threshold: XSS attack threshold
         """
+        if activate is not None:
+            pulumi.set(__self__, "activate", activate)
+        if active is not None:
+            pulumi.set(__self__, "active", active)
         if allowed_http_versions is not None:
             pulumi.set(__self__, "allowed_http_versions", allowed_http_versions)
         if allowed_methods is not None:
@@ -585,6 +613,8 @@ class _ServiceWafConfigurationState:
             pulumi.set(__self__, "arg_length", arg_length)
         if arg_name_length is not None:
             pulumi.set(__self__, "arg_name_length", arg_name_length)
+        if cloned_version is not None:
+            pulumi.set(__self__, "cloned_version", cloned_version)
         if combined_file_sizes is not None:
             pulumi.set(__self__, "combined_file_sizes", combined_file_sizes)
         if critical_anomaly_score is not None:
@@ -607,6 +637,8 @@ class _ServiceWafConfigurationState:
             pulumi.set(__self__, "max_num_args", max_num_args)
         if notice_anomaly_score is not None:
             pulumi.set(__self__, "notice_anomaly_score", notice_anomaly_score)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
         if paranoia_level is not None:
             pulumi.set(__self__, "paranoia_level", paranoia_level)
         if php_injection_score_threshold is not None:
@@ -635,6 +667,30 @@ class _ServiceWafConfigurationState:
             pulumi.set(__self__, "warning_anomaly_score", warning_anomaly_score)
         if xss_score_threshold is not None:
             pulumi.set(__self__, "xss_score_threshold", xss_score_threshold)
+
+    @property
+    @pulumi.getter
+    def activate(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        """
+        return pulumi.get(self, "activate")
+
+    @activate.setter
+    def activate(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "activate", value)
+
+    @property
+    @pulumi.getter
+    def active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether a specific firewall version is currently deployed
+        """
+        return pulumi.get(self, "active")
+
+    @active.setter
+    def active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "active", value)
 
     @property
     @pulumi.getter(name="allowedHttpVersions")
@@ -707,6 +763,18 @@ class _ServiceWafConfigurationState:
     @arg_name_length.setter
     def arg_name_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "arg_name_length", value)
+
+    @property
+    @pulumi.getter(name="clonedVersion")
+    def cloned_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        The latest cloned firewall version by the provider
+        """
+        return pulumi.get(self, "cloned_version")
+
+    @cloned_version.setter
+    def cloned_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cloned_version", value)
 
     @property
     @pulumi.getter(name="combinedFileSizes")
@@ -839,6 +907,18 @@ class _ServiceWafConfigurationState:
     @notice_anomaly_score.setter
     def notice_anomaly_score(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "notice_anomaly_score", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[pulumi.Input[int]]:
+        """
+        The WAF firewall version
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "number", value)
 
     @property
     @pulumi.getter(name="paranoiaLevel")
@@ -1008,6 +1088,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 activate: Optional[pulumi.Input[bool]] = None,
                  allowed_http_versions: Optional[pulumi.Input[str]] = None,
                  allowed_methods: Optional[pulumi.Input[str]] = None,
                  allowed_request_content_type: Optional[pulumi.Input[str]] = None,
@@ -1069,6 +1150,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] activate: Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] allowed_http_versions: Allowed HTTP versions
         :param pulumi.Input[str] allowed_methods: A space-separated list of HTTP method names
         :param pulumi.Input[str] allowed_request_content_type: Allowed request content types
@@ -1147,6 +1229,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 activate: Optional[pulumi.Input[bool]] = None,
                  allowed_http_versions: Optional[pulumi.Input[str]] = None,
                  allowed_methods: Optional[pulumi.Input[str]] = None,
                  allowed_request_content_type: Optional[pulumi.Input[str]] = None,
@@ -1190,6 +1273,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ServiceWafConfigurationArgs.__new__(ServiceWafConfigurationArgs)
 
+            __props__.__dict__["activate"] = activate
             __props__.__dict__["allowed_http_versions"] = allowed_http_versions
             __props__.__dict__["allowed_methods"] = allowed_methods
             __props__.__dict__["allowed_request_content_type"] = allowed_request_content_type
@@ -1223,6 +1307,9 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             __props__.__dict__["waf_id"] = waf_id
             __props__.__dict__["warning_anomaly_score"] = warning_anomaly_score
             __props__.__dict__["xss_score_threshold"] = xss_score_threshold
+            __props__.__dict__["active"] = None
+            __props__.__dict__["cloned_version"] = None
+            __props__.__dict__["number"] = None
         super(ServiceWafConfiguration, __self__).__init__(
             'fastly:index/serviceWafConfiguration:ServiceWafConfiguration',
             resource_name,
@@ -1233,12 +1320,15 @@ class ServiceWafConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            activate: Optional[pulumi.Input[bool]] = None,
+            active: Optional[pulumi.Input[bool]] = None,
             allowed_http_versions: Optional[pulumi.Input[str]] = None,
             allowed_methods: Optional[pulumi.Input[str]] = None,
             allowed_request_content_type: Optional[pulumi.Input[str]] = None,
             allowed_request_content_type_charset: Optional[pulumi.Input[str]] = None,
             arg_length: Optional[pulumi.Input[int]] = None,
             arg_name_length: Optional[pulumi.Input[int]] = None,
+            cloned_version: Optional[pulumi.Input[int]] = None,
             combined_file_sizes: Optional[pulumi.Input[int]] = None,
             critical_anomaly_score: Optional[pulumi.Input[int]] = None,
             crs_validate_utf8_encoding: Optional[pulumi.Input[bool]] = None,
@@ -1250,6 +1340,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             max_file_size: Optional[pulumi.Input[int]] = None,
             max_num_args: Optional[pulumi.Input[int]] = None,
             notice_anomaly_score: Optional[pulumi.Input[int]] = None,
+            number: Optional[pulumi.Input[int]] = None,
             paranoia_level: Optional[pulumi.Input[int]] = None,
             php_injection_score_threshold: Optional[pulumi.Input[int]] = None,
             rce_score_threshold: Optional[pulumi.Input[int]] = None,
@@ -1271,12 +1362,15 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] activate: Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] active: Whether a specific firewall version is currently deployed
         :param pulumi.Input[str] allowed_http_versions: Allowed HTTP versions
         :param pulumi.Input[str] allowed_methods: A space-separated list of HTTP method names
         :param pulumi.Input[str] allowed_request_content_type: Allowed request content types
         :param pulumi.Input[str] allowed_request_content_type_charset: Allowed request content type charset
         :param pulumi.Input[int] arg_length: The maximum number of arguments allowed
         :param pulumi.Input[int] arg_name_length: The maximum allowed argument name length
+        :param pulumi.Input[int] cloned_version: The latest cloned firewall version by the provider
         :param pulumi.Input[int] combined_file_sizes: The maximum allowed size of all files
         :param pulumi.Input[int] critical_anomaly_score: Score value to add for critical anomalies
         :param pulumi.Input[bool] crs_validate_utf8_encoding: CRS validate UTF8 encoding
@@ -1288,6 +1382,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes
         :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed
         :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies
+        :param pulumi.Input[int] number: The WAF firewall version
         :param pulumi.Input[int] paranoia_level: The configured paranoia level
         :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold
         :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold
@@ -1305,12 +1400,15 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         __props__ = _ServiceWafConfigurationState.__new__(_ServiceWafConfigurationState)
 
+        __props__.__dict__["activate"] = activate
+        __props__.__dict__["active"] = active
         __props__.__dict__["allowed_http_versions"] = allowed_http_versions
         __props__.__dict__["allowed_methods"] = allowed_methods
         __props__.__dict__["allowed_request_content_type"] = allowed_request_content_type
         __props__.__dict__["allowed_request_content_type_charset"] = allowed_request_content_type_charset
         __props__.__dict__["arg_length"] = arg_length
         __props__.__dict__["arg_name_length"] = arg_name_length
+        __props__.__dict__["cloned_version"] = cloned_version
         __props__.__dict__["combined_file_sizes"] = combined_file_sizes
         __props__.__dict__["critical_anomaly_score"] = critical_anomaly_score
         __props__.__dict__["crs_validate_utf8_encoding"] = crs_validate_utf8_encoding
@@ -1322,6 +1420,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         __props__.__dict__["max_file_size"] = max_file_size
         __props__.__dict__["max_num_args"] = max_num_args
         __props__.__dict__["notice_anomaly_score"] = notice_anomaly_score
+        __props__.__dict__["number"] = number
         __props__.__dict__["paranoia_level"] = paranoia_level
         __props__.__dict__["php_injection_score_threshold"] = php_injection_score_threshold
         __props__.__dict__["rce_score_threshold"] = rce_score_threshold
@@ -1337,6 +1436,22 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         __props__.__dict__["warning_anomaly_score"] = warning_anomaly_score
         __props__.__dict__["xss_score_threshold"] = xss_score_threshold
         return ServiceWafConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def activate(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        """
+        return pulumi.get(self, "activate")
+
+    @property
+    @pulumi.getter
+    def active(self) -> pulumi.Output[bool]:
+        """
+        Whether a specific firewall version is currently deployed
+        """
+        return pulumi.get(self, "active")
 
     @property
     @pulumi.getter(name="allowedHttpVersions")
@@ -1385,6 +1500,14 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         The maximum allowed argument name length
         """
         return pulumi.get(self, "arg_name_length")
+
+    @property
+    @pulumi.getter(name="clonedVersion")
+    def cloned_version(self) -> pulumi.Output[int]:
+        """
+        The latest cloned firewall version by the provider
+        """
+        return pulumi.get(self, "cloned_version")
 
     @property
     @pulumi.getter(name="combinedFileSizes")
@@ -1473,6 +1596,14 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         Score value to add for notice anomalies
         """
         return pulumi.get(self, "notice_anomaly_score")
+
+    @property
+    @pulumi.getter
+    def number(self) -> pulumi.Output[int]:
+        """
+        The WAF firewall version
+        """
+        return pulumi.get(self, "number")
 
     @property
     @pulumi.getter(name="paranoiaLevel")

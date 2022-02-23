@@ -40,6 +40,18 @@ namespace Pulumi.Fastly
     public partial class ServiceWafConfiguration : Pulumi.CustomResource
     {
         /// <summary>
+        /// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// </summary>
+        [Output("activate")]
+        public Output<bool?> Activate { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether a specific firewall version is currently deployed
+        /// </summary>
+        [Output("active")]
+        public Output<bool> Active { get; private set; } = null!;
+
+        /// <summary>
         /// Allowed HTTP versions
         /// </summary>
         [Output("allowedHttpVersions")]
@@ -74,6 +86,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("argNameLength")]
         public Output<int> ArgNameLength { get; private set; } = null!;
+
+        /// <summary>
+        /// The latest cloned firewall version by the provider
+        /// </summary>
+        [Output("clonedVersion")]
+        public Output<int> ClonedVersion { get; private set; } = null!;
 
         /// <summary>
         /// The maximum allowed size of all files
@@ -140,6 +158,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("noticeAnomalyScore")]
         public Output<int> NoticeAnomalyScore { get; private set; } = null!;
+
+        /// <summary>
+        /// The WAF firewall version
+        /// </summary>
+        [Output("number")]
+        public Output<int> Number { get; private set; } = null!;
 
         /// <summary>
         /// The configured paranoia level
@@ -265,6 +289,12 @@ namespace Pulumi.Fastly
 
     public sealed class ServiceWafConfigurationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// </summary>
+        [Input("activate")]
+        public Input<bool>? Activate { get; set; }
+
         /// <summary>
         /// Allowed HTTP versions
         /// </summary>
@@ -463,6 +493,18 @@ namespace Pulumi.Fastly
     public sealed class ServiceWafConfigurationState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// </summary>
+        [Input("activate")]
+        public Input<bool>? Activate { get; set; }
+
+        /// <summary>
+        /// Whether a specific firewall version is currently deployed
+        /// </summary>
+        [Input("active")]
+        public Input<bool>? Active { get; set; }
+
+        /// <summary>
         /// Allowed HTTP versions
         /// </summary>
         [Input("allowedHttpVersions")]
@@ -497,6 +539,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("argNameLength")]
         public Input<int>? ArgNameLength { get; set; }
+
+        /// <summary>
+        /// The latest cloned firewall version by the provider
+        /// </summary>
+        [Input("clonedVersion")]
+        public Input<int>? ClonedVersion { get; set; }
 
         /// <summary>
         /// The maximum allowed size of all files
@@ -563,6 +611,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("noticeAnomalyScore")]
         public Input<int>? NoticeAnomalyScore { get; set; }
+
+        /// <summary>
+        /// The WAF firewall version
+        /// </summary>
+        [Input("number")]
+        public Input<int>? Number { get; set; }
 
         /// <summary>
         /// The configured paranoia level
