@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
-export interface ServiceACLEntriesv1Entry {
+export interface ServiceACLEntriesEntry {
     /**
      * A personal freeform descriptive note
      */
@@ -33,7 +33,7 @@ export interface ServiceComputeBackend {
      */
     address: pulumi.Input<string>;
     /**
-     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
      */
     autoLoadbalance?: pulumi.Input<boolean>;
     /**
@@ -128,88 +128,6 @@ export interface ServiceComputeBackend {
     weight?: pulumi.Input<number>;
 }
 
-export interface ServiceComputeBigquerylogging {
-    /**
-     * The ID of your BigQuery dataset
-     */
-    dataset: pulumi.Input<string>;
-    /**
-     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
-     */
-    email: pulumi.Input<string>;
-    /**
-     * A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The ID of your GCP project
-     */
-    projectId: pulumi.Input<string>;
-    /**
-     * The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
-     */
-    secretKey: pulumi.Input<string>;
-    /**
-     * The ID of your BigQuery table
-     */
-    table: pulumi.Input<string>;
-    /**
-     * BigQuery table name suffix template
-     */
-    template?: pulumi.Input<string>;
-}
-
-export interface ServiceComputeBlobstoragelogging {
-    /**
-     * The unique Azure Blob Storage namespace in which your data objects are stored
-     */
-    accountName: pulumi.Input<string>;
-    /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
-     */
-    compressionCodec?: pulumi.Input<string>;
-    /**
-     * The name of the Azure Blob Storage container in which to store logs
-     */
-    container: pulumi.Input<string>;
-    /**
-     * Maximum size of an uploaded log file, if non-zero.
-     */
-    fileMaxBytes?: pulumi.Input<number>;
-    /**
-     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-     */
-    gzipLevel?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * How frequently the logs should be transferred in seconds. Default `3600`
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-     */
-    publicKey?: pulumi.Input<string>;
-    /**
-     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
-     */
-    sasToken: pulumi.Input<string>;
-    /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-     */
-    timestampFormat?: pulumi.Input<string>;
-}
-
 export interface ServiceComputeDictionary {
     /**
      * The ID of the dictionary
@@ -223,9 +141,6 @@ export interface ServiceComputeDictionary {
      * A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
      */
     name: pulumi.Input<string>;
-    /**
-     * If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `fastly.ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
-     */
     writeOnly?: pulumi.Input<boolean>;
 }
 
@@ -234,10 +149,6 @@ export interface ServiceComputeDirector {
      * Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
      */
     backends: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Load balancing weight for the backends. Default `100`
-     */
-    capacity?: pulumi.Input<number>;
     /**
      * An optional comment about the Director
      */
@@ -273,49 +184,6 @@ export interface ServiceComputeDomain {
      * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
      */
     name: pulumi.Input<string>;
-}
-
-export interface ServiceComputeGcslogging {
-    /**
-     * The name of the bucket in which to store the logs
-     */
-    bucketName: pulumi.Input<string>;
-    /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
-     */
-    compressionCodec?: pulumi.Input<string>;
-    /**
-     * The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
-     */
-    email?: pulumi.Input<string>;
-    /**
-     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-     */
-    gzipLevel?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * How frequently the logs should be transferred, in seconds (Default 3600)
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
-     */
-    secretKey?: pulumi.Input<string>;
-    /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-     */
-    timestampFormat?: pulumi.Input<string>;
 }
 
 export interface ServiceComputeHealthcheck {
@@ -365,82 +233,86 @@ export interface ServiceComputeHealthcheck {
     window?: pulumi.Input<number>;
 }
 
-export interface ServiceComputeHttpslogging {
+export interface ServiceComputeLoggingBigquery {
     /**
-     * Value of the `Content-Type` header sent with the request
+     * The ID of your BigQuery dataset
      */
-    contentType?: pulumi.Input<string>;
+    dataset: pulumi.Input<string>;
     /**
-     * Custom header sent with the request
+     * The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
      */
-    headerName?: pulumi.Input<string>;
+    email: pulumi.Input<string>;
     /**
-     * Value of the custom header sent with the request
+     * A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
-    headerValue?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
-     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+     * The ID of your GCP project
      */
-    jsonFormat?: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
+    /**
+     * The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The ID of your BigQuery table
+     */
+    table: pulumi.Input<string>;
+    /**
+     * BigQuery table name suffix template
+     */
+    template?: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingBlobstorage {
+    /**
+     * The unique Azure Blob Storage namespace in which your data objects are stored
+     */
+    accountName: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * The name of the Azure Blob Storage container in which to store logs
+     */
+    container: pulumi.Input<string>;
+    /**
+     * Maximum size of an uploaded log file, if non-zero.
+     */
+    fileMaxBytes?: pulumi.Input<number>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
     /**
      * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
     messageType?: pulumi.Input<string>;
     /**
-     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
-     */
-    method?: pulumi.Input<string>;
-    /**
-     * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     * A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
     /**
-     * The maximum number of bytes sent in one request
+     * The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
      */
-    requestMaxBytes?: pulumi.Input<number>;
+    path?: pulumi.Input<string>;
     /**
-     * The maximum number of logs sent in one request
+     * How frequently the logs should be transferred in seconds. Default `3600`
      */
-    requestMaxEntries?: pulumi.Input<number>;
+    period?: pulumi.Input<number>;
     /**
-     * A secure certificate to authenticate the server with. Must be in PEM format
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
-    tlsCaCert?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string>;
     /**
-     * The client certificate used to make authenticated requests. Must be in PEM format
+     * The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
      */
-    tlsClientCert?: pulumi.Input<string>;
+    sasToken: pulumi.Input<string>;
     /**
-     * The client private key used to make authenticated requests. Must be in PEM format
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
-    tlsClientKey?: pulumi.Input<string>;
-    /**
-     * Used during the TLS handshake to validate the certificate
-     */
-    tlsHostname?: pulumi.Input<string>;
-    /**
-     * URL that log data will be sent to. Must use the https protocol
-     */
-    url: pulumi.Input<string>;
-}
-
-export interface ServiceComputeLogentry {
-    /**
-     * The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The port number configured in Logentries
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * Use token based authentication (https://logentries.com/doc/input-token/)
-     */
-    token: pulumi.Input<string>;
-    /**
-     * Whether to use TLS for secure logging
-     */
-    useTls?: pulumi.Input<boolean>;
+    timestampFormat?: pulumi.Input<string>;
 }
 
 export interface ServiceComputeLoggingCloudfile {
@@ -662,6 +534,49 @@ export interface ServiceComputeLoggingFtp {
     user: pulumi.Input<string>;
 }
 
+export interface ServiceComputeLoggingGc {
+    /**
+     * The name of the bucket in which to store the logs
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently the logs should be transferred, in seconds (Default 3600)
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
+     */
+    secretKey?: pulumi.Input<string>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
+     */
+    user?: pulumi.Input<string>;
+}
+
 export interface ServiceComputeLoggingGooglepubsub {
     /**
      * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -713,6 +628,65 @@ export interface ServiceComputeLoggingHoneycomb {
      * The Write Key from the Account page of your Honeycomb account
      */
     token: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingHttp {
+    /**
+     * Value of the `Content-Type` header sent with the request
+     */
+    contentType?: pulumi.Input<string>;
+    /**
+     * Custom header sent with the request
+     */
+    headerName?: pulumi.Input<string>;
+    /**
+     * Value of the custom header sent with the request
+     */
+    headerValue?: pulumi.Input<string>;
+    /**
+     * Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+     */
+    jsonFormat?: pulumi.Input<string>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The maximum number of bytes sent in one request
+     */
+    requestMaxBytes?: pulumi.Input<number>;
+    /**
+     * The maximum number of logs sent in one request
+     */
+    requestMaxEntries?: pulumi.Input<number>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * Used during the TLS handshake to validate the certificate
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * URL that log data will be sent to. Must use the https protocol
+     */
+    url: pulumi.Input<string>;
 }
 
 export interface ServiceComputeLoggingKafka {
@@ -803,6 +777,25 @@ export interface ServiceComputeLoggingKinese {
      * The Kinesis stream name
      */
     topic: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingLogentry {
+    /**
+     * The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The port number configured in Logentries
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * Use token based authentication (https://logentries.com/doc/input-token/)
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging
+     */
+    useTls?: pulumi.Input<boolean>;
 }
 
 export interface ServiceComputeLoggingLoggly {
@@ -897,6 +890,92 @@ export interface ServiceComputeLoggingOpenstack {
     user: pulumi.Input<string>;
 }
 
+export interface ServiceComputeLoggingPapertrail {
+    /**
+     * The address of the Papertrail endpoint
+     */
+    address: pulumi.Input<string>;
+    /**
+     * A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The port associated with the address where the Papertrail endpoint can be accessed
+     */
+    port: pulumi.Input<number>;
+}
+
+export interface ServiceComputeLoggingS3 {
+    /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     */
+    acl?: pulumi.Input<string>;
+    /**
+     * The name of the bucket in which to store the logs
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently the logs should be transferred, in seconds. Default `3600`
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+     */
+    redundancy?: pulumi.Input<string>;
+    /**
+     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     */
+    s3AccessKey?: pulumi.Input<string>;
+    /**
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     */
+    s3IamRole?: pulumi.Input<string>;
+    /**
+     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     */
+    s3SecretKey?: pulumi.Input<string>;
+    /**
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+     */
+    serverSideEncryption?: pulumi.Input<string>;
+    /**
+     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     */
+    serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string>;
+}
+
 export interface ServiceComputeLoggingScalyr {
     /**
      * The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -971,104 +1050,7 @@ export interface ServiceComputeLoggingSftp {
     user: pulumi.Input<string>;
 }
 
-export interface ServiceComputePackage {
-    /**
-     * The path to the Wasm deployment package within your local filesystem
-     */
-    filename: pulumi.Input<string>;
-    /**
-     * Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
-     */
-    sourceCodeHash?: pulumi.Input<string>;
-}
-
-export interface ServiceComputePapertrail {
-    /**
-     * The address of the Papertrail endpoint
-     */
-    address: pulumi.Input<string>;
-    /**
-     * A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The port associated with the address where the Papertrail endpoint can be accessed
-     */
-    port: pulumi.Input<number>;
-}
-
-export interface ServiceComputeS3logging {
-    /**
-     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-     */
-    acl?: pulumi.Input<string>;
-    /**
-     * The name of the bucket in which to store the logs
-     */
-    bucketName: pulumi.Input<string>;
-    /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
-     */
-    compressionCodec?: pulumi.Input<string>;
-    /**
-     * If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
-     */
-    domain?: pulumi.Input<string>;
-    /**
-     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-     */
-    gzipLevel?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * How frequently the logs should be transferred, in seconds. Default `3600`
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-     */
-    publicKey?: pulumi.Input<string>;
-    /**
-     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
-     */
-    redundancy?: pulumi.Input<string>;
-    /**
-     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
-     */
-    s3AccessKey?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
-     */
-    s3IamRole?: pulumi.Input<string>;
-    /**
-     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
-     */
-    s3SecretKey?: pulumi.Input<string>;
-    /**
-     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-     */
-    serverSideEncryption?: pulumi.Input<string>;
-    /**
-     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-     */
-    serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
-    /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-     */
-    timestampFormat?: pulumi.Input<string>;
-}
-
-export interface ServiceComputeSplunk {
+export interface ServiceComputeLoggingSplunk {
     /**
      * A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
@@ -1103,7 +1085,7 @@ export interface ServiceComputeSplunk {
     useTls?: pulumi.Input<boolean>;
 }
 
-export interface ServiceComputeSumologic {
+export interface ServiceComputeLoggingSumologic {
     /**
      * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
@@ -1118,7 +1100,7 @@ export interface ServiceComputeSumologic {
     url: pulumi.Input<string>;
 }
 
-export interface ServiceComputeSyslog {
+export interface ServiceComputeLoggingSyslog {
     /**
      * A hostname or IPv4 address of the Syslog endpoint
      */
@@ -1161,45 +1143,18 @@ export interface ServiceComputeSyslog {
     useTls?: pulumi.Input<boolean>;
 }
 
-export interface ServiceWafConfigurationRule {
+export interface ServiceComputePackage {
     /**
-     * The Web Application Firewall rule's modsecurity ID
+     * The path to the Wasm deployment package within your local filesystem
      */
-    modsecRuleId: pulumi.Input<number>;
+    filename: pulumi.Input<string>;
     /**
-     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
+     * Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
      */
-    revision?: pulumi.Input<number>;
-    /**
-     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-     */
-    status: pulumi.Input<string>;
+    sourceCodeHash?: pulumi.Input<string>;
 }
 
-export interface ServiceWafConfigurationRuleExclusion {
-    /**
-     * A conditional expression in VCL used to determine if the condition is met
-     */
-    condition: pulumi.Input<string>;
-    /**
-     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-     */
-    exclusionType: pulumi.Input<string>;
-    /**
-     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-     */
-    modsecRuleIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
-     * The name of rule exclusion
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The numeric ID assigned to the WAF Rule Exclusion
-     */
-    number?: pulumi.Input<number>;
-}
-
-export interface Servicev1Acl {
+export interface ServiceVclAcl {
     /**
      * The ID of the ACL
      */
@@ -1214,13 +1169,13 @@ export interface Servicev1Acl {
     name: pulumi.Input<string>;
 }
 
-export interface Servicev1Backend {
+export interface ServiceVclBackend {
     /**
      * An IPv4, hostname, or IPv6 address for the Backend
      */
     address: pulumi.Input<string>;
     /**
-     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
      */
     autoLoadbalance?: pulumi.Input<boolean>;
     /**
@@ -1319,7 +1274,243 @@ export interface Servicev1Backend {
     weight?: pulumi.Input<number>;
 }
 
-export interface Servicev1Bigquerylogging {
+export interface ServiceVclCacheSetting {
+    /**
+     * One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
+     */
+    action?: pulumi.Input<string>;
+    /**
+     * Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+     */
+    cacheCondition?: pulumi.Input<string>;
+    /**
+     * Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Max "Time To Live" for stale (unreachable) objects
+     */
+    staleTtl?: pulumi.Input<number>;
+    /**
+     * The Time-To-Live (TTL) for the object
+     */
+    ttl?: pulumi.Input<number>;
+}
+
+export interface ServiceVclCondition {
+    /**
+     * The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
+     */
+    priority?: pulumi.Input<number>;
+    /**
+     * The statement used to determine if the condition is met
+     */
+    statement: pulumi.Input<string>;
+    /**
+     * Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ServiceVclDictionary {
+    /**
+     * The ID of the dictionary
+     */
+    dictionaryId?: pulumi.Input<string>;
+    /**
+     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     */
+    forceDestroy?: pulumi.Input<boolean>;
+    /**
+     * A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+     */
+    name: pulumi.Input<string>;
+    writeOnly?: pulumi.Input<boolean>;
+}
+
+export interface ServiceVclDirector {
+    /**
+     * Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+     */
+    backends: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * An optional comment about the Director
+     */
+    comment?: pulumi.Input<string>;
+    /**
+     * Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+     */
+    quorum?: pulumi.Input<number>;
+    /**
+     * How many backends to search if it fails. Default `5`
+     */
+    retries?: pulumi.Input<number>;
+    /**
+     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+     */
+    shield?: pulumi.Input<string>;
+    /**
+     * Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+     */
+    type?: pulumi.Input<number>;
+}
+
+export interface ServiceVclDomain {
+    /**
+     * An optional comment about the Domain.
+     */
+    comment?: pulumi.Input<string>;
+    /**
+     * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface ServiceVclDynamicsnippet {
+    /**
+     * A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+     */
+    priority?: pulumi.Input<number>;
+    /**
+     * The ID of the dynamic snippet
+     */
+    snippetId?: pulumi.Input<string>;
+    /**
+     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ServiceVclGzip {
+    /**
+     * Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+     */
+    cacheCondition?: pulumi.Input<string>;
+    /**
+     * The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
+     */
+    contentTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
+     */
+    extensions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface ServiceVclHeader {
+    /**
+     * The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
+     */
+    action: pulumi.Input<string>;
+    /**
+     * Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+     */
+    cacheCondition?: pulumi.Input<string>;
+    /**
+     * The name of the header that is going to be affected by the Action
+     */
+    destination: pulumi.Input<string>;
+    /**
+     * Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+     */
+    ignoreIfSet?: pulumi.Input<boolean>;
+    /**
+     * Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Lower priorities execute first. Default: `100`
+     */
+    priority?: pulumi.Input<number>;
+    /**
+     * Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
+     */
+    regex?: pulumi.Input<string>;
+    /**
+     * Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+     */
+    requestCondition?: pulumi.Input<string>;
+    /**
+     * Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * Variable to be used as a source for the header content (Does not apply to `delete` action.)
+     */
+    source?: pulumi.Input<string>;
+    /**
+     * Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
+     */
+    substitution?: pulumi.Input<string>;
+    /**
+     * The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ServiceVclHealthcheck {
+    /**
+     * How often to run the Healthcheck in milliseconds. Default `5000`
+     */
+    checkInterval?: pulumi.Input<number>;
+    /**
+     * The status code expected from the host. Default `200`
+     */
+    expectedResponse?: pulumi.Input<number>;
+    /**
+     * The Host header to send for this Healthcheck
+     */
+    host: pulumi.Input<string>;
+    /**
+     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+     */
+    httpVersion?: pulumi.Input<string>;
+    /**
+     * When loading a config, the initial number of probes to be seen as OK. Default `3`
+     */
+    initial?: pulumi.Input<number>;
+    /**
+     * Which HTTP method to use. Default `HEAD`
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to check
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How many Healthchecks must succeed to be considered healthy. Default `3`
+     */
+    threshold?: pulumi.Input<number>;
+    /**
+     * Timeout in milliseconds. Default `500`
+     */
+    timeout?: pulumi.Input<number>;
+    /**
+     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+     */
+    window?: pulumi.Input<number>;
+}
+
+export interface ServiceVclLoggingBigquery {
     /**
      * The ID of your BigQuery dataset
      */
@@ -1362,7 +1553,7 @@ export interface Servicev1Bigquerylogging {
     template?: pulumi.Input<string>;
 }
 
-export interface Servicev1Blobstoragelogging {
+export interface ServiceVclLoggingBlobstorage {
     /**
      * The unique Azure Blob Storage namespace in which your data objects are stored
      */
@@ -1429,133 +1620,306 @@ export interface Servicev1Blobstoragelogging {
     timestampFormat?: pulumi.Input<string>;
 }
 
-export interface Servicev1CacheSetting {
+export interface ServiceVclLoggingCloudfile {
     /**
-     * One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
+     * Your Cloud File account access key
      */
-    action?: pulumi.Input<string>;
+    accessKey: pulumi.Input<string>;
     /**
-     * Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+     * The name of your Cloud Files container
      */
-    cacheCondition?: pulumi.Input<string>;
+    bucketName: pulumi.Input<string>;
     /**
-     * Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
      */
-    name: pulumi.Input<string>;
+    compressionCodec?: pulumi.Input<string>;
     /**
-     * Max "Time To Live" for stale (unreachable) objects
+     * Apache style log formatting.
      */
-    staleTtl?: pulumi.Input<number>;
+    format?: pulumi.Input<string>;
     /**
-     * The Time-To-Live (TTL) for the object
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
-    ttl?: pulumi.Input<number>;
-}
-
-export interface Servicev1Condition {
+    formatVersion?: pulumi.Input<number>;
     /**
-     * The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
-    name: pulumi.Input<string>;
+    gzipLevel?: pulumi.Input<number>;
     /**
-     * A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
      */
-    priority?: pulumi.Input<number>;
+    messageType?: pulumi.Input<string>;
     /**
-     * The statement used to determine if the condition is met
-     */
-    statement: pulumi.Input<string>;
-    /**
-     * Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
-     */
-    type: pulumi.Input<string>;
-}
-
-export interface Servicev1Dictionary {
-    /**
-     * The ID of the dictionary
-     */
-    dictionaryId?: pulumi.Input<string>;
-    /**
-     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
-     */
-    forceDestroy?: pulumi.Input<boolean>;
-    /**
-     * A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+     * The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
     /**
-     * If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `fastly.ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
+     * The path to upload logs to
      */
-    writeOnly?: pulumi.Input<boolean>;
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * The username for your Cloud Files account
+     */
+    user: pulumi.Input<string>;
 }
 
-export interface Servicev1Director {
+export interface ServiceVclLoggingDatadog {
     /**
-     * Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+     * Apache-style string or VCL variables to use for log formatting.
      */
-    backends: pulumi.Input<pulumi.Input<string>[]>;
+    format?: pulumi.Input<string>;
     /**
-     * Load balancing weight for the backends. Default `100`
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
-    capacity?: pulumi.Input<number>;
+    formatVersion?: pulumi.Input<number>;
     /**
-     * An optional comment about the Director
-     */
-    comment?: pulumi.Input<string>;
-    /**
-     * Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
     /**
-     * Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+     * Where in the generated VCL the logging call should be placed.
      */
-    quorum?: pulumi.Input<number>;
+    placement?: pulumi.Input<string>;
     /**
-     * How many backends to search if it fails. Default `5`
+     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
-    retries?: pulumi.Input<number>;
+    region?: pulumi.Input<string>;
     /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+     * The name of the condition to apply.
      */
-    shield?: pulumi.Input<string>;
+    responseCondition?: pulumi.Input<string>;
     /**
-     * Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+     * The API key from your Datadog account
      */
-    type?: pulumi.Input<number>;
+    token: pulumi.Input<string>;
 }
 
-export interface Servicev1Domain {
+export interface ServiceVclLoggingDigitalocean {
     /**
-     * An optional comment about the Domain.
+     * Your DigitalOcean Spaces account access key
      */
-    comment?: pulumi.Input<string>;
+    accessKey: pulumi.Input<string>;
     /**
-     * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
+     * The name of the DigitalOcean Space
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * Apache style log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * The path to upload logs to
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * Your DigitalOcean Spaces account secret key
+     */
+    secretKey: pulumi.Input<string>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string>;
 }
 
-export interface Servicev1Dynamicsnippet {
+export interface ServiceVclLoggingElasticsearch {
     /**
-     * A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * The name of the Elasticsearch index to send documents (logs) to
+     */
+    index: pulumi.Input<string>;
+    /**
+     * The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
     /**
-     * Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+     * BasicAuth password for Elasticsearch
      */
-    priority?: pulumi.Input<number>;
+    password?: pulumi.Input<string>;
     /**
-     * The ID of the dynamic snippet
+     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
      */
-    snippetId?: pulumi.Input<string>;
+    pipeline?: pulumi.Input<string>;
     /**
-     * The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+     * Where in the generated VCL the logging call should be placed.
      */
-    type: pulumi.Input<string>;
+    placement?: pulumi.Input<string>;
+    /**
+     * The maximum number of logs sent in one request. Defaults to `0` for unbounded
+     */
+    requestMaxBytes?: pulumi.Input<number>;
+    /**
+     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+     */
+    requestMaxEntries?: pulumi.Input<number>;
+    /**
+     * The name of the condition to apply
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * The Elasticsearch URL to stream logs to
+     */
+    url: pulumi.Input<string>;
+    /**
+     * BasicAuth username for Elasticsearch
+     */
+    user?: pulumi.Input<string>;
 }
 
-export interface Servicev1Gcslogging {
+export interface ServiceVclLoggingFtp {
+    /**
+     * The FTP address to stream logs to
+     */
+    address: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The password for the server (for anonymous use an email address)
+     */
+    password: pulumi.Input<string>;
+    /**
+     * The path to upload log files to. If the path ends in `/` then it is treated as a directory
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How frequently the logs should be transferred, in seconds (Default `3600`)
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The port number. Default: `21`
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The name of the condition to apply.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string>;
+    /**
+     * The username for the server (can be `anonymous`)
+     */
+    user: pulumi.Input<string>;
+}
+
+export interface ServiceVclLoggingGc {
     /**
      * The name of the bucket in which to store the logs
      */
@@ -1565,13 +1929,13 @@ export interface Servicev1Gcslogging {
      */
     compressionCodec?: pulumi.Input<string>;
     /**
-     * The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
-     */
-    email?: pulumi.Input<string>;
-    /**
      * Apache-style string or VCL variables to use for log formatting
      */
     format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+     */
+    formatVersion?: pulumi.Input<number>;
     /**
      * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
@@ -1608,126 +1972,114 @@ export interface Servicev1Gcslogging {
      * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
+    /**
+     * Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
+     */
+    user?: pulumi.Input<string>;
 }
 
-export interface Servicev1Gzip {
+export interface ServiceVclLoggingGooglepubsub {
     /**
-     * Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+     * Apache style log formatting.
      */
-    cacheCondition?: pulumi.Input<string>;
+    format?: pulumi.Input<string>;
     /**
-     * The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
      */
-    contentTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    formatVersion?: pulumi.Input<number>;
     /**
-     * File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
-     */
-    extensions?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-}
-
-export interface Servicev1Header {
-    /**
-     * The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
-     */
-    action: pulumi.Input<string>;
-    /**
-     * Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
-     */
-    cacheCondition?: pulumi.Input<string>;
-    /**
-     * The name of the header that is going to be affected by the Action
-     */
-    destination: pulumi.Input<string>;
-    /**
-     * Don't add the header if it is already. (Only applies to `set` action.). Default `false`
-     */
-    ignoreIfSet?: pulumi.Input<boolean>;
-    /**
-     * Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
     /**
-     * Lower priorities execute first. Default: `100`
+     * Where in the generated VCL the logging call should be placed.
      */
-    priority?: pulumi.Input<number>;
+    placement?: pulumi.Input<string>;
     /**
-     * Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
+     * The ID of your Google Cloud Platform project
      */
-    regex?: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
-     * Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
-     */
-    requestCondition?: pulumi.Input<string>;
-    /**
-     * Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * Variable to be used as a source for the header content (Does not apply to `delete` action.)
+     * Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
      */
-    source?: pulumi.Input<string>;
+    secretKey: pulumi.Input<string>;
     /**
-     * Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
+     * The Google Cloud Pub/Sub topic to which logs will be published
      */
-    substitution?: pulumi.Input<string>;
+    topic: pulumi.Input<string>;
     /**
-     * The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+     * Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
      */
-    type: pulumi.Input<string>;
+    user: pulumi.Input<string>;
 }
 
-export interface Servicev1Healthcheck {
+export interface ServiceVclLoggingHerokus {
     /**
-     * How often to run the Healthcheck in milliseconds. Default `5000`
+     * Apache-style string or VCL variables to use for log formatting.
      */
-    checkInterval?: pulumi.Input<number>;
+    format?: pulumi.Input<string>;
     /**
-     * The status code expected from the host. Default `200`
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
      */
-    expectedResponse?: pulumi.Input<number>;
+    formatVersion?: pulumi.Input<number>;
     /**
-     * The Host header to send for this Healthcheck
-     */
-    host: pulumi.Input<string>;
-    /**
-     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-     */
-    httpVersion?: pulumi.Input<string>;
-    /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `3`
-     */
-    initial?: pulumi.Input<number>;
-    /**
-     * Which HTTP method to use. Default `HEAD`
-     */
-    method?: pulumi.Input<string>;
-    /**
-     * A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
     /**
-     * The path to check
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
      */
-    path: pulumi.Input<string>;
+    placement?: pulumi.Input<string>;
     /**
-     * How many Healthchecks must succeed to be considered healthy. Default `3`
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
-    threshold?: pulumi.Input<number>;
+    responseCondition?: pulumi.Input<string>;
     /**
-     * Timeout in milliseconds. Default `500`
+     * The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
      */
-    timeout?: pulumi.Input<number>;
+    token: pulumi.Input<string>;
     /**
-     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+     * The URL to stream logs to
      */
-    window?: pulumi.Input<number>;
+    url: pulumi.Input<string>;
 }
 
-export interface Servicev1Httpslogging {
+export interface ServiceVclLoggingHoneycomb {
+    /**
+     * The Honeycomb Dataset you want to log to
+     */
+    dataset: pulumi.Input<string>;
+    /**
+     * Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The Write Key from the Account page of your Honeycomb account
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface ServiceVclLoggingHttp {
     /**
      * Value of the `Content-Type` header sent with the request
      */
@@ -1802,442 +2154,7 @@ export interface Servicev1Httpslogging {
     url: pulumi.Input<string>;
 }
 
-export interface Servicev1Logentry {
-    /**
-     * Apache-style string or VCL variables to use for log formatting
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The port number configured in Logentries
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * Name of blockAttributes condition to apply this logging.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * Use token based authentication (https://logentries.com/doc/input-token/)
-     */
-    token: pulumi.Input<string>;
-    /**
-     * Whether to use TLS for secure logging
-     */
-    useTls?: pulumi.Input<boolean>;
-}
-
-export interface Servicev1LoggingCloudfile {
-    /**
-     * Your Cloud File account access key
-     */
-    accessKey: pulumi.Input<string>;
-    /**
-     * The name of your Cloud Files container
-     */
-    bucketName: pulumi.Input<string>;
-    /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
-     */
-    compressionCodec?: pulumi.Input<string>;
-    /**
-     * Apache style log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-     */
-    gzipLevel?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The path to upload logs to
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-     */
-    publicKey?: pulumi.Input<string>;
-    /**
-     * The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
-     */
-    region?: pulumi.Input<string>;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-     */
-    timestampFormat?: pulumi.Input<string>;
-    /**
-     * The username for your Cloud Files account
-     */
-    user: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingDatadog {
-    /**
-     * Apache-style string or VCL variables to use for log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
-     */
-    region?: pulumi.Input<string>;
-    /**
-     * The name of the condition to apply.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * The API key from your Datadog account
-     */
-    token: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingDigitalocean {
-    /**
-     * Your DigitalOcean Spaces account access key
-     */
-    accessKey: pulumi.Input<string>;
-    /**
-     * The name of the DigitalOcean Space
-     */
-    bucketName: pulumi.Input<string>;
-    /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
-     */
-    compressionCodec?: pulumi.Input<string>;
-    /**
-     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-     */
-    domain?: pulumi.Input<string>;
-    /**
-     * Apache style log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-     */
-    gzipLevel?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The path to upload logs to
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-     */
-    publicKey?: pulumi.Input<string>;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * Your DigitalOcean Spaces account secret key
-     */
-    secretKey: pulumi.Input<string>;
-    /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-     */
-    timestampFormat?: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingElasticsearch {
-    /**
-     * Apache-style string or VCL variables to use for log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * The name of the Elasticsearch index to send documents (logs) to
-     */
-    index: pulumi.Input<string>;
-    /**
-     * The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * BasicAuth password for Elasticsearch
-     */
-    password?: pulumi.Input<string>;
-    /**
-     * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-     */
-    pipeline?: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The maximum number of logs sent in one request. Defaults to `0` for unbounded
-     */
-    requestMaxBytes?: pulumi.Input<number>;
-    /**
-     * The maximum number of bytes sent in one request. Defaults to `0` for unbounded
-     */
-    requestMaxEntries?: pulumi.Input<number>;
-    /**
-     * The name of the condition to apply
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * A secure certificate to authenticate the server with. Must be in PEM format
-     */
-    tlsCaCert?: pulumi.Input<string>;
-    /**
-     * The client certificate used to make authenticated requests. Must be in PEM format
-     */
-    tlsClientCert?: pulumi.Input<string>;
-    /**
-     * The client private key used to make authenticated requests. Must be in PEM format
-     */
-    tlsClientKey?: pulumi.Input<string>;
-    /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
-     */
-    tlsHostname?: pulumi.Input<string>;
-    /**
-     * The Elasticsearch URL to stream logs to
-     */
-    url: pulumi.Input<string>;
-    /**
-     * BasicAuth username for Elasticsearch
-     */
-    user?: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingFtp {
-    /**
-     * The FTP address to stream logs to
-     */
-    address: pulumi.Input<string>;
-    /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
-     */
-    compressionCodec?: pulumi.Input<string>;
-    /**
-     * Apache-style string or VCL variables to use for log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-     */
-    gzipLevel?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The password for the server (for anonymous use an email address)
-     */
-    password: pulumi.Input<string>;
-    /**
-     * The path to upload log files to. If the path ends in `/` then it is treated as a directory
-     */
-    path: pulumi.Input<string>;
-    /**
-     * How frequently the logs should be transferred, in seconds (Default `3600`)
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The port number. Default: `21`
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-     */
-    publicKey?: pulumi.Input<string>;
-    /**
-     * The name of the condition to apply.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-     */
-    timestampFormat?: pulumi.Input<string>;
-    /**
-     * The username for the server (can be `anonymous`)
-     */
-    user: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingGooglepubsub {
-    /**
-     * Apache style log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The ID of your Google Cloud Platform project
-     */
-    projectId: pulumi.Input<string>;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
-     */
-    secretKey: pulumi.Input<string>;
-    /**
-     * The Google Cloud Pub/Sub topic to which logs will be published
-     */
-    topic: pulumi.Input<string>;
-    /**
-     * Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
-     */
-    user: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingHeroku {
-    /**
-     * Apache-style string or VCL variables to use for log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
-     */
-    token: pulumi.Input<string>;
-    /**
-     * The URL to stream logs to
-     */
-    url: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingHoneycomb {
-    /**
-     * The Honeycomb Dataset you want to log to
-     */
-    dataset: pulumi.Input<string>;
-    /**
-     * Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * The Write Key from the Account page of your Honeycomb account
-     */
-    token: pulumi.Input<string>;
-}
-
-export interface Servicev1LoggingKafka {
+export interface ServiceVclLoggingKafka {
     /**
      * SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
      */
@@ -2316,7 +2233,7 @@ export interface Servicev1LoggingKafka {
     user?: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingKinese {
+export interface ServiceVclLoggingKinese {
     /**
      * The AWS access key to be used to write to the stream
      */
@@ -2359,7 +2276,42 @@ export interface Servicev1LoggingKinese {
     topic: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingLoggly {
+export interface ServiceVclLoggingLogentry {
+    /**
+     * Apache-style string or VCL variables to use for log formatting
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The port number configured in Logentries
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * Use token based authentication (https://logentries.com/doc/input-token/)
+     */
+    token: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging
+     */
+    useTls?: pulumi.Input<boolean>;
+}
+
+export interface ServiceVclLoggingLoggly {
     /**
      * Apache-style string or VCL variables to use for log formatting.
      */
@@ -2386,7 +2338,7 @@ export interface Servicev1LoggingLoggly {
     token: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingLogshuttle {
+export interface ServiceVclLoggingLogshuttle {
     /**
      * Apache style log formatting.
      */
@@ -2417,7 +2369,7 @@ export interface Servicev1LoggingLogshuttle {
     url: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingNewrelic {
+export interface ServiceVclLoggingNewrelic {
     /**
      * Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
      */
@@ -2448,7 +2400,7 @@ export interface Servicev1LoggingNewrelic {
     token: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingOpenstack {
+export interface ServiceVclLoggingOpenstack {
     /**
      * Your OpenStack account access key
      */
@@ -2515,7 +2467,125 @@ export interface Servicev1LoggingOpenstack {
     user: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingScalyr {
+export interface ServiceVclLoggingPapertrail {
+    /**
+     * The address of the Papertrail endpoint
+     */
+    address: pulumi.Input<string>;
+    /**
+     * A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The port associated with the address where the Papertrail endpoint can be accessed
+     */
+    port: pulumi.Input<number>;
+    /**
+     * The name of an existing condition in the configured endpoint, or leave blank to always execute
+     */
+    responseCondition?: pulumi.Input<string>;
+}
+
+export interface ServiceVclLoggingS3 {
+    /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     */
+    acl?: pulumi.Input<string>;
+    /**
+     * The name of the bucket in which to store the logs
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
+     * If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * How frequently the logs should be transferred, in seconds. Default `3600`
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+     */
+    redundancy?: pulumi.Input<string>;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     */
+    s3AccessKey?: pulumi.Input<string>;
+    /**
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     */
+    s3IamRole?: pulumi.Input<string>;
+    /**
+     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     */
+    s3SecretKey?: pulumi.Input<string>;
+    /**
+     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+     */
+    serverSideEncryption?: pulumi.Input<string>;
+    /**
+     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     */
+    serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string>;
+}
+
+export interface ServiceVclLoggingScalyr {
     /**
      * Apache style log formatting.
      */
@@ -2546,7 +2616,7 @@ export interface Servicev1LoggingScalyr {
     token: pulumi.Input<string>;
 }
 
-export interface Servicev1LoggingSftp {
+export interface ServiceVclLoggingSftp {
     /**
      * The SFTP address to stream logs to
      */
@@ -2621,38 +2691,148 @@ export interface Servicev1LoggingSftp {
     user: pulumi.Input<string>;
 }
 
-export interface Servicev1Papertrail {
+export interface ServiceVclLoggingSplunk {
     /**
-     * The address of the Papertrail endpoint
-     */
-    address: pulumi.Input<string>;
-    /**
-     * A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
+     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
      */
     format?: pulumi.Input<string>;
     /**
-     * The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vclLog` if `formatVersion` is set to `2` and in `vclDeliver` if `formatVersion` is set to `1`
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
      */
     formatVersion?: pulumi.Input<number>;
     /**
-     * A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     * A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: pulumi.Input<string>;
     /**
-     * The port associated with the address where the Papertrail endpoint can be accessed
-     */
-    port: pulumi.Input<number>;
-    /**
-     * The name of an existing condition in the configured endpoint, or leave blank to always execute
+     * The name of the condition to apply
      */
     responseCondition?: pulumi.Input<string>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format.
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * The Splunk token to be used for authentication
+     */
+    token: pulumi.Input<string>;
+    /**
+     * The Splunk URL to stream logs to
+     */
+    url: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Default: `false`
+     */
+    useTls?: pulumi.Input<boolean>;
 }
 
-export interface Servicev1RequestSetting {
+export interface ServiceVclLoggingSumologic {
+    /**
+     * Apache-style string or VCL variables to use for log formatting
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The URL to Sumologic collector endpoint
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface ServiceVclLoggingSyslog {
+    /**
+     * A hostname or IPv4 address of the Syslog endpoint
+     */
+    address: pulumi.Input<string>;
+    /**
+     * Apache-style string or VCL variables to use for log formatting
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format. Can be either 1 or 2. (Default: 2)
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+     */
+    tlsCaCert?: pulumi.Input<string>;
+    /**
+     * The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+     */
+    tlsClientCert?: pulumi.Input<string>;
+    /**
+     * The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+     */
+    tlsClientKey?: pulumi.Input<string>;
+    /**
+     * Used during the TLS handshake to validate the certificate
+     */
+    tlsHostname?: pulumi.Input<string>;
+    /**
+     * Whether to prepend each message with a specific token
+     */
+    token?: pulumi.Input<string>;
+    /**
+     * Whether to use TLS for secure logging. Default `false`
+     */
+    useTls?: pulumi.Input<boolean>;
+}
+
+export interface ServiceVclRequestSetting {
     /**
      * Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
      */
@@ -2705,7 +2885,7 @@ export interface Servicev1RequestSetting {
     xff?: pulumi.Input<string>;
 }
 
-export interface Servicev1ResponseObject {
+export interface ServiceVclResponseObject {
     /**
      * Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
      */
@@ -2736,94 +2916,7 @@ export interface Servicev1ResponseObject {
     status?: pulumi.Input<number>;
 }
 
-export interface Servicev1S3logging {
-    /**
-     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-     */
-    acl?: pulumi.Input<string>;
-    /**
-     * The name of the bucket in which to store the logs
-     */
-    bucketName: pulumi.Input<string>;
-    /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
-     */
-    compressionCodec?: pulumi.Input<string>;
-    /**
-     * If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
-     */
-    domain?: pulumi.Input<string>;
-    /**
-     * Apache-style string or VCL variables to use for log formatting.
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-     */
-    gzipLevel?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * How frequently the logs should be transferred, in seconds. Default `3600`
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-     */
-    publicKey?: pulumi.Input<string>;
-    /**
-     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
-     */
-    redundancy?: pulumi.Input<string>;
-    /**
-     * Name of blockAttributes condition to apply this logging.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
-     */
-    s3AccessKey?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
-     */
-    s3IamRole?: pulumi.Input<string>;
-    /**
-     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
-     */
-    s3SecretKey?: pulumi.Input<string>;
-    /**
-     * Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-     */
-    serverSideEncryption?: pulumi.Input<string>;
-    /**
-     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-     */
-    serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
-    /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-     */
-    timestampFormat?: pulumi.Input<string>;
-}
-
-export interface Servicev1Snippet {
+export interface ServiceVclSnippet {
     /**
      * The VCL code that specifies exactly what the snippet does
      */
@@ -2842,148 +2935,7 @@ export interface Servicev1Snippet {
     type: pulumi.Input<string>;
 }
 
-export interface Servicev1Splunk {
-    /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The name of the condition to apply
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
-     */
-    tlsCaCert?: pulumi.Input<string>;
-    /**
-     * The client certificate used to make authenticated requests. Must be in PEM format.
-     */
-    tlsClientCert?: pulumi.Input<string>;
-    /**
-     * The client private key used to make authenticated requests. Must be in PEM format.
-     */
-    tlsClientKey?: pulumi.Input<string>;
-    /**
-     * The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
-     */
-    tlsHostname?: pulumi.Input<string>;
-    /**
-     * The Splunk token to be used for authentication
-     */
-    token: pulumi.Input<string>;
-    /**
-     * The Splunk URL to stream logs to
-     */
-    url: pulumi.Input<string>;
-    /**
-     * Whether to use TLS for secure logging. Default: `false`
-     */
-    useTls?: pulumi.Input<boolean>;
-}
-
-export interface Servicev1Sumologic {
-    /**
-     * Apache-style string or VCL variables to use for log formatting
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * Name of blockAttributes condition to apply this logging.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * The URL to Sumologic collector endpoint
-     */
-    url: pulumi.Input<string>;
-}
-
-export interface Servicev1Syslog {
-    /**
-     * A hostname or IPv4 address of the Syslog endpoint
-     */
-    address: pulumi.Input<string>;
-    /**
-     * Apache-style string or VCL variables to use for log formatting
-     */
-    format?: pulumi.Input<string>;
-    /**
-     * The version of the custom logging format. Can be either 1 or 2. (Default: 1)
-     */
-    formatVersion?: pulumi.Input<number>;
-    /**
-     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-     */
-    messageType?: pulumi.Input<string>;
-    /**
-     * A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Where in the generated VCL the logging call should be placed.
-     */
-    placement?: pulumi.Input<string>;
-    /**
-     * The port associated with the address where the Syslog endpoint can be accessed. Default `514`
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * Name of blockAttributes condition to apply this logging.
-     */
-    responseCondition?: pulumi.Input<string>;
-    /**
-     * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
-     */
-    tlsCaCert?: pulumi.Input<string>;
-    /**
-     * The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
-     */
-    tlsClientCert?: pulumi.Input<string>;
-    /**
-     * The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
-     */
-    tlsClientKey?: pulumi.Input<string>;
-    /**
-     * Used during the TLS handshake to validate the certificate
-     */
-    tlsHostname?: pulumi.Input<string>;
-    /**
-     * Whether to prepend each message with a specific token
-     */
-    token?: pulumi.Input<string>;
-    /**
-     * Whether to use TLS for secure logging. Default `false`
-     */
-    useTls?: pulumi.Input<boolean>;
-}
-
-export interface Servicev1Vcl {
+export interface ServiceVclVcl {
     /**
      * The custom VCL code to upload
      */
@@ -2998,7 +2950,7 @@ export interface Servicev1Vcl {
     name: pulumi.Input<string>;
 }
 
-export interface Servicev1Waf {
+export interface ServiceVclWaf {
     /**
      * A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
      */
@@ -3015,6 +2967,44 @@ export interface Servicev1Waf {
      * The ID of the WAF
      */
     wafId?: pulumi.Input<string>;
+}
+
+export interface ServiceWafConfigurationRule {
+    /**
+     * The Web Application Firewall rule's modsecurity ID
+     */
+    modsecRuleId: pulumi.Input<number>;
+    /**
+     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
+     */
+    revision?: pulumi.Input<number>;
+    /**
+     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
+     */
+    status: pulumi.Input<string>;
+}
+
+export interface ServiceWafConfigurationRuleExclusion {
+    /**
+     * A conditional expression in VCL used to determine if the condition is met
+     */
+    condition: pulumi.Input<string>;
+    /**
+     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
+     */
+    exclusionType: pulumi.Input<string>;
+    /**
+     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+     */
+    modsecRuleIds?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * The name of rule exclusion
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The numeric ID assigned to the WAF Rule Exclusion
+     */
+    number?: pulumi.Input<number>;
 }
 
 export interface TlsSubscriptionManagedDnsChallenge {

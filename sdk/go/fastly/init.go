@@ -20,18 +20,18 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1":
-		r = &ServiceACLEntriesv1{}
+	case "fastly:index/serviceACLEntries:ServiceACLEntries":
+		r = &ServiceACLEntries{}
 	case "fastly:index/serviceCompute:ServiceCompute":
 		r = &ServiceCompute{}
-	case "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1":
-		r = &ServiceDictionaryItemsv1{}
-	case "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1":
-		r = &ServiceDynamicSnippetContentv1{}
+	case "fastly:index/serviceDictionaryItems:ServiceDictionaryItems":
+		r = &ServiceDictionaryItems{}
+	case "fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent":
+		r = &ServiceDynamicSnippetContent{}
+	case "fastly:index/serviceVcl:ServiceVcl":
+		r = &ServiceVcl{}
 	case "fastly:index/serviceWafConfiguration:ServiceWafConfiguration":
 		r = &ServiceWafConfiguration{}
-	case "fastly:index/servicev1:Servicev1":
-		r = &Servicev1{}
 	case "fastly:index/tlsActivation:TlsActivation":
 		r = &TlsActivation{}
 	case "fastly:index/tlsCertificate:TlsCertificate":
@@ -44,8 +44,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TlsSubscription{}
 	case "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
 		r = &TlsSubscriptionValidation{}
-	case "fastly:index/userv1:Userv1":
-		r = &Userv1{}
+	case "fastly:index/user:User":
+		r = &User{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -79,7 +79,7 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"fastly",
-		"index/serviceACLEntriesv1",
+		"index/serviceACLEntries",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -89,22 +89,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fastly",
-		"index/serviceDictionaryItemsv1",
+		"index/serviceDictionaryItems",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fastly",
-		"index/serviceDynamicSnippetContentv1",
+		"index/serviceDynamicSnippetContent",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/serviceVcl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/serviceWafConfiguration",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"fastly",
-		"index/servicev1",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -139,7 +139,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fastly",
-		"index/userv1",
+		"index/user",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

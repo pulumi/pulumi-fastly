@@ -9,91 +9,92 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'ServiceACLEntriesv1Entry',
+    'ServiceACLEntriesEntry',
     'ServiceComputeBackend',
-    'ServiceComputeBigquerylogging',
-    'ServiceComputeBlobstoragelogging',
     'ServiceComputeDictionary',
     'ServiceComputeDirector',
     'ServiceComputeDomain',
-    'ServiceComputeGcslogging',
     'ServiceComputeHealthcheck',
-    'ServiceComputeHttpslogging',
-    'ServiceComputeLogentry',
+    'ServiceComputeLoggingBigquery',
+    'ServiceComputeLoggingBlobstorage',
     'ServiceComputeLoggingCloudfile',
     'ServiceComputeLoggingDatadog',
     'ServiceComputeLoggingDigitalocean',
     'ServiceComputeLoggingElasticsearch',
     'ServiceComputeLoggingFtp',
+    'ServiceComputeLoggingGc',
     'ServiceComputeLoggingGooglepubsub',
     'ServiceComputeLoggingHeroku',
     'ServiceComputeLoggingHoneycomb',
+    'ServiceComputeLoggingHttp',
     'ServiceComputeLoggingKafka',
     'ServiceComputeLoggingKinese',
+    'ServiceComputeLoggingLogentry',
     'ServiceComputeLoggingLoggly',
     'ServiceComputeLoggingLogshuttle',
     'ServiceComputeLoggingNewrelic',
     'ServiceComputeLoggingOpenstack',
+    'ServiceComputeLoggingPapertrail',
+    'ServiceComputeLoggingS3',
     'ServiceComputeLoggingScalyr',
     'ServiceComputeLoggingSftp',
+    'ServiceComputeLoggingSplunk',
+    'ServiceComputeLoggingSumologic',
+    'ServiceComputeLoggingSyslog',
     'ServiceComputePackage',
-    'ServiceComputePapertrail',
-    'ServiceComputeS3logging',
-    'ServiceComputeSplunk',
-    'ServiceComputeSumologic',
-    'ServiceComputeSyslog',
+    'ServiceVclAcl',
+    'ServiceVclBackend',
+    'ServiceVclCacheSetting',
+    'ServiceVclCondition',
+    'ServiceVclDictionary',
+    'ServiceVclDirector',
+    'ServiceVclDomain',
+    'ServiceVclDynamicsnippet',
+    'ServiceVclGzip',
+    'ServiceVclHeader',
+    'ServiceVclHealthcheck',
+    'ServiceVclLoggingBigquery',
+    'ServiceVclLoggingBlobstorage',
+    'ServiceVclLoggingCloudfile',
+    'ServiceVclLoggingDatadog',
+    'ServiceVclLoggingDigitalocean',
+    'ServiceVclLoggingElasticsearch',
+    'ServiceVclLoggingFtp',
+    'ServiceVclLoggingGc',
+    'ServiceVclLoggingGooglepubsub',
+    'ServiceVclLoggingHerokus',
+    'ServiceVclLoggingHoneycomb',
+    'ServiceVclLoggingHttp',
+    'ServiceVclLoggingKafka',
+    'ServiceVclLoggingKinese',
+    'ServiceVclLoggingLogentry',
+    'ServiceVclLoggingLoggly',
+    'ServiceVclLoggingLogshuttle',
+    'ServiceVclLoggingNewrelic',
+    'ServiceVclLoggingOpenstack',
+    'ServiceVclLoggingPapertrail',
+    'ServiceVclLoggingS3',
+    'ServiceVclLoggingScalyr',
+    'ServiceVclLoggingSftp',
+    'ServiceVclLoggingSplunk',
+    'ServiceVclLoggingSumologic',
+    'ServiceVclLoggingSyslog',
+    'ServiceVclRequestSetting',
+    'ServiceVclResponseObject',
+    'ServiceVclSnippet',
+    'ServiceVclVcl',
+    'ServiceVclWaf',
     'ServiceWafConfigurationRule',
     'ServiceWafConfigurationRuleExclusion',
-    'Servicev1Acl',
-    'Servicev1Backend',
-    'Servicev1Bigquerylogging',
-    'Servicev1Blobstoragelogging',
-    'Servicev1CacheSetting',
-    'Servicev1Condition',
-    'Servicev1Dictionary',
-    'Servicev1Director',
-    'Servicev1Domain',
-    'Servicev1Dynamicsnippet',
-    'Servicev1Gcslogging',
-    'Servicev1Gzip',
-    'Servicev1Header',
-    'Servicev1Healthcheck',
-    'Servicev1Httpslogging',
-    'Servicev1Logentry',
-    'Servicev1LoggingCloudfile',
-    'Servicev1LoggingDatadog',
-    'Servicev1LoggingDigitalocean',
-    'Servicev1LoggingElasticsearch',
-    'Servicev1LoggingFtp',
-    'Servicev1LoggingGooglepubsub',
-    'Servicev1LoggingHeroku',
-    'Servicev1LoggingHoneycomb',
-    'Servicev1LoggingKafka',
-    'Servicev1LoggingKinese',
-    'Servicev1LoggingLoggly',
-    'Servicev1LoggingLogshuttle',
-    'Servicev1LoggingNewrelic',
-    'Servicev1LoggingOpenstack',
-    'Servicev1LoggingScalyr',
-    'Servicev1LoggingSftp',
-    'Servicev1Papertrail',
-    'Servicev1RequestSetting',
-    'Servicev1ResponseObject',
-    'Servicev1S3logging',
-    'Servicev1Snippet',
-    'Servicev1Splunk',
-    'Servicev1Sumologic',
-    'Servicev1Syslog',
-    'Servicev1Vcl',
-    'Servicev1Waf',
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
+    'GetDatacentersPopResult',
     'GetTlsConfigurationDnsRecordResult',
     'GetWafRulesRuleResult',
 ]
 
 @pulumi.output_type
-class ServiceACLEntriesv1Entry(dict):
+class ServiceACLEntriesEntry(dict):
     def __init__(__self__, *,
                  ip: str,
                  comment: Optional[str] = None,
@@ -239,7 +240,7 @@ class ServiceComputeBackend(dict):
         """
         :param str address: An IPv4, hostname, or IPv6 address for the Backend
         :param str name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
-        :param bool auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        :param bool auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param int connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
         :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
@@ -329,7 +330,7 @@ class ServiceComputeBackend(dict):
     @pulumi.getter(name="autoLoadbalance")
     def auto_loadbalance(self) -> Optional[bool]:
         """
-        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         """
         return pulumi.get(self, "auto_loadbalance")
 
@@ -503,288 +504,6 @@ class ServiceComputeBackend(dict):
 
 
 @pulumi.output_type
-class ServiceComputeBigquerylogging(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "projectId":
-            suggest = "project_id"
-        elif key == "secretKey":
-            suggest = "secret_key"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeBigquerylogging. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceComputeBigquerylogging.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceComputeBigquerylogging.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 dataset: str,
-                 email: str,
-                 name: str,
-                 project_id: str,
-                 secret_key: str,
-                 table: str,
-                 template: Optional[str] = None):
-        """
-        :param str dataset: The ID of your BigQuery dataset
-        :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
-        :param str name: A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str project_id: The ID of your GCP project
-        :param str secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
-        :param str table: The ID of your BigQuery table
-        :param str template: BigQuery table name suffix template
-        """
-        pulumi.set(__self__, "dataset", dataset)
-        pulumi.set(__self__, "email", email)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "secret_key", secret_key)
-        pulumi.set(__self__, "table", table)
-        if template is not None:
-            pulumi.set(__self__, "template", template)
-
-    @property
-    @pulumi.getter
-    def dataset(self) -> str:
-        """
-        The ID of your BigQuery dataset
-        """
-        return pulumi.get(self, "dataset")
-
-    @property
-    @pulumi.getter
-    def email(self) -> str:
-        """
-        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
-        """
-        return pulumi.get(self, "email")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The ID of your GCP project
-        """
-        return pulumi.get(self, "project_id")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> str:
-        """
-        The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
-        """
-        return pulumi.get(self, "secret_key")
-
-    @property
-    @pulumi.getter
-    def table(self) -> str:
-        """
-        The ID of your BigQuery table
-        """
-        return pulumi.get(self, "table")
-
-    @property
-    @pulumi.getter
-    def template(self) -> Optional[str]:
-        """
-        BigQuery table name suffix template
-        """
-        return pulumi.get(self, "template")
-
-
-@pulumi.output_type
-class ServiceComputeBlobstoragelogging(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "accountName":
-            suggest = "account_name"
-        elif key == "sasToken":
-            suggest = "sas_token"
-        elif key == "compressionCodec":
-            suggest = "compression_codec"
-        elif key == "fileMaxBytes":
-            suggest = "file_max_bytes"
-        elif key == "gzipLevel":
-            suggest = "gzip_level"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "publicKey":
-            suggest = "public_key"
-        elif key == "timestampFormat":
-            suggest = "timestamp_format"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeBlobstoragelogging. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceComputeBlobstoragelogging.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceComputeBlobstoragelogging.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 account_name: str,
-                 container: str,
-                 name: str,
-                 sas_token: str,
-                 compression_codec: Optional[str] = None,
-                 file_max_bytes: Optional[int] = None,
-                 gzip_level: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 path: Optional[str] = None,
-                 period: Optional[int] = None,
-                 public_key: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
-        """
-        :param str account_name: The unique Azure Blob Storage namespace in which your data objects are stored
-        :param str container: The name of the Azure Blob Storage container in which to store logs
-        :param str name: A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param int file_max_bytes: Maximum size of an uploaded log file, if non-zero.
-        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
-        :param int period: How frequently the logs should be transferred in seconds. Default `3600`
-        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        pulumi.set(__self__, "account_name", account_name)
-        pulumi.set(__self__, "container", container)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "sas_token", sas_token)
-        if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
-        if file_max_bytes is not None:
-            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
-        if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
-        if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
-
-    @property
-    @pulumi.getter(name="accountName")
-    def account_name(self) -> str:
-        """
-        The unique Azure Blob Storage namespace in which your data objects are stored
-        """
-        return pulumi.get(self, "account_name")
-
-    @property
-    @pulumi.getter
-    def container(self) -> str:
-        """
-        The name of the Azure Blob Storage container in which to store logs
-        """
-        return pulumi.get(self, "container")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="sasToken")
-    def sas_token(self) -> str:
-        """
-        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
-        """
-        return pulumi.get(self, "sas_token")
-
-    @property
-    @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[str]:
-        """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        """
-        return pulumi.get(self, "compression_codec")
-
-    @property
-    @pulumi.getter(name="fileMaxBytes")
-    def file_max_bytes(self) -> Optional[int]:
-        """
-        Maximum size of an uploaded log file, if non-zero.
-        """
-        return pulumi.get(self, "file_max_bytes")
-
-    @property
-    @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[int]:
-        """
-        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        """
-        return pulumi.get(self, "gzip_level")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[str]:
-        """
-        The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        """
-        How frequently the logs should be transferred in seconds. Default `3600`
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[str]:
-        """
-        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        """
-        return pulumi.get(self, "public_key")
-
-    @property
-    @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[str]:
-        """
-        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        return pulumi.get(self, "timestamp_format")
-
-
-@pulumi.output_type
 class ServiceComputeDictionary(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -816,7 +535,6 @@ class ServiceComputeDictionary(dict):
         :param str name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         :param str dictionary_id: The ID of the dictionary
         :param bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
-        :param bool write_only: If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
         """
         pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
@@ -853,9 +571,6 @@ class ServiceComputeDictionary(dict):
     @property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[bool]:
-        """
-        If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
-        """
         return pulumi.get(self, "write_only")
 
 
@@ -864,7 +579,6 @@ class ServiceComputeDirector(dict):
     def __init__(__self__, *,
                  backends: Sequence[str],
                  name: str,
-                 capacity: Optional[int] = None,
                  comment: Optional[str] = None,
                  quorum: Optional[int] = None,
                  retries: Optional[int] = None,
@@ -873,7 +587,6 @@ class ServiceComputeDirector(dict):
         """
         :param Sequence[str] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
         :param str name: Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-        :param int capacity: Load balancing weight for the backends. Default `100`
         :param str comment: An optional comment about the Director
         :param int quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
         :param int retries: How many backends to search if it fails. Default `5`
@@ -882,8 +595,6 @@ class ServiceComputeDirector(dict):
         """
         pulumi.set(__self__, "backends", backends)
         pulumi.set(__self__, "name", name)
-        if capacity is not None:
-            pulumi.set(__self__, "capacity", capacity)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
         if quorum is not None:
@@ -910,14 +621,6 @@ class ServiceComputeDirector(dict):
         Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def capacity(self) -> Optional[int]:
-        """
-        Load balancing weight for the backends. Default `100`
-        """
-        return pulumi.get(self, "capacity")
 
     @property
     @pulumi.getter
@@ -988,158 +691,6 @@ class ServiceComputeDomain(dict):
         An optional comment about the Domain.
         """
         return pulumi.get(self, "comment")
-
-
-@pulumi.output_type
-class ServiceComputeGcslogging(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "bucketName":
-            suggest = "bucket_name"
-        elif key == "compressionCodec":
-            suggest = "compression_codec"
-        elif key == "gzipLevel":
-            suggest = "gzip_level"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "secretKey":
-            suggest = "secret_key"
-        elif key == "timestampFormat":
-            suggest = "timestamp_format"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeGcslogging. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceComputeGcslogging.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceComputeGcslogging.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 bucket_name: str,
-                 name: str,
-                 compression_codec: Optional[str] = None,
-                 email: Optional[str] = None,
-                 gzip_level: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 path: Optional[str] = None,
-                 period: Optional[int] = None,
-                 secret_key: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
-        """
-        :param str bucket_name: The name of the bucket in which to store the logs
-        :param str name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param str email: The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
-        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-        :param int period: How frequently the logs should be transferred, in seconds (Default 3600)
-        :param str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
-        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
-        if email is not None:
-            pulumi.set(__self__, "email", email)
-        if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-        if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
-
-    @property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> str:
-        """
-        The name of the bucket in which to store the logs
-        """
-        return pulumi.get(self, "bucket_name")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[str]:
-        """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        """
-        return pulumi.get(self, "compression_codec")
-
-    @property
-    @pulumi.getter
-    def email(self) -> Optional[str]:
-        """
-        The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
-        """
-        return pulumi.get(self, "email")
-
-    @property
-    @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[int]:
-        """
-        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        """
-        return pulumi.get(self, "gzip_level")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[str]:
-        """
-        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        """
-        How frequently the logs should be transferred, in seconds (Default 3600)
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[str]:
-        """
-        The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
-        """
-        return pulumi.get(self, "secret_key")
-
-    @property
-    @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[str]:
-        """
-        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        return pulumi.get(self, "timestamp_format")
 
 
 @pulumi.output_type
@@ -1300,149 +851,245 @@ class ServiceComputeHealthcheck(dict):
 
 
 @pulumi.output_type
-class ServiceComputeHttpslogging(dict):
+class ServiceComputeLoggingBigquery(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "contentType":
-            suggest = "content_type"
-        elif key == "headerName":
-            suggest = "header_name"
-        elif key == "headerValue":
-            suggest = "header_value"
-        elif key == "jsonFormat":
-            suggest = "json_format"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "requestMaxBytes":
-            suggest = "request_max_bytes"
-        elif key == "requestMaxEntries":
-            suggest = "request_max_entries"
-        elif key == "tlsCaCert":
-            suggest = "tls_ca_cert"
-        elif key == "tlsClientCert":
-            suggest = "tls_client_cert"
-        elif key == "tlsClientKey":
-            suggest = "tls_client_key"
-        elif key == "tlsHostname":
-            suggest = "tls_hostname"
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "secretKey":
+            suggest = "secret_key"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeHttpslogging. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingBigquery. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ServiceComputeHttpslogging.__key_warning(key)
+        ServiceComputeLoggingBigquery.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ServiceComputeHttpslogging.__key_warning(key)
+        ServiceComputeLoggingBigquery.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 dataset: str,
+                 email: str,
                  name: str,
-                 url: str,
-                 content_type: Optional[str] = None,
-                 header_name: Optional[str] = None,
-                 header_value: Optional[str] = None,
-                 json_format: Optional[str] = None,
-                 message_type: Optional[str] = None,
-                 method: Optional[str] = None,
-                 request_max_bytes: Optional[int] = None,
-                 request_max_entries: Optional[int] = None,
-                 tls_ca_cert: Optional[str] = None,
-                 tls_client_cert: Optional[str] = None,
-                 tls_client_key: Optional[str] = None,
-                 tls_hostname: Optional[str] = None):
+                 project_id: str,
+                 secret_key: str,
+                 table: str,
+                 template: Optional[str] = None):
         """
-        :param str name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str url: URL that log data will be sent to. Must use the https protocol
-        :param str content_type: Value of the `Content-Type` header sent with the request
-        :param str header_name: Custom header sent with the request
-        :param str header_value: Value of the custom header sent with the request
-        :param str json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
-        :param int request_max_bytes: The maximum number of bytes sent in one request
-        :param int request_max_entries: The maximum number of logs sent in one request
-        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
-        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
-        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
-        :param str tls_hostname: Used during the TLS handshake to validate the certificate
+        :param str dataset: The ID of your BigQuery dataset
+        :param str email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
+        :param str name: A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str project_id: The ID of your GCP project
+        :param str secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
+        :param str table: The ID of your BigQuery table
+        :param str template: BigQuery table name suffix template
         """
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
-        if content_type is not None:
-            pulumi.set(__self__, "content_type", content_type)
-        if header_name is not None:
-            pulumi.set(__self__, "header_name", header_name)
-        if header_value is not None:
-            pulumi.set(__self__, "header_value", header_value)
-        if json_format is not None:
-            pulumi.set(__self__, "json_format", json_format)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if method is not None:
-            pulumi.set(__self__, "method", method)
-        if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
-        if request_max_entries is not None:
-            pulumi.set(__self__, "request_max_entries", request_max_entries)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-        if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "table", table)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+
+    @property
+    @pulumi.getter
+    def dataset(self) -> str:
+        """
+        The ID of your BigQuery dataset
+        """
+        return pulumi.get(self, "dataset")
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
+        """
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of your GCP project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
+        """
+        The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
     @pulumi.getter
-    def url(self) -> str:
+    def table(self) -> str:
         """
-        URL that log data will be sent to. Must use the https protocol
+        The ID of your BigQuery table
         """
-        return pulumi.get(self, "url")
+        return pulumi.get(self, "table")
 
     @property
-    @pulumi.getter(name="contentType")
-    def content_type(self) -> Optional[str]:
+    @pulumi.getter
+    def template(self) -> Optional[str]:
         """
-        Value of the `Content-Type` header sent with the request
+        BigQuery table name suffix template
         """
-        return pulumi.get(self, "content_type")
+        return pulumi.get(self, "template")
+
+
+@pulumi.output_type
+class ServiceComputeLoggingBlobstorage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountName":
+            suggest = "account_name"
+        elif key == "sasToken":
+            suggest = "sas_token"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "fileMaxBytes":
+            suggest = "file_max_bytes"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingBlobstorage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingBlobstorage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingBlobstorage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account_name: str,
+                 container: str,
+                 name: str,
+                 sas_token: str,
+                 compression_codec: Optional[str] = None,
+                 file_max_bytes: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 path: Optional[str] = None,
+                 period: Optional[int] = None,
+                 public_key: Optional[str] = None,
+                 timestamp_format: Optional[str] = None):
+        """
+        :param str account_name: The unique Azure Blob Storage namespace in which your data objects are stored
+        :param str container: The name of the Azure Blob Storage container in which to store logs
+        :param str name: A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param int file_max_bytes: Maximum size of an uploaded log file, if non-zero.
+        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
+        :param int period: How frequently the logs should be transferred in seconds. Default `3600`
+        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "container", container)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sas_token", sas_token)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if file_max_bytes is not None:
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
-    @pulumi.getter(name="headerName")
-    def header_name(self) -> Optional[str]:
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> str:
         """
-        Custom header sent with the request
+        The unique Azure Blob Storage namespace in which your data objects are stored
         """
-        return pulumi.get(self, "header_name")
+        return pulumi.get(self, "account_name")
 
     @property
-    @pulumi.getter(name="headerValue")
-    def header_value(self) -> Optional[str]:
+    @pulumi.getter
+    def container(self) -> str:
         """
-        Value of the custom header sent with the request
+        The name of the Azure Blob Storage container in which to store logs
         """
-        return pulumi.get(self, "header_value")
+        return pulumi.get(self, "container")
 
     @property
-    @pulumi.getter(name="jsonFormat")
-    def json_format(self) -> Optional[str]:
+    @pulumi.getter
+    def name(self) -> str:
         """
-        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+        A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
-        return pulumi.get(self, "json_format")
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sasToken")
+    def sas_token(self) -> str:
+        """
+        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
+        """
+        return pulumi.get(self, "sas_token")
+
+    @property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @property
+    @pulumi.getter(name="fileMaxBytes")
+    def file_max_bytes(self) -> Optional[int]:
+        """
+        Maximum size of an uploaded log file, if non-zero.
+        """
+        return pulumi.get(self, "file_max_bytes")
+
+    @property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
 
     @property
     @pulumi.getter(name="messageType")
@@ -1454,129 +1101,35 @@ class ServiceComputeHttpslogging(dict):
 
     @property
     @pulumi.getter
-    def method(self) -> Optional[str]:
+    def path(self) -> Optional[str]:
         """
-        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         """
-        return pulumi.get(self, "method")
-
-    @property
-    @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[int]:
-        """
-        The maximum number of bytes sent in one request
-        """
-        return pulumi.get(self, "request_max_bytes")
-
-    @property
-    @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[int]:
-        """
-        The maximum number of logs sent in one request
-        """
-        return pulumi.get(self, "request_max_entries")
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[str]:
-        """
-        A secure certificate to authenticate the server with. Must be in PEM format
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[str]:
-        """
-        The client certificate used to make authenticated requests. Must be in PEM format
-        """
-        return pulumi.get(self, "tls_client_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[str]:
-        """
-        The client private key used to make authenticated requests. Must be in PEM format
-        """
-        return pulumi.get(self, "tls_client_key")
-
-    @property
-    @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[str]:
-        """
-        Used during the TLS handshake to validate the certificate
-        """
-        return pulumi.get(self, "tls_hostname")
-
-
-@pulumi.output_type
-class ServiceComputeLogentry(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "useTls":
-            suggest = "use_tls"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLogentry. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceComputeLogentry.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceComputeLogentry.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 token: str,
-                 port: Optional[int] = None,
-                 use_tls: Optional[bool] = None):
-        """
-        :param str name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str token: Use token based authentication (https://logentries.com/doc/input-token/)
-        :param int port: The port number configured in Logentries
-        :param bool use_tls: Whether to use TLS for secure logging
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def period(self) -> Optional[int]:
         """
-        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        How frequently the logs should be transferred in seconds. Default `3600`
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "period")
 
     @property
-    @pulumi.getter
-    def token(self) -> str:
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[str]:
         """
-        Use token based authentication (https://logentries.com/doc/input-token/)
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
-        return pulumi.get(self, "token")
+        return pulumi.get(self, "public_key")
 
     @property
-    @pulumi.getter
-    def port(self) -> Optional[int]:
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[str]:
         """
-        The port number configured in Logentries
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        return pulumi.get(self, "port")
-
-    @property
-    @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[bool]:
-        """
-        Whether to use TLS for secure logging
-        """
-        return pulumi.get(self, "use_tls")
+        return pulumi.get(self, "timestamp_format")
 
 
 @pulumi.output_type
@@ -2321,6 +1874,158 @@ class ServiceComputeLoggingFtp(dict):
 
 
 @pulumi.output_type
+class ServiceComputeLoggingGc(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingGc. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingGc.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingGc.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 name: str,
+                 compression_codec: Optional[str] = None,
+                 gzip_level: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 path: Optional[str] = None,
+                 period: Optional[int] = None,
+                 secret_key: Optional[str] = None,
+                 timestamp_format: Optional[str] = None,
+                 user: Optional[str] = None):
+        """
+        :param str bucket_name: The name of the bucket in which to store the logs
+        :param str name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param int period: How frequently the logs should be transferred, in seconds (Default 3600)
+        :param str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
+        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if secret_key is not None:
+            pulumi.set(__self__, "secret_key", secret_key)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        The name of the bucket in which to store the logs
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        How frequently the logs should be transferred, in seconds (Default 3600)
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> Optional[str]:
+        """
+        The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
+        """
+        return pulumi.get(self, "secret_key")
+
+    @property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[str]:
+        """
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
+        """
+        return pulumi.get(self, "user")
+
+
+@pulumi.output_type
 class ServiceComputeLoggingGooglepubsub(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2479,6 +2184,216 @@ class ServiceComputeLoggingHoneycomb(dict):
         The Write Key from the Account page of your Honeycomb account
         """
         return pulumi.get(self, "token")
+
+
+@pulumi.output_type
+class ServiceComputeLoggingHttp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contentType":
+            suggest = "content_type"
+        elif key == "headerName":
+            suggest = "header_name"
+        elif key == "headerValue":
+            suggest = "header_value"
+        elif key == "jsonFormat":
+            suggest = "json_format"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requestMaxEntries":
+            suggest = "request_max_entries"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingHttp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingHttp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingHttp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 url: str,
+                 content_type: Optional[str] = None,
+                 header_name: Optional[str] = None,
+                 header_value: Optional[str] = None,
+                 json_format: Optional[str] = None,
+                 message_type: Optional[str] = None,
+                 method: Optional[str] = None,
+                 request_max_bytes: Optional[int] = None,
+                 request_max_entries: Optional[int] = None,
+                 tls_ca_cert: Optional[str] = None,
+                 tls_client_cert: Optional[str] = None,
+                 tls_client_key: Optional[str] = None,
+                 tls_hostname: Optional[str] = None):
+        """
+        :param str name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str url: URL that log data will be sent to. Must use the https protocol
+        :param str content_type: Value of the `Content-Type` header sent with the request
+        :param str header_name: Custom header sent with the request
+        :param str header_value: Value of the custom header sent with the request
+        :param str json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        :param int request_max_bytes: The maximum number of bytes sent in one request
+        :param int request_max_entries: The maximum number of logs sent in one request
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param str tls_hostname: Used during the TLS handshake to validate the certificate
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
+        if content_type is not None:
+            pulumi.set(__self__, "content_type", content_type)
+        if header_name is not None:
+            pulumi.set(__self__, "header_name", header_name)
+        if header_value is not None:
+            pulumi.set(__self__, "header_value", header_value)
+        if json_format is not None:
+            pulumi.set(__self__, "json_format", json_format)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if request_max_bytes is not None:
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+        if request_max_entries is not None:
+            pulumi.set(__self__, "request_max_entries", request_max_entries)
+        if tls_ca_cert is not None:
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
+        if tls_hostname is not None:
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        URL that log data will be sent to. Must use the https protocol
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> Optional[str]:
+        """
+        Value of the `Content-Type` header sent with the request
+        """
+        return pulumi.get(self, "content_type")
+
+    @property
+    @pulumi.getter(name="headerName")
+    def header_name(self) -> Optional[str]:
+        """
+        Custom header sent with the request
+        """
+        return pulumi.get(self, "header_name")
+
+    @property
+    @pulumi.getter(name="headerValue")
+    def header_value(self) -> Optional[str]:
+        """
+        Value of the custom header sent with the request
+        """
+        return pulumi.get(self, "header_value")
+
+    @property
+    @pulumi.getter(name="jsonFormat")
+    def json_format(self) -> Optional[str]:
+        """
+        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+        """
+        return pulumi.get(self, "json_format")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[str]:
+        """
+        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter(name="requestMaxBytes")
+    def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request
+        """
+        return pulumi.get(self, "request_max_bytes")
+
+    @property
+    @pulumi.getter(name="requestMaxEntries")
+    def request_max_entries(self) -> Optional[int]:
+        """
+        The maximum number of logs sent in one request
+        """
+        return pulumi.get(self, "request_max_entries")
+
+    @property
+    @pulumi.getter(name="tlsCaCert")
+    def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        return pulumi.get(self, "tls_ca_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientCert")
+    def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        return pulumi.get(self, "tls_client_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientKey")
+    def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        return pulumi.get(self, "tls_client_key")
+
+    @property
+    @pulumi.getter(name="tlsHostname")
+    def tls_hostname(self) -> Optional[str]:
+        """
+        Used during the TLS handshake to validate the certificate
+        """
+        return pulumi.get(self, "tls_hostname")
 
 
 @pulumi.output_type
@@ -2799,6 +2714,76 @@ class ServiceComputeLoggingKinese(dict):
 
 
 @pulumi.output_type
+class ServiceComputeLoggingLogentry(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingLogentry. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingLogentry.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingLogentry.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 token: str,
+                 port: Optional[int] = None,
+                 use_tls: Optional[bool] = None):
+        """
+        :param str name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: Use token based authentication (https://logentries.com/doc/input-token/)
+        :param int port: The port number configured in Logentries
+        :param bool use_tls: Whether to use TLS for secure logging
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        """
+        Use token based authentication (https://logentries.com/doc/input-token/)
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The port number configured in Logentries
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="useTls")
+    def use_tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS for secure logging
+        """
+        return pulumi.get(self, "use_tls")
+
+
+@pulumi.output_type
 class ServiceComputeLoggingLoggly(dict):
     def __init__(__self__, *,
                  name: str,
@@ -3084,6 +3069,292 @@ class ServiceComputeLoggingOpenstack(dict):
 
 
 @pulumi.output_type
+class ServiceComputeLoggingPapertrail(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 name: str,
+                 port: int):
+        """
+        :param str address: The address of the Papertrail endpoint
+        :param str name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param int port: The port associated with the address where the Papertrail endpoint can be accessed
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The address of the Papertrail endpoint
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port associated with the address where the Papertrail endpoint can be accessed
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class ServiceComputeLoggingS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "s3AccessKey":
+            suggest = "s3_access_key"
+        elif key == "s3IamRole":
+            suggest = "s3_iam_role"
+        elif key == "s3SecretKey":
+            suggest = "s3_secret_key"
+        elif key == "serverSideEncryption":
+            suggest = "server_side_encryption"
+        elif key == "serverSideEncryptionKmsKeyId":
+            suggest = "server_side_encryption_kms_key_id"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 name: str,
+                 acl: Optional[str] = None,
+                 compression_codec: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 gzip_level: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 path: Optional[str] = None,
+                 period: Optional[int] = None,
+                 public_key: Optional[str] = None,
+                 redundancy: Optional[str] = None,
+                 s3_access_key: Optional[str] = None,
+                 s3_iam_role: Optional[str] = None,
+                 s3_secret_key: Optional[str] = None,
+                 server_side_encryption: Optional[str] = None,
+                 server_side_encryption_kms_key_id: Optional[str] = None,
+                 timestamp_format: Optional[str] = None):
+        """
+        :param str bucket_name: The name of the bucket in which to store the logs
+        :param str name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param int period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param str redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
+        :param str s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        :param str s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        if acl is not None:
+            pulumi.set(__self__, "acl", acl)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if redundancy is not None:
+            pulumi.set(__self__, "redundancy", redundancy)
+        if s3_access_key is not None:
+            pulumi.set(__self__, "s3_access_key", s3_access_key)
+        if s3_iam_role is not None:
+            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
+        if s3_secret_key is not None:
+            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
+        if server_side_encryption is not None:
+            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
+        if server_side_encryption_kms_key_id is not None:
+            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        The name of the bucket in which to store the logs
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def acl(self) -> Optional[str]:
+        """
+        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        """
+        return pulumi.get(self, "acl")
+
+    @property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
+        """
+        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[str]:
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def redundancy(self) -> Optional[str]:
+        """
+        The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
+        """
+        return pulumi.get(self, "redundancy")
+
+    @property
+    @pulumi.getter(name="s3AccessKey")
+    def s3_access_key(self) -> Optional[str]:
+        """
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        """
+        return pulumi.get(self, "s3_access_key")
+
+    @property
+    @pulumi.getter(name="s3IamRole")
+    def s3_iam_role(self) -> Optional[str]:
+        """
+        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        """
+        return pulumi.get(self, "s3_iam_role")
+
+    @property
+    @pulumi.getter(name="s3SecretKey")
+    def s3_secret_key(self) -> Optional[str]:
+        """
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        """
+        return pulumi.get(self, "s3_secret_key")
+
+    @property
+    @pulumi.getter(name="serverSideEncryption")
+    def server_side_encryption(self) -> Optional[str]:
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        """
+        return pulumi.get(self, "server_side_encryption")
+
+    @property
+    @pulumi.getter(name="serverSideEncryptionKmsKeyId")
+    def server_side_encryption_kms_key_id(self) -> Optional[str]:
+        """
+        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        """
+        return pulumi.get(self, "server_side_encryption_kms_key_id")
+
+    @property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
+
+
+@pulumi.output_type
 class ServiceComputeLoggingScalyr(dict):
     def __init__(__self__, *,
                  name: str,
@@ -3324,340 +3595,7 @@ class ServiceComputeLoggingSftp(dict):
 
 
 @pulumi.output_type
-class ServiceComputePackage(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "sourceCodeHash":
-            suggest = "source_code_hash"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputePackage. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceComputePackage.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceComputePackage.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 filename: str,
-                 source_code_hash: Optional[str] = None):
-        """
-        :param str filename: The path to the Wasm deployment package within your local filesystem
-        :param str source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
-        """
-        pulumi.set(__self__, "filename", filename)
-        if source_code_hash is not None:
-            pulumi.set(__self__, "source_code_hash", source_code_hash)
-
-    @property
-    @pulumi.getter
-    def filename(self) -> str:
-        """
-        The path to the Wasm deployment package within your local filesystem
-        """
-        return pulumi.get(self, "filename")
-
-    @property
-    @pulumi.getter(name="sourceCodeHash")
-    def source_code_hash(self) -> Optional[str]:
-        """
-        Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
-        """
-        return pulumi.get(self, "source_code_hash")
-
-
-@pulumi.output_type
-class ServiceComputePapertrail(dict):
-    def __init__(__self__, *,
-                 address: str,
-                 name: str,
-                 port: int):
-        """
-        :param str address: The address of the Papertrail endpoint
-        :param str name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param int port: The port associated with the address where the Papertrail endpoint can be accessed
-        """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "port", port)
-
-    @property
-    @pulumi.getter
-    def address(self) -> str:
-        """
-        The address of the Papertrail endpoint
-        """
-        return pulumi.get(self, "address")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def port(self) -> int:
-        """
-        The port associated with the address where the Papertrail endpoint can be accessed
-        """
-        return pulumi.get(self, "port")
-
-
-@pulumi.output_type
-class ServiceComputeS3logging(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "bucketName":
-            suggest = "bucket_name"
-        elif key == "compressionCodec":
-            suggest = "compression_codec"
-        elif key == "gzipLevel":
-            suggest = "gzip_level"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "publicKey":
-            suggest = "public_key"
-        elif key == "s3AccessKey":
-            suggest = "s3_access_key"
-        elif key == "s3IamRole":
-            suggest = "s3_iam_role"
-        elif key == "s3SecretKey":
-            suggest = "s3_secret_key"
-        elif key == "serverSideEncryption":
-            suggest = "server_side_encryption"
-        elif key == "serverSideEncryptionKmsKeyId":
-            suggest = "server_side_encryption_kms_key_id"
-        elif key == "timestampFormat":
-            suggest = "timestamp_format"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeS3logging. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceComputeS3logging.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceComputeS3logging.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 bucket_name: str,
-                 name: str,
-                 acl: Optional[str] = None,
-                 compression_codec: Optional[str] = None,
-                 domain: Optional[str] = None,
-                 gzip_level: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 path: Optional[str] = None,
-                 period: Optional[int] = None,
-                 public_key: Optional[str] = None,
-                 redundancy: Optional[str] = None,
-                 s3_access_key: Optional[str] = None,
-                 s3_iam_role: Optional[str] = None,
-                 s3_secret_key: Optional[str] = None,
-                 server_side_encryption: Optional[str] = None,
-                 server_side_encryption_kms_key_id: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
-        """
-        :param str bucket_name: The name of the bucket in which to store the logs
-        :param str name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param str domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
-        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-        :param int period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param str redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
-        :param str s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
-        :param str s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
-        :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
-        :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        if acl is not None:
-            pulumi.set(__self__, "acl", acl)
-        if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
-        if domain is not None:
-            pulumi.set(__self__, "domain", domain)
-        if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
-        if redundancy is not None:
-            pulumi.set(__self__, "redundancy", redundancy)
-        if s3_access_key is not None:
-            pulumi.set(__self__, "s3_access_key", s3_access_key)
-        if s3_iam_role is not None:
-            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
-        if s3_secret_key is not None:
-            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
-        if server_side_encryption is not None:
-            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
-        if server_side_encryption_kms_key_id is not None:
-            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
-        if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
-
-    @property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> str:
-        """
-        The name of the bucket in which to store the logs
-        """
-        return pulumi.get(self, "bucket_name")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def acl(self) -> Optional[str]:
-        """
-        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        """
-        return pulumi.get(self, "acl")
-
-    @property
-    @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[str]:
-        """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        """
-        return pulumi.get(self, "compression_codec")
-
-    @property
-    @pulumi.getter
-    def domain(self) -> Optional[str]:
-        """
-        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
-        """
-        return pulumi.get(self, "domain")
-
-    @property
-    @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[int]:
-        """
-        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        """
-        return pulumi.get(self, "gzip_level")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[str]:
-        """
-        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        """
-        How frequently the logs should be transferred, in seconds. Default `3600`
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[str]:
-        """
-        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        """
-        return pulumi.get(self, "public_key")
-
-    @property
-    @pulumi.getter
-    def redundancy(self) -> Optional[str]:
-        """
-        The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
-        """
-        return pulumi.get(self, "redundancy")
-
-    @property
-    @pulumi.getter(name="s3AccessKey")
-    def s3_access_key(self) -> Optional[str]:
-        """
-        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
-        """
-        return pulumi.get(self, "s3_access_key")
-
-    @property
-    @pulumi.getter(name="s3IamRole")
-    def s3_iam_role(self) -> Optional[str]:
-        """
-        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
-        """
-        return pulumi.get(self, "s3_iam_role")
-
-    @property
-    @pulumi.getter(name="s3SecretKey")
-    def s3_secret_key(self) -> Optional[str]:
-        """
-        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
-        """
-        return pulumi.get(self, "s3_secret_key")
-
-    @property
-    @pulumi.getter(name="serverSideEncryption")
-    def server_side_encryption(self) -> Optional[str]:
-        """
-        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-        """
-        return pulumi.get(self, "server_side_encryption")
-
-    @property
-    @pulumi.getter(name="serverSideEncryptionKmsKeyId")
-    def server_side_encryption_kms_key_id(self) -> Optional[str]:
-        """
-        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        """
-        return pulumi.get(self, "server_side_encryption_kms_key_id")
-
-    @property
-    @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[str]:
-        """
-        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        return pulumi.get(self, "timestamp_format")
-
-
-@pulumi.output_type
-class ServiceComputeSplunk(dict):
+class ServiceComputeLoggingSplunk(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -3673,14 +3611,14 @@ class ServiceComputeSplunk(dict):
             suggest = "use_tls"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeSplunk. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingSplunk. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ServiceComputeSplunk.__key_warning(key)
+        ServiceComputeLoggingSplunk.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ServiceComputeSplunk.__key_warning(key)
+        ServiceComputeLoggingSplunk.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -3782,7 +3720,7 @@ class ServiceComputeSplunk(dict):
 
 
 @pulumi.output_type
-class ServiceComputeSumologic(dict):
+class ServiceComputeLoggingSumologic(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -3790,14 +3728,14 @@ class ServiceComputeSumologic(dict):
             suggest = "message_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeSumologic. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingSumologic. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ServiceComputeSumologic.__key_warning(key)
+        ServiceComputeLoggingSumologic.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ServiceComputeSumologic.__key_warning(key)
+        ServiceComputeLoggingSumologic.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -3840,7 +3778,7 @@ class ServiceComputeSumologic(dict):
 
 
 @pulumi.output_type
-class ServiceComputeSyslog(dict):
+class ServiceComputeLoggingSyslog(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -3858,14 +3796,14 @@ class ServiceComputeSyslog(dict):
             suggest = "use_tls"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeSyslog. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingSyslog. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ServiceComputeSyslog.__key_warning(key)
+        ServiceComputeLoggingSyslog.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ServiceComputeSyslog.__key_warning(key)
+        ServiceComputeLoggingSyslog.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -3992,148 +3930,54 @@ class ServiceComputeSyslog(dict):
 
 
 @pulumi.output_type
-class ServiceWafConfigurationRule(dict):
+class ServiceComputePackage(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "modsecRuleId":
-            suggest = "modsec_rule_id"
+        if key == "sourceCodeHash":
+            suggest = "source_code_hash"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRule. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputePackage. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ServiceWafConfigurationRule.__key_warning(key)
+        ServiceComputePackage.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ServiceWafConfigurationRule.__key_warning(key)
+        ServiceComputePackage.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 modsec_rule_id: int,
-                 status: str,
-                 revision: Optional[int] = None):
+                 filename: str,
+                 source_code_hash: Optional[str] = None):
         """
-        :param int modsec_rule_id: The Web Application Firewall rule's modsecurity ID
-        :param str status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-        :param int revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
+        :param str filename: The path to the Wasm deployment package within your local filesystem
+        :param str source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
         """
-        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
-        pulumi.set(__self__, "status", status)
-        if revision is not None:
-            pulumi.set(__self__, "revision", revision)
-
-    @property
-    @pulumi.getter(name="modsecRuleId")
-    def modsec_rule_id(self) -> int:
-        """
-        The Web Application Firewall rule's modsecurity ID
-        """
-        return pulumi.get(self, "modsec_rule_id")
+        pulumi.set(__self__, "filename", filename)
+        if source_code_hash is not None:
+            pulumi.set(__self__, "source_code_hash", source_code_hash)
 
     @property
     @pulumi.getter
-    def status(self) -> str:
+    def filename(self) -> str:
         """
-        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
+        The path to the Wasm deployment package within your local filesystem
         """
-        return pulumi.get(self, "status")
+        return pulumi.get(self, "filename")
 
     @property
-    @pulumi.getter
-    def revision(self) -> Optional[int]:
+    @pulumi.getter(name="sourceCodeHash")
+    def source_code_hash(self) -> Optional[str]:
         """
-        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
+        Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
         """
-        return pulumi.get(self, "revision")
+        return pulumi.get(self, "source_code_hash")
 
 
 @pulumi.output_type
-class ServiceWafConfigurationRuleExclusion(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "exclusionType":
-            suggest = "exclusion_type"
-        elif key == "modsecRuleIds":
-            suggest = "modsec_rule_ids"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRuleExclusion. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceWafConfigurationRuleExclusion.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceWafConfigurationRuleExclusion.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 condition: str,
-                 exclusion_type: str,
-                 name: str,
-                 modsec_rule_ids: Optional[Sequence[int]] = None,
-                 number: Optional[int] = None):
-        """
-        :param str condition: A conditional expression in VCL used to determine if the condition is met
-        :param str exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-        :param str name: The name of rule exclusion
-        :param Sequence[int] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-        :param int number: The numeric ID assigned to the WAF Rule Exclusion
-        """
-        pulumi.set(__self__, "condition", condition)
-        pulumi.set(__self__, "exclusion_type", exclusion_type)
-        pulumi.set(__self__, "name", name)
-        if modsec_rule_ids is not None:
-            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
-        if number is not None:
-            pulumi.set(__self__, "number", number)
-
-    @property
-    @pulumi.getter
-    def condition(self) -> str:
-        """
-        A conditional expression in VCL used to determine if the condition is met
-        """
-        return pulumi.get(self, "condition")
-
-    @property
-    @pulumi.getter(name="exclusionType")
-    def exclusion_type(self) -> str:
-        """
-        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-        """
-        return pulumi.get(self, "exclusion_type")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The name of rule exclusion
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="modsecRuleIds")
-    def modsec_rule_ids(self) -> Optional[Sequence[int]]:
-        """
-        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-        """
-        return pulumi.get(self, "modsec_rule_ids")
-
-    @property
-    @pulumi.getter
-    def number(self) -> Optional[int]:
-        """
-        The numeric ID assigned to the WAF Rule Exclusion
-        """
-        return pulumi.get(self, "number")
-
-
-@pulumi.output_type
-class Servicev1Acl(dict):
+class ServiceVclAcl(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -4143,14 +3987,14 @@ class Servicev1Acl(dict):
             suggest = "force_destroy"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Acl. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclAcl. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Acl.__key_warning(key)
+        ServiceVclAcl.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Acl.__key_warning(key)
+        ServiceVclAcl.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -4194,7 +4038,7 @@ class Servicev1Acl(dict):
 
 
 @pulumi.output_type
-class Servicev1Backend(dict):
+class ServiceVclBackend(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -4238,14 +4082,14 @@ class Servicev1Backend(dict):
             suggest = "use_ssl"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Backend. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclBackend. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Backend.__key_warning(key)
+        ServiceVclBackend.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Backend.__key_warning(key)
+        ServiceVclBackend.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -4277,7 +4121,7 @@ class Servicev1Backend(dict):
         """
         :param str address: An IPv4, hostname, or IPv6 address for the Backend
         :param str name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
-        :param bool auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        :param bool auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param int connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
         :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
@@ -4370,7 +4214,7 @@ class Servicev1Backend(dict):
     @pulumi.getter(name="autoLoadbalance")
     def auto_loadbalance(self) -> Optional[bool]:
         """
-        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         """
         return pulumi.get(self, "auto_loadbalance")
 
@@ -4552,7 +4396,804 @@ class Servicev1Backend(dict):
 
 
 @pulumi.output_type
-class Servicev1Bigquerylogging(dict):
+class ServiceVclCacheSetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheCondition":
+            suggest = "cache_condition"
+        elif key == "staleTtl":
+            suggest = "stale_ttl"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclCacheSetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclCacheSetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclCacheSetting.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 action: Optional[str] = None,
+                 cache_condition: Optional[str] = None,
+                 stale_ttl: Optional[int] = None,
+                 ttl: Optional[int] = None):
+        """
+        :param str name: Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
+        :param str action: One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
+        :param str cache_condition: Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+        :param int stale_ttl: Max "Time To Live" for stale (unreachable) objects
+        :param int ttl: The Time-To-Live (TTL) for the object
+        """
+        pulumi.set(__self__, "name", name)
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if cache_condition is not None:
+            pulumi.set(__self__, "cache_condition", cache_condition)
+        if stale_ttl is not None:
+            pulumi.set(__self__, "stale_ttl", stale_ttl)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter(name="cacheCondition")
+    def cache_condition(self) -> Optional[str]:
+        """
+        Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+        """
+        return pulumi.get(self, "cache_condition")
+
+    @property
+    @pulumi.getter(name="staleTtl")
+    def stale_ttl(self) -> Optional[int]:
+        """
+        Max "Time To Live" for stale (unreachable) objects
+        """
+        return pulumi.get(self, "stale_ttl")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[int]:
+        """
+        The Time-To-Live (TTL) for the object
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class ServiceVclCondition(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 statement: str,
+                 type: str,
+                 priority: Optional[int] = None):
+        """
+        :param str name: The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
+        :param str statement: The statement used to determine if the condition is met
+        :param str type: Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
+        :param int priority: A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "statement", statement)
+        pulumi.set(__self__, "type", type)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def statement(self) -> str:
+        """
+        The statement used to determine if the condition is met
+        """
+        return pulumi.get(self, "statement")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        """
+        A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
+        """
+        return pulumi.get(self, "priority")
+
+
+@pulumi.output_type
+class ServiceVclDictionary(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dictionaryId":
+            suggest = "dictionary_id"
+        elif key == "forceDestroy":
+            suggest = "force_destroy"
+        elif key == "writeOnly":
+            suggest = "write_only"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclDictionary. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclDictionary.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclDictionary.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 dictionary_id: Optional[str] = None,
+                 force_destroy: Optional[bool] = None,
+                 write_only: Optional[bool] = None):
+        """
+        :param str name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        :param str dictionary_id: The ID of the dictionary
+        :param bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        """
+        pulumi.set(__self__, "name", name)
+        if dictionary_id is not None:
+            pulumi.set(__self__, "dictionary_id", dictionary_id)
+        if force_destroy is not None:
+            pulumi.set(__self__, "force_destroy", force_destroy)
+        if write_only is not None:
+            pulumi.set(__self__, "write_only", write_only)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="dictionaryId")
+    def dictionary_id(self) -> Optional[str]:
+        """
+        The ID of the dictionary
+        """
+        return pulumi.get(self, "dictionary_id")
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @property
+    @pulumi.getter(name="writeOnly")
+    def write_only(self) -> Optional[bool]:
+        return pulumi.get(self, "write_only")
+
+
+@pulumi.output_type
+class ServiceVclDirector(dict):
+    def __init__(__self__, *,
+                 backends: Sequence[str],
+                 name: str,
+                 comment: Optional[str] = None,
+                 quorum: Optional[int] = None,
+                 retries: Optional[int] = None,
+                 shield: Optional[str] = None,
+                 type: Optional[int] = None):
+        """
+        :param Sequence[str] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        :param str name: Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+        :param str comment: An optional comment about the Director
+        :param int quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+        :param int retries: How many backends to search if it fails. Default `5`
+        :param str shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+        :param int type: Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+        """
+        pulumi.set(__self__, "backends", backends)
+        pulumi.set(__self__, "name", name)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if quorum is not None:
+            pulumi.set(__self__, "quorum", quorum)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+        if shield is not None:
+            pulumi.set(__self__, "shield", shield)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def backends(self) -> Sequence[str]:
+        """
+        Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        """
+        return pulumi.get(self, "backends")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        An optional comment about the Director
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def quorum(self) -> Optional[int]:
+        """
+        Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+        """
+        return pulumi.get(self, "quorum")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[int]:
+        """
+        How many backends to search if it fails. Default `5`
+        """
+        return pulumi.get(self, "retries")
+
+    @property
+    @pulumi.getter
+    def shield(self) -> Optional[str]:
+        """
+        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+        """
+        return pulumi.get(self, "shield")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[int]:
+        """
+        Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ServiceVclDomain(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 comment: Optional[str] = None):
+        """
+        :param str name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
+        :param str comment: An optional comment about the Domain.
+        """
+        pulumi.set(__self__, "name", name)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        An optional comment about the Domain.
+        """
+        return pulumi.get(self, "comment")
+
+
+@pulumi.output_type
+class ServiceVclDynamicsnippet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "snippetId":
+            suggest = "snippet_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclDynamicsnippet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclDynamicsnippet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclDynamicsnippet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 type: str,
+                 priority: Optional[int] = None,
+                 snippet_id: Optional[str] = None):
+        """
+        :param str name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+        :param str type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+        :param str snippet_id: The ID of the dynamic snippet
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if snippet_id is not None:
+            pulumi.set(__self__, "snippet_id", snippet_id)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        """
+        Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="snippetId")
+    def snippet_id(self) -> Optional[str]:
+        """
+        The ID of the dynamic snippet
+        """
+        return pulumi.get(self, "snippet_id")
+
+
+@pulumi.output_type
+class ServiceVclGzip(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheCondition":
+            suggest = "cache_condition"
+        elif key == "contentTypes":
+            suggest = "content_types"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclGzip. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclGzip.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclGzip.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 cache_condition: Optional[str] = None,
+                 content_types: Optional[Sequence[str]] = None,
+                 extensions: Optional[Sequence[str]] = None):
+        """
+        :param str name: A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
+        :param str cache_condition: Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        :param Sequence[str] content_types: The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
+        :param Sequence[str] extensions: File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
+        """
+        pulumi.set(__self__, "name", name)
+        if cache_condition is not None:
+            pulumi.set(__self__, "cache_condition", cache_condition)
+        if content_types is not None:
+            pulumi.set(__self__, "content_types", content_types)
+        if extensions is not None:
+            pulumi.set(__self__, "extensions", extensions)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="cacheCondition")
+    def cache_condition(self) -> Optional[str]:
+        """
+        Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        """
+        return pulumi.get(self, "cache_condition")
+
+    @property
+    @pulumi.getter(name="contentTypes")
+    def content_types(self) -> Optional[Sequence[str]]:
+        """
+        The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
+        """
+        return pulumi.get(self, "content_types")
+
+    @property
+    @pulumi.getter
+    def extensions(self) -> Optional[Sequence[str]]:
+        """
+        File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
+        """
+        return pulumi.get(self, "extensions")
+
+
+@pulumi.output_type
+class ServiceVclHeader(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheCondition":
+            suggest = "cache_condition"
+        elif key == "ignoreIfSet":
+            suggest = "ignore_if_set"
+        elif key == "requestCondition":
+            suggest = "request_condition"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclHeader. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclHeader.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclHeader.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: str,
+                 destination: str,
+                 name: str,
+                 type: str,
+                 cache_condition: Optional[str] = None,
+                 ignore_if_set: Optional[bool] = None,
+                 priority: Optional[int] = None,
+                 regex: Optional[str] = None,
+                 request_condition: Optional[str] = None,
+                 response_condition: Optional[str] = None,
+                 source: Optional[str] = None,
+                 substitution: Optional[str] = None):
+        """
+        :param str action: The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+        :param str destination: The name of the header that is going to be affected by the Action
+        :param str name: Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
+        :param str type: The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+        :param str cache_condition: Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        :param bool ignore_if_set: Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        :param int priority: Lower priorities execute first. Default: `100`
+        :param str regex: Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+        :param str request_condition: Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+        :param str response_condition: Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        :param str source: Variable to be used as a source for the header content (Does not apply to `delete` action.)
+        :param str substitution: Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if cache_condition is not None:
+            pulumi.set(__self__, "cache_condition", cache_condition)
+        if ignore_if_set is not None:
+            pulumi.set(__self__, "ignore_if_set", ignore_if_set)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if regex is not None:
+            pulumi.set(__self__, "regex", regex)
+        if request_condition is not None:
+            pulumi.set(__self__, "request_condition", request_condition)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if substitution is not None:
+            pulumi.set(__self__, "substitution", substitution)
+
+    @property
+    @pulumi.getter
+    def action(self) -> str:
+        """
+        The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        """
+        The name of the header that is going to be affected by the Action
+        """
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="cacheCondition")
+    def cache_condition(self) -> Optional[str]:
+        """
+        Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        """
+        return pulumi.get(self, "cache_condition")
+
+    @property
+    @pulumi.getter(name="ignoreIfSet")
+    def ignore_if_set(self) -> Optional[bool]:
+        """
+        Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        """
+        return pulumi.get(self, "ignore_if_set")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        """
+        Lower priorities execute first. Default: `100`
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def regex(self) -> Optional[str]:
+        """
+        Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+        """
+        return pulumi.get(self, "regex")
+
+    @property
+    @pulumi.getter(name="requestCondition")
+    def request_condition(self) -> Optional[str]:
+        """
+        Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+        """
+        return pulumi.get(self, "request_condition")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[str]:
+        """
+        Variable to be used as a source for the header content (Does not apply to `delete` action.)
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def substitution(self) -> Optional[str]:
+        """
+        Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+        """
+        return pulumi.get(self, "substitution")
+
+
+@pulumi.output_type
+class ServiceVclHealthcheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "checkInterval":
+            suggest = "check_interval"
+        elif key == "expectedResponse":
+            suggest = "expected_response"
+        elif key == "httpVersion":
+            suggest = "http_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclHealthcheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclHealthcheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclHealthcheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: str,
+                 name: str,
+                 path: str,
+                 check_interval: Optional[int] = None,
+                 expected_response: Optional[int] = None,
+                 http_version: Optional[str] = None,
+                 initial: Optional[int] = None,
+                 method: Optional[str] = None,
+                 threshold: Optional[int] = None,
+                 timeout: Optional[int] = None,
+                 window: Optional[int] = None):
+        """
+        :param str host: The Host header to send for this Healthcheck
+        :param str name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        :param str path: The path to check
+        :param int check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
+        :param int expected_response: The status code expected from the host. Default `200`
+        :param str http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        :param int initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
+        :param str method: Which HTTP method to use. Default `HEAD`
+        :param int threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
+        :param int timeout: Timeout in milliseconds. Default `500`
+        :param int window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        if check_interval is not None:
+            pulumi.set(__self__, "check_interval", check_interval)
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if http_version is not None:
+            pulumi.set(__self__, "http_version", http_version)
+        if initial is not None:
+            pulumi.set(__self__, "initial", initial)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if window is not None:
+            pulumi.set(__self__, "window", window)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The Host header to send for this Healthcheck
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        The path to check
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="checkInterval")
+    def check_interval(self) -> Optional[int]:
+        """
+        How often to run the Healthcheck in milliseconds. Default `5000`
+        """
+        return pulumi.get(self, "check_interval")
+
+    @property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[int]:
+        """
+        The status code expected from the host. Default `200`
+        """
+        return pulumi.get(self, "expected_response")
+
+    @property
+    @pulumi.getter(name="httpVersion")
+    def http_version(self) -> Optional[str]:
+        """
+        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        """
+        return pulumi.get(self, "http_version")
+
+    @property
+    @pulumi.getter
+    def initial(self) -> Optional[int]:
+        """
+        When loading a config, the initial number of probes to be seen as OK. Default `3`
+        """
+        return pulumi.get(self, "initial")
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[str]:
+        """
+        Which HTTP method to use. Default `HEAD`
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Optional[int]:
+        """
+        How many Healthchecks must succeed to be considered healthy. Default `3`
+        """
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[int]:
+        """
+        Timeout in milliseconds. Default `500`
+        """
+        return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter
+    def window(self) -> Optional[int]:
+        """
+        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+        """
+        return pulumi.get(self, "window")
+
+
+@pulumi.output_type
+class ServiceVclLoggingBigquery(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -4564,14 +5205,14 @@ class Servicev1Bigquerylogging(dict):
             suggest = "response_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Bigquerylogging. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingBigquery. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Bigquerylogging.__key_warning(key)
+        ServiceVclLoggingBigquery.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Bigquerylogging.__key_warning(key)
+        ServiceVclLoggingBigquery.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -4694,7 +5335,7 @@ class Servicev1Bigquerylogging(dict):
 
 
 @pulumi.output_type
-class Servicev1Blobstoragelogging(dict):
+class ServiceVclLoggingBlobstorage(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -4720,14 +5361,14 @@ class Servicev1Blobstoragelogging(dict):
             suggest = "timestamp_format"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Blobstoragelogging. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingBlobstorage. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Blobstoragelogging.__key_warning(key)
+        ServiceVclLoggingBlobstorage.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Blobstoragelogging.__key_warning(key)
+        ServiceVclLoggingBlobstorage.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -4924,420 +5565,1023 @@ class Servicev1Blobstoragelogging(dict):
 
 
 @pulumi.output_type
-class Servicev1CacheSetting(dict):
+class ServiceVclLoggingCloudfile(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "cacheCondition":
-            suggest = "cache_condition"
-        elif key == "staleTtl":
-            suggest = "stale_ttl"
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1CacheSetting. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingCloudfile. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1CacheSetting.__key_warning(key)
+        ServiceVclLoggingCloudfile.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1CacheSetting.__key_warning(key)
+        ServiceVclLoggingCloudfile.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_key: str,
+                 bucket_name: str,
+                 name: str,
+                 user: str,
+                 compression_codec: Optional[str] = None,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 path: Optional[str] = None,
+                 period: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 public_key: Optional[str] = None,
+                 region: Optional[str] = None,
+                 response_condition: Optional[str] = None,
+                 timestamp_format: Optional[str] = None):
+        """
+        :param str access_key: Your Cloud File account access key
+        :param str bucket_name: The name of your Cloud Files container
+        :param str name: The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str user: The username for your Cloud Files account
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str format: Apache style log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str path: The path to upload logs to
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
+        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "user", user)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> str:
+        """
+        Your Cloud File account access key
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        The name of your Cloud Files container
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The username for your Cloud Files account
+        """
+        return pulumi.get(self, "user")
+
+    @property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache style log formatting.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        The path to upload logs to
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[str]:
+        """
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
+
+
+@pulumi.output_type
+class ServiceVclLoggingDatadog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingDatadog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingDatadog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingDatadog.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  name: str,
-                 action: Optional[str] = None,
-                 cache_condition: Optional[str] = None,
-                 stale_ttl: Optional[int] = None,
-                 ttl: Optional[int] = None):
+                 token: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 region: Optional[str] = None,
+                 response_condition: Optional[str] = None):
         """
-        :param str name: Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
-        :param str action: One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
-        :param str cache_condition: Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
-        :param int stale_ttl: Max "Time To Live" for stale (unreachable) objects
-        :param int ttl: The Time-To-Live (TTL) for the object
+        :param str name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: The API key from your Datadog account
+        :param str format: Apache-style string or VCL variables to use for log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        :param str response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "name", name)
-        if action is not None:
-            pulumi.set(__self__, "action", action)
-        if cache_condition is not None:
-            pulumi.set(__self__, "cache_condition", cache_condition)
-        if stale_ttl is not None:
-            pulumi.set(__self__, "stale_ttl", stale_ttl)
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
+        pulumi.set(__self__, "token", token)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
+        The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def action(self) -> Optional[str]:
+    def token(self) -> str:
         """
-        One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
+        The API key from your Datadog account
         """
-        return pulumi.get(self, "action")
-
-    @property
-    @pulumi.getter(name="cacheCondition")
-    def cache_condition(self) -> Optional[str]:
-        """
-        Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
-        """
-        return pulumi.get(self, "cache_condition")
-
-    @property
-    @pulumi.getter(name="staleTtl")
-    def stale_ttl(self) -> Optional[int]:
-        """
-        Max "Time To Live" for stale (unreachable) objects
-        """
-        return pulumi.get(self, "stale_ttl")
+        return pulumi.get(self, "token")
 
     @property
     @pulumi.getter
-    def ttl(self) -> Optional[int]:
+    def format(self) -> Optional[str]:
         """
-        The Time-To-Live (TTL) for the object
+        Apache-style string or VCL variables to use for log formatting.
         """
-        return pulumi.get(self, "ttl")
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of the condition to apply.
+        """
+        return pulumi.get(self, "response_condition")
 
 
 @pulumi.output_type
-class Servicev1Condition(dict):
-    def __init__(__self__, *,
-                 name: str,
-                 statement: str,
-                 type: str,
-                 priority: Optional[int] = None):
-        """
-        :param str name: The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
-        :param str statement: The statement used to determine if the condition is met
-        :param str type: Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
-        :param int priority: A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "statement", statement)
-        pulumi.set(__self__, "type", type)
-        if priority is not None:
-            pulumi.set(__self__, "priority", priority)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def statement(self) -> str:
-        """
-        The statement used to determine if the condition is met
-        """
-        return pulumi.get(self, "statement")
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
-        """
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter
-    def priority(self) -> Optional[int]:
-        """
-        A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
-        """
-        return pulumi.get(self, "priority")
-
-
-@pulumi.output_type
-class Servicev1Dictionary(dict):
+class ServiceVclLoggingDigitalocean(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "dictionaryId":
-            suggest = "dictionary_id"
-        elif key == "forceDestroy":
-            suggest = "force_destroy"
-        elif key == "writeOnly":
-            suggest = "write_only"
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Dictionary. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingDigitalocean. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Dictionary.__key_warning(key)
+        ServiceVclLoggingDigitalocean.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Dictionary.__key_warning(key)
+        ServiceVclLoggingDigitalocean.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 access_key: str,
+                 bucket_name: str,
                  name: str,
-                 dictionary_id: Optional[str] = None,
-                 force_destroy: Optional[bool] = None,
-                 write_only: Optional[bool] = None):
+                 secret_key: str,
+                 compression_codec: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 path: Optional[str] = None,
+                 period: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 public_key: Optional[str] = None,
+                 response_condition: Optional[str] = None,
+                 timestamp_format: Optional[str] = None):
         """
-        :param str name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
-        :param str dictionary_id: The ID of the dictionary
-        :param bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
-        :param bool write_only: If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
+        :param str access_key: Your DigitalOcean Spaces account access key
+        :param str bucket_name: The name of the DigitalOcean Space
+        :param str name: The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str secret_key: Your DigitalOcean Spaces account secret key
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        :param str format: Apache style log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str path: The path to upload logs to
+        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
-        if dictionary_id is not None:
-            pulumi.set(__self__, "dictionary_id", dictionary_id)
-        if force_destroy is not None:
-            pulumi.set(__self__, "force_destroy", force_destroy)
-        if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+        pulumi.set(__self__, "secret_key", secret_key)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> str:
+        """
+        Your DigitalOcean Spaces account access key
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        The name of the DigitalOcean Space
+        """
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
     @property
-    @pulumi.getter(name="dictionaryId")
-    def dictionary_id(self) -> Optional[str]:
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
         """
-        The ID of the dictionary
+        Your DigitalOcean Spaces account secret key
         """
-        return pulumi.get(self, "dictionary_id")
+        return pulumi.get(self, "secret_key")
 
     @property
-    @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[bool]:
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[str]:
         """
-        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         """
-        return pulumi.get(self, "force_destroy")
+        return pulumi.get(self, "compression_codec")
 
     @property
-    @pulumi.getter(name="writeOnly")
-    def write_only(self) -> Optional[bool]:
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
         """
-        If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of his provider.
+        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         """
-        return pulumi.get(self, "write_only")
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache style log formatting.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        The path to upload logs to
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[str]:
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
 
 
 @pulumi.output_type
-class Servicev1Director(dict):
-    def __init__(__self__, *,
-                 backends: Sequence[str],
-                 name: str,
-                 capacity: Optional[int] = None,
-                 comment: Optional[str] = None,
-                 quorum: Optional[int] = None,
-                 retries: Optional[int] = None,
-                 shield: Optional[str] = None,
-                 type: Optional[int] = None):
-        """
-        :param Sequence[str] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-        :param str name: Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-        :param int capacity: Load balancing weight for the backends. Default `100`
-        :param str comment: An optional comment about the Director
-        :param int quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-        :param int retries: How many backends to search if it fails. Default `5`
-        :param str shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-        :param int type: Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-        """
-        pulumi.set(__self__, "backends", backends)
-        pulumi.set(__self__, "name", name)
-        if capacity is not None:
-            pulumi.set(__self__, "capacity", capacity)
-        if comment is not None:
-            pulumi.set(__self__, "comment", comment)
-        if quorum is not None:
-            pulumi.set(__self__, "quorum", quorum)
-        if retries is not None:
-            pulumi.set(__self__, "retries", retries)
-        if shield is not None:
-            pulumi.set(__self__, "shield", shield)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def backends(self) -> Sequence[str]:
-        """
-        Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-        """
-        return pulumi.get(self, "backends")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def capacity(self) -> Optional[int]:
-        """
-        Load balancing weight for the backends. Default `100`
-        """
-        return pulumi.get(self, "capacity")
-
-    @property
-    @pulumi.getter
-    def comment(self) -> Optional[str]:
-        """
-        An optional comment about the Director
-        """
-        return pulumi.get(self, "comment")
-
-    @property
-    @pulumi.getter
-    def quorum(self) -> Optional[int]:
-        """
-        Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-        """
-        return pulumi.get(self, "quorum")
-
-    @property
-    @pulumi.getter
-    def retries(self) -> Optional[int]:
-        """
-        How many backends to search if it fails. Default `5`
-        """
-        return pulumi.get(self, "retries")
-
-    @property
-    @pulumi.getter
-    def shield(self) -> Optional[str]:
-        """
-        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-        """
-        return pulumi.get(self, "shield")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[int]:
-        """
-        Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class Servicev1Domain(dict):
-    def __init__(__self__, *,
-                 name: str,
-                 comment: Optional[str] = None):
-        """
-        :param str name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
-        :param str comment: An optional comment about the Domain.
-        """
-        pulumi.set(__self__, "name", name)
-        if comment is not None:
-            pulumi.set(__self__, "comment", comment)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def comment(self) -> Optional[str]:
-        """
-        An optional comment about the Domain.
-        """
-        return pulumi.get(self, "comment")
-
-
-@pulumi.output_type
-class Servicev1Dynamicsnippet(dict):
+class ServiceVclLoggingElasticsearch(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "snippetId":
-            suggest = "snippet_id"
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "requestMaxBytes":
+            suggest = "request_max_bytes"
+        elif key == "requestMaxEntries":
+            suggest = "request_max_entries"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Dynamicsnippet. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingElasticsearch. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Dynamicsnippet.__key_warning(key)
+        ServiceVclLoggingElasticsearch.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Dynamicsnippet.__key_warning(key)
+        ServiceVclLoggingElasticsearch.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 index: str,
                  name: str,
-                 type: str,
-                 priority: Optional[int] = None,
-                 snippet_id: Optional[str] = None):
+                 url: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 password: Optional[str] = None,
+                 pipeline: Optional[str] = None,
+                 placement: Optional[str] = None,
+                 request_max_bytes: Optional[int] = None,
+                 request_max_entries: Optional[int] = None,
+                 response_condition: Optional[str] = None,
+                 tls_ca_cert: Optional[str] = None,
+                 tls_client_cert: Optional[str] = None,
+                 tls_client_key: Optional[str] = None,
+                 tls_hostname: Optional[str] = None,
+                 user: Optional[str] = None):
         """
-        :param str name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
-        :param str type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
-        :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
-        :param str snippet_id: The ID of the dynamic snippet
+        :param str index: The name of the Elasticsearch index to send documents (logs) to
+        :param str name: The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str url: The Elasticsearch URL to stream logs to
+        :param str format: Apache-style string or VCL variables to use for log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param str password: BasicAuth password for Elasticsearch
+        :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param int request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        :param int request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        :param str response_condition: The name of the condition to apply
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
+        :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+        :param str user: BasicAuth username for Elasticsearch
         """
+        pulumi.set(__self__, "index", index)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
-        if priority is not None:
-            pulumi.set(__self__, "priority", priority)
-        if snippet_id is not None:
-            pulumi.set(__self__, "snippet_id", snippet_id)
+        pulumi.set(__self__, "url", url)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if pipeline is not None:
+            pulumi.set(__self__, "pipeline", pipeline)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if request_max_bytes is not None:
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+        if request_max_entries is not None:
+            pulumi.set(__self__, "request_max_entries", request_max_entries)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if tls_ca_cert is not None:
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
+        if tls_hostname is not None:
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def index(self) -> str:
+        """
+        The name of the Elasticsearch index to send documents (logs) to
+        """
+        return pulumi.get(self, "index")
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+        The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def url(self) -> str:
         """
-        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        The Elasticsearch URL to stream logs to
         """
-        return pulumi.get(self, "type")
+        return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[int]:
+    def format(self) -> Optional[str]:
         """
-        Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+        Apache-style string or VCL variables to use for log formatting.
         """
-        return pulumi.get(self, "priority")
+        return pulumi.get(self, "format")
 
     @property
-    @pulumi.getter(name="snippetId")
-    def snippet_id(self) -> Optional[str]:
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
         """
-        The ID of the dynamic snippet
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
-        return pulumi.get(self, "snippet_id")
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        BasicAuth password for Elasticsearch
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def pipeline(self) -> Optional[str]:
+        """
+        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        """
+        return pulumi.get(self, "pipeline")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="requestMaxBytes")
+    def request_max_bytes(self) -> Optional[int]:
+        """
+        The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        """
+        return pulumi.get(self, "request_max_bytes")
+
+    @property
+    @pulumi.getter(name="requestMaxEntries")
+    def request_max_entries(self) -> Optional[int]:
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        """
+        return pulumi.get(self, "request_max_entries")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of the condition to apply
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="tlsCaCert")
+    def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        return pulumi.get(self, "tls_ca_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientCert")
+    def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        return pulumi.get(self, "tls_client_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientKey")
+    def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        return pulumi.get(self, "tls_client_key")
+
+    @property
+    @pulumi.getter(name="tlsHostname")
+    def tls_hostname(self) -> Optional[str]:
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+        """
+        return pulumi.get(self, "tls_hostname")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[str]:
+        """
+        BasicAuth username for Elasticsearch
+        """
+        return pulumi.get(self, "user")
 
 
 @pulumi.output_type
-class Servicev1Gcslogging(dict):
+class ServiceVclLoggingFtp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingFtp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingFtp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingFtp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address: str,
+                 name: str,
+                 password: str,
+                 path: str,
+                 user: str,
+                 compression_codec: Optional[str] = None,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 period: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 port: Optional[int] = None,
+                 public_key: Optional[str] = None,
+                 response_condition: Optional[str] = None,
+                 timestamp_format: Optional[str] = None):
+        """
+        :param str address: The FTP address to stream logs to
+        :param str name: The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str password: The password for the server (for anonymous use an email address)
+        :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        :param str user: The username for the server (can be `anonymous`)
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str format: Apache-style string or VCL variables to use for log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param int period: How frequently the logs should be transferred, in seconds (Default `3600`)
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param int port: The port number. Default: `21`
+        :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param str response_condition: The name of the condition to apply.
+        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "user", user)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The FTP address to stream logs to
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The password for the server (for anonymous use an email address)
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The username for the server (can be `anonymous`)
+        """
+        return pulumi.get(self, "user")
+
+    @property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        How frequently the logs should be transferred, in seconds (Default `3600`)
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The port number. Default: `21`
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[str]:
+        """
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of the condition to apply.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
+
+
+@pulumi.output_type
+class ServiceVclLoggingGc(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -5345,6 +6589,8 @@ class Servicev1Gcslogging(dict):
             suggest = "bucket_name"
         elif key == "compressionCodec":
             suggest = "compression_codec"
+        elif key == "formatVersion":
+            suggest = "format_version"
         elif key == "gzipLevel":
             suggest = "gzip_level"
         elif key == "messageType":
@@ -5357,22 +6603,22 @@ class Servicev1Gcslogging(dict):
             suggest = "timestamp_format"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Gcslogging. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingGc. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Gcslogging.__key_warning(key)
+        ServiceVclLoggingGc.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Gcslogging.__key_warning(key)
+        ServiceVclLoggingGc.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  bucket_name: str,
                  name: str,
                  compression_codec: Optional[str] = None,
-                 email: Optional[str] = None,
                  format: Optional[str] = None,
+                 format_version: Optional[int] = None,
                  gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
@@ -5380,13 +6626,14 @@ class Servicev1Gcslogging(dict):
                  placement: Optional[str] = None,
                  response_condition: Optional[str] = None,
                  secret_key: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
+                 timestamp_format: Optional[str] = None,
+                 user: Optional[str] = None):
         """
         :param str bucket_name: The name of the bucket in which to store the logs
         :param str name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param str email: The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
         :param str format: Apache-style string or VCL variables to use for log formatting
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
@@ -5395,15 +6642,16 @@ class Servicev1Gcslogging(dict):
         :param str response_condition: Name of a condition to apply this logging.
         :param str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
-        if email is not None:
-            pulumi.set(__self__, "email", email)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
             pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
@@ -5420,6 +6668,8 @@ class Servicev1Gcslogging(dict):
             pulumi.set(__self__, "secret_key", secret_key)
         if timestamp_format is not None:
             pulumi.set(__self__, "timestamp_format", timestamp_format)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -5447,19 +6697,19 @@ class Servicev1Gcslogging(dict):
 
     @property
     @pulumi.getter
-    def email(self) -> Optional[str]:
-        """
-        The email address associated with the target GCS bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_EMAIL`
-        """
-        return pulumi.get(self, "email")
-
-    @property
-    @pulumi.getter
     def format(self) -> Optional[str]:
         """
         Apache-style string or VCL variables to use for log formatting
         """
         return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        """
+        return pulumi.get(self, "format_version")
 
     @property
     @pulumi.getter(name="gzipLevel")
@@ -5525,409 +6775,364 @@ class Servicev1Gcslogging(dict):
         """
         return pulumi.get(self, "timestamp_format")
 
-
-@pulumi.output_type
-class Servicev1Gzip(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "cacheCondition":
-            suggest = "cache_condition"
-        elif key == "contentTypes":
-            suggest = "content_types"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Gzip. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1Gzip.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1Gzip.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 cache_condition: Optional[str] = None,
-                 content_types: Optional[Sequence[str]] = None,
-                 extensions: Optional[Sequence[str]] = None):
-        """
-        :param str name: A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
-        :param str cache_condition: Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        :param Sequence[str] content_types: The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
-        :param Sequence[str] extensions: File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
-        """
-        pulumi.set(__self__, "name", name)
-        if cache_condition is not None:
-            pulumi.set(__self__, "cache_condition", cache_condition)
-        if content_types is not None:
-            pulumi.set(__self__, "content_types", content_types)
-        if extensions is not None:
-            pulumi.set(__self__, "extensions", extensions)
-
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def user(self) -> Optional[str]:
         """
-        A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="cacheCondition")
-    def cache_condition(self) -> Optional[str]:
-        """
-        Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        """
-        return pulumi.get(self, "cache_condition")
-
-    @property
-    @pulumi.getter(name="contentTypes")
-    def content_types(self) -> Optional[Sequence[str]]:
-        """
-        The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
-        """
-        return pulumi.get(self, "content_types")
-
-    @property
-    @pulumi.getter
-    def extensions(self) -> Optional[Sequence[str]]:
-        """
-        File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
-        """
-        return pulumi.get(self, "extensions")
+        return pulumi.get(self, "user")
 
 
 @pulumi.output_type
-class Servicev1Header(dict):
+class ServiceVclLoggingGooglepubsub(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "cacheCondition":
-            suggest = "cache_condition"
-        elif key == "ignoreIfSet":
-            suggest = "ignore_if_set"
-        elif key == "requestCondition":
-            suggest = "request_condition"
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "secretKey":
+            suggest = "secret_key"
+        elif key == "formatVersion":
+            suggest = "format_version"
         elif key == "responseCondition":
             suggest = "response_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Header. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingGooglepubsub. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Header.__key_warning(key)
+        ServiceVclLoggingGooglepubsub.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Header.__key_warning(key)
+        ServiceVclLoggingGooglepubsub.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 action: str,
-                 destination: str,
                  name: str,
-                 type: str,
-                 cache_condition: Optional[str] = None,
-                 ignore_if_set: Optional[bool] = None,
-                 priority: Optional[int] = None,
-                 regex: Optional[str] = None,
-                 request_condition: Optional[str] = None,
-                 response_condition: Optional[str] = None,
-                 source: Optional[str] = None,
-                 substitution: Optional[str] = None):
+                 project_id: str,
+                 secret_key: str,
+                 topic: str,
+                 user: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 response_condition: Optional[str] = None):
         """
-        :param str action: The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
-        :param str destination: The name of the header that is going to be affected by the Action
-        :param str name: Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
-        :param str type: The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
-        :param str cache_condition: Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
-        :param bool ignore_if_set: Don't add the header if it is already. (Only applies to `set` action.). Default `false`
-        :param int priority: Lower priorities execute first. Default: `100`
-        :param str regex: Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
-        :param str request_condition: Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
-        :param str response_condition: Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        :param str source: Variable to be used as a source for the header content (Does not apply to `delete` action.)
-        :param str substitution: Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+        :param str name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str project_id: The ID of your Google Cloud Platform project
+        :param str secret_key: Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+        :param str topic: The Google Cloud Pub/Sub topic to which logs will be published
+        :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+        :param str format: Apache style log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "destination", destination)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
-        if cache_condition is not None:
-            pulumi.set(__self__, "cache_condition", cache_condition)
-        if ignore_if_set is not None:
-            pulumi.set(__self__, "ignore_if_set", ignore_if_set)
-        if priority is not None:
-            pulumi.set(__self__, "priority", priority)
-        if regex is not None:
-            pulumi.set(__self__, "regex", regex)
-        if request_condition is not None:
-            pulumi.set(__self__, "request_condition", request_condition)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "user", user)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
-        if source is not None:
-            pulumi.set(__self__, "source", source)
-        if substitution is not None:
-            pulumi.set(__self__, "substitution", substitution)
-
-    @property
-    @pulumi.getter
-    def action(self) -> str:
-        """
-        The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
-        """
-        return pulumi.get(self, "action")
-
-    @property
-    @pulumi.getter
-    def destination(self) -> str:
-        """
-        The name of the header that is going to be affected by the Action
-        """
-        return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
+        The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
     @property
-    @pulumi.getter
-    def type(self) -> str:
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
         """
-        The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+        The ID of your Google Cloud Platform project
         """
-        return pulumi.get(self, "type")
+        return pulumi.get(self, "project_id")
 
     @property
-    @pulumi.getter(name="cacheCondition")
-    def cache_condition(self) -> Optional[str]:
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
         """
-        Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         """
-        return pulumi.get(self, "cache_condition")
-
-    @property
-    @pulumi.getter(name="ignoreIfSet")
-    def ignore_if_set(self) -> Optional[bool]:
-        """
-        Don't add the header if it is already. (Only applies to `set` action.). Default `false`
-        """
-        return pulumi.get(self, "ignore_if_set")
+        return pulumi.get(self, "secret_key")
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[int]:
+    def topic(self) -> str:
         """
-        Lower priorities execute first. Default: `100`
+        The Google Cloud Pub/Sub topic to which logs will be published
         """
-        return pulumi.get(self, "priority")
+        return pulumi.get(self, "topic")
 
     @property
     @pulumi.getter
-    def regex(self) -> Optional[str]:
+    def user(self) -> str:
         """
-        Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         """
-        return pulumi.get(self, "regex")
+        return pulumi.get(self, "user")
 
     @property
-    @pulumi.getter(name="requestCondition")
-    def request_condition(self) -> Optional[str]:
+    @pulumi.getter
+    def format(self) -> Optional[str]:
         """
-        Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+        Apache style log formatting.
         """
-        return pulumi.get(self, "request_condition")
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
 
     @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[str]:
         """
-        Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
-    @property
-    @pulumi.getter
-    def source(self) -> Optional[str]:
-        """
-        Variable to be used as a source for the header content (Does not apply to `delete` action.)
-        """
-        return pulumi.get(self, "source")
-
-    @property
-    @pulumi.getter
-    def substitution(self) -> Optional[str]:
-        """
-        Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
-        """
-        return pulumi.get(self, "substitution")
-
 
 @pulumi.output_type
-class Servicev1Healthcheck(dict):
+class ServiceVclLoggingHerokus(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "checkInterval":
-            suggest = "check_interval"
-        elif key == "expectedResponse":
-            suggest = "expected_response"
-        elif key == "httpVersion":
-            suggest = "http_version"
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Healthcheck. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingHerokus. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Healthcheck.__key_warning(key)
+        ServiceVclLoggingHerokus.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Healthcheck.__key_warning(key)
+        ServiceVclLoggingHerokus.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 host: str,
                  name: str,
-                 path: str,
-                 check_interval: Optional[int] = None,
-                 expected_response: Optional[int] = None,
-                 http_version: Optional[str] = None,
-                 initial: Optional[int] = None,
-                 method: Optional[str] = None,
-                 threshold: Optional[int] = None,
-                 timeout: Optional[int] = None,
-                 window: Optional[int] = None):
+                 token: str,
+                 url: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 response_condition: Optional[str] = None):
         """
-        :param str host: The Host header to send for this Healthcheck
-        :param str name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-        :param str path: The path to check
-        :param int check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
-        :param int expected_response: The status code expected from the host. Default `200`
-        :param str http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-        :param int initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
-        :param str method: Which HTTP method to use. Default `HEAD`
-        :param int threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
-        :param int timeout: Timeout in milliseconds. Default `500`
-        :param int window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+        :param str name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
+        :param str url: The URL to stream logs to
+        :param str format: Apache-style string or VCL variables to use for log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        if check_interval is not None:
-            pulumi.set(__self__, "check_interval", check_interval)
-        if expected_response is not None:
-            pulumi.set(__self__, "expected_response", expected_response)
-        if http_version is not None:
-            pulumi.set(__self__, "http_version", http_version)
-        if initial is not None:
-            pulumi.set(__self__, "initial", initial)
-        if method is not None:
-            pulumi.set(__self__, "method", method)
-        if threshold is not None:
-            pulumi.set(__self__, "threshold", threshold)
-        if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
-        if window is not None:
-            pulumi.set(__self__, "window", window)
-
-    @property
-    @pulumi.getter
-    def host(self) -> str:
-        """
-        The Host header to send for this Healthcheck
-        """
-        return pulumi.get(self, "host")
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def path(self) -> str:
+    def token(self) -> str:
         """
-        The path to check
+        The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter(name="checkInterval")
-    def check_interval(self) -> Optional[int]:
-        """
-        How often to run the Healthcheck in milliseconds. Default `5000`
-        """
-        return pulumi.get(self, "check_interval")
-
-    @property
-    @pulumi.getter(name="expectedResponse")
-    def expected_response(self) -> Optional[int]:
-        """
-        The status code expected from the host. Default `200`
-        """
-        return pulumi.get(self, "expected_response")
-
-    @property
-    @pulumi.getter(name="httpVersion")
-    def http_version(self) -> Optional[str]:
-        """
-        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-        """
-        return pulumi.get(self, "http_version")
+        return pulumi.get(self, "token")
 
     @property
     @pulumi.getter
-    def initial(self) -> Optional[int]:
+    def url(self) -> str:
         """
-        When loading a config, the initial number of probes to be seen as OK. Default `3`
+        The URL to stream logs to
         """
-        return pulumi.get(self, "initial")
+        return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
-    def method(self) -> Optional[str]:
+    def format(self) -> Optional[str]:
         """
-        Which HTTP method to use. Default `HEAD`
+        Apache-style string or VCL variables to use for log formatting.
         """
-        return pulumi.get(self, "method")
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
 
     @property
     @pulumi.getter
-    def threshold(self) -> Optional[int]:
+    def placement(self) -> Optional[str]:
         """
-        How many Healthchecks must succeed to be considered healthy. Default `3`
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         """
-        return pulumi.get(self, "threshold")
+        return pulumi.get(self, "placement")
 
     @property
-    @pulumi.getter
-    def timeout(self) -> Optional[int]:
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
         """
-        Timeout in milliseconds. Default `500`
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        return pulumi.get(self, "timeout")
-
-    @property
-    @pulumi.getter
-    def window(self) -> Optional[int]:
-        """
-        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-        """
-        return pulumi.get(self, "window")
+        return pulumi.get(self, "response_condition")
 
 
 @pulumi.output_type
-class Servicev1Httpslogging(dict):
+class ServiceVclLoggingHoneycomb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingHoneycomb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingHoneycomb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingHoneycomb.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset: str,
+                 name: str,
+                 token: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 response_condition: Optional[str] = None):
+        """
+        :param str dataset: The Honeycomb Dataset you want to log to
+        :param str name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: The Write Key from the Account page of your Honeycomb account
+        :param str format: Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+
+    @property
+    @pulumi.getter
+    def dataset(self) -> str:
+        """
+        The Honeycomb Dataset you want to log to
+        """
+        return pulumi.get(self, "dataset")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        """
+        The Write Key from the Account page of your Honeycomb account
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        return pulumi.get(self, "response_condition")
+
+
+@pulumi.output_type
+class ServiceVclLoggingHttp(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -5959,14 +7164,14 @@ class Servicev1Httpslogging(dict):
             suggest = "tls_hostname"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Httpslogging. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingHttp. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Httpslogging.__key_warning(key)
+        ServiceVclLoggingHttp.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Httpslogging.__key_warning(key)
+        ServiceVclLoggingHttp.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -6189,1492 +7394,7 @@ class Servicev1Httpslogging(dict):
 
 
 @pulumi.output_type
-class Servicev1Logentry(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "useTls":
-            suggest = "use_tls"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Logentry. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1Logentry.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1Logentry.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 token: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 port: Optional[int] = None,
-                 response_condition: Optional[str] = None,
-                 use_tls: Optional[bool] = None):
-        """
-        :param str name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str token: Use token based authentication (https://logentries.com/doc/input-token/)
-        :param str format: Apache-style string or VCL variables to use for log formatting
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param int port: The port number configured in Logentries
-        :param str response_condition: Name of blockAttributes condition to apply this logging.
-        :param bool use_tls: Whether to use TLS for secure logging
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def token(self) -> str:
-        """
-        Use token based authentication (https://logentries.com/doc/input-token/)
-        """
-        return pulumi.get(self, "token")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[int]:
-        """
-        The port number configured in Logentries
-        """
-        return pulumi.get(self, "port")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        Name of blockAttributes condition to apply this logging.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[bool]:
-        """
-        Whether to use TLS for secure logging
-        """
-        return pulumi.get(self, "use_tls")
-
-
-@pulumi.output_type
-class Servicev1LoggingCloudfile(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "accessKey":
-            suggest = "access_key"
-        elif key == "bucketName":
-            suggest = "bucket_name"
-        elif key == "compressionCodec":
-            suggest = "compression_codec"
-        elif key == "formatVersion":
-            suggest = "format_version"
-        elif key == "gzipLevel":
-            suggest = "gzip_level"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "publicKey":
-            suggest = "public_key"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "timestampFormat":
-            suggest = "timestamp_format"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingCloudfile. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingCloudfile.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingCloudfile.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 access_key: str,
-                 bucket_name: str,
-                 name: str,
-                 user: str,
-                 compression_codec: Optional[str] = None,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 gzip_level: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 path: Optional[str] = None,
-                 period: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 public_key: Optional[str] = None,
-                 region: Optional[str] = None,
-                 response_condition: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
-        """
-        :param str access_key: Your Cloud File account access key
-        :param str bucket_name: The name of your Cloud Files container
-        :param str name: The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str user: The username for your Cloud Files account
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param str format: Apache style log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str path: The path to upload logs to
-        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
-        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "user", user)
-        if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> str:
-        """
-        Your Cloud File account access key
-        """
-        return pulumi.get(self, "access_key")
-
-    @property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> str:
-        """
-        The name of your Cloud Files container
-        """
-        return pulumi.get(self, "bucket_name")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def user(self) -> str:
-        """
-        The username for your Cloud Files account
-        """
-        return pulumi.get(self, "user")
-
-    @property
-    @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[str]:
-        """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        """
-        return pulumi.get(self, "compression_codec")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache style log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[int]:
-        """
-        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        """
-        return pulumi.get(self, "gzip_level")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[str]:
-        """
-        The path to upload logs to
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        """
-        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[str]:
-        """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        """
-        return pulumi.get(self, "public_key")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[str]:
-        """
-        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
-        """
-        return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[str]:
-        """
-        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        return pulumi.get(self, "timestamp_format")
-
-
-@pulumi.output_type
-class Servicev1LoggingDatadog(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingDatadog. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingDatadog.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingDatadog.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 token: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 region: Optional[str] = None,
-                 response_condition: Optional[str] = None):
-        """
-        :param str name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str token: The API key from your Datadog account
-        :param str format: Apache-style string or VCL variables to use for log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
-        :param str response_condition: The name of the condition to apply.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def token(self) -> str:
-        """
-        The API key from your Datadog account
-        """
-        return pulumi.get(self, "token")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[str]:
-        """
-        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
-        """
-        return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of the condition to apply.
-        """
-        return pulumi.get(self, "response_condition")
-
-
-@pulumi.output_type
-class Servicev1LoggingDigitalocean(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "accessKey":
-            suggest = "access_key"
-        elif key == "bucketName":
-            suggest = "bucket_name"
-        elif key == "secretKey":
-            suggest = "secret_key"
-        elif key == "compressionCodec":
-            suggest = "compression_codec"
-        elif key == "formatVersion":
-            suggest = "format_version"
-        elif key == "gzipLevel":
-            suggest = "gzip_level"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "publicKey":
-            suggest = "public_key"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "timestampFormat":
-            suggest = "timestamp_format"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingDigitalocean. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingDigitalocean.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingDigitalocean.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 access_key: str,
-                 bucket_name: str,
-                 name: str,
-                 secret_key: str,
-                 compression_codec: Optional[str] = None,
-                 domain: Optional[str] = None,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 gzip_level: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 path: Optional[str] = None,
-                 period: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 public_key: Optional[str] = None,
-                 response_condition: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
-        """
-        :param str access_key: Your DigitalOcean Spaces account access key
-        :param str bucket_name: The name of the DigitalOcean Space
-        :param str name: The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str secret_key: Your DigitalOcean Spaces account secret key
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param str domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param str format: Apache style log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str path: The path to upload logs to
-        :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "secret_key", secret_key)
-        if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
-        if domain is not None:
-            pulumi.set(__self__, "domain", domain)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> str:
-        """
-        Your DigitalOcean Spaces account access key
-        """
-        return pulumi.get(self, "access_key")
-
-    @property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> str:
-        """
-        The name of the DigitalOcean Space
-        """
-        return pulumi.get(self, "bucket_name")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> str:
-        """
-        Your DigitalOcean Spaces account secret key
-        """
-        return pulumi.get(self, "secret_key")
-
-    @property
-    @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[str]:
-        """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        """
-        return pulumi.get(self, "compression_codec")
-
-    @property
-    @pulumi.getter
-    def domain(self) -> Optional[str]:
-        """
-        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        """
-        return pulumi.get(self, "domain")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache style log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[int]:
-        """
-        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        """
-        return pulumi.get(self, "gzip_level")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[str]:
-        """
-        The path to upload logs to
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        """
-        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[str]:
-        """
-        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        """
-        return pulumi.get(self, "public_key")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[str]:
-        """
-        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        return pulumi.get(self, "timestamp_format")
-
-
-@pulumi.output_type
-class Servicev1LoggingElasticsearch(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "requestMaxBytes":
-            suggest = "request_max_bytes"
-        elif key == "requestMaxEntries":
-            suggest = "request_max_entries"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "tlsCaCert":
-            suggest = "tls_ca_cert"
-        elif key == "tlsClientCert":
-            suggest = "tls_client_cert"
-        elif key == "tlsClientKey":
-            suggest = "tls_client_key"
-        elif key == "tlsHostname":
-            suggest = "tls_hostname"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingElasticsearch. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingElasticsearch.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingElasticsearch.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 index: str,
-                 name: str,
-                 url: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 password: Optional[str] = None,
-                 pipeline: Optional[str] = None,
-                 placement: Optional[str] = None,
-                 request_max_bytes: Optional[int] = None,
-                 request_max_entries: Optional[int] = None,
-                 response_condition: Optional[str] = None,
-                 tls_ca_cert: Optional[str] = None,
-                 tls_client_cert: Optional[str] = None,
-                 tls_client_key: Optional[str] = None,
-                 tls_hostname: Optional[str] = None,
-                 user: Optional[str] = None):
-        """
-        :param str index: The name of the Elasticsearch index to send documents (logs) to
-        :param str name: The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str url: The Elasticsearch URL to stream logs to
-        :param str format: Apache-style string or VCL variables to use for log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param str password: BasicAuth password for Elasticsearch
-        :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param int request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
-        :param int request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
-        :param str response_condition: The name of the condition to apply
-        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
-        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
-        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
-        :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
-        :param str user: BasicAuth username for Elasticsearch
-        """
-        pulumi.set(__self__, "index", index)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if password is not None:
-            pulumi.set(__self__, "password", password)
-        if pipeline is not None:
-            pulumi.set(__self__, "pipeline", pipeline)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
-        if request_max_entries is not None:
-            pulumi.set(__self__, "request_max_entries", request_max_entries)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-        if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
-        if user is not None:
-            pulumi.set(__self__, "user", user)
-
-    @property
-    @pulumi.getter
-    def index(self) -> str:
-        """
-        The name of the Elasticsearch index to send documents (logs) to
-        """
-        return pulumi.get(self, "index")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def url(self) -> str:
-        """
-        The Elasticsearch URL to stream logs to
-        """
-        return pulumi.get(self, "url")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter
-    def password(self) -> Optional[str]:
-        """
-        BasicAuth password for Elasticsearch
-        """
-        return pulumi.get(self, "password")
-
-    @property
-    @pulumi.getter
-    def pipeline(self) -> Optional[str]:
-        """
-        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-        """
-        return pulumi.get(self, "pipeline")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[int]:
-        """
-        The maximum number of logs sent in one request. Defaults to `0` for unbounded
-        """
-        return pulumi.get(self, "request_max_bytes")
-
-    @property
-    @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[int]:
-        """
-        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
-        """
-        return pulumi.get(self, "request_max_entries")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of the condition to apply
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[str]:
-        """
-        A secure certificate to authenticate the server with. Must be in PEM format
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[str]:
-        """
-        The client certificate used to make authenticated requests. Must be in PEM format
-        """
-        return pulumi.get(self, "tls_client_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[str]:
-        """
-        The client private key used to make authenticated requests. Must be in PEM format
-        """
-        return pulumi.get(self, "tls_client_key")
-
-    @property
-    @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[str]:
-        """
-        The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
-        """
-        return pulumi.get(self, "tls_hostname")
-
-    @property
-    @pulumi.getter
-    def user(self) -> Optional[str]:
-        """
-        BasicAuth username for Elasticsearch
-        """
-        return pulumi.get(self, "user")
-
-
-@pulumi.output_type
-class Servicev1LoggingFtp(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "compressionCodec":
-            suggest = "compression_codec"
-        elif key == "formatVersion":
-            suggest = "format_version"
-        elif key == "gzipLevel":
-            suggest = "gzip_level"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "publicKey":
-            suggest = "public_key"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "timestampFormat":
-            suggest = "timestamp_format"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingFtp. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingFtp.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingFtp.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 address: str,
-                 name: str,
-                 password: str,
-                 path: str,
-                 user: str,
-                 compression_codec: Optional[str] = None,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 gzip_level: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 period: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 port: Optional[int] = None,
-                 public_key: Optional[str] = None,
-                 response_condition: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
-        """
-        :param str address: The FTP address to stream logs to
-        :param str name: The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str password: The password for the server (for anonymous use an email address)
-        :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
-        :param str user: The username for the server (can be `anonymous`)
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param str format: Apache-style string or VCL variables to use for log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param int period: How frequently the logs should be transferred, in seconds (Default `3600`)
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param int port: The port number. Default: `21`
-        :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param str response_condition: The name of the condition to apply.
-        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "user", user)
-        if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
-
-    @property
-    @pulumi.getter
-    def address(self) -> str:
-        """
-        The FTP address to stream logs to
-        """
-        return pulumi.get(self, "address")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def password(self) -> str:
-        """
-        The password for the server (for anonymous use an email address)
-        """
-        return pulumi.get(self, "password")
-
-    @property
-    @pulumi.getter
-    def path(self) -> str:
-        """
-        The path to upload log files to. If the path ends in `/` then it is treated as a directory
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def user(self) -> str:
-        """
-        The username for the server (can be `anonymous`)
-        """
-        return pulumi.get(self, "user")
-
-    @property
-    @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[str]:
-        """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        """
-        return pulumi.get(self, "compression_codec")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[int]:
-        """
-        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        """
-        return pulumi.get(self, "gzip_level")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        """
-        How frequently the logs should be transferred, in seconds (Default `3600`)
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[int]:
-        """
-        The port number. Default: `21`
-        """
-        return pulumi.get(self, "port")
-
-    @property
-    @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[str]:
-        """
-        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        """
-        return pulumi.get(self, "public_key")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of the condition to apply.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[str]:
-        """
-        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        return pulumi.get(self, "timestamp_format")
-
-
-@pulumi.output_type
-class Servicev1LoggingGooglepubsub(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "projectId":
-            suggest = "project_id"
-        elif key == "secretKey":
-            suggest = "secret_key"
-        elif key == "formatVersion":
-            suggest = "format_version"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingGooglepubsub. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingGooglepubsub.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingGooglepubsub.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 project_id: str,
-                 secret_key: str,
-                 topic: str,
-                 user: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 response_condition: Optional[str] = None):
-        """
-        :param str name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str project_id: The ID of your Google Cloud Platform project
-        :param str secret_key: Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
-        :param str topic: The Google Cloud Pub/Sub topic to which logs will be published
-        :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
-        :param str format: Apache style log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "secret_key", secret_key)
-        pulumi.set(__self__, "topic", topic)
-        pulumi.set(__self__, "user", user)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The ID of your Google Cloud Platform project
-        """
-        return pulumi.get(self, "project_id")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> str:
-        """
-        Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @property
-    @pulumi.getter
-    def topic(self) -> str:
-        """
-        The Google Cloud Pub/Sub topic to which logs will be published
-        """
-        return pulumi.get(self, "topic")
-
-    @property
-    @pulumi.getter
-    def user(self) -> str:
-        """
-        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
-        """
-        return pulumi.get(self, "user")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache style log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        return pulumi.get(self, "response_condition")
-
-
-@pulumi.output_type
-class Servicev1LoggingHeroku(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingHeroku. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingHeroku.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingHeroku.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 token: str,
-                 url: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 response_condition: Optional[str] = None):
-        """
-        :param str name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
-        :param str url: The URL to stream logs to
-        :param str format: Apache-style string or VCL variables to use for log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def token(self) -> str:
-        """
-        The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
-        """
-        return pulumi.get(self, "token")
-
-    @property
-    @pulumi.getter
-    def url(self) -> str:
-        """
-        The URL to stream logs to
-        """
-        return pulumi.get(self, "url")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        return pulumi.get(self, "response_condition")
-
-
-@pulumi.output_type
-class Servicev1LoggingHoneycomb(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingHoneycomb. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingHoneycomb.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingHoneycomb.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 dataset: str,
-                 name: str,
-                 token: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 response_condition: Optional[str] = None):
-        """
-        :param str dataset: The Honeycomb Dataset you want to log to
-        :param str name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str token: The Write Key from the Account page of your Honeycomb account
-        :param str format: Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        pulumi.set(__self__, "dataset", dataset)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-
-    @property
-    @pulumi.getter
-    def dataset(self) -> str:
-        """
-        The Honeycomb Dataset you want to log to
-        """
-        return pulumi.get(self, "dataset")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def token(self) -> str:
-        """
-        The Write Key from the Account page of your Honeycomb account
-        """
-        return pulumi.get(self, "token")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        """
-        return pulumi.get(self, "response_condition")
-
-
-@pulumi.output_type
-class Servicev1LoggingKafka(dict):
+class ServiceVclLoggingKafka(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -7704,14 +7424,14 @@ class Servicev1LoggingKafka(dict):
             suggest = "use_tls"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingKafka. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingKafka. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingKafka.__key_warning(key)
+        ServiceVclLoggingKafka.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingKafka.__key_warning(key)
+        ServiceVclLoggingKafka.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -7945,7 +7665,7 @@ class Servicev1LoggingKafka(dict):
 
 
 @pulumi.output_type
-class Servicev1LoggingKinese(dict):
+class ServiceVclLoggingKinese(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -7961,14 +7681,14 @@ class Servicev1LoggingKinese(dict):
             suggest = "secret_key"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingKinese. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingKinese. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingKinese.__key_warning(key)
+        ServiceVclLoggingKinese.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingKinese.__key_warning(key)
+        ServiceVclLoggingKinese.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -8095,7 +7815,129 @@ class Servicev1LoggingKinese(dict):
 
 
 @pulumi.output_type
-class Servicev1LoggingLoggly(dict):
+class ServiceVclLoggingLogentry(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingLogentry. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingLogentry.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingLogentry.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 token: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 port: Optional[int] = None,
+                 response_condition: Optional[str] = None,
+                 use_tls: Optional[bool] = None):
+        """
+        :param str name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: Use token based authentication (https://logentries.com/doc/input-token/)
+        :param str format: Apache-style string or VCL variables to use for log formatting
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param int port: The port number configured in Logentries
+        :param str response_condition: Name of blockAttributes condition to apply this logging.
+        :param bool use_tls: Whether to use TLS for secure logging
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        """
+        Use token based authentication (https://logentries.com/doc/input-token/)
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The port number configured in Logentries
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="useTls")
+    def use_tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS for secure logging
+        """
+        return pulumi.get(self, "use_tls")
+
+
+@pulumi.output_type
+class ServiceVclLoggingLoggly(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -8105,14 +7947,14 @@ class Servicev1LoggingLoggly(dict):
             suggest = "response_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingLoggly. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingLoggly. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingLoggly.__key_warning(key)
+        ServiceVclLoggingLoggly.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingLoggly.__key_warning(key)
+        ServiceVclLoggingLoggly.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -8191,7 +8033,7 @@ class Servicev1LoggingLoggly(dict):
 
 
 @pulumi.output_type
-class Servicev1LoggingLogshuttle(dict):
+class ServiceVclLoggingLogshuttle(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -8201,14 +8043,14 @@ class Servicev1LoggingLogshuttle(dict):
             suggest = "response_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingLogshuttle. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingLogshuttle. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingLogshuttle.__key_warning(key)
+        ServiceVclLoggingLogshuttle.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingLogshuttle.__key_warning(key)
+        ServiceVclLoggingLogshuttle.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -8298,7 +8140,7 @@ class Servicev1LoggingLogshuttle(dict):
 
 
 @pulumi.output_type
-class Servicev1LoggingNewrelic(dict):
+class ServiceVclLoggingNewrelic(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -8308,14 +8150,14 @@ class Servicev1LoggingNewrelic(dict):
             suggest = "response_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingNewrelic. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingNewrelic. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingNewrelic.__key_warning(key)
+        ServiceVclLoggingNewrelic.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingNewrelic.__key_warning(key)
+        ServiceVclLoggingNewrelic.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -8406,7 +8248,7 @@ class Servicev1LoggingNewrelic(dict):
 
 
 @pulumi.output_type
-class Servicev1LoggingOpenstack(dict):
+class ServiceVclLoggingOpenstack(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -8430,14 +8272,14 @@ class Servicev1LoggingOpenstack(dict):
             suggest = "timestamp_format"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingOpenstack. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingOpenstack. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingOpenstack.__key_warning(key)
+        ServiceVclLoggingOpenstack.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingOpenstack.__key_warning(key)
+        ServiceVclLoggingOpenstack.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -8633,7 +8475,7 @@ class Servicev1LoggingOpenstack(dict):
 
 
 @pulumi.output_type
-class Servicev1LoggingScalyr(dict):
+class ServiceVclLoggingPapertrail(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -8643,14 +8485,419 @@ class Servicev1LoggingScalyr(dict):
             suggest = "response_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingScalyr. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingPapertrail. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingScalyr.__key_warning(key)
+        ServiceVclLoggingPapertrail.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingScalyr.__key_warning(key)
+        ServiceVclLoggingPapertrail.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address: str,
+                 name: str,
+                 port: int,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 response_condition: Optional[str] = None):
+        """
+        :param str address: The address of the Papertrail endpoint
+        :param str name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param int port: The port associated with the address where the Papertrail endpoint can be accessed
+        :param str format: A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
+        :param int format_version: The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        :param str placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The address of the Papertrail endpoint
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port associated with the address where the Papertrail endpoint can be accessed
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute
+        """
+        return pulumi.get(self, "response_condition")
+
+
+@pulumi.output_type
+class ServiceVclLoggingS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "s3AccessKey":
+            suggest = "s3_access_key"
+        elif key == "s3IamRole":
+            suggest = "s3_iam_role"
+        elif key == "s3SecretKey":
+            suggest = "s3_secret_key"
+        elif key == "serverSideEncryption":
+            suggest = "server_side_encryption"
+        elif key == "serverSideEncryptionKmsKeyId":
+            suggest = "server_side_encryption_kms_key_id"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 name: str,
+                 acl: Optional[str] = None,
+                 compression_codec: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 gzip_level: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 path: Optional[str] = None,
+                 period: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 public_key: Optional[str] = None,
+                 redundancy: Optional[str] = None,
+                 response_condition: Optional[str] = None,
+                 s3_access_key: Optional[str] = None,
+                 s3_iam_role: Optional[str] = None,
+                 s3_secret_key: Optional[str] = None,
+                 server_side_encryption: Optional[str] = None,
+                 server_side_encryption_kms_key_id: Optional[str] = None,
+                 timestamp_format: Optional[str] = None):
+        """
+        :param str bucket_name: The name of the bucket in which to store the logs
+        :param str name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        :param str format: Apache-style string or VCL variables to use for log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param int period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param str redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
+        :param str response_condition: Name of blockAttributes condition to apply this logging.
+        :param str s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        :param str s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        if acl is not None:
+            pulumi.set(__self__, "acl", acl)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if redundancy is not None:
+            pulumi.set(__self__, "redundancy", redundancy)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if s3_access_key is not None:
+            pulumi.set(__self__, "s3_access_key", s3_access_key)
+        if s3_iam_role is not None:
+            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
+        if s3_secret_key is not None:
+            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
+        if server_side_encryption is not None:
+            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
+        if server_side_encryption_kms_key_id is not None:
+            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        The name of the bucket in which to store the logs
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def acl(self) -> Optional[str]:
+        """
+        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        """
+        return pulumi.get(self, "acl")
+
+    @property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
+        """
+        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[str]:
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def redundancy(self) -> Optional[str]:
+        """
+        The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
+        """
+        return pulumi.get(self, "redundancy")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="s3AccessKey")
+    def s3_access_key(self) -> Optional[str]:
+        """
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        """
+        return pulumi.get(self, "s3_access_key")
+
+    @property
+    @pulumi.getter(name="s3IamRole")
+    def s3_iam_role(self) -> Optional[str]:
+        """
+        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        """
+        return pulumi.get(self, "s3_iam_role")
+
+    @property
+    @pulumi.getter(name="s3SecretKey")
+    def s3_secret_key(self) -> Optional[str]:
+        """
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        """
+        return pulumi.get(self, "s3_secret_key")
+
+    @property
+    @pulumi.getter(name="serverSideEncryption")
+    def server_side_encryption(self) -> Optional[str]:
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        """
+        return pulumi.get(self, "server_side_encryption")
+
+    @property
+    @pulumi.getter(name="serverSideEncryptionKmsKeyId")
+    def server_side_encryption_kms_key_id(self) -> Optional[str]:
+        """
+        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        """
+        return pulumi.get(self, "server_side_encryption_kms_key_id")
+
+    @property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
+
+
+@pulumi.output_type
+class ServiceVclLoggingScalyr(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingScalyr. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingScalyr.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingScalyr.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -8741,7 +8988,7 @@ class Servicev1LoggingScalyr(dict):
 
 
 @pulumi.output_type
-class Servicev1LoggingSftp(dict):
+class ServiceVclLoggingSftp(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -8765,14 +9012,14 @@ class Servicev1LoggingSftp(dict):
             suggest = "timestamp_format"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1LoggingSftp. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingSftp. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1LoggingSftp.__key_warning(key)
+        ServiceVclLoggingSftp.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1LoggingSftp.__key_warning(key)
+        ServiceVclLoggingSftp.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -8992,7 +9239,7 @@ class Servicev1LoggingSftp(dict):
 
 
 @pulumi.output_type
-class Servicev1Papertrail(dict):
+class ServiceVclLoggingSplunk(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -9000,38 +9247,58 @@ class Servicev1Papertrail(dict):
             suggest = "format_version"
         elif key == "responseCondition":
             suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Papertrail. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingSplunk. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Papertrail.__key_warning(key)
+        ServiceVclLoggingSplunk.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Papertrail.__key_warning(key)
+        ServiceVclLoggingSplunk.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 address: str,
                  name: str,
-                 port: int,
+                 token: str,
+                 url: str,
                  format: Optional[str] = None,
                  format_version: Optional[int] = None,
                  placement: Optional[str] = None,
-                 response_condition: Optional[str] = None):
+                 response_condition: Optional[str] = None,
+                 tls_ca_cert: Optional[str] = None,
+                 tls_client_cert: Optional[str] = None,
+                 tls_client_key: Optional[str] = None,
+                 tls_hostname: Optional[str] = None,
+                 use_tls: Optional[bool] = None):
         """
-        :param str address: The address of the Papertrail endpoint
-        :param str name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param int port: The port associated with the address where the Papertrail endpoint can be accessed
-        :param str format: A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
-        :param int format_version: The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
-        :param str placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
-        :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
+        :param str name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: The Splunk token to be used for authentication
+        :param str url: The Splunk URL to stream logs to
+        :param str format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        :param str placement: Where in the generated VCL the logging call should be placed
+        :param str response_condition: The name of the condition to apply
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
+        :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        :param bool use_tls: Whether to use TLS for secure logging. Default: `false`
         """
-        pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if format_version is not None:
@@ -9040,36 +9307,46 @@ class Servicev1Papertrail(dict):
             pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
-
-    @property
-    @pulumi.getter
-    def address(self) -> str:
-        """
-        The address of the Papertrail endpoint
-        """
-        return pulumi.get(self, "address")
+        if tls_ca_cert is not None:
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
+        if tls_hostname is not None:
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def port(self) -> int:
+    def token(self) -> str:
         """
-        The port associated with the address where the Papertrail endpoint can be accessed
+        The Splunk token to be used for authentication
         """
-        return pulumi.get(self, "port")
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The Splunk URL to stream logs to
+        """
+        return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def format(self) -> Optional[str]:
         """
-        A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
+        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         """
         return pulumi.get(self, "format")
 
@@ -9077,7 +9354,7 @@ class Servicev1Papertrail(dict):
     @pulumi.getter(name="formatVersion")
     def format_version(self) -> Optional[int]:
         """
-        The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         """
         return pulumi.get(self, "format_version")
 
@@ -9085,7 +9362,7 @@ class Servicev1Papertrail(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
@@ -9093,13 +9370,367 @@ class Servicev1Papertrail(dict):
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[str]:
         """
-        The name of an existing condition in the configured endpoint, or leave blank to always execute
+        The name of the condition to apply
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="tlsCaCert")
+    def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        """
+        return pulumi.get(self, "tls_ca_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientCert")
+    def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format.
+        """
+        return pulumi.get(self, "tls_client_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientKey")
+    def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format.
+        """
+        return pulumi.get(self, "tls_client_key")
+
+    @property
+    @pulumi.getter(name="tlsHostname")
+    def tls_hostname(self) -> Optional[str]:
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        """
+        return pulumi.get(self, "tls_hostname")
+
+    @property
+    @pulumi.getter(name="useTls")
+    def use_tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS for secure logging. Default: `false`
+        """
+        return pulumi.get(self, "use_tls")
+
+
+@pulumi.output_type
+class ServiceVclLoggingSumologic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingSumologic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingSumologic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingSumologic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 url: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 placement: Optional[str] = None,
+                 response_condition: Optional[str] = None):
+        """
+        :param str name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str url: The URL to Sumologic collector endpoint
+        :param str format: Apache-style string or VCL variables to use for log formatting
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str response_condition: Name of blockAttributes condition to apply this logging.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL to Sumologic collector endpoint
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        Name of blockAttributes condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
 
 @pulumi.output_type
-class Servicev1RequestSetting(dict):
+class ServiceVclLoggingSyslog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "tlsCaCert":
+            suggest = "tls_ca_cert"
+        elif key == "tlsClientCert":
+            suggest = "tls_client_cert"
+        elif key == "tlsClientKey":
+            suggest = "tls_client_key"
+        elif key == "tlsHostname":
+            suggest = "tls_hostname"
+        elif key == "useTls":
+            suggest = "use_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingSyslog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingSyslog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingSyslog.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address: str,
+                 name: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 message_type: Optional[str] = None,
+                 placement: Optional[str] = None,
+                 port: Optional[int] = None,
+                 response_condition: Optional[str] = None,
+                 tls_ca_cert: Optional[str] = None,
+                 tls_client_cert: Optional[str] = None,
+                 tls_client_key: Optional[str] = None,
+                 tls_hostname: Optional[str] = None,
+                 token: Optional[str] = None,
+                 use_tls: Optional[bool] = None):
+        """
+        :param str address: A hostname or IPv4 address of the Syslog endpoint
+        :param str name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str format: Apache-style string or VCL variables to use for log formatting
+        :param int format_version: The version of the custom logging format. Can be either 1 or 2. (Default: 2)
+        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param int port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        :param str response_condition: Name of blockAttributes condition to apply this logging.
+        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        :param str tls_hostname: Used during the TLS handshake to validate the certificate
+        :param str token: Whether to prepend each message with a specific token
+        :param bool use_tls: Whether to use TLS for secure logging. Default `false`
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if tls_ca_cert is not None:
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+        if tls_client_cert is not None:
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+        if tls_client_key is not None:
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
+        if tls_hostname is not None:
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if use_tls is not None:
+            pulumi.set(__self__, "use_tls", use_tls)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        A hostname or IPv4 address of the Syslog endpoint
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format. Can be either 1 or 2. (Default: 2)
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter(name="tlsCaCert")
+    def tls_ca_cert(self) -> Optional[str]:
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        """
+        return pulumi.get(self, "tls_ca_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientCert")
+    def tls_client_cert(self) -> Optional[str]:
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        """
+        return pulumi.get(self, "tls_client_cert")
+
+    @property
+    @pulumi.getter(name="tlsClientKey")
+    def tls_client_key(self) -> Optional[str]:
+        """
+        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        """
+        return pulumi.get(self, "tls_client_key")
+
+    @property
+    @pulumi.getter(name="tlsHostname")
+    def tls_hostname(self) -> Optional[str]:
+        """
+        Used during the TLS handshake to validate the certificate
+        """
+        return pulumi.get(self, "tls_hostname")
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[str]:
+        """
+        Whether to prepend each message with a specific token
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter(name="useTls")
+    def use_tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS for secure logging. Default `false`
+        """
+        return pulumi.get(self, "use_tls")
+
+
+@pulumi.output_type
+class ServiceVclRequestSetting(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -9123,14 +9754,14 @@ class Servicev1RequestSetting(dict):
             suggest = "timer_support"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1RequestSetting. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclRequestSetting. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1RequestSetting.__key_warning(key)
+        ServiceVclRequestSetting.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1RequestSetting.__key_warning(key)
+        ServiceVclRequestSetting.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -9282,7 +9913,7 @@ class Servicev1RequestSetting(dict):
 
 
 @pulumi.output_type
-class Servicev1ResponseObject(dict):
+class ServiceVclResponseObject(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -9294,14 +9925,14 @@ class Servicev1ResponseObject(dict):
             suggest = "request_condition"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1ResponseObject. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclResponseObject. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1ResponseObject.__key_warning(key)
+        ServiceVclResponseObject.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1ResponseObject.__key_warning(key)
+        ServiceVclResponseObject.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -9393,305 +10024,7 @@ class Servicev1ResponseObject(dict):
 
 
 @pulumi.output_type
-class Servicev1S3logging(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "bucketName":
-            suggest = "bucket_name"
-        elif key == "compressionCodec":
-            suggest = "compression_codec"
-        elif key == "formatVersion":
-            suggest = "format_version"
-        elif key == "gzipLevel":
-            suggest = "gzip_level"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "publicKey":
-            suggest = "public_key"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "s3AccessKey":
-            suggest = "s3_access_key"
-        elif key == "s3IamRole":
-            suggest = "s3_iam_role"
-        elif key == "s3SecretKey":
-            suggest = "s3_secret_key"
-        elif key == "serverSideEncryption":
-            suggest = "server_side_encryption"
-        elif key == "serverSideEncryptionKmsKeyId":
-            suggest = "server_side_encryption_kms_key_id"
-        elif key == "timestampFormat":
-            suggest = "timestamp_format"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1S3logging. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1S3logging.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1S3logging.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 bucket_name: str,
-                 name: str,
-                 acl: Optional[str] = None,
-                 compression_codec: Optional[str] = None,
-                 domain: Optional[str] = None,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 gzip_level: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 path: Optional[str] = None,
-                 period: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 public_key: Optional[str] = None,
-                 redundancy: Optional[str] = None,
-                 response_condition: Optional[str] = None,
-                 s3_access_key: Optional[str] = None,
-                 s3_iam_role: Optional[str] = None,
-                 s3_secret_key: Optional[str] = None,
-                 server_side_encryption: Optional[str] = None,
-                 server_side_encryption_kms_key_id: Optional[str] = None,
-                 timestamp_format: Optional[str] = None):
-        """
-        :param str bucket_name: The name of the bucket in which to store the logs
-        :param str name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        :param str domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
-        :param str format: Apache-style string or VCL variables to use for log formatting.
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
-        :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-        :param int period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param str redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
-        :param str response_condition: Name of blockAttributes condition to apply this logging.
-        :param str s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
-        :param str s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
-        :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
-        :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        if acl is not None:
-            pulumi.set(__self__, "acl", acl)
-        if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
-        if domain is not None:
-            pulumi.set(__self__, "domain", domain)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
-        if redundancy is not None:
-            pulumi.set(__self__, "redundancy", redundancy)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if s3_access_key is not None:
-            pulumi.set(__self__, "s3_access_key", s3_access_key)
-        if s3_iam_role is not None:
-            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
-        if s3_secret_key is not None:
-            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
-        if server_side_encryption is not None:
-            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
-        if server_side_encryption_kms_key_id is not None:
-            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
-        if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
-
-    @property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> str:
-        """
-        The name of the bucket in which to store the logs
-        """
-        return pulumi.get(self, "bucket_name")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def acl(self) -> Optional[str]:
-        """
-        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        """
-        return pulumi.get(self, "acl")
-
-    @property
-    @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[str]:
-        """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
-        """
-        return pulumi.get(self, "compression_codec")
-
-    @property
-    @pulumi.getter
-    def domain(self) -> Optional[str]:
-        """
-        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
-        """
-        return pulumi.get(self, "domain")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting.
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1).
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[int]:
-        """
-        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
-        """
-        return pulumi.get(self, "gzip_level")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[str]:
-        """
-        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        """
-        How frequently the logs should be transferred, in seconds. Default `3600`
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[str]:
-        """
-        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        """
-        return pulumi.get(self, "public_key")
-
-    @property
-    @pulumi.getter
-    def redundancy(self) -> Optional[str]:
-        """
-        The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
-        """
-        return pulumi.get(self, "redundancy")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        Name of blockAttributes condition to apply this logging.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="s3AccessKey")
-    def s3_access_key(self) -> Optional[str]:
-        """
-        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
-        """
-        return pulumi.get(self, "s3_access_key")
-
-    @property
-    @pulumi.getter(name="s3IamRole")
-    def s3_iam_role(self) -> Optional[str]:
-        """
-        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
-        """
-        return pulumi.get(self, "s3_iam_role")
-
-    @property
-    @pulumi.getter(name="s3SecretKey")
-    def s3_secret_key(self) -> Optional[str]:
-        """
-        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
-        """
-        return pulumi.get(self, "s3_secret_key")
-
-    @property
-    @pulumi.getter(name="serverSideEncryption")
-    def server_side_encryption(self) -> Optional[str]:
-        """
-        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-        """
-        return pulumi.get(self, "server_side_encryption")
-
-    @property
-    @pulumi.getter(name="serverSideEncryptionKmsKeyId")
-    def server_side_encryption_kms_key_id(self) -> Optional[str]:
-        """
-        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        """
-        return pulumi.get(self, "server_side_encryption_kms_key_id")
-
-    @property
-    @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[str]:
-        """
-        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
-        """
-        return pulumi.get(self, "timestamp_format")
-
-
-@pulumi.output_type
-class Servicev1Snippet(dict):
+class ServiceVclSnippet(dict):
     def __init__(__self__, *,
                  content: str,
                  name: str,
@@ -9743,498 +10076,7 @@ class Servicev1Snippet(dict):
 
 
 @pulumi.output_type
-class Servicev1Splunk(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "tlsCaCert":
-            suggest = "tls_ca_cert"
-        elif key == "tlsClientCert":
-            suggest = "tls_client_cert"
-        elif key == "tlsClientKey":
-            suggest = "tls_client_key"
-        elif key == "tlsHostname":
-            suggest = "tls_hostname"
-        elif key == "useTls":
-            suggest = "use_tls"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Splunk. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1Splunk.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1Splunk.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 token: str,
-                 url: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 placement: Optional[str] = None,
-                 response_condition: Optional[str] = None,
-                 tls_ca_cert: Optional[str] = None,
-                 tls_client_cert: Optional[str] = None,
-                 tls_client_key: Optional[str] = None,
-                 tls_hostname: Optional[str] = None,
-                 use_tls: Optional[bool] = None):
-        """
-        :param str name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str token: The Splunk token to be used for authentication
-        :param str url: The Splunk URL to stream logs to
-        :param str format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
-        :param str placement: Where in the generated VCL the logging call should be placed
-        :param str response_condition: The name of the condition to apply
-        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
-        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
-        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
-        :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
-        :param bool use_tls: Whether to use TLS for secure logging. Default: `false`
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-        if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
-        if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def token(self) -> str:
-        """
-        The Splunk token to be used for authentication
-        """
-        return pulumi.get(self, "token")
-
-    @property
-    @pulumi.getter
-    def url(self) -> str:
-        """
-        The Splunk URL to stream logs to
-        """
-        return pulumi.get(self, "url")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        The name of the condition to apply
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[str]:
-        """
-        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[str]:
-        """
-        The client certificate used to make authenticated requests. Must be in PEM format.
-        """
-        return pulumi.get(self, "tls_client_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[str]:
-        """
-        The client private key used to make authenticated requests. Must be in PEM format.
-        """
-        return pulumi.get(self, "tls_client_key")
-
-    @property
-    @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[str]:
-        """
-        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
-        """
-        return pulumi.get(self, "tls_hostname")
-
-    @property
-    @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[bool]:
-        """
-        Whether to use TLS for secure logging. Default: `false`
-        """
-        return pulumi.get(self, "use_tls")
-
-
-@pulumi.output_type
-class Servicev1Sumologic(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Sumologic. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1Sumologic.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1Sumologic.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 name: str,
-                 url: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 placement: Optional[str] = None,
-                 response_condition: Optional[str] = None):
-        """
-        :param str name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str url: The URL to Sumologic collector endpoint
-        :param str format: Apache-style string or VCL variables to use for log formatting
-        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param str response_condition: Name of blockAttributes condition to apply this logging.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def url(self) -> str:
-        """
-        The URL to Sumologic collector endpoint
-        """
-        return pulumi.get(self, "url")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 1)
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        Name of blockAttributes condition to apply this logging.
-        """
-        return pulumi.get(self, "response_condition")
-
-
-@pulumi.output_type
-class Servicev1Syslog(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "formatVersion":
-            suggest = "format_version"
-        elif key == "messageType":
-            suggest = "message_type"
-        elif key == "responseCondition":
-            suggest = "response_condition"
-        elif key == "tlsCaCert":
-            suggest = "tls_ca_cert"
-        elif key == "tlsClientCert":
-            suggest = "tls_client_cert"
-        elif key == "tlsClientKey":
-            suggest = "tls_client_key"
-        elif key == "tlsHostname":
-            suggest = "tls_hostname"
-        elif key == "useTls":
-            suggest = "use_tls"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Syslog. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Servicev1Syslog.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Servicev1Syslog.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 address: str,
-                 name: str,
-                 format: Optional[str] = None,
-                 format_version: Optional[int] = None,
-                 message_type: Optional[str] = None,
-                 placement: Optional[str] = None,
-                 port: Optional[int] = None,
-                 response_condition: Optional[str] = None,
-                 tls_ca_cert: Optional[str] = None,
-                 tls_client_cert: Optional[str] = None,
-                 tls_client_key: Optional[str] = None,
-                 tls_hostname: Optional[str] = None,
-                 token: Optional[str] = None,
-                 use_tls: Optional[bool] = None):
-        """
-        :param str address: A hostname or IPv4 address of the Syslog endpoint
-        :param str name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str format: Apache-style string or VCL variables to use for log formatting
-        :param int format_version: The version of the custom logging format. Can be either 1 or 2. (Default: 1)
-        :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str placement: Where in the generated VCL the logging call should be placed.
-        :param int port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
-        :param str response_condition: Name of blockAttributes condition to apply this logging.
-        :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
-        :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
-        :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
-        :param str tls_hostname: Used during the TLS handshake to validate the certificate
-        :param str token: Whether to prepend each message with a specific token
-        :param bool use_tls: Whether to use TLS for secure logging. Default `false`
-        """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        if format is not None:
-            pulumi.set(__self__, "format", format)
-        if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
-        if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
-        if placement is not None:
-            pulumi.set(__self__, "placement", placement)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
-        if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
-        if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
-        if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
-        if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
-        if token is not None:
-            pulumi.set(__self__, "token", token)
-        if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
-
-    @property
-    @pulumi.getter
-    def address(self) -> str:
-        """
-        A hostname or IPv4 address of the Syslog endpoint
-        """
-        return pulumi.get(self, "address")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def format(self) -> Optional[str]:
-        """
-        Apache-style string or VCL variables to use for log formatting
-        """
-        return pulumi.get(self, "format")
-
-    @property
-    @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[int]:
-        """
-        The version of the custom logging format. Can be either 1 or 2. (Default: 1)
-        """
-        return pulumi.get(self, "format_version")
-
-    @property
-    @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[str]:
-        """
-        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        """
-        return pulumi.get(self, "message_type")
-
-    @property
-    @pulumi.getter
-    def placement(self) -> Optional[str]:
-        """
-        Where in the generated VCL the logging call should be placed.
-        """
-        return pulumi.get(self, "placement")
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[int]:
-        """
-        The port associated with the address where the Syslog endpoint can be accessed. Default `514`
-        """
-        return pulumi.get(self, "port")
-
-    @property
-    @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[str]:
-        """
-        Name of blockAttributes condition to apply this logging.
-        """
-        return pulumi.get(self, "response_condition")
-
-    @property
-    @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[str]:
-        """
-        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
-        """
-        return pulumi.get(self, "tls_ca_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[str]:
-        """
-        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
-        """
-        return pulumi.get(self, "tls_client_cert")
-
-    @property
-    @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[str]:
-        """
-        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
-        """
-        return pulumi.get(self, "tls_client_key")
-
-    @property
-    @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[str]:
-        """
-        Used during the TLS handshake to validate the certificate
-        """
-        return pulumi.get(self, "tls_hostname")
-
-    @property
-    @pulumi.getter
-    def token(self) -> Optional[str]:
-        """
-        Whether to prepend each message with a specific token
-        """
-        return pulumi.get(self, "token")
-
-    @property
-    @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[bool]:
-        """
-        Whether to use TLS for secure logging. Default `false`
-        """
-        return pulumi.get(self, "use_tls")
-
-
-@pulumi.output_type
-class Servicev1Vcl(dict):
+class ServiceVclVcl(dict):
     def __init__(__self__, *,
                  content: str,
                  name: str,
@@ -10275,7 +10117,7 @@ class Servicev1Vcl(dict):
 
 
 @pulumi.output_type
-class Servicev1Waf(dict):
+class ServiceVclWaf(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -10287,14 +10129,14 @@ class Servicev1Waf(dict):
             suggest = "waf_id"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Servicev1Waf. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclWaf. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Servicev1Waf.__key_warning(key)
+        ServiceVclWaf.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Servicev1Waf.__key_warning(key)
+        ServiceVclWaf.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -10347,6 +10189,147 @@ class Servicev1Waf(dict):
         The ID of the WAF
         """
         return pulumi.get(self, "waf_id")
+
+
+@pulumi.output_type
+class ServiceWafConfigurationRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "modsecRuleId":
+            suggest = "modsec_rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceWafConfigurationRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceWafConfigurationRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 modsec_rule_id: int,
+                 status: str,
+                 revision: Optional[int] = None):
+        """
+        :param int modsec_rule_id: The Web Application Firewall rule's modsecurity ID
+        :param str status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
+        :param int revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
+        """
+        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
+        pulumi.set(__self__, "status", status)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+
+    @property
+    @pulumi.getter(name="modsecRuleId")
+    def modsec_rule_id(self) -> int:
+        """
+        The Web Application Firewall rule's modsecurity ID
+        """
+        return pulumi.get(self, "modsec_rule_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[int]:
+        """
+        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
+        """
+        return pulumi.get(self, "revision")
+
+
+@pulumi.output_type
+class ServiceWafConfigurationRuleExclusion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "exclusionType":
+            suggest = "exclusion_type"
+        elif key == "modsecRuleIds":
+            suggest = "modsec_rule_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRuleExclusion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceWafConfigurationRuleExclusion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceWafConfigurationRuleExclusion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 condition: str,
+                 exclusion_type: str,
+                 name: str,
+                 modsec_rule_ids: Optional[Sequence[int]] = None,
+                 number: Optional[int] = None):
+        """
+        :param str condition: A conditional expression in VCL used to determine if the condition is met
+        :param str exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
+        :param str name: The name of rule exclusion
+        :param Sequence[int] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+        :param int number: The numeric ID assigned to the WAF Rule Exclusion
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "exclusion_type", exclusion_type)
+        pulumi.set(__self__, "name", name)
+        if modsec_rule_ids is not None:
+            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> str:
+        """
+        A conditional expression in VCL used to determine if the condition is met
+        """
+        return pulumi.get(self, "condition")
+
+    @property
+    @pulumi.getter(name="exclusionType")
+    def exclusion_type(self) -> str:
+        """
+        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
+        """
+        return pulumi.get(self, "exclusion_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of rule exclusion
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="modsecRuleIds")
+    def modsec_rule_ids(self) -> Optional[Sequence[int]]:
+        """
+        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+        """
+        return pulumi.get(self, "modsec_rule_ids")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        The numeric ID assigned to the WAF Rule Exclusion
+        """
+        return pulumi.get(self, "number")
 
 
 @pulumi.output_type
@@ -10475,6 +10458,39 @@ class TlsSubscriptionManagedHttpChallenge(dict):
         A list with the value(s) to which the DNS record should point.
         """
         return pulumi.get(self, "record_values")
+
+
+@pulumi.output_type
+class GetDatacentersPopResult(dict):
+    def __init__(__self__, *,
+                 code: str,
+                 group: str,
+                 name: str,
+                 shield: str):
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "group", group)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "shield", shield)
+
+    @property
+    @pulumi.getter
+    def code(self) -> str:
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def group(self) -> str:
+        return pulumi.get(self, "group")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def shield(self) -> str:
+        return pulumi.get(self, "shield")
 
 
 @pulumi.output_type

@@ -86,9 +86,14 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"fastly_service_acl_entries_v1":             {Tok: makeResource(mainMod, "ServiceACLEntriesv1")},
+			"fastly_service_acl_entries":                {Tok: makeResource(mainMod, "ServiceACLEntries")},
 			"fastly_service_dictionary_items_v1":        {Tok: makeResource(mainMod, "ServiceDictionaryItemsv1")},
+			"fastly_service_dictionary_items":           {Tok: makeResource(mainMod, "ServiceDictionaryItems")},
 			"fastly_service_dynamic_snippet_content_v1": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContentv1")},
+			"fastly_service_dynamic_snippet_content":    {Tok: makeResource(mainMod, "ServiceDynamicSnippetContent")},
+			"fastly_service_vcl":                        {Tok: makeResource(mainMod, "ServiceVcl")},
 			"fastly_user_v1":                            {Tok: makeResource(mainMod, "Userv1")},
+			"fastly_user":                               {Tok: makeResource(mainMod, "User")},
 			"fastly_service_compute": {
 				Tok: makeResource(mainMod, "ServiceCompute"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -114,6 +119,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fastly_tls_certificate_ids":          {Tok: makeDataSource(mainMod, "getTlsCertificateIds")},
 			"fastly_tls_configuration":            {Tok: makeDataSource(mainMod, "getTlsConfiguration")},
 			"fastly_tls_configuration_ids":        {Tok: makeDataSource(mainMod, "getTlsConfigurationIds")},
+			"fastly_datacenters":                  {Tok: makeDataSource(mainMod, "getDatacenters")},
 			"fastly_tls_domain":                   {Tok: makeDataSource(mainMod, "getTlsDomain")},
 			"fastly_tls_platform_certificate":     {Tok: makeDataSource(mainMod, "getTlsPlatformCertificate")},
 			"fastly_tls_platform_certificate_ids": {Tok: makeDataSource(mainMod, "getTlsPlatformCertificateIds")},

@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demo = new fastly.Servicev1("demo", {
+ * const demo = new fastly.ServiceVcl("demo", {
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -66,7 +66,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demo = new fastly.Servicev1("demo", {
+ * const demo = new fastly.ServiceVcl("demo", {
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -121,7 +121,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demo = new fastly.Servicev1("demo", {
+ * const demo = new fastly.ServiceVcl("demo", {
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -186,7 +186,7 @@ import * as utilities from "./utilities";
  *     threshold: "log",
  *     strict: "log",
  * };
- * const demo = new fastly.Servicev1("demo", {
+ * const demo = new fastly.ServiceVcl("demo", {
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -254,7 +254,7 @@ import * as utilities from "./utilities";
  * const individualRules = config.getObject("individualRules") || {
  *     1010020: "block",
  * };
- * const demo = new fastly.Servicev1("demo", {
+ * const demo = new fastly.ServiceVcl("demo", {
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -322,7 +322,7 @@ import * as utilities from "./utilities";
  * const specificRuleRevisions = config.getObject("specificRuleRevisions") || {
  *     1010020: 1,
  * };
- * const demo = new fastly.Servicev1("demo", {
+ * const demo = new fastly.ServiceVcl("demo", {
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -390,7 +390,7 @@ import * as utilities from "./utilities";
  * const individualRules = config.getObject("individualRules") || {
  *     1010020: "block",
  * };
- * const demo = new fastly.Servicev1("demo", {
+ * const demo = new fastly.ServiceVcl("demo", {
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -446,14 +446,14 @@ import * as utilities from "./utilities";
  *
  * > **Warning:** A two-phase change is required when adding a WAF to an existing service
  *
- * When adding a `waf` to an existing `fastly.Servicev1` and at the same time adding a `fastly.ServiceWafConfiguration`
- * resource with `wafId = fastly_service_v1.demo.waf[0].waf_id` might result with the in the following error:
+ * When adding a `waf` to an existing `fastly.ServiceVcl` and at the same time adding a `fastly.ServiceWafConfiguration`
+ * resource with `wafId = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
  *
- * > fastly_service_v1.demo.waf is empty list of object
+ * > fastly_service_vcl.demo.waf is empty list of object
  *
  * For this scenario, it's recommended to split the changes into two distinct steps:
  *
- * 1. Add the `waf` block to the `fastly.Servicev1` and apply the changes
+ * 1. Add the `waf` block to the `fastly.ServiceVcl` and apply the changes
  * 2. Add the `fastly.ServiceWafConfiguration` to the HCL and apply the changes
  *
  * ## Import

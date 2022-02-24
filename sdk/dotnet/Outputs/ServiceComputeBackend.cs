@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         /// </summary>
         public readonly bool? AutoLoadbalance;
         /// <summary>

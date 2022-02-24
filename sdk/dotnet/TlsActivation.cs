@@ -26,18 +26,18 @@ namespace Pulumi.Fastly
     /// {
     ///     public MyStack()
     ///     {
-    ///         var demoServicev1 = new Fastly.Servicev1("demoServicev1", new Fastly.Servicev1Args
+    ///         var demoServiceVcl = new Fastly.ServiceVcl("demoServiceVcl", new Fastly.ServiceVclArgs
     ///         {
     ///             Domains = 
     ///             {
-    ///                 new Fastly.Inputs.Servicev1DomainArgs
+    ///                 new Fastly.Inputs.ServiceVclDomainArgs
     ///                 {
     ///                     Name = "example.com",
     ///                 },
     ///             },
     ///             Backends = 
     ///             {
-    ///                 new Fastly.Inputs.Servicev1BackendArgs
+    ///                 new Fastly.Inputs.ServiceVclBackendArgs
     ///                 {
     ///                     Address = "127.0.0.1",
     ///                     Name = "localhost",
@@ -67,7 +67,7 @@ namespace Pulumi.Fastly
     ///         {
     ///             DependsOn = 
     ///             {
-    ///                 demoServicev1,
+    ///                 demoServiceVcl,
     ///             },
     ///         });
     ///     }

@@ -5,6 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .get_datacenters import *
 from .get_fastly_ip_ranges import *
 from .get_tls_activation import *
 from .get_tls_activation_ids import *
@@ -21,19 +22,19 @@ from .get_tls_subscription import *
 from .get_tls_subscription_ids import *
 from .get_waf_rules import *
 from .provider import *
-from .service_acl_entriesv1 import *
+from .service_acl_entries import *
 from .service_compute import *
-from .service_dictionary_itemsv1 import *
-from .service_dynamic_snippet_contentv1 import *
+from .service_dictionary_items import *
+from .service_dynamic_snippet_content import *
+from .service_vcl import *
 from .service_waf_configuration import *
-from .servicev1 import *
 from .tls_activation import *
 from .tls_certificate import *
 from .tls_platform_certificate import *
 from .tls_private_key import *
 from .tls_subscription import *
 from .tls_subscription_validation import *
-from .userv1 import *
+from .user import *
 from ._inputs import *
 from . import outputs
 
@@ -49,10 +50,10 @@ _utilities.register(
 [
  {
   "pkg": "fastly",
-  "mod": "index/serviceACLEntriesv1",
+  "mod": "index/serviceACLEntries",
   "fqn": "pulumi_fastly",
   "classes": {
-   "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1": "ServiceACLEntriesv1"
+   "fastly:index/serviceACLEntries:ServiceACLEntries": "ServiceACLEntries"
   }
  },
  {
@@ -65,18 +66,26 @@ _utilities.register(
  },
  {
   "pkg": "fastly",
-  "mod": "index/serviceDictionaryItemsv1",
+  "mod": "index/serviceDictionaryItems",
   "fqn": "pulumi_fastly",
   "classes": {
-   "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1": "ServiceDictionaryItemsv1"
+   "fastly:index/serviceDictionaryItems:ServiceDictionaryItems": "ServiceDictionaryItems"
   }
  },
  {
   "pkg": "fastly",
-  "mod": "index/serviceDynamicSnippetContentv1",
+  "mod": "index/serviceDynamicSnippetContent",
   "fqn": "pulumi_fastly",
   "classes": {
-   "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1": "ServiceDynamicSnippetContentv1"
+   "fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent": "ServiceDynamicSnippetContent"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/serviceVcl",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/serviceVcl:ServiceVcl": "ServiceVcl"
   }
  },
  {
@@ -85,14 +94,6 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/serviceWafConfiguration:ServiceWafConfiguration": "ServiceWafConfiguration"
-  }
- },
- {
-  "pkg": "fastly",
-  "mod": "index/servicev1",
-  "fqn": "pulumi_fastly",
-  "classes": {
-   "fastly:index/servicev1:Servicev1": "Servicev1"
   }
  },
  {
@@ -145,10 +146,10 @@ _utilities.register(
  },
  {
   "pkg": "fastly",
-  "mod": "index/userv1",
+  "mod": "index/user",
   "fqn": "pulumi_fastly",
   "classes": {
-   "fastly:index/userv1:Userv1": "Userv1"
+   "fastly:index/user:User": "User"
   }
  }
 ]

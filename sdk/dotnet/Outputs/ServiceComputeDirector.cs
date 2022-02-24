@@ -18,10 +18,6 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Backends;
         /// <summary>
-        /// Load balancing weight for the backends. Default `100`
-        /// </summary>
-        public readonly int? Capacity;
-        /// <summary>
         /// An optional comment about the Director
         /// </summary>
         public readonly string? Comment;
@@ -50,8 +46,6 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeDirector(
             ImmutableArray<string> backends,
 
-            int? capacity,
-
             string? comment,
 
             string name,
@@ -65,7 +59,6 @@ namespace Pulumi.Fastly.Outputs
             int? type)
         {
             Backends = backends;
-            Capacity = capacity;
             Comment = comment;
             Name = name;
             Quorum = quorum;

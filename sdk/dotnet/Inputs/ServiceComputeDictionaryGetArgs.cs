@@ -30,9 +30,6 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        /// <summary>
-        /// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.Servicev1` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using `fastly.ServiceDictionaryItemsv1` resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of the provider
-        /// </summary>
         [Input("writeOnly")]
         public Input<bool>? WriteOnly { get; set; }
 

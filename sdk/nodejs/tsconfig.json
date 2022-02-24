@@ -15,6 +15,7 @@
     "files": [
         "config/index.ts",
         "config/vars.ts",
+        "getDatacenters.ts",
         "getFastlyIpRanges.ts",
         "getTlsActivation.ts",
         "getTlsActivationIds.ts",
@@ -32,12 +33,12 @@
         "getWafRules.ts",
         "index.ts",
         "provider.ts",
-        "serviceACLEntriesv1.ts",
+        "serviceACLEntries.ts",
         "serviceCompute.ts",
-        "serviceDictionaryItemsv1.ts",
-        "serviceDynamicSnippetContentv1.ts",
+        "serviceDictionaryItems.ts",
+        "serviceDynamicSnippetContent.ts",
+        "serviceVcl.ts",
         "serviceWafConfiguration.ts",
-        "servicev1.ts",
         "tlsActivation.ts",
         "tlsCertificate.ts",
         "tlsPlatformCertificate.ts",
@@ -47,7 +48,7 @@
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",
-        "userv1.ts",
+        "user.ts",
         "utilities.ts"
     ]
 }

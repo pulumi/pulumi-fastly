@@ -158,11 +158,11 @@ class TlsActivation(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo_servicev1 = fastly.Servicev1("demoServicev1",
-            domains=[fastly.Servicev1DomainArgs(
+        demo_service_vcl = fastly.ServiceVcl("demoServiceVcl",
+            domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
             )],
-            backends=[fastly.Servicev1BackendArgs(
+            backends=[fastly.ServiceVclBackendArgs(
                 address="127.0.0.1",
                 name="localhost",
             )],
@@ -173,7 +173,7 @@ class TlsActivation(pulumi.CustomResource):
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[demo_servicev1]))
+            opts=pulumi.ResourceOptions(depends_on=[demo_service_vcl]))
         ```
 
         ## Import
@@ -209,11 +209,11 @@ class TlsActivation(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo_servicev1 = fastly.Servicev1("demoServicev1",
-            domains=[fastly.Servicev1DomainArgs(
+        demo_service_vcl = fastly.ServiceVcl("demoServiceVcl",
+            domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
             )],
-            backends=[fastly.Servicev1BackendArgs(
+            backends=[fastly.ServiceVclBackendArgs(
                 address="127.0.0.1",
                 name="localhost",
             )],
@@ -224,7 +224,7 @@ class TlsActivation(pulumi.CustomResource):
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[demo_servicev1]))
+            opts=pulumi.ResourceOptions(depends_on=[demo_service_vcl]))
         ```
 
         ## Import
