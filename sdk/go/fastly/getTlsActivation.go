@@ -30,9 +30,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "example.com"
 // 		_, err := fastly.LookupTlsActivation(ctx, &GetTlsActivationArgs{
-// 			Domain: &opt0,
+// 			Domain: pulumi.StringRef("example.com"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
