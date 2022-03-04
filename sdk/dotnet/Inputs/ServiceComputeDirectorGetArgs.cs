@@ -25,12 +25,6 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// Load balancing weight for the backends. Default `100`
-        /// </summary>
-        [Input("capacity")]
-        public Input<int>? Capacity { get; set; }
-
-        /// <summary>
         /// An optional comment about the Director
         /// </summary>
         [Input("comment")]

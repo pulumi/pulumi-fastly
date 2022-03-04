@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const domainName = "example.com";
- * const exampleServicev1 = new fastly.Servicev1("exampleServicev1", {
+ * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
  *     domains: [{
  *         name: domainName,
  *     }],
@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *     forceDestroy: true,
  * });
  * const exampleTlsSubscription = new fastly.TlsSubscription("exampleTlsSubscription", {
- *     domains: exampleServicev1.domains.apply(domains => domains.map(domain => domain.name)),
+ *     domains: exampleServiceVcl.domains.apply(domains => domains.map(domain => domain.name)),
  *     certificateAuthority: "lets-encrypt",
  * });
  * const demo = aws.route53.getZone({

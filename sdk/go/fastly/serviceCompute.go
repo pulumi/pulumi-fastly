@@ -30,10 +30,8 @@ type ServiceCompute struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
-	ActiveVersion       pulumi.IntOutput                            `pulumi:"activeVersion"`
-	Backends            ServiceComputeBackendArrayOutput            `pulumi:"backends"`
-	Bigqueryloggings    ServiceComputeBigqueryloggingArrayOutput    `pulumi:"bigqueryloggings"`
-	Blobstorageloggings ServiceComputeBlobstorageloggingArrayOutput `pulumi:"blobstorageloggings"`
+	ActiveVersion pulumi.IntOutput                 `pulumi:"activeVersion"`
+	Backends      ServiceComputeBackendArrayOutput `pulumi:"backends"`
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
 	// Description field for the service. Default `Managed by Terraform`
@@ -48,39 +46,41 @@ type ServiceCompute struct {
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           pulumi.BoolPtrOutput                          `pulumi:"forceDestroy"`
-	Gcsloggings            ServiceComputeGcsloggingArrayOutput           `pulumi:"gcsloggings"`
 	Healthchecks           ServiceComputeHealthcheckArrayOutput          `pulumi:"healthchecks"`
-	Httpsloggings          ServiceComputeHttpsloggingArrayOutput         `pulumi:"httpsloggings"`
-	Logentries             ServiceComputeLogentryArrayOutput             `pulumi:"logentries"`
+	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayOutput   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
 	LoggingDatadogs        ServiceComputeLoggingDatadogArrayOutput       `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayOutput  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayOutput `pulumi:"loggingElasticsearches"`
 	LoggingFtps            ServiceComputeLoggingFtpArrayOutput           `pulumi:"loggingFtps"`
+	LoggingGcs             ServiceComputeLoggingGcArrayOutput            `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayOutput  `pulumi:"loggingGooglepubsubs"`
 	LoggingHeroku          ServiceComputeLoggingHerokuArrayOutput        `pulumi:"loggingHeroku"`
 	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayOutput     `pulumi:"loggingHoneycombs"`
+	LoggingHttps           ServiceComputeLoggingHttpArrayOutput          `pulumi:"loggingHttps"`
 	LoggingKafkas          ServiceComputeLoggingKafkaArrayOutput         `pulumi:"loggingKafkas"`
 	LoggingKineses         ServiceComputeLoggingKineseArrayOutput        `pulumi:"loggingKineses"`
+	LoggingLogentries      ServiceComputeLoggingLogentryArrayOutput      `pulumi:"loggingLogentries"`
 	LoggingLogglies        ServiceComputeLoggingLogglyArrayOutput        `pulumi:"loggingLogglies"`
 	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayOutput    `pulumi:"loggingLogshuttles"`
 	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayOutput      `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayOutput     `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails     ServiceComputeLoggingPapertrailArrayOutput    `pulumi:"loggingPapertrails"`
+	LoggingS3s             ServiceComputeLoggingS3ArrayOutput            `pulumi:"loggingS3s"`
 	LoggingScalyrs         ServiceComputeLoggingScalyrArrayOutput        `pulumi:"loggingScalyrs"`
 	LoggingSftps           ServiceComputeLoggingSftpArrayOutput          `pulumi:"loggingSftps"`
+	LoggingSplunks         ServiceComputeLoggingSplunkArrayOutput        `pulumi:"loggingSplunks"`
+	LoggingSumologics      ServiceComputeLoggingSumologicArrayOutput     `pulumi:"loggingSumologics"`
+	LoggingSyslogs         ServiceComputeLoggingSyslogArrayOutput        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package     ServiceComputePackageOutput         `pulumi:"package"`
-	Papertrails ServiceComputePapertrailArrayOutput `pulumi:"papertrails"`
-	S3loggings  ServiceComputeS3loggingArrayOutput  `pulumi:"s3loggings"`
-	Splunks     ServiceComputeSplunkArrayOutput     `pulumi:"splunks"`
+	Package ServiceComputePackageOutput `pulumi:"package"`
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrOutput `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl pulumi.IntPtrOutput                `pulumi:"staleIfErrorTtl"`
-	Sumologics      ServiceComputeSumologicArrayOutput `pulumi:"sumologics"`
-	Syslogs         ServiceComputeSyslogArrayOutput    `pulumi:"syslogs"`
+	StaleIfErrorTtl pulumi.IntPtrOutput `pulumi:"staleIfErrorTtl"`
 	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
 }
@@ -126,10 +126,8 @@ type serviceComputeState struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
-	ActiveVersion       *int                               `pulumi:"activeVersion"`
-	Backends            []ServiceComputeBackend            `pulumi:"backends"`
-	Bigqueryloggings    []ServiceComputeBigquerylogging    `pulumi:"bigqueryloggings"`
-	Blobstorageloggings []ServiceComputeBlobstoragelogging `pulumi:"blobstorageloggings"`
+	ActiveVersion *int                    `pulumi:"activeVersion"`
+	Backends      []ServiceComputeBackend `pulumi:"backends"`
 	// The latest cloned version by the provider
 	ClonedVersion *int `pulumi:"clonedVersion"`
 	// Description field for the service. Default `Managed by Terraform`
@@ -144,39 +142,41 @@ type serviceComputeState struct {
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
-	Gcsloggings            []ServiceComputeGcslogging           `pulumi:"gcsloggings"`
 	Healthchecks           []ServiceComputeHealthcheck          `pulumi:"healthchecks"`
-	Httpsloggings          []ServiceComputeHttpslogging         `pulumi:"httpsloggings"`
-	Logentries             []ServiceComputeLogentry             `pulumi:"logentries"`
+	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages    []ServiceComputeLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
 	LoggingDatadogs        []ServiceComputeLoggingDatadog       `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans   []ServiceComputeLoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches []ServiceComputeLoggingElasticsearch `pulumi:"loggingElasticsearches"`
 	LoggingFtps            []ServiceComputeLoggingFtp           `pulumi:"loggingFtps"`
+	LoggingGcs             []ServiceComputeLoggingGc            `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs   []ServiceComputeLoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
 	LoggingHeroku          []ServiceComputeLoggingHeroku        `pulumi:"loggingHeroku"`
 	LoggingHoneycombs      []ServiceComputeLoggingHoneycomb     `pulumi:"loggingHoneycombs"`
+	LoggingHttps           []ServiceComputeLoggingHttp          `pulumi:"loggingHttps"`
 	LoggingKafkas          []ServiceComputeLoggingKafka         `pulumi:"loggingKafkas"`
 	LoggingKineses         []ServiceComputeLoggingKinese        `pulumi:"loggingKineses"`
+	LoggingLogentries      []ServiceComputeLoggingLogentry      `pulumi:"loggingLogentries"`
 	LoggingLogglies        []ServiceComputeLoggingLoggly        `pulumi:"loggingLogglies"`
 	LoggingLogshuttles     []ServiceComputeLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
 	LoggingNewrelics       []ServiceComputeLoggingNewrelic      `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks      []ServiceComputeLoggingOpenstack     `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails     []ServiceComputeLoggingPapertrail    `pulumi:"loggingPapertrails"`
+	LoggingS3s             []ServiceComputeLoggingS3            `pulumi:"loggingS3s"`
 	LoggingScalyrs         []ServiceComputeLoggingScalyr        `pulumi:"loggingScalyrs"`
 	LoggingSftps           []ServiceComputeLoggingSftp          `pulumi:"loggingSftps"`
+	LoggingSplunks         []ServiceComputeLoggingSplunk        `pulumi:"loggingSplunks"`
+	LoggingSumologics      []ServiceComputeLoggingSumologic     `pulumi:"loggingSumologics"`
+	LoggingSyslogs         []ServiceComputeLoggingSyslog        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package     *ServiceComputePackage     `pulumi:"package"`
-	Papertrails []ServiceComputePapertrail `pulumi:"papertrails"`
-	S3loggings  []ServiceComputeS3logging  `pulumi:"s3loggings"`
-	Splunks     []ServiceComputeSplunk     `pulumi:"splunks"`
+	Package *ServiceComputePackage `pulumi:"package"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl *int                      `pulumi:"staleIfErrorTtl"`
-	Sumologics      []ServiceComputeSumologic `pulumi:"sumologics"`
-	Syslogs         []ServiceComputeSyslog    `pulumi:"syslogs"`
+	StaleIfErrorTtl *int `pulumi:"staleIfErrorTtl"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -185,10 +185,8 @@ type ServiceComputeState struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
-	ActiveVersion       pulumi.IntPtrInput
-	Backends            ServiceComputeBackendArrayInput
-	Bigqueryloggings    ServiceComputeBigqueryloggingArrayInput
-	Blobstorageloggings ServiceComputeBlobstorageloggingArrayInput
+	ActiveVersion pulumi.IntPtrInput
+	Backends      ServiceComputeBackendArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
 	// Description field for the service. Default `Managed by Terraform`
@@ -203,39 +201,41 @@ type ServiceComputeState struct {
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           pulumi.BoolPtrInput
-	Gcsloggings            ServiceComputeGcsloggingArrayInput
 	Healthchecks           ServiceComputeHealthcheckArrayInput
-	Httpsloggings          ServiceComputeHttpsloggingArrayInput
-	Logentries             ServiceComputeLogentryArrayInput
+	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
+	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayInput
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput
 	LoggingDatadogs        ServiceComputeLoggingDatadogArrayInput
 	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayInput
 	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayInput
 	LoggingFtps            ServiceComputeLoggingFtpArrayInput
+	LoggingGcs             ServiceComputeLoggingGcArrayInput
 	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayInput
 	LoggingHeroku          ServiceComputeLoggingHerokuArrayInput
 	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayInput
+	LoggingHttps           ServiceComputeLoggingHttpArrayInput
 	LoggingKafkas          ServiceComputeLoggingKafkaArrayInput
 	LoggingKineses         ServiceComputeLoggingKineseArrayInput
+	LoggingLogentries      ServiceComputeLoggingLogentryArrayInput
 	LoggingLogglies        ServiceComputeLoggingLogglyArrayInput
 	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayInput
 	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayInput
 	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayInput
+	LoggingPapertrails     ServiceComputeLoggingPapertrailArrayInput
+	LoggingS3s             ServiceComputeLoggingS3ArrayInput
 	LoggingScalyrs         ServiceComputeLoggingScalyrArrayInput
 	LoggingSftps           ServiceComputeLoggingSftpArrayInput
+	LoggingSplunks         ServiceComputeLoggingSplunkArrayInput
+	LoggingSumologics      ServiceComputeLoggingSumologicArrayInput
+	LoggingSyslogs         ServiceComputeLoggingSyslogArrayInput
 	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package     ServiceComputePackagePtrInput
-	Papertrails ServiceComputePapertrailArrayInput
-	S3loggings  ServiceComputeS3loggingArrayInput
-	Splunks     ServiceComputeSplunkArrayInput
+	Package ServiceComputePackagePtrInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version
 	StaleIfErrorTtl pulumi.IntPtrInput
-	Sumologics      ServiceComputeSumologicArrayInput
-	Syslogs         ServiceComputeSyslogArrayInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
@@ -246,10 +246,8 @@ func (ServiceComputeState) ElementType() reflect.Type {
 
 type serviceComputeArgs struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-	Activate            *bool                              `pulumi:"activate"`
-	Backends            []ServiceComputeBackend            `pulumi:"backends"`
-	Bigqueryloggings    []ServiceComputeBigquerylogging    `pulumi:"bigqueryloggings"`
-	Blobstorageloggings []ServiceComputeBlobstoragelogging `pulumi:"blobstorageloggings"`
+	Activate *bool                   `pulumi:"activate"`
+	Backends []ServiceComputeBackend `pulumi:"backends"`
 	// Description field for the service. Default `Managed by Terraform`
 	Comment *string `pulumi:"comment"`
 	// The default hostname
@@ -262,39 +260,41 @@ type serviceComputeArgs struct {
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
-	Gcsloggings            []ServiceComputeGcslogging           `pulumi:"gcsloggings"`
 	Healthchecks           []ServiceComputeHealthcheck          `pulumi:"healthchecks"`
-	Httpsloggings          []ServiceComputeHttpslogging         `pulumi:"httpsloggings"`
-	Logentries             []ServiceComputeLogentry             `pulumi:"logentries"`
+	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages    []ServiceComputeLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
 	LoggingDatadogs        []ServiceComputeLoggingDatadog       `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans   []ServiceComputeLoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches []ServiceComputeLoggingElasticsearch `pulumi:"loggingElasticsearches"`
 	LoggingFtps            []ServiceComputeLoggingFtp           `pulumi:"loggingFtps"`
+	LoggingGcs             []ServiceComputeLoggingGc            `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs   []ServiceComputeLoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
 	LoggingHeroku          []ServiceComputeLoggingHeroku        `pulumi:"loggingHeroku"`
 	LoggingHoneycombs      []ServiceComputeLoggingHoneycomb     `pulumi:"loggingHoneycombs"`
+	LoggingHttps           []ServiceComputeLoggingHttp          `pulumi:"loggingHttps"`
 	LoggingKafkas          []ServiceComputeLoggingKafka         `pulumi:"loggingKafkas"`
 	LoggingKineses         []ServiceComputeLoggingKinese        `pulumi:"loggingKineses"`
+	LoggingLogentries      []ServiceComputeLoggingLogentry      `pulumi:"loggingLogentries"`
 	LoggingLogglies        []ServiceComputeLoggingLoggly        `pulumi:"loggingLogglies"`
 	LoggingLogshuttles     []ServiceComputeLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
 	LoggingNewrelics       []ServiceComputeLoggingNewrelic      `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks      []ServiceComputeLoggingOpenstack     `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails     []ServiceComputeLoggingPapertrail    `pulumi:"loggingPapertrails"`
+	LoggingS3s             []ServiceComputeLoggingS3            `pulumi:"loggingS3s"`
 	LoggingScalyrs         []ServiceComputeLoggingScalyr        `pulumi:"loggingScalyrs"`
 	LoggingSftps           []ServiceComputeLoggingSftp          `pulumi:"loggingSftps"`
+	LoggingSplunks         []ServiceComputeLoggingSplunk        `pulumi:"loggingSplunks"`
+	LoggingSumologics      []ServiceComputeLoggingSumologic     `pulumi:"loggingSumologics"`
+	LoggingSyslogs         []ServiceComputeLoggingSyslog        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package     ServiceComputePackage      `pulumi:"package"`
-	Papertrails []ServiceComputePapertrail `pulumi:"papertrails"`
-	S3loggings  []ServiceComputeS3logging  `pulumi:"s3loggings"`
-	Splunks     []ServiceComputeSplunk     `pulumi:"splunks"`
+	Package ServiceComputePackage `pulumi:"package"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl *int                      `pulumi:"staleIfErrorTtl"`
-	Sumologics      []ServiceComputeSumologic `pulumi:"sumologics"`
-	Syslogs         []ServiceComputeSyslog    `pulumi:"syslogs"`
+	StaleIfErrorTtl *int `pulumi:"staleIfErrorTtl"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -302,10 +302,8 @@ type serviceComputeArgs struct {
 // The set of arguments for constructing a ServiceCompute resource.
 type ServiceComputeArgs struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-	Activate            pulumi.BoolPtrInput
-	Backends            ServiceComputeBackendArrayInput
-	Bigqueryloggings    ServiceComputeBigqueryloggingArrayInput
-	Blobstorageloggings ServiceComputeBlobstorageloggingArrayInput
+	Activate pulumi.BoolPtrInput
+	Backends ServiceComputeBackendArrayInput
 	// Description field for the service. Default `Managed by Terraform`
 	Comment pulumi.StringPtrInput
 	// The default hostname
@@ -318,39 +316,41 @@ type ServiceComputeArgs struct {
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           pulumi.BoolPtrInput
-	Gcsloggings            ServiceComputeGcsloggingArrayInput
 	Healthchecks           ServiceComputeHealthcheckArrayInput
-	Httpsloggings          ServiceComputeHttpsloggingArrayInput
-	Logentries             ServiceComputeLogentryArrayInput
+	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
+	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayInput
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput
 	LoggingDatadogs        ServiceComputeLoggingDatadogArrayInput
 	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayInput
 	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayInput
 	LoggingFtps            ServiceComputeLoggingFtpArrayInput
+	LoggingGcs             ServiceComputeLoggingGcArrayInput
 	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayInput
 	LoggingHeroku          ServiceComputeLoggingHerokuArrayInput
 	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayInput
+	LoggingHttps           ServiceComputeLoggingHttpArrayInput
 	LoggingKafkas          ServiceComputeLoggingKafkaArrayInput
 	LoggingKineses         ServiceComputeLoggingKineseArrayInput
+	LoggingLogentries      ServiceComputeLoggingLogentryArrayInput
 	LoggingLogglies        ServiceComputeLoggingLogglyArrayInput
 	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayInput
 	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayInput
 	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayInput
+	LoggingPapertrails     ServiceComputeLoggingPapertrailArrayInput
+	LoggingS3s             ServiceComputeLoggingS3ArrayInput
 	LoggingScalyrs         ServiceComputeLoggingScalyrArrayInput
 	LoggingSftps           ServiceComputeLoggingSftpArrayInput
+	LoggingSplunks         ServiceComputeLoggingSplunkArrayInput
+	LoggingSumologics      ServiceComputeLoggingSumologicArrayInput
+	LoggingSyslogs         ServiceComputeLoggingSyslogArrayInput
 	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package     ServiceComputePackageInput
-	Papertrails ServiceComputePapertrailArrayInput
-	S3loggings  ServiceComputeS3loggingArrayInput
-	Splunks     ServiceComputeSplunkArrayInput
+	Package ServiceComputePackageInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version
 	StaleIfErrorTtl pulumi.IntPtrInput
-	Sumologics      ServiceComputeSumologicArrayInput
-	Syslogs         ServiceComputeSyslogArrayInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }

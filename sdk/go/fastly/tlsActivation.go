@@ -29,14 +29,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		demoServicev1, err := fastly.NewServicev1(ctx, "demoServicev1", &fastly.Servicev1Args{
-// 			Domains: Servicev1DomainArray{
-// 				&Servicev1DomainArgs{
+// 		demoServiceVcl, err := fastly.NewServiceVcl(ctx, "demoServiceVcl", &fastly.ServiceVclArgs{
+// 			Domains: ServiceVclDomainArray{
+// 				&ServiceVclDomainArgs{
 // 					Name: pulumi.String("example.com"),
 // 				},
 // 			},
-// 			Backends: Servicev1BackendArray{
-// 				&Servicev1BackendArgs{
+// 			Backends: ServiceVclBackendArray{
+// 				&ServiceVclBackendArgs{
 // 					Address: pulumi.String("127.0.0.1"),
 // 					Name:    pulumi.String("localhost"),
 // 				},
@@ -64,7 +64,7 @@ import (
 // 			CertificateId: demoTlsCertificate.ID(),
 // 			Domain:        pulumi.String("example.com"),
 // 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			demoServicev1,
+// 			demoServiceVcl,
 // 		}))
 // 		if err != nil {
 // 			return err

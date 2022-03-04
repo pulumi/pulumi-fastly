@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demoServicev1 = new fastly.Servicev1("demoServicev1", {
+ * const demoServiceVcl = new fastly.ServiceVcl("demoServiceVcl", {
  *     domains: [{
  *         name: "example.com",
  *     }],
@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  *     certificateId: demoTlsCertificate.id,
  *     domain: "example.com",
  * }, {
- *     dependsOn: [demoServicev1],
+ *     dependsOn: [demoServiceVcl],
  * });
  * ```
  *

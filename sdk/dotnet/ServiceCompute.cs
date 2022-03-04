@@ -42,12 +42,6 @@ namespace Pulumi.Fastly
         [Output("backends")]
         public Output<ImmutableArray<Outputs.ServiceComputeBackend>> Backends { get; private set; } = null!;
 
-        [Output("bigqueryloggings")]
-        public Output<ImmutableArray<Outputs.ServiceComputeBigquerylogging>> Bigqueryloggings { get; private set; } = null!;
-
-        [Output("blobstorageloggings")]
-        public Output<ImmutableArray<Outputs.ServiceComputeBlobstoragelogging>> Blobstorageloggings { get; private set; } = null!;
-
         /// <summary>
         /// The latest cloned version by the provider
         /// </summary>
@@ -90,17 +84,14 @@ namespace Pulumi.Fastly
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
-        [Output("gcsloggings")]
-        public Output<ImmutableArray<Outputs.ServiceComputeGcslogging>> Gcsloggings { get; private set; } = null!;
-
         [Output("healthchecks")]
         public Output<ImmutableArray<Outputs.ServiceComputeHealthcheck>> Healthchecks { get; private set; } = null!;
 
-        [Output("httpsloggings")]
-        public Output<ImmutableArray<Outputs.ServiceComputeHttpslogging>> Httpsloggings { get; private set; } = null!;
+        [Output("loggingBigqueries")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingBigquery>> LoggingBigqueries { get; private set; } = null!;
 
-        [Output("logentries")]
-        public Output<ImmutableArray<Outputs.ServiceComputeLogentry>> Logentries { get; private set; } = null!;
+        [Output("loggingBlobstorages")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingBlobstorage>> LoggingBlobstorages { get; private set; } = null!;
 
         [Output("loggingCloudfiles")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingCloudfile>> LoggingCloudfiles { get; private set; } = null!;
@@ -117,6 +108,9 @@ namespace Pulumi.Fastly
         [Output("loggingFtps")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingFtp>> LoggingFtps { get; private set; } = null!;
 
+        [Output("loggingGcs")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingGc>> LoggingGcs { get; private set; } = null!;
+
         [Output("loggingGooglepubsubs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingGooglepubsub>> LoggingGooglepubsubs { get; private set; } = null!;
 
@@ -126,11 +120,17 @@ namespace Pulumi.Fastly
         [Output("loggingHoneycombs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingHoneycomb>> LoggingHoneycombs { get; private set; } = null!;
 
+        [Output("loggingHttps")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingHttp>> LoggingHttps { get; private set; } = null!;
+
         [Output("loggingKafkas")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingKafka>> LoggingKafkas { get; private set; } = null!;
 
         [Output("loggingKineses")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingKinese>> LoggingKineses { get; private set; } = null!;
+
+        [Output("loggingLogentries")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingLogentry>> LoggingLogentries { get; private set; } = null!;
 
         [Output("loggingLogglies")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingLoggly>> LoggingLogglies { get; private set; } = null!;
@@ -144,11 +144,26 @@ namespace Pulumi.Fastly
         [Output("loggingOpenstacks")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingOpenstack>> LoggingOpenstacks { get; private set; } = null!;
 
+        [Output("loggingPapertrails")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingPapertrail>> LoggingPapertrails { get; private set; } = null!;
+
+        [Output("loggingS3s")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingS3>> LoggingS3s { get; private set; } = null!;
+
         [Output("loggingScalyrs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingScalyr>> LoggingScalyrs { get; private set; } = null!;
 
         [Output("loggingSftps")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingSftp>> LoggingSftps { get; private set; } = null!;
+
+        [Output("loggingSplunks")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingSplunk>> LoggingSplunks { get; private set; } = null!;
+
+        [Output("loggingSumologics")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingSumologic>> LoggingSumologics { get; private set; } = null!;
+
+        [Output("loggingSyslogs")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingSyslog>> LoggingSyslogs { get; private set; } = null!;
 
         /// <summary>
         /// The unique name for the Service to create
@@ -162,15 +177,6 @@ namespace Pulumi.Fastly
         [Output("package")]
         public Output<Outputs.ServiceComputePackage> Package { get; private set; } = null!;
 
-        [Output("papertrails")]
-        public Output<ImmutableArray<Outputs.ServiceComputePapertrail>> Papertrails { get; private set; } = null!;
-
-        [Output("s3loggings")]
-        public Output<ImmutableArray<Outputs.ServiceComputeS3logging>> S3loggings { get; private set; } = null!;
-
-        [Output("splunks")]
-        public Output<ImmutableArray<Outputs.ServiceComputeSplunk>> Splunks { get; private set; } = null!;
-
         /// <summary>
         /// Enables serving a stale object if there is an error
         /// </summary>
@@ -182,12 +188,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("staleIfErrorTtl")]
         public Output<int?> StaleIfErrorTtl { get; private set; } = null!;
-
-        [Output("sumologics")]
-        public Output<ImmutableArray<Outputs.ServiceComputeSumologic>> Sumologics { get; private set; } = null!;
-
-        [Output("syslogs")]
-        public Output<ImmutableArray<Outputs.ServiceComputeSyslog>> Syslogs { get; private set; } = null!;
 
         /// <summary>
         /// Description field for the version
@@ -255,22 +255,6 @@ namespace Pulumi.Fastly
             set => _backends = value;
         }
 
-        [Input("bigqueryloggings")]
-        private InputList<Inputs.ServiceComputeBigqueryloggingArgs>? _bigqueryloggings;
-        public InputList<Inputs.ServiceComputeBigqueryloggingArgs> Bigqueryloggings
-        {
-            get => _bigqueryloggings ?? (_bigqueryloggings = new InputList<Inputs.ServiceComputeBigqueryloggingArgs>());
-            set => _bigqueryloggings = value;
-        }
-
-        [Input("blobstorageloggings")]
-        private InputList<Inputs.ServiceComputeBlobstorageloggingArgs>? _blobstorageloggings;
-        public InputList<Inputs.ServiceComputeBlobstorageloggingArgs> Blobstorageloggings
-        {
-            get => _blobstorageloggings ?? (_blobstorageloggings = new InputList<Inputs.ServiceComputeBlobstorageloggingArgs>());
-            set => _blobstorageloggings = value;
-        }
-
         /// <summary>
         /// Description field for the service. Default `Managed by Terraform`
         /// </summary>
@@ -323,14 +307,6 @@ namespace Pulumi.Fastly
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
-        [Input("gcsloggings")]
-        private InputList<Inputs.ServiceComputeGcsloggingArgs>? _gcsloggings;
-        public InputList<Inputs.ServiceComputeGcsloggingArgs> Gcsloggings
-        {
-            get => _gcsloggings ?? (_gcsloggings = new InputList<Inputs.ServiceComputeGcsloggingArgs>());
-            set => _gcsloggings = value;
-        }
-
         [Input("healthchecks")]
         private InputList<Inputs.ServiceComputeHealthcheckArgs>? _healthchecks;
         public InputList<Inputs.ServiceComputeHealthcheckArgs> Healthchecks
@@ -339,20 +315,20 @@ namespace Pulumi.Fastly
             set => _healthchecks = value;
         }
 
-        [Input("httpsloggings")]
-        private InputList<Inputs.ServiceComputeHttpsloggingArgs>? _httpsloggings;
-        public InputList<Inputs.ServiceComputeHttpsloggingArgs> Httpsloggings
+        [Input("loggingBigqueries")]
+        private InputList<Inputs.ServiceComputeLoggingBigqueryArgs>? _loggingBigqueries;
+        public InputList<Inputs.ServiceComputeLoggingBigqueryArgs> LoggingBigqueries
         {
-            get => _httpsloggings ?? (_httpsloggings = new InputList<Inputs.ServiceComputeHttpsloggingArgs>());
-            set => _httpsloggings = value;
+            get => _loggingBigqueries ?? (_loggingBigqueries = new InputList<Inputs.ServiceComputeLoggingBigqueryArgs>());
+            set => _loggingBigqueries = value;
         }
 
-        [Input("logentries")]
-        private InputList<Inputs.ServiceComputeLogentryArgs>? _logentries;
-        public InputList<Inputs.ServiceComputeLogentryArgs> Logentries
+        [Input("loggingBlobstorages")]
+        private InputList<Inputs.ServiceComputeLoggingBlobstorageArgs>? _loggingBlobstorages;
+        public InputList<Inputs.ServiceComputeLoggingBlobstorageArgs> LoggingBlobstorages
         {
-            get => _logentries ?? (_logentries = new InputList<Inputs.ServiceComputeLogentryArgs>());
-            set => _logentries = value;
+            get => _loggingBlobstorages ?? (_loggingBlobstorages = new InputList<Inputs.ServiceComputeLoggingBlobstorageArgs>());
+            set => _loggingBlobstorages = value;
         }
 
         [Input("loggingCloudfiles")]
@@ -395,6 +371,14 @@ namespace Pulumi.Fastly
             set => _loggingFtps = value;
         }
 
+        [Input("loggingGcs")]
+        private InputList<Inputs.ServiceComputeLoggingGcArgs>? _loggingGcs;
+        public InputList<Inputs.ServiceComputeLoggingGcArgs> LoggingGcs
+        {
+            get => _loggingGcs ?? (_loggingGcs = new InputList<Inputs.ServiceComputeLoggingGcArgs>());
+            set => _loggingGcs = value;
+        }
+
         [Input("loggingGooglepubsubs")]
         private InputList<Inputs.ServiceComputeLoggingGooglepubsubArgs>? _loggingGooglepubsubs;
         public InputList<Inputs.ServiceComputeLoggingGooglepubsubArgs> LoggingGooglepubsubs
@@ -419,6 +403,14 @@ namespace Pulumi.Fastly
             set => _loggingHoneycombs = value;
         }
 
+        [Input("loggingHttps")]
+        private InputList<Inputs.ServiceComputeLoggingHttpArgs>? _loggingHttps;
+        public InputList<Inputs.ServiceComputeLoggingHttpArgs> LoggingHttps
+        {
+            get => _loggingHttps ?? (_loggingHttps = new InputList<Inputs.ServiceComputeLoggingHttpArgs>());
+            set => _loggingHttps = value;
+        }
+
         [Input("loggingKafkas")]
         private InputList<Inputs.ServiceComputeLoggingKafkaArgs>? _loggingKafkas;
         public InputList<Inputs.ServiceComputeLoggingKafkaArgs> LoggingKafkas
@@ -433,6 +425,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.ServiceComputeLoggingKineseArgs>());
             set => _loggingKineses = value;
+        }
+
+        [Input("loggingLogentries")]
+        private InputList<Inputs.ServiceComputeLoggingLogentryArgs>? _loggingLogentries;
+        public InputList<Inputs.ServiceComputeLoggingLogentryArgs> LoggingLogentries
+        {
+            get => _loggingLogentries ?? (_loggingLogentries = new InputList<Inputs.ServiceComputeLoggingLogentryArgs>());
+            set => _loggingLogentries = value;
         }
 
         [Input("loggingLogglies")]
@@ -467,6 +467,22 @@ namespace Pulumi.Fastly
             set => _loggingOpenstacks = value;
         }
 
+        [Input("loggingPapertrails")]
+        private InputList<Inputs.ServiceComputeLoggingPapertrailArgs>? _loggingPapertrails;
+        public InputList<Inputs.ServiceComputeLoggingPapertrailArgs> LoggingPapertrails
+        {
+            get => _loggingPapertrails ?? (_loggingPapertrails = new InputList<Inputs.ServiceComputeLoggingPapertrailArgs>());
+            set => _loggingPapertrails = value;
+        }
+
+        [Input("loggingS3s")]
+        private InputList<Inputs.ServiceComputeLoggingS3Args>? _loggingS3s;
+        public InputList<Inputs.ServiceComputeLoggingS3Args> LoggingS3s
+        {
+            get => _loggingS3s ?? (_loggingS3s = new InputList<Inputs.ServiceComputeLoggingS3Args>());
+            set => _loggingS3s = value;
+        }
+
         [Input("loggingScalyrs")]
         private InputList<Inputs.ServiceComputeLoggingScalyrArgs>? _loggingScalyrs;
         public InputList<Inputs.ServiceComputeLoggingScalyrArgs> LoggingScalyrs
@@ -483,6 +499,30 @@ namespace Pulumi.Fastly
             set => _loggingSftps = value;
         }
 
+        [Input("loggingSplunks")]
+        private InputList<Inputs.ServiceComputeLoggingSplunkArgs>? _loggingSplunks;
+        public InputList<Inputs.ServiceComputeLoggingSplunkArgs> LoggingSplunks
+        {
+            get => _loggingSplunks ?? (_loggingSplunks = new InputList<Inputs.ServiceComputeLoggingSplunkArgs>());
+            set => _loggingSplunks = value;
+        }
+
+        [Input("loggingSumologics")]
+        private InputList<Inputs.ServiceComputeLoggingSumologicArgs>? _loggingSumologics;
+        public InputList<Inputs.ServiceComputeLoggingSumologicArgs> LoggingSumologics
+        {
+            get => _loggingSumologics ?? (_loggingSumologics = new InputList<Inputs.ServiceComputeLoggingSumologicArgs>());
+            set => _loggingSumologics = value;
+        }
+
+        [Input("loggingSyslogs")]
+        private InputList<Inputs.ServiceComputeLoggingSyslogArgs>? _loggingSyslogs;
+        public InputList<Inputs.ServiceComputeLoggingSyslogArgs> LoggingSyslogs
+        {
+            get => _loggingSyslogs ?? (_loggingSyslogs = new InputList<Inputs.ServiceComputeLoggingSyslogArgs>());
+            set => _loggingSyslogs = value;
+        }
+
         /// <summary>
         /// The unique name for the Service to create
         /// </summary>
@@ -495,30 +535,6 @@ namespace Pulumi.Fastly
         [Input("package", required: true)]
         public Input<Inputs.ServiceComputePackageArgs> Package { get; set; } = null!;
 
-        [Input("papertrails")]
-        private InputList<Inputs.ServiceComputePapertrailArgs>? _papertrails;
-        public InputList<Inputs.ServiceComputePapertrailArgs> Papertrails
-        {
-            get => _papertrails ?? (_papertrails = new InputList<Inputs.ServiceComputePapertrailArgs>());
-            set => _papertrails = value;
-        }
-
-        [Input("s3loggings")]
-        private InputList<Inputs.ServiceComputeS3loggingArgs>? _s3loggings;
-        public InputList<Inputs.ServiceComputeS3loggingArgs> S3loggings
-        {
-            get => _s3loggings ?? (_s3loggings = new InputList<Inputs.ServiceComputeS3loggingArgs>());
-            set => _s3loggings = value;
-        }
-
-        [Input("splunks")]
-        private InputList<Inputs.ServiceComputeSplunkArgs>? _splunks;
-        public InputList<Inputs.ServiceComputeSplunkArgs> Splunks
-        {
-            get => _splunks ?? (_splunks = new InputList<Inputs.ServiceComputeSplunkArgs>());
-            set => _splunks = value;
-        }
-
         /// <summary>
         /// Enables serving a stale object if there is an error
         /// </summary>
@@ -530,22 +546,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("staleIfErrorTtl")]
         public Input<int>? StaleIfErrorTtl { get; set; }
-
-        [Input("sumologics")]
-        private InputList<Inputs.ServiceComputeSumologicArgs>? _sumologics;
-        public InputList<Inputs.ServiceComputeSumologicArgs> Sumologics
-        {
-            get => _sumologics ?? (_sumologics = new InputList<Inputs.ServiceComputeSumologicArgs>());
-            set => _sumologics = value;
-        }
-
-        [Input("syslogs")]
-        private InputList<Inputs.ServiceComputeSyslogArgs>? _syslogs;
-        public InputList<Inputs.ServiceComputeSyslogArgs> Syslogs
-        {
-            get => _syslogs ?? (_syslogs = new InputList<Inputs.ServiceComputeSyslogArgs>());
-            set => _syslogs = value;
-        }
 
         /// <summary>
         /// Description field for the version
@@ -578,22 +578,6 @@ namespace Pulumi.Fastly
         {
             get => _backends ?? (_backends = new InputList<Inputs.ServiceComputeBackendGetArgs>());
             set => _backends = value;
-        }
-
-        [Input("bigqueryloggings")]
-        private InputList<Inputs.ServiceComputeBigqueryloggingGetArgs>? _bigqueryloggings;
-        public InputList<Inputs.ServiceComputeBigqueryloggingGetArgs> Bigqueryloggings
-        {
-            get => _bigqueryloggings ?? (_bigqueryloggings = new InputList<Inputs.ServiceComputeBigqueryloggingGetArgs>());
-            set => _bigqueryloggings = value;
-        }
-
-        [Input("blobstorageloggings")]
-        private InputList<Inputs.ServiceComputeBlobstorageloggingGetArgs>? _blobstorageloggings;
-        public InputList<Inputs.ServiceComputeBlobstorageloggingGetArgs> Blobstorageloggings
-        {
-            get => _blobstorageloggings ?? (_blobstorageloggings = new InputList<Inputs.ServiceComputeBlobstorageloggingGetArgs>());
-            set => _blobstorageloggings = value;
         }
 
         /// <summary>
@@ -654,14 +638,6 @@ namespace Pulumi.Fastly
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
-        [Input("gcsloggings")]
-        private InputList<Inputs.ServiceComputeGcsloggingGetArgs>? _gcsloggings;
-        public InputList<Inputs.ServiceComputeGcsloggingGetArgs> Gcsloggings
-        {
-            get => _gcsloggings ?? (_gcsloggings = new InputList<Inputs.ServiceComputeGcsloggingGetArgs>());
-            set => _gcsloggings = value;
-        }
-
         [Input("healthchecks")]
         private InputList<Inputs.ServiceComputeHealthcheckGetArgs>? _healthchecks;
         public InputList<Inputs.ServiceComputeHealthcheckGetArgs> Healthchecks
@@ -670,20 +646,20 @@ namespace Pulumi.Fastly
             set => _healthchecks = value;
         }
 
-        [Input("httpsloggings")]
-        private InputList<Inputs.ServiceComputeHttpsloggingGetArgs>? _httpsloggings;
-        public InputList<Inputs.ServiceComputeHttpsloggingGetArgs> Httpsloggings
+        [Input("loggingBigqueries")]
+        private InputList<Inputs.ServiceComputeLoggingBigqueryGetArgs>? _loggingBigqueries;
+        public InputList<Inputs.ServiceComputeLoggingBigqueryGetArgs> LoggingBigqueries
         {
-            get => _httpsloggings ?? (_httpsloggings = new InputList<Inputs.ServiceComputeHttpsloggingGetArgs>());
-            set => _httpsloggings = value;
+            get => _loggingBigqueries ?? (_loggingBigqueries = new InputList<Inputs.ServiceComputeLoggingBigqueryGetArgs>());
+            set => _loggingBigqueries = value;
         }
 
-        [Input("logentries")]
-        private InputList<Inputs.ServiceComputeLogentryGetArgs>? _logentries;
-        public InputList<Inputs.ServiceComputeLogentryGetArgs> Logentries
+        [Input("loggingBlobstorages")]
+        private InputList<Inputs.ServiceComputeLoggingBlobstorageGetArgs>? _loggingBlobstorages;
+        public InputList<Inputs.ServiceComputeLoggingBlobstorageGetArgs> LoggingBlobstorages
         {
-            get => _logentries ?? (_logentries = new InputList<Inputs.ServiceComputeLogentryGetArgs>());
-            set => _logentries = value;
+            get => _loggingBlobstorages ?? (_loggingBlobstorages = new InputList<Inputs.ServiceComputeLoggingBlobstorageGetArgs>());
+            set => _loggingBlobstorages = value;
         }
 
         [Input("loggingCloudfiles")]
@@ -726,6 +702,14 @@ namespace Pulumi.Fastly
             set => _loggingFtps = value;
         }
 
+        [Input("loggingGcs")]
+        private InputList<Inputs.ServiceComputeLoggingGcGetArgs>? _loggingGcs;
+        public InputList<Inputs.ServiceComputeLoggingGcGetArgs> LoggingGcs
+        {
+            get => _loggingGcs ?? (_loggingGcs = new InputList<Inputs.ServiceComputeLoggingGcGetArgs>());
+            set => _loggingGcs = value;
+        }
+
         [Input("loggingGooglepubsubs")]
         private InputList<Inputs.ServiceComputeLoggingGooglepubsubGetArgs>? _loggingGooglepubsubs;
         public InputList<Inputs.ServiceComputeLoggingGooglepubsubGetArgs> LoggingGooglepubsubs
@@ -750,6 +734,14 @@ namespace Pulumi.Fastly
             set => _loggingHoneycombs = value;
         }
 
+        [Input("loggingHttps")]
+        private InputList<Inputs.ServiceComputeLoggingHttpGetArgs>? _loggingHttps;
+        public InputList<Inputs.ServiceComputeLoggingHttpGetArgs> LoggingHttps
+        {
+            get => _loggingHttps ?? (_loggingHttps = new InputList<Inputs.ServiceComputeLoggingHttpGetArgs>());
+            set => _loggingHttps = value;
+        }
+
         [Input("loggingKafkas")]
         private InputList<Inputs.ServiceComputeLoggingKafkaGetArgs>? _loggingKafkas;
         public InputList<Inputs.ServiceComputeLoggingKafkaGetArgs> LoggingKafkas
@@ -764,6 +756,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingKineses ?? (_loggingKineses = new InputList<Inputs.ServiceComputeLoggingKineseGetArgs>());
             set => _loggingKineses = value;
+        }
+
+        [Input("loggingLogentries")]
+        private InputList<Inputs.ServiceComputeLoggingLogentryGetArgs>? _loggingLogentries;
+        public InputList<Inputs.ServiceComputeLoggingLogentryGetArgs> LoggingLogentries
+        {
+            get => _loggingLogentries ?? (_loggingLogentries = new InputList<Inputs.ServiceComputeLoggingLogentryGetArgs>());
+            set => _loggingLogentries = value;
         }
 
         [Input("loggingLogglies")]
@@ -798,6 +798,22 @@ namespace Pulumi.Fastly
             set => _loggingOpenstacks = value;
         }
 
+        [Input("loggingPapertrails")]
+        private InputList<Inputs.ServiceComputeLoggingPapertrailGetArgs>? _loggingPapertrails;
+        public InputList<Inputs.ServiceComputeLoggingPapertrailGetArgs> LoggingPapertrails
+        {
+            get => _loggingPapertrails ?? (_loggingPapertrails = new InputList<Inputs.ServiceComputeLoggingPapertrailGetArgs>());
+            set => _loggingPapertrails = value;
+        }
+
+        [Input("loggingS3s")]
+        private InputList<Inputs.ServiceComputeLoggingS3GetArgs>? _loggingS3s;
+        public InputList<Inputs.ServiceComputeLoggingS3GetArgs> LoggingS3s
+        {
+            get => _loggingS3s ?? (_loggingS3s = new InputList<Inputs.ServiceComputeLoggingS3GetArgs>());
+            set => _loggingS3s = value;
+        }
+
         [Input("loggingScalyrs")]
         private InputList<Inputs.ServiceComputeLoggingScalyrGetArgs>? _loggingScalyrs;
         public InputList<Inputs.ServiceComputeLoggingScalyrGetArgs> LoggingScalyrs
@@ -814,6 +830,30 @@ namespace Pulumi.Fastly
             set => _loggingSftps = value;
         }
 
+        [Input("loggingSplunks")]
+        private InputList<Inputs.ServiceComputeLoggingSplunkGetArgs>? _loggingSplunks;
+        public InputList<Inputs.ServiceComputeLoggingSplunkGetArgs> LoggingSplunks
+        {
+            get => _loggingSplunks ?? (_loggingSplunks = new InputList<Inputs.ServiceComputeLoggingSplunkGetArgs>());
+            set => _loggingSplunks = value;
+        }
+
+        [Input("loggingSumologics")]
+        private InputList<Inputs.ServiceComputeLoggingSumologicGetArgs>? _loggingSumologics;
+        public InputList<Inputs.ServiceComputeLoggingSumologicGetArgs> LoggingSumologics
+        {
+            get => _loggingSumologics ?? (_loggingSumologics = new InputList<Inputs.ServiceComputeLoggingSumologicGetArgs>());
+            set => _loggingSumologics = value;
+        }
+
+        [Input("loggingSyslogs")]
+        private InputList<Inputs.ServiceComputeLoggingSyslogGetArgs>? _loggingSyslogs;
+        public InputList<Inputs.ServiceComputeLoggingSyslogGetArgs> LoggingSyslogs
+        {
+            get => _loggingSyslogs ?? (_loggingSyslogs = new InputList<Inputs.ServiceComputeLoggingSyslogGetArgs>());
+            set => _loggingSyslogs = value;
+        }
+
         /// <summary>
         /// The unique name for the Service to create
         /// </summary>
@@ -826,30 +866,6 @@ namespace Pulumi.Fastly
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }
 
-        [Input("papertrails")]
-        private InputList<Inputs.ServiceComputePapertrailGetArgs>? _papertrails;
-        public InputList<Inputs.ServiceComputePapertrailGetArgs> Papertrails
-        {
-            get => _papertrails ?? (_papertrails = new InputList<Inputs.ServiceComputePapertrailGetArgs>());
-            set => _papertrails = value;
-        }
-
-        [Input("s3loggings")]
-        private InputList<Inputs.ServiceComputeS3loggingGetArgs>? _s3loggings;
-        public InputList<Inputs.ServiceComputeS3loggingGetArgs> S3loggings
-        {
-            get => _s3loggings ?? (_s3loggings = new InputList<Inputs.ServiceComputeS3loggingGetArgs>());
-            set => _s3loggings = value;
-        }
-
-        [Input("splunks")]
-        private InputList<Inputs.ServiceComputeSplunkGetArgs>? _splunks;
-        public InputList<Inputs.ServiceComputeSplunkGetArgs> Splunks
-        {
-            get => _splunks ?? (_splunks = new InputList<Inputs.ServiceComputeSplunkGetArgs>());
-            set => _splunks = value;
-        }
-
         /// <summary>
         /// Enables serving a stale object if there is an error
         /// </summary>
@@ -861,22 +877,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("staleIfErrorTtl")]
         public Input<int>? StaleIfErrorTtl { get; set; }
-
-        [Input("sumologics")]
-        private InputList<Inputs.ServiceComputeSumologicGetArgs>? _sumologics;
-        public InputList<Inputs.ServiceComputeSumologicGetArgs> Sumologics
-        {
-            get => _sumologics ?? (_sumologics = new InputList<Inputs.ServiceComputeSumologicGetArgs>());
-            set => _sumologics = value;
-        }
-
-        [Input("syslogs")]
-        private InputList<Inputs.ServiceComputeSyslogGetArgs>? _syslogs;
-        public InputList<Inputs.ServiceComputeSyslogGetArgs> Syslogs
-        {
-            get => _syslogs ?? (_syslogs = new InputList<Inputs.ServiceComputeSyslogGetArgs>());
-            set => _syslogs = value;
-        }
 
         /// <summary>
         /// Description field for the version

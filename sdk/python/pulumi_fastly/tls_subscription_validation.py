@@ -81,17 +81,17 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         domain_name = "example.com"
-        example_servicev1 = fastly.Servicev1("exampleServicev1",
-            domains=[fastly.Servicev1DomainArgs(
+        example_service_vcl = fastly.ServiceVcl("exampleServiceVcl",
+            domains=[fastly.ServiceVclDomainArgs(
                 name=domain_name,
             )],
-            backends=[fastly.Servicev1BackendArgs(
+            backends=[fastly.ServiceVclBackendArgs(
                 address="127.0.0.1",
                 name="localhost",
             )],
             force_destroy=True)
         example_tls_subscription = fastly.TlsSubscription("exampleTlsSubscription",
-            domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),
+            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
         demo = aws.route53.get_zone(name=domain_name,
             private_zone=False)
@@ -135,17 +135,17 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         domain_name = "example.com"
-        example_servicev1 = fastly.Servicev1("exampleServicev1",
-            domains=[fastly.Servicev1DomainArgs(
+        example_service_vcl = fastly.ServiceVcl("exampleServiceVcl",
+            domains=[fastly.ServiceVclDomainArgs(
                 name=domain_name,
             )],
-            backends=[fastly.Servicev1BackendArgs(
+            backends=[fastly.ServiceVclBackendArgs(
                 address="127.0.0.1",
                 name="localhost",
             )],
             force_destroy=True)
         example_tls_subscription = fastly.TlsSubscription("exampleTlsSubscription",
-            domains=example_servicev1.domains.apply(lambda domains: [domain.name for domain in domains]),
+            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
         demo = aws.route53.get_zone(name=domain_name,
             private_zone=False)

@@ -5,6 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export * from "./getDatacenters";
 export * from "./getFastlyIpRanges";
 export * from "./getTlsActivation";
 export * from "./getTlsActivationIds";
@@ -21,19 +22,19 @@ export * from "./getTlsSubscription";
 export * from "./getTlsSubscriptionIds";
 export * from "./getWafRules";
 export * from "./provider";
-export * from "./serviceACLEntriesv1";
+export * from "./serviceACLEntries";
 export * from "./serviceCompute";
-export * from "./serviceDictionaryItemsv1";
-export * from "./serviceDynamicSnippetContentv1";
+export * from "./serviceDictionaryItems";
+export * from "./serviceDynamicSnippetContent";
+export * from "./serviceVcl";
 export * from "./serviceWafConfiguration";
-export * from "./servicev1";
 export * from "./tlsActivation";
 export * from "./tlsCertificate";
 export * from "./tlsPlatformCertificate";
 export * from "./tlsPrivateKey";
 export * from "./tlsSubscription";
 export * from "./tlsSubscriptionValidation";
-export * from "./userv1";
+export * from "./user";
 
 // Export sub-modules:
 import * as config from "./config";
@@ -45,36 +46,36 @@ export {
 };
 
 // Import resources to register:
-import { ServiceACLEntriesv1 } from "./serviceACLEntriesv1";
+import { ServiceACLEntries } from "./serviceACLEntries";
 import { ServiceCompute } from "./serviceCompute";
-import { ServiceDictionaryItemsv1 } from "./serviceDictionaryItemsv1";
-import { ServiceDynamicSnippetContentv1 } from "./serviceDynamicSnippetContentv1";
+import { ServiceDictionaryItems } from "./serviceDictionaryItems";
+import { ServiceDynamicSnippetContent } from "./serviceDynamicSnippetContent";
+import { ServiceVcl } from "./serviceVcl";
 import { ServiceWafConfiguration } from "./serviceWafConfiguration";
-import { Servicev1 } from "./servicev1";
 import { TlsActivation } from "./tlsActivation";
 import { TlsCertificate } from "./tlsCertificate";
 import { TlsPlatformCertificate } from "./tlsPlatformCertificate";
 import { TlsPrivateKey } from "./tlsPrivateKey";
 import { TlsSubscription } from "./tlsSubscription";
 import { TlsSubscriptionValidation } from "./tlsSubscriptionValidation";
-import { Userv1 } from "./userv1";
+import { User } from "./user";
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "fastly:index/serviceACLEntriesv1:ServiceACLEntriesv1":
-                return new ServiceACLEntriesv1(name, <any>undefined, { urn })
+            case "fastly:index/serviceACLEntries:ServiceACLEntries":
+                return new ServiceACLEntries(name, <any>undefined, { urn })
             case "fastly:index/serviceCompute:ServiceCompute":
                 return new ServiceCompute(name, <any>undefined, { urn })
-            case "fastly:index/serviceDictionaryItemsv1:ServiceDictionaryItemsv1":
-                return new ServiceDictionaryItemsv1(name, <any>undefined, { urn })
-            case "fastly:index/serviceDynamicSnippetContentv1:ServiceDynamicSnippetContentv1":
-                return new ServiceDynamicSnippetContentv1(name, <any>undefined, { urn })
+            case "fastly:index/serviceDictionaryItems:ServiceDictionaryItems":
+                return new ServiceDictionaryItems(name, <any>undefined, { urn })
+            case "fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent":
+                return new ServiceDynamicSnippetContent(name, <any>undefined, { urn })
+            case "fastly:index/serviceVcl:ServiceVcl":
+                return new ServiceVcl(name, <any>undefined, { urn })
             case "fastly:index/serviceWafConfiguration:ServiceWafConfiguration":
                 return new ServiceWafConfiguration(name, <any>undefined, { urn })
-            case "fastly:index/servicev1:Servicev1":
-                return new Servicev1(name, <any>undefined, { urn })
             case "fastly:index/tlsActivation:TlsActivation":
                 return new TlsActivation(name, <any>undefined, { urn })
             case "fastly:index/tlsCertificate:TlsCertificate":
@@ -87,26 +88,26 @@ const _module = {
                 return new TlsSubscription(name, <any>undefined, { urn })
             case "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
                 return new TlsSubscriptionValidation(name, <any>undefined, { urn })
-            case "fastly:index/userv1:Userv1":
-                return new Userv1(name, <any>undefined, { urn })
+            case "fastly:index/user:User":
+                return new User(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntriesv1", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceCompute", _module)
-pulumi.runtime.registerResourceModule("fastly", "index/serviceDictionaryItemsv1", _module)
-pulumi.runtime.registerResourceModule("fastly", "index/serviceDynamicSnippetContentv1", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/serviceDictionaryItems", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/serviceDynamicSnippetContent", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/serviceVcl", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceWafConfiguration", _module)
-pulumi.runtime.registerResourceModule("fastly", "index/servicev1", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsActivation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsCertificate", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsPlatformCertificate", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsPrivateKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscription", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscriptionValidation", _module)
-pulumi.runtime.registerResourceModule("fastly", "index/userv1", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/user", _module)
 
 import { Provider } from "./provider";
 

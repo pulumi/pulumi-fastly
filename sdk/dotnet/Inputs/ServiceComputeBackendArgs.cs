@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `true`
+        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         /// </summary>
         [Input("autoLoadbalance")]
         public Input<bool>? AutoLoadbalance { get; set; }

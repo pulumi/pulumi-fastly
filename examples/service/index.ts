@@ -14,7 +14,7 @@
 
 import * as fastly from "@pulumi/fastly";
 
-const demo = new fastly.Servicev1("demo", {
+const demo = new fastly.ServiceVcl("demo", {
      backends: [{
          address: "127.0.0.1",
          name: "localhost",

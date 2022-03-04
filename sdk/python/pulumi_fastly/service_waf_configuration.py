@@ -1130,14 +1130,14 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         > **Warning:** A two-phase change is required when adding a WAF to an existing service
 
-        When adding a `waf` to an existing `Servicev1` and at the same time adding a `ServiceWafConfiguration`
-        resource with `waf_id = fastly_service_v1.demo.waf[0].waf_id` might result with the in the following error:
+        When adding a `waf` to an existing `ServiceVcl` and at the same time adding a `ServiceWafConfiguration`
+        resource with `waf_id = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
 
-        > fastly_service_v1.demo.waf is empty list of object
+        > fastly_service_vcl.demo.waf is empty list of object
 
         For this scenario, it's recommended to split the changes into two distinct steps:
 
-        1. Add the `waf` block to the `Servicev1` and apply the changes
+        1. Add the `waf` block to the `ServiceVcl` and apply the changes
         2. Add the `ServiceWafConfiguration` to the HCL and apply the changes
 
         ## Import
@@ -1196,14 +1196,14 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         > **Warning:** A two-phase change is required when adding a WAF to an existing service
 
-        When adding a `waf` to an existing `Servicev1` and at the same time adding a `ServiceWafConfiguration`
-        resource with `waf_id = fastly_service_v1.demo.waf[0].waf_id` might result with the in the following error:
+        When adding a `waf` to an existing `ServiceVcl` and at the same time adding a `ServiceWafConfiguration`
+        resource with `waf_id = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
 
-        > fastly_service_v1.demo.waf is empty list of object
+        > fastly_service_vcl.demo.waf is empty list of object
 
         For this scenario, it's recommended to split the changes into two distinct steps:
 
-        1. Add the `waf` block to the `Servicev1` and apply the changes
+        1. Add the `waf` block to the `ServiceVcl` and apply the changes
         2. Add the `ServiceWafConfiguration` to the HCL and apply the changes
 
         ## Import
