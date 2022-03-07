@@ -30,9 +30,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := true
 // 		exampleTlsConfiguration, err := fastly.GetTlsConfiguration(ctx, &GetTlsConfigurationArgs{
-// 			Default: &opt0,
+// 			Default: pulumi.BoolRef(true),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

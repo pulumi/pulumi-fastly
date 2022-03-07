@@ -4,8 +4,8 @@ go 1.16
 
 require (
 	github.com/fastly/terraform-provider-fastly v0.20.2
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.18.0
-	github.com/pulumi/pulumi/sdk/v3 v3.23.2
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.19.1
+	github.com/pulumi/pulumi/sdk/v3 v3.25.0
 )
 
 replace (

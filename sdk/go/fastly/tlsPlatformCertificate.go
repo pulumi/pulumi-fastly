@@ -90,9 +90,8 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		opt0 := "PLATFORM"
 // 		config, err := fastly.GetTlsConfiguration(ctx, &GetTlsConfigurationArgs{
-// 			TlsService: &opt0,
+// 			TlsService: pulumi.StringRef("PLATFORM"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

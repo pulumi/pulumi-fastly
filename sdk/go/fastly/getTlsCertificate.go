@@ -30,9 +30,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "example.com"
 // 		_, err := fastly.LookupTlsCertificate(ctx, &GetTlsCertificateArgs{
-// 			Name: &opt0,
+// 			Name: pulumi.StringRef("example.com"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
