@@ -1,6 +1,6 @@
-module github.com/pulumi/pulumi-fastly/sdk/v3
+module github.com/pulumi/pulumi-fastly/sdk/v4
 
-go 1.14
+go 1.16
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
