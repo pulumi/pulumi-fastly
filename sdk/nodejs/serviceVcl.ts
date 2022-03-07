@@ -73,12 +73,12 @@ import * as utilities from "./utilities";
  *         type: "cache",
  *     }],
  * });
- * const website = new aws.s3.BucketV2("website", {
+ * const website = new aws.s3.Bucket("website", {
  *     acl: "public-read",
- *     websites: [{
+ *     website: {
  *         errorDocument: "error.html",
  *         indexDocument: "index.html",
- *     }],
+ *     },
  * });
  * ```
  *

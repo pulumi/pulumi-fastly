@@ -1429,6 +1429,191 @@ class ServiceVcl(pulumi.CustomResource):
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
 
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                override_host="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            gzips=[fastly.ServiceVclGzipArgs(
+                content_types=[
+                    "text/html",
+                    "text/css",
+                ],
+                extensions=[
+                    "css",
+                    "js",
+                ],
+                name="file extensions and content types",
+            )],
+            headers=[fastly.ServiceVclHeaderArgs(
+                action="delete",
+                destination="http.x-amz-request-id",
+                name="remove x-amz-request-id",
+                type="cache",
+            )])
+        website = aws.s3.Bucket("website",
+            acl="public-read",
+            website=aws.s3.BucketWebsiteArgs(
+                error_document="error.html",
+                index_document="index.html",
+            ))
+        ```
+
+        Basic usage with [custom
+        VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            vcls=[
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_main.vcl"),
+                    main=True,
+                    name="my_custom_main_vcl",
+                ),
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_library.vcl"),
+                    name="my_custom_library_vcl",
+                ),
+            ])
+        ```
+
+        Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.1",
+                    name="origin1",
+                    port=80,
+                ),
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.2",
+                    name="origin2",
+                    port=80,
+                ),
+            ],
+            directors=[fastly.ServiceVclDirectorArgs(
+                backends=[
+                    "origin1",
+                    "origin2",
+                ],
+                name="mydirector",
+                quorum=0,
+                type=3,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    statement="req.backend.is_origin",
+                    type="PREFETCH",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="example.com",
+            )],
+            force_destroy=True,
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                content="<html><body>Forbidden</body></html>",
+                content_type="text/html",
+                name="WAF_Response",
+                request_condition="WAF_always_false",
+                response="Forbidden",
+                status=403,
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ))
+        ```
+
+        > **Note:** For an AWS S3 Bucket, the Backend address is
+        `<domain>.s3-website-<region>.amazonaws.com`. The `override_host` attribute
+        should be set to `<bucket_name>.s3-website-<region>.amazonaws.com` in the `backend` block. See the
+        Fastly documentation on [Amazon S3][fastly-s3].
+
+        [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+        [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+        [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+        [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+        [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
+
         ## Import
 
         Fastly Services can be imported using their service ID, e.g.
@@ -1470,6 +1655,191 @@ class ServiceVcl(pulumi.CustomResource):
         The Service resource requires a domain name that is correctly set up to direct
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                override_host="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            gzips=[fastly.ServiceVclGzipArgs(
+                content_types=[
+                    "text/html",
+                    "text/css",
+                ],
+                extensions=[
+                    "css",
+                    "js",
+                ],
+                name="file extensions and content types",
+            )],
+            headers=[fastly.ServiceVclHeaderArgs(
+                action="delete",
+                destination="http.x-amz-request-id",
+                name="remove x-amz-request-id",
+                type="cache",
+            )])
+        website = aws.s3.Bucket("website",
+            acl="public-read",
+            website=aws.s3.BucketWebsiteArgs(
+                error_document="error.html",
+                index_document="index.html",
+            ))
+        ```
+
+        Basic usage with [custom
+        VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            vcls=[
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_main.vcl"),
+                    main=True,
+                    name="my_custom_main_vcl",
+                ),
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_library.vcl"),
+                    name="my_custom_library_vcl",
+                ),
+            ])
+        ```
+
+        Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.1",
+                    name="origin1",
+                    port=80,
+                ),
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.2",
+                    name="origin2",
+                    port=80,
+                ),
+            ],
+            directors=[fastly.ServiceVclDirectorArgs(
+                backends=[
+                    "origin1",
+                    "origin2",
+                ],
+                name="mydirector",
+                quorum=0,
+                type=3,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    statement="req.backend.is_origin",
+                    type="PREFETCH",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="example.com",
+            )],
+            force_destroy=True,
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                content="<html><body>Forbidden</body></html>",
+                content_type="text/html",
+                name="WAF_Response",
+                request_condition="WAF_always_false",
+                response="Forbidden",
+                status=403,
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ))
+        ```
+
+        > **Note:** For an AWS S3 Bucket, the Backend address is
+        `<domain>.s3-website-<region>.amazonaws.com`. The `override_host` attribute
+        should be set to `<bucket_name>.s3-website-<region>.amazonaws.com` in the `backend` block. See the
+        Fastly documentation on [Amazon S3][fastly-s3].
+
+        [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+        [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+        [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+        [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+        [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
 
         ## Import
 
