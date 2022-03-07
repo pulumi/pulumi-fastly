@@ -20,7 +20,7 @@ import (
 	"unicode"
 
 	"github.com/fastly/terraform-provider-fastly/fastly"
-	"github.com/pulumi/pulumi-fastly/provider/v3/pkg/version"
+	"github.com/pulumi/pulumi-fastly/provider/v4/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
@@ -77,23 +77,11 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:   "fastly",
 		Config:      map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"fastly_service_v1": {
-				Tok: makeResource(mainMod, "Servicev1"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"logging_heroku": {
-						Name: "loggingHeroku",
-					},
-				},
-			},
-			"fastly_service_acl_entries_v1":             {Tok: makeResource(mainMod, "ServiceACLEntriesv1")},
-			"fastly_service_acl_entries":                {Tok: makeResource(mainMod, "ServiceACLEntries")},
-			"fastly_service_dictionary_items_v1":        {Tok: makeResource(mainMod, "ServiceDictionaryItemsv1")},
-			"fastly_service_dictionary_items":           {Tok: makeResource(mainMod, "ServiceDictionaryItems")},
-			"fastly_service_dynamic_snippet_content_v1": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContentv1")},
-			"fastly_service_dynamic_snippet_content":    {Tok: makeResource(mainMod, "ServiceDynamicSnippetContent")},
-			"fastly_service_vcl":                        {Tok: makeResource(mainMod, "ServiceVcl")},
-			"fastly_user_v1":                            {Tok: makeResource(mainMod, "Userv1")},
-			"fastly_user":                               {Tok: makeResource(mainMod, "User")},
+			"fastly_service_acl_entries":             {Tok: makeResource(mainMod, "ServiceACLEntries")},
+			"fastly_service_dictionary_items":        {Tok: makeResource(mainMod, "ServiceDictionaryItems")},
+			"fastly_service_dynamic_snippet_content": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContent")},
+			"fastly_service_vcl":                     {Tok: makeResource(mainMod, "ServiceVcl")},
+			"fastly_user":                            {Tok: makeResource(mainMod, "User")},
 			"fastly_service_compute": {
 				Tok: makeResource(mainMod, "ServiceCompute"),
 				Fields: map[string]*tfbridge.SchemaInfo{

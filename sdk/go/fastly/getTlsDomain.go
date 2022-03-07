@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v3/go/fastly"
+// 	"github.com/pulumi/pulumi-fastly/sdk/v4/go/fastly"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
