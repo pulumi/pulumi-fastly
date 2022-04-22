@@ -16,8 +16,8 @@ import * as utilities from "./utilities";
  *
  * const fastly = fastly.getFastlyIpRanges({});
  * const fromFastly = new aws.ec2.SecurityGroup("fromFastly", {ingress: [{
- *     fromPort: "443",
- *     toPort: "443",
+ *     fromPort: 443,
+ *     toPort: 443,
  *     protocol: "tcp",
  *     cidrBlocks: fastly.then(fastly => fastly.cidrBlocks),
  *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
