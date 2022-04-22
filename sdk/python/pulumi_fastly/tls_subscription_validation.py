@@ -98,7 +98,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         # Set up DNS record for managed DNS domain validation method
         domain_validation = aws.route53.Record("domainValidation",
             name=example_tls_subscription.managed_dns_challenge["recordName"],
-            type=example_tls_subscription.managed_dns_challenge["recordType"],
+            type=aws.route53/recordtype.RecordType(example_tls_subscription.managed_dns_challenge["recordType"]),
             zone_id=demo.id,
             allow_overwrite=True,
             records=[example_tls_subscription.managed_dns_challenge["recordValue"]],
@@ -152,7 +152,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         # Set up DNS record for managed DNS domain validation method
         domain_validation = aws.route53.Record("domainValidation",
             name=example_tls_subscription.managed_dns_challenge["recordName"],
-            type=example_tls_subscription.managed_dns_challenge["recordType"],
+            type=aws.route53/recordtype.RecordType(example_tls_subscription.managed_dns_challenge["recordType"]),
             zone_id=demo.id,
             allow_overwrite=True,
             records=[example_tls_subscription.managed_dns_challenge["recordValue"]],
