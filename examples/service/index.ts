@@ -22,7 +22,7 @@ const demo = new fastly.ServiceVcl("demo", {
      }],
     domains: [{
          comment: "demo",
-         name: "demo.pulumi.io",
+         name: "demo.pulumi2.io",
     }],
     forceDestroy: true,
 });
