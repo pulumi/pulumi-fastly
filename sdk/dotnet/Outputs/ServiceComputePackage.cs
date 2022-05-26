@@ -17,9 +17,6 @@ namespace Pulumi.Fastly.Outputs
         /// The path to the Wasm deployment package within your local filesystem
         /// </summary>
         public readonly string Filename;
-        /// <summary>
-        /// Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
-        /// </summary>
         public readonly string? SourceCodeHash;
 
         [OutputConstructor]

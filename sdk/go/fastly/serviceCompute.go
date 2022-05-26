@@ -92,9 +92,6 @@ func NewServiceCompute(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Backends == nil {
-		return nil, errors.New("invalid value for required argument 'Backends'")
-	}
 	if args.Domains == nil {
 		return nil, errors.New("invalid value for required argument 'Domains'")
 	}

@@ -15,10 +15,10 @@ __all__ = ['ServiceComputeArgs', 'ServiceCompute']
 @pulumi.input_type
 class ServiceComputeArgs:
     def __init__(__self__, *,
-                 backends: pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]],
                  domains: pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]],
                  package: pulumi.Input['ServiceComputePackageArgs'],
                  activate: Optional[pulumi.Input[bool]] = None,
+                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  default_host: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
@@ -70,11 +70,12 @@ class ServiceComputeArgs:
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
-        pulumi.set(__self__, "backends", backends)
         pulumi.set(__self__, "domains", domains)
         pulumi.set(__self__, "package", package)
         if activate is not None:
             pulumi.set(__self__, "activate", activate)
+        if backends is not None:
+            pulumi.set(__self__, "backends", backends)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
         if default_host is not None:
@@ -152,15 +153,6 @@ class ServiceComputeArgs:
 
     @property
     @pulumi.getter
-    def backends(self) -> pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]:
-        return pulumi.get(self, "backends")
-
-    @backends.setter
-    def backends(self, value: pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]):
-        pulumi.set(self, "backends", value)
-
-    @property
-    @pulumi.getter
     def domains(self) -> pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]:
         """
         A set of Domain names to serve as entry points for your Service
@@ -194,6 +186,15 @@ class ServiceComputeArgs:
     @activate.setter
     def activate(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "activate", value)
+
+    @property
+    @pulumi.getter
+    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]:
+        return pulumi.get(self, "backends")
+
+    @backends.setter
+    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]):
+        pulumi.set(self, "backends", value)
 
     @property
     @pulumi.getter
@@ -1295,8 +1296,6 @@ class ServiceCompute(pulumi.CustomResource):
             __props__ = ServiceComputeArgs.__new__(ServiceComputeArgs)
 
             __props__.__dict__["activate"] = activate
-            if backends is None and not opts.urn:
-                raise TypeError("Missing required property 'backends'")
             __props__.__dict__["backends"] = backends
             __props__.__dict__["comment"] = comment
             __props__.__dict__["default_host"] = default_host
@@ -1484,7 +1483,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def backends(self) -> pulumi.Output[Sequence['outputs.ServiceComputeBackend']]:
+    def backends(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeBackend']]]:
         return pulumi.get(self, "backends")
 
     @property

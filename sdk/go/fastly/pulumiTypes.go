@@ -5180,8 +5180,7 @@ func (o ServiceComputeLoggingSyslogArrayOutput) Index(i pulumi.IntInput) Service
 
 type ServiceComputePackage struct {
 	// The path to the Wasm deployment package within your local filesystem
-	Filename string `pulumi:"filename"`
-	// Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
+	Filename       string  `pulumi:"filename"`
 	SourceCodeHash *string `pulumi:"sourceCodeHash"`
 }
 
@@ -5198,8 +5197,7 @@ type ServiceComputePackageInput interface {
 
 type ServiceComputePackageArgs struct {
 	// The path to the Wasm deployment package within your local filesystem
-	Filename pulumi.StringInput `pulumi:"filename"`
-	// Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
+	Filename       pulumi.StringInput    `pulumi:"filename"`
 	SourceCodeHash pulumi.StringPtrInput `pulumi:"sourceCodeHash"`
 }
 
@@ -5285,7 +5283,6 @@ func (o ServiceComputePackageOutput) Filename() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputePackage) string { return v.Filename }).(pulumi.StringOutput)
 }
 
-// Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
 func (o ServiceComputePackageOutput) SourceCodeHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputePackage) *string { return v.SourceCodeHash }).(pulumi.StringPtrOutput)
 }
@@ -5324,7 +5321,6 @@ func (o ServiceComputePackagePtrOutput) Filename() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
 func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputePackage) *string {
 		if v == nil {
