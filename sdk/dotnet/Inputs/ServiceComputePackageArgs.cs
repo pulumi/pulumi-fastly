@@ -18,9 +18,6 @@ namespace Pulumi.Fastly.Inputs
         [Input("filename", required: true)]
         public Input<string> Filename { get; set; } = null!;
 
-        /// <summary>
-        /// Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
-        /// </summary>
         [Input("sourceCodeHash")]
         public Input<string>? SourceCodeHash { get; set; }
 

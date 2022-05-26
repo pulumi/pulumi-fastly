@@ -1148,9 +1148,6 @@ export interface ServiceComputePackage {
      * The path to the Wasm deployment package within your local filesystem
      */
     filename: pulumi.Input<string>;
-    /**
-     * Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
-     */
     sourceCodeHash?: pulumi.Input<string>;
 }
 

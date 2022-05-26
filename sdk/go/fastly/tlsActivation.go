@@ -74,6 +74,8 @@ import (
 // }
 // ```
 //
+// > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
+//
 // ## Import
 //
 // A TLS activation can be imported using its ID, e.g.

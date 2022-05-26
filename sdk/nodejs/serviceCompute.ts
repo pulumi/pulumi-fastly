@@ -56,7 +56,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      * The currently active version of your Fastly Service
      */
     public /*out*/ readonly activeVersion!: pulumi.Output<number>;
-    public readonly backends!: pulumi.Output<outputs.ServiceComputeBackend[]>;
+    public readonly backends!: pulumi.Output<outputs.ServiceComputeBackend[] | undefined>;
     /**
      * The latest cloned version by the provider
      */
@@ -189,9 +189,6 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
-            if ((!args || args.backends === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'backends'");
-            }
             if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
@@ -343,7 +340,7 @@ export interface ServiceComputeArgs {
      * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
-    backends: pulumi.Input<pulumi.Input<inputs.ServiceComputeBackend>[]>;
+    backends?: pulumi.Input<pulumi.Input<inputs.ServiceComputeBackend>[]>;
     /**
      * Description field for the service. Default `Managed by Terraform`
      */

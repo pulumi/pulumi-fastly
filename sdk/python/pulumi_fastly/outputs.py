@@ -3953,7 +3953,6 @@ class ServiceComputePackage(dict):
                  source_code_hash: Optional[str] = None):
         """
         :param str filename: The path to the Wasm deployment package within your local filesystem
-        :param str source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
         """
         pulumi.set(__self__, "filename", filename)
         if source_code_hash is not None:
@@ -3970,9 +3969,6 @@ class ServiceComputePackage(dict):
     @property
     @pulumi.getter(name="sourceCodeHash")
     def source_code_hash(self) -> Optional[str]:
-        """
-        Used to trigger updates. Must be set to a SHA512 hash of the package file specified with the filename.
-        """
         return pulumi.get(self, "source_code_hash")
 
 

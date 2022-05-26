@@ -178,7 +178,7 @@ class TlsPrivateKey(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Uploads a Custom TLS Private Key to Fastly. This can be combined with a `fastly_tls_custom_certificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
+        Uploads a Custom TLS Private Key to Fastly. This can be combined with a `TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
 
         The Private Key resource requires a key in PEM format, and a name to identify it.
 
@@ -215,7 +215,7 @@ class TlsPrivateKey(pulumi.CustomResource):
                  args: TlsPrivateKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Uploads a Custom TLS Private Key to Fastly. This can be combined with a `fastly_tls_custom_certificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
+        Uploads a Custom TLS Private Key to Fastly. This can be combined with a `TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
 
         The Private Key resource requires a key in PEM format, and a name to identify it.
 
