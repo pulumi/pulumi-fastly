@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 // Export members:
 export * from "./getDatacenters";
 export * from "./getFastlyIpRanges";
+export * from "./getServices";
 export * from "./getTlsActivation";
 export * from "./getTlsActivationIds";
 export * from "./getTlsCertificate";
@@ -23,6 +24,7 @@ export * from "./getTlsSubscriptionIds";
 export * from "./getWafRules";
 export * from "./provider";
 export * from "./serviceACLEntries";
+export * from "./serviceAuthorization";
 export * from "./serviceCompute";
 export * from "./serviceDictionaryItems";
 export * from "./serviceDynamicSnippetContent";
@@ -47,6 +49,7 @@ export {
 
 // Import resources to register:
 import { ServiceACLEntries } from "./serviceACLEntries";
+import { ServiceAuthorization } from "./serviceAuthorization";
 import { ServiceCompute } from "./serviceCompute";
 import { ServiceDictionaryItems } from "./serviceDictionaryItems";
 import { ServiceDynamicSnippetContent } from "./serviceDynamicSnippetContent";
@@ -66,6 +69,8 @@ const _module = {
         switch (type) {
             case "fastly:index/serviceACLEntries:ServiceACLEntries":
                 return new ServiceACLEntries(name, <any>undefined, { urn })
+            case "fastly:index/serviceAuthorization:ServiceAuthorization":
+                return new ServiceAuthorization(name, <any>undefined, { urn })
             case "fastly:index/serviceCompute:ServiceCompute":
                 return new ServiceCompute(name, <any>undefined, { urn })
             case "fastly:index/serviceDictionaryItems:ServiceDictionaryItems":
@@ -96,6 +101,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/serviceAuthorization", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceCompute", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceDictionaryItems", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceDynamicSnippetContent", _module)

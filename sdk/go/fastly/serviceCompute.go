@@ -35,18 +35,12 @@ type ServiceCompute struct {
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
 	// Description field for the service. Default `Managed by Terraform`
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// The default hostname
-	DefaultHost pulumi.StringPtrOutput `pulumi:"defaultHost"`
-	// The default Time-to-live (TTL) for requests
-	DefaultTtl   pulumi.IntPtrOutput                 `pulumi:"defaultTtl"`
+	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
 	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
-	Directors    ServiceComputeDirectorArrayOutput   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           pulumi.BoolPtrOutput                          `pulumi:"forceDestroy"`
-	Healthchecks           ServiceComputeHealthcheckArrayOutput          `pulumi:"healthchecks"`
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayOutput   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
@@ -77,10 +71,6 @@ type ServiceCompute struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package ServiceComputePackageOutput `pulumi:"package"`
-	// Enables serving a stale object if there is an error
-	StaleIfError pulumi.BoolPtrOutput `pulumi:"staleIfError"`
-	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl pulumi.IntPtrOutput `pulumi:"staleIfErrorTtl"`
 	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
 }
@@ -128,18 +118,12 @@ type serviceComputeState struct {
 	// The latest cloned version by the provider
 	ClonedVersion *int `pulumi:"clonedVersion"`
 	// Description field for the service. Default `Managed by Terraform`
-	Comment *string `pulumi:"comment"`
-	// The default hostname
-	DefaultHost *string `pulumi:"defaultHost"`
-	// The default Time-to-live (TTL) for requests
-	DefaultTtl   *int                       `pulumi:"defaultTtl"`
+	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
-	Directors    []ServiceComputeDirector   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
-	Healthchecks           []ServiceComputeHealthcheck          `pulumi:"healthchecks"`
 	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    []ServiceComputeLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
@@ -170,10 +154,6 @@ type serviceComputeState struct {
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package *ServiceComputePackage `pulumi:"package"`
-	// Enables serving a stale object if there is an error
-	StaleIfError *bool `pulumi:"staleIfError"`
-	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl *int `pulumi:"staleIfErrorTtl"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -187,18 +167,12 @@ type ServiceComputeState struct {
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
 	// Description field for the service. Default `Managed by Terraform`
-	Comment pulumi.StringPtrInput
-	// The default hostname
-	DefaultHost pulumi.StringPtrInput
-	// The default Time-to-live (TTL) for requests
-	DefaultTtl   pulumi.IntPtrInput
+	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
-	Directors    ServiceComputeDirectorArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           pulumi.BoolPtrInput
-	Healthchecks           ServiceComputeHealthcheckArrayInput
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
 	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayInput
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput
@@ -229,10 +203,6 @@ type ServiceComputeState struct {
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package ServiceComputePackagePtrInput
-	// Enables serving a stale object if there is an error
-	StaleIfError pulumi.BoolPtrInput
-	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl pulumi.IntPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
@@ -246,18 +216,12 @@ type serviceComputeArgs struct {
 	Activate *bool                   `pulumi:"activate"`
 	Backends []ServiceComputeBackend `pulumi:"backends"`
 	// Description field for the service. Default `Managed by Terraform`
-	Comment *string `pulumi:"comment"`
-	// The default hostname
-	DefaultHost *string `pulumi:"defaultHost"`
-	// The default Time-to-live (TTL) for requests
-	DefaultTtl   *int                       `pulumi:"defaultTtl"`
+	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
-	Directors    []ServiceComputeDirector   `pulumi:"directors"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
-	Healthchecks           []ServiceComputeHealthcheck          `pulumi:"healthchecks"`
 	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    []ServiceComputeLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
@@ -288,10 +252,6 @@ type serviceComputeArgs struct {
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package ServiceComputePackage `pulumi:"package"`
-	// Enables serving a stale object if there is an error
-	StaleIfError *bool `pulumi:"staleIfError"`
-	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl *int `pulumi:"staleIfErrorTtl"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -302,18 +262,12 @@ type ServiceComputeArgs struct {
 	Activate pulumi.BoolPtrInput
 	Backends ServiceComputeBackendArrayInput
 	// Description field for the service. Default `Managed by Terraform`
-	Comment pulumi.StringPtrInput
-	// The default hostname
-	DefaultHost pulumi.StringPtrInput
-	// The default Time-to-live (TTL) for requests
-	DefaultTtl   pulumi.IntPtrInput
+	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
-	Directors    ServiceComputeDirectorArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy           pulumi.BoolPtrInput
-	Healthchecks           ServiceComputeHealthcheckArrayInput
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
 	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayInput
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput
@@ -344,10 +298,6 @@ type ServiceComputeArgs struct {
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package ServiceComputePackageInput
-	// Enables serving a stale object if there is an error
-	StaleIfError pulumi.BoolPtrInput
-	// The default time-to-live (TTL) for serving the stale object for the version
-	StaleIfErrorTtl pulumi.IntPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }

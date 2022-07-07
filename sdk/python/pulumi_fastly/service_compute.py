@@ -20,12 +20,8 @@ class ServiceComputeArgs:
                  activate: Optional[pulumi.Input[bool]] = None,
                  backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
-                 default_host: Optional[pulumi.Input[str]] = None,
-                 default_ttl: Optional[pulumi.Input[int]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
@@ -53,8 +49,6 @@ class ServiceComputeArgs:
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 stale_if_error: Optional[pulumi.Input[bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceCompute resource.
@@ -62,12 +56,8 @@ class ServiceComputeArgs:
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
-        :param pulumi.Input[str] default_host: The default hostname
-        :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
-        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
-        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
@@ -78,18 +68,10 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "backends", backends)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
-        if default_host is not None:
-            pulumi.set(__self__, "default_host", default_host)
-        if default_ttl is not None:
-            pulumi.set(__self__, "default_ttl", default_ttl)
         if dictionaries is not None:
             pulumi.set(__self__, "dictionaries", dictionaries)
-        if directors is not None:
-            pulumi.set(__self__, "directors", directors)
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
-        if healthchecks is not None:
-            pulumi.set(__self__, "healthchecks", healthchecks)
         if logging_bigqueries is not None:
             pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
@@ -144,10 +126,6 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "logging_syslogs", logging_syslogs)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if stale_if_error is not None:
-            pulumi.set(__self__, "stale_if_error", stale_if_error)
-        if stale_if_error_ttl is not None:
-            pulumi.set(__self__, "stale_if_error_ttl", stale_if_error_ttl)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
 
@@ -209,30 +187,6 @@ class ServiceComputeArgs:
         pulumi.set(self, "comment", value)
 
     @property
-    @pulumi.getter(name="defaultHost")
-    def default_host(self) -> Optional[pulumi.Input[str]]:
-        """
-        The default hostname
-        """
-        return pulumi.get(self, "default_host")
-
-    @default_host.setter
-    def default_host(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "default_host", value)
-
-    @property
-    @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The default Time-to-live (TTL) for requests
-        """
-        return pulumi.get(self, "default_ttl")
-
-    @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "default_ttl", value)
-
-    @property
     @pulumi.getter
     def dictionaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]:
         return pulumi.get(self, "dictionaries")
@@ -240,15 +194,6 @@ class ServiceComputeArgs:
     @dictionaries.setter
     def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
-
-    @property
-    @pulumi.getter
-    def directors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]:
-        return pulumi.get(self, "directors")
-
-    @directors.setter
-    def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]):
-        pulumi.set(self, "directors", value)
 
     @property
     @pulumi.getter(name="forceDestroy")
@@ -261,15 +206,6 @@ class ServiceComputeArgs:
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
-
-    @property
-    @pulumi.getter
-    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
-        return pulumi.get(self, "healthchecks")
-
-    @healthchecks.setter
-    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
-        pulumi.set(self, "healthchecks", value)
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -518,30 +454,6 @@ class ServiceComputeArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="staleIfError")
-    def stale_if_error(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Enables serving a stale object if there is an error
-        """
-        return pulumi.get(self, "stale_if_error")
-
-    @stale_if_error.setter
-    def stale_if_error(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "stale_if_error", value)
-
-    @property
-    @pulumi.getter(name="staleIfErrorTtl")
-    def stale_if_error_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The default time-to-live (TTL) for serving the stale object for the version
-        """
-        return pulumi.get(self, "stale_if_error_ttl")
-
-    @stale_if_error_ttl.setter
-    def stale_if_error_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "stale_if_error_ttl", value)
-
-    @property
     @pulumi.getter(name="versionComment")
     def version_comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -562,13 +474,9 @@ class _ServiceComputeState:
                  backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
                  cloned_version: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
-                 default_host: Optional[pulumi.Input[str]] = None,
-                 default_ttl: Optional[pulumi.Input[int]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
@@ -597,8 +505,6 @@ class _ServiceComputeState:
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
-                 stale_if_error: Optional[pulumi.Input[bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceCompute resources.
@@ -606,14 +512,10 @@ class _ServiceComputeState:
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
-        :param pulumi.Input[str] default_host: The default hostname
-        :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
-        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         if activate is not None:
@@ -626,20 +528,12 @@ class _ServiceComputeState:
             pulumi.set(__self__, "cloned_version", cloned_version)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
-        if default_host is not None:
-            pulumi.set(__self__, "default_host", default_host)
-        if default_ttl is not None:
-            pulumi.set(__self__, "default_ttl", default_ttl)
         if dictionaries is not None:
             pulumi.set(__self__, "dictionaries", dictionaries)
-        if directors is not None:
-            pulumi.set(__self__, "directors", directors)
         if domains is not None:
             pulumi.set(__self__, "domains", domains)
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
-        if healthchecks is not None:
-            pulumi.set(__self__, "healthchecks", healthchecks)
         if logging_bigqueries is not None:
             pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
@@ -696,10 +590,6 @@ class _ServiceComputeState:
             pulumi.set(__self__, "name", name)
         if package is not None:
             pulumi.set(__self__, "package", package)
-        if stale_if_error is not None:
-            pulumi.set(__self__, "stale_if_error", stale_if_error)
-        if stale_if_error_ttl is not None:
-            pulumi.set(__self__, "stale_if_error_ttl", stale_if_error_ttl)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
 
@@ -761,30 +651,6 @@ class _ServiceComputeState:
         pulumi.set(self, "comment", value)
 
     @property
-    @pulumi.getter(name="defaultHost")
-    def default_host(self) -> Optional[pulumi.Input[str]]:
-        """
-        The default hostname
-        """
-        return pulumi.get(self, "default_host")
-
-    @default_host.setter
-    def default_host(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "default_host", value)
-
-    @property
-    @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The default Time-to-live (TTL) for requests
-        """
-        return pulumi.get(self, "default_ttl")
-
-    @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "default_ttl", value)
-
-    @property
     @pulumi.getter
     def dictionaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]:
         return pulumi.get(self, "dictionaries")
@@ -792,15 +658,6 @@ class _ServiceComputeState:
     @dictionaries.setter
     def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
-
-    @property
-    @pulumi.getter
-    def directors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]:
-        return pulumi.get(self, "directors")
-
-    @directors.setter
-    def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDirectorArgs']]]]):
-        pulumi.set(self, "directors", value)
 
     @property
     @pulumi.getter
@@ -825,15 +682,6 @@ class _ServiceComputeState:
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
-
-    @property
-    @pulumi.getter
-    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
-        return pulumi.get(self, "healthchecks")
-
-    @healthchecks.setter
-    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
-        pulumi.set(self, "healthchecks", value)
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -1094,30 +942,6 @@ class _ServiceComputeState:
         pulumi.set(self, "package", value)
 
     @property
-    @pulumi.getter(name="staleIfError")
-    def stale_if_error(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Enables serving a stale object if there is an error
-        """
-        return pulumi.get(self, "stale_if_error")
-
-    @stale_if_error.setter
-    def stale_if_error(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "stale_if_error", value)
-
-    @property
-    @pulumi.getter(name="staleIfErrorTtl")
-    def stale_if_error_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The default time-to-live (TTL) for serving the stale object for the version
-        """
-        return pulumi.get(self, "stale_if_error_ttl")
-
-    @stale_if_error_ttl.setter
-    def stale_if_error_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "stale_if_error_ttl", value)
-
-    @property
     @pulumi.getter(name="versionComment")
     def version_comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1138,13 +962,9 @@ class ServiceCompute(pulumi.CustomResource):
                  activate: Optional[pulumi.Input[bool]] = None,
                  backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
-                 default_host: Optional[pulumi.Input[str]] = None,
-                 default_ttl: Optional[pulumi.Input[int]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDirectorArgs']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeHealthcheckArgs']]]]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
@@ -1173,8 +993,6 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
-                 stale_if_error: Optional[pulumi.Input[bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -1196,14 +1014,10 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
-        :param pulumi.Input[str] default_host: The default hostname
-        :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
-        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         ...
@@ -1245,13 +1059,9 @@ class ServiceCompute(pulumi.CustomResource):
                  activate: Optional[pulumi.Input[bool]] = None,
                  backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
-                 default_host: Optional[pulumi.Input[str]] = None,
-                 default_ttl: Optional[pulumi.Input[int]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDirectorArgs']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeHealthcheckArgs']]]]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
@@ -1280,8 +1090,6 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
-                 stale_if_error: Optional[pulumi.Input[bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -1298,15 +1106,11 @@ class ServiceCompute(pulumi.CustomResource):
             __props__.__dict__["activate"] = activate
             __props__.__dict__["backends"] = backends
             __props__.__dict__["comment"] = comment
-            __props__.__dict__["default_host"] = default_host
-            __props__.__dict__["default_ttl"] = default_ttl
             __props__.__dict__["dictionaries"] = dictionaries
-            __props__.__dict__["directors"] = directors
             if domains is None and not opts.urn:
                 raise TypeError("Missing required property 'domains'")
             __props__.__dict__["domains"] = domains
             __props__.__dict__["force_destroy"] = force_destroy
-            __props__.__dict__["healthchecks"] = healthchecks
             __props__.__dict__["logging_bigqueries"] = logging_bigqueries
             __props__.__dict__["logging_blobstorages"] = logging_blobstorages
             __props__.__dict__["logging_cloudfiles"] = logging_cloudfiles
@@ -1337,8 +1141,6 @@ class ServiceCompute(pulumi.CustomResource):
             if package is None and not opts.urn:
                 raise TypeError("Missing required property 'package'")
             __props__.__dict__["package"] = package
-            __props__.__dict__["stale_if_error"] = stale_if_error
-            __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
             __props__.__dict__["version_comment"] = version_comment
             __props__.__dict__["active_version"] = None
             __props__.__dict__["cloned_version"] = None
@@ -1357,13 +1159,9 @@ class ServiceCompute(pulumi.CustomResource):
             backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeBackendArgs']]]]] = None,
             cloned_version: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
-            default_host: Optional[pulumi.Input[str]] = None,
-            default_ttl: Optional[pulumi.Input[int]] = None,
             dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
-            directors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDirectorArgs']]]]] = None,
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
-            healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeHealthcheckArgs']]]]] = None,
             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBigqueryArgs']]]]] = None,
             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBlobstorageArgs']]]]] = None,
             logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
@@ -1392,8 +1190,6 @@ class ServiceCompute(pulumi.CustomResource):
             logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
-            stale_if_error: Optional[pulumi.Input[bool]] = None,
-            stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
             version_comment: Optional[pulumi.Input[str]] = None) -> 'ServiceCompute':
         """
         Get an existing ServiceCompute resource's state with the given name, id, and optional extra
@@ -1406,14 +1202,10 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
-        :param pulumi.Input[str] default_host: The default hostname
-        :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-        :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
-        :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1425,13 +1217,9 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["backends"] = backends
         __props__.__dict__["cloned_version"] = cloned_version
         __props__.__dict__["comment"] = comment
-        __props__.__dict__["default_host"] = default_host
-        __props__.__dict__["default_ttl"] = default_ttl
         __props__.__dict__["dictionaries"] = dictionaries
-        __props__.__dict__["directors"] = directors
         __props__.__dict__["domains"] = domains
         __props__.__dict__["force_destroy"] = force_destroy
-        __props__.__dict__["healthchecks"] = healthchecks
         __props__.__dict__["logging_bigqueries"] = logging_bigqueries
         __props__.__dict__["logging_blobstorages"] = logging_blobstorages
         __props__.__dict__["logging_cloudfiles"] = logging_cloudfiles
@@ -1460,8 +1248,6 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["logging_syslogs"] = logging_syslogs
         __props__.__dict__["name"] = name
         __props__.__dict__["package"] = package
-        __props__.__dict__["stale_if_error"] = stale_if_error
-        __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
         __props__.__dict__["version_comment"] = version_comment
         return ServiceCompute(resource_name, opts=opts, __props__=__props__)
 
@@ -1503,30 +1289,9 @@ class ServiceCompute(pulumi.CustomResource):
         return pulumi.get(self, "comment")
 
     @property
-    @pulumi.getter(name="defaultHost")
-    def default_host(self) -> pulumi.Output[Optional[str]]:
-        """
-        The default hostname
-        """
-        return pulumi.get(self, "default_host")
-
-    @property
-    @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> pulumi.Output[Optional[int]]:
-        """
-        The default Time-to-live (TTL) for requests
-        """
-        return pulumi.get(self, "default_ttl")
-
-    @property
     @pulumi.getter
     def dictionaries(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeDictionary']]]:
         return pulumi.get(self, "dictionaries")
-
-    @property
-    @pulumi.getter
-    def directors(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeDirector']]]:
-        return pulumi.get(self, "directors")
 
     @property
     @pulumi.getter
@@ -1543,11 +1308,6 @@ class ServiceCompute(pulumi.CustomResource):
         Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
-
-    @property
-    @pulumi.getter
-    def healthchecks(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeHealthcheck']]]:
-        return pulumi.get(self, "healthchecks")
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -1694,22 +1454,6 @@ class ServiceCompute(pulumi.CustomResource):
         The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
-
-    @property
-    @pulumi.getter(name="staleIfError")
-    def stale_if_error(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Enables serving a stale object if there is an error
-        """
-        return pulumi.get(self, "stale_if_error")
-
-    @property
-    @pulumi.getter(name="staleIfErrorTtl")
-    def stale_if_error_ttl(self) -> pulumi.Output[Optional[int]]:
-        """
-        The default time-to-live (TTL) for serving the stale object for the version
-        """
-        return pulumi.get(self, "stale_if_error_ttl")
 
     @property
     @pulumi.getter(name="versionComment")

@@ -24,7 +24,8 @@ class ProviderArgs:
         :param pulumi.Input[bool] force_http2: Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
                `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
                handshakes. Default: `false`
-        :param pulumi.Input[bool] no_auth: Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        :param pulumi.Input[bool] no_auth: Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+               `fastly_ip_ranges`
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -77,7 +78,8 @@ class ProviderArgs:
     @pulumi.getter(name="noAuth")
     def no_auth(self) -> Optional[pulumi.Input[bool]]:
         """
-        Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+        `fastly_ip_ranges`
         """
         return pulumi.get(self, "no_auth")
 
@@ -109,7 +111,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[bool] force_http2: Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
                `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
                handshakes. Default: `false`
-        :param pulumi.Input[bool] no_auth: Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        :param pulumi.Input[bool] no_auth: Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+               `fastly_ip_ranges`
         """
         ...
     @overload

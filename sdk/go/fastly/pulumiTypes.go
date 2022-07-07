@@ -574,157 +574,6 @@ func (o ServiceComputeDictionaryArrayOutput) Index(i pulumi.IntInput) ServiceCom
 	}).(ServiceComputeDictionaryOutput)
 }
 
-type ServiceComputeDirector struct {
-	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-	Backends []string `pulumi:"backends"`
-	// An optional comment about the Director
-	Comment *string `pulumi:"comment"`
-	// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-	Name string `pulumi:"name"`
-	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-	Quorum *int `pulumi:"quorum"`
-	// How many backends to search if it fails. Default `5`
-	Retries *int `pulumi:"retries"`
-	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-	Shield *string `pulumi:"shield"`
-	// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-	Type *int `pulumi:"type"`
-}
-
-// ServiceComputeDirectorInput is an input type that accepts ServiceComputeDirectorArgs and ServiceComputeDirectorOutput values.
-// You can construct a concrete instance of `ServiceComputeDirectorInput` via:
-//
-//          ServiceComputeDirectorArgs{...}
-type ServiceComputeDirectorInput interface {
-	pulumi.Input
-
-	ToServiceComputeDirectorOutput() ServiceComputeDirectorOutput
-	ToServiceComputeDirectorOutputWithContext(context.Context) ServiceComputeDirectorOutput
-}
-
-type ServiceComputeDirectorArgs struct {
-	// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-	Backends pulumi.StringArrayInput `pulumi:"backends"`
-	// An optional comment about the Director
-	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-	Name pulumi.StringInput `pulumi:"name"`
-	// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-	Quorum pulumi.IntPtrInput `pulumi:"quorum"`
-	// How many backends to search if it fails. Default `5`
-	Retries pulumi.IntPtrInput `pulumi:"retries"`
-	// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-	Shield pulumi.StringPtrInput `pulumi:"shield"`
-	// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-	Type pulumi.IntPtrInput `pulumi:"type"`
-}
-
-func (ServiceComputeDirectorArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceComputeDirector)(nil)).Elem()
-}
-
-func (i ServiceComputeDirectorArgs) ToServiceComputeDirectorOutput() ServiceComputeDirectorOutput {
-	return i.ToServiceComputeDirectorOutputWithContext(context.Background())
-}
-
-func (i ServiceComputeDirectorArgs) ToServiceComputeDirectorOutputWithContext(ctx context.Context) ServiceComputeDirectorOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDirectorOutput)
-}
-
-// ServiceComputeDirectorArrayInput is an input type that accepts ServiceComputeDirectorArray and ServiceComputeDirectorArrayOutput values.
-// You can construct a concrete instance of `ServiceComputeDirectorArrayInput` via:
-//
-//          ServiceComputeDirectorArray{ ServiceComputeDirectorArgs{...} }
-type ServiceComputeDirectorArrayInput interface {
-	pulumi.Input
-
-	ToServiceComputeDirectorArrayOutput() ServiceComputeDirectorArrayOutput
-	ToServiceComputeDirectorArrayOutputWithContext(context.Context) ServiceComputeDirectorArrayOutput
-}
-
-type ServiceComputeDirectorArray []ServiceComputeDirectorInput
-
-func (ServiceComputeDirectorArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceComputeDirector)(nil)).Elem()
-}
-
-func (i ServiceComputeDirectorArray) ToServiceComputeDirectorArrayOutput() ServiceComputeDirectorArrayOutput {
-	return i.ToServiceComputeDirectorArrayOutputWithContext(context.Background())
-}
-
-func (i ServiceComputeDirectorArray) ToServiceComputeDirectorArrayOutputWithContext(ctx context.Context) ServiceComputeDirectorArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDirectorArrayOutput)
-}
-
-type ServiceComputeDirectorOutput struct{ *pulumi.OutputState }
-
-func (ServiceComputeDirectorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceComputeDirector)(nil)).Elem()
-}
-
-func (o ServiceComputeDirectorOutput) ToServiceComputeDirectorOutput() ServiceComputeDirectorOutput {
-	return o
-}
-
-func (o ServiceComputeDirectorOutput) ToServiceComputeDirectorOutputWithContext(ctx context.Context) ServiceComputeDirectorOutput {
-	return o
-}
-
-// Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-func (o ServiceComputeDirectorOutput) Backends() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v ServiceComputeDirector) []string { return v.Backends }).(pulumi.StringArrayOutput)
-}
-
-// An optional comment about the Director
-func (o ServiceComputeDirectorOutput) Comment() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceComputeDirector) *string { return v.Comment }).(pulumi.StringPtrOutput)
-}
-
-// Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-func (o ServiceComputeDirectorOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceComputeDirector) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-func (o ServiceComputeDirectorOutput) Quorum() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeDirector) *int { return v.Quorum }).(pulumi.IntPtrOutput)
-}
-
-// How many backends to search if it fails. Default `5`
-func (o ServiceComputeDirectorOutput) Retries() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeDirector) *int { return v.Retries }).(pulumi.IntPtrOutput)
-}
-
-// Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-func (o ServiceComputeDirectorOutput) Shield() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceComputeDirector) *string { return v.Shield }).(pulumi.StringPtrOutput)
-}
-
-// Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-func (o ServiceComputeDirectorOutput) Type() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeDirector) *int { return v.Type }).(pulumi.IntPtrOutput)
-}
-
-type ServiceComputeDirectorArrayOutput struct{ *pulumi.OutputState }
-
-func (ServiceComputeDirectorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceComputeDirector)(nil)).Elem()
-}
-
-func (o ServiceComputeDirectorArrayOutput) ToServiceComputeDirectorArrayOutput() ServiceComputeDirectorArrayOutput {
-	return o
-}
-
-func (o ServiceComputeDirectorArrayOutput) ToServiceComputeDirectorArrayOutputWithContext(ctx context.Context) ServiceComputeDirectorArrayOutput {
-	return o
-}
-
-func (o ServiceComputeDirectorArrayOutput) Index(i pulumi.IntInput) ServiceComputeDirectorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeDirector {
-		return vs[0].([]ServiceComputeDirector)[vs[1].(int)]
-	}).(ServiceComputeDirectorOutput)
-}
-
 type ServiceComputeDomain struct {
 	// An optional comment about the Domain.
 	Comment *string `pulumi:"comment"`
@@ -829,193 +678,6 @@ func (o ServiceComputeDomainArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeDomain {
 		return vs[0].([]ServiceComputeDomain)[vs[1].(int)]
 	}).(ServiceComputeDomainOutput)
-}
-
-type ServiceComputeHealthcheck struct {
-	// How often to run the Healthcheck in milliseconds. Default `5000`
-	CheckInterval *int `pulumi:"checkInterval"`
-	// The status code expected from the host. Default `200`
-	ExpectedResponse *int `pulumi:"expectedResponse"`
-	// The Host header to send for this Healthcheck
-	Host string `pulumi:"host"`
-	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-	HttpVersion *string `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `3`
-	Initial *int `pulumi:"initial"`
-	// Which HTTP method to use. Default `HEAD`
-	Method *string `pulumi:"method"`
-	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-	Name string `pulumi:"name"`
-	// The path to check
-	Path string `pulumi:"path"`
-	// How many Healthchecks must succeed to be considered healthy. Default `3`
-	Threshold *int `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`
-	Timeout *int `pulumi:"timeout"`
-	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-	Window *int `pulumi:"window"`
-}
-
-// ServiceComputeHealthcheckInput is an input type that accepts ServiceComputeHealthcheckArgs and ServiceComputeHealthcheckOutput values.
-// You can construct a concrete instance of `ServiceComputeHealthcheckInput` via:
-//
-//          ServiceComputeHealthcheckArgs{...}
-type ServiceComputeHealthcheckInput interface {
-	pulumi.Input
-
-	ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput
-	ToServiceComputeHealthcheckOutputWithContext(context.Context) ServiceComputeHealthcheckOutput
-}
-
-type ServiceComputeHealthcheckArgs struct {
-	// How often to run the Healthcheck in milliseconds. Default `5000`
-	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
-	// The status code expected from the host. Default `200`
-	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
-	// The Host header to send for this Healthcheck
-	Host pulumi.StringInput `pulumi:"host"`
-	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
-	// When loading a config, the initial number of probes to be seen as OK. Default `3`
-	Initial pulumi.IntPtrInput `pulumi:"initial"`
-	// Which HTTP method to use. Default `HEAD`
-	Method pulumi.StringPtrInput `pulumi:"method"`
-	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-	Name pulumi.StringInput `pulumi:"name"`
-	// The path to check
-	Path pulumi.StringInput `pulumi:"path"`
-	// How many Healthchecks must succeed to be considered healthy. Default `3`
-	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`
-	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
-	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-	Window pulumi.IntPtrInput `pulumi:"window"`
-}
-
-func (ServiceComputeHealthcheckArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceComputeHealthcheck)(nil)).Elem()
-}
-
-func (i ServiceComputeHealthcheckArgs) ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput {
-	return i.ToServiceComputeHealthcheckOutputWithContext(context.Background())
-}
-
-func (i ServiceComputeHealthcheckArgs) ToServiceComputeHealthcheckOutputWithContext(ctx context.Context) ServiceComputeHealthcheckOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHealthcheckOutput)
-}
-
-// ServiceComputeHealthcheckArrayInput is an input type that accepts ServiceComputeHealthcheckArray and ServiceComputeHealthcheckArrayOutput values.
-// You can construct a concrete instance of `ServiceComputeHealthcheckArrayInput` via:
-//
-//          ServiceComputeHealthcheckArray{ ServiceComputeHealthcheckArgs{...} }
-type ServiceComputeHealthcheckArrayInput interface {
-	pulumi.Input
-
-	ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput
-	ToServiceComputeHealthcheckArrayOutputWithContext(context.Context) ServiceComputeHealthcheckArrayOutput
-}
-
-type ServiceComputeHealthcheckArray []ServiceComputeHealthcheckInput
-
-func (ServiceComputeHealthcheckArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceComputeHealthcheck)(nil)).Elem()
-}
-
-func (i ServiceComputeHealthcheckArray) ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput {
-	return i.ToServiceComputeHealthcheckArrayOutputWithContext(context.Background())
-}
-
-func (i ServiceComputeHealthcheckArray) ToServiceComputeHealthcheckArrayOutputWithContext(ctx context.Context) ServiceComputeHealthcheckArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHealthcheckArrayOutput)
-}
-
-type ServiceComputeHealthcheckOutput struct{ *pulumi.OutputState }
-
-func (ServiceComputeHealthcheckOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceComputeHealthcheck)(nil)).Elem()
-}
-
-func (o ServiceComputeHealthcheckOutput) ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput {
-	return o
-}
-
-func (o ServiceComputeHealthcheckOutput) ToServiceComputeHealthcheckOutputWithContext(ctx context.Context) ServiceComputeHealthcheckOutput {
-	return o
-}
-
-// How often to run the Healthcheck in milliseconds. Default `5000`
-func (o ServiceComputeHealthcheckOutput) CheckInterval() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
-}
-
-// The status code expected from the host. Default `200`
-func (o ServiceComputeHealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
-}
-
-// The Host header to send for this Healthcheck
-func (o ServiceComputeHealthcheckOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Host }).(pulumi.StringOutput)
-}
-
-// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-func (o ServiceComputeHealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
-}
-
-// When loading a config, the initial number of probes to be seen as OK. Default `3`
-func (o ServiceComputeHealthcheckOutput) Initial() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
-}
-
-// Which HTTP method to use. Default `HEAD`
-func (o ServiceComputeHealthcheckOutput) Method() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
-}
-
-// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-func (o ServiceComputeHealthcheckOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// The path to check
-func (o ServiceComputeHealthcheckOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Path }).(pulumi.StringOutput)
-}
-
-// How many Healthchecks must succeed to be considered healthy. Default `3`
-func (o ServiceComputeHealthcheckOutput) Threshold() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
-}
-
-// Timeout in milliseconds. Default `500`
-func (o ServiceComputeHealthcheckOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
-}
-
-// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-func (o ServiceComputeHealthcheckOutput) Window() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Window }).(pulumi.IntPtrOutput)
-}
-
-type ServiceComputeHealthcheckArrayOutput struct{ *pulumi.OutputState }
-
-func (ServiceComputeHealthcheckArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceComputeHealthcheck)(nil)).Elem()
-}
-
-func (o ServiceComputeHealthcheckArrayOutput) ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput {
-	return o
-}
-
-func (o ServiceComputeHealthcheckArrayOutput) ToServiceComputeHealthcheckArrayOutputWithContext(ctx context.Context) ServiceComputeHealthcheckArrayOutput {
-	return o
-}
-
-func (o ServiceComputeHealthcheckArrayOutput) Index(i pulumi.IntInput) ServiceComputeHealthcheckOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeHealthcheck {
-		return vs[0].([]ServiceComputeHealthcheck)[vs[1].(int)]
-	}).(ServiceComputeHealthcheckOutput)
 }
 
 type ServiceComputeLoggingBigquery struct {
@@ -13493,6 +13155,145 @@ func (o GetDatacentersPopArrayOutput) Index(i pulumi.IntInput) GetDatacentersPop
 	}).(GetDatacentersPopOutput)
 }
 
+type GetServicesDetail struct {
+	Comment    string `pulumi:"comment"`
+	CreatedAt  string `pulumi:"createdAt"`
+	CustomerId string `pulumi:"customerId"`
+	// The ID of this resource.
+	Id        string `pulumi:"id"`
+	Name      string `pulumi:"name"`
+	Type      string `pulumi:"type"`
+	UpdatedAt string `pulumi:"updatedAt"`
+	Version   int    `pulumi:"version"`
+}
+
+// GetServicesDetailInput is an input type that accepts GetServicesDetailArgs and GetServicesDetailOutput values.
+// You can construct a concrete instance of `GetServicesDetailInput` via:
+//
+//          GetServicesDetailArgs{...}
+type GetServicesDetailInput interface {
+	pulumi.Input
+
+	ToGetServicesDetailOutput() GetServicesDetailOutput
+	ToGetServicesDetailOutputWithContext(context.Context) GetServicesDetailOutput
+}
+
+type GetServicesDetailArgs struct {
+	Comment    pulumi.StringInput `pulumi:"comment"`
+	CreatedAt  pulumi.StringInput `pulumi:"createdAt"`
+	CustomerId pulumi.StringInput `pulumi:"customerId"`
+	// The ID of this resource.
+	Id        pulumi.StringInput `pulumi:"id"`
+	Name      pulumi.StringInput `pulumi:"name"`
+	Type      pulumi.StringInput `pulumi:"type"`
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	Version   pulumi.IntInput    `pulumi:"version"`
+}
+
+func (GetServicesDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServicesDetail)(nil)).Elem()
+}
+
+func (i GetServicesDetailArgs) ToGetServicesDetailOutput() GetServicesDetailOutput {
+	return i.ToGetServicesDetailOutputWithContext(context.Background())
+}
+
+func (i GetServicesDetailArgs) ToGetServicesDetailOutputWithContext(ctx context.Context) GetServicesDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServicesDetailOutput)
+}
+
+// GetServicesDetailArrayInput is an input type that accepts GetServicesDetailArray and GetServicesDetailArrayOutput values.
+// You can construct a concrete instance of `GetServicesDetailArrayInput` via:
+//
+//          GetServicesDetailArray{ GetServicesDetailArgs{...} }
+type GetServicesDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetServicesDetailArrayOutput() GetServicesDetailArrayOutput
+	ToGetServicesDetailArrayOutputWithContext(context.Context) GetServicesDetailArrayOutput
+}
+
+type GetServicesDetailArray []GetServicesDetailInput
+
+func (GetServicesDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServicesDetail)(nil)).Elem()
+}
+
+func (i GetServicesDetailArray) ToGetServicesDetailArrayOutput() GetServicesDetailArrayOutput {
+	return i.ToGetServicesDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetServicesDetailArray) ToGetServicesDetailArrayOutputWithContext(ctx context.Context) GetServicesDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServicesDetailArrayOutput)
+}
+
+type GetServicesDetailOutput struct{ *pulumi.OutputState }
+
+func (GetServicesDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServicesDetail)(nil)).Elem()
+}
+
+func (o GetServicesDetailOutput) ToGetServicesDetailOutput() GetServicesDetailOutput {
+	return o
+}
+
+func (o GetServicesDetailOutput) ToGetServicesDetailOutputWithContext(ctx context.Context) GetServicesDetailOutput {
+	return o
+}
+
+func (o GetServicesDetailOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesDetail) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o GetServicesDetailOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesDetail) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o GetServicesDetailOutput) CustomerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesDetail) string { return v.CustomerId }).(pulumi.StringOutput)
+}
+
+// The ID of this resource.
+func (o GetServicesDetailOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesDetail) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServicesDetailOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesDetail) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetServicesDetailOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesDetail) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o GetServicesDetailOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesDetail) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+func (o GetServicesDetailOutput) Version() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServicesDetail) int { return v.Version }).(pulumi.IntOutput)
+}
+
+type GetServicesDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServicesDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServicesDetail)(nil)).Elem()
+}
+
+func (o GetServicesDetailArrayOutput) ToGetServicesDetailArrayOutput() GetServicesDetailArrayOutput {
+	return o
+}
+
+func (o GetServicesDetailArrayOutput) ToGetServicesDetailArrayOutputWithContext(ctx context.Context) GetServicesDetailArrayOutput {
+	return o
+}
+
+func (o GetServicesDetailArrayOutput) Index(i pulumi.IntInput) GetServicesDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServicesDetail {
+		return vs[0].([]GetServicesDetail)[vs[1].(int)]
+	}).(GetServicesDetailOutput)
+}
+
 type GetTlsConfigurationDnsRecord struct {
 	RecordType  string `pulumi:"recordType"`
 	RecordValue string `pulumi:"recordValue"`
@@ -13721,12 +13522,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendArrayInput)(nil)).Elem(), ServiceComputeBackendArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDictionaryInput)(nil)).Elem(), ServiceComputeDictionaryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDictionaryArrayInput)(nil)).Elem(), ServiceComputeDictionaryArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDirectorInput)(nil)).Elem(), ServiceComputeDirectorArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDirectorArrayInput)(nil)).Elem(), ServiceComputeDirectorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainInput)(nil)).Elem(), ServiceComputeDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainArrayInput)(nil)).Elem(), ServiceComputeDomainArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHealthcheckInput)(nil)).Elem(), ServiceComputeHealthcheckArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHealthcheckArrayInput)(nil)).Elem(), ServiceComputeHealthcheckArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingBigqueryInput)(nil)).Elem(), ServiceComputeLoggingBigqueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingBigqueryArrayInput)(nil)).Elem(), ServiceComputeLoggingBigqueryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingBlobstorageInput)(nil)).Elem(), ServiceComputeLoggingBlobstorageArgs{})
@@ -13875,6 +13672,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopInput)(nil)).Elem(), GetDatacentersPopArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopArrayInput)(nil)).Elem(), GetDatacentersPopArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailInput)(nil)).Elem(), GetServicesDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailArrayInput)(nil)).Elem(), GetServicesDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleInput)(nil)).Elem(), GetWafRulesRuleArgs{})
@@ -13885,12 +13684,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeBackendArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDictionaryOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDictionaryArrayOutput{})
-	pulumi.RegisterOutputType(ServiceComputeDirectorOutput{})
-	pulumi.RegisterOutputType(ServiceComputeDirectorArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainArrayOutput{})
-	pulumi.RegisterOutputType(ServiceComputeHealthcheckOutput{})
-	pulumi.RegisterOutputType(ServiceComputeHealthcheckArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingBigqueryOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingBigqueryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingBlobstorageOutput{})
@@ -14039,6 +13834,8 @@ func init() {
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopArrayOutput{})
+	pulumi.RegisterOutputType(GetServicesDetailOutput{})
+	pulumi.RegisterOutputType(GetServicesDetailArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordArrayOutput{})
 	pulumi.RegisterOutputType(GetWafRulesRuleOutput{})

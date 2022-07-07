@@ -40,7 +40,8 @@ class _ExportableConfig(types.ModuleType):
     @property
     def no_auth(self) -> Optional[bool]:
         """
-        Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+        `fastly_ip_ranges`
         """
         return __config__.get_bool('noAuth')
 

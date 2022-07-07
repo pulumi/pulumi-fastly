@@ -66,7 +66,8 @@ namespace Pulumi.Fastly
 
         private static readonly __Value<bool?> _noAuth = new __Value<bool?>(() => __config.GetBoolean("noAuth"));
         /// <summary>
-        /// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        /// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+        /// `fastly_ip_ranges`
         /// </summary>
         public static bool? NoAuth
         {

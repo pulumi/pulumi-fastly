@@ -54,23 +54,8 @@ namespace Pulumi.Fastly
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
 
-        /// <summary>
-        /// The default hostname
-        /// </summary>
-        [Output("defaultHost")]
-        public Output<string?> DefaultHost { get; private set; } = null!;
-
-        /// <summary>
-        /// The default Time-to-live (TTL) for requests
-        /// </summary>
-        [Output("defaultTtl")]
-        public Output<int?> DefaultTtl { get; private set; } = null!;
-
         [Output("dictionaries")]
         public Output<ImmutableArray<Outputs.ServiceComputeDictionary>> Dictionaries { get; private set; } = null!;
-
-        [Output("directors")]
-        public Output<ImmutableArray<Outputs.ServiceComputeDirector>> Directors { get; private set; } = null!;
 
         /// <summary>
         /// A set of Domain names to serve as entry points for your Service
@@ -83,9 +68,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
-
-        [Output("healthchecks")]
-        public Output<ImmutableArray<Outputs.ServiceComputeHealthcheck>> Healthchecks { get; private set; } = null!;
 
         [Output("loggingBigqueries")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingBigquery>> LoggingBigqueries { get; private set; } = null!;
@@ -178,18 +160,6 @@ namespace Pulumi.Fastly
         public Output<Outputs.ServiceComputePackage> Package { get; private set; } = null!;
 
         /// <summary>
-        /// Enables serving a stale object if there is an error
-        /// </summary>
-        [Output("staleIfError")]
-        public Output<bool?> StaleIfError { get; private set; } = null!;
-
-        /// <summary>
-        /// The default time-to-live (TTL) for serving the stale object for the version
-        /// </summary>
-        [Output("staleIfErrorTtl")]
-        public Output<int?> StaleIfErrorTtl { get; private set; } = null!;
-
-        /// <summary>
         /// Description field for the version
         /// </summary>
         [Output("versionComment")]
@@ -261,32 +231,12 @@ namespace Pulumi.Fastly
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
-        /// <summary>
-        /// The default hostname
-        /// </summary>
-        [Input("defaultHost")]
-        public Input<string>? DefaultHost { get; set; }
-
-        /// <summary>
-        /// The default Time-to-live (TTL) for requests
-        /// </summary>
-        [Input("defaultTtl")]
-        public Input<int>? DefaultTtl { get; set; }
-
         [Input("dictionaries")]
         private InputList<Inputs.ServiceComputeDictionaryArgs>? _dictionaries;
         public InputList<Inputs.ServiceComputeDictionaryArgs> Dictionaries
         {
             get => _dictionaries ?? (_dictionaries = new InputList<Inputs.ServiceComputeDictionaryArgs>());
             set => _dictionaries = value;
-        }
-
-        [Input("directors")]
-        private InputList<Inputs.ServiceComputeDirectorArgs>? _directors;
-        public InputList<Inputs.ServiceComputeDirectorArgs> Directors
-        {
-            get => _directors ?? (_directors = new InputList<Inputs.ServiceComputeDirectorArgs>());
-            set => _directors = value;
         }
 
         [Input("domains", required: true)]
@@ -306,14 +256,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
-
-        [Input("healthchecks")]
-        private InputList<Inputs.ServiceComputeHealthcheckArgs>? _healthchecks;
-        public InputList<Inputs.ServiceComputeHealthcheckArgs> Healthchecks
-        {
-            get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceComputeHealthcheckArgs>());
-            set => _healthchecks = value;
-        }
 
         [Input("loggingBigqueries")]
         private InputList<Inputs.ServiceComputeLoggingBigqueryArgs>? _loggingBigqueries;
@@ -536,18 +478,6 @@ namespace Pulumi.Fastly
         public Input<Inputs.ServiceComputePackageArgs> Package { get; set; } = null!;
 
         /// <summary>
-        /// Enables serving a stale object if there is an error
-        /// </summary>
-        [Input("staleIfError")]
-        public Input<bool>? StaleIfError { get; set; }
-
-        /// <summary>
-        /// The default time-to-live (TTL) for serving the stale object for the version
-        /// </summary>
-        [Input("staleIfErrorTtl")]
-        public Input<int>? StaleIfErrorTtl { get; set; }
-
-        /// <summary>
         /// Description field for the version
         /// </summary>
         [Input("versionComment")]
@@ -592,32 +522,12 @@ namespace Pulumi.Fastly
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
-        /// <summary>
-        /// The default hostname
-        /// </summary>
-        [Input("defaultHost")]
-        public Input<string>? DefaultHost { get; set; }
-
-        /// <summary>
-        /// The default Time-to-live (TTL) for requests
-        /// </summary>
-        [Input("defaultTtl")]
-        public Input<int>? DefaultTtl { get; set; }
-
         [Input("dictionaries")]
         private InputList<Inputs.ServiceComputeDictionaryGetArgs>? _dictionaries;
         public InputList<Inputs.ServiceComputeDictionaryGetArgs> Dictionaries
         {
             get => _dictionaries ?? (_dictionaries = new InputList<Inputs.ServiceComputeDictionaryGetArgs>());
             set => _dictionaries = value;
-        }
-
-        [Input("directors")]
-        private InputList<Inputs.ServiceComputeDirectorGetArgs>? _directors;
-        public InputList<Inputs.ServiceComputeDirectorGetArgs> Directors
-        {
-            get => _directors ?? (_directors = new InputList<Inputs.ServiceComputeDirectorGetArgs>());
-            set => _directors = value;
         }
 
         [Input("domains")]
@@ -637,14 +547,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
-
-        [Input("healthchecks")]
-        private InputList<Inputs.ServiceComputeHealthcheckGetArgs>? _healthchecks;
-        public InputList<Inputs.ServiceComputeHealthcheckGetArgs> Healthchecks
-        {
-            get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceComputeHealthcheckGetArgs>());
-            set => _healthchecks = value;
-        }
 
         [Input("loggingBigqueries")]
         private InputList<Inputs.ServiceComputeLoggingBigqueryGetArgs>? _loggingBigqueries;
@@ -865,18 +767,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }
-
-        /// <summary>
-        /// Enables serving a stale object if there is an error
-        /// </summary>
-        [Input("staleIfError")]
-        public Input<bool>? StaleIfError { get; set; }
-
-        /// <summary>
-        /// The default time-to-live (TTL) for serving the stale object for the version
-        /// </summary>
-        [Input("staleIfErrorTtl")]
-        public Input<int>? StaleIfErrorTtl { get; set; }
 
         /// <summary>
         /// Description field for the version

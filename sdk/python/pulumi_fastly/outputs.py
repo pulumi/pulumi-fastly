@@ -12,9 +12,7 @@ __all__ = [
     'ServiceACLEntriesEntry',
     'ServiceComputeBackend',
     'ServiceComputeDictionary',
-    'ServiceComputeDirector',
     'ServiceComputeDomain',
-    'ServiceComputeHealthcheck',
     'ServiceComputeLoggingBigquery',
     'ServiceComputeLoggingBlobstorage',
     'ServiceComputeLoggingCloudfile',
@@ -89,6 +87,7 @@ __all__ = [
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
     'GetDatacentersPopResult',
+    'GetServicesDetailResult',
     'GetTlsConfigurationDnsRecordResult',
     'GetWafRulesRuleResult',
 ]
@@ -575,95 +574,6 @@ class ServiceComputeDictionary(dict):
 
 
 @pulumi.output_type
-class ServiceComputeDirector(dict):
-    def __init__(__self__, *,
-                 backends: Sequence[str],
-                 name: str,
-                 comment: Optional[str] = None,
-                 quorum: Optional[int] = None,
-                 retries: Optional[int] = None,
-                 shield: Optional[str] = None,
-                 type: Optional[int] = None):
-        """
-        :param Sequence[str] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-        :param str name: Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-        :param str comment: An optional comment about the Director
-        :param int quorum: Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-        :param int retries: How many backends to search if it fails. Default `5`
-        :param str shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-        :param int type: Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-        """
-        pulumi.set(__self__, "backends", backends)
-        pulumi.set(__self__, "name", name)
-        if comment is not None:
-            pulumi.set(__self__, "comment", comment)
-        if quorum is not None:
-            pulumi.set(__self__, "quorum", quorum)
-        if retries is not None:
-            pulumi.set(__self__, "retries", retries)
-        if shield is not None:
-            pulumi.set(__self__, "shield", shield)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def backends(self) -> Sequence[str]:
-        """
-        Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-        """
-        return pulumi.get(self, "backends")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def comment(self) -> Optional[str]:
-        """
-        An optional comment about the Director
-        """
-        return pulumi.get(self, "comment")
-
-    @property
-    @pulumi.getter
-    def quorum(self) -> Optional[int]:
-        """
-        Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-        """
-        return pulumi.get(self, "quorum")
-
-    @property
-    @pulumi.getter
-    def retries(self) -> Optional[int]:
-        """
-        How many backends to search if it fails. Default `5`
-        """
-        return pulumi.get(self, "retries")
-
-    @property
-    @pulumi.getter
-    def shield(self) -> Optional[str]:
-        """
-        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-        """
-        return pulumi.get(self, "shield")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[int]:
-        """
-        Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
 class ServiceComputeDomain(dict):
     def __init__(__self__, *,
                  name: str,
@@ -691,163 +601,6 @@ class ServiceComputeDomain(dict):
         An optional comment about the Domain.
         """
         return pulumi.get(self, "comment")
-
-
-@pulumi.output_type
-class ServiceComputeHealthcheck(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "checkInterval":
-            suggest = "check_interval"
-        elif key == "expectedResponse":
-            suggest = "expected_response"
-        elif key == "httpVersion":
-            suggest = "http_version"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeHealthcheck. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceComputeHealthcheck.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceComputeHealthcheck.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 host: str,
-                 name: str,
-                 path: str,
-                 check_interval: Optional[int] = None,
-                 expected_response: Optional[int] = None,
-                 http_version: Optional[str] = None,
-                 initial: Optional[int] = None,
-                 method: Optional[str] = None,
-                 threshold: Optional[int] = None,
-                 timeout: Optional[int] = None,
-                 window: Optional[int] = None):
-        """
-        :param str host: The Host header to send for this Healthcheck
-        :param str name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-        :param str path: The path to check
-        :param int check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
-        :param int expected_response: The status code expected from the host. Default `200`
-        :param str http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-        :param int initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
-        :param str method: Which HTTP method to use. Default `HEAD`
-        :param int threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
-        :param int timeout: Timeout in milliseconds. Default `500`
-        :param int window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-        """
-        pulumi.set(__self__, "host", host)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        if check_interval is not None:
-            pulumi.set(__self__, "check_interval", check_interval)
-        if expected_response is not None:
-            pulumi.set(__self__, "expected_response", expected_response)
-        if http_version is not None:
-            pulumi.set(__self__, "http_version", http_version)
-        if initial is not None:
-            pulumi.set(__self__, "initial", initial)
-        if method is not None:
-            pulumi.set(__self__, "method", method)
-        if threshold is not None:
-            pulumi.set(__self__, "threshold", threshold)
-        if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
-        if window is not None:
-            pulumi.set(__self__, "window", window)
-
-    @property
-    @pulumi.getter
-    def host(self) -> str:
-        """
-        The Host header to send for this Healthcheck
-        """
-        return pulumi.get(self, "host")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def path(self) -> str:
-        """
-        The path to check
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter(name="checkInterval")
-    def check_interval(self) -> Optional[int]:
-        """
-        How often to run the Healthcheck in milliseconds. Default `5000`
-        """
-        return pulumi.get(self, "check_interval")
-
-    @property
-    @pulumi.getter(name="expectedResponse")
-    def expected_response(self) -> Optional[int]:
-        """
-        The status code expected from the host. Default `200`
-        """
-        return pulumi.get(self, "expected_response")
-
-    @property
-    @pulumi.getter(name="httpVersion")
-    def http_version(self) -> Optional[str]:
-        """
-        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-        """
-        return pulumi.get(self, "http_version")
-
-    @property
-    @pulumi.getter
-    def initial(self) -> Optional[int]:
-        """
-        When loading a config, the initial number of probes to be seen as OK. Default `3`
-        """
-        return pulumi.get(self, "initial")
-
-    @property
-    @pulumi.getter
-    def method(self) -> Optional[str]:
-        """
-        Which HTTP method to use. Default `HEAD`
-        """
-        return pulumi.get(self, "method")
-
-    @property
-    @pulumi.getter
-    def threshold(self) -> Optional[int]:
-        """
-        How many Healthchecks must succeed to be considered healthy. Default `3`
-        """
-        return pulumi.get(self, "threshold")
-
-    @property
-    @pulumi.getter
-    def timeout(self) -> Optional[int]:
-        """
-        Timeout in milliseconds. Default `500`
-        """
-        return pulumi.get(self, "timeout")
-
-    @property
-    @pulumi.getter
-    def window(self) -> Optional[int]:
-        """
-        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-        """
-        return pulumi.get(self, "window")
 
 
 @pulumi.output_type
@@ -10487,6 +10240,73 @@ class GetDatacentersPopResult(dict):
     @pulumi.getter
     def shield(self) -> str:
         return pulumi.get(self, "shield")
+
+
+@pulumi.output_type
+class GetServicesDetailResult(dict):
+    def __init__(__self__, *,
+                 comment: str,
+                 created_at: str,
+                 customer_id: str,
+                 id: str,
+                 name: str,
+                 type: str,
+                 updated_at: str,
+                 version: int):
+        """
+        :param str id: The ID of this resource.
+        """
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "customer_id", customer_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> str:
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="customerId")
+    def customer_id(self) -> str:
+        return pulumi.get(self, "customer_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def version(self) -> int:
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
