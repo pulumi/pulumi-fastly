@@ -20,7 +20,7 @@ import (
 	"unicode"
 
 	"github.com/fastly/terraform-provider-fastly/fastly"
-	"github.com/pulumi/pulumi-fastly/provider/v4/pkg/version"
+	"github.com/pulumi/pulumi-fastly/provider/v5/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
@@ -78,6 +78,7 @@ func Provider() tfbridge.ProviderInfo {
 		Config:      map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"fastly_service_acl_entries":             {Tok: makeResource(mainMod, "ServiceACLEntries")},
+			"fastly_service_authorization":           {Tok: makeResource(mainMod, "ServiceAuthorization")},
 			"fastly_service_dictionary_items":        {Tok: makeResource(mainMod, "ServiceDictionaryItems")},
 			"fastly_service_dynamic_snippet_content": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContent")},
 			"fastly_service_vcl":                     {Tok: makeResource(mainMod, "ServiceVcl")},
@@ -115,6 +116,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fastly_tls_private_key_ids":          {Tok: makeDataSource(mainMod, "getTlsPrivateKeyIds")},
 			"fastly_tls_subscription":             {Tok: makeDataSource(mainMod, "getTlsSubscription")},
 			"fastly_tls_subscription_ids":         {Tok: makeDataSource(mainMod, "getTlsSubscriptionIds")},
+			"fastly_services":                     {Tok: makeDataSource(mainMod, "getServices")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

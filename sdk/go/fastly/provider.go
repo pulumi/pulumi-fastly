@@ -47,7 +47,8 @@ type providerArgs struct {
 	// `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
 	// handshakes. Default: `false`
 	ForceHttp2 *bool `pulumi:"forceHttp2"`
-	// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+	// `fastly_ip_ranges`
 	NoAuth *bool `pulumi:"noAuth"`
 }
 
@@ -61,7 +62,8 @@ type ProviderArgs struct {
 	// `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
 	// handshakes. Default: `false`
 	ForceHttp2 pulumi.BoolPtrInput
-	// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+	// `fastly_ip_ranges`
 	NoAuth pulumi.BoolPtrInput
 }
 

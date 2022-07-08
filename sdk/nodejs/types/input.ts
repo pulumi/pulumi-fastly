@@ -144,37 +144,6 @@ export interface ServiceComputeDictionary {
     writeOnly?: pulumi.Input<boolean>;
 }
 
-export interface ServiceComputeDirector {
-    /**
-     * Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-     */
-    backends: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * An optional comment about the Director
-     */
-    comment?: pulumi.Input<string>;
-    /**
-     * Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-     */
-    quorum?: pulumi.Input<number>;
-    /**
-     * How many backends to search if it fails. Default `5`
-     */
-    retries?: pulumi.Input<number>;
-    /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-     */
-    shield?: pulumi.Input<string>;
-    /**
-     * Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-     */
-    type?: pulumi.Input<number>;
-}
-
 export interface ServiceComputeDomain {
     /**
      * An optional comment about the Domain.
@@ -184,53 +153,6 @@ export interface ServiceComputeDomain {
      * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
      */
     name: pulumi.Input<string>;
-}
-
-export interface ServiceComputeHealthcheck {
-    /**
-     * How often to run the Healthcheck in milliseconds. Default `5000`
-     */
-    checkInterval?: pulumi.Input<number>;
-    /**
-     * The status code expected from the host. Default `200`
-     */
-    expectedResponse?: pulumi.Input<number>;
-    /**
-     * The Host header to send for this Healthcheck
-     */
-    host: pulumi.Input<string>;
-    /**
-     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-     */
-    httpVersion?: pulumi.Input<string>;
-    /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `3`
-     */
-    initial?: pulumi.Input<number>;
-    /**
-     * Which HTTP method to use. Default `HEAD`
-     */
-    method?: pulumi.Input<string>;
-    /**
-     * A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The path to check
-     */
-    path: pulumi.Input<string>;
-    /**
-     * How many Healthchecks must succeed to be considered healthy. Default `3`
-     */
-    threshold?: pulumi.Input<number>;
-    /**
-     * Timeout in milliseconds. Default `500`
-     */
-    timeout?: pulumi.Input<number>;
-    /**
-     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-     */
-    window?: pulumi.Input<number>;
 }
 
 export interface ServiceComputeLoggingBigquery {
@@ -3033,3 +2955,4 @@ export interface TlsSubscriptionManagedHttpChallenge {
      */
     recordValues?: pulumi.Input<pulumi.Input<string>[]>;
 }
+

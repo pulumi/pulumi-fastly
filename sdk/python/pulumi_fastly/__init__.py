@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .get_datacenters import *
 from .get_fastly_ip_ranges import *
+from .get_services import *
 from .get_tls_activation import *
 from .get_tls_activation_ids import *
 from .get_tls_certificate import *
@@ -23,6 +24,7 @@ from .get_tls_subscription_ids import *
 from .get_waf_rules import *
 from .provider import *
 from .service_acl_entries import *
+from .service_authorization import *
 from .service_compute import *
 from .service_dictionary_items import *
 from .service_dynamic_snippet_content import *
@@ -54,6 +56,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/serviceACLEntries:ServiceACLEntries": "ServiceACLEntries"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/serviceAuthorization",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/serviceAuthorization:ServiceAuthorization": "ServiceAuthorization"
   }
  },
  {

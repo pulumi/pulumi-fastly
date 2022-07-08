@@ -65,16 +65,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      * Description field for the service. Default `Managed by Terraform`
      */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * The default hostname
-     */
-    public readonly defaultHost!: pulumi.Output<string | undefined>;
-    /**
-     * The default Time-to-live (TTL) for requests
-     */
-    public readonly defaultTtl!: pulumi.Output<number | undefined>;
     public readonly dictionaries!: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
-    public readonly directors!: pulumi.Output<outputs.ServiceComputeDirector[] | undefined>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
@@ -83,7 +74,6 @@ export class ServiceCompute extends pulumi.CustomResource {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
-    public readonly healthchecks!: pulumi.Output<outputs.ServiceComputeHealthcheck[] | undefined>;
     public readonly loggingBigqueries!: pulumi.Output<outputs.ServiceComputeLoggingBigquery[] | undefined>;
     public readonly loggingBlobstorages!: pulumi.Output<outputs.ServiceComputeLoggingBlobstorage[] | undefined>;
     public readonly loggingCloudfiles!: pulumi.Output<outputs.ServiceComputeLoggingCloudfile[] | undefined>;
@@ -119,14 +109,6 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly package!: pulumi.Output<outputs.ServiceComputePackage>;
     /**
-     * Enables serving a stale object if there is an error
-     */
-    public readonly staleIfError!: pulumi.Output<boolean | undefined>;
-    /**
-     * The default time-to-live (TTL) for serving the stale object for the version
-     */
-    public readonly staleIfErrorTtl!: pulumi.Output<number | undefined>;
-    /**
      * Description field for the version
      */
     public readonly versionComment!: pulumi.Output<string | undefined>;
@@ -149,13 +131,9 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["backends"] = state ? state.backends : undefined;
             resourceInputs["clonedVersion"] = state ? state.clonedVersion : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
-            resourceInputs["defaultHost"] = state ? state.defaultHost : undefined;
-            resourceInputs["defaultTtl"] = state ? state.defaultTtl : undefined;
             resourceInputs["dictionaries"] = state ? state.dictionaries : undefined;
-            resourceInputs["directors"] = state ? state.directors : undefined;
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
-            resourceInputs["healthchecks"] = state ? state.healthchecks : undefined;
             resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
             resourceInputs["loggingCloudfiles"] = state ? state.loggingCloudfiles : undefined;
@@ -184,8 +162,6 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = state ? state.loggingSyslogs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["package"] = state ? state.package : undefined;
-            resourceInputs["staleIfError"] = state ? state.staleIfError : undefined;
-            resourceInputs["staleIfErrorTtl"] = state ? state.staleIfErrorTtl : undefined;
             resourceInputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
@@ -198,13 +174,9 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["activate"] = args ? args.activate : undefined;
             resourceInputs["backends"] = args ? args.backends : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
-            resourceInputs["defaultHost"] = args ? args.defaultHost : undefined;
-            resourceInputs["defaultTtl"] = args ? args.defaultTtl : undefined;
             resourceInputs["dictionaries"] = args ? args.dictionaries : undefined;
-            resourceInputs["directors"] = args ? args.directors : undefined;
             resourceInputs["domains"] = args ? args.domains : undefined;
             resourceInputs["forceDestroy"] = args ? args.forceDestroy : undefined;
-            resourceInputs["healthchecks"] = args ? args.healthchecks : undefined;
             resourceInputs["loggingBigqueries"] = args ? args.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = args ? args.loggingBlobstorages : undefined;
             resourceInputs["loggingCloudfiles"] = args ? args.loggingCloudfiles : undefined;
@@ -233,8 +205,6 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = args ? args.loggingSyslogs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["package"] = args ? args.package : undefined;
-            resourceInputs["staleIfError"] = args ? args.staleIfError : undefined;
-            resourceInputs["staleIfErrorTtl"] = args ? args.staleIfErrorTtl : undefined;
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
@@ -265,16 +235,7 @@ export interface ServiceComputeState {
      * Description field for the service. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string>;
-    /**
-     * The default hostname
-     */
-    defaultHost?: pulumi.Input<string>;
-    /**
-     * The default Time-to-live (TTL) for requests
-     */
-    defaultTtl?: pulumi.Input<number>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
-    directors?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDirector>[]>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
@@ -283,7 +244,6 @@ export interface ServiceComputeState {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
-    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeHealthcheck>[]>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBlobstorage>[]>;
     loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingCloudfile>[]>;
@@ -319,14 +279,6 @@ export interface ServiceComputeState {
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     /**
-     * Enables serving a stale object if there is an error
-     */
-    staleIfError?: pulumi.Input<boolean>;
-    /**
-     * The default time-to-live (TTL) for serving the stale object for the version
-     */
-    staleIfErrorTtl?: pulumi.Input<number>;
-    /**
      * Description field for the version
      */
     versionComment?: pulumi.Input<string>;
@@ -345,16 +297,7 @@ export interface ServiceComputeArgs {
      * Description field for the service. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string>;
-    /**
-     * The default hostname
-     */
-    defaultHost?: pulumi.Input<string>;
-    /**
-     * The default Time-to-live (TTL) for requests
-     */
-    defaultTtl?: pulumi.Input<number>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
-    directors?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDirector>[]>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
@@ -363,7 +306,6 @@ export interface ServiceComputeArgs {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
-    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeHealthcheck>[]>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBlobstorage>[]>;
     loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingCloudfile>[]>;
@@ -398,14 +340,6 @@ export interface ServiceComputeArgs {
      * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
     package: pulumi.Input<inputs.ServiceComputePackage>;
-    /**
-     * Enables serving a stale object if there is an error
-     */
-    staleIfError?: pulumi.Input<boolean>;
-    /**
-     * The default time-to-live (TTL) for serving the stale object for the version
-     */
-    staleIfErrorTtl?: pulumi.Input<number>;
     /**
      * Description field for the version
      */

@@ -79,7 +79,8 @@ namespace Pulumi.Fastly
         public Input<bool>? ForceHttp2 { get; set; }
 
         /// <summary>
-        /// Set this to `true` if you only need data source that does not require authentication such as `fastly_ip_ranges`
+        /// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
+        /// `fastly_ip_ranges`
         /// </summary>
         [Input("noAuth", json: true)]
         public Input<bool>? NoAuth { get; set; }

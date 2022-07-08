@@ -11,6 +11,20 @@ export interface GetDatacentersPop {
     shield: string;
 }
 
+export interface GetServicesDetail {
+    comment: string;
+    createdAt: string;
+    customerId: string;
+    /**
+     * The ID of this resource.
+     */
+    id: string;
+    name: string;
+    type: string;
+    updatedAt: string;
+    version: number;
+}
+
 export interface GetTlsConfigurationDnsRecord {
     recordType: string;
     recordValue: string;
@@ -172,37 +186,6 @@ export interface ServiceComputeDictionary {
     writeOnly?: boolean;
 }
 
-export interface ServiceComputeDirector {
-    /**
-     * Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
-     */
-    backends: string[];
-    /**
-     * An optional comment about the Director
-     */
-    comment?: string;
-    /**
-     * Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: string;
-    /**
-     * Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
-     */
-    quorum?: number;
-    /**
-     * How many backends to search if it fails. Default `5`
-     */
-    retries?: number;
-    /**
-     * Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
-     */
-    shield?: string;
-    /**
-     * Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
-     */
-    type?: number;
-}
-
 export interface ServiceComputeDomain {
     /**
      * An optional comment about the Domain.
@@ -212,53 +195,6 @@ export interface ServiceComputeDomain {
      * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
      */
     name: string;
-}
-
-export interface ServiceComputeHealthcheck {
-    /**
-     * How often to run the Healthcheck in milliseconds. Default `5000`
-     */
-    checkInterval?: number;
-    /**
-     * The status code expected from the host. Default `200`
-     */
-    expectedResponse?: number;
-    /**
-     * The Host header to send for this Healthcheck
-     */
-    host: string;
-    /**
-     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
-     */
-    httpVersion?: string;
-    /**
-     * When loading a config, the initial number of probes to be seen as OK. Default `3`
-     */
-    initial?: number;
-    /**
-     * Which HTTP method to use. Default `HEAD`
-     */
-    method?: string;
-    /**
-     * A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
-     */
-    name: string;
-    /**
-     * The path to check
-     */
-    path: string;
-    /**
-     * How many Healthchecks must succeed to be considered healthy. Default `3`
-     */
-    threshold?: number;
-    /**
-     * Timeout in milliseconds. Default `500`
-     */
-    timeout?: number;
-    /**
-     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
-     */
-    window?: number;
 }
 
 export interface ServiceComputeLoggingBigquery {
@@ -3061,3 +2997,4 @@ export interface TlsSubscriptionManagedHttpChallenge {
      */
     recordValues: string[];
 }
+
