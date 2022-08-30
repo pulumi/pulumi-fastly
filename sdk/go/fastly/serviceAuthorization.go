@@ -23,31 +23,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		demo, err := fastly.NewServiceVcl(ctx, "demo", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		user, err := fastly.NewUser(ctx, "user", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fastly.NewServiceAuthorization(ctx, "auth", &fastly.ServiceAuthorizationArgs{
-// 			ServiceId:  demo.ID(),
-// 			UserId:     user.ID(),
-// 			Permission: pulumi.String("purge_all"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			demo, err := fastly.NewServiceVcl(ctx, "demo", nil)
+//			if err != nil {
+//				return err
+//			}
+//			user, err := fastly.NewUser(ctx, "user", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceAuthorization(ctx, "auth", &fastly.ServiceAuthorizationArgs{
+//				ServiceId:  demo.ID(),
+//				UserId:     user.ID(),
+//				Permission: pulumi.String("purge_all"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -55,7 +58,9 @@ import (
 // A Fastly Service Authorization can be imported using their user ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/serviceAuthorization:ServiceAuthorization demo xxxxxxxxxxxxxxxxxxxx
+//
+//	$ pulumi import fastly:index/serviceAuthorization:ServiceAuthorization demo xxxxxxxxxxxxxxxxxxxx
+//
 // ```
 type ServiceAuthorization struct {
 	pulumi.CustomResourceState
@@ -172,7 +177,7 @@ func (i *ServiceAuthorization) ToServiceAuthorizationOutputWithContext(ctx conte
 // ServiceAuthorizationArrayInput is an input type that accepts ServiceAuthorizationArray and ServiceAuthorizationArrayOutput values.
 // You can construct a concrete instance of `ServiceAuthorizationArrayInput` via:
 //
-//          ServiceAuthorizationArray{ ServiceAuthorizationArgs{...} }
+//	ServiceAuthorizationArray{ ServiceAuthorizationArgs{...} }
 type ServiceAuthorizationArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +202,7 @@ func (i ServiceAuthorizationArray) ToServiceAuthorizationArrayOutputWithContext(
 // ServiceAuthorizationMapInput is an input type that accepts ServiceAuthorizationMap and ServiceAuthorizationMapOutput values.
 // You can construct a concrete instance of `ServiceAuthorizationMapInput` via:
 //
-//          ServiceAuthorizationMap{ "key": ServiceAuthorizationArgs{...} }
+//	ServiceAuthorizationMap{ "key": ServiceAuthorizationArgs{...} }
 type ServiceAuthorizationMapInput interface {
 	pulumi.Input
 

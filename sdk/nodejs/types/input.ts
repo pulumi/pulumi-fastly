@@ -2955,4 +2955,3 @@ export interface TlsSubscriptionManagedHttpChallenge {
      */
     recordValues?: pulumi.Input<pulumi.Input<string>[]>;
 }
-

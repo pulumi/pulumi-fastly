@@ -13,11 +13,13 @@ import (
 // Use this data source to get information on a TLS Private Key uploaded to Fastly.
 //
 // > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
-//  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-//  with any of the others.
+//
+//	of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+//	with any of the others.
 //
 // > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-//  is specific enough to return a single key.
+//
+//	is specific enough to return a single key.
 //
 // ## Example Usage
 //
@@ -25,22 +27,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		demo, err := fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
-// 			Name: pulumi.StringRef("demo-private-key"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("privateKeyNeedsReplacing", demo.Replace)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			demo, err := fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
+//				Name: pulumi.StringRef("demo-private-key"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("privateKeyNeedsReplacing", demo.Replace)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupTlsPrivateKey(ctx *pulumi.Context, args *LookupTlsPrivateKeyArgs, opts ...pulumi.InvokeOption) (*LookupTlsPrivateKeyResult, error) {
 	var rv LookupTlsPrivateKeyResult

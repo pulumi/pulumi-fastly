@@ -18,21 +18,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.GetTlsDomain(ctx, &GetTlsDomainArgs{
-// 			Domain: "example.com",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.GetTlsDomain(ctx, &GetTlsDomainArgs{
+//				Domain: "example.com",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetTlsDomain(ctx *pulumi.Context, args *GetTlsDomainArgs, opts ...pulumi.InvokeOption) (*GetTlsDomainResult, error) {
 	var rv GetTlsDomainResult

@@ -24,27 +24,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleTlsConfiguration, err := fastly.GetTlsConfiguration(ctx, &GetTlsConfigurationArgs{
-// 			Default: pulumi.BoolRef(true),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
-// 			ConfigurationId: pulumi.String(exampleTlsConfiguration.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleTlsConfiguration, err := fastly.GetTlsConfiguration(ctx, &GetTlsConfigurationArgs{
+//				Default: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
+//				ConfigurationId: pulumi.String(exampleTlsConfiguration.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetTlsConfiguration(ctx *pulumi.Context, args *GetTlsConfigurationArgs, opts ...pulumi.InvokeOption) (*GetTlsConfigurationResult, error) {
 	var rv GetTlsConfigurationResult

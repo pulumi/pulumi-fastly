@@ -26,7 +26,7 @@ type ServiceACLEntriesEntry struct {
 // ServiceACLEntriesEntryInput is an input type that accepts ServiceACLEntriesEntryArgs and ServiceACLEntriesEntryOutput values.
 // You can construct a concrete instance of `ServiceACLEntriesEntryInput` via:
 //
-//          ServiceACLEntriesEntryArgs{...}
+//	ServiceACLEntriesEntryArgs{...}
 type ServiceACLEntriesEntryInput interface {
 	pulumi.Input
 
@@ -62,7 +62,7 @@ func (i ServiceACLEntriesEntryArgs) ToServiceACLEntriesEntryOutputWithContext(ct
 // ServiceACLEntriesEntryArrayInput is an input type that accepts ServiceACLEntriesEntryArray and ServiceACLEntriesEntryArrayOutput values.
 // You can construct a concrete instance of `ServiceACLEntriesEntryArrayInput` via:
 //
-//          ServiceACLEntriesEntryArray{ ServiceACLEntriesEntryArgs{...} }
+//	ServiceACLEntriesEntryArray{ ServiceACLEntriesEntryArgs{...} }
 type ServiceACLEntriesEntryArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +199,7 @@ type ServiceComputeBackend struct {
 // ServiceComputeBackendInput is an input type that accepts ServiceComputeBackendArgs and ServiceComputeBackendOutput values.
 // You can construct a concrete instance of `ServiceComputeBackendInput` via:
 //
-//          ServiceComputeBackendArgs{...}
+//	ServiceComputeBackendArgs{...}
 type ServiceComputeBackendInput interface {
 	pulumi.Input
 
@@ -275,7 +275,7 @@ func (i ServiceComputeBackendArgs) ToServiceComputeBackendOutputWithContext(ctx 
 // ServiceComputeBackendArrayInput is an input type that accepts ServiceComputeBackendArray and ServiceComputeBackendArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeBackendArrayInput` via:
 //
-//          ServiceComputeBackendArray{ ServiceComputeBackendArgs{...} }
+//	ServiceComputeBackendArray{ ServiceComputeBackendArgs{...} }
 type ServiceComputeBackendArrayInput interface {
 	pulumi.Input
 
@@ -466,7 +466,7 @@ type ServiceComputeDictionary struct {
 // ServiceComputeDictionaryInput is an input type that accepts ServiceComputeDictionaryArgs and ServiceComputeDictionaryOutput values.
 // You can construct a concrete instance of `ServiceComputeDictionaryInput` via:
 //
-//          ServiceComputeDictionaryArgs{...}
+//	ServiceComputeDictionaryArgs{...}
 type ServiceComputeDictionaryInput interface {
 	pulumi.Input
 
@@ -499,7 +499,7 @@ func (i ServiceComputeDictionaryArgs) ToServiceComputeDictionaryOutputWithContex
 // ServiceComputeDictionaryArrayInput is an input type that accepts ServiceComputeDictionaryArray and ServiceComputeDictionaryArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeDictionaryArrayInput` via:
 //
-//          ServiceComputeDictionaryArray{ ServiceComputeDictionaryArgs{...} }
+//	ServiceComputeDictionaryArray{ ServiceComputeDictionaryArgs{...} }
 type ServiceComputeDictionaryArrayInput interface {
 	pulumi.Input
 
@@ -584,7 +584,7 @@ type ServiceComputeDomain struct {
 // ServiceComputeDomainInput is an input type that accepts ServiceComputeDomainArgs and ServiceComputeDomainOutput values.
 // You can construct a concrete instance of `ServiceComputeDomainInput` via:
 //
-//          ServiceComputeDomainArgs{...}
+//	ServiceComputeDomainArgs{...}
 type ServiceComputeDomainInput interface {
 	pulumi.Input
 
@@ -614,7 +614,7 @@ func (i ServiceComputeDomainArgs) ToServiceComputeDomainOutputWithContext(ctx co
 // ServiceComputeDomainArrayInput is an input type that accepts ServiceComputeDomainArray and ServiceComputeDomainArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeDomainArrayInput` via:
 //
-//          ServiceComputeDomainArray{ ServiceComputeDomainArgs{...} }
+//	ServiceComputeDomainArray{ ServiceComputeDomainArgs{...} }
 type ServiceComputeDomainArrayInput interface {
 	pulumi.Input
 
@@ -700,7 +700,7 @@ type ServiceComputeLoggingBigquery struct {
 // ServiceComputeLoggingBigqueryInput is an input type that accepts ServiceComputeLoggingBigqueryArgs and ServiceComputeLoggingBigqueryOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingBigqueryInput` via:
 //
-//          ServiceComputeLoggingBigqueryArgs{...}
+//	ServiceComputeLoggingBigqueryArgs{...}
 type ServiceComputeLoggingBigqueryInput interface {
 	pulumi.Input
 
@@ -740,7 +740,7 @@ func (i ServiceComputeLoggingBigqueryArgs) ToServiceComputeLoggingBigqueryOutput
 // ServiceComputeLoggingBigqueryArrayInput is an input type that accepts ServiceComputeLoggingBigqueryArray and ServiceComputeLoggingBigqueryArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingBigqueryArrayInput` via:
 //
-//          ServiceComputeLoggingBigqueryArray{ ServiceComputeLoggingBigqueryArgs{...} }
+//	ServiceComputeLoggingBigqueryArray{ ServiceComputeLoggingBigqueryArgs{...} }
 type ServiceComputeLoggingBigqueryArrayInput interface {
 	pulumi.Input
 
@@ -861,7 +861,7 @@ type ServiceComputeLoggingBlobstorage struct {
 // ServiceComputeLoggingBlobstorageInput is an input type that accepts ServiceComputeLoggingBlobstorageArgs and ServiceComputeLoggingBlobstorageOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingBlobstorageInput` via:
 //
-//          ServiceComputeLoggingBlobstorageArgs{...}
+//	ServiceComputeLoggingBlobstorageArgs{...}
 type ServiceComputeLoggingBlobstorageInput interface {
 	pulumi.Input
 
@@ -911,7 +911,7 @@ func (i ServiceComputeLoggingBlobstorageArgs) ToServiceComputeLoggingBlobstorage
 // ServiceComputeLoggingBlobstorageArrayInput is an input type that accepts ServiceComputeLoggingBlobstorageArray and ServiceComputeLoggingBlobstorageArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingBlobstorageArrayInput` via:
 //
-//          ServiceComputeLoggingBlobstorageArray{ ServiceComputeLoggingBlobstorageArgs{...} }
+//	ServiceComputeLoggingBlobstorageArray{ ServiceComputeLoggingBlobstorageArgs{...} }
 type ServiceComputeLoggingBlobstorageArrayInput interface {
 	pulumi.Input
 
@@ -1057,7 +1057,7 @@ type ServiceComputeLoggingCloudfile struct {
 // ServiceComputeLoggingCloudfileInput is an input type that accepts ServiceComputeLoggingCloudfileArgs and ServiceComputeLoggingCloudfileOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingCloudfileInput` via:
 //
-//          ServiceComputeLoggingCloudfileArgs{...}
+//	ServiceComputeLoggingCloudfileArgs{...}
 type ServiceComputeLoggingCloudfileInput interface {
 	pulumi.Input
 
@@ -1107,7 +1107,7 @@ func (i ServiceComputeLoggingCloudfileArgs) ToServiceComputeLoggingCloudfileOutp
 // ServiceComputeLoggingCloudfileArrayInput is an input type that accepts ServiceComputeLoggingCloudfileArray and ServiceComputeLoggingCloudfileArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingCloudfileArrayInput` via:
 //
-//          ServiceComputeLoggingCloudfileArray{ ServiceComputeLoggingCloudfileArgs{...} }
+//	ServiceComputeLoggingCloudfileArray{ ServiceComputeLoggingCloudfileArgs{...} }
 type ServiceComputeLoggingCloudfileArrayInput interface {
 	pulumi.Input
 
@@ -1235,7 +1235,7 @@ type ServiceComputeLoggingDatadog struct {
 // ServiceComputeLoggingDatadogInput is an input type that accepts ServiceComputeLoggingDatadogArgs and ServiceComputeLoggingDatadogOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingDatadogInput` via:
 //
-//          ServiceComputeLoggingDatadogArgs{...}
+//	ServiceComputeLoggingDatadogArgs{...}
 type ServiceComputeLoggingDatadogInput interface {
 	pulumi.Input
 
@@ -1267,7 +1267,7 @@ func (i ServiceComputeLoggingDatadogArgs) ToServiceComputeLoggingDatadogOutputWi
 // ServiceComputeLoggingDatadogArrayInput is an input type that accepts ServiceComputeLoggingDatadogArray and ServiceComputeLoggingDatadogArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingDatadogArrayInput` via:
 //
-//          ServiceComputeLoggingDatadogArray{ ServiceComputeLoggingDatadogArgs{...} }
+//	ServiceComputeLoggingDatadogArray{ ServiceComputeLoggingDatadogArgs{...} }
 type ServiceComputeLoggingDatadogArrayInput interface {
 	pulumi.Input
 
@@ -1368,7 +1368,7 @@ type ServiceComputeLoggingDigitalocean struct {
 // ServiceComputeLoggingDigitaloceanInput is an input type that accepts ServiceComputeLoggingDigitaloceanArgs and ServiceComputeLoggingDigitaloceanOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingDigitaloceanInput` via:
 //
-//          ServiceComputeLoggingDigitaloceanArgs{...}
+//	ServiceComputeLoggingDigitaloceanArgs{...}
 type ServiceComputeLoggingDigitaloceanInput interface {
 	pulumi.Input
 
@@ -1418,7 +1418,7 @@ func (i ServiceComputeLoggingDigitaloceanArgs) ToServiceComputeLoggingDigitaloce
 // ServiceComputeLoggingDigitaloceanArrayInput is an input type that accepts ServiceComputeLoggingDigitaloceanArray and ServiceComputeLoggingDigitaloceanArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingDigitaloceanArrayInput` via:
 //
-//          ServiceComputeLoggingDigitaloceanArray{ ServiceComputeLoggingDigitaloceanArgs{...} }
+//	ServiceComputeLoggingDigitaloceanArray{ ServiceComputeLoggingDigitaloceanArgs{...} }
 type ServiceComputeLoggingDigitaloceanArrayInput interface {
 	pulumi.Input
 
@@ -1564,7 +1564,7 @@ type ServiceComputeLoggingElasticsearch struct {
 // ServiceComputeLoggingElasticsearchInput is an input type that accepts ServiceComputeLoggingElasticsearchArgs and ServiceComputeLoggingElasticsearchOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingElasticsearchInput` via:
 //
-//          ServiceComputeLoggingElasticsearchArgs{...}
+//	ServiceComputeLoggingElasticsearchArgs{...}
 type ServiceComputeLoggingElasticsearchInput interface {
 	pulumi.Input
 
@@ -1614,7 +1614,7 @@ func (i ServiceComputeLoggingElasticsearchArgs) ToServiceComputeLoggingElasticse
 // ServiceComputeLoggingElasticsearchArrayInput is an input type that accepts ServiceComputeLoggingElasticsearchArray and ServiceComputeLoggingElasticsearchArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingElasticsearchArrayInput` via:
 //
-//          ServiceComputeLoggingElasticsearchArray{ ServiceComputeLoggingElasticsearchArgs{...} }
+//	ServiceComputeLoggingElasticsearchArray{ ServiceComputeLoggingElasticsearchArgs{...} }
 type ServiceComputeLoggingElasticsearchArrayInput interface {
 	pulumi.Input
 
@@ -1760,7 +1760,7 @@ type ServiceComputeLoggingFtp struct {
 // ServiceComputeLoggingFtpInput is an input type that accepts ServiceComputeLoggingFtpArgs and ServiceComputeLoggingFtpOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingFtpInput` via:
 //
-//          ServiceComputeLoggingFtpArgs{...}
+//	ServiceComputeLoggingFtpArgs{...}
 type ServiceComputeLoggingFtpInput interface {
 	pulumi.Input
 
@@ -1810,7 +1810,7 @@ func (i ServiceComputeLoggingFtpArgs) ToServiceComputeLoggingFtpOutputWithContex
 // ServiceComputeLoggingFtpArrayInput is an input type that accepts ServiceComputeLoggingFtpArray and ServiceComputeLoggingFtpArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingFtpArrayInput` via:
 //
-//          ServiceComputeLoggingFtpArray{ ServiceComputeLoggingFtpArgs{...} }
+//	ServiceComputeLoggingFtpArray{ ServiceComputeLoggingFtpArgs{...} }
 type ServiceComputeLoggingFtpArrayInput interface {
 	pulumi.Input
 
@@ -1952,7 +1952,7 @@ type ServiceComputeLoggingGc struct {
 // ServiceComputeLoggingGcInput is an input type that accepts ServiceComputeLoggingGcArgs and ServiceComputeLoggingGcOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingGcInput` via:
 //
-//          ServiceComputeLoggingGcArgs{...}
+//	ServiceComputeLoggingGcArgs{...}
 type ServiceComputeLoggingGcInput interface {
 	pulumi.Input
 
@@ -1998,7 +1998,7 @@ func (i ServiceComputeLoggingGcArgs) ToServiceComputeLoggingGcOutputWithContext(
 // ServiceComputeLoggingGcArrayInput is an input type that accepts ServiceComputeLoggingGcArray and ServiceComputeLoggingGcArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingGcArrayInput` via:
 //
-//          ServiceComputeLoggingGcArray{ ServiceComputeLoggingGcArgs{...} }
+//	ServiceComputeLoggingGcArray{ ServiceComputeLoggingGcArgs{...} }
 type ServiceComputeLoggingGcArrayInput interface {
 	pulumi.Input
 
@@ -2120,7 +2120,7 @@ type ServiceComputeLoggingGooglepubsub struct {
 // ServiceComputeLoggingGooglepubsubInput is an input type that accepts ServiceComputeLoggingGooglepubsubArgs and ServiceComputeLoggingGooglepubsubOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingGooglepubsubInput` via:
 //
-//          ServiceComputeLoggingGooglepubsubArgs{...}
+//	ServiceComputeLoggingGooglepubsubArgs{...}
 type ServiceComputeLoggingGooglepubsubInput interface {
 	pulumi.Input
 
@@ -2156,7 +2156,7 @@ func (i ServiceComputeLoggingGooglepubsubArgs) ToServiceComputeLoggingGooglepubs
 // ServiceComputeLoggingGooglepubsubArrayInput is an input type that accepts ServiceComputeLoggingGooglepubsubArray and ServiceComputeLoggingGooglepubsubArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingGooglepubsubArrayInput` via:
 //
-//          ServiceComputeLoggingGooglepubsubArray{ ServiceComputeLoggingGooglepubsubArgs{...} }
+//	ServiceComputeLoggingGooglepubsubArray{ ServiceComputeLoggingGooglepubsubArgs{...} }
 type ServiceComputeLoggingGooglepubsubArrayInput interface {
 	pulumi.Input
 
@@ -2249,7 +2249,7 @@ type ServiceComputeLoggingHeroku struct {
 // ServiceComputeLoggingHerokuInput is an input type that accepts ServiceComputeLoggingHerokuArgs and ServiceComputeLoggingHerokuOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHerokuInput` via:
 //
-//          ServiceComputeLoggingHerokuArgs{...}
+//	ServiceComputeLoggingHerokuArgs{...}
 type ServiceComputeLoggingHerokuInput interface {
 	pulumi.Input
 
@@ -2281,7 +2281,7 @@ func (i ServiceComputeLoggingHerokuArgs) ToServiceComputeLoggingHerokuOutputWith
 // ServiceComputeLoggingHerokuArrayInput is an input type that accepts ServiceComputeLoggingHerokuArray and ServiceComputeLoggingHerokuArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHerokuArrayInput` via:
 //
-//          ServiceComputeLoggingHerokuArray{ ServiceComputeLoggingHerokuArgs{...} }
+//	ServiceComputeLoggingHerokuArray{ ServiceComputeLoggingHerokuArgs{...} }
 type ServiceComputeLoggingHerokuArrayInput interface {
 	pulumi.Input
 
@@ -2364,7 +2364,7 @@ type ServiceComputeLoggingHoneycomb struct {
 // ServiceComputeLoggingHoneycombInput is an input type that accepts ServiceComputeLoggingHoneycombArgs and ServiceComputeLoggingHoneycombOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHoneycombInput` via:
 //
-//          ServiceComputeLoggingHoneycombArgs{...}
+//	ServiceComputeLoggingHoneycombArgs{...}
 type ServiceComputeLoggingHoneycombInput interface {
 	pulumi.Input
 
@@ -2396,7 +2396,7 @@ func (i ServiceComputeLoggingHoneycombArgs) ToServiceComputeLoggingHoneycombOutp
 // ServiceComputeLoggingHoneycombArrayInput is an input type that accepts ServiceComputeLoggingHoneycombArray and ServiceComputeLoggingHoneycombArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHoneycombArrayInput` via:
 //
-//          ServiceComputeLoggingHoneycombArray{ ServiceComputeLoggingHoneycombArgs{...} }
+//	ServiceComputeLoggingHoneycombArray{ ServiceComputeLoggingHoneycombArgs{...} }
 type ServiceComputeLoggingHoneycombArrayInput interface {
 	pulumi.Input
 
@@ -2501,7 +2501,7 @@ type ServiceComputeLoggingHttp struct {
 // ServiceComputeLoggingHttpInput is an input type that accepts ServiceComputeLoggingHttpArgs and ServiceComputeLoggingHttpOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHttpInput` via:
 //
-//          ServiceComputeLoggingHttpArgs{...}
+//	ServiceComputeLoggingHttpArgs{...}
 type ServiceComputeLoggingHttpInput interface {
 	pulumi.Input
 
@@ -2555,7 +2555,7 @@ func (i ServiceComputeLoggingHttpArgs) ToServiceComputeLoggingHttpOutputWithCont
 // ServiceComputeLoggingHttpArrayInput is an input type that accepts ServiceComputeLoggingHttpArray and ServiceComputeLoggingHttpArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHttpArrayInput` via:
 //
-//          ServiceComputeLoggingHttpArray{ ServiceComputeLoggingHttpArgs{...} }
+//	ServiceComputeLoggingHttpArray{ ServiceComputeLoggingHttpArgs{...} }
 type ServiceComputeLoggingHttpArrayInput interface {
 	pulumi.Input
 
@@ -2717,7 +2717,7 @@ type ServiceComputeLoggingKafka struct {
 // ServiceComputeLoggingKafkaInput is an input type that accepts ServiceComputeLoggingKafkaArgs and ServiceComputeLoggingKafkaOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingKafkaInput` via:
 //
-//          ServiceComputeLoggingKafkaArgs{...}
+//	ServiceComputeLoggingKafkaArgs{...}
 type ServiceComputeLoggingKafkaInput interface {
 	pulumi.Input
 
@@ -2773,7 +2773,7 @@ func (i ServiceComputeLoggingKafkaArgs) ToServiceComputeLoggingKafkaOutputWithCo
 // ServiceComputeLoggingKafkaArrayInput is an input type that accepts ServiceComputeLoggingKafkaArray and ServiceComputeLoggingKafkaArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingKafkaArrayInput` via:
 //
-//          ServiceComputeLoggingKafkaArray{ ServiceComputeLoggingKafkaArgs{...} }
+//	ServiceComputeLoggingKafkaArray{ ServiceComputeLoggingKafkaArgs{...} }
 type ServiceComputeLoggingKafkaArrayInput interface {
 	pulumi.Input
 
@@ -2922,7 +2922,7 @@ type ServiceComputeLoggingKinese struct {
 // ServiceComputeLoggingKineseInput is an input type that accepts ServiceComputeLoggingKineseArgs and ServiceComputeLoggingKineseOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingKineseInput` via:
 //
-//          ServiceComputeLoggingKineseArgs{...}
+//	ServiceComputeLoggingKineseArgs{...}
 type ServiceComputeLoggingKineseInput interface {
 	pulumi.Input
 
@@ -2960,7 +2960,7 @@ func (i ServiceComputeLoggingKineseArgs) ToServiceComputeLoggingKineseOutputWith
 // ServiceComputeLoggingKineseArrayInput is an input type that accepts ServiceComputeLoggingKineseArray and ServiceComputeLoggingKineseArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingKineseArrayInput` via:
 //
-//          ServiceComputeLoggingKineseArray{ ServiceComputeLoggingKineseArgs{...} }
+//	ServiceComputeLoggingKineseArray{ ServiceComputeLoggingKineseArgs{...} }
 type ServiceComputeLoggingKineseArrayInput interface {
 	pulumi.Input
 
@@ -3060,7 +3060,7 @@ type ServiceComputeLoggingLogentry struct {
 // ServiceComputeLoggingLogentryInput is an input type that accepts ServiceComputeLoggingLogentryArgs and ServiceComputeLoggingLogentryOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogentryInput` via:
 //
-//          ServiceComputeLoggingLogentryArgs{...}
+//	ServiceComputeLoggingLogentryArgs{...}
 type ServiceComputeLoggingLogentryInput interface {
 	pulumi.Input
 
@@ -3094,7 +3094,7 @@ func (i ServiceComputeLoggingLogentryArgs) ToServiceComputeLoggingLogentryOutput
 // ServiceComputeLoggingLogentryArrayInput is an input type that accepts ServiceComputeLoggingLogentryArray and ServiceComputeLoggingLogentryArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogentryArrayInput` via:
 //
-//          ServiceComputeLoggingLogentryArray{ ServiceComputeLoggingLogentryArgs{...} }
+//	ServiceComputeLoggingLogentryArray{ ServiceComputeLoggingLogentryArgs{...} }
 type ServiceComputeLoggingLogentryArrayInput interface {
 	pulumi.Input
 
@@ -3180,7 +3180,7 @@ type ServiceComputeLoggingLoggly struct {
 // ServiceComputeLoggingLogglyInput is an input type that accepts ServiceComputeLoggingLogglyArgs and ServiceComputeLoggingLogglyOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogglyInput` via:
 //
-//          ServiceComputeLoggingLogglyArgs{...}
+//	ServiceComputeLoggingLogglyArgs{...}
 type ServiceComputeLoggingLogglyInput interface {
 	pulumi.Input
 
@@ -3210,7 +3210,7 @@ func (i ServiceComputeLoggingLogglyArgs) ToServiceComputeLoggingLogglyOutputWith
 // ServiceComputeLoggingLogglyArrayInput is an input type that accepts ServiceComputeLoggingLogglyArray and ServiceComputeLoggingLogglyArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogglyArrayInput` via:
 //
-//          ServiceComputeLoggingLogglyArray{ ServiceComputeLoggingLogglyArgs{...} }
+//	ServiceComputeLoggingLogglyArray{ ServiceComputeLoggingLogglyArgs{...} }
 type ServiceComputeLoggingLogglyArrayInput interface {
 	pulumi.Input
 
@@ -3288,7 +3288,7 @@ type ServiceComputeLoggingLogshuttle struct {
 // ServiceComputeLoggingLogshuttleInput is an input type that accepts ServiceComputeLoggingLogshuttleArgs and ServiceComputeLoggingLogshuttleOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogshuttleInput` via:
 //
-//          ServiceComputeLoggingLogshuttleArgs{...}
+//	ServiceComputeLoggingLogshuttleArgs{...}
 type ServiceComputeLoggingLogshuttleInput interface {
 	pulumi.Input
 
@@ -3320,7 +3320,7 @@ func (i ServiceComputeLoggingLogshuttleArgs) ToServiceComputeLoggingLogshuttleOu
 // ServiceComputeLoggingLogshuttleArrayInput is an input type that accepts ServiceComputeLoggingLogshuttleArray and ServiceComputeLoggingLogshuttleArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogshuttleArrayInput` via:
 //
-//          ServiceComputeLoggingLogshuttleArray{ ServiceComputeLoggingLogshuttleArgs{...} }
+//	ServiceComputeLoggingLogshuttleArray{ ServiceComputeLoggingLogshuttleArgs{...} }
 type ServiceComputeLoggingLogshuttleArrayInput interface {
 	pulumi.Input
 
@@ -3403,7 +3403,7 @@ type ServiceComputeLoggingNewrelic struct {
 // ServiceComputeLoggingNewrelicInput is an input type that accepts ServiceComputeLoggingNewrelicArgs and ServiceComputeLoggingNewrelicOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingNewrelicInput` via:
 //
-//          ServiceComputeLoggingNewrelicArgs{...}
+//	ServiceComputeLoggingNewrelicArgs{...}
 type ServiceComputeLoggingNewrelicInput interface {
 	pulumi.Input
 
@@ -3435,7 +3435,7 @@ func (i ServiceComputeLoggingNewrelicArgs) ToServiceComputeLoggingNewrelicOutput
 // ServiceComputeLoggingNewrelicArrayInput is an input type that accepts ServiceComputeLoggingNewrelicArray and ServiceComputeLoggingNewrelicArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingNewrelicArrayInput` via:
 //
-//          ServiceComputeLoggingNewrelicArray{ ServiceComputeLoggingNewrelicArgs{...} }
+//	ServiceComputeLoggingNewrelicArray{ ServiceComputeLoggingNewrelicArgs{...} }
 type ServiceComputeLoggingNewrelicArrayInput interface {
 	pulumi.Input
 
@@ -3536,7 +3536,7 @@ type ServiceComputeLoggingOpenstack struct {
 // ServiceComputeLoggingOpenstackInput is an input type that accepts ServiceComputeLoggingOpenstackArgs and ServiceComputeLoggingOpenstackOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingOpenstackInput` via:
 //
-//          ServiceComputeLoggingOpenstackArgs{...}
+//	ServiceComputeLoggingOpenstackArgs{...}
 type ServiceComputeLoggingOpenstackInput interface {
 	pulumi.Input
 
@@ -3586,7 +3586,7 @@ func (i ServiceComputeLoggingOpenstackArgs) ToServiceComputeLoggingOpenstackOutp
 // ServiceComputeLoggingOpenstackArrayInput is an input type that accepts ServiceComputeLoggingOpenstackArray and ServiceComputeLoggingOpenstackArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingOpenstackArrayInput` via:
 //
-//          ServiceComputeLoggingOpenstackArray{ ServiceComputeLoggingOpenstackArgs{...} }
+//	ServiceComputeLoggingOpenstackArray{ ServiceComputeLoggingOpenstackArgs{...} }
 type ServiceComputeLoggingOpenstackArrayInput interface {
 	pulumi.Input
 
@@ -3714,7 +3714,7 @@ type ServiceComputeLoggingPapertrail struct {
 // ServiceComputeLoggingPapertrailInput is an input type that accepts ServiceComputeLoggingPapertrailArgs and ServiceComputeLoggingPapertrailOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingPapertrailInput` via:
 //
-//          ServiceComputeLoggingPapertrailArgs{...}
+//	ServiceComputeLoggingPapertrailArgs{...}
 type ServiceComputeLoggingPapertrailInput interface {
 	pulumi.Input
 
@@ -3746,7 +3746,7 @@ func (i ServiceComputeLoggingPapertrailArgs) ToServiceComputeLoggingPapertrailOu
 // ServiceComputeLoggingPapertrailArrayInput is an input type that accepts ServiceComputeLoggingPapertrailArray and ServiceComputeLoggingPapertrailArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingPapertrailArrayInput` via:
 //
-//          ServiceComputeLoggingPapertrailArray{ ServiceComputeLoggingPapertrailArgs{...} }
+//	ServiceComputeLoggingPapertrailArray{ ServiceComputeLoggingPapertrailArgs{...} }
 type ServiceComputeLoggingPapertrailArrayInput interface {
 	pulumi.Input
 
@@ -3857,7 +3857,7 @@ type ServiceComputeLoggingS3 struct {
 // ServiceComputeLoggingS3Input is an input type that accepts ServiceComputeLoggingS3Args and ServiceComputeLoggingS3Output values.
 // You can construct a concrete instance of `ServiceComputeLoggingS3Input` via:
 //
-//          ServiceComputeLoggingS3Args{...}
+//	ServiceComputeLoggingS3Args{...}
 type ServiceComputeLoggingS3Input interface {
 	pulumi.Input
 
@@ -3917,7 +3917,7 @@ func (i ServiceComputeLoggingS3Args) ToServiceComputeLoggingS3OutputWithContext(
 // ServiceComputeLoggingS3ArrayInput is an input type that accepts ServiceComputeLoggingS3Array and ServiceComputeLoggingS3ArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingS3ArrayInput` via:
 //
-//          ServiceComputeLoggingS3Array{ ServiceComputeLoggingS3Args{...} }
+//	ServiceComputeLoggingS3Array{ ServiceComputeLoggingS3Args{...} }
 type ServiceComputeLoggingS3ArrayInput interface {
 	pulumi.Input
 
@@ -4070,7 +4070,7 @@ type ServiceComputeLoggingScalyr struct {
 // ServiceComputeLoggingScalyrInput is an input type that accepts ServiceComputeLoggingScalyrArgs and ServiceComputeLoggingScalyrOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingScalyrInput` via:
 //
-//          ServiceComputeLoggingScalyrArgs{...}
+//	ServiceComputeLoggingScalyrArgs{...}
 type ServiceComputeLoggingScalyrInput interface {
 	pulumi.Input
 
@@ -4102,7 +4102,7 @@ func (i ServiceComputeLoggingScalyrArgs) ToServiceComputeLoggingScalyrOutputWith
 // ServiceComputeLoggingScalyrArrayInput is an input type that accepts ServiceComputeLoggingScalyrArray and ServiceComputeLoggingScalyrArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingScalyrArrayInput` via:
 //
-//          ServiceComputeLoggingScalyrArray{ ServiceComputeLoggingScalyrArgs{...} }
+//	ServiceComputeLoggingScalyrArray{ ServiceComputeLoggingScalyrArgs{...} }
 type ServiceComputeLoggingScalyrArrayInput interface {
 	pulumi.Input
 
@@ -4207,7 +4207,7 @@ type ServiceComputeLoggingSftp struct {
 // ServiceComputeLoggingSftpInput is an input type that accepts ServiceComputeLoggingSftpArgs and ServiceComputeLoggingSftpOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSftpInput` via:
 //
-//          ServiceComputeLoggingSftpArgs{...}
+//	ServiceComputeLoggingSftpArgs{...}
 type ServiceComputeLoggingSftpInput interface {
 	pulumi.Input
 
@@ -4261,7 +4261,7 @@ func (i ServiceComputeLoggingSftpArgs) ToServiceComputeLoggingSftpOutputWithCont
 // ServiceComputeLoggingSftpArrayInput is an input type that accepts ServiceComputeLoggingSftpArray and ServiceComputeLoggingSftpArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSftpArrayInput` via:
 //
-//          ServiceComputeLoggingSftpArray{ ServiceComputeLoggingSftpArgs{...} }
+//	ServiceComputeLoggingSftpArray{ ServiceComputeLoggingSftpArgs{...} }
 type ServiceComputeLoggingSftpArrayInput interface {
 	pulumi.Input
 
@@ -4409,7 +4409,7 @@ type ServiceComputeLoggingSplunk struct {
 // ServiceComputeLoggingSplunkInput is an input type that accepts ServiceComputeLoggingSplunkArgs and ServiceComputeLoggingSplunkOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSplunkInput` via:
 //
-//          ServiceComputeLoggingSplunkArgs{...}
+//	ServiceComputeLoggingSplunkArgs{...}
 type ServiceComputeLoggingSplunkInput interface {
 	pulumi.Input
 
@@ -4451,7 +4451,7 @@ func (i ServiceComputeLoggingSplunkArgs) ToServiceComputeLoggingSplunkOutputWith
 // ServiceComputeLoggingSplunkArrayInput is an input type that accepts ServiceComputeLoggingSplunkArray and ServiceComputeLoggingSplunkArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSplunkArrayInput` via:
 //
-//          ServiceComputeLoggingSplunkArray{ ServiceComputeLoggingSplunkArgs{...} }
+//	ServiceComputeLoggingSplunkArray{ ServiceComputeLoggingSplunkArgs{...} }
 type ServiceComputeLoggingSplunkArrayInput interface {
 	pulumi.Input
 
@@ -4559,7 +4559,7 @@ type ServiceComputeLoggingSumologic struct {
 // ServiceComputeLoggingSumologicInput is an input type that accepts ServiceComputeLoggingSumologicArgs and ServiceComputeLoggingSumologicOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSumologicInput` via:
 //
-//          ServiceComputeLoggingSumologicArgs{...}
+//	ServiceComputeLoggingSumologicArgs{...}
 type ServiceComputeLoggingSumologicInput interface {
 	pulumi.Input
 
@@ -4591,7 +4591,7 @@ func (i ServiceComputeLoggingSumologicArgs) ToServiceComputeLoggingSumologicOutp
 // ServiceComputeLoggingSumologicArrayInput is an input type that accepts ServiceComputeLoggingSumologicArray and ServiceComputeLoggingSumologicArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSumologicArrayInput` via:
 //
-//          ServiceComputeLoggingSumologicArray{ ServiceComputeLoggingSumologicArgs{...} }
+//	ServiceComputeLoggingSumologicArray{ ServiceComputeLoggingSumologicArgs{...} }
 type ServiceComputeLoggingSumologicArrayInput interface {
 	pulumi.Input
 
@@ -4688,7 +4688,7 @@ type ServiceComputeLoggingSyslog struct {
 // ServiceComputeLoggingSyslogInput is an input type that accepts ServiceComputeLoggingSyslogArgs and ServiceComputeLoggingSyslogOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSyslogInput` via:
 //
-//          ServiceComputeLoggingSyslogArgs{...}
+//	ServiceComputeLoggingSyslogArgs{...}
 type ServiceComputeLoggingSyslogInput interface {
 	pulumi.Input
 
@@ -4734,7 +4734,7 @@ func (i ServiceComputeLoggingSyslogArgs) ToServiceComputeLoggingSyslogOutputWith
 // ServiceComputeLoggingSyslogArrayInput is an input type that accepts ServiceComputeLoggingSyslogArray and ServiceComputeLoggingSyslogArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSyslogArrayInput` via:
 //
-//          ServiceComputeLoggingSyslogArray{ ServiceComputeLoggingSyslogArgs{...} }
+//	ServiceComputeLoggingSyslogArray{ ServiceComputeLoggingSyslogArgs{...} }
 type ServiceComputeLoggingSyslogArrayInput interface {
 	pulumi.Input
 
@@ -4849,7 +4849,7 @@ type ServiceComputePackage struct {
 // ServiceComputePackageInput is an input type that accepts ServiceComputePackageArgs and ServiceComputePackageOutput values.
 // You can construct a concrete instance of `ServiceComputePackageInput` via:
 //
-//          ServiceComputePackageArgs{...}
+//	ServiceComputePackageArgs{...}
 type ServiceComputePackageInput interface {
 	pulumi.Input
 
@@ -4886,11 +4886,11 @@ func (i ServiceComputePackageArgs) ToServiceComputePackagePtrOutputWithContext(c
 // ServiceComputePackagePtrInput is an input type that accepts ServiceComputePackageArgs, ServiceComputePackagePtr and ServiceComputePackagePtrOutput values.
 // You can construct a concrete instance of `ServiceComputePackagePtrInput` via:
 //
-//          ServiceComputePackageArgs{...}
+//	        ServiceComputePackageArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ServiceComputePackagePtrInput interface {
 	pulumi.Input
 
@@ -5004,7 +5004,7 @@ type ServiceVclAcl struct {
 // ServiceVclAclInput is an input type that accepts ServiceVclAclArgs and ServiceVclAclOutput values.
 // You can construct a concrete instance of `ServiceVclAclInput` via:
 //
-//          ServiceVclAclArgs{...}
+//	ServiceVclAclArgs{...}
 type ServiceVclAclInput interface {
 	pulumi.Input
 
@@ -5036,7 +5036,7 @@ func (i ServiceVclAclArgs) ToServiceVclAclOutputWithContext(ctx context.Context)
 // ServiceVclAclArrayInput is an input type that accepts ServiceVclAclArray and ServiceVclAclArrayOutput values.
 // You can construct a concrete instance of `ServiceVclAclArrayInput` via:
 //
-//          ServiceVclAclArray{ ServiceVclAclArgs{...} }
+//	ServiceVclAclArray{ ServiceVclAclArgs{...} }
 type ServiceVclAclArrayInput interface {
 	pulumi.Input
 
@@ -5165,7 +5165,7 @@ type ServiceVclBackend struct {
 // ServiceVclBackendInput is an input type that accepts ServiceVclBackendArgs and ServiceVclBackendOutput values.
 // You can construct a concrete instance of `ServiceVclBackendInput` via:
 //
-//          ServiceVclBackendArgs{...}
+//	ServiceVclBackendArgs{...}
 type ServiceVclBackendInput interface {
 	pulumi.Input
 
@@ -5243,7 +5243,7 @@ func (i ServiceVclBackendArgs) ToServiceVclBackendOutputWithContext(ctx context.
 // ServiceVclBackendArrayInput is an input type that accepts ServiceVclBackendArray and ServiceVclBackendArrayOutput values.
 // You can construct a concrete instance of `ServiceVclBackendArrayInput` via:
 //
-//          ServiceVclBackendArray{ ServiceVclBackendArgs{...} }
+//	ServiceVclBackendArray{ ServiceVclBackendArgs{...} }
 type ServiceVclBackendArrayInput interface {
 	pulumi.Input
 
@@ -5442,7 +5442,7 @@ type ServiceVclCacheSetting struct {
 // ServiceVclCacheSettingInput is an input type that accepts ServiceVclCacheSettingArgs and ServiceVclCacheSettingOutput values.
 // You can construct a concrete instance of `ServiceVclCacheSettingInput` via:
 //
-//          ServiceVclCacheSettingArgs{...}
+//	ServiceVclCacheSettingArgs{...}
 type ServiceVclCacheSettingInput interface {
 	pulumi.Input
 
@@ -5478,7 +5478,7 @@ func (i ServiceVclCacheSettingArgs) ToServiceVclCacheSettingOutputWithContext(ct
 // ServiceVclCacheSettingArrayInput is an input type that accepts ServiceVclCacheSettingArray and ServiceVclCacheSettingArrayOutput values.
 // You can construct a concrete instance of `ServiceVclCacheSettingArrayInput` via:
 //
-//          ServiceVclCacheSettingArray{ ServiceVclCacheSettingArgs{...} }
+//	ServiceVclCacheSettingArray{ ServiceVclCacheSettingArgs{...} }
 type ServiceVclCacheSettingArrayInput interface {
 	pulumi.Input
 
@@ -5573,7 +5573,7 @@ type ServiceVclCondition struct {
 // ServiceVclConditionInput is an input type that accepts ServiceVclConditionArgs and ServiceVclConditionOutput values.
 // You can construct a concrete instance of `ServiceVclConditionInput` via:
 //
-//          ServiceVclConditionArgs{...}
+//	ServiceVclConditionArgs{...}
 type ServiceVclConditionInput interface {
 	pulumi.Input
 
@@ -5607,7 +5607,7 @@ func (i ServiceVclConditionArgs) ToServiceVclConditionOutputWithContext(ctx cont
 // ServiceVclConditionArrayInput is an input type that accepts ServiceVclConditionArray and ServiceVclConditionArrayOutput values.
 // You can construct a concrete instance of `ServiceVclConditionArrayInput` via:
 //
-//          ServiceVclConditionArray{ ServiceVclConditionArgs{...} }
+//	ServiceVclConditionArray{ ServiceVclConditionArgs{...} }
 type ServiceVclConditionArrayInput interface {
 	pulumi.Input
 
@@ -5696,7 +5696,7 @@ type ServiceVclDictionary struct {
 // ServiceVclDictionaryInput is an input type that accepts ServiceVclDictionaryArgs and ServiceVclDictionaryOutput values.
 // You can construct a concrete instance of `ServiceVclDictionaryInput` via:
 //
-//          ServiceVclDictionaryArgs{...}
+//	ServiceVclDictionaryArgs{...}
 type ServiceVclDictionaryInput interface {
 	pulumi.Input
 
@@ -5729,7 +5729,7 @@ func (i ServiceVclDictionaryArgs) ToServiceVclDictionaryOutputWithContext(ctx co
 // ServiceVclDictionaryArrayInput is an input type that accepts ServiceVclDictionaryArray and ServiceVclDictionaryArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDictionaryArrayInput` via:
 //
-//          ServiceVclDictionaryArray{ ServiceVclDictionaryArgs{...} }
+//	ServiceVclDictionaryArray{ ServiceVclDictionaryArgs{...} }
 type ServiceVclDictionaryArrayInput interface {
 	pulumi.Input
 
@@ -5824,7 +5824,7 @@ type ServiceVclDirector struct {
 // ServiceVclDirectorInput is an input type that accepts ServiceVclDirectorArgs and ServiceVclDirectorOutput values.
 // You can construct a concrete instance of `ServiceVclDirectorInput` via:
 //
-//          ServiceVclDirectorArgs{...}
+//	ServiceVclDirectorArgs{...}
 type ServiceVclDirectorInput interface {
 	pulumi.Input
 
@@ -5864,7 +5864,7 @@ func (i ServiceVclDirectorArgs) ToServiceVclDirectorOutputWithContext(ctx contex
 // ServiceVclDirectorArrayInput is an input type that accepts ServiceVclDirectorArray and ServiceVclDirectorArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDirectorArrayInput` via:
 //
-//          ServiceVclDirectorArray{ ServiceVclDirectorArgs{...} }
+//	ServiceVclDirectorArray{ ServiceVclDirectorArgs{...} }
 type ServiceVclDirectorArrayInput interface {
 	pulumi.Input
 
@@ -5965,7 +5965,7 @@ type ServiceVclDomain struct {
 // ServiceVclDomainInput is an input type that accepts ServiceVclDomainArgs and ServiceVclDomainOutput values.
 // You can construct a concrete instance of `ServiceVclDomainInput` via:
 //
-//          ServiceVclDomainArgs{...}
+//	ServiceVclDomainArgs{...}
 type ServiceVclDomainInput interface {
 	pulumi.Input
 
@@ -5995,7 +5995,7 @@ func (i ServiceVclDomainArgs) ToServiceVclDomainOutputWithContext(ctx context.Co
 // ServiceVclDomainArrayInput is an input type that accepts ServiceVclDomainArray and ServiceVclDomainArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDomainArrayInput` via:
 //
-//          ServiceVclDomainArray{ ServiceVclDomainArgs{...} }
+//	ServiceVclDomainArray{ ServiceVclDomainArgs{...} }
 type ServiceVclDomainArrayInput interface {
 	pulumi.Input
 
@@ -6075,7 +6075,7 @@ type ServiceVclDynamicsnippet struct {
 // ServiceVclDynamicsnippetInput is an input type that accepts ServiceVclDynamicsnippetArgs and ServiceVclDynamicsnippetOutput values.
 // You can construct a concrete instance of `ServiceVclDynamicsnippetInput` via:
 //
-//          ServiceVclDynamicsnippetArgs{...}
+//	ServiceVclDynamicsnippetArgs{...}
 type ServiceVclDynamicsnippetInput interface {
 	pulumi.Input
 
@@ -6109,7 +6109,7 @@ func (i ServiceVclDynamicsnippetArgs) ToServiceVclDynamicsnippetOutputWithContex
 // ServiceVclDynamicsnippetArrayInput is an input type that accepts ServiceVclDynamicsnippetArray and ServiceVclDynamicsnippetArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDynamicsnippetArrayInput` via:
 //
-//          ServiceVclDynamicsnippetArray{ ServiceVclDynamicsnippetArgs{...} }
+//	ServiceVclDynamicsnippetArray{ ServiceVclDynamicsnippetArgs{...} }
 type ServiceVclDynamicsnippetArrayInput interface {
 	pulumi.Input
 
@@ -6199,7 +6199,7 @@ type ServiceVclGzip struct {
 // ServiceVclGzipInput is an input type that accepts ServiceVclGzipArgs and ServiceVclGzipOutput values.
 // You can construct a concrete instance of `ServiceVclGzipInput` via:
 //
-//          ServiceVclGzipArgs{...}
+//	ServiceVclGzipArgs{...}
 type ServiceVclGzipInput interface {
 	pulumi.Input
 
@@ -6233,7 +6233,7 @@ func (i ServiceVclGzipArgs) ToServiceVclGzipOutputWithContext(ctx context.Contex
 // ServiceVclGzipArrayInput is an input type that accepts ServiceVclGzipArray and ServiceVclGzipArrayOutput values.
 // You can construct a concrete instance of `ServiceVclGzipArrayInput` via:
 //
-//          ServiceVclGzipArray{ ServiceVclGzipArgs{...} }
+//	ServiceVclGzipArray{ ServiceVclGzipArgs{...} }
 type ServiceVclGzipArrayInput interface {
 	pulumi.Input
 
@@ -6339,7 +6339,7 @@ type ServiceVclHeader struct {
 // ServiceVclHeaderInput is an input type that accepts ServiceVclHeaderArgs and ServiceVclHeaderOutput values.
 // You can construct a concrete instance of `ServiceVclHeaderInput` via:
 //
-//          ServiceVclHeaderArgs{...}
+//	ServiceVclHeaderArgs{...}
 type ServiceVclHeaderInput interface {
 	pulumi.Input
 
@@ -6389,7 +6389,7 @@ func (i ServiceVclHeaderArgs) ToServiceVclHeaderOutputWithContext(ctx context.Co
 // ServiceVclHeaderArrayInput is an input type that accepts ServiceVclHeaderArray and ServiceVclHeaderArrayOutput values.
 // You can construct a concrete instance of `ServiceVclHeaderArrayInput` via:
 //
-//          ServiceVclHeaderArray{ ServiceVclHeaderArgs{...} }
+//	ServiceVclHeaderArray{ ServiceVclHeaderArgs{...} }
 type ServiceVclHeaderArrayInput interface {
 	pulumi.Input
 
@@ -6533,7 +6533,7 @@ type ServiceVclHealthcheck struct {
 // ServiceVclHealthcheckInput is an input type that accepts ServiceVclHealthcheckArgs and ServiceVclHealthcheckOutput values.
 // You can construct a concrete instance of `ServiceVclHealthcheckInput` via:
 //
-//          ServiceVclHealthcheckArgs{...}
+//	ServiceVclHealthcheckArgs{...}
 type ServiceVclHealthcheckInput interface {
 	pulumi.Input
 
@@ -6581,7 +6581,7 @@ func (i ServiceVclHealthcheckArgs) ToServiceVclHealthcheckOutputWithContext(ctx 
 // ServiceVclHealthcheckArrayInput is an input type that accepts ServiceVclHealthcheckArray and ServiceVclHealthcheckArrayOutput values.
 // You can construct a concrete instance of `ServiceVclHealthcheckArrayInput` via:
 //
-//          ServiceVclHealthcheckArray{ ServiceVclHealthcheckArgs{...} }
+//	ServiceVclHealthcheckArray{ ServiceVclHealthcheckArgs{...} }
 type ServiceVclHealthcheckArrayInput interface {
 	pulumi.Input
 
@@ -6718,7 +6718,7 @@ type ServiceVclLoggingBigquery struct {
 // ServiceVclLoggingBigqueryInput is an input type that accepts ServiceVclLoggingBigqueryArgs and ServiceVclLoggingBigqueryOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingBigqueryInput` via:
 //
-//          ServiceVclLoggingBigqueryArgs{...}
+//	ServiceVclLoggingBigqueryArgs{...}
 type ServiceVclLoggingBigqueryInput interface {
 	pulumi.Input
 
@@ -6764,7 +6764,7 @@ func (i ServiceVclLoggingBigqueryArgs) ToServiceVclLoggingBigqueryOutputWithCont
 // ServiceVclLoggingBigqueryArrayInput is an input type that accepts ServiceVclLoggingBigqueryArray and ServiceVclLoggingBigqueryArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingBigqueryArrayInput` via:
 //
-//          ServiceVclLoggingBigqueryArray{ ServiceVclLoggingBigqueryArgs{...} }
+//	ServiceVclLoggingBigqueryArray{ ServiceVclLoggingBigqueryArgs{...} }
 type ServiceVclLoggingBigqueryArrayInput interface {
 	pulumi.Input
 
@@ -6908,7 +6908,7 @@ type ServiceVclLoggingBlobstorage struct {
 // ServiceVclLoggingBlobstorageInput is an input type that accepts ServiceVclLoggingBlobstorageArgs and ServiceVclLoggingBlobstorageOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingBlobstorageInput` via:
 //
-//          ServiceVclLoggingBlobstorageArgs{...}
+//	ServiceVclLoggingBlobstorageArgs{...}
 type ServiceVclLoggingBlobstorageInput interface {
 	pulumi.Input
 
@@ -6966,7 +6966,7 @@ func (i ServiceVclLoggingBlobstorageArgs) ToServiceVclLoggingBlobstorageOutputWi
 // ServiceVclLoggingBlobstorageArrayInput is an input type that accepts ServiceVclLoggingBlobstorageArray and ServiceVclLoggingBlobstorageArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingBlobstorageArrayInput` via:
 //
-//          ServiceVclLoggingBlobstorageArray{ ServiceVclLoggingBlobstorageArgs{...} }
+//	ServiceVclLoggingBlobstorageArray{ ServiceVclLoggingBlobstorageArgs{...} }
 type ServiceVclLoggingBlobstorageArrayInput interface {
 	pulumi.Input
 
@@ -7140,7 +7140,7 @@ type ServiceVclLoggingCloudfile struct {
 // ServiceVclLoggingCloudfileInput is an input type that accepts ServiceVclLoggingCloudfileArgs and ServiceVclLoggingCloudfileOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingCloudfileInput` via:
 //
-//          ServiceVclLoggingCloudfileArgs{...}
+//	ServiceVclLoggingCloudfileArgs{...}
 type ServiceVclLoggingCloudfileInput interface {
 	pulumi.Input
 
@@ -7198,7 +7198,7 @@ func (i ServiceVclLoggingCloudfileArgs) ToServiceVclLoggingCloudfileOutputWithCo
 // ServiceVclLoggingCloudfileArrayInput is an input type that accepts ServiceVclLoggingCloudfileArray and ServiceVclLoggingCloudfileArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingCloudfileArrayInput` via:
 //
-//          ServiceVclLoggingCloudfileArray{ ServiceVclLoggingCloudfileArgs{...} }
+//	ServiceVclLoggingCloudfileArray{ ServiceVclLoggingCloudfileArgs{...} }
 type ServiceVclLoggingCloudfileArrayInput interface {
 	pulumi.Input
 
@@ -7354,7 +7354,7 @@ type ServiceVclLoggingDatadog struct {
 // ServiceVclLoggingDatadogInput is an input type that accepts ServiceVclLoggingDatadogArgs and ServiceVclLoggingDatadogOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingDatadogInput` via:
 //
-//          ServiceVclLoggingDatadogArgs{...}
+//	ServiceVclLoggingDatadogArgs{...}
 type ServiceVclLoggingDatadogInput interface {
 	pulumi.Input
 
@@ -7394,7 +7394,7 @@ func (i ServiceVclLoggingDatadogArgs) ToServiceVclLoggingDatadogOutputWithContex
 // ServiceVclLoggingDatadogArrayInput is an input type that accepts ServiceVclLoggingDatadogArray and ServiceVclLoggingDatadogArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingDatadogArrayInput` via:
 //
-//          ServiceVclLoggingDatadogArray{ ServiceVclLoggingDatadogArgs{...} }
+//	ServiceVclLoggingDatadogArray{ ServiceVclLoggingDatadogArgs{...} }
 type ServiceVclLoggingDatadogArrayInput interface {
 	pulumi.Input
 
@@ -7523,7 +7523,7 @@ type ServiceVclLoggingDigitalocean struct {
 // ServiceVclLoggingDigitaloceanInput is an input type that accepts ServiceVclLoggingDigitaloceanArgs and ServiceVclLoggingDigitaloceanOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingDigitaloceanInput` via:
 //
-//          ServiceVclLoggingDigitaloceanArgs{...}
+//	ServiceVclLoggingDigitaloceanArgs{...}
 type ServiceVclLoggingDigitaloceanInput interface {
 	pulumi.Input
 
@@ -7581,7 +7581,7 @@ func (i ServiceVclLoggingDigitaloceanArgs) ToServiceVclLoggingDigitaloceanOutput
 // ServiceVclLoggingDigitaloceanArrayInput is an input type that accepts ServiceVclLoggingDigitaloceanArray and ServiceVclLoggingDigitaloceanArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingDigitaloceanArrayInput` via:
 //
-//          ServiceVclLoggingDigitaloceanArray{ ServiceVclLoggingDigitaloceanArgs{...} }
+//	ServiceVclLoggingDigitaloceanArray{ ServiceVclLoggingDigitaloceanArgs{...} }
 type ServiceVclLoggingDigitaloceanArrayInput interface {
 	pulumi.Input
 
@@ -7755,7 +7755,7 @@ type ServiceVclLoggingElasticsearch struct {
 // ServiceVclLoggingElasticsearchInput is an input type that accepts ServiceVclLoggingElasticsearchArgs and ServiceVclLoggingElasticsearchOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingElasticsearchInput` via:
 //
-//          ServiceVclLoggingElasticsearchArgs{...}
+//	ServiceVclLoggingElasticsearchArgs{...}
 type ServiceVclLoggingElasticsearchInput interface {
 	pulumi.Input
 
@@ -7813,7 +7813,7 @@ func (i ServiceVclLoggingElasticsearchArgs) ToServiceVclLoggingElasticsearchOutp
 // ServiceVclLoggingElasticsearchArrayInput is an input type that accepts ServiceVclLoggingElasticsearchArray and ServiceVclLoggingElasticsearchArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingElasticsearchArrayInput` via:
 //
-//          ServiceVclLoggingElasticsearchArray{ ServiceVclLoggingElasticsearchArgs{...} }
+//	ServiceVclLoggingElasticsearchArray{ ServiceVclLoggingElasticsearchArgs{...} }
 type ServiceVclLoggingElasticsearchArrayInput interface {
 	pulumi.Input
 
@@ -7987,7 +7987,7 @@ type ServiceVclLoggingFtp struct {
 // ServiceVclLoggingFtpInput is an input type that accepts ServiceVclLoggingFtpArgs and ServiceVclLoggingFtpOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingFtpInput` via:
 //
-//          ServiceVclLoggingFtpArgs{...}
+//	ServiceVclLoggingFtpArgs{...}
 type ServiceVclLoggingFtpInput interface {
 	pulumi.Input
 
@@ -8045,7 +8045,7 @@ func (i ServiceVclLoggingFtpArgs) ToServiceVclLoggingFtpOutputWithContext(ctx co
 // ServiceVclLoggingFtpArrayInput is an input type that accepts ServiceVclLoggingFtpArray and ServiceVclLoggingFtpArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingFtpArrayInput` via:
 //
-//          ServiceVclLoggingFtpArray{ ServiceVclLoggingFtpArgs{...} }
+//	ServiceVclLoggingFtpArray{ ServiceVclLoggingFtpArgs{...} }
 type ServiceVclLoggingFtpArrayInput interface {
 	pulumi.Input
 
@@ -8215,7 +8215,7 @@ type ServiceVclLoggingGc struct {
 // ServiceVclLoggingGcInput is an input type that accepts ServiceVclLoggingGcArgs and ServiceVclLoggingGcOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingGcInput` via:
 //
-//          ServiceVclLoggingGcArgs{...}
+//	ServiceVclLoggingGcArgs{...}
 type ServiceVclLoggingGcInput interface {
 	pulumi.Input
 
@@ -8269,7 +8269,7 @@ func (i ServiceVclLoggingGcArgs) ToServiceVclLoggingGcOutputWithContext(ctx cont
 // ServiceVclLoggingGcArrayInput is an input type that accepts ServiceVclLoggingGcArray and ServiceVclLoggingGcArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingGcArrayInput` via:
 //
-//          ServiceVclLoggingGcArray{ ServiceVclLoggingGcArgs{...} }
+//	ServiceVclLoggingGcArray{ ServiceVclLoggingGcArgs{...} }
 type ServiceVclLoggingGcArrayInput interface {
 	pulumi.Input
 
@@ -8419,7 +8419,7 @@ type ServiceVclLoggingGooglepubsub struct {
 // ServiceVclLoggingGooglepubsubInput is an input type that accepts ServiceVclLoggingGooglepubsubArgs and ServiceVclLoggingGooglepubsubOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingGooglepubsubInput` via:
 //
-//          ServiceVclLoggingGooglepubsubArgs{...}
+//	ServiceVclLoggingGooglepubsubArgs{...}
 type ServiceVclLoggingGooglepubsubInput interface {
 	pulumi.Input
 
@@ -8463,7 +8463,7 @@ func (i ServiceVclLoggingGooglepubsubArgs) ToServiceVclLoggingGooglepubsubOutput
 // ServiceVclLoggingGooglepubsubArrayInput is an input type that accepts ServiceVclLoggingGooglepubsubArray and ServiceVclLoggingGooglepubsubArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingGooglepubsubArrayInput` via:
 //
-//          ServiceVclLoggingGooglepubsubArray{ ServiceVclLoggingGooglepubsubArgs{...} }
+//	ServiceVclLoggingGooglepubsubArray{ ServiceVclLoggingGooglepubsubArgs{...} }
 type ServiceVclLoggingGooglepubsubArrayInput interface {
 	pulumi.Input
 
@@ -8584,7 +8584,7 @@ type ServiceVclLoggingHerokus struct {
 // ServiceVclLoggingHerokusInput is an input type that accepts ServiceVclLoggingHerokusArgs and ServiceVclLoggingHerokusOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHerokusInput` via:
 //
-//          ServiceVclLoggingHerokusArgs{...}
+//	ServiceVclLoggingHerokusArgs{...}
 type ServiceVclLoggingHerokusInput interface {
 	pulumi.Input
 
@@ -8624,7 +8624,7 @@ func (i ServiceVclLoggingHerokusArgs) ToServiceVclLoggingHerokusOutputWithContex
 // ServiceVclLoggingHerokusArrayInput is an input type that accepts ServiceVclLoggingHerokusArray and ServiceVclLoggingHerokusArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHerokusArrayInput` via:
 //
-//          ServiceVclLoggingHerokusArray{ ServiceVclLoggingHerokusArgs{...} }
+//	ServiceVclLoggingHerokusArray{ ServiceVclLoggingHerokusArgs{...} }
 type ServiceVclLoggingHerokusArrayInput interface {
 	pulumi.Input
 
@@ -8735,7 +8735,7 @@ type ServiceVclLoggingHoneycomb struct {
 // ServiceVclLoggingHoneycombInput is an input type that accepts ServiceVclLoggingHoneycombArgs and ServiceVclLoggingHoneycombOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHoneycombInput` via:
 //
-//          ServiceVclLoggingHoneycombArgs{...}
+//	ServiceVclLoggingHoneycombArgs{...}
 type ServiceVclLoggingHoneycombInput interface {
 	pulumi.Input
 
@@ -8775,7 +8775,7 @@ func (i ServiceVclLoggingHoneycombArgs) ToServiceVclLoggingHoneycombOutputWithCo
 // ServiceVclLoggingHoneycombArrayInput is an input type that accepts ServiceVclLoggingHoneycombArray and ServiceVclLoggingHoneycombArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHoneycombArrayInput` via:
 //
-//          ServiceVclLoggingHoneycombArray{ ServiceVclLoggingHoneycombArgs{...} }
+//	ServiceVclLoggingHoneycombArray{ ServiceVclLoggingHoneycombArgs{...} }
 type ServiceVclLoggingHoneycombArrayInput interface {
 	pulumi.Input
 
@@ -8908,7 +8908,7 @@ type ServiceVclLoggingHttp struct {
 // ServiceVclLoggingHttpInput is an input type that accepts ServiceVclLoggingHttpArgs and ServiceVclLoggingHttpOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHttpInput` via:
 //
-//          ServiceVclLoggingHttpArgs{...}
+//	ServiceVclLoggingHttpArgs{...}
 type ServiceVclLoggingHttpInput interface {
 	pulumi.Input
 
@@ -8970,7 +8970,7 @@ func (i ServiceVclLoggingHttpArgs) ToServiceVclLoggingHttpOutputWithContext(ctx 
 // ServiceVclLoggingHttpArrayInput is an input type that accepts ServiceVclLoggingHttpArray and ServiceVclLoggingHttpArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHttpArrayInput` via:
 //
-//          ServiceVclLoggingHttpArray{ ServiceVclLoggingHttpArgs{...} }
+//	ServiceVclLoggingHttpArray{ ServiceVclLoggingHttpArgs{...} }
 type ServiceVclLoggingHttpArrayInput interface {
 	pulumi.Input
 
@@ -9160,7 +9160,7 @@ type ServiceVclLoggingKafka struct {
 // ServiceVclLoggingKafkaInput is an input type that accepts ServiceVclLoggingKafkaArgs and ServiceVclLoggingKafkaOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingKafkaInput` via:
 //
-//          ServiceVclLoggingKafkaArgs{...}
+//	ServiceVclLoggingKafkaArgs{...}
 type ServiceVclLoggingKafkaInput interface {
 	pulumi.Input
 
@@ -9224,7 +9224,7 @@ func (i ServiceVclLoggingKafkaArgs) ToServiceVclLoggingKafkaOutputWithContext(ct
 // ServiceVclLoggingKafkaArrayInput is an input type that accepts ServiceVclLoggingKafkaArray and ServiceVclLoggingKafkaArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingKafkaArrayInput` via:
 //
-//          ServiceVclLoggingKafkaArray{ ServiceVclLoggingKafkaArgs{...} }
+//	ServiceVclLoggingKafkaArray{ ServiceVclLoggingKafkaArgs{...} }
 type ServiceVclLoggingKafkaArrayInput interface {
 	pulumi.Input
 
@@ -9401,7 +9401,7 @@ type ServiceVclLoggingKinese struct {
 // ServiceVclLoggingKineseInput is an input type that accepts ServiceVclLoggingKineseArgs and ServiceVclLoggingKineseOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingKineseInput` via:
 //
-//          ServiceVclLoggingKineseArgs{...}
+//	ServiceVclLoggingKineseArgs{...}
 type ServiceVclLoggingKineseInput interface {
 	pulumi.Input
 
@@ -9447,7 +9447,7 @@ func (i ServiceVclLoggingKineseArgs) ToServiceVclLoggingKineseOutputWithContext(
 // ServiceVclLoggingKineseArrayInput is an input type that accepts ServiceVclLoggingKineseArray and ServiceVclLoggingKineseArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingKineseArrayInput` via:
 //
-//          ServiceVclLoggingKineseArray{ ServiceVclLoggingKineseArgs{...} }
+//	ServiceVclLoggingKineseArray{ ServiceVclLoggingKineseArgs{...} }
 type ServiceVclLoggingKineseArrayInput interface {
 	pulumi.Input
 
@@ -9575,7 +9575,7 @@ type ServiceVclLoggingLogentry struct {
 // ServiceVclLoggingLogentryInput is an input type that accepts ServiceVclLoggingLogentryArgs and ServiceVclLoggingLogentryOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogentryInput` via:
 //
-//          ServiceVclLoggingLogentryArgs{...}
+//	ServiceVclLoggingLogentryArgs{...}
 type ServiceVclLoggingLogentryInput interface {
 	pulumi.Input
 
@@ -9617,7 +9617,7 @@ func (i ServiceVclLoggingLogentryArgs) ToServiceVclLoggingLogentryOutputWithCont
 // ServiceVclLoggingLogentryArrayInput is an input type that accepts ServiceVclLoggingLogentryArray and ServiceVclLoggingLogentryArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogentryArrayInput` via:
 //
-//          ServiceVclLoggingLogentryArray{ ServiceVclLoggingLogentryArgs{...} }
+//	ServiceVclLoggingLogentryArray{ ServiceVclLoggingLogentryArgs{...} }
 type ServiceVclLoggingLogentryArrayInput interface {
 	pulumi.Input
 
@@ -9731,7 +9731,7 @@ type ServiceVclLoggingLoggly struct {
 // ServiceVclLoggingLogglyInput is an input type that accepts ServiceVclLoggingLogglyArgs and ServiceVclLoggingLogglyOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogglyInput` via:
 //
-//          ServiceVclLoggingLogglyArgs{...}
+//	ServiceVclLoggingLogglyArgs{...}
 type ServiceVclLoggingLogglyInput interface {
 	pulumi.Input
 
@@ -9769,7 +9769,7 @@ func (i ServiceVclLoggingLogglyArgs) ToServiceVclLoggingLogglyOutputWithContext(
 // ServiceVclLoggingLogglyArrayInput is an input type that accepts ServiceVclLoggingLogglyArray and ServiceVclLoggingLogglyArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogglyArrayInput` via:
 //
-//          ServiceVclLoggingLogglyArray{ ServiceVclLoggingLogglyArgs{...} }
+//	ServiceVclLoggingLogglyArray{ ServiceVclLoggingLogglyArgs{...} }
 type ServiceVclLoggingLogglyArrayInput interface {
 	pulumi.Input
 
@@ -9875,7 +9875,7 @@ type ServiceVclLoggingLogshuttle struct {
 // ServiceVclLoggingLogshuttleInput is an input type that accepts ServiceVclLoggingLogshuttleArgs and ServiceVclLoggingLogshuttleOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogshuttleInput` via:
 //
-//          ServiceVclLoggingLogshuttleArgs{...}
+//	ServiceVclLoggingLogshuttleArgs{...}
 type ServiceVclLoggingLogshuttleInput interface {
 	pulumi.Input
 
@@ -9915,7 +9915,7 @@ func (i ServiceVclLoggingLogshuttleArgs) ToServiceVclLoggingLogshuttleOutputWith
 // ServiceVclLoggingLogshuttleArrayInput is an input type that accepts ServiceVclLoggingLogshuttleArray and ServiceVclLoggingLogshuttleArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogshuttleArrayInput` via:
 //
-//          ServiceVclLoggingLogshuttleArray{ ServiceVclLoggingLogshuttleArgs{...} }
+//	ServiceVclLoggingLogshuttleArray{ ServiceVclLoggingLogshuttleArgs{...} }
 type ServiceVclLoggingLogshuttleArrayInput interface {
 	pulumi.Input
 
@@ -10026,7 +10026,7 @@ type ServiceVclLoggingNewrelic struct {
 // ServiceVclLoggingNewrelicInput is an input type that accepts ServiceVclLoggingNewrelicArgs and ServiceVclLoggingNewrelicOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingNewrelicInput` via:
 //
-//          ServiceVclLoggingNewrelicArgs{...}
+//	ServiceVclLoggingNewrelicArgs{...}
 type ServiceVclLoggingNewrelicInput interface {
 	pulumi.Input
 
@@ -10066,7 +10066,7 @@ func (i ServiceVclLoggingNewrelicArgs) ToServiceVclLoggingNewrelicOutputWithCont
 // ServiceVclLoggingNewrelicArrayInput is an input type that accepts ServiceVclLoggingNewrelicArray and ServiceVclLoggingNewrelicArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingNewrelicArrayInput` via:
 //
-//          ServiceVclLoggingNewrelicArray{ ServiceVclLoggingNewrelicArgs{...} }
+//	ServiceVclLoggingNewrelicArray{ ServiceVclLoggingNewrelicArgs{...} }
 type ServiceVclLoggingNewrelicArrayInput interface {
 	pulumi.Input
 
@@ -10195,7 +10195,7 @@ type ServiceVclLoggingOpenstack struct {
 // ServiceVclLoggingOpenstackInput is an input type that accepts ServiceVclLoggingOpenstackArgs and ServiceVclLoggingOpenstackOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingOpenstackInput` via:
 //
-//          ServiceVclLoggingOpenstackArgs{...}
+//	ServiceVclLoggingOpenstackArgs{...}
 type ServiceVclLoggingOpenstackInput interface {
 	pulumi.Input
 
@@ -10253,7 +10253,7 @@ func (i ServiceVclLoggingOpenstackArgs) ToServiceVclLoggingOpenstackOutputWithCo
 // ServiceVclLoggingOpenstackArrayInput is an input type that accepts ServiceVclLoggingOpenstackArray and ServiceVclLoggingOpenstackArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingOpenstackArrayInput` via:
 //
-//          ServiceVclLoggingOpenstackArray{ ServiceVclLoggingOpenstackArgs{...} }
+//	ServiceVclLoggingOpenstackArray{ ServiceVclLoggingOpenstackArgs{...} }
 type ServiceVclLoggingOpenstackArrayInput interface {
 	pulumi.Input
 
@@ -10409,7 +10409,7 @@ type ServiceVclLoggingPapertrail struct {
 // ServiceVclLoggingPapertrailInput is an input type that accepts ServiceVclLoggingPapertrailArgs and ServiceVclLoggingPapertrailOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingPapertrailInput` via:
 //
-//          ServiceVclLoggingPapertrailArgs{...}
+//	ServiceVclLoggingPapertrailArgs{...}
 type ServiceVclLoggingPapertrailInput interface {
 	pulumi.Input
 
@@ -10449,7 +10449,7 @@ func (i ServiceVclLoggingPapertrailArgs) ToServiceVclLoggingPapertrailOutputWith
 // ServiceVclLoggingPapertrailArrayInput is an input type that accepts ServiceVclLoggingPapertrailArray and ServiceVclLoggingPapertrailArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingPapertrailArrayInput` via:
 //
-//          ServiceVclLoggingPapertrailArray{ ServiceVclLoggingPapertrailArgs{...} }
+//	ServiceVclLoggingPapertrailArray{ ServiceVclLoggingPapertrailArgs{...} }
 type ServiceVclLoggingPapertrailArrayInput interface {
 	pulumi.Input
 
@@ -10588,7 +10588,7 @@ type ServiceVclLoggingS3 struct {
 // ServiceVclLoggingS3Input is an input type that accepts ServiceVclLoggingS3Args and ServiceVclLoggingS3Output values.
 // You can construct a concrete instance of `ServiceVclLoggingS3Input` via:
 //
-//          ServiceVclLoggingS3Args{...}
+//	ServiceVclLoggingS3Args{...}
 type ServiceVclLoggingS3Input interface {
 	pulumi.Input
 
@@ -10656,7 +10656,7 @@ func (i ServiceVclLoggingS3Args) ToServiceVclLoggingS3OutputWithContext(ctx cont
 // ServiceVclLoggingS3ArrayInput is an input type that accepts ServiceVclLoggingS3Array and ServiceVclLoggingS3ArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingS3ArrayInput` via:
 //
-//          ServiceVclLoggingS3Array{ ServiceVclLoggingS3Args{...} }
+//	ServiceVclLoggingS3Array{ ServiceVclLoggingS3Args{...} }
 type ServiceVclLoggingS3ArrayInput interface {
 	pulumi.Input
 
@@ -10837,7 +10837,7 @@ type ServiceVclLoggingScalyr struct {
 // ServiceVclLoggingScalyrInput is an input type that accepts ServiceVclLoggingScalyrArgs and ServiceVclLoggingScalyrOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingScalyrInput` via:
 //
-//          ServiceVclLoggingScalyrArgs{...}
+//	ServiceVclLoggingScalyrArgs{...}
 type ServiceVclLoggingScalyrInput interface {
 	pulumi.Input
 
@@ -10877,7 +10877,7 @@ func (i ServiceVclLoggingScalyrArgs) ToServiceVclLoggingScalyrOutputWithContext(
 // ServiceVclLoggingScalyrArrayInput is an input type that accepts ServiceVclLoggingScalyrArray and ServiceVclLoggingScalyrArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingScalyrArrayInput` via:
 //
-//          ServiceVclLoggingScalyrArray{ ServiceVclLoggingScalyrArgs{...} }
+//	ServiceVclLoggingScalyrArray{ ServiceVclLoggingScalyrArgs{...} }
 type ServiceVclLoggingScalyrArrayInput interface {
 	pulumi.Input
 
@@ -11010,7 +11010,7 @@ type ServiceVclLoggingSftp struct {
 // ServiceVclLoggingSftpInput is an input type that accepts ServiceVclLoggingSftpArgs and ServiceVclLoggingSftpOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSftpInput` via:
 //
-//          ServiceVclLoggingSftpArgs{...}
+//	ServiceVclLoggingSftpArgs{...}
 type ServiceVclLoggingSftpInput interface {
 	pulumi.Input
 
@@ -11072,7 +11072,7 @@ func (i ServiceVclLoggingSftpArgs) ToServiceVclLoggingSftpOutputWithContext(ctx 
 // ServiceVclLoggingSftpArrayInput is an input type that accepts ServiceVclLoggingSftpArray and ServiceVclLoggingSftpArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSftpArrayInput` via:
 //
-//          ServiceVclLoggingSftpArray{ ServiceVclLoggingSftpArgs{...} }
+//	ServiceVclLoggingSftpArray{ ServiceVclLoggingSftpArgs{...} }
 type ServiceVclLoggingSftpArrayInput interface {
 	pulumi.Input
 
@@ -11248,7 +11248,7 @@ type ServiceVclLoggingSplunk struct {
 // ServiceVclLoggingSplunkInput is an input type that accepts ServiceVclLoggingSplunkArgs and ServiceVclLoggingSplunkOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSplunkInput` via:
 //
-//          ServiceVclLoggingSplunkArgs{...}
+//	ServiceVclLoggingSplunkArgs{...}
 type ServiceVclLoggingSplunkInput interface {
 	pulumi.Input
 
@@ -11298,7 +11298,7 @@ func (i ServiceVclLoggingSplunkArgs) ToServiceVclLoggingSplunkOutputWithContext(
 // ServiceVclLoggingSplunkArrayInput is an input type that accepts ServiceVclLoggingSplunkArray and ServiceVclLoggingSplunkArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSplunkArrayInput` via:
 //
-//          ServiceVclLoggingSplunkArray{ ServiceVclLoggingSplunkArgs{...} }
+//	ServiceVclLoggingSplunkArray{ ServiceVclLoggingSplunkArgs{...} }
 type ServiceVclLoggingSplunkArrayInput interface {
 	pulumi.Input
 
@@ -11434,7 +11434,7 @@ type ServiceVclLoggingSumologic struct {
 // ServiceVclLoggingSumologicInput is an input type that accepts ServiceVclLoggingSumologicArgs and ServiceVclLoggingSumologicOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSumologicInput` via:
 //
-//          ServiceVclLoggingSumologicArgs{...}
+//	ServiceVclLoggingSumologicArgs{...}
 type ServiceVclLoggingSumologicInput interface {
 	pulumi.Input
 
@@ -11474,7 +11474,7 @@ func (i ServiceVclLoggingSumologicArgs) ToServiceVclLoggingSumologicOutputWithCo
 // ServiceVclLoggingSumologicArrayInput is an input type that accepts ServiceVclLoggingSumologicArray and ServiceVclLoggingSumologicArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSumologicArrayInput` via:
 //
-//          ServiceVclLoggingSumologicArray{ ServiceVclLoggingSumologicArgs{...} }
+//	ServiceVclLoggingSumologicArray{ ServiceVclLoggingSumologicArgs{...} }
 type ServiceVclLoggingSumologicArrayInput interface {
 	pulumi.Input
 
@@ -11599,7 +11599,7 @@ type ServiceVclLoggingSyslog struct {
 // ServiceVclLoggingSyslogInput is an input type that accepts ServiceVclLoggingSyslogArgs and ServiceVclLoggingSyslogOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSyslogInput` via:
 //
-//          ServiceVclLoggingSyslogArgs{...}
+//	ServiceVclLoggingSyslogArgs{...}
 type ServiceVclLoggingSyslogInput interface {
 	pulumi.Input
 
@@ -11653,7 +11653,7 @@ func (i ServiceVclLoggingSyslogArgs) ToServiceVclLoggingSyslogOutputWithContext(
 // ServiceVclLoggingSyslogArrayInput is an input type that accepts ServiceVclLoggingSyslogArray and ServiceVclLoggingSyslogArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSyslogArrayInput` via:
 //
-//          ServiceVclLoggingSyslogArray{ ServiceVclLoggingSyslogArgs{...} }
+//	ServiceVclLoggingSyslogArray{ ServiceVclLoggingSyslogArgs{...} }
 type ServiceVclLoggingSyslogArrayInput interface {
 	pulumi.Input
 
@@ -11811,7 +11811,7 @@ type ServiceVclRequestSetting struct {
 // ServiceVclRequestSettingInput is an input type that accepts ServiceVclRequestSettingArgs and ServiceVclRequestSettingOutput values.
 // You can construct a concrete instance of `ServiceVclRequestSettingInput` via:
 //
-//          ServiceVclRequestSettingArgs{...}
+//	ServiceVclRequestSettingArgs{...}
 type ServiceVclRequestSettingInput interface {
 	pulumi.Input
 
@@ -11863,7 +11863,7 @@ func (i ServiceVclRequestSettingArgs) ToServiceVclRequestSettingOutputWithContex
 // ServiceVclRequestSettingArrayInput is an input type that accepts ServiceVclRequestSettingArray and ServiceVclRequestSettingArrayOutput values.
 // You can construct a concrete instance of `ServiceVclRequestSettingArrayInput` via:
 //
-//          ServiceVclRequestSettingArray{ ServiceVclRequestSettingArgs{...} }
+//	ServiceVclRequestSettingArray{ ServiceVclRequestSettingArgs{...} }
 type ServiceVclRequestSettingArrayInput interface {
 	pulumi.Input
 
@@ -12001,7 +12001,7 @@ type ServiceVclResponseObject struct {
 // ServiceVclResponseObjectInput is an input type that accepts ServiceVclResponseObjectArgs and ServiceVclResponseObjectOutput values.
 // You can construct a concrete instance of `ServiceVclResponseObjectInput` via:
 //
-//          ServiceVclResponseObjectArgs{...}
+//	ServiceVclResponseObjectArgs{...}
 type ServiceVclResponseObjectInput interface {
 	pulumi.Input
 
@@ -12041,7 +12041,7 @@ func (i ServiceVclResponseObjectArgs) ToServiceVclResponseObjectOutputWithContex
 // ServiceVclResponseObjectArrayInput is an input type that accepts ServiceVclResponseObjectArray and ServiceVclResponseObjectArrayOutput values.
 // You can construct a concrete instance of `ServiceVclResponseObjectArrayInput` via:
 //
-//          ServiceVclResponseObjectArray{ ServiceVclResponseObjectArgs{...} }
+//	ServiceVclResponseObjectArray{ ServiceVclResponseObjectArgs{...} }
 type ServiceVclResponseObjectArrayInput interface {
 	pulumi.Input
 
@@ -12146,7 +12146,7 @@ type ServiceVclSnippet struct {
 // ServiceVclSnippetInput is an input type that accepts ServiceVclSnippetArgs and ServiceVclSnippetOutput values.
 // You can construct a concrete instance of `ServiceVclSnippetInput` via:
 //
-//          ServiceVclSnippetArgs{...}
+//	ServiceVclSnippetArgs{...}
 type ServiceVclSnippetInput interface {
 	pulumi.Input
 
@@ -12180,7 +12180,7 @@ func (i ServiceVclSnippetArgs) ToServiceVclSnippetOutputWithContext(ctx context.
 // ServiceVclSnippetArrayInput is an input type that accepts ServiceVclSnippetArray and ServiceVclSnippetArrayOutput values.
 // You can construct a concrete instance of `ServiceVclSnippetArrayInput` via:
 //
-//          ServiceVclSnippetArray{ ServiceVclSnippetArgs{...} }
+//	ServiceVclSnippetArray{ ServiceVclSnippetArgs{...} }
 type ServiceVclSnippetArrayInput interface {
 	pulumi.Input
 
@@ -12268,7 +12268,7 @@ type ServiceVclVcl struct {
 // ServiceVclVclInput is an input type that accepts ServiceVclVclArgs and ServiceVclVclOutput values.
 // You can construct a concrete instance of `ServiceVclVclInput` via:
 //
-//          ServiceVclVclArgs{...}
+//	ServiceVclVclArgs{...}
 type ServiceVclVclInput interface {
 	pulumi.Input
 
@@ -12300,7 +12300,7 @@ func (i ServiceVclVclArgs) ToServiceVclVclOutputWithContext(ctx context.Context)
 // ServiceVclVclArrayInput is an input type that accepts ServiceVclVclArray and ServiceVclVclArrayOutput values.
 // You can construct a concrete instance of `ServiceVclVclArrayInput` via:
 //
-//          ServiceVclVclArray{ ServiceVclVclArgs{...} }
+//	ServiceVclVclArray{ ServiceVclVclArgs{...} }
 type ServiceVclVclArrayInput interface {
 	pulumi.Input
 
@@ -12385,7 +12385,7 @@ type ServiceVclWaf struct {
 // ServiceVclWafInput is an input type that accepts ServiceVclWafArgs and ServiceVclWafOutput values.
 // You can construct a concrete instance of `ServiceVclWafInput` via:
 //
-//          ServiceVclWafArgs{...}
+//	ServiceVclWafArgs{...}
 type ServiceVclWafInput interface {
 	pulumi.Input
 
@@ -12427,11 +12427,11 @@ func (i ServiceVclWafArgs) ToServiceVclWafPtrOutputWithContext(ctx context.Conte
 // ServiceVclWafPtrInput is an input type that accepts ServiceVclWafArgs, ServiceVclWafPtr and ServiceVclWafPtrOutput values.
 // You can construct a concrete instance of `ServiceVclWafPtrInput` via:
 //
-//          ServiceVclWafArgs{...}
+//	        ServiceVclWafArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ServiceVclWafPtrInput interface {
 	pulumi.Input
 
@@ -12577,7 +12577,7 @@ type ServiceWafConfigurationRule struct {
 // ServiceWafConfigurationRuleInput is an input type that accepts ServiceWafConfigurationRuleArgs and ServiceWafConfigurationRuleOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationRuleInput` via:
 //
-//          ServiceWafConfigurationRuleArgs{...}
+//	ServiceWafConfigurationRuleArgs{...}
 type ServiceWafConfigurationRuleInput interface {
 	pulumi.Input
 
@@ -12609,7 +12609,7 @@ func (i ServiceWafConfigurationRuleArgs) ToServiceWafConfigurationRuleOutputWith
 // ServiceWafConfigurationRuleArrayInput is an input type that accepts ServiceWafConfigurationRuleArray and ServiceWafConfigurationRuleArrayOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationRuleArrayInput` via:
 //
-//          ServiceWafConfigurationRuleArray{ ServiceWafConfigurationRuleArgs{...} }
+//	ServiceWafConfigurationRuleArray{ ServiceWafConfigurationRuleArgs{...} }
 type ServiceWafConfigurationRuleArrayInput interface {
 	pulumi.Input
 
@@ -12696,7 +12696,7 @@ type ServiceWafConfigurationRuleExclusion struct {
 // ServiceWafConfigurationRuleExclusionInput is an input type that accepts ServiceWafConfigurationRuleExclusionArgs and ServiceWafConfigurationRuleExclusionOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationRuleExclusionInput` via:
 //
-//          ServiceWafConfigurationRuleExclusionArgs{...}
+//	ServiceWafConfigurationRuleExclusionArgs{...}
 type ServiceWafConfigurationRuleExclusionInput interface {
 	pulumi.Input
 
@@ -12732,7 +12732,7 @@ func (i ServiceWafConfigurationRuleExclusionArgs) ToServiceWafConfigurationRuleE
 // ServiceWafConfigurationRuleExclusionArrayInput is an input type that accepts ServiceWafConfigurationRuleExclusionArray and ServiceWafConfigurationRuleExclusionArrayOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationRuleExclusionArrayInput` via:
 //
-//          ServiceWafConfigurationRuleExclusionArray{ ServiceWafConfigurationRuleExclusionArgs{...} }
+//	ServiceWafConfigurationRuleExclusionArray{ ServiceWafConfigurationRuleExclusionArgs{...} }
 type ServiceWafConfigurationRuleExclusionArrayInput interface {
 	pulumi.Input
 
@@ -12825,7 +12825,7 @@ type TlsSubscriptionManagedDnsChallenge struct {
 // TlsSubscriptionManagedDnsChallengeInput is an input type that accepts TlsSubscriptionManagedDnsChallengeArgs and TlsSubscriptionManagedDnsChallengeOutput values.
 // You can construct a concrete instance of `TlsSubscriptionManagedDnsChallengeInput` via:
 //
-//          TlsSubscriptionManagedDnsChallengeArgs{...}
+//	TlsSubscriptionManagedDnsChallengeArgs{...}
 type TlsSubscriptionManagedDnsChallengeInput interface {
 	pulumi.Input
 
@@ -12857,7 +12857,7 @@ func (i TlsSubscriptionManagedDnsChallengeArgs) ToTlsSubscriptionManagedDnsChall
 // TlsSubscriptionManagedDnsChallengeArrayInput is an input type that accepts TlsSubscriptionManagedDnsChallengeArray and TlsSubscriptionManagedDnsChallengeArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionManagedDnsChallengeArrayInput` via:
 //
-//          TlsSubscriptionManagedDnsChallengeArray{ TlsSubscriptionManagedDnsChallengeArgs{...} }
+//	TlsSubscriptionManagedDnsChallengeArray{ TlsSubscriptionManagedDnsChallengeArgs{...} }
 type TlsSubscriptionManagedDnsChallengeArrayInput interface {
 	pulumi.Input
 
@@ -12940,7 +12940,7 @@ type TlsSubscriptionManagedHttpChallenge struct {
 // TlsSubscriptionManagedHttpChallengeInput is an input type that accepts TlsSubscriptionManagedHttpChallengeArgs and TlsSubscriptionManagedHttpChallengeOutput values.
 // You can construct a concrete instance of `TlsSubscriptionManagedHttpChallengeInput` via:
 //
-//          TlsSubscriptionManagedHttpChallengeArgs{...}
+//	TlsSubscriptionManagedHttpChallengeArgs{...}
 type TlsSubscriptionManagedHttpChallengeInput interface {
 	pulumi.Input
 
@@ -12972,7 +12972,7 @@ func (i TlsSubscriptionManagedHttpChallengeArgs) ToTlsSubscriptionManagedHttpCha
 // TlsSubscriptionManagedHttpChallengeArrayInput is an input type that accepts TlsSubscriptionManagedHttpChallengeArray and TlsSubscriptionManagedHttpChallengeArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionManagedHttpChallengeArrayInput` via:
 //
-//          TlsSubscriptionManagedHttpChallengeArray{ TlsSubscriptionManagedHttpChallengeArgs{...} }
+//	TlsSubscriptionManagedHttpChallengeArray{ TlsSubscriptionManagedHttpChallengeArgs{...} }
 type TlsSubscriptionManagedHttpChallengeArrayInput interface {
 	pulumi.Input
 
@@ -13053,7 +13053,7 @@ type GetDatacentersPop struct {
 // GetDatacentersPopInput is an input type that accepts GetDatacentersPopArgs and GetDatacentersPopOutput values.
 // You can construct a concrete instance of `GetDatacentersPopInput` via:
 //
-//          GetDatacentersPopArgs{...}
+//	GetDatacentersPopArgs{...}
 type GetDatacentersPopInput interface {
 	pulumi.Input
 
@@ -13083,7 +13083,7 @@ func (i GetDatacentersPopArgs) ToGetDatacentersPopOutputWithContext(ctx context.
 // GetDatacentersPopArrayInput is an input type that accepts GetDatacentersPopArray and GetDatacentersPopArrayOutput values.
 // You can construct a concrete instance of `GetDatacentersPopArrayInput` via:
 //
-//          GetDatacentersPopArray{ GetDatacentersPopArgs{...} }
+//	GetDatacentersPopArray{ GetDatacentersPopArgs{...} }
 type GetDatacentersPopArrayInput interface {
 	pulumi.Input
 
@@ -13170,7 +13170,7 @@ type GetServicesDetail struct {
 // GetServicesDetailInput is an input type that accepts GetServicesDetailArgs and GetServicesDetailOutput values.
 // You can construct a concrete instance of `GetServicesDetailInput` via:
 //
-//          GetServicesDetailArgs{...}
+//	GetServicesDetailArgs{...}
 type GetServicesDetailInput interface {
 	pulumi.Input
 
@@ -13205,7 +13205,7 @@ func (i GetServicesDetailArgs) ToGetServicesDetailOutputWithContext(ctx context.
 // GetServicesDetailArrayInput is an input type that accepts GetServicesDetailArray and GetServicesDetailArrayOutput values.
 // You can construct a concrete instance of `GetServicesDetailArrayInput` via:
 //
-//          GetServicesDetailArray{ GetServicesDetailArgs{...} }
+//	GetServicesDetailArray{ GetServicesDetailArgs{...} }
 type GetServicesDetailArrayInput interface {
 	pulumi.Input
 
@@ -13303,7 +13303,7 @@ type GetTlsConfigurationDnsRecord struct {
 // GetTlsConfigurationDnsRecordInput is an input type that accepts GetTlsConfigurationDnsRecordArgs and GetTlsConfigurationDnsRecordOutput values.
 // You can construct a concrete instance of `GetTlsConfigurationDnsRecordInput` via:
 //
-//          GetTlsConfigurationDnsRecordArgs{...}
+//	GetTlsConfigurationDnsRecordArgs{...}
 type GetTlsConfigurationDnsRecordInput interface {
 	pulumi.Input
 
@@ -13332,7 +13332,7 @@ func (i GetTlsConfigurationDnsRecordArgs) ToGetTlsConfigurationDnsRecordOutputWi
 // GetTlsConfigurationDnsRecordArrayInput is an input type that accepts GetTlsConfigurationDnsRecordArray and GetTlsConfigurationDnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetTlsConfigurationDnsRecordArrayInput` via:
 //
-//          GetTlsConfigurationDnsRecordArray{ GetTlsConfigurationDnsRecordArgs{...} }
+//	GetTlsConfigurationDnsRecordArray{ GetTlsConfigurationDnsRecordArgs{...} }
 type GetTlsConfigurationDnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -13412,7 +13412,7 @@ type GetWafRulesRule struct {
 // GetWafRulesRuleInput is an input type that accepts GetWafRulesRuleArgs and GetWafRulesRuleOutput values.
 // You can construct a concrete instance of `GetWafRulesRuleInput` via:
 //
-//          GetWafRulesRuleArgs{...}
+//	GetWafRulesRuleArgs{...}
 type GetWafRulesRuleInput interface {
 	pulumi.Input
 
@@ -13444,7 +13444,7 @@ func (i GetWafRulesRuleArgs) ToGetWafRulesRuleOutputWithContext(ctx context.Cont
 // GetWafRulesRuleArrayInput is an input type that accepts GetWafRulesRuleArray and GetWafRulesRuleArrayOutput values.
 // You can construct a concrete instance of `GetWafRulesRuleArrayInput` via:
 //
-//          GetWafRulesRuleArray{ GetWafRulesRuleArgs{...} }
+//	GetWafRulesRuleArray{ GetWafRulesRuleArgs{...} }
 type GetWafRulesRuleArrayInput interface {
 	pulumi.Input
 

@@ -15,25 +15,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.GetTlsConfigurationIds(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
-// 			ConfigurationId: pulumi.Any(data.Fastly_tls_configuration.Example.Ids[0]),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.GetTlsConfigurationIds(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
+//				ConfigurationId: pulumi.Any(data.Fastly_tls_configuration.Example.Ids[0]),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetTlsConfigurationIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsConfigurationIdsResult, error) {
 	var rv GetTlsConfigurationIdsResult

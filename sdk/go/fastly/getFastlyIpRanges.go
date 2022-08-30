@@ -15,34 +15,37 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fastly, err := fastly.GetFastlyIpRanges(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec2.NewSecurityGroup(ctx, "fromFastly", &ec2.SecurityGroupArgs{
-// 			Ingress: ec2.SecurityGroupIngressArray{
-// 				&ec2.SecurityGroupIngressArgs{
-// 					FromPort:       pulumi.Int(443),
-// 					ToPort:         pulumi.Int(443),
-// 					Protocol:       pulumi.String("tcp"),
-// 					CidrBlocks:     interface{}(fastly.CidrBlocks),
-// 					Ipv6CidrBlocks: interface{}(fastly.Ipv6CidrBlocks),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fastly, err := fastly.GetFastlyIpRanges(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec2.NewSecurityGroup(ctx, "fromFastly", &ec2.SecurityGroupArgs{
+//				Ingress: ec2.SecurityGroupIngressArray{
+//					&ec2.SecurityGroupIngressArgs{
+//						FromPort:       pulumi.Int(443),
+//						ToPort:         pulumi.Int(443),
+//						Protocol:       pulumi.String("tcp"),
+//						CidrBlocks:     interface{}(fastly.CidrBlocks),
+//						Ipv6CidrBlocks: interface{}(fastly.Ipv6CidrBlocks),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges

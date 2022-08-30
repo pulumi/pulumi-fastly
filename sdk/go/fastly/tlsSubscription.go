@@ -26,7 +26,9 @@ import (
 // A subscription can be imported using its Fastly subscription ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx
+//
+//	$ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx
+//
 // ```
 type TlsSubscription struct {
 	pulumi.CustomResourceState
@@ -218,7 +220,7 @@ func (i *TlsSubscription) ToTlsSubscriptionOutputWithContext(ctx context.Context
 // TlsSubscriptionArrayInput is an input type that accepts TlsSubscriptionArray and TlsSubscriptionArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionArrayInput` via:
 //
-//          TlsSubscriptionArray{ TlsSubscriptionArgs{...} }
+//	TlsSubscriptionArray{ TlsSubscriptionArgs{...} }
 type TlsSubscriptionArrayInput interface {
 	pulumi.Input
 
@@ -243,7 +245,7 @@ func (i TlsSubscriptionArray) ToTlsSubscriptionArrayOutputWithContext(ctx contex
 // TlsSubscriptionMapInput is an input type that accepts TlsSubscriptionMap and TlsSubscriptionMapOutput values.
 // You can construct a concrete instance of `TlsSubscriptionMapInput` via:
 //
-//          TlsSubscriptionMap{ "key": TlsSubscriptionArgs{...} }
+//	TlsSubscriptionMap{ "key": TlsSubscriptionArgs{...} }
 type TlsSubscriptionMapInput interface {
 	pulumi.Input
 

@@ -16,13 +16,17 @@ import (
 // Fastly Services can be imported using their service ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
+//
+//	$ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx
+//
 // ```
 //
-//  By default, either the active version will be imported, or the latest version if no version is active. Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
+//	By default, either the active version will be imported, or the latest version if no version is active. Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx@2
+//
+//	$ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx@2
+//
 // ```
 type ServiceCompute struct {
 	pulumi.CustomResourceState
@@ -328,7 +332,7 @@ func (i *ServiceCompute) ToServiceComputeOutputWithContext(ctx context.Context) 
 // ServiceComputeArrayInput is an input type that accepts ServiceComputeArray and ServiceComputeArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeArrayInput` via:
 //
-//          ServiceComputeArray{ ServiceComputeArgs{...} }
+//	ServiceComputeArray{ ServiceComputeArgs{...} }
 type ServiceComputeArrayInput interface {
 	pulumi.Input
 
@@ -353,7 +357,7 @@ func (i ServiceComputeArray) ToServiceComputeArrayOutputWithContext(ctx context.
 // ServiceComputeMapInput is an input type that accepts ServiceComputeMap and ServiceComputeMapOutput values.
 // You can construct a concrete instance of `ServiceComputeMapInput` via:
 //
-//          ServiceComputeMap{ "key": ServiceComputeArgs{...} }
+//	ServiceComputeMap{ "key": ServiceComputeArgs{...} }
 type ServiceComputeMapInput interface {
 	pulumi.Input
 
