@@ -24,13 +24,17 @@ import (
 // Fastly Services can be imported using their service ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx
+//
+//	$ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx
+//
 // ```
 //
-//  By default, either the active version will be imported, or the latest version if no version is active. Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
+//	By default, either the active version will be imported, or the latest version if no version is active. Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2
+//
+//	$ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2
+//
 // ```
 type ServiceVcl struct {
 	pulumi.CustomResourceState
@@ -428,7 +432,7 @@ func (i *ServiceVcl) ToServiceVclOutputWithContext(ctx context.Context) ServiceV
 // ServiceVclArrayInput is an input type that accepts ServiceVclArray and ServiceVclArrayOutput values.
 // You can construct a concrete instance of `ServiceVclArrayInput` via:
 //
-//          ServiceVclArray{ ServiceVclArgs{...} }
+//	ServiceVclArray{ ServiceVclArgs{...} }
 type ServiceVclArrayInput interface {
 	pulumi.Input
 
@@ -453,7 +457,7 @@ func (i ServiceVclArray) ToServiceVclArrayOutputWithContext(ctx context.Context)
 // ServiceVclMapInput is an input type that accepts ServiceVclMap and ServiceVclMapOutput values.
 // You can construct a concrete instance of `ServiceVclMapInput` via:
 //
-//          ServiceVclMap{ "key": ServiceVclArgs{...} }
+//	ServiceVclMap{ "key": ServiceVclArgs{...} }
 type ServiceVclMapInput interface {
 	pulumi.Input
 

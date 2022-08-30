@@ -23,55 +23,58 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		demoServiceVcl, err := fastly.NewServiceVcl(ctx, "demoServiceVcl", &fastly.ServiceVclArgs{
-// 			Domains: ServiceVclDomainArray{
-// 				&ServiceVclDomainArgs{
-// 					Name: pulumi.String("example.com"),
-// 				},
-// 			},
-// 			Backends: ServiceVclBackendArray{
-// 				&ServiceVclBackendArgs{
-// 					Address: pulumi.String("127.0.0.1"),
-// 					Name:    pulumi.String("localhost"),
-// 				},
-// 			},
-// 			ForceDestroy: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		demoTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
-// 			KeyPem: pulumi.String("..."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		demoTlsCertificate, err := fastly.NewTlsCertificate(ctx, "demoTlsCertificate", &fastly.TlsCertificateArgs{
-// 			CertificateBody: pulumi.String("..."),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			demoTlsPrivateKey,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fastly.NewTlsActivation(ctx, "test", &fastly.TlsActivationArgs{
-// 			CertificateId: demoTlsCertificate.ID(),
-// 			Domain:        pulumi.String("example.com"),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			demoServiceVcl,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			demoServiceVcl, err := fastly.NewServiceVcl(ctx, "demoServiceVcl", &fastly.ServiceVclArgs{
+//				Domains: ServiceVclDomainArray{
+//					&ServiceVclDomainArgs{
+//						Name: pulumi.String("example.com"),
+//					},
+//				},
+//				Backends: ServiceVclBackendArray{
+//					&ServiceVclBackendArgs{
+//						Address: pulumi.String("127.0.0.1"),
+//						Name:    pulumi.String("localhost"),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			demoTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
+//				KeyPem: pulumi.String("..."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			demoTlsCertificate, err := fastly.NewTlsCertificate(ctx, "demoTlsCertificate", &fastly.TlsCertificateArgs{
+//				CertificateBody: pulumi.String("..."),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				demoTlsPrivateKey,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewTlsActivation(ctx, "test", &fastly.TlsActivationArgs{
+//				CertificateId: demoTlsCertificate.ID(),
+//				Domain:        pulumi.String("example.com"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				demoServiceVcl,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
@@ -81,7 +84,9 @@ import (
 // A TLS activation can be imported using its ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
+//
+//	$ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
+//
 // ```
 type TlsActivation struct {
 	pulumi.CustomResourceState
@@ -201,7 +206,7 @@ func (i *TlsActivation) ToTlsActivationOutputWithContext(ctx context.Context) Tl
 // TlsActivationArrayInput is an input type that accepts TlsActivationArray and TlsActivationArrayOutput values.
 // You can construct a concrete instance of `TlsActivationArrayInput` via:
 //
-//          TlsActivationArray{ TlsActivationArgs{...} }
+//	TlsActivationArray{ TlsActivationArgs{...} }
 type TlsActivationArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +231,7 @@ func (i TlsActivationArray) ToTlsActivationArrayOutputWithContext(ctx context.Co
 // TlsActivationMapInput is an input type that accepts TlsActivationMap and TlsActivationMapOutput values.
 // You can construct a concrete instance of `TlsActivationMapInput` via:
 //
-//          TlsActivationMap{ "key": TlsActivationArgs{...} }
+//	TlsActivationMap{ "key": TlsActivationArgs{...} }
 type TlsActivationMapInput interface {
 	pulumi.Input
 

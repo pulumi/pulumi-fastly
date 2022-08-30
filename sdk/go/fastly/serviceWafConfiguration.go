@@ -34,7 +34,9 @@ import (
 // This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf` The resource ID should be the WAF ID.
 //
 // ```sh
-//  $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
+//
+//	$ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
+//
 // ```
 type ServiceWafConfiguration struct {
 	pulumi.CustomResourceState
@@ -443,7 +445,7 @@ func (i *ServiceWafConfiguration) ToServiceWafConfigurationOutputWithContext(ctx
 // ServiceWafConfigurationArrayInput is an input type that accepts ServiceWafConfigurationArray and ServiceWafConfigurationArrayOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationArrayInput` via:
 //
-//          ServiceWafConfigurationArray{ ServiceWafConfigurationArgs{...} }
+//	ServiceWafConfigurationArray{ ServiceWafConfigurationArgs{...} }
 type ServiceWafConfigurationArrayInput interface {
 	pulumi.Input
 
@@ -468,7 +470,7 @@ func (i ServiceWafConfigurationArray) ToServiceWafConfigurationArrayOutputWithCo
 // ServiceWafConfigurationMapInput is an input type that accepts ServiceWafConfigurationMap and ServiceWafConfigurationMapOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationMapInput` via:
 //
-//          ServiceWafConfigurationMap{ "key": ServiceWafConfigurationArgs{...} }
+//	ServiceWafConfigurationMap{ "key": ServiceWafConfigurationArgs{...} }
 type ServiceWafConfigurationMapInput interface {
 	pulumi.Input
 

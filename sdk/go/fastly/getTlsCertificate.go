@@ -24,21 +24,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.LookupTlsCertificate(ctx, &GetTlsCertificateArgs{
-// 			Name: pulumi.StringRef("example.com"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.LookupTlsCertificate(ctx, &GetTlsCertificateArgs{
+//				Name: pulumi.StringRef("example.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupTlsCertificate(ctx *pulumi.Context, args *LookupTlsCertificateArgs, opts ...pulumi.InvokeOption) (*LookupTlsCertificateResult, error) {
 	var rv LookupTlsCertificateResult

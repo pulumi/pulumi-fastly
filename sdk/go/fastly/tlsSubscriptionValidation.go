@@ -105,7 +105,7 @@ func (i *TlsSubscriptionValidation) ToTlsSubscriptionValidationOutputWithContext
 // TlsSubscriptionValidationArrayInput is an input type that accepts TlsSubscriptionValidationArray and TlsSubscriptionValidationArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionValidationArrayInput` via:
 //
-//          TlsSubscriptionValidationArray{ TlsSubscriptionValidationArgs{...} }
+//	TlsSubscriptionValidationArray{ TlsSubscriptionValidationArgs{...} }
 type TlsSubscriptionValidationArrayInput interface {
 	pulumi.Input
 
@@ -130,7 +130,7 @@ func (i TlsSubscriptionValidationArray) ToTlsSubscriptionValidationArrayOutputWi
 // TlsSubscriptionValidationMapInput is an input type that accepts TlsSubscriptionValidationMap and TlsSubscriptionValidationMapOutput values.
 // You can construct a concrete instance of `TlsSubscriptionValidationMapInput` via:
 //
-//          TlsSubscriptionValidationMap{ "key": TlsSubscriptionValidationArgs{...} }
+//	TlsSubscriptionValidationMap{ "key": TlsSubscriptionValidationArgs{...} }
 type TlsSubscriptionValidationMapInput interface {
 	pulumi.Input
 

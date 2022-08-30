@@ -15,25 +15,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
-// 			Id: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
+//				Id: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetTlsPrivateKeyIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsPrivateKeyIdsResult, error) {
 	var rv GetTlsPrivateKeyIdsResult

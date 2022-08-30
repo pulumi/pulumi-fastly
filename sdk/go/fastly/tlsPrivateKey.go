@@ -23,28 +23,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
-// 	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		demoPrivateKey, err := tls.NewPrivateKey(ctx, "demoPrivateKey", &tls.PrivateKeyArgs{
-// 			Algorithm: pulumi.String("RSA"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
-// 			KeyPem: demoPrivateKey.PrivateKeyPem,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			demoPrivateKey, err := tls.NewPrivateKey(ctx, "demoPrivateKey", &tls.PrivateKeyArgs{
+//				Algorithm: pulumi.String("RSA"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
+//				KeyPem: demoPrivateKey.PrivateKeyPem,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -52,7 +55,9 @@ import (
 // A Private Key can be imported using its ID, e.g.
 //
 // ```sh
-//  $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
+//
+//	$ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
+//
 // ```
 type TlsPrivateKey struct {
 	pulumi.CustomResourceState
@@ -183,7 +188,7 @@ func (i *TlsPrivateKey) ToTlsPrivateKeyOutputWithContext(ctx context.Context) Tl
 // TlsPrivateKeyArrayInput is an input type that accepts TlsPrivateKeyArray and TlsPrivateKeyArrayOutput values.
 // You can construct a concrete instance of `TlsPrivateKeyArrayInput` via:
 //
-//          TlsPrivateKeyArray{ TlsPrivateKeyArgs{...} }
+//	TlsPrivateKeyArray{ TlsPrivateKeyArgs{...} }
 type TlsPrivateKeyArrayInput interface {
 	pulumi.Input
 
@@ -208,7 +213,7 @@ func (i TlsPrivateKeyArray) ToTlsPrivateKeyArrayOutputWithContext(ctx context.Co
 // TlsPrivateKeyMapInput is an input type that accepts TlsPrivateKeyMap and TlsPrivateKeyMapOutput values.
 // You can construct a concrete instance of `TlsPrivateKeyMapInput` via:
 //
-//          TlsPrivateKeyMap{ "key": TlsPrivateKeyArgs{...} }
+//	TlsPrivateKeyMap{ "key": TlsPrivateKeyArgs{...} }
 type TlsPrivateKeyMapInput interface {
 	pulumi.Input
 
