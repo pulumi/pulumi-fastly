@@ -21,3 +21,4 @@ ci-scripts
 **/version.txt
 **/nuget
 **/dist
+provider/cmd/pulumi-resource-fastly/schema-embed.json
