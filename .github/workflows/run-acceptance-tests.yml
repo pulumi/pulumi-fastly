@@ -95,16 +95,16 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         language:
         - nodejs
         - python
         - dotnet
         - go
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
   comment-notification:
     if: github.event_name == 'repository_dispatch'
     name: comment-notification
@@ -161,7 +161,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-        - 1.18.x
+        - 1.19.x
   lint_sdk:
     container: golangci/golangci-lint:latest
     if: github.event_name == 'repository_dispatch' ||
@@ -203,7 +203,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-        - 1.18.x
+        - 1.19.x
   prerequisites:
     if: github.event_name == 'repository_dispatch' ||
       github.event.pull_request.head.repo.full_name == github.repository
@@ -277,11 +277,11 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
   test:
     if: github.event_name == 'repository_dispatch' ||
       github.event.pull_request.head.repo.full_name == github.repository
@@ -371,16 +371,16 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         language:
         - nodejs
         - python
         - dotnet
         - go
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
 name: run-acceptance-tests
 on:
   pull_request:
