@@ -641,7 +641,7 @@ export interface ServiceComputeLoggingKafka {
      */
     requestMaxBytes?: pulumi.Input<number>;
     /**
-     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
      */
     requiredAcks?: pulumi.Input<string>;
     /**
@@ -2115,7 +2115,7 @@ export interface ServiceVclLoggingKafka {
      */
     requestMaxBytes?: pulumi.Input<number>;
     /**
-     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+     * The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
      */
     requiredAcks?: pulumi.Input<string>;
     /**

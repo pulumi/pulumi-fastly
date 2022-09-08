@@ -258,8 +258,17 @@ class TlsCertificate(pulumi.CustomResource):
         opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         # The private key has to be present before the certificate can be uploaded
         ```
+        ## Updating certificates
 
-        > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
+        There are three scenarios for updating a certificate:
+
+        1. The certificate is about to expire but the private key stays the same.
+        2. The certificate is about to expire but the private key is changing.
+        3. The domains on the certificate are changing.
+
+        In the first scenario you only need to update the `certificate_body` attribute of the `TlsCertificate` resource, while the other scenarios require a new private key (`TlsPrivateKey`) and certificate (`TlsCertificate`) to be generated.
+
+        When updating both the `TlsPrivateKey` and `TlsCertificate` resources, they should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
 
         ## Import
 
@@ -313,8 +322,17 @@ class TlsCertificate(pulumi.CustomResource):
         opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         # The private key has to be present before the certificate can be uploaded
         ```
+        ## Updating certificates
 
-        > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
+        There are three scenarios for updating a certificate:
+
+        1. The certificate is about to expire but the private key stays the same.
+        2. The certificate is about to expire but the private key is changing.
+        3. The domains on the certificate are changing.
+
+        In the first scenario you only need to update the `certificate_body` attribute of the `TlsCertificate` resource, while the other scenarios require a new private key (`TlsPrivateKey`) and certificate (`TlsCertificate`) to be generated.
+
+        When updating both the `TlsPrivateKey` and `TlsCertificate` resources, they should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
 
         ## Import
 

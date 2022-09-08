@@ -60,6 +60,7 @@ class ServiceVclArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -75,6 +76,9 @@ class ServiceVclArgs:
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -168,6 +172,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
             pulumi.set(__self__, "response_objects", response_objects)
+        if reuse is not None:
+            pulumi.set(__self__, "reuse", reuse)
         if snippets is not None:
             pulumi.set(__self__, "snippets", snippets)
         if stale_if_error is not None:
@@ -609,6 +615,20 @@ class ServiceVclArgs:
 
     @property
     @pulumi.getter
+    def reuse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
+
+    @reuse.setter
+    def reuse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reuse", value)
+
+    @property
+    @pulumi.getter
     def snippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
         return pulumi.get(self, "snippets")
 
@@ -721,6 +741,7 @@ class _ServiceVclState:
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -738,6 +759,9 @@ class _ServiceVclState:
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -836,6 +860,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
             pulumi.set(__self__, "response_objects", response_objects)
+        if reuse is not None:
+            pulumi.set(__self__, "reuse", reuse)
         if snippets is not None:
             pulumi.set(__self__, "snippets", snippets)
         if stale_if_error is not None:
@@ -1301,6 +1327,20 @@ class _ServiceVclState:
 
     @property
     @pulumi.getter
+    def reuse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
+
+    @reuse.setter
+    def reuse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reuse", value)
+
+    @property
+    @pulumi.getter
     def snippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
         return pulumi.get(self, "snippets")
 
@@ -1413,6 +1453,7 @@ class ServiceVcl(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclSnippetArgs']]]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -1428,6 +1469,191 @@ class ServiceVcl(pulumi.CustomResource):
         The Service resource requires a domain name that is correctly set up to direct
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                override_host="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            gzips=[fastly.ServiceVclGzipArgs(
+                content_types=[
+                    "text/html",
+                    "text/css",
+                ],
+                extensions=[
+                    "css",
+                    "js",
+                ],
+                name="file extensions and content types",
+            )],
+            headers=[fastly.ServiceVclHeaderArgs(
+                action="delete",
+                destination="http.x-amz-request-id",
+                name="remove x-amz-request-id",
+                type="cache",
+            )])
+        website = aws.s3.BucketV2("website",
+            acl="public-read",
+            websites=[aws.s3.BucketV2WebsiteArgs(
+                error_document="error.html",
+                index_document="index.html",
+            )])
+        ```
+
+        Basic usage with [custom
+        VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            vcls=[
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_main.vcl"),
+                    main=True,
+                    name="my_custom_main_vcl",
+                ),
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_library.vcl"),
+                    name="my_custom_library_vcl",
+                ),
+            ])
+        ```
+
+        Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.1",
+                    name="origin1",
+                    port=80,
+                ),
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.2",
+                    name="origin2",
+                    port=80,
+                ),
+            ],
+            directors=[fastly.ServiceVclDirectorArgs(
+                backends=[
+                    "origin1",
+                    "origin2",
+                ],
+                name="mydirector",
+                quorum=0,
+                type=3,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    statement="req.backend.is_origin",
+                    type="PREFETCH",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="example.com",
+            )],
+            force_destroy=True,
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                content="<html><body>Forbidden</body></html>",
+                content_type="text/html",
+                name="WAF_Response",
+                request_condition="WAF_always_false",
+                response="Forbidden",
+                status=403,
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ))
+        ```
+
+        > **Note:** For an AWS S3 Bucket, the Backend address is
+        `<domain>.s3-website-<region>.amazonaws.com`. The `override_host` attribute
+        should be set to `<bucket_name>.s3-website-<region>.amazonaws.com` in the `backend` block. See the
+        Fastly documentation on [Amazon S3][fastly-s3].
+
+        [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+        [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+        [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+        [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+        [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
 
         ## Import
 
@@ -1452,6 +1678,9 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -1470,6 +1699,191 @@ class ServiceVcl(pulumi.CustomResource):
         The Service resource requires a domain name that is correctly set up to direct
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                name="AWS S3 hosting",
+                override_host="demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            gzips=[fastly.ServiceVclGzipArgs(
+                content_types=[
+                    "text/html",
+                    "text/css",
+                ],
+                extensions=[
+                    "css",
+                    "js",
+                ],
+                name="file extensions and content types",
+            )],
+            headers=[fastly.ServiceVclHeaderArgs(
+                action="delete",
+                destination="http.x-amz-request-id",
+                name="remove x-amz-request-id",
+                type="cache",
+            )])
+        website = aws.s3.BucketV2("website",
+            acl="public-read",
+            websites=[aws.s3.BucketV2WebsiteArgs(
+                error_document="error.html",
+                index_document="index.html",
+            )])
+        ```
+
+        Basic usage with [custom
+        VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="localhost",
+                port=80,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True,
+            vcls=[
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_main.vcl"),
+                    main=True,
+                    name="my_custom_main_vcl",
+                ),
+                fastly.ServiceVclVclArgs(
+                    content=(lambda path: open(path).read())(f"{path['module']}/my_custom_library.vcl"),
+                    name="my_custom_library_vcl",
+                ),
+            ])
+        ```
+
+        Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.1",
+                    name="origin1",
+                    port=80,
+                ),
+                fastly.ServiceVclBackendArgs(
+                    address="127.0.0.2",
+                    name="origin2",
+                    port=80,
+                ),
+            ],
+            directors=[fastly.ServiceVclDirectorArgs(
+                backends=[
+                    "origin1",
+                    "origin2",
+                ],
+                name="mydirector",
+                quorum=0,
+                type=3,
+            )],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="demo.notexample.com",
+            )],
+            force_destroy=True)
+        ```
+
+        Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    statement="req.backend.is_origin",
+                    type="PREFETCH",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            domains=[fastly.ServiceVclDomainArgs(
+                comment="demo",
+                name="example.com",
+            )],
+            force_destroy=True,
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                content="<html><body>Forbidden</body></html>",
+                content_type="text/html",
+                name="WAF_Response",
+                request_condition="WAF_always_false",
+                response="Forbidden",
+                status=403,
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ))
+        ```
+
+        > **Note:** For an AWS S3 Bucket, the Backend address is
+        `<domain>.s3-website-<region>.amazonaws.com`. The `override_host` attribute
+        should be set to `<bucket_name>.s3-website-<region>.amazonaws.com` in the `backend` block. See the
+        Fastly documentation on [Amazon S3][fastly-s3].
+
+        [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+        [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+        [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+        [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+        [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
 
         ## Import
 
@@ -1545,6 +1959,7 @@ class ServiceVcl(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclSnippetArgs']]]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -1610,6 +2025,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["request_settings"] = request_settings
             __props__.__dict__["response_objects"] = response_objects
+            __props__.__dict__["reuse"] = reuse
             __props__.__dict__["snippets"] = snippets
             __props__.__dict__["stale_if_error"] = stale_if_error
             __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
@@ -1675,6 +2091,7 @@ class ServiceVcl(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
             response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
+            reuse: Optional[pulumi.Input[bool]] = None,
             snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclSnippetArgs']]]]] = None,
             stale_if_error: Optional[pulumi.Input[bool]] = None,
             stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -1697,6 +2114,9 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -1752,6 +2172,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["request_settings"] = request_settings
         __props__.__dict__["response_objects"] = response_objects
+        __props__.__dict__["reuse"] = reuse
         __props__.__dict__["snippets"] = snippets
         __props__.__dict__["stale_if_error"] = stale_if_error
         __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
@@ -2021,6 +2442,16 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="responseObjects")
     def response_objects(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclResponseObject']]]:
         return pulumi.get(self, "response_objects")
+
+    @property
+    @pulumi.getter
+    def reuse(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
 
     @property
     @pulumi.getter

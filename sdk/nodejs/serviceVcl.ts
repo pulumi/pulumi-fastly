@@ -325,6 +325,12 @@ export class ServiceVcl extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     public readonly requestSettings!: pulumi.Output<outputs.ServiceVclRequestSetting[] | undefined>;
     public readonly responseObjects!: pulumi.Output<outputs.ServiceVclResponseObject[] | undefined>;
+    /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+     * an active service will cause an error. Default `false`
+     */
+    public readonly reuse!: pulumi.Output<boolean | undefined>;
     public readonly snippets!: pulumi.Output<outputs.ServiceVclSnippet[] | undefined>;
     /**
      * Enables serving a stale object if there is an error
@@ -401,6 +407,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["requestSettings"] = state ? state.requestSettings : undefined;
             resourceInputs["responseObjects"] = state ? state.responseObjects : undefined;
+            resourceInputs["reuse"] = state ? state.reuse : undefined;
             resourceInputs["snippets"] = state ? state.snippets : undefined;
             resourceInputs["staleIfError"] = state ? state.staleIfError : undefined;
             resourceInputs["staleIfErrorTtl"] = state ? state.staleIfErrorTtl : undefined;
@@ -457,6 +464,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["requestSettings"] = args ? args.requestSettings : undefined;
             resourceInputs["responseObjects"] = args ? args.responseObjects : undefined;
+            resourceInputs["reuse"] = args ? args.reuse : undefined;
             resourceInputs["snippets"] = args ? args.snippets : undefined;
             resourceInputs["staleIfError"] = args ? args.staleIfError : undefined;
             resourceInputs["staleIfErrorTtl"] = args ? args.staleIfErrorTtl : undefined;
@@ -549,6 +557,12 @@ export interface ServiceVclState {
     name?: pulumi.Input<string>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
+    /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+     * an active service will cause an error. Default `false`
+     */
+    reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**
      * Enables serving a stale object if there is an error
@@ -636,6 +650,12 @@ export interface ServiceVclArgs {
     name?: pulumi.Input<string>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
+    /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+     * an active service will cause an error. Default `false`
+     */
+    reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**
      * Enables serving a stale object if there is an error

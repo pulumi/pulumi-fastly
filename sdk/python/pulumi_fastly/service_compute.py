@@ -49,6 +49,7 @@ class ServiceComputeArgs:
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceCompute resource.
@@ -58,6 +59,9 @@ class ServiceComputeArgs:
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
@@ -126,6 +130,8 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "logging_syslogs", logging_syslogs)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if reuse is not None:
+            pulumi.set(__self__, "reuse", reuse)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
 
@@ -454,6 +460,20 @@ class ServiceComputeArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def reuse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
+
+    @reuse.setter
+    def reuse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reuse", value)
+
+    @property
     @pulumi.getter(name="versionComment")
     def version_comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -505,6 +525,7 @@ class _ServiceComputeState:
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceCompute resources.
@@ -516,6 +537,9 @@ class _ServiceComputeState:
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         if activate is not None:
@@ -590,6 +614,8 @@ class _ServiceComputeState:
             pulumi.set(__self__, "name", name)
         if package is not None:
             pulumi.set(__self__, "package", package)
+        if reuse is not None:
+            pulumi.set(__self__, "reuse", reuse)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
 
@@ -942,6 +968,20 @@ class _ServiceComputeState:
         pulumi.set(self, "package", value)
 
     @property
+    @pulumi.getter
+    def reuse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
+
+    @reuse.setter
+    def reuse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reuse", value)
+
+    @property
     @pulumi.getter(name="versionComment")
     def version_comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -993,6 +1033,7 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -1018,6 +1059,9 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         ...
@@ -1090,6 +1134,7 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -1141,6 +1186,7 @@ class ServiceCompute(pulumi.CustomResource):
             if package is None and not opts.urn:
                 raise TypeError("Missing required property 'package'")
             __props__.__dict__["package"] = package
+            __props__.__dict__["reuse"] = reuse
             __props__.__dict__["version_comment"] = version_comment
             __props__.__dict__["active_version"] = None
             __props__.__dict__["cloned_version"] = None
@@ -1190,6 +1236,7 @@ class ServiceCompute(pulumi.CustomResource):
             logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
+            reuse: Optional[pulumi.Input[bool]] = None,
             version_comment: Optional[pulumi.Input[str]] = None) -> 'ServiceCompute':
         """
         Get an existing ServiceCompute resource's state with the given name, id, and optional extra
@@ -1206,6 +1253,9 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1248,6 +1298,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["logging_syslogs"] = logging_syslogs
         __props__.__dict__["name"] = name
         __props__.__dict__["package"] = package
+        __props__.__dict__["reuse"] = reuse
         __props__.__dict__["version_comment"] = version_comment
         return ServiceCompute(resource_name, opts=opts, __props__=__props__)
 
@@ -1454,6 +1505,16 @@ class ServiceCompute(pulumi.CustomResource):
         The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
+
+    @property
+    @pulumi.getter
+    def reuse(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
 
     @property
     @pulumi.getter(name="versionComment")

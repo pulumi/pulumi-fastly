@@ -18,6 +18,308 @@ namespace Pulumi.Fastly
     /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
     /// on their documentation site for guidance.
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.ServiceVcl("demo", new Fastly.ServiceVclArgs
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclBackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.1",
+    ///                     Name = "localhost",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclDomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "demo.notexample.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.ServiceVcl("demo", new Fastly.ServiceVclArgs
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclBackendArgs
+    ///                 {
+    ///                     Address = "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+    ///                     Name = "AWS S3 hosting",
+    ///                     OverrideHost = "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclDomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "demo.notexample.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///             Gzips = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclGzipArgs
+    ///                 {
+    ///                     ContentTypes = 
+    ///                     {
+    ///                         "text/html",
+    ///                         "text/css",
+    ///                     },
+    ///                     Extensions = 
+    ///                     {
+    ///                         "css",
+    ///                         "js",
+    ///                     },
+    ///                     Name = "file extensions and content types",
+    ///                 },
+    ///             },
+    ///             Headers = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclHeaderArgs
+    ///                 {
+    ///                     Action = "delete",
+    ///                     Destination = "http.x-amz-request-id",
+    ///                     Name = "remove x-amz-request-id",
+    ///                     Type = "cache",
+    ///                 },
+    ///             },
+    ///         });
+    ///         var website = new Aws.S3.BucketV2("website", new Aws.S3.BucketV2Args
+    ///         {
+    ///             Acl = "public-read",
+    ///             Websites = 
+    ///             {
+    ///                 new Aws.S3.Inputs.BucketV2WebsiteArgs
+    ///                 {
+    ///                     ErrorDocument = "error.html",
+    ///                     IndexDocument = "index.html",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Basic usage with [custom
+    /// VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.ServiceVcl("demo", new Fastly.ServiceVclArgs
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclBackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.1",
+    ///                     Name = "localhost",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclDomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "demo.notexample.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///             Vcls = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclVclArgs
+    ///                 {
+    ///                     Content = File.ReadAllText($"{path.Module}/my_custom_main.vcl"),
+    ///                     Main = true,
+    ///                     Name = "my_custom_main_vcl",
+    ///                 },
+    ///                 new Fastly.Inputs.ServiceVclVclArgs
+    ///                 {
+    ///                     Content = File.ReadAllText($"{path.Module}/my_custom_library.vcl"),
+    ///                     Name = "my_custom_library_vcl",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.ServiceVcl("demo", new Fastly.ServiceVclArgs
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclBackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.1",
+    ///                     Name = "origin1",
+    ///                     Port = 80,
+    ///                 },
+    ///                 new Fastly.Inputs.ServiceVclBackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.2",
+    ///                     Name = "origin2",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Directors = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclDirectorArgs
+    ///                 {
+    ///                     Backends = 
+    ///                     {
+    ///                         "origin1",
+    ///                         "origin2",
+    ///                     },
+    ///                     Name = "mydirector",
+    ///                     Quorum = 0,
+    ///                     Type = 3,
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclDomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "demo.notexample.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var demo = new Fastly.ServiceVcl("demo", new Fastly.ServiceVclArgs
+    ///         {
+    ///             Backends = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclBackendArgs
+    ///                 {
+    ///                     Address = "127.0.0.1",
+    ///                     Name = "origin1",
+    ///                     Port = 80,
+    ///                 },
+    ///             },
+    ///             Conditions = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclConditionArgs
+    ///                 {
+    ///                     Name = "WAF_Prefetch",
+    ///                     Statement = "req.backend.is_origin",
+    ///                     Type = "PREFETCH",
+    ///                 },
+    ///                 new Fastly.Inputs.ServiceVclConditionArgs
+    ///                 {
+    ///                     Name = "WAF_always_false",
+    ///                     Statement = "false",
+    ///                     Type = "REQUEST",
+    ///                 },
+    ///             },
+    ///             Domains = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclDomainArgs
+    ///                 {
+    ///                     Comment = "demo",
+    ///                     Name = "example.com",
+    ///                 },
+    ///             },
+    ///             ForceDestroy = true,
+    ///             ResponseObjects = 
+    ///             {
+    ///                 new Fastly.Inputs.ServiceVclResponseObjectArgs
+    ///                 {
+    ///                     Content = "&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;",
+    ///                     ContentType = "text/html",
+    ///                     Name = "WAF_Response",
+    ///                     RequestCondition = "WAF_always_false",
+    ///                     Response = "Forbidden",
+    ///                     Status = 403,
+    ///                 },
+    ///             },
+    ///             Waf = new Fastly.Inputs.ServiceVclWafArgs
+    ///             {
+    ///                 PrefetchCondition = "WAF_Prefetch",
+    ///                 ResponseObject = "WAF_Response",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// &gt; **Note:** For an AWS S3 Bucket, the Backend address is
+    /// `&lt;domain&gt;.s3-website-&lt;region&gt;.amazonaws.com`. The `override_host` attribute
+    /// should be set to `&lt;bucket_name&gt;.s3-website-&lt;region&gt;.amazonaws.com` in the `backend` block. See the
+    /// Fastly documentation on [Amazon S3][fastly-s3].
+    /// 
+    /// [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+    /// [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+    /// [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+    /// [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+    /// [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
+    /// 
     /// ## Import
     /// 
     /// Fastly Services can be imported using their service ID, e.g.
@@ -202,6 +504,14 @@ namespace Pulumi.Fastly
 
         [Output("responseObjects")]
         public Output<ImmutableArray<Outputs.ServiceVclResponseObject>> ResponseObjects { get; private set; } = null!;
+
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Output("reuse")]
+        public Output<bool?> Reuse { get; private set; } = null!;
 
         [Output("snippets")]
         public Output<ImmutableArray<Outputs.ServiceVclSnippet>> Snippets { get; private set; } = null!;
@@ -628,6 +938,14 @@ namespace Pulumi.Fastly
             set => _responseObjects = value;
         }
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Input("reuse")]
+        public Input<bool>? Reuse { get; set; }
+
         [Input("snippets")]
         private InputList<Inputs.ServiceVclSnippetArgs>? _snippets;
         public InputList<Inputs.ServiceVclSnippetArgs> Snippets
@@ -1035,6 +1353,14 @@ namespace Pulumi.Fastly
             get => _responseObjects ?? (_responseObjects = new InputList<Inputs.ServiceVclResponseObjectGetArgs>());
             set => _responseObjects = value;
         }
+
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Input("reuse")]
+        public Input<bool>? Reuse { get; set; }
 
         [Input("snippets")]
         private InputList<Inputs.ServiceVclSnippetGetArgs>? _snippets;

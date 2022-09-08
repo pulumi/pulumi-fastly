@@ -160,6 +160,14 @@ namespace Pulumi.Fastly
         public Output<Outputs.ServiceComputePackage> Package { get; private set; } = null!;
 
         /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Output("reuse")]
+        public Output<bool?> Reuse { get; private set; } = null!;
+
+        /// <summary>
         /// Description field for the version
         /// </summary>
         [Output("versionComment")]
@@ -478,6 +486,14 @@ namespace Pulumi.Fastly
         public Input<Inputs.ServiceComputePackageArgs> Package { get; set; } = null!;
 
         /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Input("reuse")]
+        public Input<bool>? Reuse { get; set; }
+
+        /// <summary>
         /// Description field for the version
         /// </summary>
         [Input("versionComment")]
@@ -767,6 +783,14 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }
+
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Input("reuse")]
+        public Input<bool>? Reuse { get; set; }
 
         /// <summary>
         /// Description field for the version

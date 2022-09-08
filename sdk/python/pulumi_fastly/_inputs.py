@@ -2418,7 +2418,7 @@ class ServiceComputeLoggingKafkaArgs:
         :param pulumi.Input[bool] parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param pulumi.Input[str] password: SASL Pass
         :param pulumi.Input[int] request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
-        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
         :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
         :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
@@ -2554,7 +2554,7 @@ class ServiceComputeLoggingKafkaArgs:
     @pulumi.getter(name="requiredAcks")
     def required_acks(self) -> Optional[pulumi.Input[str]]:
         """
-        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         """
         return pulumi.get(self, "required_acks")
 
@@ -7991,7 +7991,7 @@ class ServiceVclLoggingKafkaArgs:
         :param pulumi.Input[str] password: SASL Pass
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[int] request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
-        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+        :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
         :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format
@@ -8172,7 +8172,7 @@ class ServiceVclLoggingKafkaArgs:
     @pulumi.getter(name="requiredAcks")
     def required_acks(self) -> Optional[pulumi.Input[str]]:
         """
-        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         """
         return pulumi.get(self, "required_acks")
 
