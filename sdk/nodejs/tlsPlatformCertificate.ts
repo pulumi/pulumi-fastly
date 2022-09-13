@@ -23,9 +23,9 @@ import * as utilities from "./utilities";
  * const ca = new tls.SelfSignedCert("ca", {
  *     keyAlgorithm: caKey.algorithm,
  *     privateKeyPem: caKey.privateKeyPem,
- *     subjects: [{
+ *     subject: {
  *         commonName: "Example CA",
- *     }],
+ *     },
  *     isCaCertificate: true,
  *     validityPeriodHours: 360,
  *     allowedUses: [
@@ -36,9 +36,9 @@ import * as utilities from "./utilities";
  * const example = new tls.CertRequest("example", {
  *     keyAlgorithm: keyPrivateKey.algorithm,
  *     privateKeyPem: keyPrivateKey.privateKeyPem,
- *     subjects: [{
+ *     subject: {
  *         commonName: "example.com",
- *     }],
+ *     },
  *     dnsNames: [
  *         "example.com",
  *         "www.example.com",

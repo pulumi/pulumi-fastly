@@ -47,10 +47,8 @@ import (
 //			ca, err := tls.NewSelfSignedCert(ctx, "ca", &tls.SelfSignedCertArgs{
 //				KeyAlgorithm:  caKey.Algorithm,
 //				PrivateKeyPem: caKey.PrivateKeyPem,
-//				Subjects: SelfSignedCertSubjectArray{
-//					&SelfSignedCertSubjectArgs{
-//						CommonName: pulumi.String("Example CA"),
-//					},
+//				Subject: &SelfSignedCertSubjectArgs{
+//					CommonName: pulumi.String("Example CA"),
 //				},
 //				IsCaCertificate:     pulumi.Bool(true),
 //				ValidityPeriodHours: pulumi.Int(360),
@@ -65,10 +63,8 @@ import (
 //			example, err := tls.NewCertRequest(ctx, "example", &tls.CertRequestArgs{
 //				KeyAlgorithm:  keyPrivateKey.Algorithm,
 //				PrivateKeyPem: keyPrivateKey.PrivateKeyPem,
-//				Subjects: CertRequestSubjectArray{
-//					&CertRequestSubjectArgs{
-//						CommonName: pulumi.String("example.com"),
-//					},
+//				Subject: &CertRequestSubjectArgs{
+//					CommonName: pulumi.String("example.com"),
 //				},
 //				DnsNames: pulumi.StringArray{
 //					pulumi.String("example.com"),

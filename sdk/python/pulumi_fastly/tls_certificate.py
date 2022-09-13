@@ -243,9 +243,9 @@ class TlsCertificate(pulumi.CustomResource):
         cert = tls.SelfSignedCert("cert",
             key_algorithm=key_private_key.algorithm,
             private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
+            subject=tls.SelfSignedCertSubjectArgs(
                 common_name="example.com",
-            )],
+            ),
             is_ca_certificate=True,
             validity_period_hours=360,
             allowed_uses=[
@@ -307,9 +307,9 @@ class TlsCertificate(pulumi.CustomResource):
         cert = tls.SelfSignedCert("cert",
             key_algorithm=key_private_key.algorithm,
             private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
+            subject=tls.SelfSignedCertSubjectArgs(
                 common_name="example.com",
-            )],
+            ),
             is_ca_certificate=True,
             validity_period_hours=360,
             allowed_uses=[
