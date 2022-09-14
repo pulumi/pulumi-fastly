@@ -22,9 +22,9 @@ import * as utilities from "./utilities";
  * const cert = new tls.SelfSignedCert("cert", {
  *     keyAlgorithm: keyPrivateKey.algorithm,
  *     privateKeyPem: keyPrivateKey.privateKeyPem,
- *     subject: {
+ *     subjects: [{
  *         commonName: "example.com",
- *     },
+ *     }],
  *     isCaCertificate: true,
  *     validityPeriodHours: 360,
  *     allowedUses: [

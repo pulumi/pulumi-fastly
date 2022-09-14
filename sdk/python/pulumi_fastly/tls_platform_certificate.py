@@ -276,9 +276,9 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         ca = tls.SelfSignedCert("ca",
             key_algorithm=ca_key.algorithm,
             private_key_pem=ca_key.private_key_pem,
-            subject=tls.SelfSignedCertSubjectArgs(
+            subjects=[tls.SelfSignedCertSubjectArgs(
                 common_name="Example CA",
-            ),
+            )],
             is_ca_certificate=True,
             validity_period_hours=360,
             allowed_uses=[
@@ -288,9 +288,9 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         example = tls.CertRequest("example",
             key_algorithm=key_private_key.algorithm,
             private_key_pem=key_private_key.private_key_pem,
-            subject=tls.CertRequestSubjectArgs(
+            subjects=[tls.CertRequestSubjectArgs(
                 common_name="example.com",
-            ),
+            )],
             dns_names=[
                 "example.com",
                 "www.example.com",
@@ -355,9 +355,9 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         ca = tls.SelfSignedCert("ca",
             key_algorithm=ca_key.algorithm,
             private_key_pem=ca_key.private_key_pem,
-            subject=tls.SelfSignedCertSubjectArgs(
+            subjects=[tls.SelfSignedCertSubjectArgs(
                 common_name="Example CA",
-            ),
+            )],
             is_ca_certificate=True,
             validity_period_hours=360,
             allowed_uses=[
@@ -367,9 +367,9 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         example = tls.CertRequest("example",
             key_algorithm=key_private_key.algorithm,
             private_key_pem=key_private_key.private_key_pem,
-            subject=tls.CertRequestSubjectArgs(
+            subjects=[tls.CertRequestSubjectArgs(
                 common_name="example.com",
-            ),
+            )],
             dns_names=[
                 "example.com",
                 "www.example.com",
