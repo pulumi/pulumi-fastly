@@ -109,6 +109,12 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly package!: pulumi.Output<outputs.ServiceComputePackage>;
     /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+     * an active service will cause an error. Default `false`
+     */
+    public readonly reuse!: pulumi.Output<boolean | undefined>;
+    /**
      * Description field for the version
      */
     public readonly versionComment!: pulumi.Output<string | undefined>;
@@ -162,6 +168,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = state ? state.loggingSyslogs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["package"] = state ? state.package : undefined;
+            resourceInputs["reuse"] = state ? state.reuse : undefined;
             resourceInputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
@@ -205,6 +212,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = args ? args.loggingSyslogs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["package"] = args ? args.package : undefined;
+            resourceInputs["reuse"] = args ? args.reuse : undefined;
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
@@ -279,6 +287,12 @@ export interface ServiceComputeState {
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+     * an active service will cause an error. Default `false`
+     */
+    reuse?: pulumi.Input<boolean>;
+    /**
      * Description field for the version
      */
     versionComment?: pulumi.Input<string>;
@@ -340,6 +354,12 @@ export interface ServiceComputeArgs {
      * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
     package: pulumi.Input<inputs.ServiceComputePackage>;
+    /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+     * an active service will cause an error. Default `false`
+     */
+    reuse?: pulumi.Input<boolean>;
     /**
      * Description field for the version
      */

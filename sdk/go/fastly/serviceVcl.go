@@ -95,7 +95,11 @@ type ServiceVcl struct {
 	Name            pulumi.StringOutput                 `pulumi:"name"`
 	RequestSettings ServiceVclRequestSettingArrayOutput `pulumi:"requestSettings"`
 	ResponseObjects ServiceVclResponseObjectArrayOutput `pulumi:"responseObjects"`
-	Snippets        ServiceVclSnippetArrayOutput        `pulumi:"snippets"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+	// an active service will cause an error. Default `false`
+	Reuse    pulumi.BoolPtrOutput         `pulumi:"reuse"`
+	Snippets ServiceVclSnippetArrayOutput `pulumi:"snippets"`
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrOutput `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -194,7 +198,11 @@ type serviceVclState struct {
 	Name            *string                    `pulumi:"name"`
 	RequestSettings []ServiceVclRequestSetting `pulumi:"requestSettings"`
 	ResponseObjects []ServiceVclResponseObject `pulumi:"responseObjects"`
-	Snippets        []ServiceVclSnippet        `pulumi:"snippets"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+	// an active service will cause an error. Default `false`
+	Reuse    *bool               `pulumi:"reuse"`
+	Snippets []ServiceVclSnippet `pulumi:"snippets"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -262,7 +270,11 @@ type ServiceVclState struct {
 	Name            pulumi.StringPtrInput
 	RequestSettings ServiceVclRequestSettingArrayInput
 	ResponseObjects ServiceVclResponseObjectArrayInput
-	Snippets        ServiceVclSnippetArrayInput
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+	// an active service will cause an error. Default `false`
+	Reuse    pulumi.BoolPtrInput
+	Snippets ServiceVclSnippetArrayInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -330,7 +342,11 @@ type serviceVclArgs struct {
 	Name            *string                    `pulumi:"name"`
 	RequestSettings []ServiceVclRequestSetting `pulumi:"requestSettings"`
 	ResponseObjects []ServiceVclResponseObject `pulumi:"responseObjects"`
-	Snippets        []ServiceVclSnippet        `pulumi:"snippets"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+	// an active service will cause an error. Default `false`
+	Reuse    *bool               `pulumi:"reuse"`
+	Snippets []ServiceVclSnippet `pulumi:"snippets"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -395,7 +411,11 @@ type ServiceVclArgs struct {
 	Name            pulumi.StringPtrInput
 	RequestSettings ServiceVclRequestSettingArrayInput
 	ResponseObjects ServiceVclResponseObjectArrayInput
-	Snippets        ServiceVclSnippetArrayInput
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+	// an active service will cause an error. Default `false`
+	Reuse    pulumi.BoolPtrInput
+	Snippets ServiceVclSnippetArrayInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version

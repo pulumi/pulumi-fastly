@@ -2696,7 +2696,7 @@ type ServiceComputeLoggingKafka struct {
 	Password *string `pulumi:"password"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
 	RequiredAcks *string `pulumi:"requiredAcks"`
 	// A secure certificate to authenticate the server with. Must be in PEM format
 	TlsCaCert *string `pulumi:"tlsCaCert"`
@@ -2740,7 +2740,7 @@ type ServiceComputeLoggingKafkaArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
 	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
 	// A secure certificate to authenticate the server with. Must be in PEM format
 	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
@@ -2844,7 +2844,7 @@ func (o ServiceComputeLoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
 func (o ServiceComputeLoggingKafkaOutput) RequiredAcks() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.RequiredAcks }).(pulumi.StringPtrOutput)
 }
@@ -9137,7 +9137,7 @@ type ServiceVclLoggingKafka struct {
 	Placement *string `pulumi:"placement"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
 	RequiredAcks *string `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -9189,7 +9189,7 @@ type ServiceVclLoggingKafkaArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
-	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
 	RequiredAcks pulumi.StringPtrInput `pulumi:"requiredAcks"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -9310,7 +9310,7 @@ func (o ServiceVclLoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1`	Wait for all in-sync replicas to respond
+// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
 func (o ServiceVclLoggingKafkaOutput) RequiredAcks() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *string { return v.RequiredAcks }).(pulumi.StringPtrOutput)
 }

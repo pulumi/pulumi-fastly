@@ -60,6 +60,7 @@ class ServiceVclArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -75,6 +76,9 @@ class ServiceVclArgs:
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -168,6 +172,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
             pulumi.set(__self__, "response_objects", response_objects)
+        if reuse is not None:
+            pulumi.set(__self__, "reuse", reuse)
         if snippets is not None:
             pulumi.set(__self__, "snippets", snippets)
         if stale_if_error is not None:
@@ -609,6 +615,20 @@ class ServiceVclArgs:
 
     @property
     @pulumi.getter
+    def reuse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
+
+    @reuse.setter
+    def reuse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reuse", value)
+
+    @property
+    @pulumi.getter
     def snippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
         return pulumi.get(self, "snippets")
 
@@ -721,6 +741,7 @@ class _ServiceVclState:
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -738,6 +759,9 @@ class _ServiceVclState:
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -836,6 +860,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
             pulumi.set(__self__, "response_objects", response_objects)
+        if reuse is not None:
+            pulumi.set(__self__, "reuse", reuse)
         if snippets is not None:
             pulumi.set(__self__, "snippets", snippets)
         if stale_if_error is not None:
@@ -1301,6 +1327,20 @@ class _ServiceVclState:
 
     @property
     @pulumi.getter
+    def reuse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
+
+    @reuse.setter
+    def reuse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reuse", value)
+
+    @property
+    @pulumi.getter
     def snippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
         return pulumi.get(self, "snippets")
 
@@ -1413,6 +1453,7 @@ class ServiceVcl(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclSnippetArgs']]]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -1452,6 +1493,9 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -1545,6 +1589,7 @@ class ServiceVcl(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
+                 reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclSnippetArgs']]]]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -1610,6 +1655,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["request_settings"] = request_settings
             __props__.__dict__["response_objects"] = response_objects
+            __props__.__dict__["reuse"] = reuse
             __props__.__dict__["snippets"] = snippets
             __props__.__dict__["stale_if_error"] = stale_if_error
             __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
@@ -1675,6 +1721,7 @@ class ServiceVcl(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
             response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
+            reuse: Optional[pulumi.Input[bool]] = None,
             snippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclSnippetArgs']]]]] = None,
             stale_if_error: Optional[pulumi.Input[bool]] = None,
             stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
@@ -1697,6 +1744,9 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+               an active service will cause an error. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -1752,6 +1802,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["request_settings"] = request_settings
         __props__.__dict__["response_objects"] = response_objects
+        __props__.__dict__["reuse"] = reuse
         __props__.__dict__["snippets"] = snippets
         __props__.__dict__["stale_if_error"] = stale_if_error
         __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
@@ -2021,6 +2072,16 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="responseObjects")
     def response_objects(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclResponseObject']]]:
         return pulumi.get(self, "response_objects")
+
+    @property
+    @pulumi.getter
+    def reuse(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        an active service will cause an error. Default `false`
+        """
+        return pulumi.get(self, "reuse")
 
     @property
     @pulumi.getter

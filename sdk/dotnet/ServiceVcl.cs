@@ -203,6 +203,14 @@ namespace Pulumi.Fastly
         [Output("responseObjects")]
         public Output<ImmutableArray<Outputs.ServiceVclResponseObject>> ResponseObjects { get; private set; } = null!;
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Output("reuse")]
+        public Output<bool?> Reuse { get; private set; } = null!;
+
         [Output("snippets")]
         public Output<ImmutableArray<Outputs.ServiceVclSnippet>> Snippets { get; private set; } = null!;
 
@@ -628,6 +636,14 @@ namespace Pulumi.Fastly
             set => _responseObjects = value;
         }
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Input("reuse")]
+        public Input<bool>? Reuse { get; set; }
+
         [Input("snippets")]
         private InputList<Inputs.ServiceVclSnippetArgs>? _snippets;
         public InputList<Inputs.ServiceVclSnippetArgs> Snippets
@@ -1035,6 +1051,14 @@ namespace Pulumi.Fastly
             get => _responseObjects ?? (_responseObjects = new InputList<Inputs.ServiceVclResponseObjectGetArgs>());
             set => _responseObjects = value;
         }
+
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+        /// an active service will cause an error. Default `false`
+        /// </summary>
+        [Input("reuse")]
+        public Input<bool>? Reuse { get; set; }
 
         [Input("snippets")]
         private InputList<Inputs.ServiceVclSnippetGetArgs>? _snippets;
