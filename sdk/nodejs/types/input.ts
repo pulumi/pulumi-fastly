@@ -869,7 +869,7 @@ export interface ServiceComputeLoggingS3 {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
      */
     redundancy?: pulumi.Input<string>;
     /**
@@ -2471,7 +2471,7 @@ export interface ServiceVclLoggingS3 {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
      */
     redundancy?: pulumi.Input<string>;
     /**
