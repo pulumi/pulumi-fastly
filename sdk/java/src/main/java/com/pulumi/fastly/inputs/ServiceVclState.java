@@ -250,6 +250,21 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.healthchecks);
     }
 
+    /**
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * 
+     */
+    @Import(name="imported")
+    private @Nullable Output<Boolean> imported;
+
+    /**
+     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * 
+     */
+    public Optional<Output<Boolean>> imported() {
+        return Optional.ofNullable(this.imported);
+    }
+
     @Import(name="loggingBigqueries")
     private @Nullable Output<List<ServiceVclLoggingBigqueryArgs>> loggingBigqueries;
 
@@ -567,6 +582,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         this.gzips = $.gzips;
         this.headers = $.headers;
         this.healthchecks = $.healthchecks;
+        this.imported = $.imported;
         this.loggingBigqueries = $.loggingBigqueries;
         this.loggingBlobstorages = $.loggingBlobstorages;
         this.loggingCloudfiles = $.loggingCloudfiles;
@@ -929,6 +945,27 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
 
         public Builder healthchecks(ServiceVclHealthcheckArgs... healthchecks) {
             return healthchecks(List.of(healthchecks));
+        }
+
+        /**
+         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+         * 
+         * @return builder
+         * 
+         */
+        public Builder imported(@Nullable Output<Boolean> imported) {
+            $.imported = imported;
+            return this;
+        }
+
+        /**
+         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+         * 
+         * @return builder
+         * 
+         */
+        public Builder imported(Boolean imported) {
+            return imported(Output.of(imported));
         }
 
         public Builder loggingBigqueries(@Nullable Output<List<ServiceVclLoggingBigqueryArgs>> loggingBigqueries) {

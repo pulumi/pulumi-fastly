@@ -293,6 +293,10 @@ export class ServiceVcl extends pulumi.CustomResource {
     public readonly gzips!: pulumi.Output<outputs.ServiceVclGzip[] | undefined>;
     public readonly headers!: pulumi.Output<outputs.ServiceVclHeader[] | undefined>;
     public readonly healthchecks!: pulumi.Output<outputs.ServiceVclHealthcheck[] | undefined>;
+    /**
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     */
+    public /*out*/ readonly imported!: pulumi.Output<boolean>;
     public readonly loggingBigqueries!: pulumi.Output<outputs.ServiceVclLoggingBigquery[] | undefined>;
     public readonly loggingBlobstorages!: pulumi.Output<outputs.ServiceVclLoggingBlobstorage[] | undefined>;
     public readonly loggingCloudfiles!: pulumi.Output<outputs.ServiceVclLoggingCloudfile[] | undefined>;
@@ -378,6 +382,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["gzips"] = state ? state.gzips : undefined;
             resourceInputs["headers"] = state ? state.headers : undefined;
             resourceInputs["healthchecks"] = state ? state.healthchecks : undefined;
+            resourceInputs["imported"] = state ? state.imported : undefined;
             resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
             resourceInputs["loggingCloudfiles"] = state ? state.loggingCloudfiles : undefined;
@@ -473,6 +478,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["waf"] = args ? args.waf : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
+            resourceInputs["imported"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceVcl.__pulumiType, name, resourceInputs, opts);
@@ -525,6 +531,10 @@ export interface ServiceVclState {
     gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[]>;
     headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[]>;
     healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[]>;
+    /**
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     */
+    imported?: pulumi.Input<boolean>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBlobstorage>[]>;
     loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingCloudfile>[]>;

@@ -61,10 +61,12 @@ type ServiceVcl struct {
 	Domains         ServiceVclDomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets ServiceVclDynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy           pulumi.BoolPtrOutput                      `pulumi:"forceDestroy"`
-	Gzips                  ServiceVclGzipArrayOutput                 `pulumi:"gzips"`
-	Headers                ServiceVclHeaderArrayOutput               `pulumi:"headers"`
-	Healthchecks           ServiceVclHealthcheckArrayOutput          `pulumi:"healthchecks"`
+	ForceDestroy pulumi.BoolPtrOutput             `pulumi:"forceDestroy"`
+	Gzips        ServiceVclGzipArrayOutput        `pulumi:"gzips"`
+	Headers      ServiceVclHeaderArrayOutput      `pulumi:"headers"`
+	Healthchecks ServiceVclHealthcheckArrayOutput `pulumi:"healthchecks"`
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Imported               pulumi.BoolOutput                         `pulumi:"imported"`
 	LoggingBigqueries      ServiceVclLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayOutput   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      ServiceVclLoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
@@ -164,10 +166,12 @@ type serviceVclState struct {
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy           *bool                            `pulumi:"forceDestroy"`
-	Gzips                  []ServiceVclGzip                 `pulumi:"gzips"`
-	Headers                []ServiceVclHeader               `pulumi:"headers"`
-	Healthchecks           []ServiceVclHealthcheck          `pulumi:"healthchecks"`
+	ForceDestroy *bool                   `pulumi:"forceDestroy"`
+	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
+	Headers      []ServiceVclHeader      `pulumi:"headers"`
+	Healthchecks []ServiceVclHealthcheck `pulumi:"healthchecks"`
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Imported               *bool                            `pulumi:"imported"`
 	LoggingBigqueries      []ServiceVclLoggingBigquery      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    []ServiceVclLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      []ServiceVclLoggingCloudfile     `pulumi:"loggingCloudfiles"`
@@ -236,10 +240,12 @@ type ServiceVclState struct {
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy           pulumi.BoolPtrInput
-	Gzips                  ServiceVclGzipArrayInput
-	Headers                ServiceVclHeaderArrayInput
-	Healthchecks           ServiceVclHealthcheckArrayInput
+	ForceDestroy pulumi.BoolPtrInput
+	Gzips        ServiceVclGzipArrayInput
+	Headers      ServiceVclHeaderArrayInput
+	Healthchecks ServiceVclHealthcheckArrayInput
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Imported               pulumi.BoolPtrInput
 	LoggingBigqueries      ServiceVclLoggingBigqueryArrayInput
 	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayInput
 	LoggingCloudfiles      ServiceVclLoggingCloudfileArrayInput

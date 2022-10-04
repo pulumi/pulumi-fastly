@@ -74,6 +74,10 @@ export class ServiceCompute extends pulumi.CustomResource {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
+    /**
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     */
+    public /*out*/ readonly imported!: pulumi.Output<boolean>;
     public readonly loggingBigqueries!: pulumi.Output<outputs.ServiceComputeLoggingBigquery[] | undefined>;
     public readonly loggingBlobstorages!: pulumi.Output<outputs.ServiceComputeLoggingBlobstorage[] | undefined>;
     public readonly loggingCloudfiles!: pulumi.Output<outputs.ServiceComputeLoggingCloudfile[] | undefined>;
@@ -140,6 +144,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["dictionaries"] = state ? state.dictionaries : undefined;
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
+            resourceInputs["imported"] = state ? state.imported : undefined;
             resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
             resourceInputs["loggingCloudfiles"] = state ? state.loggingCloudfiles : undefined;
@@ -216,6 +221,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
+            resourceInputs["imported"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceCompute.__pulumiType, name, resourceInputs, opts);
@@ -252,6 +258,10 @@ export interface ServiceComputeState {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
+    /**
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     */
+    imported?: pulumi.Input<boolean>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBlobstorage>[]>;
     loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingCloudfile>[]>;

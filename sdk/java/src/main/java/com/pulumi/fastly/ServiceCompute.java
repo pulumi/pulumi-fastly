@@ -161,6 +161,20 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> forceDestroy() {
         return Codegen.optional(this.forceDestroy);
     }
+    /**
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * 
+     */
+    @Export(name="imported", type=Boolean.class, parameters={})
+    private Output<Boolean> imported;
+
+    /**
+     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * 
+     */
+    public Output<Boolean> imported() {
+        return this.imported;
+    }
     @Export(name="loggingBigqueries", type=List.class, parameters={ServiceComputeLoggingBigquery.class})
     private Output</* @Nullable */ List<ServiceComputeLoggingBigquery>> loggingBigqueries;
 

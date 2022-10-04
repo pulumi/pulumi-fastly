@@ -712,6 +712,7 @@ class _ServiceVclState:
                  gzips: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
+                 imported: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]] = None,
@@ -758,6 +759,7 @@ class _ServiceVclState:
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -802,6 +804,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "headers", headers)
         if healthchecks is not None:
             pulumi.set(__self__, "healthchecks", healthchecks)
+        if imported is not None:
+            pulumi.set(__self__, "imported", imported)
         if logging_bigqueries is not None:
             pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
@@ -1060,6 +1064,18 @@ class _ServiceVclState:
     @healthchecks.setter
     def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]):
         pulumi.set(self, "healthchecks", value)
+
+    @property
+    @pulumi.getter
+    def imported(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        """
+        return pulumi.get(self, "imported")
+
+    @imported.setter
+    def imported(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "imported", value)
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -1664,6 +1680,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["waf"] = waf
             __props__.__dict__["active_version"] = None
             __props__.__dict__["cloned_version"] = None
+            __props__.__dict__["imported"] = None
         super(ServiceVcl, __self__).__init__(
             'fastly:index/serviceVcl:ServiceVcl',
             resource_name,
@@ -1692,6 +1709,7 @@ class ServiceVcl(pulumi.CustomResource):
             gzips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclGzipArgs']]]]] = None,
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
             healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
+            imported: Optional[pulumi.Input[bool]] = None,
             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBigqueryArgs']]]]] = None,
             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBlobstorageArgs']]]]] = None,
             logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingCloudfileArgs']]]]] = None,
@@ -1743,6 +1761,7 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -1773,6 +1792,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["gzips"] = gzips
         __props__.__dict__["headers"] = headers
         __props__.__dict__["healthchecks"] = healthchecks
+        __props__.__dict__["imported"] = imported
         __props__.__dict__["logging_bigqueries"] = logging_bigqueries
         __props__.__dict__["logging_blobstorages"] = logging_blobstorages
         __props__.__dict__["logging_cloudfiles"] = logging_cloudfiles
@@ -1924,6 +1944,14 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def healthchecks(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclHealthcheck']]]:
         return pulumi.get(self, "healthchecks")
+
+    @property
+    @pulumi.getter
+    def imported(self) -> pulumi.Output[bool]:
+        """
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        """
+        return pulumi.get(self, "imported")
 
     @property
     @pulumi.getter(name="loggingBigqueries")

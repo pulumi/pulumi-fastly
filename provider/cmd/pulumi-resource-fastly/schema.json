@@ -7455,6 +7455,10 @@
                     "type": "boolean",
                     "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
                 },
+                "imported": {
+                    "type": "boolean",
+                    "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished\n"
+                },
                 "loggingBigqueries": {
                     "type": "array",
                     "items": {
@@ -7632,6 +7636,7 @@
                 "activeVersion",
                 "clonedVersion",
                 "domains",
+                "imported",
                 "name",
                 "package"
             ],
@@ -7885,6 +7890,10 @@
                     "forceDestroy": {
                         "type": "boolean",
                         "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
+                    },
+                    "imported": {
+                        "type": "boolean",
+                        "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished\n"
                     },
                     "loggingBigqueries": {
                         "type": "array",
@@ -8309,6 +8318,10 @@
                         "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
                     }
                 },
+                "imported": {
+                    "type": "boolean",
+                    "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished\n"
+                },
                 "loggingBigqueries": {
                     "type": "array",
                     "items": {
@@ -8517,6 +8530,7 @@
                 "activeVersion",
                 "clonedVersion",
                 "domains",
+                "imported",
                 "name"
             ],
             "inputProperties": {
@@ -8911,6 +8925,10 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
                         }
+                    },
+                    "imported": {
+                        "type": "boolean",
+                        "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished\n"
                     },
                     "loggingBigqueries": {
                         "type": "array",

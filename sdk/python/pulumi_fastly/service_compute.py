@@ -497,6 +497,7 @@ class _ServiceComputeState:
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 imported: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
@@ -535,6 +536,7 @@ class _ServiceComputeState:
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -558,6 +560,8 @@ class _ServiceComputeState:
             pulumi.set(__self__, "domains", domains)
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
+        if imported is not None:
+            pulumi.set(__self__, "imported", imported)
         if logging_bigqueries is not None:
             pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
@@ -708,6 +712,18 @@ class _ServiceComputeState:
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
+
+    @property
+    @pulumi.getter
+    def imported(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        """
+        return pulumi.get(self, "imported")
+
+    @imported.setter
+    def imported(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "imported", value)
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -1190,6 +1206,7 @@ class ServiceCompute(pulumi.CustomResource):
             __props__.__dict__["version_comment"] = version_comment
             __props__.__dict__["active_version"] = None
             __props__.__dict__["cloned_version"] = None
+            __props__.__dict__["imported"] = None
         super(ServiceCompute, __self__).__init__(
             'fastly:index/serviceCompute:ServiceCompute',
             resource_name,
@@ -1208,6 +1225,7 @@ class ServiceCompute(pulumi.CustomResource):
             dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
+            imported: Optional[pulumi.Input[bool]] = None,
             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBigqueryArgs']]]]] = None,
             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBlobstorageArgs']]]]] = None,
             logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
@@ -1251,6 +1269,7 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -1270,6 +1289,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["dictionaries"] = dictionaries
         __props__.__dict__["domains"] = domains
         __props__.__dict__["force_destroy"] = force_destroy
+        __props__.__dict__["imported"] = imported
         __props__.__dict__["logging_bigqueries"] = logging_bigqueries
         __props__.__dict__["logging_blobstorages"] = logging_blobstorages
         __props__.__dict__["logging_cloudfiles"] = logging_cloudfiles
@@ -1359,6 +1379,14 @@ class ServiceCompute(pulumi.CustomResource):
         Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
+
+    @property
+    @pulumi.getter
+    def imported(self) -> pulumi.Output[bool]:
+        """
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        """
+        return pulumi.get(self, "imported")
 
     @property
     @pulumi.getter(name="loggingBigqueries")

@@ -69,6 +69,12 @@ namespace Pulumi.Fastly
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// </summary>
+        [Output("imported")]
+        public Output<bool> Imported { get; private set; } = null!;
+
         [Output("loggingBigqueries")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingBigquery>> LoggingBigqueries { get; private set; } = null!;
 
@@ -563,6 +569,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
+
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// </summary>
+        [Input("imported")]
+        public Input<bool>? Imported { get; set; }
 
         [Input("loggingBigqueries")]
         private InputList<Inputs.ServiceComputeLoggingBigqueryGetArgs>? _loggingBigqueries;
