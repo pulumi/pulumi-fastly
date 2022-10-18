@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclVclGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclVclGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The custom VCL code to upload
@@ -33,5 +33,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclVclGetArgs()
         {
         }
+        public static new ServiceVclVclGetArgs Empty => new ServiceVclVclGetArgs();
     }
 }

@@ -19,95 +19,100 @@ namespace Pulumi.Fastly
     /// Basic usage with self-signed CA:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Fastly = Pulumi.Fastly;
     /// using Tls = Pulumi.Tls;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var caKey = new Tls.PrivateKey("caKey", new()
     ///     {
-    ///         var caKey = new Tls.PrivateKey("caKey", new Tls.PrivateKeyArgs
-    ///         {
-    ///             Algorithm = "RSA",
-    ///         });
-    ///         var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new Tls.PrivateKeyArgs
-    ///         {
-    ///             Algorithm = "RSA",
-    ///         });
-    ///         var ca = new Tls.SelfSignedCert("ca", new Tls.SelfSignedCertArgs
-    ///         {
-    ///             KeyAlgorithm = caKey.Algorithm,
-    ///             PrivateKeyPem = caKey.PrivateKeyPem,
-    ///             Subjects = 
-    ///             {
-    ///                 new Tls.Inputs.SelfSignedCertSubjectArgs
-    ///                 {
-    ///                     CommonName = "Example CA",
-    ///                 },
-    ///             },
-    ///             IsCaCertificate = true,
-    ///             ValidityPeriodHours = 360,
-    ///             AllowedUses = 
-    ///             {
-    ///                 "cert_signing",
-    ///                 "server_auth",
-    ///             },
-    ///         });
-    ///         var example = new Tls.CertRequest("example", new Tls.CertRequestArgs
-    ///         {
-    ///             KeyAlgorithm = keyPrivateKey.Algorithm,
-    ///             PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
-    ///             Subjects = 
-    ///             {
-    ///                 new Tls.Inputs.CertRequestSubjectArgs
-    ///                 {
-    ///                     CommonName = "example.com",
-    ///                 },
-    ///             },
-    ///             DnsNames = 
-    ///             {
-    ///                 "example.com",
-    ///                 "www.example.com",
-    ///             },
-    ///         });
-    ///         var certLocallySignedCert = new Tls.LocallySignedCert("certLocallySignedCert", new Tls.LocallySignedCertArgs
-    ///         {
-    ///             CertRequestPem = example.CertRequestPem,
-    ///             CaKeyAlgorithm = caKey.Algorithm,
-    ///             CaPrivateKeyPem = caKey.PrivateKeyPem,
-    ///             CaCertPem = ca.CertPem,
-    ///             ValidityPeriodHours = 360,
-    ///             AllowedUses = 
-    ///             {
-    ///                 "cert_signing",
-    ///                 "server_auth",
-    ///             },
-    ///         });
-    ///         var config = Output.Create(Fastly.GetTlsConfiguration.InvokeAsync(new Fastly.GetTlsConfigurationArgs
-    ///         {
-    ///             TlsService = "PLATFORM",
-    ///         }));
-    ///         var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new Fastly.TlsPrivateKeyArgs
-    ///         {
-    ///             KeyPem = keyPrivateKey.PrivateKeyPem,
-    ///         });
-    ///         var certTlsPlatformCertificate = new Fastly.TlsPlatformCertificate("certTlsPlatformCertificate", new Fastly.TlsPlatformCertificateArgs
-    ///         {
-    ///             CertificateBody = certLocallySignedCert.CertPem,
-    ///             IntermediatesBlob = ca.CertPem,
-    ///             ConfigurationId = config.Apply(config =&gt; config.Id),
-    ///             AllowUntrustedRoot = true,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 keyTlsPrivateKey,
-    ///             },
-    ///         });
-    ///     }
+    ///         Algorithm = "RSA",
+    ///     });
     /// 
-    /// }
+    ///     var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new()
+    ///     {
+    ///         Algorithm = "RSA",
+    ///     });
+    /// 
+    ///     var ca = new Tls.SelfSignedCert("ca", new()
+    ///     {
+    ///         KeyAlgorithm = caKey.Algorithm,
+    ///         PrivateKeyPem = caKey.PrivateKeyPem,
+    ///         Subjects = new[]
+    ///         {
+    ///             new Tls.Inputs.SelfSignedCertSubjectArgs
+    ///             {
+    ///                 CommonName = "Example CA",
+    ///             },
+    ///         },
+    ///         IsCaCertificate = true,
+    ///         ValidityPeriodHours = 360,
+    ///         AllowedUses = new[]
+    ///         {
+    ///             "cert_signing",
+    ///             "server_auth",
+    ///         },
+    ///     });
+    /// 
+    ///     var example = new Tls.CertRequest("example", new()
+    ///     {
+    ///         KeyAlgorithm = keyPrivateKey.Algorithm,
+    ///         PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
+    ///         Subjects = new[]
+    ///         {
+    ///             new Tls.Inputs.CertRequestSubjectArgs
+    ///             {
+    ///                 CommonName = "example.com",
+    ///             },
+    ///         },
+    ///         DnsNames = new[]
+    ///         {
+    ///             "example.com",
+    ///             "www.example.com",
+    ///         },
+    ///     });
+    /// 
+    ///     var certLocallySignedCert = new Tls.LocallySignedCert("certLocallySignedCert", new()
+    ///     {
+    ///         CertRequestPem = example.CertRequestPem,
+    ///         CaKeyAlgorithm = caKey.Algorithm,
+    ///         CaPrivateKeyPem = caKey.PrivateKeyPem,
+    ///         CaCertPem = ca.CertPem,
+    ///         ValidityPeriodHours = 360,
+    ///         AllowedUses = new[]
+    ///         {
+    ///             "cert_signing",
+    ///             "server_auth",
+    ///         },
+    ///     });
+    /// 
+    ///     var config = Fastly.GetTlsConfiguration.Invoke(new()
+    ///     {
+    ///         TlsService = "PLATFORM",
+    ///     });
+    /// 
+    ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new()
+    ///     {
+    ///         KeyPem = keyPrivateKey.PrivateKeyPem,
+    ///     });
+    /// 
+    ///     var certTlsPlatformCertificate = new Fastly.TlsPlatformCertificate("certTlsPlatformCertificate", new()
+    ///     {
+    ///         CertificateBody = certLocallySignedCert.CertPem,
+    ///         IntermediatesBlob = ca.CertPem,
+    ///         ConfigurationId = config.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
+    ///         AllowUntrustedRoot = true,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             keyTlsPrivateKey,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -119,7 +124,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsPlatformCertificate:TlsPlatformCertificate")]
-    public partial class TlsPlatformCertificate : Pulumi.CustomResource
+    public partial class TlsPlatformCertificate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
@@ -225,7 +230,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class TlsPlatformCertificateArgs : Pulumi.ResourceArgs
+    public sealed class TlsPlatformCertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
@@ -254,9 +259,10 @@ namespace Pulumi.Fastly
         public TlsPlatformCertificateArgs()
         {
         }
+        public static new TlsPlatformCertificateArgs Empty => new TlsPlatformCertificateArgs();
     }
 
-    public sealed class TlsPlatformCertificateState : Pulumi.ResourceArgs
+    public sealed class TlsPlatformCertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
@@ -327,5 +333,6 @@ namespace Pulumi.Fastly
         public TlsPlatformCertificateState()
         {
         }
+        public static new TlsPlatformCertificateState Empty => new TlsPlatformCertificateState();
     }
 }

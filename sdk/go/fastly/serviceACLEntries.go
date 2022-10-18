@@ -205,6 +205,26 @@ func (o ServiceACLEntriesOutput) ToServiceACLEntriesOutputWithContext(ctx contex
 	return o
 }
 
+// The ID of the ACL that the items belong to
+func (o ServiceACLEntriesOutput) AclId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceACLEntries) pulumi.StringOutput { return v.AclId }).(pulumi.StringOutput)
+}
+
+// ACL Entries
+func (o ServiceACLEntriesOutput) Entries() ServiceACLEntriesEntryArrayOutput {
+	return o.ApplyT(func(v *ServiceACLEntries) ServiceACLEntriesEntryArrayOutput { return v.Entries }).(ServiceACLEntriesEntryArrayOutput)
+}
+
+// Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
+func (o ServiceACLEntriesOutput) ManageEntries() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceACLEntries) pulumi.BoolPtrOutput { return v.ManageEntries }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the Service that the ACL belongs to
+func (o ServiceACLEntriesOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceACLEntries) pulumi.StringOutput { return v.ServiceId }).(pulumi.StringOutput)
+}
+
 type ServiceACLEntriesArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceACLEntriesArrayOutput) ElementType() reflect.Type {

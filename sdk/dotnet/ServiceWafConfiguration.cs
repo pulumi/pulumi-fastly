@@ -37,7 +37,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/serviceWafConfiguration:ServiceWafConfiguration")]
-    public partial class ServiceWafConfiguration : Pulumi.CustomResource
+    public partial class ServiceWafConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -287,7 +287,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class ServiceWafConfigurationArgs : Pulumi.ResourceArgs
+    public sealed class ServiceWafConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -488,9 +488,10 @@ namespace Pulumi.Fastly
         public ServiceWafConfigurationArgs()
         {
         }
+        public static new ServiceWafConfigurationArgs Empty => new ServiceWafConfigurationArgs();
     }
 
-    public sealed class ServiceWafConfigurationState : Pulumi.ResourceArgs
+    public sealed class ServiceWafConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -709,5 +710,6 @@ namespace Pulumi.Fastly
         public ServiceWafConfigurationState()
         {
         }
+        public static new ServiceWafConfigurationState Empty => new ServiceWafConfigurationState();
     }
 }

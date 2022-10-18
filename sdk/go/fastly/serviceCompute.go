@@ -419,6 +419,175 @@ func (o ServiceComputeOutput) ToServiceComputeOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+func (o ServiceComputeOutput) Activate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
+}
+
+// The currently active version of your Fastly Service
+func (o ServiceComputeOutput) ActiveVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.IntOutput { return v.ActiveVersion }).(pulumi.IntOutput)
+}
+
+func (o ServiceComputeOutput) Backends() ServiceComputeBackendArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeBackendArrayOutput { return v.Backends }).(ServiceComputeBackendArrayOutput)
+}
+
+// The latest cloned version by the provider
+func (o ServiceComputeOutput) ClonedVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
+}
+
+// Description field for the service. Default `Managed by Terraform`
+func (o ServiceComputeOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceComputeOutput) Dictionaries() ServiceComputeDictionaryArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeDictionaryArrayOutput { return v.Dictionaries }).(ServiceComputeDictionaryArrayOutput)
+}
+
+// A set of Domain names to serve as entry points for your Service
+func (o ServiceComputeOutput) Domains() ServiceComputeDomainArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeDomainArrayOutput { return v.Domains }).(ServiceComputeDomainArrayOutput)
+}
+
+// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+func (o ServiceComputeOutput) ForceDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+func (o ServiceComputeOutput) Imported() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolOutput { return v.Imported }).(pulumi.BoolOutput)
+}
+
+func (o ServiceComputeOutput) LoggingBigqueries() ServiceComputeLoggingBigqueryArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingBigqueryArrayOutput { return v.LoggingBigqueries }).(ServiceComputeLoggingBigqueryArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingBlobstorages() ServiceComputeLoggingBlobstorageArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingBlobstorageArrayOutput { return v.LoggingBlobstorages }).(ServiceComputeLoggingBlobstorageArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingCloudfiles() ServiceComputeLoggingCloudfileArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingCloudfileArrayOutput { return v.LoggingCloudfiles }).(ServiceComputeLoggingCloudfileArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingDatadogs() ServiceComputeLoggingDatadogArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingDatadogArrayOutput { return v.LoggingDatadogs }).(ServiceComputeLoggingDatadogArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingDigitaloceans() ServiceComputeLoggingDigitaloceanArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingDigitaloceanArrayOutput { return v.LoggingDigitaloceans }).(ServiceComputeLoggingDigitaloceanArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingElasticsearches() ServiceComputeLoggingElasticsearchArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingElasticsearchArrayOutput { return v.LoggingElasticsearches }).(ServiceComputeLoggingElasticsearchArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingFtps() ServiceComputeLoggingFtpArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingFtpArrayOutput { return v.LoggingFtps }).(ServiceComputeLoggingFtpArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingGcs() ServiceComputeLoggingGcArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingGcArrayOutput { return v.LoggingGcs }).(ServiceComputeLoggingGcArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingGooglepubsubs() ServiceComputeLoggingGooglepubsubArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingGooglepubsubArrayOutput { return v.LoggingGooglepubsubs }).(ServiceComputeLoggingGooglepubsubArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingHeroku() ServiceComputeLoggingHerokuArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingHerokuArrayOutput { return v.LoggingHeroku }).(ServiceComputeLoggingHerokuArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingHoneycombs() ServiceComputeLoggingHoneycombArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingHoneycombArrayOutput { return v.LoggingHoneycombs }).(ServiceComputeLoggingHoneycombArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingHttps() ServiceComputeLoggingHttpArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingHttpArrayOutput { return v.LoggingHttps }).(ServiceComputeLoggingHttpArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingKafkas() ServiceComputeLoggingKafkaArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingKafkaArrayOutput { return v.LoggingKafkas }).(ServiceComputeLoggingKafkaArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingKineses() ServiceComputeLoggingKineseArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingKineseArrayOutput { return v.LoggingKineses }).(ServiceComputeLoggingKineseArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingLogentries() ServiceComputeLoggingLogentryArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingLogentryArrayOutput { return v.LoggingLogentries }).(ServiceComputeLoggingLogentryArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingLogglies() ServiceComputeLoggingLogglyArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingLogglyArrayOutput { return v.LoggingLogglies }).(ServiceComputeLoggingLogglyArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingLogshuttles() ServiceComputeLoggingLogshuttleArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingLogshuttleArrayOutput { return v.LoggingLogshuttles }).(ServiceComputeLoggingLogshuttleArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingNewrelics() ServiceComputeLoggingNewrelicArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingNewrelicArrayOutput { return v.LoggingNewrelics }).(ServiceComputeLoggingNewrelicArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingOpenstacks() ServiceComputeLoggingOpenstackArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingOpenstackArrayOutput { return v.LoggingOpenstacks }).(ServiceComputeLoggingOpenstackArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingPapertrails() ServiceComputeLoggingPapertrailArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingPapertrailArrayOutput { return v.LoggingPapertrails }).(ServiceComputeLoggingPapertrailArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingS3s() ServiceComputeLoggingS3ArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingS3ArrayOutput { return v.LoggingS3s }).(ServiceComputeLoggingS3ArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingScalyrs() ServiceComputeLoggingScalyrArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingScalyrArrayOutput { return v.LoggingScalyrs }).(ServiceComputeLoggingScalyrArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingSftps() ServiceComputeLoggingSftpArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingSftpArrayOutput { return v.LoggingSftps }).(ServiceComputeLoggingSftpArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingSplunks() ServiceComputeLoggingSplunkArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingSplunkArrayOutput { return v.LoggingSplunks }).(ServiceComputeLoggingSplunkArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingSumologics() ServiceComputeLoggingSumologicArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingSumologicArrayOutput { return v.LoggingSumologics }).(ServiceComputeLoggingSumologicArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingSyslogs() ServiceComputeLoggingSyslogArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingSyslogArrayOutput { return v.LoggingSyslogs }).(ServiceComputeLoggingSyslogArrayOutput)
+}
+
+// The unique name for the Service to create
+func (o ServiceComputeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+func (o ServiceComputeOutput) Package() ServiceComputePackageOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputePackageOutput { return v.Package }).(ServiceComputePackageOutput)
+}
+
+// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+// an active service will cause an error. Default `false`
+func (o ServiceComputeOutput) Reuse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
+}
+
+// Description field for the version
+func (o ServiceComputeOutput) VersionComment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.StringPtrOutput { return v.VersionComment }).(pulumi.StringPtrOutput)
+}
+
 type ServiceComputeArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeArrayOutput) ElementType() reflect.Type {

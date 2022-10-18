@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingGcArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingGcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the bucket in which to store the logs
@@ -54,11 +54,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -75,5 +85,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingGcArgs()
         {
         }
+        public static new ServiceComputeLoggingGcArgs Empty => new ServiceComputeLoggingGcArgs();
     }
 }

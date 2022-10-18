@@ -21,7 +21,7 @@ namespace Pulumi.Fastly
     ///  If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items.items
     /// </summary>
     [FastlyResourceType("fastly:index/serviceDictionaryItems:ServiceDictionaryItems")]
-    public partial class ServiceDictionaryItems : Pulumi.CustomResource
+    public partial class ServiceDictionaryItems : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the dictionary that the items belong to
@@ -91,7 +91,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class ServiceDictionaryItemsArgs : Pulumi.ResourceArgs
+    public sealed class ServiceDictionaryItemsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the dictionary that the items belong to
@@ -126,9 +126,10 @@ namespace Pulumi.Fastly
         public ServiceDictionaryItemsArgs()
         {
         }
+        public static new ServiceDictionaryItemsArgs Empty => new ServiceDictionaryItemsArgs();
     }
 
-    public sealed class ServiceDictionaryItemsState : Pulumi.ResourceArgs
+    public sealed class ServiceDictionaryItemsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the dictionary that the items belong to
@@ -163,5 +164,6 @@ namespace Pulumi.Fastly
         public ServiceDictionaryItemsState()
         {
         }
+        public static new ServiceDictionaryItemsState Empty => new ServiceDictionaryItemsState();
     }
 }

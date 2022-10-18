@@ -25,26 +25,24 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Fastly.GetTlsCertificate.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Fastly.GetTlsCertificate.InvokeAsync(new Fastly.GetTlsCertificateArgs
-        ///         {
-        ///             Name = "example.com",
-        ///         }));
-        ///     }
+        ///         Name = "example.com",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsCertificateResult> InvokeAsync(GetTlsCertificateArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information of a TLS certificate for use with other resources.
@@ -60,30 +58,28 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Fastly.GetTlsCertificate.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Fastly.GetTlsCertificate.InvokeAsync(new Fastly.GetTlsCertificateArgs
-        ///         {
-        ///             Name = "example.com",
-        ///         }));
-        ///     }
+        ///         Name = "example.com",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsCertificateResult> Invoke(GetTlsCertificateInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetTlsCertificateArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsCertificateArgs : global::Pulumi.InvokeArgs
     {
         [Input("domains")]
         private List<string>? _domains;
@@ -124,9 +120,10 @@ namespace Pulumi.Fastly
         public GetTlsCertificateArgs()
         {
         }
+        public static new GetTlsCertificateArgs Empty => new GetTlsCertificateArgs();
     }
 
-    public sealed class GetTlsCertificateInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsCertificateInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("domains")]
         private InputList<string>? _domains;
@@ -167,6 +164,7 @@ namespace Pulumi.Fastly
         public GetTlsCertificateInvokeArgs()
         {
         }
+        public static new GetTlsCertificateInvokeArgs Empty => new GetTlsCertificateInvokeArgs();
     }
 
 

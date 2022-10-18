@@ -112,7 +112,7 @@ export class TlsPrivateKey extends pulumi.CustomResource {
             if ((!args || args.keyPem === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'keyPem'");
             }
-            resourceInputs["keyPem"] = args ? args.keyPem : undefined;
+            resourceInputs["keyPem"] = args?.keyPem ? pulumi.secret(args.keyPem) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["keyLength"] = undefined /*out*/;
@@ -121,6 +121,8 @@ export class TlsPrivateKey extends pulumi.CustomResource {
             resourceInputs["replace"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["keyPem"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(TlsPrivateKey.__pulumiType, name, resourceInputs, opts);
     }
 }

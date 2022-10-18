@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclDirectorGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclDirectorGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("backends", required: true)]
         private InputList<string>? _backends;
@@ -63,5 +63,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclDirectorGetArgs()
         {
         }
+        public static new ServiceVclDirectorGetArgs Empty => new ServiceVclDirectorGetArgs();
     }
 }

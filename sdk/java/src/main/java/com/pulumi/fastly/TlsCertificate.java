@@ -21,6 +21,68 @@ import javax.annotation.Nullable;
  * &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
  * 
  * ## Example Usage
+ * 
+ * Basic usage:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.tls.PrivateKey;
+ * import com.pulumi.tls.PrivateKeyArgs;
+ * import com.pulumi.tls.SelfSignedCert;
+ * import com.pulumi.tls.SelfSignedCertArgs;
+ * import com.pulumi.tls.inputs.SelfSignedCertSubjectArgs;
+ * import com.pulumi.fastly.TlsPrivateKey;
+ * import com.pulumi.fastly.TlsPrivateKeyArgs;
+ * import com.pulumi.fastly.TlsCertificate;
+ * import com.pulumi.fastly.TlsCertificateArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var keyPrivateKey = new PrivateKey(&#34;keyPrivateKey&#34;, PrivateKeyArgs.builder()        
+ *             .algorithm(&#34;RSA&#34;)
+ *             .build());
+ * 
+ *         var cert = new SelfSignedCert(&#34;cert&#34;, SelfSignedCertArgs.builder()        
+ *             .keyAlgorithm(keyPrivateKey.algorithm())
+ *             .privateKeyPem(keyPrivateKey.privateKeyPem())
+ *             .subjects(SelfSignedCertSubjectArgs.builder()
+ *                 .commonName(&#34;example.com&#34;)
+ *                 .build())
+ *             .isCaCertificate(true)
+ *             .validityPeriodHours(360)
+ *             .allowedUses(            
+ *                 &#34;cert_signing&#34;,
+ *                 &#34;server_auth&#34;)
+ *             .dnsNames(&#34;example.com&#34;)
+ *             .build());
+ * 
+ *         var keyTlsPrivateKey = new TlsPrivateKey(&#34;keyTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
+ *             .keyPem(keyPrivateKey.privateKeyPem())
+ *             .build());
+ * 
+ *         var example = new TlsCertificate(&#34;example&#34;, TlsCertificateArgs.builder()        
+ *             .certificateBody(cert.certPem())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(keyTlsPrivateKey)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * ```
  * ## Updating certificates
  * 
  * There are three scenarios for updating a certificate:

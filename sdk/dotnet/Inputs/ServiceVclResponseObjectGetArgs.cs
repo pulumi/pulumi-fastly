@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclResponseObjectGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclResponseObjectGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
@@ -57,5 +57,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclResponseObjectGetArgs()
         {
         }
+        public static new ServiceVclResponseObjectGetArgs Empty => new ServiceVclResponseObjectGetArgs();
     }
 }

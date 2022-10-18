@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingHerokusGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingHerokusGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Apache-style string or VCL variables to use for log formatting.
@@ -42,11 +42,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The URL to stream logs to
@@ -57,5 +67,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingHerokusGetArgs()
         {
         }
+        public static new ServiceVclLoggingHerokusGetArgs Empty => new ServiceVclLoggingHerokusGetArgs();
     }
 }

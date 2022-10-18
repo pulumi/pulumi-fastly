@@ -21,7 +21,7 @@ namespace Pulumi.Fastly
     ///  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries.entries
     /// </summary>
     [FastlyResourceType("fastly:index/serviceACLEntries:ServiceACLEntries")]
-    public partial class ServiceACLEntries : Pulumi.CustomResource
+    public partial class ServiceACLEntries : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the ACL that the items belong to
@@ -91,7 +91,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class ServiceACLEntriesArgs : Pulumi.ResourceArgs
+    public sealed class ServiceACLEntriesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the ACL that the items belong to
@@ -126,9 +126,10 @@ namespace Pulumi.Fastly
         public ServiceACLEntriesArgs()
         {
         }
+        public static new ServiceACLEntriesArgs Empty => new ServiceACLEntriesArgs();
     }
 
-    public sealed class ServiceACLEntriesState : Pulumi.ResourceArgs
+    public sealed class ServiceACLEntriesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the ACL that the items belong to
@@ -163,5 +164,6 @@ namespace Pulumi.Fastly
         public ServiceACLEntriesState()
         {
         }
+        public static new ServiceACLEntriesState Empty => new ServiceACLEntriesState();
     }
 }

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -44,6 +45,21 @@ public final class ServiceVclHealthcheckArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<Integer>> expectedResponse() {
         return Optional.ofNullable(this.expectedResponse);
+    }
+
+    /**
+     * Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     * 
+     */
+    @Import(name="headers")
+    private @Nullable Output<List<String>> headers;
+
+    /**
+     * @return Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     * 
+     */
+    public Optional<Output<List<String>>> headers() {
+        return Optional.ofNullable(this.headers);
     }
 
     /**
@@ -186,6 +202,7 @@ public final class ServiceVclHealthcheckArgs extends com.pulumi.resources.Resour
     private ServiceVclHealthcheckArgs(ServiceVclHealthcheckArgs $) {
         this.checkInterval = $.checkInterval;
         this.expectedResponse = $.expectedResponse;
+        this.headers = $.headers;
         this.host = $.host;
         this.httpVersion = $.httpVersion;
         this.initial = $.initial;
@@ -255,6 +272,37 @@ public final class ServiceVclHealthcheckArgs extends com.pulumi.resources.Resour
          */
         public Builder expectedResponse(Integer expectedResponse) {
             return expectedResponse(Output.of(expectedResponse));
+        }
+
+        /**
+         * @param headers Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+         * 
+         * @return builder
+         * 
+         */
+        public Builder headers(@Nullable Output<List<String>> headers) {
+            $.headers = headers;
+            return this;
+        }
+
+        /**
+         * @param headers Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+         * 
+         * @return builder
+         * 
+         */
+        public Builder headers(List<String> headers) {
+            return headers(Output.of(headers));
+        }
+
+        /**
+         * @param headers Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+         * 
+         * @return builder
+         * 
+         */
+        public Builder headers(String... headers) {
+            return headers(List.of(headers));
         }
 
         /**

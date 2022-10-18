@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingHttpGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingHttpGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Value of the `Content-Type` header sent with the request
@@ -102,11 +102,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        [Input("tlsClientKey")]
+        private Input<string>? _tlsClientKey;
+
         /// <summary>
         /// The client private key used to make authenticated requests. Must be in PEM format
         /// </summary>
-        [Input("tlsClientKey")]
-        public Input<string>? TlsClientKey { get; set; }
+        public Input<string>? TlsClientKey
+        {
+            get => _tlsClientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsClientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Used during the TLS handshake to validate the certificate
@@ -123,5 +133,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingHttpGetArgs()
         {
         }
+        public static new ServiceVclLoggingHttpGetArgs Empty => new ServiceVclLoggingHttpGetArgs();
     }
 }

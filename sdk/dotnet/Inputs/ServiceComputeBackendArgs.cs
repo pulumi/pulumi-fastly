@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeBackendArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// An IPv4, hostname, or IPv6 address for the Backend
@@ -120,17 +120,37 @@ namespace Pulumi.Fastly.Inputs
         [Input("sslCiphers")]
         public Input<string>? SslCiphers { get; set; }
 
+        [Input("sslClientCert")]
+        private Input<string>? _sslClientCert;
+
         /// <summary>
         /// Client certificate attached to origin. Used when connecting to the backend
         /// </summary>
-        [Input("sslClientCert")]
-        public Input<string>? SslClientCert { get; set; }
+        public Input<string>? SslClientCert
+        {
+            get => _sslClientCert;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sslClientCert = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("sslClientKey")]
+        private Input<string>? _sslClientKey;
 
         /// <summary>
         /// Client key attached to origin. Used when connecting to the backend
         /// </summary>
-        [Input("sslClientKey")]
-        public Input<string>? SslClientKey { get; set; }
+        public Input<string>? SslClientKey
+        {
+            get => _sslClientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sslClientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Used for both SNI during the TLS handshake and to validate the cert
@@ -159,5 +179,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeBackendArgs()
         {
         }
+        public static new ServiceComputeBackendArgs Empty => new ServiceComputeBackendArgs();
     }
 }

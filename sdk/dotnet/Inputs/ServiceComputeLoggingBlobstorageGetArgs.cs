@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingBlobstorageGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingBlobstorageGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique Azure Blob Storage namespace in which your data objects are stored
@@ -72,11 +72,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
+        [Input("sasToken", required: true)]
+        private Input<string>? _sasToken;
+
         /// <summary>
         /// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
         /// </summary>
-        [Input("sasToken", required: true)]
-        public Input<string> SasToken { get; set; } = null!;
+        public Input<string>? SasToken
+        {
+            get => _sasToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sasToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -87,5 +97,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingBlobstorageGetArgs()
         {
         }
+        public static new ServiceComputeLoggingBlobstorageGetArgs Empty => new ServiceComputeLoggingBlobstorageGetArgs();
     }
 }

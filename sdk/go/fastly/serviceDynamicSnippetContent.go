@@ -208,6 +208,26 @@ func (o ServiceDynamicSnippetContentOutput) ToServiceDynamicSnippetContentOutput
 	return o
 }
 
+// The VCL code that specifies exactly what the snippet does
+func (o ServiceDynamicSnippetContentOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceDynamicSnippetContent) pulumi.StringOutput { return v.Content }).(pulumi.StringOutput)
+}
+
+// Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
+func (o ServiceDynamicSnippetContentOutput) ManageSnippets() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceDynamicSnippetContent) pulumi.BoolPtrOutput { return v.ManageSnippets }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the service that the dynamic snippet belongs to
+func (o ServiceDynamicSnippetContentOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceDynamicSnippetContent) pulumi.StringOutput { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+// The ID of the dynamic snippet that the content belong to
+func (o ServiceDynamicSnippetContentOutput) SnippetId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceDynamicSnippetContent) pulumi.StringOutput { return v.SnippetId }).(pulumi.StringOutput)
+}
+
 type ServiceDynamicSnippetContentArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceDynamicSnippetContentArrayOutput) ElementType() reflect.Type {

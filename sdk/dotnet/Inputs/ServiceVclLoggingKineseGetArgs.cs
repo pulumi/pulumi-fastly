@@ -10,13 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingKineseGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingKineseGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey")]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// The AWS access key to be used to write to the stream
         /// </summary>
-        [Input("accessKey")]
-        public Input<string>? AccessKey { get; set; }
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Apache style log formatting.
@@ -60,11 +70,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The AWS secret access key to authenticate with
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Kinesis stream name
@@ -75,5 +95,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingKineseGetArgs()
         {
         }
+        public static new ServiceVclLoggingKineseGetArgs Empty => new ServiceVclLoggingKineseGetArgs();
     }
 }

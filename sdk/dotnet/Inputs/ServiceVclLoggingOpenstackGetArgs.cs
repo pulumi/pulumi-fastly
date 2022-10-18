@@ -10,13 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingOpenstackGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingOpenstackGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey", required: true)]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// Your OpenStack account access key
         /// </summary>
-        [Input("accessKey", required: true)]
-        public Input<string> AccessKey { get; set; } = null!;
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The name of your OpenStack container
@@ -111,5 +121,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingOpenstackGetArgs()
         {
         }
+        public static new ServiceVclLoggingOpenstackGetArgs Empty => new ServiceVclLoggingOpenstackGetArgs();
     }
 }

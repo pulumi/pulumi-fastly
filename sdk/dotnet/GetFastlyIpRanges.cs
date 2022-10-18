@@ -19,32 +19,31 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Aws = Pulumi.Aws;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var fastly = Output.Create(Fastly.GetFastlyIpRanges.InvokeAsync());
-        ///         var fromFastly = new Aws.Ec2.SecurityGroup("fromFastly", new Aws.Ec2.SecurityGroupArgs
-        ///         {
-        ///             Ingress = 
-        ///             {
-        ///                 new Aws.Ec2.Inputs.SecurityGroupIngressArgs
-        ///                 {
-        ///                     FromPort = 443,
-        ///                     ToPort = 443,
-        ///                     Protocol = "tcp",
-        ///                     CidrBlocks = fastly.Apply(fastly =&gt; fastly.CidrBlocks),
-        ///                     Ipv6CidrBlocks = fastly.Apply(fastly =&gt; fastly.Ipv6CidrBlocks),
-        ///                 },
-        ///             },
-        ///         });
-        ///     }
+        ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
         /// 
-        /// }
+        ///     var fromFastly = new Aws.Ec2.SecurityGroup("fromFastly", new()
+        ///     {
+        ///         Ingress = new[]
+        ///         {
+        ///             new Aws.Ec2.Inputs.SecurityGroupIngressArgs
+        ///             {
+        ///                 FromPort = 443,
+        ///                 ToPort = 443,
+        ///                 Protocol = "tcp",
+        ///                 CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks),
+        ///                 Ipv6CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks),
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
         /// ```
         /// 
         /// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
@@ -52,7 +51,7 @@ namespace Pulumi.Fastly
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFastlyIpRangesResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFastlyIpRangesResult>("fastly:index/getFastlyIpRanges:getFastlyIpRanges", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFastlyIpRangesResult>("fastly:index/getFastlyIpRanges:getFastlyIpRanges", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

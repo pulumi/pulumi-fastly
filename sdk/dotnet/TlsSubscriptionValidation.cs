@@ -17,7 +17,7 @@ namespace Pulumi.Fastly
     /// &gt; **Warning:** This resource implements a part of the validation workflow. It does not represent a real-world entity in Fastly, therefore changing or deleting this resource on its own has no immediate effect.
     /// </summary>
     [FastlyResourceType("fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation")]
-    public partial class TlsSubscriptionValidation : Pulumi.CustomResource
+    public partial class TlsSubscriptionValidation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the TLS Subscription that should be validated.
@@ -69,7 +69,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class TlsSubscriptionValidationArgs : Pulumi.ResourceArgs
+    public sealed class TlsSubscriptionValidationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the TLS Subscription that should be validated.
@@ -80,9 +80,10 @@ namespace Pulumi.Fastly
         public TlsSubscriptionValidationArgs()
         {
         }
+        public static new TlsSubscriptionValidationArgs Empty => new TlsSubscriptionValidationArgs();
     }
 
-    public sealed class TlsSubscriptionValidationState : Pulumi.ResourceArgs
+    public sealed class TlsSubscriptionValidationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the TLS Subscription that should be validated.
@@ -93,5 +94,6 @@ namespace Pulumi.Fastly
         public TlsSubscriptionValidationState()
         {
         }
+        public static new TlsSubscriptionValidationState Empty => new TlsSubscriptionValidationState();
     }
 }

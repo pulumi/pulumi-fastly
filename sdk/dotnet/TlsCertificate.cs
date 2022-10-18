@@ -19,59 +19,60 @@ namespace Pulumi.Fastly
     /// Basic usage:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Fastly = Pulumi.Fastly;
     /// using Tls = Pulumi.Tls;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new()
     ///     {
-    ///         var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new Tls.PrivateKeyArgs
-    ///         {
-    ///             Algorithm = "RSA",
-    ///         });
-    ///         var cert = new Tls.SelfSignedCert("cert", new Tls.SelfSignedCertArgs
-    ///         {
-    ///             KeyAlgorithm = keyPrivateKey.Algorithm,
-    ///             PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
-    ///             Subjects = 
-    ///             {
-    ///                 new Tls.Inputs.SelfSignedCertSubjectArgs
-    ///                 {
-    ///                     CommonName = "example.com",
-    ///                 },
-    ///             },
-    ///             IsCaCertificate = true,
-    ///             ValidityPeriodHours = 360,
-    ///             AllowedUses = 
-    ///             {
-    ///                 "cert_signing",
-    ///                 "server_auth",
-    ///             },
-    ///             DnsNames = 
-    ///             {
-    ///                 "example.com",
-    ///             },
-    ///         });
-    ///         var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new Fastly.TlsPrivateKeyArgs
-    ///         {
-    ///             KeyPem = keyPrivateKey.PrivateKeyPem,
-    ///         });
-    ///         var example = new Fastly.TlsCertificate("example", new Fastly.TlsCertificateArgs
-    ///         {
-    ///             CertificateBody = cert.CertPem,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 keyTlsPrivateKey,
-    ///             },
-    ///         });
-    ///         // The private key has to be present before the certificate can be uploaded
-    ///     }
+    ///         Algorithm = "RSA",
+    ///     });
     /// 
-    /// }
+    ///     var cert = new Tls.SelfSignedCert("cert", new()
+    ///     {
+    ///         KeyAlgorithm = keyPrivateKey.Algorithm,
+    ///         PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
+    ///         Subjects = new[]
+    ///         {
+    ///             new Tls.Inputs.SelfSignedCertSubjectArgs
+    ///             {
+    ///                 CommonName = "example.com",
+    ///             },
+    ///         },
+    ///         IsCaCertificate = true,
+    ///         ValidityPeriodHours = 360,
+    ///         AllowedUses = new[]
+    ///         {
+    ///             "cert_signing",
+    ///             "server_auth",
+    ///         },
+    ///         DnsNames = new[]
+    ///         {
+    ///             "example.com",
+    ///         },
+    ///     });
+    /// 
+    ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new()
+    ///     {
+    ///         KeyPem = keyPrivateKey.PrivateKeyPem,
+    ///     });
+    /// 
+    ///     var example = new Fastly.TlsCertificate("example", new()
+    ///     {
+    ///         CertificateBody = cert.CertPem,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             keyTlsPrivateKey,
+    ///         },
+    ///     });
+    /// 
+    ///     // The private key has to be present before the certificate can be uploaded
+    /// });
     /// ```
     /// ## Updating certificates
     /// 
@@ -94,7 +95,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsCertificate:TlsCertificate")]
-    public partial class TlsCertificate : Pulumi.CustomResource
+    public partial class TlsCertificate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// PEM-formatted certificate, optionally including any intermediary certificates.
@@ -200,7 +201,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class TlsCertificateArgs : Pulumi.ResourceArgs
+    public sealed class TlsCertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// PEM-formatted certificate, optionally including any intermediary certificates.
@@ -217,9 +218,10 @@ namespace Pulumi.Fastly
         public TlsCertificateArgs()
         {
         }
+        public static new TlsCertificateArgs Empty => new TlsCertificateArgs();
     }
 
-    public sealed class TlsCertificateState : Pulumi.ResourceArgs
+    public sealed class TlsCertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// PEM-formatted certificate, optionally including any intermediary certificates.
@@ -290,5 +292,6 @@ namespace Pulumi.Fastly
         public TlsCertificateState()
         {
         }
+        public static new TlsCertificateState Empty => new TlsCertificateState();
     }
 }

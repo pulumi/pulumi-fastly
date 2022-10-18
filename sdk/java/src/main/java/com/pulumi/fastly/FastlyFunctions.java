@@ -93,6 +93,46 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     * 
+     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(&#34;443&#34;)
+     *                 .toPort(&#34;443&#34;)
+     *                 .protocol(&#34;tcp&#34;)
+     *                 .cidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.cidrBlocks()))
+     *                 .ipv6CidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.ipv6CidrBlocks()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static Output<GetFastlyIpRangesResult> getFastlyIpRanges() {
@@ -102,6 +142,46 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     * 
+     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(&#34;443&#34;)
+     *                 .toPort(&#34;443&#34;)
+     *                 .protocol(&#34;tcp&#34;)
+     *                 .cidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.cidrBlocks()))
+     *                 .ipv6CidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.ipv6CidrBlocks()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain() {
@@ -111,6 +191,46 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     * 
+     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(&#34;443&#34;)
+     *                 .toPort(&#34;443&#34;)
+     *                 .protocol(&#34;tcp&#34;)
+     *                 .cidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.cidrBlocks()))
+     *                 .ipv6CidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.ipv6CidrBlocks()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static Output<GetFastlyIpRangesResult> getFastlyIpRanges(InvokeArgs args) {
@@ -120,6 +240,46 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     * 
+     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(&#34;443&#34;)
+     *                 .toPort(&#34;443&#34;)
+     *                 .protocol(&#34;tcp&#34;)
+     *                 .cidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.cidrBlocks()))
+     *                 .ipv6CidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.ipv6CidrBlocks()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain(InvokeArgs args) {
@@ -129,6 +289,46 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     * 
+     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(&#34;443&#34;)
+     *                 .toPort(&#34;443&#34;)
+     *                 .protocol(&#34;tcp&#34;)
+     *                 .cidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.cidrBlocks()))
+     *                 .ipv6CidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.ipv6CidrBlocks()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static Output<GetFastlyIpRangesResult> getFastlyIpRanges(InvokeArgs args, InvokeOptions options) {
@@ -138,6 +338,46 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     * 
+     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(&#34;443&#34;)
+     *                 .toPort(&#34;443&#34;)
+     *                 .protocol(&#34;tcp&#34;)
+     *                 .cidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.cidrBlocks()))
+     *                 .ipv6CidrBlocks(fastly.applyValue(getFastlyIpRangesResult -&gt; getFastlyIpRangesResult.ipv6CidrBlocks()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain(InvokeArgs args, InvokeOptions options) {
@@ -195,6 +435,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsActivationResult> getTlsActivation() {
@@ -210,6 +478,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsActivationResult> getTlsActivationPlain() {
@@ -225,6 +521,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsActivationResult> getTlsActivation(GetTlsActivationArgs args) {
@@ -240,6 +564,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsActivationResult> getTlsActivationPlain(GetTlsActivationPlainArgs args) {
@@ -255,6 +607,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsActivationResult> getTlsActivation(GetTlsActivationArgs args, InvokeOptions options) {
@@ -270,6 +650,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsActivationResult> getTlsActivationPlain(GetTlsActivationPlainArgs args, InvokeOptions options) {
@@ -327,6 +735,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
+     *             .name(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsCertificateResult> getTlsCertificate() {
@@ -342,6 +778,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
+     *             .name(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsCertificateResult> getTlsCertificatePlain() {
@@ -357,6 +821,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
+     *             .name(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsCertificateResult> getTlsCertificate(GetTlsCertificateArgs args) {
@@ -372,6 +864,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
+     *             .name(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsCertificateResult> getTlsCertificatePlain(GetTlsCertificatePlainArgs args) {
@@ -387,6 +907,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
+     *             .name(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsCertificateResult> getTlsCertificate(GetTlsCertificateArgs args, InvokeOptions options) {
@@ -402,6 +950,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
+     *             .name(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsCertificateResult> getTlsCertificatePlain(GetTlsCertificatePlainArgs args, InvokeOptions options) {
@@ -411,6 +987,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsCertificateIds = FastlyFunctions.getTlsCertificateIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds() {
@@ -420,6 +1027,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsCertificateIds = FastlyFunctions.getTlsCertificateIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsCertificateIdsResult> getTlsCertificateIdsPlain() {
@@ -429,6 +1067,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsCertificateIds = FastlyFunctions.getTlsCertificateIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds(InvokeArgs args) {
@@ -438,6 +1107,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsCertificateIds = FastlyFunctions.getTlsCertificateIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsCertificateIdsResult> getTlsCertificateIdsPlain(InvokeArgs args) {
@@ -447,6 +1147,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsCertificateIds = FastlyFunctions.getTlsCertificateIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds(InvokeArgs args, InvokeOptions options) {
@@ -456,6 +1187,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsCertificateIds = FastlyFunctions.getTlsCertificateIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsCertificateIdsResult> getTlsCertificateIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -471,6 +1233,40 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfiguration = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
+     *             .default_(true)
+     *             .build());
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsConfigurationResult> getTlsConfiguration() {
@@ -486,6 +1282,40 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfiguration = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
+     *             .default_(true)
+     *             .build());
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsConfigurationResult> getTlsConfigurationPlain() {
@@ -501,6 +1331,40 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfiguration = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
+     *             .default_(true)
+     *             .build());
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsConfigurationResult> getTlsConfiguration(GetTlsConfigurationArgs args) {
@@ -516,6 +1380,40 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfiguration = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
+     *             .default_(true)
+     *             .build());
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsConfigurationResult> getTlsConfigurationPlain(GetTlsConfigurationPlainArgs args) {
@@ -531,6 +1429,40 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfiguration = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
+     *             .default_(true)
+     *             .build());
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsConfigurationResult> getTlsConfiguration(GetTlsConfigurationArgs args, InvokeOptions options) {
@@ -546,6 +1478,40 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfiguration = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
+     *             .default_(true)
+     *             .build());
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsConfigurationResult> getTlsConfigurationPlain(GetTlsConfigurationPlainArgs args, InvokeOptions options) {
@@ -555,6 +1521,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsConfigurationIdsResult> getTlsConfigurationIds() {
@@ -564,6 +1561,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsConfigurationIdsResult> getTlsConfigurationIdsPlain() {
@@ -573,6 +1601,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsConfigurationIdsResult> getTlsConfigurationIds(InvokeArgs args) {
@@ -582,6 +1641,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsConfigurationIdsResult> getTlsConfigurationIdsPlain(InvokeArgs args) {
@@ -591,6 +1681,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsConfigurationIdsResult> getTlsConfigurationIds(InvokeArgs args, InvokeOptions options) {
@@ -600,6 +1721,37 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.TlsActivation;
+     * import com.pulumi.fastly.TlsActivationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
+     * 
+     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
+     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsConfigurationIdsResult> getTlsConfigurationIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -609,6 +1761,34 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsDomainResult> getTlsDomain(GetTlsDomainArgs args) {
@@ -618,6 +1798,34 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsDomainResult> getTlsDomainPlain(GetTlsDomainPlainArgs args) {
@@ -627,6 +1835,34 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsDomainResult> getTlsDomain(GetTlsDomainArgs args, InvokeOptions options) {
@@ -636,6 +1872,34 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
+     *             .domain(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsDomainResult> getTlsDomainPlain(GetTlsDomainPlainArgs args, InvokeOptions options) {
@@ -651,6 +1915,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPlatformCertificateResult> getTlsPlatformCertificate() {
@@ -666,6 +1958,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateResult> getTlsPlatformCertificatePlain() {
@@ -681,6 +2001,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPlatformCertificateResult> getTlsPlatformCertificate(GetTlsPlatformCertificateArgs args) {
@@ -696,6 +2044,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateResult> getTlsPlatformCertificatePlain(GetTlsPlatformCertificatePlainArgs args) {
@@ -711,6 +2087,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPlatformCertificateResult> getTlsPlatformCertificate(GetTlsPlatformCertificateArgs args, InvokeOptions options) {
@@ -726,6 +2130,34 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateResult> getTlsPlatformCertificatePlain(GetTlsPlatformCertificatePlainArgs args, InvokeOptions options) {
@@ -735,6 +2167,36 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsPlatformCertificateIds = FastlyFunctions.getTlsPlatformCertificateIds();
+     * 
+     *         final var exampleTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .id(exampleTlsPlatformCertificateIds.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds() {
@@ -744,6 +2206,36 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsPlatformCertificateIds = FastlyFunctions.getTlsPlatformCertificateIds();
+     * 
+     *         final var exampleTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .id(exampleTlsPlatformCertificateIds.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIdsPlain() {
@@ -753,6 +2245,36 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsPlatformCertificateIds = FastlyFunctions.getTlsPlatformCertificateIds();
+     * 
+     *         final var exampleTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .id(exampleTlsPlatformCertificateIds.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds(InvokeArgs args) {
@@ -762,6 +2284,36 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsPlatformCertificateIds = FastlyFunctions.getTlsPlatformCertificateIds();
+     * 
+     *         final var exampleTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .id(exampleTlsPlatformCertificateIds.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIdsPlain(InvokeArgs args) {
@@ -771,6 +2323,36 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsPlatformCertificateIds = FastlyFunctions.getTlsPlatformCertificateIds();
+     * 
+     *         final var exampleTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .id(exampleTlsPlatformCertificateIds.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds(InvokeArgs args, InvokeOptions options) {
@@ -780,6 +2362,36 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsPlatformCertificateIds = FastlyFunctions.getTlsPlatformCertificateIds();
+     * 
+     *         final var exampleTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
+     *             .id(exampleTlsPlatformCertificateIds.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -796,6 +2408,35 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .name(&#34;demo-private-key&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPrivateKeyResult> getTlsPrivateKey() {
@@ -812,6 +2453,35 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .name(&#34;demo-private-key&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyResult> getTlsPrivateKeyPlain() {
@@ -828,6 +2498,35 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .name(&#34;demo-private-key&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPrivateKeyResult> getTlsPrivateKey(GetTlsPrivateKeyArgs args) {
@@ -844,6 +2543,35 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .name(&#34;demo-private-key&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyResult> getTlsPrivateKeyPlain(GetTlsPrivateKeyPlainArgs args) {
@@ -860,6 +2588,35 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .name(&#34;demo-private-key&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPrivateKeyResult> getTlsPrivateKey(GetTlsPrivateKeyArgs args, InvokeOptions options) {
@@ -876,6 +2633,35 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .name(&#34;demo-private-key&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyResult> getTlsPrivateKeyPlain(GetTlsPrivateKeyPlainArgs args, InvokeOptions options) {
@@ -885,6 +2671,36 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     * 
+     *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .id(fastly_tls_private_key_ids.demo().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds() {
@@ -894,6 +2710,36 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     * 
+     *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .id(fastly_tls_private_key_ids.demo().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIdsPlain() {
@@ -903,6 +2749,36 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     * 
+     *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .id(fastly_tls_private_key_ids.demo().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds(InvokeArgs args) {
@@ -912,6 +2788,36 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     * 
+     *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .id(fastly_tls_private_key_ids.demo().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIdsPlain(InvokeArgs args) {
@@ -921,6 +2827,36 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     * 
+     *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .id(fastly_tls_private_key_ids.demo().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds(InvokeArgs args, InvokeOptions options) {
@@ -930,6 +2866,36 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     * 
+     *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
+     *             .id(fastly_tls_private_key_ids.demo().ids()[0])
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -939,6 +2905,34 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsSubscriptionResult> getTlsSubscription() {
@@ -948,6 +2942,34 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionResult> getTlsSubscriptionPlain() {
@@ -957,6 +2979,34 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsSubscriptionResult> getTlsSubscription(GetTlsSubscriptionArgs args) {
@@ -966,6 +3016,34 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionResult> getTlsSubscriptionPlain(GetTlsSubscriptionPlainArgs args) {
@@ -975,6 +3053,34 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetTlsSubscriptionResult> getTlsSubscription(GetTlsSubscriptionArgs args, InvokeOptions options) {
@@ -984,6 +3090,34 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
+     *             .domains(&#34;example.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionResult> getTlsSubscriptionPlain(GetTlsSubscriptionPlainArgs args, InvokeOptions options) {

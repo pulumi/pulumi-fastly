@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingElasticsearchArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingElasticsearchArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Apache-style string or VCL variables to use for log formatting.
@@ -36,11 +36,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// BasicAuth password for Elasticsearch
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
@@ -84,11 +94,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        [Input("tlsClientKey")]
+        private Input<string>? _tlsClientKey;
+
         /// <summary>
         /// The client private key used to make authenticated requests. Must be in PEM format
         /// </summary>
-        [Input("tlsClientKey")]
-        public Input<string>? TlsClientKey { get; set; }
+        public Input<string>? TlsClientKey
+        {
+            get => _tlsClientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsClientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
@@ -111,5 +131,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingElasticsearchArgs()
         {
         }
+        public static new ServiceVclLoggingElasticsearchArgs Empty => new ServiceVclLoggingElasticsearchArgs();
     }
 }

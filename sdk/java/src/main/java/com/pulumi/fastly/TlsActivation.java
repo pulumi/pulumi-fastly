@@ -20,6 +20,71 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * Basic usage:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.TlsPrivateKey;
+ * import com.pulumi.fastly.TlsPrivateKeyArgs;
+ * import com.pulumi.fastly.TlsCertificate;
+ * import com.pulumi.fastly.TlsCertificateArgs;
+ * import com.pulumi.fastly.TlsActivation;
+ * import com.pulumi.fastly.TlsActivationArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demoServiceVcl = new ServiceVcl(&#34;demoServiceVcl&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;localhost&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var demoTlsPrivateKey = new TlsPrivateKey(&#34;demoTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
+ *             .keyPem(&#34;...&#34;)
+ *             .build());
+ * 
+ *         var demoTlsCertificate = new TlsCertificate(&#34;demoTlsCertificate&#34;, TlsCertificateArgs.builder()        
+ *             .certificateBody(&#34;...&#34;)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(demoTlsPrivateKey)
+ *                 .build());
+ * 
+ *         var test = new TlsActivation(&#34;test&#34;, TlsActivationArgs.builder()        
+ *             .certificateId(demoTlsCertificate.id())
+ *             .domain(&#34;example.com&#34;)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(demoServiceVcl)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * &gt; **Warning:** Updating the `fastly.TlsPrivateKey`/`fastly.TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `fastly.TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
+ * 
  * ## Import
  * 
  * A TLS activation can be imported using its ID, e.g.

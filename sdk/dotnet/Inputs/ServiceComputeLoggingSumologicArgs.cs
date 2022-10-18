@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingSumologicArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingSumologicArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -33,5 +33,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingSumologicArgs()
         {
         }
+        public static new ServiceComputeLoggingSumologicArgs Empty => new ServiceComputeLoggingSumologicArgs();
     }
 }

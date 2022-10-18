@@ -15,7 +15,7 @@ namespace Pulumi.Fastly
         /// Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).
         /// </summary>
         public static Task<GetServicesResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetServicesResult>("fastly:index/getServices:getServices", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetServicesResult>("fastly:index/getServices:getServices", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

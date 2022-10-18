@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingSyslogArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingSyslogArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A hostname or IPv4 address of the Syslog endpoint
@@ -72,11 +72,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        [Input("tlsClientKey")]
+        private Input<string>? _tlsClientKey;
+
         /// <summary>
         /// The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
         /// </summary>
-        [Input("tlsClientKey")]
-        public Input<string>? TlsClientKey { get; set; }
+        public Input<string>? TlsClientKey
+        {
+            get => _tlsClientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsClientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Used during the TLS handshake to validate the certificate
@@ -99,5 +109,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingSyslogArgs()
         {
         }
+        public static new ServiceVclLoggingSyslogArgs Empty => new ServiceVclLoggingSyslogArgs();
     }
 }

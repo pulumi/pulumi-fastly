@@ -25,29 +25,27 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Fastly.GetTlsPlatformCertificate.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Fastly.GetTlsPlatformCertificate.InvokeAsync(new Fastly.GetTlsPlatformCertificateArgs
+        ///         Domains = new[]
         ///         {
-        ///             Domains = 
-        ///             {
-        ///                 "example.com",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "example.com",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsPlatformCertificateResult> InvokeAsync(GetTlsPlatformCertificateArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information of a Platform TLS certificate for use with other resources.
@@ -63,33 +61,31 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Fastly.GetTlsPlatformCertificate.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Fastly.GetTlsPlatformCertificate.InvokeAsync(new Fastly.GetTlsPlatformCertificateArgs
+        ///         Domains = new[]
         ///         {
-        ///             Domains = 
-        ///             {
-        ///                 "example.com",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "example.com",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsPlatformCertificateResult> Invoke(GetTlsPlatformCertificateInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetTlsPlatformCertificateArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsPlatformCertificateArgs : global::Pulumi.InvokeArgs
     {
         [Input("domains")]
         private List<string>? _domains;
@@ -112,9 +108,10 @@ namespace Pulumi.Fastly
         public GetTlsPlatformCertificateArgs()
         {
         }
+        public static new GetTlsPlatformCertificateArgs Empty => new GetTlsPlatformCertificateArgs();
     }
 
-    public sealed class GetTlsPlatformCertificateInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsPlatformCertificateInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("domains")]
         private InputList<string>? _domains;
@@ -137,6 +134,7 @@ namespace Pulumi.Fastly
         public GetTlsPlatformCertificateInvokeArgs()
         {
         }
+        public static new GetTlsPlatformCertificateInvokeArgs Empty => new GetTlsPlatformCertificateInvokeArgs();
     }
 
 

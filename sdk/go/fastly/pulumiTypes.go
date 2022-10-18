@@ -6510,6 +6510,8 @@ type ServiceVclHealthcheck struct {
 	CheckInterval *int `pulumi:"checkInterval"`
 	// The status code expected from the host. Default `200`
 	ExpectedResponse *int `pulumi:"expectedResponse"`
+	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+	Headers []string `pulumi:"headers"`
 	// The Host header to send for this Healthcheck
 	Host string `pulumi:"host"`
 	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
@@ -6546,6 +6548,8 @@ type ServiceVclHealthcheckArgs struct {
 	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
 	// The status code expected from the host. Default `200`
 	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
+	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+	Headers pulumi.StringArrayInput `pulumi:"headers"`
 	// The Host header to send for this Healthcheck
 	Host pulumi.StringInput `pulumi:"host"`
 	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
@@ -6625,6 +6629,11 @@ func (o ServiceVclHealthcheckOutput) CheckInterval() pulumi.IntPtrOutput {
 // The status code expected from the host. Default `200`
 func (o ServiceVclHealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclHealthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
+}
+
+// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+func (o ServiceVclHealthcheckOutput) Headers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServiceVclHealthcheck) []string { return v.Headers }).(pulumi.StringArrayOutput)
 }
 
 // The Host header to send for this Healthcheck

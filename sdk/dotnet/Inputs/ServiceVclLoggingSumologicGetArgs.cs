@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingSumologicGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingSumologicGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Apache-style string or VCL variables to use for log formatting
@@ -57,5 +57,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingSumologicGetArgs()
         {
         }
+        public static new ServiceVclLoggingSumologicGetArgs Empty => new ServiceVclLoggingSumologicGetArgs();
     }
 }

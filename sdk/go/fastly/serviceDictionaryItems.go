@@ -205,6 +205,26 @@ func (o ServiceDictionaryItemsOutput) ToServiceDictionaryItemsOutputWithContext(
 	return o
 }
 
+// The ID of the dictionary that the items belong to
+func (o ServiceDictionaryItemsOutput) DictionaryId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceDictionaryItems) pulumi.StringOutput { return v.DictionaryId }).(pulumi.StringOutput)
+}
+
+// A map representing an entry in the dictionary, (key/value)
+func (o ServiceDictionaryItemsOutput) Items() pulumi.MapOutput {
+	return o.ApplyT(func(v *ServiceDictionaryItems) pulumi.MapOutput { return v.Items }).(pulumi.MapOutput)
+}
+
+// Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
+func (o ServiceDictionaryItemsOutput) ManageItems() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceDictionaryItems) pulumi.BoolPtrOutput { return v.ManageItems }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the service that the dictionary belongs to
+func (o ServiceDictionaryItemsOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceDictionaryItems) pulumi.StringOutput { return v.ServiceId }).(pulumi.StringOutput)
+}
+
 type ServiceDictionaryItemsArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceDictionaryItemsArrayOutput) ElementType() reflect.Type {

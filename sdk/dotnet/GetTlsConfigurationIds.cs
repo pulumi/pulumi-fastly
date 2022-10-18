@@ -19,28 +19,27 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var exampleTlsConfigurationIds = Output.Create(Fastly.GetTlsConfigurationIds.InvokeAsync());
-        ///         var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new Fastly.TlsActivationArgs
-        ///         {
-        ///             ConfigurationId = data.Fastly_tls_configuration.Example.Ids[0],
-        ///         });
-        ///         // ...
-        ///     }
+        ///     var exampleTlsConfigurationIds = Fastly.GetTlsConfigurationIds.Invoke();
         /// 
-        /// }
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
+        ///     {
+        ///         ConfigurationId = data.Fastly_tls_configuration.Example.Ids[0],
+        ///     });
+        /// 
+        ///     // ...
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsConfigurationIdsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationIdsResult>("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationIdsResult>("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

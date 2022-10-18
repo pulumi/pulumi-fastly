@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingKafkaGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingKafkaGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
@@ -42,11 +42,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("parseLogKeyvals")]
         public Input<bool>? ParseLogKeyvals { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// SASL Pass
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
@@ -72,11 +82,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        [Input("tlsClientKey")]
+        private Input<string>? _tlsClientKey;
+
         /// <summary>
         /// The client private key used to make authenticated requests. Must be in PEM format
         /// </summary>
-        [Input("tlsClientKey")]
-        public Input<string>? TlsClientKey { get; set; }
+        public Input<string>? TlsClientKey
+        {
+            get => _tlsClientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsClientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
@@ -105,5 +125,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingKafkaGetArgs()
         {
         }
+        public static new ServiceComputeLoggingKafkaGetArgs Empty => new ServiceComputeLoggingKafkaGetArgs();
     }
 }

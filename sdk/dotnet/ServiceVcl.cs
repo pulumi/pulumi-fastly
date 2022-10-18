@@ -33,7 +33,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/serviceVcl:ServiceVcl")]
-    public partial class ServiceVcl : Pulumi.CustomResource
+    public partial class ServiceVcl : global::Pulumi.CustomResource
     {
         [Output("acls")]
         public Output<ImmutableArray<Outputs.ServiceVclAcl>> Acls { get; private set; } = null!;
@@ -288,7 +288,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class ServiceVclArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclArgs : global::Pulumi.ResourceArgs
     {
         [Input("acls")]
         private InputList<Inputs.ServiceVclAclArgs>? _acls;
@@ -690,9 +690,10 @@ namespace Pulumi.Fastly
         public ServiceVclArgs()
         {
         }
+        public static new ServiceVclArgs Empty => new ServiceVclArgs();
     }
 
-    public sealed class ServiceVclState : Pulumi.ResourceArgs
+    public sealed class ServiceVclState : global::Pulumi.ResourceArgs
     {
         [Input("acls")]
         private InputList<Inputs.ServiceVclAclGetArgs>? _acls;
@@ -1112,5 +1113,6 @@ namespace Pulumi.Fastly
         public ServiceVclState()
         {
         }
+        public static new ServiceVclState Empty => new ServiceVclState();
     }
 }

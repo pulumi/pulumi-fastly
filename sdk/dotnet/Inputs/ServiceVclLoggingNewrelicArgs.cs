@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingNewrelicArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingNewrelicArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
@@ -48,14 +48,25 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The Insert API key from the Account page of your New Relic account
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ServiceVclLoggingNewrelicArgs()
         {
         }
+        public static new ServiceVclLoggingNewrelicArgs Empty => new ServiceVclLoggingNewrelicArgs();
     }
 }

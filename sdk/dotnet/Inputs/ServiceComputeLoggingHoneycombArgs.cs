@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingHoneycombArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingHoneycombArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Honeycomb Dataset you want to log to
@@ -24,14 +24,25 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The Write Key from the Account page of your Honeycomb account
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ServiceComputeLoggingHoneycombArgs()
         {
         }
+        public static new ServiceComputeLoggingHoneycombArgs Empty => new ServiceComputeLoggingHoneycombArgs();
     }
 }

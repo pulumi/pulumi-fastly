@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceACLEntriesEntryArgs : Pulumi.ResourceArgs
+    public sealed class ServiceACLEntriesEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A personal freeform descriptive note
@@ -45,5 +45,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceACLEntriesEntryArgs()
         {
         }
+        public static new ServiceACLEntriesEntryArgs Empty => new ServiceACLEntriesEntryArgs();
     }
 }

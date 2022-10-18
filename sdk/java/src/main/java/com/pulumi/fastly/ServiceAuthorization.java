@@ -20,6 +20,44 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * Basic usage:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.User;
+ * import com.pulumi.fastly.ServiceAuthorization;
+ * import com.pulumi.fastly.ServiceAuthorizationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;);
+ * 
+ *         var user = new User(&#34;user&#34;);
+ * 
+ *         var auth = new ServiceAuthorization(&#34;auth&#34;, ServiceAuthorizationArgs.builder()        
+ *             .serviceId(demo.id())
+ *             .userId(user.id())
+ *             .permission(&#34;purge_all&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * A Fastly Service Authorization can be imported using their user ID, e.g.

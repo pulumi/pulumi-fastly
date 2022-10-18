@@ -70,6 +70,300 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * Basic usage:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;localhost&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .comment(&#34;demo&#34;)
+ *                 .name(&#34;demo.notexample.com&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclGzipArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclHeaderArgs;
+ * import com.pulumi.aws.s3.BucketV2;
+ * import com.pulumi.aws.s3.BucketV2Args;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;demo.notexample.com.s3-website-us-west-2.amazonaws.com&#34;)
+ *                 .name(&#34;AWS S3 hosting&#34;)
+ *                 .overrideHost(&#34;demo.notexample.com.s3-website-us-west-2.amazonaws.com&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .comment(&#34;demo&#34;)
+ *                 .name(&#34;demo.notexample.com&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .gzips(ServiceVclGzipArgs.builder()
+ *                 .contentTypes(                
+ *                     &#34;text/html&#34;,
+ *                     &#34;text/css&#34;)
+ *                 .extensions(                
+ *                     &#34;css&#34;,
+ *                     &#34;js&#34;)
+ *                 .name(&#34;file extensions and content types&#34;)
+ *                 .build())
+ *             .headers(ServiceVclHeaderArgs.builder()
+ *                 .action(&#34;delete&#34;)
+ *                 .destination(&#34;http.x-amz-request-id&#34;)
+ *                 .name(&#34;remove x-amz-request-id&#34;)
+ *                 .type(&#34;cache&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var website = new BucketV2(&#34;website&#34;, BucketV2Args.builder()        
+ *             .acl(&#34;public-read&#34;)
+ *             .websites(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Basic usage with [custom
+ * VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclVclArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;localhost&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .comment(&#34;demo&#34;)
+ *                 .name(&#34;demo.notexample.com&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .vcls(            
+ *                 ServiceVclVclArgs.builder()
+ *                     .content(Files.readString(Paths.get(String.format(&#34;%s/my_custom_main.vcl&#34;, path.module()))))
+ *                     .main(true)
+ *                     .name(&#34;my_custom_main_vcl&#34;)
+ *                     .build(),
+ *                 ServiceVclVclArgs.builder()
+ *                     .content(Files.readString(Paths.get(String.format(&#34;%s/my_custom_library.vcl&#34;, path.module()))))
+ *                     .name(&#34;my_custom_library_vcl&#34;)
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDirectorArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .backends(            
+ *                 ServiceVclBackendArgs.builder()
+ *                     .address(&#34;127.0.0.1&#34;)
+ *                     .name(&#34;origin1&#34;)
+ *                     .port(80)
+ *                     .build(),
+ *                 ServiceVclBackendArgs.builder()
+ *                     .address(&#34;127.0.0.2&#34;)
+ *                     .name(&#34;origin2&#34;)
+ *                     .port(80)
+ *                     .build())
+ *             .directors(ServiceVclDirectorArgs.builder()
+ *                 .backends(                
+ *                     &#34;origin1&#34;,
+ *                     &#34;origin2&#34;)
+ *                 .name(&#34;mydirector&#34;)
+ *                 .quorum(0)
+ *                 .type(3)
+ *                 .build())
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .comment(&#34;demo&#34;)
+ *                 .name(&#34;demo.notexample.com&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .comment(&#34;demo&#34;)
+ *                 .name(&#34;example.com&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * &gt; **Note:** For an AWS S3 Bucket, the Backend address is
+ * `&lt;domain&gt;.s3-website-&lt;region&gt;.amazonaws.com`. The `override_host` attribute
+ * should be set to `&lt;bucket_name&gt;.s3-website-&lt;region&gt;.amazonaws.com` in the `backend` block. See the
+ * Fastly documentation on [Amazon S3][fastly-s3].
+ * 
+ * [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
+ * [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
+ * [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
+ * [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
+ * [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
+ * 
  * ## Import
  * 
  * Fastly Services can be imported using their service ID, e.g.

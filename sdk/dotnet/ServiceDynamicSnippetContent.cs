@@ -21,7 +21,7 @@ namespace Pulumi.Fastly
     ///  If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content.content` from the Terraform state file. $ terraform state rm fastly_service_dynamic_snippet_content.content
     /// </summary>
     [FastlyResourceType("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent")]
-    public partial class ServiceDynamicSnippetContent : Pulumi.CustomResource
+    public partial class ServiceDynamicSnippetContent : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The VCL code that specifies exactly what the snippet does
@@ -91,7 +91,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class ServiceDynamicSnippetContentArgs : Pulumi.ResourceArgs
+    public sealed class ServiceDynamicSnippetContentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The VCL code that specifies exactly what the snippet does
@@ -120,9 +120,10 @@ namespace Pulumi.Fastly
         public ServiceDynamicSnippetContentArgs()
         {
         }
+        public static new ServiceDynamicSnippetContentArgs Empty => new ServiceDynamicSnippetContentArgs();
     }
 
-    public sealed class ServiceDynamicSnippetContentState : Pulumi.ResourceArgs
+    public sealed class ServiceDynamicSnippetContentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The VCL code that specifies exactly what the snippet does
@@ -151,5 +152,6 @@ namespace Pulumi.Fastly
         public ServiceDynamicSnippetContentState()
         {
         }
+        public static new ServiceDynamicSnippetContentState Empty => new ServiceDynamicSnippetContentState();
     }
 }

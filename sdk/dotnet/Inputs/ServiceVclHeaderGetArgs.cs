@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclHeaderGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclHeaderGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
@@ -87,5 +87,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclHeaderGetArgs()
         {
         }
+        public static new ServiceVclHeaderGetArgs Empty => new ServiceVclHeaderGetArgs();
     }
 }

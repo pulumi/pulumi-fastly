@@ -74,7 +74,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    internal sealed class FastlyResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class FastlyResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public FastlyResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

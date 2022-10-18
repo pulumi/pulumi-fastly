@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingLogshuttleArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingLogshuttleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -18,11 +18,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The data authentication token associated with this endpoint
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Your Log Shuttle endpoint URL
@@ -33,5 +43,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingLogshuttleArgs()
         {
         }
+        public static new ServiceComputeLoggingLogshuttleArgs Empty => new ServiceComputeLoggingLogshuttleArgs();
     }
 }

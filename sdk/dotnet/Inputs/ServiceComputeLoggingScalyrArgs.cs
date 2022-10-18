@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingScalyrArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingScalyrArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -24,14 +24,25 @@ namespace Pulumi.Fastly.Inputs
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The token to use for authentication (https://www.scalyr.com/keys)
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ServiceComputeLoggingScalyrArgs()
         {
         }
+        public static new ServiceComputeLoggingScalyrArgs Empty => new ServiceComputeLoggingScalyrArgs();
     }
 }

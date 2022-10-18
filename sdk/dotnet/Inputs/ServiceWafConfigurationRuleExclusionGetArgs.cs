@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceWafConfigurationRuleExclusionGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceWafConfigurationRuleExclusionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A conditional expression in VCL used to determine if the condition is met
@@ -51,5 +51,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceWafConfigurationRuleExclusionGetArgs()
         {
         }
+        public static new ServiceWafConfigurationRuleExclusionGetArgs Empty => new ServiceWafConfigurationRuleExclusionGetArgs();
     }
 }

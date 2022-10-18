@@ -16,7 +16,7 @@ namespace Pulumi.Fastly
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [FastlyResourceType("pulumi:providers:fastly")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// Fastly API Key from https://app.fastly.com/#account
@@ -56,7 +56,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Fastly API Key from https://app.fastly.com/#account
@@ -88,5 +88,6 @@ namespace Pulumi.Fastly
         public ProviderArgs()
         {
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

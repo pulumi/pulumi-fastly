@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeDictionaryGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeDictionaryGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the dictionary
@@ -36,5 +36,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeDictionaryGetArgs()
         {
         }
+        public static new ServiceComputeDictionaryGetArgs Empty => new ServiceComputeDictionaryGetArgs();
     }
 }

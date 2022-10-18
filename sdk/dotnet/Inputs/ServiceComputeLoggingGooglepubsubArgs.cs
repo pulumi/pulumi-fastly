@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingGooglepubsubArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingGooglepubsubArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -24,11 +24,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("secretKey", required: true)]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         /// </summary>
-        [Input("secretKey", required: true)]
-        public Input<string> SecretKey { get; set; } = null!;
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Google Cloud Pub/Sub topic to which logs will be published
@@ -45,5 +55,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingGooglepubsubArgs()
         {
         }
+        public static new ServiceComputeLoggingGooglepubsubArgs Empty => new ServiceComputeLoggingGooglepubsubArgs();
     }
 }

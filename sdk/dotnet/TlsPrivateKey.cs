@@ -19,25 +19,24 @@ namespace Pulumi.Fastly
     /// Basic usage:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Fastly = Pulumi.Fastly;
     /// using Tls = Pulumi.Tls;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var demoPrivateKey = new Tls.PrivateKey("demoPrivateKey", new()
     ///     {
-    ///         var demoPrivateKey = new Tls.PrivateKey("demoPrivateKey", new Tls.PrivateKeyArgs
-    ///         {
-    ///             Algorithm = "RSA",
-    ///         });
-    ///         var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new Fastly.TlsPrivateKeyArgs
-    ///         {
-    ///             KeyPem = demoPrivateKey.PrivateKeyPem,
-    ///         });
-    ///     }
+    ///         Algorithm = "RSA",
+    ///     });
     /// 
-    /// }
+    ///     var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new()
+    ///     {
+    ///         KeyPem = demoPrivateKey.PrivateKeyPem,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -49,7 +48,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsPrivateKey:TlsPrivateKey")]
-    public partial class TlsPrivateKey : Pulumi.CustomResource
+    public partial class TlsPrivateKey : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Time-stamp (GMT) when the private key was created.
@@ -116,6 +115,10 @@ namespace Pulumi.Fastly
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "keyPem",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -137,13 +140,23 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class TlsPrivateKeyArgs : Pulumi.ResourceArgs
+    public sealed class TlsPrivateKeyArgs : global::Pulumi.ResourceArgs
     {
+        [Input("keyPem", required: true)]
+        private Input<string>? _keyPem;
+
         /// <summary>
         /// Private key in PEM format.
         /// </summary>
-        [Input("keyPem", required: true)]
-        public Input<string> KeyPem { get; set; } = null!;
+        public Input<string>? KeyPem
+        {
+            get => _keyPem;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keyPem = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Customisable name of the private key.
@@ -154,9 +167,10 @@ namespace Pulumi.Fastly
         public TlsPrivateKeyArgs()
         {
         }
+        public static new TlsPrivateKeyArgs Empty => new TlsPrivateKeyArgs();
     }
 
-    public sealed class TlsPrivateKeyState : Pulumi.ResourceArgs
+    public sealed class TlsPrivateKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Time-stamp (GMT) when the private key was created.
@@ -170,11 +184,21 @@ namespace Pulumi.Fastly
         [Input("keyLength")]
         public Input<int>? KeyLength { get; set; }
 
+        [Input("keyPem")]
+        private Input<string>? _keyPem;
+
         /// <summary>
         /// Private key in PEM format.
         /// </summary>
-        [Input("keyPem")]
-        public Input<string>? KeyPem { get; set; }
+        public Input<string>? KeyPem
+        {
+            get => _keyPem;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keyPem = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The algorithm used to generate the private key. Must be RSA.
@@ -203,5 +227,6 @@ namespace Pulumi.Fastly
         public TlsPrivateKeyState()
         {
         }
+        public static new TlsPrivateKeyState Empty => new TlsPrivateKeyState();
     }
 }
