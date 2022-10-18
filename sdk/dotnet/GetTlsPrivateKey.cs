@@ -26,29 +26,28 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var demo = Fastly.GetTlsPrivateKey.Invoke(new()
         ///     {
-        ///         var demo = Output.Create(Fastly.GetTlsPrivateKey.InvokeAsync(new Fastly.GetTlsPrivateKeyArgs
-        ///         {
-        ///             Name = "demo-private-key",
-        ///         }));
-        ///         this.PrivateKeyNeedsReplacing = demo.Apply(demo =&gt; demo.Replace);
-        ///     }
+        ///         Name = "demo-private-key",
+        ///     });
         /// 
-        ///     [Output("privateKeyNeedsReplacing")]
-        ///     public Output&lt;string&gt; PrivateKeyNeedsReplacing { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privateKeyNeedsReplacing"] = demo.Apply(getTlsPrivateKeyResult =&gt; getTlsPrivateKeyResult.Replace),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsPrivateKeyResult> InvokeAsync(GetTlsPrivateKeyArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information on a TLS Private Key uploaded to Fastly.
@@ -65,33 +64,32 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var demo = Fastly.GetTlsPrivateKey.Invoke(new()
         ///     {
-        ///         var demo = Output.Create(Fastly.GetTlsPrivateKey.InvokeAsync(new Fastly.GetTlsPrivateKeyArgs
-        ///         {
-        ///             Name = "demo-private-key",
-        ///         }));
-        ///         this.PrivateKeyNeedsReplacing = demo.Apply(demo =&gt; demo.Replace);
-        ///     }
+        ///         Name = "demo-private-key",
+        ///     });
         /// 
-        ///     [Output("privateKeyNeedsReplacing")]
-        ///     public Output&lt;string&gt; PrivateKeyNeedsReplacing { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privateKeyNeedsReplacing"] = demo.Apply(getTlsPrivateKeyResult =&gt; getTlsPrivateKeyResult.Replace),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsPrivateKeyResult> Invoke(GetTlsPrivateKeyInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetTlsPrivateKeyArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsPrivateKeyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Timestamp (GMT) when the private key was created.
@@ -132,9 +130,10 @@ namespace Pulumi.Fastly
         public GetTlsPrivateKeyArgs()
         {
         }
+        public static new GetTlsPrivateKeyArgs Empty => new GetTlsPrivateKeyArgs();
     }
 
-    public sealed class GetTlsPrivateKeyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsPrivateKeyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Timestamp (GMT) when the private key was created.
@@ -175,6 +174,7 @@ namespace Pulumi.Fastly
         public GetTlsPrivateKeyInvokeArgs()
         {
         }
+        public static new GetTlsPrivateKeyInvokeArgs Empty => new GetTlsPrivateKeyInvokeArgs();
     }
 
 

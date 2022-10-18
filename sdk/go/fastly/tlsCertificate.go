@@ -307,6 +307,56 @@ func (o TlsCertificateOutput) ToTlsCertificateOutputWithContext(ctx context.Cont
 	return o
 }
 
+// PEM-formatted certificate, optionally including any intermediary certificates.
+func (o TlsCertificateOutput) CertificateBody() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.CertificateBody }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate was created.
+func (o TlsCertificateOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// All the domains (including wildcard domains) that are listed in the certificate's Subject Alternative Names (SAN) list.
+func (o TlsCertificateOutput) Domains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringArrayOutput { return v.Domains }).(pulumi.StringArrayOutput)
+}
+
+// The hostname for which a certificate was issued.
+func (o TlsCertificateOutput) IssuedTo() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.IssuedTo }).(pulumi.StringOutput)
+}
+
+// The certificate authority that issued the certificate.
+func (o TlsCertificateOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
+func (o TlsCertificateOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
+func (o TlsCertificateOutput) Replace() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.BoolOutput { return v.Replace }).(pulumi.BoolOutput)
+}
+
+// A value assigned by the issuer that is unique to a certificate.
+func (o TlsCertificateOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// The algorithm used to sign the certificate.
+func (o TlsCertificateOutput) SignatureAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.SignatureAlgorithm }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate was last updated.
+func (o TlsCertificateOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsCertificate) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
 type TlsCertificateArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsCertificateArrayOutput) ElementType() reflect.Type {

@@ -29,7 +29,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsSubscription:TlsSubscription")]
-    public partial class TlsSubscription : Pulumi.CustomResource
+    public partial class TlsSubscription : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
@@ -153,7 +153,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class TlsSubscriptionArgs : Pulumi.ResourceArgs
+    public sealed class TlsSubscriptionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
@@ -200,9 +200,10 @@ namespace Pulumi.Fastly
         public TlsSubscriptionArgs()
         {
         }
+        public static new TlsSubscriptionArgs Empty => new TlsSubscriptionArgs();
     }
 
-    public sealed class TlsSubscriptionState : Pulumi.ResourceArgs
+    public sealed class TlsSubscriptionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
@@ -310,5 +311,6 @@ namespace Pulumi.Fastly
         public TlsSubscriptionState()
         {
         }
+        public static new TlsSubscriptionState Empty => new TlsSubscriptionState();
     }
 }

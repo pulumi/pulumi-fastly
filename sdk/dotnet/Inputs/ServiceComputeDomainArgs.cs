@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeDomainArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// An optional comment about the Domain.
@@ -27,5 +27,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeDomainArgs()
         {
         }
+        public static new ServiceComputeDomainArgs Empty => new ServiceComputeDomainArgs();
     }
 }

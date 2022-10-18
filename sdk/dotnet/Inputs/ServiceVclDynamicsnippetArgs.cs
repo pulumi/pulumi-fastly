@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclDynamicsnippetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclDynamicsnippetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
@@ -39,5 +39,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclDynamicsnippetArgs()
         {
         }
+        public static new ServiceVclDynamicsnippetArgs Empty => new ServiceVclDynamicsnippetArgs();
     }
 }

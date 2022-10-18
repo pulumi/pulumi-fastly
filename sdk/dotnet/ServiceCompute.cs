@@ -25,7 +25,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/serviceCompute:ServiceCompute")]
-    public partial class ServiceCompute : Pulumi.CustomResource
+    public partial class ServiceCompute : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -223,7 +223,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class ServiceComputeArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -508,9 +508,10 @@ namespace Pulumi.Fastly
         public ServiceComputeArgs()
         {
         }
+        public static new ServiceComputeArgs Empty => new ServiceComputeArgs();
     }
 
-    public sealed class ServiceComputeState : Pulumi.ResourceArgs
+    public sealed class ServiceComputeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -813,5 +814,6 @@ namespace Pulumi.Fastly
         public ServiceComputeState()
         {
         }
+        public static new ServiceComputeState Empty => new ServiceComputeState();
     }
 }

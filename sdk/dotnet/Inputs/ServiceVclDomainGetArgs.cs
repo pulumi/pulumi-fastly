@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclDomainGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclDomainGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// An optional comment about the Domain.
@@ -27,5 +27,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclDomainGetArgs()
         {
         }
+        public static new ServiceVclDomainGetArgs Empty => new ServiceVclDomainGetArgs();
     }
 }

@@ -6,6 +6,7 @@ package com.pulumi.fastly.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -22,6 +23,11 @@ public final class ServiceVclHealthcheck {
      * 
      */
     private @Nullable Integer expectedResponse;
+    /**
+     * @return Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     * 
+     */
+    private @Nullable List<String> headers;
     /**
      * @return The Host header to send for this Healthcheck
      * 
@@ -82,6 +88,13 @@ public final class ServiceVclHealthcheck {
      */
     public Optional<Integer> expectedResponse() {
         return Optional.ofNullable(this.expectedResponse);
+    }
+    /**
+     * @return Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     * 
+     */
+    public List<String> headers() {
+        return this.headers == null ? List.of() : this.headers;
     }
     /**
      * @return The Host header to send for this Healthcheck
@@ -158,6 +171,7 @@ public final class ServiceVclHealthcheck {
     public static final class Builder {
         private @Nullable Integer checkInterval;
         private @Nullable Integer expectedResponse;
+        private @Nullable List<String> headers;
         private String host;
         private @Nullable String httpVersion;
         private @Nullable Integer initial;
@@ -172,6 +186,7 @@ public final class ServiceVclHealthcheck {
     	      Objects.requireNonNull(defaults);
     	      this.checkInterval = defaults.checkInterval;
     	      this.expectedResponse = defaults.expectedResponse;
+    	      this.headers = defaults.headers;
     	      this.host = defaults.host;
     	      this.httpVersion = defaults.httpVersion;
     	      this.initial = defaults.initial;
@@ -192,6 +207,14 @@ public final class ServiceVclHealthcheck {
         public Builder expectedResponse(@Nullable Integer expectedResponse) {
             this.expectedResponse = expectedResponse;
             return this;
+        }
+        @CustomType.Setter
+        public Builder headers(@Nullable List<String> headers) {
+            this.headers = headers;
+            return this;
+        }
+        public Builder headers(String... headers) {
+            return headers(List.of(headers));
         }
         @CustomType.Setter
         public Builder host(String host) {
@@ -242,6 +265,7 @@ public final class ServiceVclHealthcheck {
             final var o = new ServiceVclHealthcheck();
             o.checkInterval = checkInterval;
             o.expectedResponse = expectedResponse;
+            o.headers = headers;
             o.host = host;
             o.httpVersion = httpVersion;
             o.initial = initial;

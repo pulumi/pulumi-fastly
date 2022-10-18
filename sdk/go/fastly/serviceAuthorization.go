@@ -238,6 +238,21 @@ func (o ServiceAuthorizationOutput) ToServiceAuthorizationOutputWithContext(ctx 
 	return o
 }
 
+// The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
+func (o ServiceAuthorizationOutput) Permission() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceAuthorization) pulumi.StringOutput { return v.Permission }).(pulumi.StringOutput)
+}
+
+// The ID of the service to grant permissions for.
+func (o ServiceAuthorizationOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceAuthorization) pulumi.StringOutput { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+// The ID of the user which will receive the granted permissions.
+func (o ServiceAuthorizationOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceAuthorization) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
+}
+
 type ServiceAuthorizationArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceAuthorizationArrayOutput) ElementType() reflect.Type {

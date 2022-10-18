@@ -519,6 +519,242 @@ func (o ServiceVclOutput) ToServiceVclOutputWithContext(ctx context.Context) Ser
 	return o
 }
 
+func (o ServiceVclOutput) Acls() ServiceVclAclArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclAclArrayOutput { return v.Acls }).(ServiceVclAclArrayOutput)
+}
+
+// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+func (o ServiceVclOutput) Activate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
+}
+
+// The currently active version of your Fastly Service
+func (o ServiceVclOutput) ActiveVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.IntOutput { return v.ActiveVersion }).(pulumi.IntOutput)
+}
+
+func (o ServiceVclOutput) Backends() ServiceVclBackendArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclBackendArrayOutput { return v.Backends }).(ServiceVclBackendArrayOutput)
+}
+
+func (o ServiceVclOutput) CacheSettings() ServiceVclCacheSettingArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclCacheSettingArrayOutput { return v.CacheSettings }).(ServiceVclCacheSettingArrayOutput)
+}
+
+// The latest cloned version by the provider
+func (o ServiceVclOutput) ClonedVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
+}
+
+// Description field for the service. Default `Managed by Terraform`
+func (o ServiceVclOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceVclOutput) Conditions() ServiceVclConditionArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclConditionArrayOutput { return v.Conditions }).(ServiceVclConditionArrayOutput)
+}
+
+// The default hostname
+func (o ServiceVclOutput) DefaultHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.StringPtrOutput { return v.DefaultHost }).(pulumi.StringPtrOutput)
+}
+
+// The default Time-to-live (TTL) for requests
+func (o ServiceVclOutput) DefaultTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.IntPtrOutput { return v.DefaultTtl }).(pulumi.IntPtrOutput)
+}
+
+func (o ServiceVclOutput) Dictionaries() ServiceVclDictionaryArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclDictionaryArrayOutput { return v.Dictionaries }).(ServiceVclDictionaryArrayOutput)
+}
+
+func (o ServiceVclOutput) Directors() ServiceVclDirectorArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclDirectorArrayOutput { return v.Directors }).(ServiceVclDirectorArrayOutput)
+}
+
+// A set of Domain names to serve as entry points for your Service
+func (o ServiceVclOutput) Domains() ServiceVclDomainArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclDomainArrayOutput { return v.Domains }).(ServiceVclDomainArrayOutput)
+}
+
+func (o ServiceVclOutput) Dynamicsnippets() ServiceVclDynamicsnippetArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclDynamicsnippetArrayOutput { return v.Dynamicsnippets }).(ServiceVclDynamicsnippetArrayOutput)
+}
+
+// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+func (o ServiceVclOutput) ForceDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+func (o ServiceVclOutput) Gzips() ServiceVclGzipArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclGzipArrayOutput { return v.Gzips }).(ServiceVclGzipArrayOutput)
+}
+
+func (o ServiceVclOutput) Headers() ServiceVclHeaderArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclHeaderArrayOutput { return v.Headers }).(ServiceVclHeaderArrayOutput)
+}
+
+func (o ServiceVclOutput) Healthchecks() ServiceVclHealthcheckArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclHealthcheckArrayOutput { return v.Healthchecks }).(ServiceVclHealthcheckArrayOutput)
+}
+
+// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+func (o ServiceVclOutput) Imported() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolOutput { return v.Imported }).(pulumi.BoolOutput)
+}
+
+func (o ServiceVclOutput) LoggingBigqueries() ServiceVclLoggingBigqueryArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingBigqueryArrayOutput { return v.LoggingBigqueries }).(ServiceVclLoggingBigqueryArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingBlobstorages() ServiceVclLoggingBlobstorageArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingBlobstorageArrayOutput { return v.LoggingBlobstorages }).(ServiceVclLoggingBlobstorageArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingCloudfiles() ServiceVclLoggingCloudfileArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingCloudfileArrayOutput { return v.LoggingCloudfiles }).(ServiceVclLoggingCloudfileArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingDatadogs() ServiceVclLoggingDatadogArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingDatadogArrayOutput { return v.LoggingDatadogs }).(ServiceVclLoggingDatadogArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingDigitaloceans() ServiceVclLoggingDigitaloceanArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingDigitaloceanArrayOutput { return v.LoggingDigitaloceans }).(ServiceVclLoggingDigitaloceanArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingElasticsearches() ServiceVclLoggingElasticsearchArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingElasticsearchArrayOutput { return v.LoggingElasticsearches }).(ServiceVclLoggingElasticsearchArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingFtps() ServiceVclLoggingFtpArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingFtpArrayOutput { return v.LoggingFtps }).(ServiceVclLoggingFtpArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingGcs() ServiceVclLoggingGcArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingGcArrayOutput { return v.LoggingGcs }).(ServiceVclLoggingGcArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingGooglepubsubs() ServiceVclLoggingGooglepubsubArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingGooglepubsubArrayOutput { return v.LoggingGooglepubsubs }).(ServiceVclLoggingGooglepubsubArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingHerokus() ServiceVclLoggingHerokusArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingHerokusArrayOutput { return v.LoggingHerokus }).(ServiceVclLoggingHerokusArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingHoneycombs() ServiceVclLoggingHoneycombArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingHoneycombArrayOutput { return v.LoggingHoneycombs }).(ServiceVclLoggingHoneycombArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingHttps() ServiceVclLoggingHttpArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingHttpArrayOutput { return v.LoggingHttps }).(ServiceVclLoggingHttpArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingKafkas() ServiceVclLoggingKafkaArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingKafkaArrayOutput { return v.LoggingKafkas }).(ServiceVclLoggingKafkaArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingKineses() ServiceVclLoggingKineseArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingKineseArrayOutput { return v.LoggingKineses }).(ServiceVclLoggingKineseArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingLogentries() ServiceVclLoggingLogentryArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingLogentryArrayOutput { return v.LoggingLogentries }).(ServiceVclLoggingLogentryArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingLogglies() ServiceVclLoggingLogglyArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingLogglyArrayOutput { return v.LoggingLogglies }).(ServiceVclLoggingLogglyArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingLogshuttles() ServiceVclLoggingLogshuttleArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingLogshuttleArrayOutput { return v.LoggingLogshuttles }).(ServiceVclLoggingLogshuttleArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingNewrelics() ServiceVclLoggingNewrelicArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingNewrelicArrayOutput { return v.LoggingNewrelics }).(ServiceVclLoggingNewrelicArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingOpenstacks() ServiceVclLoggingOpenstackArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingOpenstackArrayOutput { return v.LoggingOpenstacks }).(ServiceVclLoggingOpenstackArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingPapertrails() ServiceVclLoggingPapertrailArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingPapertrailArrayOutput { return v.LoggingPapertrails }).(ServiceVclLoggingPapertrailArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingS3s() ServiceVclLoggingS3ArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingS3ArrayOutput { return v.LoggingS3s }).(ServiceVclLoggingS3ArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingScalyrs() ServiceVclLoggingScalyrArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingScalyrArrayOutput { return v.LoggingScalyrs }).(ServiceVclLoggingScalyrArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingSftps() ServiceVclLoggingSftpArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingSftpArrayOutput { return v.LoggingSftps }).(ServiceVclLoggingSftpArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingSplunks() ServiceVclLoggingSplunkArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingSplunkArrayOutput { return v.LoggingSplunks }).(ServiceVclLoggingSplunkArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingSumologics() ServiceVclLoggingSumologicArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingSumologicArrayOutput { return v.LoggingSumologics }).(ServiceVclLoggingSumologicArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingSyslogs() ServiceVclLoggingSyslogArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingSyslogArrayOutput { return v.LoggingSyslogs }).(ServiceVclLoggingSyslogArrayOutput)
+}
+
+// The unique name for the Service to create
+func (o ServiceVclOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ServiceVclOutput) RequestSettings() ServiceVclRequestSettingArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclRequestSettingArrayOutput { return v.RequestSettings }).(ServiceVclRequestSettingArrayOutput)
+}
+
+func (o ServiceVclOutput) ResponseObjects() ServiceVclResponseObjectArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclResponseObjectArrayOutput { return v.ResponseObjects }).(ServiceVclResponseObjectArrayOutput)
+}
+
+// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
+// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
+// an active service will cause an error. Default `false`
+func (o ServiceVclOutput) Reuse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
+}
+
+func (o ServiceVclOutput) Snippets() ServiceVclSnippetArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclSnippetArrayOutput { return v.Snippets }).(ServiceVclSnippetArrayOutput)
+}
+
+// Enables serving a stale object if there is an error
+func (o ServiceVclOutput) StaleIfError() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.StaleIfError }).(pulumi.BoolPtrOutput)
+}
+
+// The default time-to-live (TTL) for serving the stale object for the version
+func (o ServiceVclOutput) StaleIfErrorTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.IntPtrOutput { return v.StaleIfErrorTtl }).(pulumi.IntPtrOutput)
+}
+
+func (o ServiceVclOutput) Vcls() ServiceVclVclArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclVclArrayOutput { return v.Vcls }).(ServiceVclVclArrayOutput)
+}
+
+// Description field for the version
+func (o ServiceVclOutput) VersionComment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.StringPtrOutput { return v.VersionComment }).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceVclOutput) Waf() ServiceVclWafPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclWafPtrOutput { return v.Waf }).(ServiceVclWafPtrOutput)
+}
+
 type ServiceVclArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclArrayOutput) ElementType() reflect.Type {

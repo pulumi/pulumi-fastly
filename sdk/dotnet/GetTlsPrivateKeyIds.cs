@@ -19,27 +19,26 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var demo = Output.Create(Fastly.GetTlsPrivateKeyIds.InvokeAsync());
-        ///         var example = Output.Create(Fastly.GetTlsPrivateKey.InvokeAsync(new Fastly.GetTlsPrivateKeyArgs
-        ///         {
-        ///             Id = fastly_tls_private_key_ids.Demo.Ids[0],
-        ///         }));
-        ///     }
+        ///     var demo = Fastly.GetTlsPrivateKeyIds.Invoke();
         /// 
-        /// }
+        ///     var example = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     {
+        ///         Id = fastly_tls_private_key_ids.Demo.Ids[0],
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsPrivateKeyIdsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyIdsResult>("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyIdsResult>("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

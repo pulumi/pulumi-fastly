@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclCacheSettingArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclCacheSettingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
@@ -45,5 +45,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclCacheSettingArgs()
         {
         }
+        public static new ServiceVclCacheSettingArgs Empty => new ServiceVclCacheSettingArgs();
     }
 }

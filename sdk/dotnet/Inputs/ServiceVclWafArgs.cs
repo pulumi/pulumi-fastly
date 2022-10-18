@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclWafArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclWafArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
@@ -39,5 +39,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclWafArgs()
         {
         }
+        public static new ServiceVclWafArgs Empty => new ServiceVclWafArgs();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface ServiceACLEntriesEntry {
     /**
@@ -1391,6 +1392,10 @@ export interface ServiceVclHealthcheck {
      * The status code expected from the host. Default `200`
      */
     expectedResponse?: pulumi.Input<number>;
+    /**
+     * Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     */
+    headers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The Host header to send for this Healthcheck
      */

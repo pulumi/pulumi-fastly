@@ -25,26 +25,24 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Fastly.GetTlsActivation.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Fastly.GetTlsActivation.InvokeAsync(new Fastly.GetTlsActivationArgs
-        ///         {
-        ///             Domain = "example.com",
-        ///         }));
-        ///     }
+        ///         Domain = "example.com",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsActivationResult> InvokeAsync(GetTlsActivationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
@@ -60,30 +58,28 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Fastly.GetTlsActivation.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Fastly.GetTlsActivation.InvokeAsync(new Fastly.GetTlsActivationArgs
-        ///         {
-        ///             Domain = "example.com",
-        ///         }));
-        ///     }
+        ///         Domain = "example.com",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsActivationResult> Invoke(GetTlsActivationInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetTlsActivationArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsActivationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the TLS Certificate used.
@@ -112,9 +108,10 @@ namespace Pulumi.Fastly
         public GetTlsActivationArgs()
         {
         }
+        public static new GetTlsActivationArgs Empty => new GetTlsActivationArgs();
     }
 
-    public sealed class GetTlsActivationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsActivationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the TLS Certificate used.
@@ -143,6 +140,7 @@ namespace Pulumi.Fastly
         public GetTlsActivationInvokeArgs()
         {
         }
+        public static new GetTlsActivationInvokeArgs Empty => new GetTlsActivationInvokeArgs();
     }
 
 

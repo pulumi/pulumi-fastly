@@ -506,6 +506,181 @@ func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutputWithContex
 	return o
 }
 
+// Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+func (o ServiceWafConfigurationOutput) Activate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
+}
+
+// Whether a specific firewall version is currently deployed
+func (o ServiceWafConfigurationOutput) Active() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.BoolOutput { return v.Active }).(pulumi.BoolOutput)
+}
+
+// Allowed HTTP versions
+func (o ServiceWafConfigurationOutput) AllowedHttpVersions() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.AllowedHttpVersions }).(pulumi.StringOutput)
+}
+
+// A space-separated list of HTTP method names
+func (o ServiceWafConfigurationOutput) AllowedMethods() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.AllowedMethods }).(pulumi.StringOutput)
+}
+
+// Allowed request content types
+func (o ServiceWafConfigurationOutput) AllowedRequestContentType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.AllowedRequestContentType }).(pulumi.StringOutput)
+}
+
+// Allowed request content type charset
+func (o ServiceWafConfigurationOutput) AllowedRequestContentTypeCharset() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.AllowedRequestContentTypeCharset }).(pulumi.StringOutput)
+}
+
+// The maximum number of arguments allowed
+func (o ServiceWafConfigurationOutput) ArgLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.ArgLength }).(pulumi.IntOutput)
+}
+
+// The maximum allowed argument name length
+func (o ServiceWafConfigurationOutput) ArgNameLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.ArgNameLength }).(pulumi.IntOutput)
+}
+
+// The latest cloned firewall version by the provider
+func (o ServiceWafConfigurationOutput) ClonedVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
+}
+
+// The maximum allowed size of all files
+func (o ServiceWafConfigurationOutput) CombinedFileSizes() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.CombinedFileSizes }).(pulumi.IntOutput)
+}
+
+// Score value to add for critical anomalies
+func (o ServiceWafConfigurationOutput) CriticalAnomalyScore() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.CriticalAnomalyScore }).(pulumi.IntOutput)
+}
+
+// CRS validate UTF8 encoding
+func (o ServiceWafConfigurationOutput) CrsValidateUtf8Encoding() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.BoolOutput { return v.CrsValidateUtf8Encoding }).(pulumi.BoolOutput)
+}
+
+// Score value to add for error anomalies
+func (o ServiceWafConfigurationOutput) ErrorAnomalyScore() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.ErrorAnomalyScore }).(pulumi.IntOutput)
+}
+
+// A space-separated list of country codes in ISO 3166-1 (two-letter) format
+func (o ServiceWafConfigurationOutput) HighRiskCountryCodes() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.HighRiskCountryCodes }).(pulumi.StringOutput)
+}
+
+// HTTP violation threshold
+func (o ServiceWafConfigurationOutput) HttpViolationScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.HttpViolationScoreThreshold }).(pulumi.IntOutput)
+}
+
+// Inbound anomaly threshold
+func (o ServiceWafConfigurationOutput) InboundAnomalyScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.InboundAnomalyScoreThreshold }).(pulumi.IntOutput)
+}
+
+// Local file inclusion attack threshold
+func (o ServiceWafConfigurationOutput) LfiScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.LfiScoreThreshold }).(pulumi.IntOutput)
+}
+
+// The maximum allowed file size, in bytes
+func (o ServiceWafConfigurationOutput) MaxFileSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.MaxFileSize }).(pulumi.IntOutput)
+}
+
+// The maximum number of arguments allowed
+func (o ServiceWafConfigurationOutput) MaxNumArgs() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.MaxNumArgs }).(pulumi.IntOutput)
+}
+
+// Score value to add for notice anomalies
+func (o ServiceWafConfigurationOutput) NoticeAnomalyScore() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.NoticeAnomalyScore }).(pulumi.IntOutput)
+}
+
+// The WAF firewall version
+func (o ServiceWafConfigurationOutput) Number() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.Number }).(pulumi.IntOutput)
+}
+
+// The configured paranoia level
+func (o ServiceWafConfigurationOutput) ParanoiaLevel() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.ParanoiaLevel }).(pulumi.IntOutput)
+}
+
+// PHP injection threshold
+func (o ServiceWafConfigurationOutput) PhpInjectionScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.PhpInjectionScoreThreshold }).(pulumi.IntOutput)
+}
+
+// Remote code execution threshold
+func (o ServiceWafConfigurationOutput) RceScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.RceScoreThreshold }).(pulumi.IntOutput)
+}
+
+// A space-separated list of allowed file extensions
+func (o ServiceWafConfigurationOutput) RestrictedExtensions() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.RestrictedExtensions }).(pulumi.StringOutput)
+}
+
+// A space-separated list of allowed header names
+func (o ServiceWafConfigurationOutput) RestrictedHeaders() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.RestrictedHeaders }).(pulumi.StringOutput)
+}
+
+// Remote file inclusion attack threshold
+func (o ServiceWafConfigurationOutput) RfiScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.RfiScoreThreshold }).(pulumi.IntOutput)
+}
+
+func (o ServiceWafConfigurationOutput) RuleExclusions() ServiceWafConfigurationRuleExclusionArrayOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) ServiceWafConfigurationRuleExclusionArrayOutput {
+		return v.RuleExclusions
+	}).(ServiceWafConfigurationRuleExclusionArrayOutput)
+}
+
+func (o ServiceWafConfigurationOutput) Rules() ServiceWafConfigurationRuleArrayOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) ServiceWafConfigurationRuleArrayOutput { return v.Rules }).(ServiceWafConfigurationRuleArrayOutput)
+}
+
+// Session fixation attack threshold
+func (o ServiceWafConfigurationOutput) SessionFixationScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.SessionFixationScoreThreshold }).(pulumi.IntOutput)
+}
+
+// SQL injection attack threshold
+func (o ServiceWafConfigurationOutput) SqlInjectionScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.SqlInjectionScoreThreshold }).(pulumi.IntOutput)
+}
+
+// The maximum size of argument names and values
+func (o ServiceWafConfigurationOutput) TotalArgLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.TotalArgLength }).(pulumi.IntOutput)
+}
+
+// The ID of the Web Application Firewall that the configuration belongs to
+func (o ServiceWafConfigurationOutput) WafId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.StringOutput { return v.WafId }).(pulumi.StringOutput)
+}
+
+// Score value to add for warning anomalies
+func (o ServiceWafConfigurationOutput) WarningAnomalyScore() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.WarningAnomalyScore }).(pulumi.IntOutput)
+}
+
+// XSS attack threshold
+func (o ServiceWafConfigurationOutput) XssScoreThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.XssScoreThreshold }).(pulumi.IntOutput)
+}
+
 type ServiceWafConfigurationArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceWafConfigurationArrayOutput) ElementType() reflect.Type {

@@ -22,6 +22,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? ExpectedResponse;
         /// <summary>
+        /// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+        /// </summary>
+        public readonly ImmutableArray<string> Headers;
+        /// <summary>
         /// The Host header to send for this Healthcheck
         /// </summary>
         public readonly string Host;
@@ -64,6 +68,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? expectedResponse,
 
+            ImmutableArray<string> headers,
+
             string host,
 
             string? httpVersion,
@@ -84,6 +90,7 @@ namespace Pulumi.Fastly.Outputs
         {
             CheckInterval = checkInterval;
             ExpectedResponse = expectedResponse;
+            Headers = headers;
             Host = host;
             HttpVersion = httpVersion;
             Initial = initial;

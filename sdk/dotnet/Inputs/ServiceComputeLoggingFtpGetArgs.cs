@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingFtpGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingFtpGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The FTP address to stream logs to
@@ -42,11 +42,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password for the server (for anonymous use an email address)
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The path to upload log files to. If the path ends in `/` then it is treated as a directory
@@ -87,5 +97,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingFtpGetArgs()
         {
         }
+        public static new ServiceComputeLoggingFtpGetArgs Empty => new ServiceComputeLoggingFtpGetArgs();
     }
 }

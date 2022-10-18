@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclRequestSettingGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclRequestSettingGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
@@ -87,5 +87,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclRequestSettingGetArgs()
         {
         }
+        public static new ServiceVclRequestSettingGetArgs Empty => new ServiceVclRequestSettingGetArgs();
     }
 }

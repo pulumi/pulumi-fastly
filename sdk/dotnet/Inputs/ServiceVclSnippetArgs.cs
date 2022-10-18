@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclSnippetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclSnippetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The VCL code that specifies exactly what the snippet does
@@ -39,5 +39,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclSnippetArgs()
         {
         }
+        public static new ServiceVclSnippetArgs Empty => new ServiceVclSnippetArgs();
     }
 }

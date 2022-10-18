@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingSplunkGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingSplunkGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
@@ -54,11 +54,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("tlsClientCert")]
         public Input<string>? TlsClientCert { get; set; }
 
+        [Input("tlsClientKey")]
+        private Input<string>? _tlsClientKey;
+
         /// <summary>
         /// The client private key used to make authenticated requests. Must be in PEM format.
         /// </summary>
-        [Input("tlsClientKey")]
-        public Input<string>? TlsClientKey { get; set; }
+        public Input<string>? TlsClientKey
+        {
+            get => _tlsClientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsClientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
@@ -66,11 +76,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("tlsHostname")]
         public Input<string>? TlsHostname { get; set; }
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The Splunk token to be used for authentication
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Splunk URL to stream logs to
@@ -87,5 +107,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingSplunkGetArgs()
         {
         }
+        public static new ServiceVclLoggingSplunkGetArgs Empty => new ServiceVclLoggingSplunkGetArgs();
     }
 }

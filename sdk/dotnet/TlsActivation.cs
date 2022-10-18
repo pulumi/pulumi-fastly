@@ -19,60 +19,61 @@ namespace Pulumi.Fastly
     /// Basic usage:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Fastly = Pulumi.Fastly;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var demoServiceVcl = new Fastly.ServiceVcl("demoServiceVcl", new()
     ///     {
-    ///         var demoServiceVcl = new Fastly.ServiceVcl("demoServiceVcl", new Fastly.ServiceVclArgs
+    ///         Domains = new[]
     ///         {
-    ///             Domains = 
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
     ///             {
-    ///                 new Fastly.Inputs.ServiceVclDomainArgs
-    ///                 {
-    ///                     Name = "example.com",
-    ///                 },
+    ///                 Name = "example.com",
     ///             },
-    ///             Backends = 
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
     ///             {
-    ///                 new Fastly.Inputs.ServiceVclBackendArgs
-    ///                 {
-    ///                     Address = "127.0.0.1",
-    ///                     Name = "localhost",
-    ///                 },
+    ///                 Address = "127.0.0.1",
+    ///                 Name = "localhost",
     ///             },
-    ///             ForceDestroy = true,
-    ///         });
-    ///         var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new Fastly.TlsPrivateKeyArgs
-    ///         {
-    ///             KeyPem = "...",
-    ///         });
-    ///         var demoTlsCertificate = new Fastly.TlsCertificate("demoTlsCertificate", new Fastly.TlsCertificateArgs
-    ///         {
-    ///             CertificateBody = "...",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 demoTlsPrivateKey,
-    ///             },
-    ///         });
-    ///         var test = new Fastly.TlsActivation("test", new Fastly.TlsActivationArgs
-    ///         {
-    ///             CertificateId = demoTlsCertificate.Id,
-    ///             Domain = "example.com",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 demoServiceVcl,
-    ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
     /// 
-    /// }
+    ///     var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new()
+    ///     {
+    ///         KeyPem = "...",
+    ///     });
+    /// 
+    ///     var demoTlsCertificate = new Fastly.TlsCertificate("demoTlsCertificate", new()
+    ///     {
+    ///         CertificateBody = "...",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             demoTlsPrivateKey,
+    ///         },
+    ///     });
+    /// 
+    ///     var test = new Fastly.TlsActivation("test", new()
+    ///     {
+    ///         CertificateId = demoTlsCertificate.Id,
+    ///         Domain = "example.com",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             demoServiceVcl,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// &gt; **Warning:** Updating the `fastly.TlsPrivateKey`/`fastly.TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `fastly.TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
@@ -86,7 +87,7 @@ namespace Pulumi.Fastly
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsActivation:TlsActivation")]
-    public partial class TlsActivation : Pulumi.CustomResource
+    public partial class TlsActivation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
@@ -156,7 +157,7 @@ namespace Pulumi.Fastly
         }
     }
 
-    public sealed class TlsActivationArgs : Pulumi.ResourceArgs
+    public sealed class TlsActivationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
@@ -179,9 +180,10 @@ namespace Pulumi.Fastly
         public TlsActivationArgs()
         {
         }
+        public static new TlsActivationArgs Empty => new TlsActivationArgs();
     }
 
-    public sealed class TlsActivationState : Pulumi.ResourceArgs
+    public sealed class TlsActivationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
@@ -210,5 +212,6 @@ namespace Pulumi.Fastly
         public TlsActivationState()
         {
         }
+        public static new TlsActivationState Empty => new TlsActivationState();
     }
 }

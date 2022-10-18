@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingSftpArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingSftpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The SFTP address to stream logs to
@@ -54,11 +54,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The path to upload log files to. If the path ends in `/` then it is treated as a directory
@@ -96,11 +106,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// A list of host keys for all hosts we can connect to over SFTP
@@ -123,5 +143,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingSftpArgs()
         {
         }
+        public static new ServiceVclLoggingSftpArgs Empty => new ServiceVclLoggingSftpArgs();
     }
 }

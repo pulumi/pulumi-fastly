@@ -23,6 +23,107 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * Basic usage with self-signed CA:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.tls.PrivateKey;
+ * import com.pulumi.tls.PrivateKeyArgs;
+ * import com.pulumi.tls.SelfSignedCert;
+ * import com.pulumi.tls.SelfSignedCertArgs;
+ * import com.pulumi.tls.inputs.SelfSignedCertSubjectArgs;
+ * import com.pulumi.tls.CertRequest;
+ * import com.pulumi.tls.CertRequestArgs;
+ * import com.pulumi.tls.inputs.CertRequestSubjectArgs;
+ * import com.pulumi.tls.LocallySignedCert;
+ * import com.pulumi.tls.LocallySignedCertArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
+ * import com.pulumi.fastly.TlsPrivateKey;
+ * import com.pulumi.fastly.TlsPrivateKeyArgs;
+ * import com.pulumi.fastly.TlsPlatformCertificate;
+ * import com.pulumi.fastly.TlsPlatformCertificateArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var caKey = new PrivateKey(&#34;caKey&#34;, PrivateKeyArgs.builder()        
+ *             .algorithm(&#34;RSA&#34;)
+ *             .build());
+ * 
+ *         var keyPrivateKey = new PrivateKey(&#34;keyPrivateKey&#34;, PrivateKeyArgs.builder()        
+ *             .algorithm(&#34;RSA&#34;)
+ *             .build());
+ * 
+ *         var ca = new SelfSignedCert(&#34;ca&#34;, SelfSignedCertArgs.builder()        
+ *             .keyAlgorithm(caKey.algorithm())
+ *             .privateKeyPem(caKey.privateKeyPem())
+ *             .subjects(SelfSignedCertSubjectArgs.builder()
+ *                 .commonName(&#34;Example CA&#34;)
+ *                 .build())
+ *             .isCaCertificate(true)
+ *             .validityPeriodHours(360)
+ *             .allowedUses(            
+ *                 &#34;cert_signing&#34;,
+ *                 &#34;server_auth&#34;)
+ *             .build());
+ * 
+ *         var example = new CertRequest(&#34;example&#34;, CertRequestArgs.builder()        
+ *             .keyAlgorithm(keyPrivateKey.algorithm())
+ *             .privateKeyPem(keyPrivateKey.privateKeyPem())
+ *             .subjects(CertRequestSubjectArgs.builder()
+ *                 .commonName(&#34;example.com&#34;)
+ *                 .build())
+ *             .dnsNames(            
+ *                 &#34;example.com&#34;,
+ *                 &#34;www.example.com&#34;)
+ *             .build());
+ * 
+ *         var certLocallySignedCert = new LocallySignedCert(&#34;certLocallySignedCert&#34;, LocallySignedCertArgs.builder()        
+ *             .certRequestPem(example.certRequestPem())
+ *             .caKeyAlgorithm(caKey.algorithm())
+ *             .caPrivateKeyPem(caKey.privateKeyPem())
+ *             .caCertPem(ca.certPem())
+ *             .validityPeriodHours(360)
+ *             .allowedUses(            
+ *                 &#34;cert_signing&#34;,
+ *                 &#34;server_auth&#34;)
+ *             .build());
+ * 
+ *         final var config = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
+ *             .tlsService(&#34;PLATFORM&#34;)
+ *             .build());
+ * 
+ *         var keyTlsPrivateKey = new TlsPrivateKey(&#34;keyTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
+ *             .keyPem(keyPrivateKey.privateKeyPem())
+ *             .build());
+ * 
+ *         var certTlsPlatformCertificate = new TlsPlatformCertificate(&#34;certTlsPlatformCertificate&#34;, TlsPlatformCertificateArgs.builder()        
+ *             .certificateBody(certLocallySignedCert.certPem())
+ *             .intermediatesBlob(ca.certPem())
+ *             .configurationId(config.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+ *             .allowUntrustedRoot(true)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(keyTlsPrivateKey)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * A certificate can be imported using its Fastly certificate ID, e.g.

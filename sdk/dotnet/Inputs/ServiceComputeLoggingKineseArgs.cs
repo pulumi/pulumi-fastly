@@ -10,13 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingKineseArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingKineseArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey")]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// The AWS access key to be used to write to the stream
         /// </summary>
-        [Input("accessKey")]
-        public Input<string>? AccessKey { get; set; }
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
@@ -36,11 +46,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The AWS secret access key to authenticate with
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Kinesis stream name
@@ -51,5 +71,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingKineseArgs()
         {
         }
+        public static new ServiceComputeLoggingKineseArgs Empty => new ServiceComputeLoggingKineseArgs();
     }
 }

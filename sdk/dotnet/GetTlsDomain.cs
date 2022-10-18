@@ -19,26 +19,24 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
         ///     {
-        ///         var domain = Output.Create(Fastly.GetTlsDomain.InvokeAsync(new Fastly.GetTlsDomainArgs
-        ///         {
-        ///             Domain = "example.com",
-        ///         }));
-        ///     }
+        ///         Domain = "example.com",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsDomainResult> InvokeAsync(GetTlsDomainArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
@@ -48,30 +46,28 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
         ///     {
-        ///         var domain = Output.Create(Fastly.GetTlsDomain.InvokeAsync(new Fastly.GetTlsDomainArgs
-        ///         {
-        ///             Domain = "example.com",
-        ///         }));
-        ///     }
+        ///         Domain = "example.com",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsDomainResult> Invoke(GetTlsDomainInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetTlsDomainArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsDomainArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Domain name to look up activations, certificates and subscriptions for.
@@ -82,9 +78,10 @@ namespace Pulumi.Fastly
         public GetTlsDomainArgs()
         {
         }
+        public static new GetTlsDomainArgs Empty => new GetTlsDomainArgs();
     }
 
-    public sealed class GetTlsDomainInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsDomainInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Domain name to look up activations, certificates and subscriptions for.
@@ -95,6 +92,7 @@ namespace Pulumi.Fastly
         public GetTlsDomainInvokeArgs()
         {
         }
+        public static new GetTlsDomainInvokeArgs Empty => new GetTlsDomainInvokeArgs();
     }
 
 

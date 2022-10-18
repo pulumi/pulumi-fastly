@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class TlsSubscriptionManagedHttpChallengeArgs : Pulumi.ResourceArgs
+    public sealed class TlsSubscriptionManagedHttpChallengeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
@@ -39,5 +39,6 @@ namespace Pulumi.Fastly.Inputs
         public TlsSubscriptionManagedHttpChallengeArgs()
         {
         }
+        public static new TlsSubscriptionManagedHttpChallengeArgs Empty => new TlsSubscriptionManagedHttpChallengeArgs();
     }
 }

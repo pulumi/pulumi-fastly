@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclAclGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclAclGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the ACL
@@ -33,5 +33,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclAclGetArgs()
         {
         }
+        public static new ServiceVclAclGetArgs Empty => new ServiceVclAclGetArgs();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputePackageGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputePackageGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path to the Wasm deployment package within your local filesystem
@@ -24,5 +24,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputePackageGetArgs()
         {
         }
+        public static new ServiceComputePackageGetArgs Empty => new ServiceComputePackageGetArgs();
     }
 }

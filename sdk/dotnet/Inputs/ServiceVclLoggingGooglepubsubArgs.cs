@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingGooglepubsubArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingGooglepubsubArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Apache style log formatting.
@@ -48,11 +48,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("secretKey", required: true)]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         /// </summary>
-        [Input("secretKey", required: true)]
-        public Input<string> SecretKey { get; set; } = null!;
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Google Cloud Pub/Sub topic to which logs will be published
@@ -69,5 +79,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingGooglepubsubArgs()
         {
         }
+        public static new ServiceVclLoggingGooglepubsubArgs Empty => new ServiceVclLoggingGooglepubsubArgs();
     }
 }

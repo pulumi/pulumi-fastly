@@ -166,6 +166,11 @@ func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationOutputWithCo
 	return o
 }
 
+// The ID of the TLS Subscription that should be validated.
+func (o TlsSubscriptionValidationOutput) SubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsSubscriptionValidation) pulumi.StringOutput { return v.SubscriptionId }).(pulumi.StringOutput)
+}
+
 type TlsSubscriptionValidationArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionValidationArrayOutput) ElementType() reflect.Type {

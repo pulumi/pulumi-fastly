@@ -10,13 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingDigitaloceanGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingDigitaloceanGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey", required: true)]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// Your DigitalOcean Spaces account access key
         /// </summary>
-        [Input("accessKey", required: true)]
-        public Input<string> AccessKey { get; set; } = null!;
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The name of the DigitalOcean Space
@@ -72,11 +82,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
+        [Input("secretKey", required: true)]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// Your DigitalOcean Spaces account secret key
         /// </summary>
-        [Input("secretKey", required: true)]
-        public Input<string> SecretKey { get; set; } = null!;
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -87,5 +107,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingDigitaloceanGetArgs()
         {
         }
+        public static new ServiceComputeLoggingDigitaloceanGetArgs Empty => new ServiceComputeLoggingDigitaloceanGetArgs();
     }
 }

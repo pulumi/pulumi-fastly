@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceWafConfigurationRuleArgs : Pulumi.ResourceArgs
+    public sealed class ServiceWafConfigurationRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Web Application Firewall rule's modsecurity ID
@@ -33,5 +33,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceWafConfigurationRuleArgs()
         {
         }
+        public static new ServiceWafConfigurationRuleArgs Empty => new ServiceWafConfigurationRuleArgs();
     }
 }

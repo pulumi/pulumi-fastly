@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclGzipArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclGzipArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
@@ -51,5 +51,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclGzipArgs()
         {
         }
+        public static new ServiceVclGzipArgs Empty => new ServiceVclGzipArgs();
     }
 }

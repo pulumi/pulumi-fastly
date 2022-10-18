@@ -5,38 +5,158 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./getDatacenters";
-export * from "./getFastlyIpRanges";
-export * from "./getServices";
-export * from "./getTlsActivation";
-export * from "./getTlsActivationIds";
-export * from "./getTlsCertificate";
-export * from "./getTlsCertificateIds";
-export * from "./getTlsConfiguration";
-export * from "./getTlsConfigurationIds";
-export * from "./getTlsDomain";
-export * from "./getTlsPlatformCertificate";
-export * from "./getTlsPlatformCertificateIds";
-export * from "./getTlsPrivateKey";
-export * from "./getTlsPrivateKeyIds";
-export * from "./getTlsSubscription";
-export * from "./getTlsSubscriptionIds";
-export * from "./getWafRules";
-export * from "./provider";
-export * from "./serviceACLEntries";
-export * from "./serviceAuthorization";
-export * from "./serviceCompute";
-export * from "./serviceDictionaryItems";
-export * from "./serviceDynamicSnippetContent";
-export * from "./serviceVcl";
-export * from "./serviceWafConfiguration";
-export * from "./tlsActivation";
-export * from "./tlsCertificate";
-export * from "./tlsPlatformCertificate";
-export * from "./tlsPrivateKey";
-export * from "./tlsSubscription";
-export * from "./tlsSubscriptionValidation";
-export * from "./user";
+export { GetDatacentersResult } from "./getDatacenters";
+export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
+
+export { GetFastlyIpRangesResult } from "./getFastlyIpRanges";
+export const getFastlyIpRanges: typeof import("./getFastlyIpRanges").getFastlyIpRanges = null as any;
+
+export { GetServicesResult } from "./getServices";
+export const getServices: typeof import("./getServices").getServices = null as any;
+
+export { GetTlsActivationArgs, GetTlsActivationResult, GetTlsActivationOutputArgs } from "./getTlsActivation";
+export const getTlsActivation: typeof import("./getTlsActivation").getTlsActivation = null as any;
+export const getTlsActivationOutput: typeof import("./getTlsActivation").getTlsActivationOutput = null as any;
+
+export { GetTlsActivationIdsArgs, GetTlsActivationIdsResult, GetTlsActivationIdsOutputArgs } from "./getTlsActivationIds";
+export const getTlsActivationIds: typeof import("./getTlsActivationIds").getTlsActivationIds = null as any;
+export const getTlsActivationIdsOutput: typeof import("./getTlsActivationIds").getTlsActivationIdsOutput = null as any;
+
+export { GetTlsCertificateArgs, GetTlsCertificateResult, GetTlsCertificateOutputArgs } from "./getTlsCertificate";
+export const getTlsCertificate: typeof import("./getTlsCertificate").getTlsCertificate = null as any;
+export const getTlsCertificateOutput: typeof import("./getTlsCertificate").getTlsCertificateOutput = null as any;
+
+export { GetTlsCertificateIdsResult } from "./getTlsCertificateIds";
+export const getTlsCertificateIds: typeof import("./getTlsCertificateIds").getTlsCertificateIds = null as any;
+
+export { GetTlsConfigurationArgs, GetTlsConfigurationResult, GetTlsConfigurationOutputArgs } from "./getTlsConfiguration";
+export const getTlsConfiguration: typeof import("./getTlsConfiguration").getTlsConfiguration = null as any;
+export const getTlsConfigurationOutput: typeof import("./getTlsConfiguration").getTlsConfigurationOutput = null as any;
+
+export { GetTlsConfigurationIdsResult } from "./getTlsConfigurationIds";
+export const getTlsConfigurationIds: typeof import("./getTlsConfigurationIds").getTlsConfigurationIds = null as any;
+
+export { GetTlsDomainArgs, GetTlsDomainResult, GetTlsDomainOutputArgs } from "./getTlsDomain";
+export const getTlsDomain: typeof import("./getTlsDomain").getTlsDomain = null as any;
+export const getTlsDomainOutput: typeof import("./getTlsDomain").getTlsDomainOutput = null as any;
+
+export { GetTlsPlatformCertificateArgs, GetTlsPlatformCertificateResult, GetTlsPlatformCertificateOutputArgs } from "./getTlsPlatformCertificate";
+export const getTlsPlatformCertificate: typeof import("./getTlsPlatformCertificate").getTlsPlatformCertificate = null as any;
+export const getTlsPlatformCertificateOutput: typeof import("./getTlsPlatformCertificate").getTlsPlatformCertificateOutput = null as any;
+
+export { GetTlsPlatformCertificateIdsResult } from "./getTlsPlatformCertificateIds";
+export const getTlsPlatformCertificateIds: typeof import("./getTlsPlatformCertificateIds").getTlsPlatformCertificateIds = null as any;
+
+export { GetTlsPrivateKeyArgs, GetTlsPrivateKeyResult, GetTlsPrivateKeyOutputArgs } from "./getTlsPrivateKey";
+export const getTlsPrivateKey: typeof import("./getTlsPrivateKey").getTlsPrivateKey = null as any;
+export const getTlsPrivateKeyOutput: typeof import("./getTlsPrivateKey").getTlsPrivateKeyOutput = null as any;
+
+export { GetTlsPrivateKeyIdsResult } from "./getTlsPrivateKeyIds";
+export const getTlsPrivateKeyIds: typeof import("./getTlsPrivateKeyIds").getTlsPrivateKeyIds = null as any;
+
+export { GetTlsSubscriptionArgs, GetTlsSubscriptionResult, GetTlsSubscriptionOutputArgs } from "./getTlsSubscription";
+export const getTlsSubscription: typeof import("./getTlsSubscription").getTlsSubscription = null as any;
+export const getTlsSubscriptionOutput: typeof import("./getTlsSubscription").getTlsSubscriptionOutput = null as any;
+
+export { GetTlsSubscriptionIdsResult } from "./getTlsSubscriptionIds";
+export const getTlsSubscriptionIds: typeof import("./getTlsSubscriptionIds").getTlsSubscriptionIds = null as any;
+
+export { GetWafRulesArgs, GetWafRulesResult, GetWafRulesOutputArgs } from "./getWafRules";
+export const getWafRules: typeof import("./getWafRules").getWafRules = null as any;
+export const getWafRulesOutput: typeof import("./getWafRules").getWafRulesOutput = null as any;
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+
+export { ServiceACLEntriesArgs, ServiceACLEntriesState } from "./serviceACLEntries";
+export type ServiceACLEntries = import("./serviceACLEntries").ServiceACLEntries;
+export const ServiceACLEntries: typeof import("./serviceACLEntries").ServiceACLEntries = null as any;
+
+export { ServiceAuthorizationArgs, ServiceAuthorizationState } from "./serviceAuthorization";
+export type ServiceAuthorization = import("./serviceAuthorization").ServiceAuthorization;
+export const ServiceAuthorization: typeof import("./serviceAuthorization").ServiceAuthorization = null as any;
+
+export { ServiceComputeArgs, ServiceComputeState } from "./serviceCompute";
+export type ServiceCompute = import("./serviceCompute").ServiceCompute;
+export const ServiceCompute: typeof import("./serviceCompute").ServiceCompute = null as any;
+
+export { ServiceDictionaryItemsArgs, ServiceDictionaryItemsState } from "./serviceDictionaryItems";
+export type ServiceDictionaryItems = import("./serviceDictionaryItems").ServiceDictionaryItems;
+export const ServiceDictionaryItems: typeof import("./serviceDictionaryItems").ServiceDictionaryItems = null as any;
+
+export { ServiceDynamicSnippetContentArgs, ServiceDynamicSnippetContentState } from "./serviceDynamicSnippetContent";
+export type ServiceDynamicSnippetContent = import("./serviceDynamicSnippetContent").ServiceDynamicSnippetContent;
+export const ServiceDynamicSnippetContent: typeof import("./serviceDynamicSnippetContent").ServiceDynamicSnippetContent = null as any;
+
+export { ServiceVclArgs, ServiceVclState } from "./serviceVcl";
+export type ServiceVcl = import("./serviceVcl").ServiceVcl;
+export const ServiceVcl: typeof import("./serviceVcl").ServiceVcl = null as any;
+
+export { ServiceWafConfigurationArgs, ServiceWafConfigurationState } from "./serviceWafConfiguration";
+export type ServiceWafConfiguration = import("./serviceWafConfiguration").ServiceWafConfiguration;
+export const ServiceWafConfiguration: typeof import("./serviceWafConfiguration").ServiceWafConfiguration = null as any;
+
+export { TlsActivationArgs, TlsActivationState } from "./tlsActivation";
+export type TlsActivation = import("./tlsActivation").TlsActivation;
+export const TlsActivation: typeof import("./tlsActivation").TlsActivation = null as any;
+
+export { TlsCertificateArgs, TlsCertificateState } from "./tlsCertificate";
+export type TlsCertificate = import("./tlsCertificate").TlsCertificate;
+export const TlsCertificate: typeof import("./tlsCertificate").TlsCertificate = null as any;
+
+export { TlsPlatformCertificateArgs, TlsPlatformCertificateState } from "./tlsPlatformCertificate";
+export type TlsPlatformCertificate = import("./tlsPlatformCertificate").TlsPlatformCertificate;
+export const TlsPlatformCertificate: typeof import("./tlsPlatformCertificate").TlsPlatformCertificate = null as any;
+
+export { TlsPrivateKeyArgs, TlsPrivateKeyState } from "./tlsPrivateKey";
+export type TlsPrivateKey = import("./tlsPrivateKey").TlsPrivateKey;
+export const TlsPrivateKey: typeof import("./tlsPrivateKey").TlsPrivateKey = null as any;
+
+export { TlsSubscriptionArgs, TlsSubscriptionState } from "./tlsSubscription";
+export type TlsSubscription = import("./tlsSubscription").TlsSubscription;
+export const TlsSubscription: typeof import("./tlsSubscription").TlsSubscription = null as any;
+
+export { TlsSubscriptionValidationArgs, TlsSubscriptionValidationState } from "./tlsSubscriptionValidation";
+export type TlsSubscriptionValidation = import("./tlsSubscriptionValidation").TlsSubscriptionValidation;
+export const TlsSubscriptionValidation: typeof import("./tlsSubscriptionValidation").TlsSubscriptionValidation = null as any;
+
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+
+utilities.lazyLoad(exports, ["getDatacenters"], () => require("./getDatacenters"));
+utilities.lazyLoad(exports, ["getFastlyIpRanges"], () => require("./getFastlyIpRanges"));
+utilities.lazyLoad(exports, ["getServices"], () => require("./getServices"));
+utilities.lazyLoad(exports, ["getTlsActivation","getTlsActivationOutput"], () => require("./getTlsActivation"));
+utilities.lazyLoad(exports, ["getTlsActivationIds","getTlsActivationIdsOutput"], () => require("./getTlsActivationIds"));
+utilities.lazyLoad(exports, ["getTlsCertificate","getTlsCertificateOutput"], () => require("./getTlsCertificate"));
+utilities.lazyLoad(exports, ["getTlsCertificateIds"], () => require("./getTlsCertificateIds"));
+utilities.lazyLoad(exports, ["getTlsConfiguration","getTlsConfigurationOutput"], () => require("./getTlsConfiguration"));
+utilities.lazyLoad(exports, ["getTlsConfigurationIds"], () => require("./getTlsConfigurationIds"));
+utilities.lazyLoad(exports, ["getTlsDomain","getTlsDomainOutput"], () => require("./getTlsDomain"));
+utilities.lazyLoad(exports, ["getTlsPlatformCertificate","getTlsPlatformCertificateOutput"], () => require("./getTlsPlatformCertificate"));
+utilities.lazyLoad(exports, ["getTlsPlatformCertificateIds"], () => require("./getTlsPlatformCertificateIds"));
+utilities.lazyLoad(exports, ["getTlsPrivateKey","getTlsPrivateKeyOutput"], () => require("./getTlsPrivateKey"));
+utilities.lazyLoad(exports, ["getTlsPrivateKeyIds"], () => require("./getTlsPrivateKeyIds"));
+utilities.lazyLoad(exports, ["getTlsSubscription","getTlsSubscriptionOutput"], () => require("./getTlsSubscription"));
+utilities.lazyLoad(exports, ["getTlsSubscriptionIds"], () => require("./getTlsSubscriptionIds"));
+utilities.lazyLoad(exports, ["getWafRules","getWafRulesOutput"], () => require("./getWafRules"));
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+utilities.lazyLoad(exports, ["ServiceACLEntries"], () => require("./serviceACLEntries"));
+utilities.lazyLoad(exports, ["ServiceAuthorization"], () => require("./serviceAuthorization"));
+utilities.lazyLoad(exports, ["ServiceCompute"], () => require("./serviceCompute"));
+utilities.lazyLoad(exports, ["ServiceDictionaryItems"], () => require("./serviceDictionaryItems"));
+utilities.lazyLoad(exports, ["ServiceDynamicSnippetContent"], () => require("./serviceDynamicSnippetContent"));
+utilities.lazyLoad(exports, ["ServiceVcl"], () => require("./serviceVcl"));
+utilities.lazyLoad(exports, ["ServiceWafConfiguration"], () => require("./serviceWafConfiguration"));
+utilities.lazyLoad(exports, ["TlsActivation"], () => require("./tlsActivation"));
+utilities.lazyLoad(exports, ["TlsCertificate"], () => require("./tlsCertificate"));
+utilities.lazyLoad(exports, ["TlsPlatformCertificate"], () => require("./tlsPlatformCertificate"));
+utilities.lazyLoad(exports, ["TlsPrivateKey"], () => require("./tlsPrivateKey"));
+utilities.lazyLoad(exports, ["TlsSubscription"], () => require("./tlsSubscription"));
+utilities.lazyLoad(exports, ["TlsSubscriptionValidation"], () => require("./tlsSubscriptionValidation"));
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
 
 // Export sub-modules:
 import * as config from "./config";
@@ -46,22 +166,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { ServiceACLEntries } from "./serviceACLEntries";
-import { ServiceAuthorization } from "./serviceAuthorization";
-import { ServiceCompute } from "./serviceCompute";
-import { ServiceDictionaryItems } from "./serviceDictionaryItems";
-import { ServiceDynamicSnippetContent } from "./serviceDynamicSnippetContent";
-import { ServiceVcl } from "./serviceVcl";
-import { ServiceWafConfiguration } from "./serviceWafConfiguration";
-import { TlsActivation } from "./tlsActivation";
-import { TlsCertificate } from "./tlsCertificate";
-import { TlsPlatformCertificate } from "./tlsPlatformCertificate";
-import { TlsPrivateKey } from "./tlsPrivateKey";
-import { TlsSubscription } from "./tlsSubscription";
-import { TlsSubscriptionValidation } from "./tlsSubscriptionValidation";
-import { User } from "./user";
 
 const _module = {
     version: utilities.getVersion(),
@@ -114,9 +218,6 @@ pulumi.runtime.registerResourceModule("fastly", "index/tlsPrivateKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscription", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscriptionValidation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/user", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("fastly", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

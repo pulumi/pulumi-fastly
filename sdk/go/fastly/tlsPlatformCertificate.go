@@ -352,6 +352,56 @@ func (o TlsPlatformCertificateOutput) ToTlsPlatformCertificateOutputWithContext(
 	return o
 }
 
+// Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
+func (o TlsPlatformCertificateOutput) AllowUntrustedRoot() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.BoolPtrOutput { return v.AllowUntrustedRoot }).(pulumi.BoolPtrOutput)
+}
+
+// PEM-formatted certificate.
+func (o TlsPlatformCertificateOutput) CertificateBody() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringOutput { return v.CertificateBody }).(pulumi.StringOutput)
+}
+
+// ID of TLS configuration to be used to terminate TLS traffic.
+func (o TlsPlatformCertificateOutput) ConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringOutput { return v.ConfigurationId }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate was created.
+func (o TlsPlatformCertificateOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// All the domains (including wildcard domains) that are listed in any certificate's Subject Alternative Names (SAN) list.
+func (o TlsPlatformCertificateOutput) Domains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringArrayOutput { return v.Domains }).(pulumi.StringArrayOutput)
+}
+
+// PEM-formatted certificate chain from the `certificateBody` to its root.
+func (o TlsPlatformCertificateOutput) IntermediatesBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringOutput { return v.IntermediatesBlob }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate will expire.
+func (o TlsPlatformCertificateOutput) NotAfter() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringOutput { return v.NotAfter }).(pulumi.StringOutput)
+}
+
+// Timestamp (GMT) when the certificate will become valid.
+func (o TlsPlatformCertificateOutput) NotBefore() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringOutput { return v.NotBefore }).(pulumi.StringOutput)
+}
+
+// A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
+func (o TlsPlatformCertificateOutput) Replace() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.BoolOutput { return v.Replace }).(pulumi.BoolOutput)
+}
+
+// Timestamp (GMT) when the certificate was last updated.
+func (o TlsPlatformCertificateOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPlatformCertificate) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
 type TlsPlatformCertificateArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsPlatformCertificateArrayOutput) ElementType() reflect.Type {

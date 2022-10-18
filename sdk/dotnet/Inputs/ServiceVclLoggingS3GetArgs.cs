@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingS3GetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingS3GetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
@@ -102,11 +102,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("s3AccessKey")]
+        private Input<string>? _s3AccessKey;
+
         /// <summary>
         /// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         /// </summary>
-        [Input("s3AccessKey")]
-        public Input<string>? S3AccessKey { get; set; }
+        public Input<string>? S3AccessKey
+        {
+            get => _s3AccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _s3AccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
@@ -114,11 +124,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("s3IamRole")]
         public Input<string>? S3IamRole { get; set; }
 
+        [Input("s3SecretKey")]
+        private Input<string>? _s3SecretKey;
+
         /// <summary>
         /// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         /// </summary>
-        [Input("s3SecretKey")]
-        public Input<string>? S3SecretKey { get; set; }
+        public Input<string>? S3SecretKey
+        {
+            get => _s3SecretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _s3SecretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
@@ -141,5 +161,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingS3GetArgs()
         {
         }
+        public static new ServiceVclLoggingS3GetArgs Empty => new ServiceVclLoggingS3GetArgs();
     }
 }

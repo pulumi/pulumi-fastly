@@ -267,6 +267,26 @@ func (o TlsActivationOutput) ToTlsActivationOutputWithContext(ctx context.Contex
 	return o
 }
 
+// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
+func (o TlsActivationOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsActivation) pulumi.StringOutput { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
+func (o TlsActivationOutput) ConfigurationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsActivation) pulumi.StringOutput { return v.ConfigurationId }).(pulumi.StringOutput)
+}
+
+// Time-stamp (GMT) when TLS was enabled.
+func (o TlsActivationOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsActivation) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Domain to enable TLS on. Must be assigned to an existing Fastly Service.
+func (o TlsActivationOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsActivation) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
+}
+
 type TlsActivationArrayOutput struct{ *pulumi.OutputState }
 
 func (TlsActivationArrayOutput) ElementType() reflect.Type {

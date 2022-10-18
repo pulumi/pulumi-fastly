@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingLogentryGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingLogentryGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -39,5 +39,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingLogentryGetArgs()
         {
         }
+        public static new ServiceComputeLoggingLogentryGetArgs Empty => new ServiceComputeLoggingLogentryGetArgs();
     }
 }

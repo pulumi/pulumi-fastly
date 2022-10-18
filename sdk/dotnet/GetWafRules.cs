@@ -12,14 +12,14 @@ namespace Pulumi.Fastly
     public static class GetWafRules
     {
         public static Task<GetWafRulesResult> InvokeAsync(GetWafRulesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesArgs(), options.WithDefaults());
 
         public static Output<GetWafRulesResult> Invoke(GetWafRulesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetWafRulesArgs : Pulumi.InvokeArgs
+    public sealed class GetWafRulesArgs : global::Pulumi.InvokeArgs
     {
         [Input("excludeModsecRuleIds")]
         private List<int>? _excludeModsecRuleIds;
@@ -72,9 +72,10 @@ namespace Pulumi.Fastly
         public GetWafRulesArgs()
         {
         }
+        public static new GetWafRulesArgs Empty => new GetWafRulesArgs();
     }
 
-    public sealed class GetWafRulesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetWafRulesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("excludeModsecRuleIds")]
         private InputList<int>? _excludeModsecRuleIds;
@@ -127,6 +128,7 @@ namespace Pulumi.Fastly
         public GetWafRulesInvokeArgs()
         {
         }
+        public static new GetWafRulesInvokeArgs Empty => new GetWafRulesInvokeArgs();
     }
 
 

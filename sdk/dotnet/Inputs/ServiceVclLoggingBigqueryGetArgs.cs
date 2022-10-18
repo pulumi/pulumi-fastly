@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingBigqueryGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingBigqueryGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of your BigQuery dataset
@@ -18,11 +18,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("dataset", required: true)]
         public Input<string> Dataset { get; set; } = null!;
 
+        [Input("email", required: true)]
+        private Input<string>? _email;
+
         /// <summary>
         /// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
         /// </summary>
-        [Input("email", required: true)]
-        public Input<string> Email { get; set; } = null!;
+        public Input<string>? Email
+        {
+            get => _email;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _email = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The logging format desired.
@@ -54,11 +64,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("secretKey", required: true)]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         /// </summary>
-        [Input("secretKey", required: true)]
-        public Input<string> SecretKey { get; set; } = null!;
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The ID of your BigQuery table
@@ -75,5 +95,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingBigqueryGetArgs()
         {
         }
+        public static new ServiceVclLoggingBigqueryGetArgs Empty => new ServiceVclLoggingBigqueryGetArgs();
     }
 }

@@ -10,13 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingCloudfileArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingCloudfileArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey", required: true)]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// Your Cloud File account access key
         /// </summary>
-        [Input("accessKey", required: true)]
-        public Input<string> AccessKey { get; set; } = null!;
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The name of your Cloud Files container
@@ -111,5 +121,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingCloudfileArgs()
         {
         }
+        public static new ServiceVclLoggingCloudfileArgs Empty => new ServiceVclLoggingCloudfileArgs();
     }
 }

@@ -24,6 +24,590 @@ import javax.annotation.Nullable;
  * 
  * &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
  * 
+ * ## Example Usage
+ * 
+ * Basic usage:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import com.pulumi.fastly.ServiceWafConfiguration;
+ * import com.pulumi.fastly.ServiceWafConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .comment(&#34;demo&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *             .httpViolationScoreThreshold(100)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Usage with rules:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import com.pulumi.fastly.ServiceWafConfiguration;
+ * import com.pulumi.fastly.ServiceWafConfigurationArgs;
+ * import com.pulumi.fastly.inputs.ServiceWafConfigurationRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .comment(&#34;demo&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *             .httpViolationScoreThreshold(100)
+ *             .rules(ServiceWafConfigurationRuleArgs.builder()
+ *                 .modsecRuleId(1010090)
+ *                 .revision(1)
+ *                 .status(&#34;log&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Usage with rule exclusions:
+ * 
+ * &gt; **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import com.pulumi.fastly.ServiceWafConfiguration;
+ * import com.pulumi.fastly.ServiceWafConfigurationArgs;
+ * import com.pulumi.fastly.inputs.ServiceWafConfigurationRuleArgs;
+ * import com.pulumi.fastly.inputs.ServiceWafConfigurationRuleExclusionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .comment(&#34;demo&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *             .httpViolationScoreThreshold(100)
+ *             .rules(ServiceWafConfigurationRuleArgs.builder()
+ *                 .modsecRuleId(2029718)
+ *                 .revision(1)
+ *                 .status(&#34;log&#34;)
+ *                 .build())
+ *             .ruleExclusions(ServiceWafConfigurationRuleExclusionArgs.builder()
+ *                 .name(&#34;index page&#34;)
+ *                 .exclusionType(&#34;rule&#34;)
+ *                 .condition(&#34;req.url.basename == \&#34;index.html\&#34;&#34;)
+ *                 .modsecRuleIds(2029718)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Usage with rules from data source:
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetWafRulesArgs;
+ * import com.pulumi.fastly.ServiceWafConfiguration;
+ * import com.pulumi.fastly.ServiceWafConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .comment(&#34;demo&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         final var owasp = FastlyFunctions.getWafRules(GetWafRulesArgs.builder()
+ *             .publishers(&#34;owasp&#34;)
+ *             .build());
+ * 
+ *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *             .httpViolationScoreThreshold(100)
+ *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Usage with support for individual rule configuration (this is the suggested pattern):
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetWafRulesArgs;
+ * import com.pulumi.fastly.ServiceWafConfiguration;
+ * import com.pulumi.fastly.ServiceWafConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
+ *         final var individualRules = config.get(&#34;individualRules&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .comment(&#34;demo&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         final var owasp = FastlyFunctions.getWafRules(GetWafRulesArgs.builder()
+ *             .publishers(&#34;owasp&#34;)
+ *             .build());
+ * 
+ *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *             .httpViolationScoreThreshold(202)
+ *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Usage with support for specific rule revision configuration:
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetWafRulesArgs;
+ * import com.pulumi.fastly.ServiceWafConfiguration;
+ * import com.pulumi.fastly.ServiceWafConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
+ *         final var specificRuleRevisions = config.get(&#34;specificRuleRevisions&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .comment(&#34;demo&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         final var owasp = FastlyFunctions.getWafRules(GetWafRulesArgs.builder()
+ *             .publishers(&#34;owasp&#34;)
+ *             .build());
+ * 
+ *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *             .httpViolationScoreThreshold(202)
+ *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Usage omitting rule revision field. The first time this provider is applied, the latest rule revisions are associated with the WAF. Any subsequent apply would not alter the rule revisions.
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetWafRulesArgs;
+ * import com.pulumi.fastly.ServiceWafConfiguration;
+ * import com.pulumi.fastly.ServiceWafConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
+ *         final var individualRules = config.get(&#34;individualRules&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
+ *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name(&#34;example.com&#34;)
+ *                 .comment(&#34;demo&#34;)
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address(&#34;127.0.0.1&#34;)
+ *                 .name(&#34;origin1&#34;)
+ *                 .port(80)
+ *                 .build())
+ *             .conditions(            
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_Prefetch&#34;)
+ *                     .type(&#34;PREFETCH&#34;)
+ *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .build(),
+ *                 ServiceVclConditionArgs.builder()
+ *                     .name(&#34;WAF_always_false&#34;)
+ *                     .statement(&#34;false&#34;)
+ *                     .type(&#34;REQUEST&#34;)
+ *                     .build())
+ *             .responseObjects(ServiceVclResponseObjectArgs.builder()
+ *                 .name(&#34;WAF_Response&#34;)
+ *                 .status(&#34;403&#34;)
+ *                 .response(&#34;Forbidden&#34;)
+ *                 .contentType(&#34;text/html&#34;)
+ *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
+ *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .build())
+ *             .waf(ServiceVclWafArgs.builder()
+ *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
+ *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         final var owasp = FastlyFunctions.getWafRules(GetWafRulesArgs.builder()
+ *             .publishers(&#34;owasp&#34;)
+ *             .build());
+ * 
+ *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *             .httpViolationScoreThreshold(202)
+ *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *         ctx.export(&#34;rules&#34;, waf.rules());
+ *     }
+ * }
+ * ```
  * ## Adding a WAF to an existing service
  * 
  * &gt; **Warning:** A two-phase change is required when adding a WAF to an existing service

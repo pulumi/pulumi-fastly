@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingHerokuGetArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingHerokuGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -18,11 +18,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The URL to stream logs to
@@ -33,5 +43,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingHerokuGetArgs()
         {
         }
+        public static new ServiceComputeLoggingHerokuGetArgs Empty => new ServiceComputeLoggingHerokuGetArgs();
     }
 }

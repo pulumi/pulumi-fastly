@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclHealthcheckArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclHealthcheckArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// How often to run the Healthcheck in milliseconds. Default `5000`
@@ -23,6 +23,18 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("expectedResponse")]
         public Input<int>? ExpectedResponse { get; set; }
+
+        [Input("headers")]
+        private InputList<string>? _headers;
+
+        /// <summary>
+        /// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+        /// </summary>
+        public InputList<string> Headers
+        {
+            get => _headers ?? (_headers = new InputList<string>());
+            set => _headers = value;
+        }
 
         /// <summary>
         /// The Host header to send for this Healthcheck
@@ -81,5 +93,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclHealthcheckArgs()
         {
         }
+        public static new ServiceVclHealthcheckArgs Empty => new ServiceVclHealthcheckArgs();
     }
 }

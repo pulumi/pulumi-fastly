@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceComputeLoggingPapertrailArgs : Pulumi.ResourceArgs
+    public sealed class ServiceComputeLoggingPapertrailArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The address of the Papertrail endpoint
@@ -33,5 +33,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceComputeLoggingPapertrailArgs()
         {
         }
+        public static new ServiceComputeLoggingPapertrailArgs Empty => new ServiceComputeLoggingPapertrailArgs();
     }
 }

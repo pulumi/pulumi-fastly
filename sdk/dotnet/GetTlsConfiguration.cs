@@ -25,31 +25,30 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var exampleTlsConfiguration = Fastly.GetTlsConfiguration.Invoke(new()
         ///     {
-        ///         var exampleTlsConfiguration = Output.Create(Fastly.GetTlsConfiguration.InvokeAsync(new Fastly.GetTlsConfigurationArgs
-        ///         {
-        ///             Default = true,
-        ///         }));
-        ///         var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new Fastly.TlsActivationArgs
-        ///         {
-        ///             ConfigurationId = exampleTlsConfiguration.Apply(exampleTlsConfiguration =&gt; exampleTlsConfiguration.Id),
-        ///         });
-        ///         // ...
-        ///     }
+        ///         Default = true,
+        ///     });
         /// 
-        /// }
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
+        ///     {
+        ///         ConfigurationId = exampleTlsConfiguration.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
+        ///     });
+        /// 
+        ///     // ...
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsConfigurationResult> InvokeAsync(GetTlsConfigurationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the ID of a TLS configuration for use with other resources.
@@ -65,35 +64,34 @@ namespace Pulumi.Fastly
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Fastly = Pulumi.Fastly;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var exampleTlsConfiguration = Fastly.GetTlsConfiguration.Invoke(new()
         ///     {
-        ///         var exampleTlsConfiguration = Output.Create(Fastly.GetTlsConfiguration.InvokeAsync(new Fastly.GetTlsConfigurationArgs
-        ///         {
-        ///             Default = true,
-        ///         }));
-        ///         var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new Fastly.TlsActivationArgs
-        ///         {
-        ///             ConfigurationId = exampleTlsConfiguration.Apply(exampleTlsConfiguration =&gt; exampleTlsConfiguration.Id),
-        ///         });
-        ///         // ...
-        ///     }
+        ///         Default = true,
+        ///     });
         /// 
-        /// }
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
+        ///     {
+        ///         ConfigurationId = exampleTlsConfiguration.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
+        ///     });
+        /// 
+        ///     // ...
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsConfigurationResult> Invoke(GetTlsConfigurationInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetTlsConfigurationArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsConfigurationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
@@ -146,9 +144,10 @@ namespace Pulumi.Fastly
         public GetTlsConfigurationArgs()
         {
         }
+        public static new GetTlsConfigurationArgs Empty => new GetTlsConfigurationArgs();
     }
 
-    public sealed class GetTlsConfigurationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetTlsConfigurationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
@@ -201,6 +200,7 @@ namespace Pulumi.Fastly
         public GetTlsConfigurationInvokeArgs()
         {
         }
+        public static new GetTlsConfigurationInvokeArgs Empty => new GetTlsConfigurationInvokeArgs();
     }
 
 

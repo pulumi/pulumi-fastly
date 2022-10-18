@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclLoggingLogshuttleArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclLoggingLogshuttleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Apache style log formatting.
@@ -42,11 +42,21 @@ namespace Pulumi.Fastly.Inputs
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
+        [Input("token", required: true)]
+        private Input<string>? _token;
+
         /// <summary>
         /// The data authentication token associated with this endpoint
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Your Log Shuttle endpoint URL
@@ -57,5 +67,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclLoggingLogshuttleArgs()
         {
         }
+        public static new ServiceVclLoggingLogshuttleArgs Empty => new ServiceVclLoggingLogshuttleArgs();
     }
 }

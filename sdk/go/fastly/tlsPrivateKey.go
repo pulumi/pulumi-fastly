@@ -88,6 +88,13 @@ func NewTlsPrivateKey(ctx *pulumi.Context,
 	if args.KeyPem == nil {
 		return nil, errors.New("invalid value for required argument 'KeyPem'")
 	}
+	if args.KeyPem != nil {
+		args.KeyPem = pulumi.ToSecret(args.KeyPem).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"keyPem",
+	})
+	opts = append(opts, secrets)
 	var resource TlsPrivateKey
 	err := ctx.RegisterResource("fastly:index/tlsPrivateKey:TlsPrivateKey", name, args, &resource, opts...)
 	if err != nil {
@@ -247,6 +254,41 @@ func (o TlsPrivateKeyOutput) ToTlsPrivateKeyOutput() TlsPrivateKeyOutput {
 
 func (o TlsPrivateKeyOutput) ToTlsPrivateKeyOutputWithContext(ctx context.Context) TlsPrivateKeyOutput {
 	return o
+}
+
+// Time-stamp (GMT) when the private key was created.
+func (o TlsPrivateKeyOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The key length used to generate the private key.
+func (o TlsPrivateKeyOutput) KeyLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) pulumi.IntOutput { return v.KeyLength }).(pulumi.IntOutput)
+}
+
+// Private key in PEM format.
+func (o TlsPrivateKeyOutput) KeyPem() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) pulumi.StringOutput { return v.KeyPem }).(pulumi.StringOutput)
+}
+
+// The algorithm used to generate the private key. Must be RSA.
+func (o TlsPrivateKeyOutput) KeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
+}
+
+// Customisable name of the private key.
+func (o TlsPrivateKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Useful for safely identifying the key.
+func (o TlsPrivateKeyOutput) PublicKeySha1() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) pulumi.StringOutput { return v.PublicKeySha1 }).(pulumi.StringOutput)
+}
+
+// Whether Fastly recommends replacing this private key.
+func (o TlsPrivateKeyOutput) Replace() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TlsPrivateKey) pulumi.BoolOutput { return v.Replace }).(pulumi.BoolOutput)
 }
 
 type TlsPrivateKeyArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly.Inputs
 {
 
-    public sealed class ServiceVclConditionArgs : Pulumi.ResourceArgs
+    public sealed class ServiceVclConditionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
@@ -39,5 +39,6 @@ namespace Pulumi.Fastly.Inputs
         public ServiceVclConditionArgs()
         {
         }
+        public static new ServiceVclConditionArgs Empty => new ServiceVclConditionArgs();
     }
 }
