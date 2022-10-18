@@ -171,9 +171,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
          $ pulumi import fastly:index/serviceDictionaryItems:ServiceDictionaryItems items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
         ```
 
-         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
-         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items.items
+         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items.items
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -197,9 +195,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
          $ pulumi import fastly:index/serviceDictionaryItems:ServiceDictionaryItems items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
         ```
 
-         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
-         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items.items
+         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items.items
 
         :param str resource_name: The name of the resource.
         :param ServiceDictionaryItemsArgs args: The arguments to use to populate this resource's properties.

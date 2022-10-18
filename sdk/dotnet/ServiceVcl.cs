@@ -113,6 +113,12 @@ namespace Pulumi.Fastly
         [Output("healthchecks")]
         public Output<ImmutableArray<Outputs.ServiceVclHealthcheck>> Healthchecks { get; private set; } = null!;
 
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// </summary>
+        [Output("imported")]
+        public Output<bool> Imported { get; private set; } = null!;
+
         [Output("loggingBigqueries")]
         public Output<ImmutableArray<Outputs.ServiceVclLoggingBigquery>> LoggingBigqueries { get; private set; } = null!;
 
@@ -821,6 +827,12 @@ namespace Pulumi.Fastly
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceVclHealthcheckGetArgs>());
             set => _healthchecks = value;
         }
+
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// </summary>
+        [Input("imported")]
+        public Input<bool>? Imported { get; set; }
 
         [Input("loggingBigqueries")]
         private InputList<Inputs.ServiceVclLoggingBigqueryGetArgs>? _loggingBigqueries;

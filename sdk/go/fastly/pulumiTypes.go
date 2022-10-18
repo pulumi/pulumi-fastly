@@ -3838,7 +3838,7 @@ type ServiceComputeLoggingS3 struct {
 	Period *int `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
 	Redundancy *string `pulumi:"redundancy"`
 	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
 	S3AccessKey *string `pulumi:"s3AccessKey"`
@@ -3886,7 +3886,7 @@ type ServiceComputeLoggingS3Args struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
 	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
 	// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
 	S3AccessKey pulumi.StringPtrInput `pulumi:"s3AccessKey"`
@@ -4003,7 +4003,7 @@ func (o ServiceComputeLoggingS3Output) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
 func (o ServiceComputeLoggingS3Output) Redundancy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }
@@ -10567,7 +10567,7 @@ type ServiceVclLoggingS3 struct {
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
 	Redundancy *string `pulumi:"redundancy"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -10623,7 +10623,7 @@ type ServiceVclLoggingS3Args struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
 	Redundancy pulumi.StringPtrInput `pulumi:"redundancy"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -10757,7 +10757,7 @@ func (o ServiceVclLoggingS3Output) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The S3 storage class (redundancy level). Should be one of: `standard`, `reducedRedundancy`, `standardIa`, or `onezoneIa`
+// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
 func (o ServiceVclLoggingS3Output) Redundancy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.Redundancy }).(pulumi.StringPtrOutput)
 }

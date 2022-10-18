@@ -44,7 +44,9 @@ type ServiceCompute struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy           pulumi.BoolPtrOutput                          `pulumi:"forceDestroy"`
+	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Imported               pulumi.BoolOutput                             `pulumi:"imported"`
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayOutput   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
@@ -131,7 +133,9 @@ type serviceComputeState struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
+	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Imported               *bool                                `pulumi:"imported"`
 	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    []ServiceComputeLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
@@ -184,7 +188,9 @@ type ServiceComputeState struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy           pulumi.BoolPtrInput
+	ForceDestroy pulumi.BoolPtrInput
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Imported               pulumi.BoolPtrInput
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
 	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayInput
 	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput

@@ -91,7 +91,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The S3 storage class (redundancy level). Should be one of: `standard`, `reduced_redundancy`, `standard_ia`, or `onezone_ia`
+        /// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         /// </summary>
         [Input("redundancy")]
         public Input<string>? Redundancy { get; set; }
