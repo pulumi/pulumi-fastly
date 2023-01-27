@@ -19,18 +19,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const example = pulumi.output(fastly.getTlsActivation({
+ * const example = fastly.getTlsActivation({
  *     domain: "example.com",
- * }));
+ * });
  * ```
  */
 export function getTlsActivation(args?: GetTlsActivationArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsActivation:getTlsActivation", {
         "certificateId": args.certificateId,
         "configurationId": args.configurationId,
@@ -86,9 +83,28 @@ export interface GetTlsActivationResult {
      */
     readonly id: string;
 }
-
+/**
+ * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
+ *
+ * > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+ * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ * with any of the others.
+ *
+ * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = fastly.getTlsActivation({
+ *     domain: "example.com",
+ * });
+ * ```
+ */
 export function getTlsActivationOutput(args?: GetTlsActivationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationResult> {
-    return pulumi.output(args).apply(a => getTlsActivation(a, opts))
+    return pulumi.output(args).apply((a: any) => getTlsActivation(a, opts))
 }
 
 /**

@@ -35,7 +35,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			demo, err := fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
+//			demo, err := fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
 //				Name: pulumi.StringRef("demo-private-key"),
 //			}, nil)
 //			if err != nil {

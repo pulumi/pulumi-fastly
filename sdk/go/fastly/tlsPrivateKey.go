@@ -89,7 +89,7 @@ func NewTlsPrivateKey(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'KeyPem'")
 	}
 	if args.KeyPem != nil {
-		args.KeyPem = pulumi.ToSecret(args.KeyPem).(pulumi.StringOutput)
+		args.KeyPem = pulumi.ToSecret(args.KeyPem).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"keyPem",

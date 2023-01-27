@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceComputeLoggingGc {
     /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    private @Nullable String accountName;
+    /**
      * @return The name of the bucket in which to store the logs
      * 
      */
@@ -64,6 +69,13 @@ public final class ServiceComputeLoggingGc {
     private @Nullable String user;
 
     private ServiceComputeLoggingGc() {}
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<String> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
     /**
      * @return The name of the bucket in which to store the logs
      * 
@@ -144,6 +156,7 @@ public final class ServiceComputeLoggingGc {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String accountName;
         private String bucketName;
         private @Nullable String compressionCodec;
         private @Nullable Integer gzipLevel;
@@ -157,6 +170,7 @@ public final class ServiceComputeLoggingGc {
         public Builder() {}
         public Builder(ServiceComputeLoggingGc defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.accountName = defaults.accountName;
     	      this.bucketName = defaults.bucketName;
     	      this.compressionCodec = defaults.compressionCodec;
     	      this.gzipLevel = defaults.gzipLevel;
@@ -169,6 +183,11 @@ public final class ServiceComputeLoggingGc {
     	      this.user = defaults.user;
         }
 
+        @CustomType.Setter
+        public Builder accountName(@Nullable String accountName) {
+            this.accountName = accountName;
+            return this;
+        }
         @CustomType.Setter
         public Builder bucketName(String bucketName) {
             this.bucketName = Objects.requireNonNull(bucketName);
@@ -221,6 +240,7 @@ public final class ServiceComputeLoggingGc {
         }
         public ServiceComputeLoggingGc build() {
             final var o = new ServiceComputeLoggingGc();
+            o.accountName = accountName;
             o.bucketName = bucketName;
             o.compressionCodec = compressionCodec;
             o.gzipLevel = gzipLevel;

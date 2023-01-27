@@ -41,8 +41,8 @@ import (
 //			cert, err := tls.NewSelfSignedCert(ctx, "cert", &tls.SelfSignedCertArgs{
 //				KeyAlgorithm:  keyPrivateKey.Algorithm,
 //				PrivateKeyPem: keyPrivateKey.PrivateKeyPem,
-//				Subjects: SelfSignedCertSubjectArray{
-//					&SelfSignedCertSubjectArgs{
+//				Subjects: tls.SelfSignedCertSubjectArray{
+//					&tls.SelfSignedCertSubjectArgs{
 //						CommonName: pulumi.String("example.com"),
 //					},
 //				},

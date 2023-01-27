@@ -20,11 +20,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getTlsPrivateKeyIds(opts?: pulumi.InvokeOptions): Promise<GetTlsPrivateKeyIdsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", {
     }, opts);
 }

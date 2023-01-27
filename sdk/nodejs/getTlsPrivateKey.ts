@@ -28,11 +28,8 @@ import * as utilities from "./utilities";
  */
 export function getTlsPrivateKey(args?: GetTlsPrivateKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsPrivateKeyResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsPrivateKey:getTlsPrivateKey", {
         "createdAt": args.createdAt,
         "id": args.id,
@@ -106,9 +103,30 @@ export interface GetTlsPrivateKeyResult {
      */
     readonly replace: boolean;
 }
-
+/**
+ * Use this data source to get information on a TLS Private Key uploaded to Fastly.
+ *
+ * > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+ *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ *  with any of the others.
+ *
+ * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
+ *  is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = fastly.getTlsPrivateKey({
+ *     name: "demo-private-key",
+ * });
+ * export const privateKeyNeedsReplacing = demo.then(demo => demo.replace);
+ * ```
+ */
 export function getTlsPrivateKeyOutput(args?: GetTlsPrivateKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyResult> {
-    return pulumi.output(args).apply(a => getTlsPrivateKey(a, opts))
+    return pulumi.output(args).apply((a: any) => getTlsPrivateKey(a, opts))
 }
 
 /**

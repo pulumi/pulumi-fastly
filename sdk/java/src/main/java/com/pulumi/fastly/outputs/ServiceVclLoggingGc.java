@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclLoggingGc {
     /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    private @Nullable String accountName;
+    /**
      * @return The name of the bucket in which to store the logs
      * 
      */
@@ -84,6 +89,13 @@ public final class ServiceVclLoggingGc {
     private @Nullable String user;
 
     private ServiceVclLoggingGc() {}
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<String> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
     /**
      * @return The name of the bucket in which to store the logs
      * 
@@ -192,6 +204,7 @@ public final class ServiceVclLoggingGc {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String accountName;
         private String bucketName;
         private @Nullable String compressionCodec;
         private @Nullable String format;
@@ -209,6 +222,7 @@ public final class ServiceVclLoggingGc {
         public Builder() {}
         public Builder(ServiceVclLoggingGc defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.accountName = defaults.accountName;
     	      this.bucketName = defaults.bucketName;
     	      this.compressionCodec = defaults.compressionCodec;
     	      this.format = defaults.format;
@@ -225,6 +239,11 @@ public final class ServiceVclLoggingGc {
     	      this.user = defaults.user;
         }
 
+        @CustomType.Setter
+        public Builder accountName(@Nullable String accountName) {
+            this.accountName = accountName;
+            return this;
+        }
         @CustomType.Setter
         public Builder bucketName(String bucketName) {
             this.bucketName = Objects.requireNonNull(bucketName);
@@ -297,6 +316,7 @@ public final class ServiceVclLoggingGc {
         }
         public ServiceVclLoggingGc build() {
             final var o = new ServiceVclLoggingGc();
+            o.accountName = accountName;
             o.bucketName = bucketName;
             o.compressionCodec = compressionCodec;
             o.format = format;

@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingGooglepubsubGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        /// </summary>
+        [Input("accountName")]
+        public Input<string>? AccountName { get; set; }
+
+        /// <summary>
         /// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]

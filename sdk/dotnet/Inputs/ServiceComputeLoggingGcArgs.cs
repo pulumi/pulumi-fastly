@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingGcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        /// </summary>
+        [Input("accountName")]
+        public Input<string>? AccountName { get; set; }
+
+        /// <summary>
         /// The name of the bucket in which to store the logs
         /// </summary>
         [Input("bucketName", required: true)]

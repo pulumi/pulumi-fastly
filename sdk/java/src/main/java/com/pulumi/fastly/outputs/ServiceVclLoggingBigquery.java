@@ -12,6 +12,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclLoggingBigquery {
     /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    private @Nullable String accountName;
+    /**
      * @return The ID of your BigQuery dataset
      * 
      */
@@ -63,6 +68,13 @@ public final class ServiceVclLoggingBigquery {
     private @Nullable String template;
 
     private ServiceVclLoggingBigquery() {}
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<String> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
     /**
      * @return The ID of your BigQuery dataset
      * 
@@ -143,6 +155,7 @@ public final class ServiceVclLoggingBigquery {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String accountName;
         private String dataset;
         private String email;
         private @Nullable String format;
@@ -156,6 +169,7 @@ public final class ServiceVclLoggingBigquery {
         public Builder() {}
         public Builder(ServiceVclLoggingBigquery defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.accountName = defaults.accountName;
     	      this.dataset = defaults.dataset;
     	      this.email = defaults.email;
     	      this.format = defaults.format;
@@ -168,6 +182,11 @@ public final class ServiceVclLoggingBigquery {
     	      this.template = defaults.template;
         }
 
+        @CustomType.Setter
+        public Builder accountName(@Nullable String accountName) {
+            this.accountName = accountName;
+            return this;
+        }
         @CustomType.Setter
         public Builder dataset(String dataset) {
             this.dataset = Objects.requireNonNull(dataset);
@@ -220,6 +239,7 @@ public final class ServiceVclLoggingBigquery {
         }
         public ServiceVclLoggingBigquery build() {
             final var o = new ServiceVclLoggingBigquery();
+            o.accountName = accountName;
             o.dataset = dataset;
             o.email = email;
             o.format = format;

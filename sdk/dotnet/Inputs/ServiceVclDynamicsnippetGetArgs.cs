@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclDynamicsnippetGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The VCL code that specifies exactly what the snippet does
+        /// </summary>
+        [Input("content")]
+        public Input<string>? Content { get; set; }
+
+        /// <summary>
         /// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         [Input("name", required: true)]

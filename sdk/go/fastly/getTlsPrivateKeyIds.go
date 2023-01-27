@@ -27,7 +27,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
+//			_, err = fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
 //				Id: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),
 //			}, nil)
 //			if err != nil {

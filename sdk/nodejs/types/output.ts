@@ -132,7 +132,7 @@ export interface ServiceComputeBackend {
      */
     sslCaCert?: string;
     /**
-     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     * Configure certificate validation. Does not affect SNI at all
      */
     sslCertHostname?: string;
     /**
@@ -152,13 +152,7 @@ export interface ServiceComputeBackend {
      */
     sslClientKey?: string;
     /**
-     * Used for both SNI during the TLS handshake and to validate the cert
-     *
-     * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
-     */
-    sslHostname?: string;
-    /**
-     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     * Configure SNI in the TLS handshake. Does not affect cert validation at all
      */
     sslSniHostname?: string;
     /**
@@ -199,6 +193,10 @@ export interface ServiceComputeDomain {
 }
 
 export interface ServiceComputeLoggingBigquery {
+    /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     */
+    accountName?: string;
     /**
      * The ID of your BigQuery dataset
      */
@@ -501,6 +499,10 @@ export interface ServiceComputeLoggingFtp {
 
 export interface ServiceComputeLoggingGc {
     /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     */
+    accountName?: string;
+    /**
      * The name of the bucket in which to store the logs
      */
     bucketName: string;
@@ -543,6 +545,10 @@ export interface ServiceComputeLoggingGc {
 }
 
 export interface ServiceComputeLoggingGooglepubsub {
+    /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     */
+    accountName?: string;
     /**
      * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
@@ -1197,7 +1203,7 @@ export interface ServiceVclBackend {
      */
     sslCaCert?: string;
     /**
-     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     * Configure certificate validation. Does not affect SNI at all
      */
     sslCertHostname?: string;
     /**
@@ -1217,13 +1223,7 @@ export interface ServiceVclBackend {
      */
     sslClientKey?: string;
     /**
-     * Used for both SNI during the TLS handshake and to validate the cert
-     *
-     * @deprecated Use ssl_cert_hostname and ssl_sni_hostname instead.
-     */
-    sslHostname?: string;
-    /**
-     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     * Configure SNI in the TLS handshake. Does not affect cert validation at all
      */
     sslSniHostname?: string;
     /**
@@ -1338,6 +1338,10 @@ export interface ServiceVclDomain {
 
 export interface ServiceVclDynamicsnippet {
     /**
+     * The VCL code that specifies exactly what the snippet does
+     */
+    content?: string;
+    /**
      * A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
@@ -1435,7 +1439,7 @@ export interface ServiceVclHealthcheck {
      */
     expectedResponse?: number;
     /**
-     * Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     * Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
      */
     headers?: string[];
     /**
@@ -1477,6 +1481,10 @@ export interface ServiceVclHealthcheck {
 }
 
 export interface ServiceVclLoggingBigquery {
+    /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     */
+    accountName?: string;
     /**
      * The ID of your BigQuery dataset
      */
@@ -1887,6 +1895,10 @@ export interface ServiceVclLoggingFtp {
 
 export interface ServiceVclLoggingGc {
     /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     */
+    accountName?: string;
+    /**
      * The name of the bucket in which to store the logs
      */
     bucketName: string;
@@ -1945,6 +1957,10 @@ export interface ServiceVclLoggingGc {
 }
 
 export interface ServiceVclLoggingGooglepubsub {
+    /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     */
+    accountName?: string;
     /**
      * Apache style log formatting.
      */

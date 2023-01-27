@@ -16,6 +16,21 @@ public final class ServiceComputeLoggingBigqueryArgs extends com.pulumi.resource
     public static final ServiceComputeLoggingBigqueryArgs Empty = new ServiceComputeLoggingBigqueryArgs();
 
     /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    @Import(name="accountName")
+    private @Nullable Output<String> accountName;
+
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<Output<String>> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
+
+    /**
      * The ID of your BigQuery dataset
      * 
      */
@@ -123,6 +138,7 @@ public final class ServiceComputeLoggingBigqueryArgs extends com.pulumi.resource
     private ServiceComputeLoggingBigqueryArgs() {}
 
     private ServiceComputeLoggingBigqueryArgs(ServiceComputeLoggingBigqueryArgs $) {
+        this.accountName = $.accountName;
         this.dataset = $.dataset;
         this.email = $.email;
         this.name = $.name;
@@ -148,6 +164,27 @@ public final class ServiceComputeLoggingBigqueryArgs extends com.pulumi.resource
 
         public Builder(ServiceComputeLoggingBigqueryArgs defaults) {
             $ = new ServiceComputeLoggingBigqueryArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountName(@Nullable Output<String> accountName) {
+            $.accountName = accountName;
+            return this;
+        }
+
+        /**
+         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountName(String accountName) {
+            return accountName(Output.of(accountName));
         }
 
         /**

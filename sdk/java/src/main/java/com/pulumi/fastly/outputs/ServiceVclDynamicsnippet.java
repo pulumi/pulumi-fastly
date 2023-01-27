@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclDynamicsnippet {
     /**
+     * @return The VCL code that specifies exactly what the snippet does
+     * 
+     */
+    private @Nullable String content;
+    /**
      * @return A name that is unique across &#34;regular&#34; and &#34;dynamic&#34; VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
      * 
      */
@@ -34,6 +39,13 @@ public final class ServiceVclDynamicsnippet {
     private String type;
 
     private ServiceVclDynamicsnippet() {}
+    /**
+     * @return The VCL code that specifies exactly what the snippet does
+     * 
+     */
+    public Optional<String> content() {
+        return Optional.ofNullable(this.content);
+    }
     /**
      * @return A name that is unique across &#34;regular&#34; and &#34;dynamic&#34; VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
      * 
@@ -72,6 +84,7 @@ public final class ServiceVclDynamicsnippet {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String content;
         private String name;
         private @Nullable Integer priority;
         private @Nullable String snippetId;
@@ -79,12 +92,18 @@ public final class ServiceVclDynamicsnippet {
         public Builder() {}
         public Builder(ServiceVclDynamicsnippet defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.content = defaults.content;
     	      this.name = defaults.name;
     	      this.priority = defaults.priority;
     	      this.snippetId = defaults.snippetId;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder content(@Nullable String content) {
+            this.content = content;
+            return this;
+        }
         @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
@@ -107,6 +126,7 @@ public final class ServiceVclDynamicsnippet {
         }
         public ServiceVclDynamicsnippet build() {
             final var o = new ServiceVclDynamicsnippet();
+            o.content = content;
             o.name = name;
             o.priority = priority;
             o.snippetId = snippetId;

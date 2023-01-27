@@ -30,11 +30,8 @@ import * as utilities from "./utilities";
  */
 export function getTlsConfiguration(args?: GetTlsConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsConfigurationResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsConfiguration:getTlsConfiguration", {
         "default": args.default,
         "httpProtocols": args.httpProtocols,
@@ -116,9 +113,30 @@ export interface GetTlsConfigurationResult {
      */
     readonly updatedAt: string;
 }
-
+/**
+ * Use this data source to get the ID of a TLS configuration for use with other resources.
+ *
+ * > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+ * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ * with any of the others.
+ *
+ * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleTlsConfiguration = fastly.getTlsConfiguration({
+ *     "default": true,
+ * });
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfiguration.then(exampleTlsConfiguration => exampleTlsConfiguration.id)});
+ * // ...
+ * ```
+ */
 export function getTlsConfigurationOutput(args?: GetTlsConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationResult> {
-    return pulumi.output(args).apply(a => getTlsConfiguration(a, opts))
+    return pulumi.output(args).apply((a: any) => getTlsConfiguration(a, opts))
 }
 
 /**

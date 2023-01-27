@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingGc
     {
         /// <summary>
+        /// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        /// </summary>
+        public readonly string? AccountName;
+        /// <summary>
         /// The name of the bucket in which to store the logs
         /// </summary>
         public readonly string BucketName;
@@ -56,6 +60,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceComputeLoggingGc(
+            string? accountName,
+
             string bucketName,
 
             string? compressionCodec,
@@ -76,6 +82,7 @@ namespace Pulumi.Fastly.Outputs
 
             string? user)
         {
+            AccountName = accountName;
             BucketName = bucketName;
             CompressionCodec = compressionCodec;
             GzipLevel = gzipLevel;

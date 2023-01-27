@@ -15,201 +15,6 @@ import * as utilities from "./utilities";
  * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
  * on their documentation site for guidance.
  *
- * ## Example Usage
- *
- * Basic usage:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const demo = new fastly.ServiceVcl("demo", {
- *     backends: [{
- *         address: "127.0.0.1",
- *         name: "localhost",
- *         port: 80,
- *     }],
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- * });
- * ```
- *
- * Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fastly from "@pulumi/fastly";
- *
- * const demo = new fastly.ServiceVcl("demo", {
- *     backends: [{
- *         address: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
- *         name: "AWS S3 hosting",
- *         overrideHost: "demo.notexample.com.s3-website-us-west-2.amazonaws.com",
- *         port: 80,
- *     }],
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- *     gzips: [{
- *         contentTypes: [
- *             "text/html",
- *             "text/css",
- *         ],
- *         extensions: [
- *             "css",
- *             "js",
- *         ],
- *         name: "file extensions and content types",
- *     }],
- *     headers: [{
- *         action: "delete",
- *         destination: "http.x-amz-request-id",
- *         name: "remove x-amz-request-id",
- *         type: "cache",
- *     }],
- * });
- * const website = new aws.s3.BucketV2("website", {
- *     acl: "public-read",
- *     websites: [{
- *         errorDocument: "error.html",
- *         indexDocument: "index.html",
- *     }],
- * });
- * ```
- *
- * Basic usage with [custom
- * VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- * import * as fs from "fs";
- *
- * const demo = new fastly.ServiceVcl("demo", {
- *     backends: [{
- *         address: "127.0.0.1",
- *         name: "localhost",
- *         port: 80,
- *     }],
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- *     vcls: [
- *         {
- *             content: fs.readFileSync(`./my_custom_main.vcl`, "utf-8"),
- *             main: true,
- *             name: "my_custom_main_vcl",
- *         },
- *         {
- *             content: fs.readFileSync(`./my_custom_library.vcl`, "utf-8"),
- *             name: "my_custom_library_vcl",
- *         },
- *     ],
- * });
- * ```
- *
- * Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const demo = new fastly.ServiceVcl("demo", {
- *     backends: [
- *         {
- *             address: "127.0.0.1",
- *             name: "origin1",
- *             port: 80,
- *         },
- *         {
- *             address: "127.0.0.2",
- *             name: "origin2",
- *             port: 80,
- *         },
- *     ],
- *     directors: [{
- *         backends: [
- *             "origin1",
- *             "origin2",
- *         ],
- *         name: "mydirector",
- *         quorum: 0,
- *         type: 3,
- *     }],
- *     domains: [{
- *         comment: "demo",
- *         name: "demo.notexample.com",
- *     }],
- *     forceDestroy: true,
- * });
- * ```
- *
- * Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const demo = new fastly.ServiceVcl("demo", {
- *     backends: [{
- *         address: "127.0.0.1",
- *         name: "origin1",
- *         port: 80,
- *     }],
- *     conditions: [
- *         {
- *             name: "WAF_Prefetch",
- *             statement: "req.backend.is_origin",
- *             type: "PREFETCH",
- *         },
- *         // This condition will always be false
- *         // adding it to the response object created below
- *         // prevents Fastly from returning a 403 on all of your traffic.
- *         {
- *             name: "WAF_always_false",
- *             statement: "false",
- *             type: "REQUEST",
- *         },
- *     ],
- *     domains: [{
- *         comment: "demo",
- *         name: "example.com",
- *     }],
- *     forceDestroy: true,
- *     responseObjects: [{
- *         content: "<html><body>Forbidden</body></html>",
- *         contentType: "text/html",
- *         name: "WAF_Response",
- *         requestCondition: "WAF_always_false",
- *         response: "Forbidden",
- *         status: 403,
- *     }],
- *     waf: {
- *         prefetchCondition: "WAF_Prefetch",
- *         responseObject: "WAF_Response",
- *     },
- * });
- * ```
- *
- * > **Note:** For an AWS S3 Bucket, the Backend address is
- * `<domain>.s3-website-<region>.amazonaws.com`. The `overrideHost` attribute
- * should be set to `<bucket_name>.s3-website-<region>.amazonaws.com` in the `backend` block. See the
- * Fastly documentation on [Amazon S3][fastly-s3].
- *
- * [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
- * [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
- * [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
- * [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
- * [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
- *
  * ## Import
  *
  * Fastly Services can be imported using their service ID, e.g.
@@ -291,6 +96,12 @@ export class ServiceVcl extends pulumi.CustomResource {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
+    /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     */
+    public /*out*/ readonly forceRefresh!: pulumi.Output<boolean>;
     public readonly gzips!: pulumi.Output<outputs.ServiceVclGzip[] | undefined>;
     public readonly headers!: pulumi.Output<outputs.ServiceVclHeader[] | undefined>;
     public readonly healthchecks!: pulumi.Output<outputs.ServiceVclHealthcheck[] | undefined>;
@@ -380,6 +191,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["dynamicsnippets"] = state ? state.dynamicsnippets : undefined;
             resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
+            resourceInputs["forceRefresh"] = state ? state.forceRefresh : undefined;
             resourceInputs["gzips"] = state ? state.gzips : undefined;
             resourceInputs["headers"] = state ? state.headers : undefined;
             resourceInputs["healthchecks"] = state ? state.healthchecks : undefined;
@@ -479,6 +291,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["waf"] = args ? args.waf : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
+            resourceInputs["forceRefresh"] = undefined /*out*/;
             resourceInputs["imported"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -529,6 +342,12 @@ export interface ServiceVclState {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
+    /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     */
+    forceRefresh?: pulumi.Input<boolean>;
     gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[]>;
     headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[]>;
     healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[]>;

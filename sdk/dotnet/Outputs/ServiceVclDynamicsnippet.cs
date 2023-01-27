@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclDynamicsnippet
     {
         /// <summary>
+        /// The VCL code that specifies exactly what the snippet does
+        /// </summary>
+        public readonly string? Content;
+        /// <summary>
         /// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
@@ -32,6 +36,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceVclDynamicsnippet(
+            string? content,
+
             string name,
 
             int? priority,
@@ -40,6 +46,7 @@ namespace Pulumi.Fastly.Outputs
 
             string type)
         {
+            Content = content;
             Name = name;
             Priority = priority;
             SnippetId = snippetId;

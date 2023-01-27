@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclLoggingGooglepubsub
     {
         /// <summary>
+        /// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        /// </summary>
+        public readonly string? AccountName;
+        /// <summary>
         /// Apache style log formatting.
         /// </summary>
         public readonly string? Format;
@@ -52,6 +56,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceVclLoggingGooglepubsub(
+            string? accountName,
+
             string? format,
 
             int? formatVersion,
@@ -70,6 +76,7 @@ namespace Pulumi.Fastly.Outputs
 
             string user)
         {
+            AccountName = accountName;
             Format = format;
             FormatVersion = formatVersion;
             Name = name;

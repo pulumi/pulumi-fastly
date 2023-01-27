@@ -76,6 +76,12 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
     /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     */
+    public /*out*/ readonly forceRefresh!: pulumi.Output<boolean>;
+    /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      */
     public /*out*/ readonly imported!: pulumi.Output<boolean>;
@@ -145,6 +151,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["dictionaries"] = state ? state.dictionaries : undefined;
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
+            resourceInputs["forceRefresh"] = state ? state.forceRefresh : undefined;
             resourceInputs["imported"] = state ? state.imported : undefined;
             resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
@@ -222,6 +229,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
+            resourceInputs["forceRefresh"] = undefined /*out*/;
             resourceInputs["imported"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -259,6 +267,12 @@ export interface ServiceComputeState {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
+    /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     */
+    forceRefresh?: pulumi.Input<boolean>;
     /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      */

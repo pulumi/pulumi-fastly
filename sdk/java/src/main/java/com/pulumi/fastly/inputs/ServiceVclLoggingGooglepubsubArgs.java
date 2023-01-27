@@ -17,6 +17,21 @@ public final class ServiceVclLoggingGooglepubsubArgs extends com.pulumi.resource
     public static final ServiceVclLoggingGooglepubsubArgs Empty = new ServiceVclLoggingGooglepubsubArgs();
 
     /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    @Import(name="accountName")
+    private @Nullable Output<String> accountName;
+
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<Output<String>> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
+
+    /**
      * Apache style log formatting.
      * 
      */
@@ -154,6 +169,7 @@ public final class ServiceVclLoggingGooglepubsubArgs extends com.pulumi.resource
     private ServiceVclLoggingGooglepubsubArgs() {}
 
     private ServiceVclLoggingGooglepubsubArgs(ServiceVclLoggingGooglepubsubArgs $) {
+        this.accountName = $.accountName;
         this.format = $.format;
         this.formatVersion = $.formatVersion;
         this.name = $.name;
@@ -181,6 +197,27 @@ public final class ServiceVclLoggingGooglepubsubArgs extends com.pulumi.resource
 
         public Builder(ServiceVclLoggingGooglepubsubArgs defaults) {
             $ = new ServiceVclLoggingGooglepubsubArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountName(@Nullable Output<String> accountName) {
+            $.accountName = accountName;
+            return this;
+        }
+
+        /**
+         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountName(String accountName) {
+            return accountName(Output.of(accountName));
         }
 
         /**

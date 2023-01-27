@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.GetTlsDomain(ctx, &GetTlsDomainArgs{
+//			_, err := fastly.GetTlsDomain(ctx, &fastly.GetTlsDomainArgs{
 //				Domain: "example.com",
 //			}, nil)
 //			if err != nil {

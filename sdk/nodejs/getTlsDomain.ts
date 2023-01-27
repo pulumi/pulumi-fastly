@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const domain = pulumi.output(fastly.getTlsDomain({
+ * const domain = fastly.getTlsDomain({
  *     domain: "example.com",
- * }));
+ * });
  * ```
  */
 export function getTlsDomain(args: GetTlsDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsDomainResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsDomain:getTlsDomain", {
         "domain": args.domain,
     }, opts);
@@ -64,9 +61,22 @@ export interface GetTlsDomainResult {
      */
     readonly tlsSubscriptionIds: string[];
 }
-
+/**
+ * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const domain = fastly.getTlsDomain({
+ *     domain: "example.com",
+ * });
+ * ```
+ */
 export function getTlsDomainOutput(args: GetTlsDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsDomainResult> {
-    return pulumi.output(args).apply(a => getTlsDomain(a, opts))
+    return pulumi.output(args).apply((a: any) => getTlsDomain(a, opts))
 }
 
 /**

@@ -32,14 +32,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleTlsConfiguration, err := fastly.GetTlsConfiguration(ctx, &GetTlsConfigurationArgs{
+//			exampleTlsConfiguration, err := fastly.GetTlsConfiguration(ctx, &fastly.GetTlsConfigurationArgs{
 //				Default: pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
-//				ConfigurationId: pulumi.String(exampleTlsConfiguration.Id),
+//				ConfigurationId: *pulumi.String(exampleTlsConfiguration.Id),
 //			})
 //			if err != nil {
 //				return err

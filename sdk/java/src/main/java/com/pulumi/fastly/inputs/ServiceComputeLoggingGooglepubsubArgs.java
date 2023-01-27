@@ -7,11 +7,28 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ServiceComputeLoggingGooglepubsubArgs Empty = new ServiceComputeLoggingGooglepubsubArgs();
+
+    /**
+     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    @Import(name="accountName")
+    private @Nullable Output<String> accountName;
+
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<Output<String>> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
 
     /**
      * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -91,6 +108,7 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
     private ServiceComputeLoggingGooglepubsubArgs() {}
 
     private ServiceComputeLoggingGooglepubsubArgs(ServiceComputeLoggingGooglepubsubArgs $) {
+        this.accountName = $.accountName;
         this.name = $.name;
         this.projectId = $.projectId;
         this.secretKey = $.secretKey;
@@ -114,6 +132,27 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
 
         public Builder(ServiceComputeLoggingGooglepubsubArgs defaults) {
             $ = new ServiceComputeLoggingGooglepubsubArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountName(@Nullable Output<String> accountName) {
+            $.accountName = accountName;
+            return this;
+        }
+
+        /**
+         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountName(String accountName) {
+            return accountName(Output.of(accountName));
         }
 
         /**

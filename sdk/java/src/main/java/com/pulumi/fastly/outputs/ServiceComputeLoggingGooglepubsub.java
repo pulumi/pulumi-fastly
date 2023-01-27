@@ -6,9 +6,16 @@ package com.pulumi.fastly.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class ServiceComputeLoggingGooglepubsub {
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    private @Nullable String accountName;
     /**
      * @return The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      * 
@@ -36,6 +43,13 @@ public final class ServiceComputeLoggingGooglepubsub {
     private String user;
 
     private ServiceComputeLoggingGooglepubsub() {}
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<String> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
     /**
      * @return The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      * 
@@ -81,6 +95,7 @@ public final class ServiceComputeLoggingGooglepubsub {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String accountName;
         private String name;
         private String projectId;
         private String secretKey;
@@ -89,6 +104,7 @@ public final class ServiceComputeLoggingGooglepubsub {
         public Builder() {}
         public Builder(ServiceComputeLoggingGooglepubsub defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.accountName = defaults.accountName;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
     	      this.secretKey = defaults.secretKey;
@@ -96,6 +112,11 @@ public final class ServiceComputeLoggingGooglepubsub {
     	      this.user = defaults.user;
         }
 
+        @CustomType.Setter
+        public Builder accountName(@Nullable String accountName) {
+            this.accountName = accountName;
+            return this;
+        }
         @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
@@ -123,6 +144,7 @@ public final class ServiceComputeLoggingGooglepubsub {
         }
         public ServiceComputeLoggingGooglepubsub build() {
             final var o = new ServiceComputeLoggingGooglepubsub();
+            o.accountName = accountName;
             o.name = name;
             o.projectId = projectId;
             o.secretKey = secretKey;

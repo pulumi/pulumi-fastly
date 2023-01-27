@@ -32,13 +32,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demoServiceVcl, err := fastly.NewServiceVcl(ctx, "demoServiceVcl", &fastly.ServiceVclArgs{
-//				Domains: ServiceVclDomainArray{
-//					&ServiceVclDomainArgs{
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
 //						Name: pulumi.String("example.com"),
 //					},
 //				},
-//				Backends: ServiceVclBackendArray{
-//					&ServiceVclBackendArgs{
+//				Backends: fastly.ServiceVclBackendArray{
+//					&fastly.ServiceVclBackendArgs{
 //						Address: pulumi.String("127.0.0.1"),
 //						Name:    pulumi.String("localhost"),
 //					},

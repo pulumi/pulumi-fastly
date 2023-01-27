@@ -109,7 +109,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? SslCaCert { get; set; }
 
         /// <summary>
-        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        /// Configure certificate validation. Does not affect SNI at all
         /// </summary>
         [Input("sslCertHostname")]
         public Input<string>? SslCertHostname { get; set; }
@@ -159,13 +159,7 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// Used for both SNI during the TLS handshake and to validate the cert
-        /// </summary>
-        [Input("sslHostname")]
-        public Input<string>? SslHostname { get; set; }
-
-        /// <summary>
-        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        /// Configure SNI in the TLS handshake. Does not affect cert validation at all
         /// </summary>
         [Input("sslSniHostname")]
         public Input<string>? SslSniHostname { get; set; }

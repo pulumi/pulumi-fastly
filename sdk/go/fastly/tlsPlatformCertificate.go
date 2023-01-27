@@ -47,8 +47,8 @@ import (
 //			ca, err := tls.NewSelfSignedCert(ctx, "ca", &tls.SelfSignedCertArgs{
 //				KeyAlgorithm:  caKey.Algorithm,
 //				PrivateKeyPem: caKey.PrivateKeyPem,
-//				Subjects: SelfSignedCertSubjectArray{
-//					&SelfSignedCertSubjectArgs{
+//				Subjects: tls.SelfSignedCertSubjectArray{
+//					&tls.SelfSignedCertSubjectArgs{
 //						CommonName: pulumi.String("Example CA"),
 //					},
 //				},
@@ -65,8 +65,8 @@ import (
 //			example, err := tls.NewCertRequest(ctx, "example", &tls.CertRequestArgs{
 //				KeyAlgorithm:  keyPrivateKey.Algorithm,
 //				PrivateKeyPem: keyPrivateKey.PrivateKeyPem,
-//				Subjects: CertRequestSubjectArray{
-//					&CertRequestSubjectArgs{
+//				Subjects: tls.CertRequestSubjectArray{
+//					&tls.CertRequestSubjectArgs{
 //						CommonName: pulumi.String("example.com"),
 //					},
 //				},
@@ -92,7 +92,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			config, err := fastly.GetTlsConfiguration(ctx, &GetTlsConfigurationArgs{
+//			config, err := fastly.GetTlsConfiguration(ctx, &fastly.GetTlsConfigurationArgs{
 //				TlsService: pulumi.StringRef("PLATFORM"),
 //			}, nil)
 //			if err != nil {
@@ -107,7 +107,7 @@ import (
 //			_, err = fastly.NewTlsPlatformCertificate(ctx, "certTlsPlatformCertificate", &fastly.TlsPlatformCertificateArgs{
 //				CertificateBody:    certLocallySignedCert.CertPem,
 //				IntermediatesBlob:  ca.CertPem,
-//				ConfigurationId:    pulumi.String(config.Id),
+//				ConfigurationId:    *pulumi.String(config.Id),
 //				AllowUntrustedRoot: pulumi.Bool(true),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				keyTlsPrivateKey,

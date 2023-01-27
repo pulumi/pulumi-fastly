@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclLoggingGooglepubsub {
     /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    private @Nullable String accountName;
+    /**
      * @return Apache style log formatting.
      * 
      */
@@ -59,6 +64,13 @@ public final class ServiceVclLoggingGooglepubsub {
     private String user;
 
     private ServiceVclLoggingGooglepubsub() {}
+    /**
+     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * 
+     */
+    public Optional<String> accountName() {
+        return Optional.ofNullable(this.accountName);
+    }
     /**
      * @return Apache style log formatting.
      * 
@@ -132,6 +144,7 @@ public final class ServiceVclLoggingGooglepubsub {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String accountName;
         private @Nullable String format;
         private @Nullable Integer formatVersion;
         private String name;
@@ -144,6 +157,7 @@ public final class ServiceVclLoggingGooglepubsub {
         public Builder() {}
         public Builder(ServiceVclLoggingGooglepubsub defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.accountName = defaults.accountName;
     	      this.format = defaults.format;
     	      this.formatVersion = defaults.formatVersion;
     	      this.name = defaults.name;
@@ -155,6 +169,11 @@ public final class ServiceVclLoggingGooglepubsub {
     	      this.user = defaults.user;
         }
 
+        @CustomType.Setter
+        public Builder accountName(@Nullable String accountName) {
+            this.accountName = accountName;
+            return this;
+        }
         @CustomType.Setter
         public Builder format(@Nullable String format) {
             this.format = format;
@@ -202,6 +221,7 @@ public final class ServiceVclLoggingGooglepubsub {
         }
         public ServiceVclLoggingGooglepubsub build() {
             final var o = new ServiceVclLoggingGooglepubsub();
+            o.accountName = accountName;
             o.format = format;
             o.formatVersion = formatVersion;
             o.name = name;

@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclLoggingBigquery
     {
         /// <summary>
+        /// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        /// </summary>
+        public readonly string? AccountName;
+        /// <summary>
         /// The ID of your BigQuery dataset
         /// </summary>
         public readonly string Dataset;
@@ -56,6 +60,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceVclLoggingBigquery(
+            string? accountName,
+
             string dataset,
 
             string email,
@@ -76,6 +82,7 @@ namespace Pulumi.Fastly.Outputs
 
             string? template)
         {
+            AccountName = accountName;
             Dataset = dataset;
             Email = email;
             Format = format;

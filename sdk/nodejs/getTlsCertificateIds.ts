@@ -14,16 +14,13 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const exampleTlsCertificateIds = fastly.getTlsCertificateIds({});
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {certificateId: exampleTlsCertificateIds.then(exampleTlsCertificateIds => exampleTlsCertificateIds.ids?[0])});
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {certificateId: exampleTlsCertificateIds.then(exampleTlsCertificateIds => exampleTlsCertificateIds.ids?.[0])});
  * // ...
  * ```
  */
 export function getTlsCertificateIds(opts?: pulumi.InvokeOptions): Promise<GetTlsCertificateIdsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsCertificateIds:getTlsCertificateIds", {
     }, opts);
 }

@@ -13,18 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const example = pulumi.output(fastly.getTlsSubscription({
+ * const example = fastly.getTlsSubscription({
  *     domains: ["example.com"],
- * }));
+ * });
  * ```
  */
 export function getTlsSubscription(args?: GetTlsSubscriptionArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsSubscription:getTlsSubscription", {
         "certificateAuthority": args.certificateAuthority,
         "configurationId": args.configurationId,
@@ -92,9 +89,22 @@ export interface GetTlsSubscriptionResult {
      */
     readonly updatedAt: string;
 }
-
+/**
+ * Use this data source to get information about a TLS subscription.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = fastly.getTlsSubscription({
+ *     domains: ["example.com"],
+ * });
+ * ```
+ */
 export function getTlsSubscriptionOutput(args?: GetTlsSubscriptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsSubscriptionResult> {
-    return pulumi.output(args).apply(a => getTlsSubscription(a, opts))
+    return pulumi.output(args).apply((a: any) => getTlsSubscription(a, opts))
 }
 
 /**
