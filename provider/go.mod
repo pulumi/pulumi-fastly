@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-fastly/provider/v5
+module github.com/pulumi/pulumi-fastly/provider/v6
 
 go 1.18
 
