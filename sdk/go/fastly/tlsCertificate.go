@@ -24,7 +24,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v6/go/fastly"
 //	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -41,8 +41,8 @@ import (
 //			cert, err := tls.NewSelfSignedCert(ctx, "cert", &tls.SelfSignedCertArgs{
 //				KeyAlgorithm:  keyPrivateKey.Algorithm,
 //				PrivateKeyPem: keyPrivateKey.PrivateKeyPem,
-//				Subjects: SelfSignedCertSubjectArray{
-//					&SelfSignedCertSubjectArgs{
+//				Subjects: tls.SelfSignedCertSubjectArray{
+//					&tls.SelfSignedCertSubjectArgs{
 //						CommonName: pulumi.String("example.com"),
 //					},
 //				},

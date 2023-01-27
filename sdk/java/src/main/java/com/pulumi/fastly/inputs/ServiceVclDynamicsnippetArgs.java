@@ -17,6 +17,21 @@ public final class ServiceVclDynamicsnippetArgs extends com.pulumi.resources.Res
     public static final ServiceVclDynamicsnippetArgs Empty = new ServiceVclDynamicsnippetArgs();
 
     /**
+     * The VCL code that specifies exactly what the snippet does
+     * 
+     */
+    @Import(name="content")
+    private @Nullable Output<String> content;
+
+    /**
+     * @return The VCL code that specifies exactly what the snippet does
+     * 
+     */
+    public Optional<Output<String>> content() {
+        return Optional.ofNullable(this.content);
+    }
+
+    /**
      * A name that is unique across &#34;regular&#34; and &#34;dynamic&#34; VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
      * 
      */
@@ -79,6 +94,7 @@ public final class ServiceVclDynamicsnippetArgs extends com.pulumi.resources.Res
     private ServiceVclDynamicsnippetArgs() {}
 
     private ServiceVclDynamicsnippetArgs(ServiceVclDynamicsnippetArgs $) {
+        this.content = $.content;
         this.name = $.name;
         this.priority = $.priority;
         this.snippetId = $.snippetId;
@@ -101,6 +117,27 @@ public final class ServiceVclDynamicsnippetArgs extends com.pulumi.resources.Res
 
         public Builder(ServiceVclDynamicsnippetArgs defaults) {
             $ = new ServiceVclDynamicsnippetArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param content The VCL code that specifies exactly what the snippet does
+         * 
+         * @return builder
+         * 
+         */
+        public Builder content(@Nullable Output<String> content) {
+            $.content = content;
+            return this;
+        }
+
+        /**
+         * @param content The VCL code that specifies exactly what the snippet does
+         * 
+         * @return builder
+         * 
+         */
+        public Builder content(String content) {
+            return content(Output.of(content));
         }
 
         /**

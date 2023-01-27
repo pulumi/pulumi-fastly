@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingGooglepubsub
     {
         /// <summary>
+        /// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        /// </summary>
+        public readonly string? AccountName;
+        /// <summary>
         /// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
@@ -36,6 +40,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceComputeLoggingGooglepubsub(
+            string? accountName,
+
             string name,
 
             string projectId,
@@ -46,6 +52,7 @@ namespace Pulumi.Fastly.Outputs
 
             string user)
         {
+            AccountName = accountName;
             Name = name;
             ProjectId = projectId;
             SecretKey = secretKey;

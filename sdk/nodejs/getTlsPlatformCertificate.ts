@@ -19,18 +19,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const example = pulumi.output(fastly.getTlsPlatformCertificate({
+ * const example = fastly.getTlsPlatformCertificate({
  *     domains: ["example.com"],
- * }));
+ * });
  * ```
  */
 export function getTlsPlatformCertificate(args?: GetTlsPlatformCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsPlatformCertificateResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", {
         "domains": args.domains,
         "id": args.id,
@@ -88,9 +85,28 @@ export interface GetTlsPlatformCertificateResult {
      */
     readonly updatedAt: string;
 }
-
+/**
+ * Use this data source to get information of a Platform TLS certificate for use with other resources.
+ *
+ * > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+ * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ * with any of the others.
+ *
+ * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = fastly.getTlsPlatformCertificate({
+ *     domains: ["example.com"],
+ * });
+ * ```
+ */
 export function getTlsPlatformCertificateOutput(args?: GetTlsPlatformCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPlatformCertificateResult> {
-    return pulumi.output(args).apply(a => getTlsPlatformCertificate(a, opts))
+    return pulumi.output(args).apply((a: any) => getTlsPlatformCertificate(a, opts))
 }
 
 /**

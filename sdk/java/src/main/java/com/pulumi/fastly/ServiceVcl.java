@@ -112,6 +112,7 @@ import javax.annotation.Nullable;
  * ```
  * 
  * Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+ * 
  * ```java
  * package generated_program;
  * 
@@ -534,6 +535,24 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> forceDestroy() {
         return Codegen.optional(this.forceDestroy);
+    }
+    /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
+    @Export(name="forceRefresh", type=Boolean.class, parameters={})
+    private Output<Boolean> forceRefresh;
+
+    /**
+     * @return Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
+    public Output<Boolean> forceRefresh() {
+        return this.forceRefresh;
     }
     @Export(name="gzips", type=List.class, parameters={ServiceVclGzip.class})
     private Output</* @Nullable */ List<ServiceVclGzip>> gzips;

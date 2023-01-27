@@ -78,7 +78,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? SslCaCert;
         /// <summary>
-        /// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        /// Configure certificate validation. Does not affect SNI at all
         /// </summary>
         public readonly string? SslCertHostname;
         /// <summary>
@@ -98,11 +98,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? SslClientKey;
         /// <summary>
-        /// Used for both SNI during the TLS handshake and to validate the cert
-        /// </summary>
-        public readonly string? SslHostname;
-        /// <summary>
-        /// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        /// Configure SNI in the TLS handshake. Does not affect cert validation at all
         /// </summary>
         public readonly string? SslSniHostname;
         /// <summary>
@@ -158,8 +154,6 @@ namespace Pulumi.Fastly.Outputs
 
             string? sslClientKey,
 
-            string? sslHostname,
-
             string? sslSniHostname,
 
             bool? useSsl,
@@ -187,7 +181,6 @@ namespace Pulumi.Fastly.Outputs
             SslCiphers = sslCiphers;
             SslClientCert = sslClientCert;
             SslClientKey = sslClientKey;
-            SslHostname = sslHostname;
             SslSniHostname = sslSniHostname;
             UseSsl = useSsl;
             Weight = weight;

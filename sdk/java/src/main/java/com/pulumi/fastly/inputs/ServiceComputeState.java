@@ -153,6 +153,25 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
+    @Import(name="forceRefresh")
+    private @Nullable Output<Boolean> forceRefresh;
+
+    /**
+     * @return Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
+    public Optional<Output<Boolean>> forceRefresh() {
+        return Optional.ofNullable(this.forceRefresh);
+    }
+
+    /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
@@ -424,6 +443,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         this.dictionaries = $.dictionaries;
         this.domains = $.domains;
         this.forceDestroy = $.forceDestroy;
+        this.forceRefresh = $.forceRefresh;
         this.imported = $.imported;
         this.loggingBigqueries = $.loggingBigqueries;
         this.loggingBlobstorages = $.loggingBlobstorages;
@@ -635,6 +655,31 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
          */
         public Builder forceDestroy(Boolean forceDestroy) {
             return forceDestroy(Output.of(forceDestroy));
+        }
+
+        /**
+         * @param forceRefresh Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+         * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+         * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceRefresh(@Nullable Output<Boolean> forceRefresh) {
+            $.forceRefresh = forceRefresh;
+            return this;
+        }
+
+        /**
+         * @param forceRefresh Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+         * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+         * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceRefresh(Boolean forceRefresh) {
+            return forceRefresh(Output.of(forceRefresh));
         }
 
         /**

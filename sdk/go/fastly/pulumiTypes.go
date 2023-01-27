@@ -174,7 +174,7 @@ type ServiceComputeBackend struct {
 	Shield *string `pulumi:"shield"`
 	// CA certificate attached to origin.
 	SslCaCert *string `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+	// Configure certificate validation. Does not affect SNI at all
 	SslCertHostname *string `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert *bool `pulumi:"sslCheckCert"`
@@ -184,11 +184,7 @@ type ServiceComputeBackend struct {
 	SslClientCert *string `pulumi:"sslClientCert"`
 	// Client key attached to origin. Used when connecting to the backend
 	SslClientKey *string `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert
-	//
-	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname *string `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+	// Configure SNI in the TLS handshake. Does not affect cert validation at all
 	SslSniHostname *string `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl *bool `pulumi:"useSsl"`
@@ -238,7 +234,7 @@ type ServiceComputeBackendArgs struct {
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
 	// CA certificate attached to origin.
 	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+	// Configure certificate validation. Does not affect SNI at all
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
@@ -248,11 +244,7 @@ type ServiceComputeBackendArgs struct {
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
 	// Client key attached to origin. Used when connecting to the backend
 	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert
-	//
-	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+	// Configure SNI in the TLS handshake. Does not affect cert validation at all
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
@@ -386,7 +378,7 @@ func (o ServiceComputeBackendOutput) SslCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
 }
 
-// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+// Configure certificate validation. Does not affect SNI at all
 func (o ServiceComputeBackendOutput) SslCertHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
 }
@@ -411,14 +403,7 @@ func (o ServiceComputeBackendOutput) SslClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
 }
 
-// Used for both SNI during the TLS handshake and to validate the cert
-//
-// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-func (o ServiceComputeBackendOutput) SslHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
-}
-
-// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+// Configure SNI in the TLS handshake. Does not affect cert validation at all
 func (o ServiceComputeBackendOutput) SslSniHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
 }
@@ -681,6 +666,8 @@ func (o ServiceComputeDomainArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 }
 
 type ServiceComputeLoggingBigquery struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName *string `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset string `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
@@ -709,6 +696,8 @@ type ServiceComputeLoggingBigqueryInput interface {
 }
 
 type ServiceComputeLoggingBigqueryArgs struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset pulumi.StringInput `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
@@ -774,6 +763,11 @@ func (o ServiceComputeLoggingBigqueryOutput) ToServiceComputeLoggingBigqueryOutp
 
 func (o ServiceComputeLoggingBigqueryOutput) ToServiceComputeLoggingBigqueryOutputWithContext(ctx context.Context) ServiceComputeLoggingBigqueryOutput {
 	return o
+}
+
+// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+func (o ServiceComputeLoggingBigqueryOutput) AccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingBigquery) *string { return v.AccountName }).(pulumi.StringPtrOutput)
 }
 
 // The ID of your BigQuery dataset
@@ -1927,6 +1921,8 @@ func (o ServiceComputeLoggingFtpArrayOutput) Index(i pulumi.IntInput) ServiceCom
 }
 
 type ServiceComputeLoggingGc struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName *string `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -1961,6 +1957,8 @@ type ServiceComputeLoggingGcInput interface {
 }
 
 type ServiceComputeLoggingGcArgs struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -2034,6 +2032,11 @@ func (o ServiceComputeLoggingGcOutput) ToServiceComputeLoggingGcOutputWithContex
 	return o
 }
 
+// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+func (o ServiceComputeLoggingGcOutput) AccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.AccountName }).(pulumi.StringPtrOutput)
+}
+
 // The name of the bucket in which to store the logs
 func (o ServiceComputeLoggingGcOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) string { return v.BucketName }).(pulumi.StringOutput)
@@ -2105,6 +2108,8 @@ func (o ServiceComputeLoggingGcArrayOutput) Index(i pulumi.IntInput) ServiceComp
 }
 
 type ServiceComputeLoggingGooglepubsub struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName *string `pulumi:"accountName"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// The ID of your Google Cloud Platform project
@@ -2129,6 +2134,8 @@ type ServiceComputeLoggingGooglepubsubInput interface {
 }
 
 type ServiceComputeLoggingGooglepubsubArgs struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of your Google Cloud Platform project
@@ -2190,6 +2197,11 @@ func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepu
 
 func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepubsubOutputWithContext(ctx context.Context) ServiceComputeLoggingGooglepubsubOutput {
 	return o
+}
+
+// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+func (o ServiceComputeLoggingGooglepubsubOutput) AccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) *string { return v.AccountName }).(pulumi.StringPtrOutput)
 }
 
 // The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -5140,7 +5152,7 @@ type ServiceVclBackend struct {
 	Shield *string `pulumi:"shield"`
 	// CA certificate attached to origin.
 	SslCaCert *string `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+	// Configure certificate validation. Does not affect SNI at all
 	SslCertHostname *string `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert *bool `pulumi:"sslCheckCert"`
@@ -5150,11 +5162,7 @@ type ServiceVclBackend struct {
 	SslClientCert *string `pulumi:"sslClientCert"`
 	// Client key attached to origin. Used when connecting to the backend
 	SslClientKey *string `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert
-	//
-	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname *string `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+	// Configure SNI in the TLS handshake. Does not affect cert validation at all
 	SslSniHostname *string `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl *bool `pulumi:"useSsl"`
@@ -5206,7 +5214,7 @@ type ServiceVclBackendArgs struct {
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
 	// CA certificate attached to origin.
 	SslCaCert pulumi.StringPtrInput `pulumi:"sslCaCert"`
-	// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+	// Configure certificate validation. Does not affect SNI at all
 	SslCertHostname pulumi.StringPtrInput `pulumi:"sslCertHostname"`
 	// Be strict about checking SSL certs. Default `true`
 	SslCheckCert pulumi.BoolPtrInput `pulumi:"sslCheckCert"`
@@ -5216,11 +5224,7 @@ type ServiceVclBackendArgs struct {
 	SslClientCert pulumi.StringPtrInput `pulumi:"sslClientCert"`
 	// Client key attached to origin. Used when connecting to the backend
 	SslClientKey pulumi.StringPtrInput `pulumi:"sslClientKey"`
-	// Used for both SNI during the TLS handshake and to validate the cert
-	//
-	// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-	SslHostname pulumi.StringPtrInput `pulumi:"sslHostname"`
-	// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+	// Configure SNI in the TLS handshake. Does not affect cert validation at all
 	SslSniHostname pulumi.StringPtrInput `pulumi:"sslSniHostname"`
 	// Whether or not to use SSL to reach the Backend. Default `false`
 	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
@@ -5359,7 +5363,7 @@ func (o ServiceVclBackendOutput) SslCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.SslCaCert }).(pulumi.StringPtrOutput)
 }
 
-// Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+// Configure certificate validation. Does not affect SNI at all
 func (o ServiceVclBackendOutput) SslCertHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.SslCertHostname }).(pulumi.StringPtrOutput)
 }
@@ -5384,14 +5388,7 @@ func (o ServiceVclBackendOutput) SslClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.SslClientKey }).(pulumi.StringPtrOutput)
 }
 
-// Used for both SNI during the TLS handshake and to validate the cert
-//
-// Deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.
-func (o ServiceVclBackendOutput) SslHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceVclBackend) *string { return v.SslHostname }).(pulumi.StringPtrOutput)
-}
-
-// Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+// Configure SNI in the TLS handshake. Does not affect cert validation at all
 func (o ServiceVclBackendOutput) SslSniHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.SslSniHostname }).(pulumi.StringPtrOutput)
 }
@@ -6062,6 +6059,8 @@ func (o ServiceVclDomainArrayOutput) Index(i pulumi.IntInput) ServiceVclDomainOu
 }
 
 type ServiceVclDynamicsnippet struct {
+	// The VCL code that specifies exactly what the snippet does
+	Content *string `pulumi:"content"`
 	// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
 	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
@@ -6084,6 +6083,8 @@ type ServiceVclDynamicsnippetInput interface {
 }
 
 type ServiceVclDynamicsnippetArgs struct {
+	// The VCL code that specifies exactly what the snippet does
+	Content pulumi.StringPtrInput `pulumi:"content"`
 	// A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
 	// Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
@@ -6143,6 +6144,11 @@ func (o ServiceVclDynamicsnippetOutput) ToServiceVclDynamicsnippetOutput() Servi
 
 func (o ServiceVclDynamicsnippetOutput) ToServiceVclDynamicsnippetOutputWithContext(ctx context.Context) ServiceVclDynamicsnippetOutput {
 	return o
+}
+
+// The VCL code that specifies exactly what the snippet does
+func (o ServiceVclDynamicsnippetOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclDynamicsnippet) *string { return v.Content }).(pulumi.StringPtrOutput)
 }
 
 // A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
@@ -6510,7 +6516,7 @@ type ServiceVclHealthcheck struct {
 	CheckInterval *int `pulumi:"checkInterval"`
 	// The status code expected from the host. Default `200`
 	ExpectedResponse *int `pulumi:"expectedResponse"`
-	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
 	Headers []string `pulumi:"headers"`
 	// The Host header to send for this Healthcheck
 	Host string `pulumi:"host"`
@@ -6548,7 +6554,7 @@ type ServiceVclHealthcheckArgs struct {
 	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
 	// The status code expected from the host. Default `200`
 	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
-	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
 	Headers pulumi.StringArrayInput `pulumi:"headers"`
 	// The Host header to send for this Healthcheck
 	Host pulumi.StringInput `pulumi:"host"`
@@ -6631,7 +6637,7 @@ func (o ServiceVclHealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclHealthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
 }
 
-// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
 func (o ServiceVclHealthcheckOutput) Headers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServiceVclHealthcheck) []string { return v.Headers }).(pulumi.StringArrayOutput)
 }
@@ -6702,6 +6708,8 @@ func (o ServiceVclHealthcheckArrayOutput) Index(i pulumi.IntInput) ServiceVclHea
 }
 
 type ServiceVclLoggingBigquery struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName *string `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset string `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
@@ -6736,6 +6744,8 @@ type ServiceVclLoggingBigqueryInput interface {
 }
 
 type ServiceVclLoggingBigqueryArgs struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset pulumi.StringInput `pulumi:"dataset"`
 	// The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
@@ -6807,6 +6817,11 @@ func (o ServiceVclLoggingBigqueryOutput) ToServiceVclLoggingBigqueryOutput() Ser
 
 func (o ServiceVclLoggingBigqueryOutput) ToServiceVclLoggingBigqueryOutputWithContext(ctx context.Context) ServiceVclLoggingBigqueryOutput {
 	return o
+}
+
+// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+func (o ServiceVclLoggingBigqueryOutput) AccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingBigquery) *string { return v.AccountName }).(pulumi.StringPtrOutput)
 }
 
 // The ID of your BigQuery dataset
@@ -8191,6 +8206,8 @@ func (o ServiceVclLoggingFtpArrayOutput) Index(i pulumi.IntInput) ServiceVclLogg
 }
 
 type ServiceVclLoggingGc struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName *string `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -8233,6 +8250,8 @@ type ServiceVclLoggingGcInput interface {
 }
 
 type ServiceVclLoggingGcArgs struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
@@ -8312,6 +8331,11 @@ func (o ServiceVclLoggingGcOutput) ToServiceVclLoggingGcOutput() ServiceVclLoggi
 
 func (o ServiceVclLoggingGcOutput) ToServiceVclLoggingGcOutputWithContext(ctx context.Context) ServiceVclLoggingGcOutput {
 	return o
+}
+
+// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+func (o ServiceVclLoggingGcOutput) AccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.AccountName }).(pulumi.StringPtrOutput)
 }
 
 // The name of the bucket in which to store the logs
@@ -8405,6 +8429,8 @@ func (o ServiceVclLoggingGcArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggi
 }
 
 type ServiceVclLoggingGooglepubsub struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName *string `pulumi:"accountName"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
@@ -8437,6 +8463,8 @@ type ServiceVclLoggingGooglepubsubInput interface {
 }
 
 type ServiceVclLoggingGooglepubsubArgs struct {
+	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
@@ -8506,6 +8534,11 @@ func (o ServiceVclLoggingGooglepubsubOutput) ToServiceVclLoggingGooglepubsubOutp
 
 func (o ServiceVclLoggingGooglepubsubOutput) ToServiceVclLoggingGooglepubsubOutputWithContext(ctx context.Context) ServiceVclLoggingGooglepubsubOutput {
 	return o
+}
+
+// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+func (o ServiceVclLoggingGooglepubsubOutput) AccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) *string { return v.AccountName }).(pulumi.StringPtrOutput)
 }
 
 // Apache style log formatting.

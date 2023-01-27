@@ -16,7 +16,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v6/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -28,7 +28,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
-//				CertificateId: pulumi.String(exampleTlsCertificateIds.Ids[0]),
+//				CertificateId: *pulumi.String(exampleTlsCertificateIds.Ids[0]),
 //			})
 //			if err != nil {
 //				return err

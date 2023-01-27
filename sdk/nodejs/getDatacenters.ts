@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
  */
 export function getDatacenters(opts?: pulumi.InvokeOptions): Promise<GetDatacentersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getDatacenters:getDatacenters", {
     }, opts);
 }

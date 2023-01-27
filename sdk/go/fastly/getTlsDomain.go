@@ -19,14 +19,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v6/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.GetTlsDomain(ctx, &GetTlsDomainArgs{
+//			_, err := fastly.GetTlsDomain(ctx, &fastly.GetTlsDomainArgs{
 //				Domain: "example.com",
 //			}, nil)
 //			if err != nil {

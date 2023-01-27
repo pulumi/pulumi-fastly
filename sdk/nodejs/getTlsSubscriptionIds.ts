@@ -8,11 +8,8 @@ import * as utilities from "./utilities";
  * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
  */
 export function getTlsSubscriptionIds(opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionIdsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", {
     }, opts);
 }

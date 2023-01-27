@@ -17,9 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demo = new fastly.User("demo", {
- *     login: "demo@example.com",
- * });
+ * const demo = new fastly.User("demo", {login: "demo@example.com"});
  * ```
  *
  * ## Import

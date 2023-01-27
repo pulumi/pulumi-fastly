@@ -7,156 +7,156 @@ import * as utilities from "./utilities";
 // Export members:
 export { GetDatacentersResult } from "./getDatacenters";
 export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
+utilities.lazyLoad(exports, ["getDatacenters"], () => require("./getDatacenters"));
 
 export { GetFastlyIpRangesResult } from "./getFastlyIpRanges";
 export const getFastlyIpRanges: typeof import("./getFastlyIpRanges").getFastlyIpRanges = null as any;
+utilities.lazyLoad(exports, ["getFastlyIpRanges"], () => require("./getFastlyIpRanges"));
 
 export { GetServicesResult } from "./getServices";
 export const getServices: typeof import("./getServices").getServices = null as any;
+utilities.lazyLoad(exports, ["getServices"], () => require("./getServices"));
 
 export { GetTlsActivationArgs, GetTlsActivationResult, GetTlsActivationOutputArgs } from "./getTlsActivation";
 export const getTlsActivation: typeof import("./getTlsActivation").getTlsActivation = null as any;
 export const getTlsActivationOutput: typeof import("./getTlsActivation").getTlsActivationOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsActivation","getTlsActivationOutput"], () => require("./getTlsActivation"));
 
 export { GetTlsActivationIdsArgs, GetTlsActivationIdsResult, GetTlsActivationIdsOutputArgs } from "./getTlsActivationIds";
 export const getTlsActivationIds: typeof import("./getTlsActivationIds").getTlsActivationIds = null as any;
 export const getTlsActivationIdsOutput: typeof import("./getTlsActivationIds").getTlsActivationIdsOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsActivationIds","getTlsActivationIdsOutput"], () => require("./getTlsActivationIds"));
 
 export { GetTlsCertificateArgs, GetTlsCertificateResult, GetTlsCertificateOutputArgs } from "./getTlsCertificate";
 export const getTlsCertificate: typeof import("./getTlsCertificate").getTlsCertificate = null as any;
 export const getTlsCertificateOutput: typeof import("./getTlsCertificate").getTlsCertificateOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsCertificate","getTlsCertificateOutput"], () => require("./getTlsCertificate"));
 
 export { GetTlsCertificateIdsResult } from "./getTlsCertificateIds";
 export const getTlsCertificateIds: typeof import("./getTlsCertificateIds").getTlsCertificateIds = null as any;
+utilities.lazyLoad(exports, ["getTlsCertificateIds"], () => require("./getTlsCertificateIds"));
 
 export { GetTlsConfigurationArgs, GetTlsConfigurationResult, GetTlsConfigurationOutputArgs } from "./getTlsConfiguration";
 export const getTlsConfiguration: typeof import("./getTlsConfiguration").getTlsConfiguration = null as any;
 export const getTlsConfigurationOutput: typeof import("./getTlsConfiguration").getTlsConfigurationOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsConfiguration","getTlsConfigurationOutput"], () => require("./getTlsConfiguration"));
 
 export { GetTlsConfigurationIdsResult } from "./getTlsConfigurationIds";
 export const getTlsConfigurationIds: typeof import("./getTlsConfigurationIds").getTlsConfigurationIds = null as any;
+utilities.lazyLoad(exports, ["getTlsConfigurationIds"], () => require("./getTlsConfigurationIds"));
 
 export { GetTlsDomainArgs, GetTlsDomainResult, GetTlsDomainOutputArgs } from "./getTlsDomain";
 export const getTlsDomain: typeof import("./getTlsDomain").getTlsDomain = null as any;
 export const getTlsDomainOutput: typeof import("./getTlsDomain").getTlsDomainOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsDomain","getTlsDomainOutput"], () => require("./getTlsDomain"));
 
 export { GetTlsPlatformCertificateArgs, GetTlsPlatformCertificateResult, GetTlsPlatformCertificateOutputArgs } from "./getTlsPlatformCertificate";
 export const getTlsPlatformCertificate: typeof import("./getTlsPlatformCertificate").getTlsPlatformCertificate = null as any;
 export const getTlsPlatformCertificateOutput: typeof import("./getTlsPlatformCertificate").getTlsPlatformCertificateOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsPlatformCertificate","getTlsPlatformCertificateOutput"], () => require("./getTlsPlatformCertificate"));
 
 export { GetTlsPlatformCertificateIdsResult } from "./getTlsPlatformCertificateIds";
 export const getTlsPlatformCertificateIds: typeof import("./getTlsPlatformCertificateIds").getTlsPlatformCertificateIds = null as any;
+utilities.lazyLoad(exports, ["getTlsPlatformCertificateIds"], () => require("./getTlsPlatformCertificateIds"));
 
 export { GetTlsPrivateKeyArgs, GetTlsPrivateKeyResult, GetTlsPrivateKeyOutputArgs } from "./getTlsPrivateKey";
 export const getTlsPrivateKey: typeof import("./getTlsPrivateKey").getTlsPrivateKey = null as any;
 export const getTlsPrivateKeyOutput: typeof import("./getTlsPrivateKey").getTlsPrivateKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsPrivateKey","getTlsPrivateKeyOutput"], () => require("./getTlsPrivateKey"));
 
 export { GetTlsPrivateKeyIdsResult } from "./getTlsPrivateKeyIds";
 export const getTlsPrivateKeyIds: typeof import("./getTlsPrivateKeyIds").getTlsPrivateKeyIds = null as any;
+utilities.lazyLoad(exports, ["getTlsPrivateKeyIds"], () => require("./getTlsPrivateKeyIds"));
 
 export { GetTlsSubscriptionArgs, GetTlsSubscriptionResult, GetTlsSubscriptionOutputArgs } from "./getTlsSubscription";
 export const getTlsSubscription: typeof import("./getTlsSubscription").getTlsSubscription = null as any;
 export const getTlsSubscriptionOutput: typeof import("./getTlsSubscription").getTlsSubscriptionOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsSubscription","getTlsSubscriptionOutput"], () => require("./getTlsSubscription"));
 
 export { GetTlsSubscriptionIdsResult } from "./getTlsSubscriptionIds";
 export const getTlsSubscriptionIds: typeof import("./getTlsSubscriptionIds").getTlsSubscriptionIds = null as any;
+utilities.lazyLoad(exports, ["getTlsSubscriptionIds"], () => require("./getTlsSubscriptionIds"));
 
 export { GetWafRulesArgs, GetWafRulesResult, GetWafRulesOutputArgs } from "./getWafRules";
 export const getWafRules: typeof import("./getWafRules").getWafRules = null as any;
 export const getWafRulesOutput: typeof import("./getWafRules").getWafRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getWafRules","getWafRulesOutput"], () => require("./getWafRules"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 export { ServiceACLEntriesArgs, ServiceACLEntriesState } from "./serviceACLEntries";
 export type ServiceACLEntries = import("./serviceACLEntries").ServiceACLEntries;
 export const ServiceACLEntries: typeof import("./serviceACLEntries").ServiceACLEntries = null as any;
+utilities.lazyLoad(exports, ["ServiceACLEntries"], () => require("./serviceACLEntries"));
 
 export { ServiceAuthorizationArgs, ServiceAuthorizationState } from "./serviceAuthorization";
 export type ServiceAuthorization = import("./serviceAuthorization").ServiceAuthorization;
 export const ServiceAuthorization: typeof import("./serviceAuthorization").ServiceAuthorization = null as any;
+utilities.lazyLoad(exports, ["ServiceAuthorization"], () => require("./serviceAuthorization"));
 
 export { ServiceComputeArgs, ServiceComputeState } from "./serviceCompute";
 export type ServiceCompute = import("./serviceCompute").ServiceCompute;
 export const ServiceCompute: typeof import("./serviceCompute").ServiceCompute = null as any;
+utilities.lazyLoad(exports, ["ServiceCompute"], () => require("./serviceCompute"));
 
 export { ServiceDictionaryItemsArgs, ServiceDictionaryItemsState } from "./serviceDictionaryItems";
 export type ServiceDictionaryItems = import("./serviceDictionaryItems").ServiceDictionaryItems;
 export const ServiceDictionaryItems: typeof import("./serviceDictionaryItems").ServiceDictionaryItems = null as any;
+utilities.lazyLoad(exports, ["ServiceDictionaryItems"], () => require("./serviceDictionaryItems"));
 
 export { ServiceDynamicSnippetContentArgs, ServiceDynamicSnippetContentState } from "./serviceDynamicSnippetContent";
 export type ServiceDynamicSnippetContent = import("./serviceDynamicSnippetContent").ServiceDynamicSnippetContent;
 export const ServiceDynamicSnippetContent: typeof import("./serviceDynamicSnippetContent").ServiceDynamicSnippetContent = null as any;
+utilities.lazyLoad(exports, ["ServiceDynamicSnippetContent"], () => require("./serviceDynamicSnippetContent"));
 
 export { ServiceVclArgs, ServiceVclState } from "./serviceVcl";
 export type ServiceVcl = import("./serviceVcl").ServiceVcl;
 export const ServiceVcl: typeof import("./serviceVcl").ServiceVcl = null as any;
+utilities.lazyLoad(exports, ["ServiceVcl"], () => require("./serviceVcl"));
 
 export { ServiceWafConfigurationArgs, ServiceWafConfigurationState } from "./serviceWafConfiguration";
 export type ServiceWafConfiguration = import("./serviceWafConfiguration").ServiceWafConfiguration;
 export const ServiceWafConfiguration: typeof import("./serviceWafConfiguration").ServiceWafConfiguration = null as any;
+utilities.lazyLoad(exports, ["ServiceWafConfiguration"], () => require("./serviceWafConfiguration"));
 
 export { TlsActivationArgs, TlsActivationState } from "./tlsActivation";
 export type TlsActivation = import("./tlsActivation").TlsActivation;
 export const TlsActivation: typeof import("./tlsActivation").TlsActivation = null as any;
+utilities.lazyLoad(exports, ["TlsActivation"], () => require("./tlsActivation"));
 
 export { TlsCertificateArgs, TlsCertificateState } from "./tlsCertificate";
 export type TlsCertificate = import("./tlsCertificate").TlsCertificate;
 export const TlsCertificate: typeof import("./tlsCertificate").TlsCertificate = null as any;
+utilities.lazyLoad(exports, ["TlsCertificate"], () => require("./tlsCertificate"));
 
 export { TlsPlatformCertificateArgs, TlsPlatformCertificateState } from "./tlsPlatformCertificate";
 export type TlsPlatformCertificate = import("./tlsPlatformCertificate").TlsPlatformCertificate;
 export const TlsPlatformCertificate: typeof import("./tlsPlatformCertificate").TlsPlatformCertificate = null as any;
+utilities.lazyLoad(exports, ["TlsPlatformCertificate"], () => require("./tlsPlatformCertificate"));
 
 export { TlsPrivateKeyArgs, TlsPrivateKeyState } from "./tlsPrivateKey";
 export type TlsPrivateKey = import("./tlsPrivateKey").TlsPrivateKey;
 export const TlsPrivateKey: typeof import("./tlsPrivateKey").TlsPrivateKey = null as any;
+utilities.lazyLoad(exports, ["TlsPrivateKey"], () => require("./tlsPrivateKey"));
 
 export { TlsSubscriptionArgs, TlsSubscriptionState } from "./tlsSubscription";
 export type TlsSubscription = import("./tlsSubscription").TlsSubscription;
 export const TlsSubscription: typeof import("./tlsSubscription").TlsSubscription = null as any;
+utilities.lazyLoad(exports, ["TlsSubscription"], () => require("./tlsSubscription"));
 
 export { TlsSubscriptionValidationArgs, TlsSubscriptionValidationState } from "./tlsSubscriptionValidation";
 export type TlsSubscriptionValidation = import("./tlsSubscriptionValidation").TlsSubscriptionValidation;
 export const TlsSubscriptionValidation: typeof import("./tlsSubscriptionValidation").TlsSubscriptionValidation = null as any;
+utilities.lazyLoad(exports, ["TlsSubscriptionValidation"], () => require("./tlsSubscriptionValidation"));
 
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
-
-utilities.lazyLoad(exports, ["getDatacenters"], () => require("./getDatacenters"));
-utilities.lazyLoad(exports, ["getFastlyIpRanges"], () => require("./getFastlyIpRanges"));
-utilities.lazyLoad(exports, ["getServices"], () => require("./getServices"));
-utilities.lazyLoad(exports, ["getTlsActivation","getTlsActivationOutput"], () => require("./getTlsActivation"));
-utilities.lazyLoad(exports, ["getTlsActivationIds","getTlsActivationIdsOutput"], () => require("./getTlsActivationIds"));
-utilities.lazyLoad(exports, ["getTlsCertificate","getTlsCertificateOutput"], () => require("./getTlsCertificate"));
-utilities.lazyLoad(exports, ["getTlsCertificateIds"], () => require("./getTlsCertificateIds"));
-utilities.lazyLoad(exports, ["getTlsConfiguration","getTlsConfigurationOutput"], () => require("./getTlsConfiguration"));
-utilities.lazyLoad(exports, ["getTlsConfigurationIds"], () => require("./getTlsConfigurationIds"));
-utilities.lazyLoad(exports, ["getTlsDomain","getTlsDomainOutput"], () => require("./getTlsDomain"));
-utilities.lazyLoad(exports, ["getTlsPlatformCertificate","getTlsPlatformCertificateOutput"], () => require("./getTlsPlatformCertificate"));
-utilities.lazyLoad(exports, ["getTlsPlatformCertificateIds"], () => require("./getTlsPlatformCertificateIds"));
-utilities.lazyLoad(exports, ["getTlsPrivateKey","getTlsPrivateKeyOutput"], () => require("./getTlsPrivateKey"));
-utilities.lazyLoad(exports, ["getTlsPrivateKeyIds"], () => require("./getTlsPrivateKeyIds"));
-utilities.lazyLoad(exports, ["getTlsSubscription","getTlsSubscriptionOutput"], () => require("./getTlsSubscription"));
-utilities.lazyLoad(exports, ["getTlsSubscriptionIds"], () => require("./getTlsSubscriptionIds"));
-utilities.lazyLoad(exports, ["getWafRules","getWafRulesOutput"], () => require("./getWafRules"));
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-utilities.lazyLoad(exports, ["ServiceACLEntries"], () => require("./serviceACLEntries"));
-utilities.lazyLoad(exports, ["ServiceAuthorization"], () => require("./serviceAuthorization"));
-utilities.lazyLoad(exports, ["ServiceCompute"], () => require("./serviceCompute"));
-utilities.lazyLoad(exports, ["ServiceDictionaryItems"], () => require("./serviceDictionaryItems"));
-utilities.lazyLoad(exports, ["ServiceDynamicSnippetContent"], () => require("./serviceDynamicSnippetContent"));
-utilities.lazyLoad(exports, ["ServiceVcl"], () => require("./serviceVcl"));
-utilities.lazyLoad(exports, ["ServiceWafConfiguration"], () => require("./serviceWafConfiguration"));
-utilities.lazyLoad(exports, ["TlsActivation"], () => require("./tlsActivation"));
-utilities.lazyLoad(exports, ["TlsCertificate"], () => require("./tlsCertificate"));
-utilities.lazyLoad(exports, ["TlsPlatformCertificate"], () => require("./tlsPlatformCertificate"));
-utilities.lazyLoad(exports, ["TlsPrivateKey"], () => require("./tlsPrivateKey"));
-utilities.lazyLoad(exports, ["TlsSubscription"], () => require("./tlsSubscription"));
-utilities.lazyLoad(exports, ["TlsSubscriptionValidation"], () => require("./tlsSubscriptionValidation"));
 utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
 
 // Export sub-modules:
 import * as config from "./config";

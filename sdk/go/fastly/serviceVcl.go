@@ -61,7 +61,11 @@ type ServiceVcl struct {
 	Domains         ServiceVclDomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets ServiceVclDynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy pulumi.BoolPtrOutput             `pulumi:"forceDestroy"`
+	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceRefresh pulumi.BoolOutput                `pulumi:"forceRefresh"`
 	Gzips        ServiceVclGzipArrayOutput        `pulumi:"gzips"`
 	Headers      ServiceVclHeaderArrayOutput      `pulumi:"headers"`
 	Healthchecks ServiceVclHealthcheckArrayOutput `pulumi:"healthchecks"`
@@ -166,7 +170,11 @@ type serviceVclState struct {
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy *bool                   `pulumi:"forceDestroy"`
+	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceRefresh *bool                   `pulumi:"forceRefresh"`
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
 	Headers      []ServiceVclHeader      `pulumi:"headers"`
 	Healthchecks []ServiceVclHealthcheck `pulumi:"healthchecks"`
@@ -241,6 +249,10 @@ type ServiceVclState struct {
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceRefresh pulumi.BoolPtrInput
 	Gzips        ServiceVclGzipArrayInput
 	Headers      ServiceVclHeaderArrayInput
 	Healthchecks ServiceVclHealthcheckArrayInput
@@ -585,6 +597,13 @@ func (o ServiceVclOutput) Dynamicsnippets() ServiceVclDynamicsnippetArrayOutput 
 // Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 func (o ServiceVclOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+func (o ServiceVclOutput) ForceRefresh() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolOutput { return v.ForceRefresh }).(pulumi.BoolOutput)
 }
 
 func (o ServiceVclOutput) Gzips() ServiceVclGzipArrayOutput {

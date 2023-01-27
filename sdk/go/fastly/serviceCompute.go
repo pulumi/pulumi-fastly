@@ -45,6 +45,10 @@ type ServiceCompute struct {
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceRefresh pulumi.BoolOutput `pulumi:"forceRefresh"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               pulumi.BoolOutput                             `pulumi:"imported"`
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
@@ -134,6 +138,10 @@ type serviceComputeState struct {
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceRefresh *bool `pulumi:"forceRefresh"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               *bool                                `pulumi:"imported"`
 	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
@@ -189,6 +197,10 @@ type ServiceComputeState struct {
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceRefresh pulumi.BoolPtrInput
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               pulumi.BoolPtrInput
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
@@ -455,6 +467,13 @@ func (o ServiceComputeOutput) Domains() ServiceComputeDomainArrayOutput {
 // Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 func (o ServiceComputeOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+func (o ServiceComputeOutput) ForceRefresh() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolOutput { return v.ForceRefresh }).(pulumi.BoolOutput)
 }
 
 // Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished

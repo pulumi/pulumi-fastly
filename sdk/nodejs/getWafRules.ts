@@ -8,11 +8,8 @@ import * as utilities from "./utilities";
 
 export function getWafRules(args?: GetWafRulesArgs, opts?: pulumi.InvokeOptions): Promise<GetWafRulesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getWafRules:getWafRules", {
         "excludeModsecRuleIds": args.excludeModsecRuleIds,
         "modsecRuleIds": args.modsecRuleIds,
@@ -72,9 +69,8 @@ export interface GetWafRulesResult {
      */
     readonly tags?: string[];
 }
-
 export function getWafRulesOutput(args?: GetWafRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWafRulesResult> {
-    return pulumi.output(args).apply(a => getWafRules(a, opts))
+    return pulumi.output(args).apply((a: any) => getWafRules(a, opts))
 }
 
 /**

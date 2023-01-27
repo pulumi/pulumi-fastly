@@ -198,7 +198,6 @@ class ServiceComputeBackendArgs:
                  ssl_ciphers: Optional[pulumi.Input[str]] = None,
                  ssl_client_cert: Optional[pulumi.Input[str]] = None,
                  ssl_client_key: Optional[pulumi.Input[str]] = None,
-                 ssl_hostname: Optional[pulumi.Input[str]] = None,
                  ssl_sni_hostname: Optional[pulumi.Input[str]] = None,
                  use_ssl: Optional[pulumi.Input[bool]] = None,
                  weight: Optional[pulumi.Input[int]] = None):
@@ -218,13 +217,12 @@ class ServiceComputeBackendArgs:
         :param pulumi.Input[int] port: The port number on which the Backend responds. Default `80`
         :param pulumi.Input[str] shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         :param pulumi.Input[str] ssl_ca_cert: CA certificate attached to origin.
-        :param pulumi.Input[str] ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        :param pulumi.Input[str] ssl_cert_hostname: Configure certificate validation. Does not affect SNI at all
         :param pulumi.Input[bool] ssl_check_cert: Be strict about checking SSL certs. Default `true`
         :param pulumi.Input[str] ssl_ciphers: Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         :param pulumi.Input[str] ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
         :param pulumi.Input[str] ssl_client_key: Client key attached to origin. Used when connecting to the backend
-        :param pulumi.Input[str] ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
-        :param pulumi.Input[str] ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        :param pulumi.Input[str] ssl_sni_hostname: Configure SNI in the TLS handshake. Does not affect cert validation at all
         :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
@@ -266,11 +264,6 @@ class ServiceComputeBackendArgs:
             pulumi.set(__self__, "ssl_client_cert", ssl_client_cert)
         if ssl_client_key is not None:
             pulumi.set(__self__, "ssl_client_key", ssl_client_key)
-        if ssl_hostname is not None:
-            warnings.warn("""Use ssl_cert_hostname and ssl_sni_hostname instead.""", DeprecationWarning)
-            pulumi.log.warn("""ssl_hostname is deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.""")
-        if ssl_hostname is not None:
-            pulumi.set(__self__, "ssl_hostname", ssl_hostname)
         if ssl_sni_hostname is not None:
             pulumi.set(__self__, "ssl_sni_hostname", ssl_sni_hostname)
         if use_ssl is not None:
@@ -462,7 +455,7 @@ class ServiceComputeBackendArgs:
     @pulumi.getter(name="sslCertHostname")
     def ssl_cert_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        Configure certificate validation. Does not affect SNI at all
         """
         return pulumi.get(self, "ssl_cert_hostname")
 
@@ -519,22 +512,10 @@ class ServiceComputeBackendArgs:
         pulumi.set(self, "ssl_client_key", value)
 
     @property
-    @pulumi.getter(name="sslHostname")
-    def ssl_hostname(self) -> Optional[pulumi.Input[str]]:
-        """
-        Used for both SNI during the TLS handshake and to validate the cert
-        """
-        return pulumi.get(self, "ssl_hostname")
-
-    @ssl_hostname.setter
-    def ssl_hostname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ssl_hostname", value)
-
-    @property
     @pulumi.getter(name="sslSniHostname")
     def ssl_sni_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        Configure SNI in the TLS handshake. Does not affect cert validation at all
         """
         return pulumi.get(self, "ssl_sni_hostname")
 
@@ -680,6 +661,7 @@ class ServiceComputeLoggingBigqueryArgs:
                  project_id: pulumi.Input[str],
                  secret_key: pulumi.Input[str],
                  table: pulumi.Input[str],
+                 account_name: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] dataset: The ID of your BigQuery dataset
@@ -688,6 +670,7 @@ class ServiceComputeLoggingBigqueryArgs:
         :param pulumi.Input[str] project_id: The ID of your GCP project
         :param pulumi.Input[str] secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         :param pulumi.Input[str] table: The ID of your BigQuery table
+        :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] template: BigQuery table name suffix template
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -696,6 +679,8 @@ class ServiceComputeLoggingBigqueryArgs:
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "table", table)
+        if account_name is not None:
+            pulumi.set(__self__, "account_name", account_name)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -770,6 +755,18 @@ class ServiceComputeLoggingBigqueryArgs:
     @table.setter
     def table(self, value: pulumi.Input[str]):
         pulumi.set(self, "table", value)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        return pulumi.get(self, "account_name")
+
+    @account_name.setter
+    def account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_name", value)
 
     @property
     @pulumi.getter
@@ -1817,6 +1814,7 @@ class ServiceComputeLoggingGcArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  name: pulumi.Input[str],
+                 account_name: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  gzip_level: Optional[pulumi.Input[int]] = None,
                  message_type: Optional[pulumi.Input[str]] = None,
@@ -1828,6 +1826,7 @@ class ServiceComputeLoggingGcArgs:
         """
         :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -1839,6 +1838,8 @@ class ServiceComputeLoggingGcArgs:
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
+        if account_name is not None:
+            pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if gzip_level is not None:
@@ -1879,6 +1880,18 @@ class ServiceComputeLoggingGcArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        return pulumi.get(self, "account_name")
+
+    @account_name.setter
+    def account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_name", value)
 
     @property
     @pulumi.getter(name="compressionCodec")
@@ -1984,19 +1997,23 @@ class ServiceComputeLoggingGooglepubsubArgs:
                  project_id: pulumi.Input[str],
                  secret_key: pulumi.Input[str],
                  topic: pulumi.Input[str],
-                 user: pulumi.Input[str]):
+                 user: pulumi.Input[str],
+                 account_name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
         :param pulumi.Input[str] secret_key: Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         :param pulumi.Input[str] topic: The Google Cloud Pub/Sub topic to which logs will be published
         :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+        :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "topic", topic)
         pulumi.set(__self__, "user", user)
+        if account_name is not None:
+            pulumi.set(__self__, "account_name", account_name)
 
     @property
     @pulumi.getter
@@ -2057,6 +2074,18 @@ class ServiceComputeLoggingGooglepubsubArgs:
     @user.setter
     def user(self, value: pulumi.Input[str]):
         pulumi.set(self, "user", value)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        return pulumi.get(self, "account_name")
+
+    @account_name.setter
+    def account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_name", value)
 
 
 @pulumi.input_type
@@ -4212,7 +4241,6 @@ class ServiceVclBackendArgs:
                  ssl_ciphers: Optional[pulumi.Input[str]] = None,
                  ssl_client_cert: Optional[pulumi.Input[str]] = None,
                  ssl_client_key: Optional[pulumi.Input[str]] = None,
-                 ssl_hostname: Optional[pulumi.Input[str]] = None,
                  ssl_sni_hostname: Optional[pulumi.Input[str]] = None,
                  use_ssl: Optional[pulumi.Input[bool]] = None,
                  weight: Optional[pulumi.Input[int]] = None):
@@ -4233,13 +4261,12 @@ class ServiceVclBackendArgs:
         :param pulumi.Input[str] request_condition: Name of a condition, which if met, will select this backend during a request.
         :param pulumi.Input[str] shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         :param pulumi.Input[str] ssl_ca_cert: CA certificate attached to origin.
-        :param pulumi.Input[str] ssl_cert_hostname: Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        :param pulumi.Input[str] ssl_cert_hostname: Configure certificate validation. Does not affect SNI at all
         :param pulumi.Input[bool] ssl_check_cert: Be strict about checking SSL certs. Default `true`
         :param pulumi.Input[str] ssl_ciphers: Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         :param pulumi.Input[str] ssl_client_cert: Client certificate attached to origin. Used when connecting to the backend
         :param pulumi.Input[str] ssl_client_key: Client key attached to origin. Used when connecting to the backend
-        :param pulumi.Input[str] ssl_hostname: Used for both SNI during the TLS handshake and to validate the cert
-        :param pulumi.Input[str] ssl_sni_hostname: Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        :param pulumi.Input[str] ssl_sni_hostname: Configure SNI in the TLS handshake. Does not affect cert validation at all
         :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
@@ -4283,11 +4310,6 @@ class ServiceVclBackendArgs:
             pulumi.set(__self__, "ssl_client_cert", ssl_client_cert)
         if ssl_client_key is not None:
             pulumi.set(__self__, "ssl_client_key", ssl_client_key)
-        if ssl_hostname is not None:
-            warnings.warn("""Use ssl_cert_hostname and ssl_sni_hostname instead.""", DeprecationWarning)
-            pulumi.log.warn("""ssl_hostname is deprecated: Use ssl_cert_hostname and ssl_sni_hostname instead.""")
-        if ssl_hostname is not None:
-            pulumi.set(__self__, "ssl_hostname", ssl_hostname)
         if ssl_sni_hostname is not None:
             pulumi.set(__self__, "ssl_sni_hostname", ssl_sni_hostname)
         if use_ssl is not None:
@@ -4491,7 +4513,7 @@ class ServiceVclBackendArgs:
     @pulumi.getter(name="sslCertHostname")
     def ssl_cert_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+        Configure certificate validation. Does not affect SNI at all
         """
         return pulumi.get(self, "ssl_cert_hostname")
 
@@ -4548,22 +4570,10 @@ class ServiceVclBackendArgs:
         pulumi.set(self, "ssl_client_key", value)
 
     @property
-    @pulumi.getter(name="sslHostname")
-    def ssl_hostname(self) -> Optional[pulumi.Input[str]]:
-        """
-        Used for both SNI during the TLS handshake and to validate the cert
-        """
-        return pulumi.get(self, "ssl_hostname")
-
-    @ssl_hostname.setter
-    def ssl_hostname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ssl_hostname", value)
-
-    @property
     @pulumi.getter(name="sslSniHostname")
     def ssl_sni_hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+        Configure SNI in the TLS handshake. Does not affect cert validation at all
         """
         return pulumi.get(self, "ssl_sni_hostname")
 
@@ -4976,16 +4986,20 @@ class ServiceVclDynamicsnippetArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  type: pulumi.Input[str],
+                 content: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  snippet_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
+        if content is not None:
+            pulumi.set(__self__, "content", content)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if snippet_id is not None:
@@ -5014,6 +5028,18 @@ class ServiceVclDynamicsnippetArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[str]]:
+        """
+        The VCL code that specifies exactly what the snippet does
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content", value)
 
     @property
     @pulumi.getter
@@ -5326,7 +5352,7 @@ class ServiceVclHealthcheckArgs:
         :param pulumi.Input[str] path: The path to check
         :param pulumi.Input[int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
         :param pulumi.Input[int] expected_response: The status code expected from the host. Default `200`
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] headers: Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] headers: Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
         :param pulumi.Input[str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
         :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
         :param pulumi.Input[str] method: Which HTTP method to use. Default `HEAD`
@@ -5420,7 +5446,7 @@ class ServiceVclHealthcheckArgs:
     @pulumi.getter
     def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+        Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
         """
         return pulumi.get(self, "headers")
 
@@ -5510,6 +5536,7 @@ class ServiceVclLoggingBigqueryArgs:
                  project_id: pulumi.Input[str],
                  secret_key: pulumi.Input[str],
                  table: pulumi.Input[str],
+                 account_name: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  placement: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None,
@@ -5521,6 +5548,7 @@ class ServiceVclLoggingBigqueryArgs:
         :param pulumi.Input[str] project_id: The ID of your GCP project
         :param pulumi.Input[str] secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         :param pulumi.Input[str] table: The ID of your BigQuery table
+        :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] format: The logging format desired.
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
@@ -5532,6 +5560,8 @@ class ServiceVclLoggingBigqueryArgs:
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "table", table)
+        if account_name is not None:
+            pulumi.set(__self__, "account_name", account_name)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if placement is not None:
@@ -5612,6 +5642,18 @@ class ServiceVclLoggingBigqueryArgs:
     @table.setter
     def table(self, value: pulumi.Input[str]):
         pulumi.set(self, "table", value)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        return pulumi.get(self, "account_name")
+
+    @account_name.setter
+    def account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_name", value)
 
     @property
     @pulumi.getter
@@ -7079,6 +7121,7 @@ class ServiceVclLoggingGcArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  name: pulumi.Input[str],
+                 account_name: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  format_version: Optional[pulumi.Input[int]] = None,
@@ -7094,6 +7137,7 @@ class ServiceVclLoggingGcArgs:
         """
         :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
@@ -7109,6 +7153,8 @@ class ServiceVclLoggingGcArgs:
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
+        if account_name is not None:
+            pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
@@ -7157,6 +7203,18 @@ class ServiceVclLoggingGcArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        return pulumi.get(self, "account_name")
+
+    @account_name.setter
+    def account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_name", value)
 
     @property
     @pulumi.getter(name="compressionCodec")
@@ -7311,6 +7369,7 @@ class ServiceVclLoggingGooglepubsubArgs:
                  secret_key: pulumi.Input[str],
                  topic: pulumi.Input[str],
                  user: pulumi.Input[str],
+                 account_name: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  format_version: Optional[pulumi.Input[int]] = None,
                  placement: Optional[pulumi.Input[str]] = None,
@@ -7321,6 +7380,7 @@ class ServiceVclLoggingGooglepubsubArgs:
         :param pulumi.Input[str] secret_key: Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         :param pulumi.Input[str] topic: The Google Cloud Pub/Sub topic to which logs will be published
         :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+        :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
@@ -7331,6 +7391,8 @@ class ServiceVclLoggingGooglepubsubArgs:
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "topic", topic)
         pulumi.set(__self__, "user", user)
+        if account_name is not None:
+            pulumi.set(__self__, "account_name", account_name)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if format_version is not None:
@@ -7399,6 +7461,18 @@ class ServiceVclLoggingGooglepubsubArgs:
     @user.setter
     def user(self, value: pulumi.Input[str]):
         pulumi.set(self, "user", value)
+
+    @property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        return pulumi.get(self, "account_name")
+
+    @account_name.setter
+    def account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_name", value)
 
     @property
     @pulumi.getter

@@ -28,7 +28,7 @@ namespace Pulumi.Fastly.Inputs
         private InputList<string>? _headers;
 
         /// <summary>
-        /// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+        /// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
         /// </summary>
         public InputList<string> Headers
         {

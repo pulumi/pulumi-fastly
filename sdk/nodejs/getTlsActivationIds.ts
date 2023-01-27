@@ -9,11 +9,8 @@ import * as utilities from "./utilities";
  */
 export function getTlsActivationIds(args?: GetTlsActivationIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationIdsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", {
         "certificateId": args.certificateId,
     }, opts);
@@ -46,9 +43,11 @@ export interface GetTlsActivationIdsResult {
      */
     readonly ids: string[];
 }
-
+/**
+ * Use this data source to get the list of TLS Activation identifiers in Fastly.
+ */
 export function getTlsActivationIdsOutput(args?: GetTlsActivationIdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationIdsResult> {
-    return pulumi.output(args).apply(a => getTlsActivationIds(a, opts))
+    return pulumi.output(args).apply((a: any) => getTlsActivationIds(a, opts))
 }
 
 /**

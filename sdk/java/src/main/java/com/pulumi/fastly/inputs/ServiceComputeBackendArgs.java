@@ -243,14 +243,14 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     * Configure certificate validation. Does not affect SNI at all
      * 
      */
     @Import(name="sslCertHostname")
     private @Nullable Output<String> sslCertHostname;
 
     /**
-     * @return Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     * @return Configure certificate validation. Does not affect SNI at all
      * 
      */
     public Optional<Output<String>> sslCertHostname() {
@@ -318,37 +318,14 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Used for both SNI during the TLS handshake and to validate the cert
-     * 
-     * @deprecated
-     * Use ssl_cert_hostname and ssl_sni_hostname instead.
-     * 
-     */
-    @Deprecated /* Use ssl_cert_hostname and ssl_sni_hostname instead. */
-    @Import(name="sslHostname")
-    private @Nullable Output<String> sslHostname;
-
-    /**
-     * @return Used for both SNI during the TLS handshake and to validate the cert
-     * 
-     * @deprecated
-     * Use ssl_cert_hostname and ssl_sni_hostname instead.
-     * 
-     */
-    @Deprecated /* Use ssl_cert_hostname and ssl_sni_hostname instead. */
-    public Optional<Output<String>> sslHostname() {
-        return Optional.ofNullable(this.sslHostname);
-    }
-
-    /**
-     * Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     * Configure SNI in the TLS handshake. Does not affect cert validation at all
      * 
      */
     @Import(name="sslSniHostname")
     private @Nullable Output<String> sslSniHostname;
 
     /**
-     * @return Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     * @return Configure SNI in the TLS handshake. Does not affect cert validation at all
      * 
      */
     public Optional<Output<String>> sslSniHostname() {
@@ -408,7 +385,6 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
         this.sslCiphers = $.sslCiphers;
         this.sslClientCert = $.sslClientCert;
         this.sslClientKey = $.sslClientKey;
-        this.sslHostname = $.sslHostname;
         this.sslSniHostname = $.sslSniHostname;
         this.useSsl = $.useSsl;
         this.weight = $.weight;
@@ -748,7 +724,7 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param sslCertHostname Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+         * @param sslCertHostname Configure certificate validation. Does not affect SNI at all
          * 
          * @return builder
          * 
@@ -759,7 +735,7 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param sslCertHostname Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+         * @param sslCertHostname Configure certificate validation. Does not affect SNI at all
          * 
          * @return builder
          * 
@@ -853,36 +829,7 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param sslHostname Used for both SNI during the TLS handshake and to validate the cert
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use ssl_cert_hostname and ssl_sni_hostname instead.
-         * 
-         */
-        @Deprecated /* Use ssl_cert_hostname and ssl_sni_hostname instead. */
-        public Builder sslHostname(@Nullable Output<String> sslHostname) {
-            $.sslHostname = sslHostname;
-            return this;
-        }
-
-        /**
-         * @param sslHostname Used for both SNI during the TLS handshake and to validate the cert
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use ssl_cert_hostname and ssl_sni_hostname instead.
-         * 
-         */
-        @Deprecated /* Use ssl_cert_hostname and ssl_sni_hostname instead. */
-        public Builder sslHostname(String sslHostname) {
-            return sslHostname(Output.of(sslHostname));
-        }
-
-        /**
-         * @param sslSniHostname Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+         * @param sslSniHostname Configure SNI in the TLS handshake. Does not affect cert validation at all
          * 
          * @return builder
          * 
@@ -893,7 +840,7 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param sslSniHostname Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+         * @param sslSniHostname Configure SNI in the TLS handshake. Does not affect cert validation at all
          * 
          * @return builder
          * 

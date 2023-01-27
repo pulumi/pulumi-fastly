@@ -70,6 +70,14 @@ namespace Pulumi.Fastly
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
         /// <summary>
+        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+        /// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+        /// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+        /// </summary>
+        [Output("forceRefresh")]
+        public Output<bool> ForceRefresh { get; private set; } = null!;
+
+        /// <summary>
         /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         /// </summary>
         [Output("imported")]
@@ -570,6 +578,14 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
+
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+        /// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+        /// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+        /// </summary>
+        [Input("forceRefresh")]
+        public Input<bool>? ForceRefresh { get; set; }
 
         /// <summary>
         /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished

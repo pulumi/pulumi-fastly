@@ -25,14 +25,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v6/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.LookupTlsPlatformCertificate(ctx, &GetTlsPlatformCertificateArgs{
+//			_, err := fastly.LookupTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
 //				Domains: []string{
 //					"example.com",
 //				},

@@ -24,7 +24,7 @@ public final class ServiceVclHealthcheck {
      */
     private @Nullable Integer expectedResponse;
     /**
-     * @return Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     * @return Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
      * 
      */
     private @Nullable List<String> headers;
@@ -90,7 +90,7 @@ public final class ServiceVclHealthcheck {
         return Optional.ofNullable(this.expectedResponse);
     }
     /**
-     * @return Custom health check HTTP headers (e.g. if your health check requires an API key to be provided). This feature is part of an alpha release, which may be subject to breaking changes and improvements over time
+     * @return Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
      * 
      */
     public List<String> headers() {

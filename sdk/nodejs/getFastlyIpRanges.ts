@@ -27,11 +27,8 @@ import * as utilities from "./utilities";
  * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
 export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", {
     }, opts);
 }

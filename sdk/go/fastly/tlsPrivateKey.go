@@ -24,7 +24,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v6/go/fastly"
 //	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -89,7 +89,7 @@ func NewTlsPrivateKey(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'KeyPem'")
 	}
 	if args.KeyPem != nil {
-		args.KeyPem = pulumi.ToSecret(args.KeyPem).(pulumi.StringOutput)
+		args.KeyPem = pulumi.ToSecret(args.KeyPem).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"keyPem",

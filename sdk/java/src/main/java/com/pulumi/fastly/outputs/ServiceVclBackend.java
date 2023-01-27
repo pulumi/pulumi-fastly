@@ -94,7 +94,7 @@ public final class ServiceVclBackend {
      */
     private @Nullable String sslCaCert;
     /**
-     * @return Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     * @return Configure certificate validation. Does not affect SNI at all
      * 
      */
     private @Nullable String sslCertHostname;
@@ -119,16 +119,7 @@ public final class ServiceVclBackend {
      */
     private @Nullable String sslClientKey;
     /**
-     * @return Used for both SNI during the TLS handshake and to validate the cert
-     * 
-     * @deprecated
-     * Use ssl_cert_hostname and ssl_sni_hostname instead.
-     * 
-     */
-    @Deprecated /* Use ssl_cert_hostname and ssl_sni_hostname instead. */
-    private @Nullable String sslHostname;
-    /**
-     * @return Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     * @return Configure SNI in the TLS handshake. Does not affect cert validation at all
      * 
      */
     private @Nullable String sslSniHostname;
@@ -257,7 +248,7 @@ public final class ServiceVclBackend {
         return Optional.ofNullable(this.sslCaCert);
     }
     /**
-     * @return Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all
+     * @return Configure certificate validation. Does not affect SNI at all
      * 
      */
     public Optional<String> sslCertHostname() {
@@ -292,18 +283,7 @@ public final class ServiceVclBackend {
         return Optional.ofNullable(this.sslClientKey);
     }
     /**
-     * @return Used for both SNI during the TLS handshake and to validate the cert
-     * 
-     * @deprecated
-     * Use ssl_cert_hostname and ssl_sni_hostname instead.
-     * 
-     */
-    @Deprecated /* Use ssl_cert_hostname and ssl_sni_hostname instead. */
-    public Optional<String> sslHostname() {
-        return Optional.ofNullable(this.sslHostname);
-    }
-    /**
-     * @return Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all
+     * @return Configure SNI in the TLS handshake. Does not affect cert validation at all
      * 
      */
     public Optional<String> sslSniHostname() {
@@ -354,7 +334,6 @@ public final class ServiceVclBackend {
         private @Nullable String sslCiphers;
         private @Nullable String sslClientCert;
         private @Nullable String sslClientKey;
-        private @Nullable String sslHostname;
         private @Nullable String sslSniHostname;
         private @Nullable Boolean useSsl;
         private @Nullable Integer weight;
@@ -382,7 +361,6 @@ public final class ServiceVclBackend {
     	      this.sslCiphers = defaults.sslCiphers;
     	      this.sslClientCert = defaults.sslClientCert;
     	      this.sslClientKey = defaults.sslClientKey;
-    	      this.sslHostname = defaults.sslHostname;
     	      this.sslSniHostname = defaults.sslSniHostname;
     	      this.useSsl = defaults.useSsl;
     	      this.weight = defaults.weight;
@@ -494,11 +472,6 @@ public final class ServiceVclBackend {
             return this;
         }
         @CustomType.Setter
-        public Builder sslHostname(@Nullable String sslHostname) {
-            this.sslHostname = sslHostname;
-            return this;
-        }
-        @CustomType.Setter
         public Builder sslSniHostname(@Nullable String sslSniHostname) {
             this.sslSniHostname = sslSniHostname;
             return this;
@@ -536,7 +509,6 @@ public final class ServiceVclBackend {
             o.sslCiphers = sslCiphers;
             o.sslClientCert = sslClientCert;
             o.sslClientKey = sslClientKey;
-            o.sslHostname = sslHostname;
             o.sslSniHostname = sslSniHostname;
             o.useSsl = useSsl;
             o.weight = weight;

@@ -15,16 +15,13 @@ import * as utilities from "./utilities";
  *
  * const exampleTlsPlatformCertificateIds = fastly.getTlsPlatformCertificateIds({});
  * const exampleTlsPlatformCertificate = exampleTlsPlatformCertificateIds.then(exampleTlsPlatformCertificateIds => fastly.getTlsPlatformCertificate({
- *     id: exampleTlsPlatformCertificateIds.ids?[0],
+ *     id: exampleTlsPlatformCertificateIds.ids?.[0],
  * }));
  * ```
  */
 export function getTlsPlatformCertificateIds(opts?: pulumi.InvokeOptions): Promise<GetTlsPlatformCertificateIdsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", {
     }, opts);
 }

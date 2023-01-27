@@ -28,14 +28,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v5/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v6/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			demo, err := fastly.LookupTlsPrivateKey(ctx, &GetTlsPrivateKeyArgs{
+//			demo, err := fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
 //				Name: pulumi.StringRef("demo-private-key"),
 //			}, nil)
 //			if err != nil {

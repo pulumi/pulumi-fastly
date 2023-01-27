@@ -19,8 +19,8 @@ package main
 import (
 	_ "embed"
 
-	fastly "github.com/pulumi/pulumi-fastly/provider/v5"
-	"github.com/pulumi/pulumi-fastly/provider/v5/pkg/version"
+	fastly "github.com/pulumi/pulumi-fastly/provider/v6"
+	"github.com/pulumi/pulumi-fastly/provider/v6/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 

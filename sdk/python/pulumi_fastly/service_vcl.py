@@ -710,6 +710,7 @@ class _ServiceVclState:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]] = None,
                  dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 force_refresh: Optional[pulumi.Input[bool]] = None,
                  gzips: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
@@ -760,6 +761,9 @@ class _ServiceVclState:
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+               local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+               UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -799,6 +803,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "dynamicsnippets", dynamicsnippets)
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
+        if force_refresh is not None:
+            pulumi.set(__self__, "force_refresh", force_refresh)
         if gzips is not None:
             pulumi.set(__self__, "gzips", gzips)
         if headers is not None:
@@ -1038,6 +1044,20 @@ class _ServiceVclState:
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
+
+    @property
+    @pulumi.getter(name="forceRefresh")
+    def force_refresh(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+        local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+        UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+        """
+        return pulumi.get(self, "force_refresh")
+
+    @force_refresh.setter
+    def force_refresh(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_refresh", value)
 
     @property
     @pulumi.getter
@@ -1678,6 +1698,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["waf"] = waf
             __props__.__dict__["active_version"] = None
             __props__.__dict__["cloned_version"] = None
+            __props__.__dict__["force_refresh"] = None
             __props__.__dict__["imported"] = None
         super(ServiceVcl, __self__).__init__(
             'fastly:index/serviceVcl:ServiceVcl',
@@ -1704,6 +1725,7 @@ class ServiceVcl(pulumi.CustomResource):
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]]] = None,
             dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDynamicsnippetArgs']]]]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
+            force_refresh: Optional[pulumi.Input[bool]] = None,
             gzips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclGzipArgs']]]]] = None,
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
             healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
@@ -1759,6 +1781,9 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+               local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+               UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -1787,6 +1812,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["domains"] = domains
         __props__.__dict__["dynamicsnippets"] = dynamicsnippets
         __props__.__dict__["force_destroy"] = force_destroy
+        __props__.__dict__["force_refresh"] = force_refresh
         __props__.__dict__["gzips"] = gzips
         __props__.__dict__["headers"] = headers
         __props__.__dict__["healthchecks"] = healthchecks
@@ -1927,6 +1953,16 @@ class ServiceVcl(pulumi.CustomResource):
         Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
+
+    @property
+    @pulumi.getter(name="forceRefresh")
+    def force_refresh(self) -> pulumi.Output[bool]:
+        """
+        Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
+        local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
+        UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+        """
+        return pulumi.get(self, "force_refresh")
 
     @property
     @pulumi.getter
