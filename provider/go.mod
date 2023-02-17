@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-fastly/provider/v6
 
-go 1.18
+go 1.19
 
 require (
 	github.com/fastly/terraform-provider-fastly v3.0.4+incompatible
