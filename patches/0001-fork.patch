@@ -1,0 +1,426 @@
+diff --git b/docs/data-sources/tls_activation.md a/docs/data-sources/tls_activation.md
+index 9e1f0c1b..ccc6fa61 100644
+--- b/docs/data-sources/tls_activation.md
++++ a/docs/data-sources/tls_activation.md
+@@ -14,7 +14,7 @@ Use this data source to get information on a TLS activation, including the certi
+ of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ with any of the others.
+ 
+-~> **Note:** If more or less than a single match is returned by the search, Terraform will fail. Ensure that your search is specific enough to return a single key.
++~> **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ 
+ ## Example Usage
+ 
+diff --git b/docs/data-sources/tls_certificate.md a/docs/data-sources/tls_certificate.md
+index 0b8110b8..43b4e174 100644
+--- b/docs/data-sources/tls_certificate.md
++++ a/docs/data-sources/tls_certificate.md
+@@ -14,7 +14,7 @@ Use this data source to get information of a TLS certificate for use with other
+ of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ with any of the others.
+ 
+-~> **Note:** If more or less than a single match is returned by the search, Terraform will fail. Ensure that your search is specific enough to return a single key.
++~> **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ 
+ ## Example Usage
+ 
+diff --git b/docs/data-sources/tls_configuration.md a/docs/data-sources/tls_configuration.md
+index 07908f05..9054ce64 100644
+--- b/docs/data-sources/tls_configuration.md
++++ a/docs/data-sources/tls_configuration.md
+@@ -14,7 +14,7 @@ Use this data source to get the ID of a TLS configuration for use with other res
+ of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ with any of the others.
+ 
+-~> **Note:** If more or less than a single match is returned by the search, Terraform will fail. Ensure that your search is specific enough to return a single key.
++~> **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ 
+ ## Example Usage
+ 
+diff --git b/docs/data-sources/tls_platform_certificate.md a/docs/data-sources/tls_platform_certificate.md
+index ff265ec4..3f1eab92 100644
+--- b/docs/data-sources/tls_platform_certificate.md
++++ a/docs/data-sources/tls_platform_certificate.md
+@@ -14,7 +14,7 @@ Use this data source to get information of a Platform TLS certificate for use wi
+ of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+ with any of the others.
+ 
+-~> **Note:** If more or less than a single match is returned by the search, Terraform will fail. Ensure that your search is specific enough to return a single key.
++~> **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ 
+ ## Example Usage
+ 
+diff --git b/docs/data-sources/tls_private_key.md a/docs/data-sources/tls_private_key.md
+index b9961134..b58c6733 100644
+--- b/docs/data-sources/tls_private_key.md
++++ a/docs/data-sources/tls_private_key.md
+@@ -15,7 +15,7 @@ Use this data source to get information on a TLS Private Key uploaded to Fastly.
+  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+  with any of the others.
+ 
+-~> **Note:** If more or less than a single match is returned by the search, Terraform will fail. Ensure that your search
++~> **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
+  is specific enough to return a single key.
+ 
+ ## Example Usage
+diff --git b/docs/data-sources/waf_rules.md a/docs/data-sources/waf_rules.md
+index 89817ff8..57a5620f 100644
+--- b/docs/data-sources/waf_rules.md
++++ a/docs/data-sources/waf_rules.md
+@@ -6,8 +6,6 @@ description: |-
+   Get information on Fastly WAF rules.
+ ---
+ 
+--> **Note:** This data source is only available from 0.20.0 of the Fastly terraform provider.
+-
+ # fastly_waf_rules
+ 
+ Use this data source to get the [WAF rules][1] of Fastly. A set of third-party rules from the OWASP Core Ruleset, commercial sources, and open source, in addition to Fastly-generated rules.
+diff --git b/docs/resources/service_acl_entries.md a/docs/resources/service_acl_entries.md
+index 095d1ae3..9465b466 100644
+--- b/docs/resources/service_acl_entries.md
++++ a/docs/resources/service_acl_entries.md
+@@ -10,12 +10,14 @@ description: |-
+ 
+ Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+ 
++~> **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
++
+ ~> **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
+ If you wish to apply your changes in the HCL, then you should explicitly set the `manage_entries` attribute. An example of this configuration is provided below.
+ 
+-## Example Usage (Terraform >= 0.12.6)
++## Example Usage
+ 
+-Basic usage:
++### Basic usage:
+ 
+ ```terraform
+ variable "myacl_name" {
+@@ -59,7 +61,7 @@ resource "fastly_service_acl_entries" "entries" {
+ }
+ ```
+ 
+-Complex object usage:
++### Complex object usage:
+ 
+ The following example demonstrates the use of dynamic nested blocks to create ACL entries.
+ 
+diff --git b/docs/resources/service_compute.md a/docs/resources/service_compute.md
+index b2a8ac3c..25510d5d 100644
+--- b/docs/resources/service_compute.md
++++ a/docs/resources/service_compute.md
+@@ -3,7 +3,7 @@ layout: "fastly"
+ page_title: "Fastly: service_compute"
+ sidebar_current: "docs-fastly-resource-service-compute"
+ description: |-
+-  Provides an Fastly Compute@Edge service
++Provides an Fastly Compute@Edge service
+ ---
+ 
+ # fastly_service_compute
+diff --git b/docs/resources/service_dictionary_items.md a/docs/resources/service_dictionary_items.md
+index ded9e593..d3a56591 100644
+--- b/docs/resources/service_dictionary_items.md
++++ a/docs/resources/service_dictionary_items.md
+@@ -10,6 +10,8 @@ description: |-
+ 
+ Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+ 
++~> **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
++
+ ~> **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
+ If you wish to apply your changes in the HCL, then you should explicitly set the `manage_items` attribute. An example of this configuration is provided below.
+ 
+@@ -17,9 +19,9 @@ If you wish to apply your changes in the HCL, then you should explicitly set the
+ 
+ - `write_only` dictionaries are not supported
+ 
+-## Example Usage (Terraform >= 0.12.6)
++## Example Usage
+ 
+-Basic usage:
++### Basic usage:
+ 
+ ```terraform
+ variable "mydict_name" {
+@@ -62,7 +64,7 @@ resource "fastly_service_dictionary_items" "items" {
+ }
+ ```
+ 
+-Complex object usage:
++### Complex object usage:
+ 
+ ```terraform
+ variable "mydict" {
+@@ -107,7 +109,7 @@ resource "fastly_service_dictionary_items" "items" {
+ }
+ ```
+ 
+-Expression and functions usage:
++### Expression and functions usage:
+ 
+ ```terraform
+ // Local variables used when formatting values for the "My Project Dictionary" example
+diff --git b/docs/resources/service_dynamic_snippet_content.md a/docs/resources/service_dynamic_snippet_content.md
+index 200a650e..cbc16bee 100644
+--- b/docs/resources/service_dynamic_snippet_content.md
++++ a/docs/resources/service_dynamic_snippet_content.md
+@@ -3,7 +3,7 @@ layout: "fastly"
+ page_title: "Fastly: service_dynamic_snippet_content"
+ sidebar_current: "docs-fastly-resource-service-dynamic-snippet-content"
+ description: |-
+-  Provides a means to define blocks of VCL logic that is inserted into your service through Fastly dynamic snippets.
++Provides a means to define blocks of VCL logic that is inserted into your service through Fastly dynamic snippets.
+ ---
+ 
+ # fastly_service_dynamic_snippet_content
+@@ -13,10 +13,12 @@ Defines content that represents blocks of VCL logic that is inserted into your s
+ ~> **Note:** By default the Terraform provider allows you to externally manage the snippets via API or UI.
+ If you wish to apply your changes in the HCL, then you should explicitly set the `manage_snippets` attribute. An example of this configuration is provided below.
+ 
++If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `ignore_changes` field can be used with the resource.  An example of this configuration is provided below.
+ 
+-## Example Usage (Terraform >= 0.12.6)
+ 
+-Basic usage:
++## Example Usage
++
++### Basic usage:
+ 
+ ```terraform
+ resource "fastly_service_vcl" "myservice" {
+@@ -56,7 +58,7 @@ resource "fastly_service_dynamic_snippet_content" "my_dyn_content" {
+ }
+ ```
+ 
+-Multiple dynamic snippets:
++### Multiple dynamic snippets:
+ 
+ ```terraform
+ resource "fastly_service_vcl" "myservice" {
+diff --git b/docs/resources/service_vcl.md a/docs/resources/service_vcl.md
+index e85bd21c..bc032f6d 100644
+--- b/docs/resources/service_vcl.md
++++ a/docs/resources/service_vcl.md
+@@ -3,7 +3,7 @@ layout: "fastly"
+ page_title: "Fastly: service_vcl"
+ sidebar_current: "docs-fastly-resource-service-vcl"
+ description: |-
+-  Provides an Fastly Service
++Provides an Fastly Service
+ ---
+ 
+ # fastly_service_vcl
+@@ -151,8 +151,6 @@ resource "fastly_service_vcl" "demo" {
+ }
+ ```
+ 
+--> **Note:** The following example is only available from 0.20.0 of the Fastly Terraform provider.
+-
+ Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
+ 
+ ```terraform
+diff --git b/docs/resources/service_waf_configuration.md a/docs/resources/service_waf_configuration.md
+index 4b641219..76f7aa47 100644
+--- b/docs/resources/service_waf_configuration.md
++++ a/docs/resources/service_waf_configuration.md
+@@ -3,17 +3,16 @@ layout: "fastly"
+ page_title: "Fastly: service_waf_configuration"
+ sidebar_current: "docs-fastly-resource-service-waf-configuration"
+ description: |-
+-  Provides a Web Application Firewall configuration and rules that can be applied to a service.
++Provides a Web Application Firewall configuration and rules that can be applied to a service.
+ ---
+ 
+--> **Note:** This resource is only available from 0.20.0 of the Fastly terraform provider.
+ 
+ # fastly_service_waf_configuration
+ 
+ Defines a set of Web Application Firewall configuration options that can be used to populate a service WAF. This resource will configure rules, thresholds and other settings for a WAF.
+ 
+ 
+-~> **Warning:** Terraform will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run Terraform again.
++~> **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+ 
+ 
+ ## Example Usage
+@@ -453,7 +452,7 @@ resource "fastly_service_waf_configuration" "waf" {
+ }
+ ```
+ 
+-Usage omitting rule revision field. The first time Terraform is applied, the latest rule revisions are associated with the WAF. Any subsequent apply would not alter the rule revisions.
++Usage omitting rule revision field. The first time this provider is applied, the latest rule revisions are associated with the WAF. Any subsequent apply would not alter the rule revisions.
+ 
+ ```terraform
+ # This variable is used for rule configuration in bulk.
+@@ -565,13 +564,6 @@ The resource ID should be the WAF ID.
+ $ terraform import fastly_service_waf_configuration.waf xxxxxxxxxxxxxxxxxxxx
+ ```
+ 
+-If Terraform is already managing a remote WAF configurations against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+-The following is an example of the Terraform state command to remove the resource named `fastly_service_waf_configuration.waf` from the Terraform state file.
+-
+-```sh
+-$ terraform state rm fastly_service_waf_configuration.waf
+-```
+-
+ <!-- schema generated by tfplugindocs -->
+ ## Schema
+ 
+diff --git b/docs/resources/tls_activation.md a/docs/resources/tls_activation.md
+index f1114c86..01afe27d 100644
+--- b/docs/resources/tls_activation.md
++++ a/docs/resources/tls_activation.md
+@@ -10,7 +10,7 @@ Enables TLS on a domain
+ 
+ Enables TLS on a domain using a specified custom TLS certificate.
+ 
+-~> **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Terraform using [`depends_on`](https://www.terraform.io/docs/configuration/meta-arguments/depends_on.html).
++~> **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it.
+ 
+ ## Example Usage
+ 
+diff --git b/docs/resources/tls_certificate.md a/docs/resources/tls_certificate.md
+index a7857ad6..95b03944 100644
+--- b/docs/resources/tls_certificate.md
++++ a/docs/resources/tls_certificate.md
+@@ -10,8 +10,7 @@ Uploads a custom TLS certificate
+ 
+ Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
+ 
+--> Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+-can be achieved in Terraform using [`depends_on`](https://www.terraform.io/docs/configuration/meta-arguments/depends_on.html)
++-> Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
+ 
+ ## Example Usage
+ 
+diff --git b/docs/resources/tls_platform_certificate.md a/docs/resources/tls_platform_certificate.md
+index 1a8e9033..c5e74e44 100644
+--- b/docs/resources/tls_platform_certificate.md
++++ a/docs/resources/tls_platform_certificate.md
+@@ -10,8 +10,7 @@ Uploads a TLS certificate to the Platform TLS service
+ 
+ Uploads a TLS certificate to the Fastly Platform TLS service.
+ 
+--> Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+-can be achieved in Terraform using [`depends_on`](https://www.terraform.io/docs/configuration/meta-arguments/depends_on.html)
++-> Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
+ 
+ ## Example Usage
+ 
+diff --git b/docs/resources/user.md a/docs/resources/user.md
+index 1f226dda..507e34e8 100644
+--- b/docs/resources/user.md
++++ a/docs/resources/user.md
+@@ -3,7 +3,7 @@ layout: "fastly"
+ page_title: "Fastly: user"
+ sidebar_current: "docs-fastly-resource-user"
+ description: |-
+-  Provides a Fastly User
++Provides a Fastly User
+ ---
+ 
+ # fastly_user
+diff --git b/fastly/base_fastly_service.go a/fastly/base_fastly_service.go
+index 8e3aeea7..f25c749d 100644
+--- b/fastly/base_fastly_service.go
++++ a/fastly/base_fastly_service.go
+@@ -282,11 +282,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+ 		}
+ 	}
+ 
++	// FORK: The Fastly provider takes advantage of TF's behavior in a somewhat novel way that causes a bug when the
++	// same provider is bridged in Pulumi. Therefore, we need to add the following block of code to ensure consistent
++	// behavior in the bridged provider.
++	//
++	// Detailed explanation:
++	//
++	// The TF provider interface looks like this:
++	//   Plan(prior state, config) -> planned state
++	//   Apply(prior state, planned state, config) -> new state
++	//
++	// In the Plan() stage, diffs include any CustomizeDiff funcs in the schema. However, Terraform's behavior (at
++	// least after v2.10.1 of the plugin SDK) is to strip diff customizers when performing an Apply.
++	//
++	// The Pulumi interface looks like this:
++	//   Diff(prior state, config) -> diff result
++	//   Update(prior state, config) -> new state
++	//
++	// In both cases, Pulumi does not strip diff customizers.
++	//
++	// For this resource, the effect of the difference in behavior is that during a call to Apply, the cloned_version
++	// attribute is not treated as computed, even though in the Plan it is treated as computed. This difference is
++	// because the cloned_version attribute is marked as computed by CustomizeDiff, which Pulumi runs during Update but
++	// TF does not run during Apply. The Pulumi provider reads the cloned_version field in its implementation of Update
++	// for that resource, so in TF it gets back the last actual value, but with Pulumi it gets back the zero value (0)
++	// because the new value is not known.
++	var clonedVersion int
++	if cv, ok := d.GetOk("cloned_version"); ok {
++		clonedVersion = cv.(int)
++	} else {
++		oldCV, _ := d.GetChange("cloned_version")
++		clonedVersion, _ = oldCV.(int)
++	}
++
++	var activeVersion int
++	if av, ok := d.GetOk("active_version"); ok {
++		activeVersion = av.(int)
++	} else {
++		oldAV, _ := d.GetChange("active_version")
++		activeVersion, _ = oldAV.(int)
++	}
++
+ 	// Update the cloned version's comment. No new version is required for this.
+ 	if d.HasChange("version_comment") && (!needsChange || d.IsNewResource()) {
+ 		opts := gofastly.UpdateVersionInput{
+ 			ServiceID:      d.Id(),
+-			ServiceVersion: d.Get("cloned_version").(int),
++			ServiceVersion: clonedVersion,
+ 			Comment:        gofastly.String(d.Get("version_comment").(string)),
+ 		}
+ 
+@@ -307,7 +348,7 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+ 			// that is unlocked and can be updated.
+ 			latestVersion = 1
+ 		} else {
+-			latestVersion = d.Get("cloned_version").(int)
++			latestVersion = clonedVersion
+ 			// Clone the latest version, giving us an unlocked version we can modify.
+ 			log.Printf("[DEBUG] Creating clone of version (%d) for updates", latestVersion)
+ 			newVersion, err := conn.CloneVersion(&gofastly.CloneVersionInput{
+@@ -383,10 +424,11 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+ 		if err != nil {
+ 			return diag.FromErr(err)
+ 		}
++		clonedVersion = latestVersion
+ 	}
+ 
+-	versionNotYetActivated := d.Get("cloned_version") != d.Get("active_version")
+-	latestVersion := d.Get("cloned_version").(int)
++	versionNotYetActivated := clonedVersion != activeVersion
++	latestVersion := clonedVersion
+ 	if shouldActivate && versionNotYetActivated {
+ 		log.Printf("[DEBUG] Activating Fastly Service (%s), Version (%v)", d.Id(), latestVersion)
+ 		_, err := conn.ActivateVersion(&gofastly.ActivateVersionInput{
+diff --git b/templates/resources/service_dynamic_snippet_content.md.tmpl a/templates/resources/service_dynamic_snippet_content.md.tmpl
+index 1bec370e..91eb11c9 100644
+--- b/templates/resources/service_dynamic_snippet_content.md.tmpl
++++ a/templates/resources/service_dynamic_snippet_content.md.tmpl
+@@ -13,6 +13,7 @@ Defines content that represents blocks of VCL logic that is inserted into your s
+ ~> **Note:** By default the Terraform provider allows you to externally manage the snippets via API or UI.
+ If you wish to apply your changes in the HCL, then you should explicitly set the `manage_snippets` attribute. An example of this configuration is provided below.
+ 
++### Basic usage
+ 
+ ## Example Usage (Terraform >= 0.12.6)
+ 
+@@ -20,7 +21,7 @@ Basic usage:
+ 
+ {{ tffile "examples/resources/service_dynamic_snippet_content_basic_usage.tf" }}
+ 
+-Multiple dynamic snippets:
++### Multiple dynamic snippets
+ 
+ {{ tffile "examples/resources/service_dynamic_snippet_content_multiple.tf" }}
+ 
