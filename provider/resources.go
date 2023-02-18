@@ -67,15 +67,16 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "fastly",
-		Description: "A Pulumi package for creating and managing fastly cloud resources.",
-		Keywords:    []string{"pulumi", "fastly"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-fastly",
-		GitHubOrg:   "fastly",
-		Config:      map[string]*tfbridge.SchemaInfo{},
+		P:                p,
+		Name:             "fastly",
+		Description:      "A Pulumi package for creating and managing fastly cloud resources.",
+		Keywords:         []string{"pulumi", "fastly"},
+		License:          "Apache-2.0",
+		Homepage:         "https://pulumi.io",
+		Repository:       "https://github.com/pulumi/pulumi-fastly",
+		GitHubOrg:        "fastly",
+		Config:           map[string]*tfbridge.SchemaInfo{},
+		UpstreamRepoPath: "./upstream",
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"fastly_service_acl_entries":             {Tok: makeResource(mainMod, "ServiceACLEntries")},
 			"fastly_service_authorization":           {Tok: makeResource(mainMod, "ServiceAuthorization")},
