@@ -80,7 +80,8 @@ type ServiceCompute struct {
 	// The unique name for the Service to create
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package ServiceComputePackageOutput `pulumi:"package"`
+	Package           ServiceComputePackageOutput              `pulumi:"package"`
+	ProductEnablement ServiceComputeProductEnablementPtrOutput `pulumi:"productEnablement"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -173,7 +174,8 @@ type serviceComputeState struct {
 	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package *ServiceComputePackage `pulumi:"package"`
+	Package           *ServiceComputePackage           `pulumi:"package"`
+	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -232,7 +234,8 @@ type ServiceComputeState struct {
 	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package ServiceComputePackagePtrInput
+	Package           ServiceComputePackagePtrInput
+	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -285,7 +288,8 @@ type serviceComputeArgs struct {
 	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package ServiceComputePackage `pulumi:"package"`
+	Package           ServiceComputePackage            `pulumi:"package"`
+	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -335,7 +339,8 @@ type ServiceComputeArgs struct {
 	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
-	Package ServiceComputePackageInput
+	Package           ServiceComputePackageInput
+	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -593,6 +598,10 @@ func (o ServiceComputeOutput) Name() pulumi.StringOutput {
 // The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 func (o ServiceComputeOutput) Package() ServiceComputePackageOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputePackageOutput { return v.Package }).(ServiceComputePackageOutput)
+}
+
+func (o ServiceComputeOutput) ProductEnablement() ServiceComputeProductEnablementPtrOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeProductEnablementPtrOutput { return v.ProductEnablement }).(ServiceComputeProductEnablementPtrOutput)
 }
 
 // Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be

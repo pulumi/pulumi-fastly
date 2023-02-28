@@ -35,6 +35,7 @@ import com.pulumi.fastly.inputs.ServiceComputeLoggingSplunkArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingSumologicArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingSyslogArgs;
 import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+import com.pulumi.fastly.inputs.ServiceComputeProductEnablementArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -398,6 +399,13 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.package_);
     }
 
+    @Import(name="productEnablement")
+    private @Nullable Output<ServiceComputeProductEnablementArgs> productEnablement;
+
+    public Optional<Output<ServiceComputeProductEnablementArgs>> productEnablement() {
+        return Optional.ofNullable(this.productEnablement);
+    }
+
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -473,6 +481,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         this.loggingSyslogs = $.loggingSyslogs;
         this.name = $.name;
         this.package_ = $.package_;
+        this.productEnablement = $.productEnablement;
         this.reuse = $.reuse;
         this.versionComment = $.versionComment;
     }
@@ -1081,6 +1090,15 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
          */
         public Builder package_(ServiceComputePackageArgs package_) {
             return package_(Output.of(package_));
+        }
+
+        public Builder productEnablement(@Nullable Output<ServiceComputeProductEnablementArgs> productEnablement) {
+            $.productEnablement = productEnablement;
+            return this;
+        }
+
+        public Builder productEnablement(ServiceComputeProductEnablementArgs productEnablement) {
+            return productEnablement(Output.of(productEnablement));
         }
 
         /**

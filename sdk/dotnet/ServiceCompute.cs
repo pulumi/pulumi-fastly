@@ -173,6 +173,9 @@ namespace Pulumi.Fastly
         [Output("package")]
         public Output<Outputs.ServiceComputePackage> Package { get; private set; } = null!;
 
+        [Output("productEnablement")]
+        public Output<Outputs.ServiceComputeProductEnablement?> ProductEnablement { get; private set; } = null!;
+
         /// <summary>
         /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
         /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -499,6 +502,9 @@ namespace Pulumi.Fastly
         [Input("package", required: true)]
         public Input<Inputs.ServiceComputePackageArgs> Package { get; set; } = null!;
 
+        [Input("productEnablement")]
+        public Input<Inputs.ServiceComputeProductEnablementArgs>? ProductEnablement { get; set; }
+
         /// <summary>
         /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
         /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -812,6 +818,9 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }
+
+        [Input("productEnablement")]
+        public Input<Inputs.ServiceComputeProductEnablementGetArgs>? ProductEnablement { get; set; }
 
         /// <summary>
         /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be

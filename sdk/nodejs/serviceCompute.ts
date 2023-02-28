@@ -119,6 +119,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
     public readonly package!: pulumi.Output<outputs.ServiceComputePackage>;
+    public readonly productEnablement!: pulumi.Output<outputs.ServiceComputeProductEnablement | undefined>;
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -181,6 +182,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = state ? state.loggingSyslogs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["package"] = state ? state.package : undefined;
+            resourceInputs["productEnablement"] = state ? state.productEnablement : undefined;
             resourceInputs["reuse"] = state ? state.reuse : undefined;
             resourceInputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
@@ -225,6 +227,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = args ? args.loggingSyslogs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["package"] = args ? args.package : undefined;
+            resourceInputs["productEnablement"] = args ? args.productEnablement : undefined;
             resourceInputs["reuse"] = args ? args.reuse : undefined;
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
@@ -311,6 +314,7 @@ export interface ServiceComputeState {
      * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
+    productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -379,6 +383,7 @@ export interface ServiceComputeArgs {
      * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
     package: pulumi.Input<inputs.ServiceComputePackage>;
+    productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
