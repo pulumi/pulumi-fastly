@@ -2653,45 +2653,6 @@
                 }
             }
         },
-        "fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement": {
-            "properties": {
-                "fanout": {
-                    "type": "boolean",
-                    "description": "Enable Fanout support\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Used internally by the provider to identify modified settings\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "websockets": {
-                    "type": "boolean",
-                    "description": "Enable WebSockets support\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "name"
-                    ]
-                }
-            }
-        },
         "fastly:index/ServiceVclAcl:ServiceVclAcl": {
             "properties": {
                 "aclId": {
@@ -6699,72 +6660,6 @@
                 "name"
             ]
         },
-        "fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement": {
-            "properties": {
-                "brotliCompression": {
-                    "type": "boolean",
-                    "description": "Enable Brotli Compression support\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "domainInspector": {
-                    "type": "boolean",
-                    "description": "Enable Domain Inspector support\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "imageOptimizer": {
-                    "type": "boolean",
-                    "description": "Enable Image Optimizer support (requires at least one backend with a `shield` attribute)\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Used internally by the provider to identify modified settings\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "originInspector": {
-                    "type": "boolean",
-                    "description": "Enable Origin Inspector support\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "websockets": {
-                    "type": "boolean",
-                    "description": "Enable WebSockets support\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "name"
-                    ]
-                }
-            }
-        },
         "fastly:index/ServiceVclRequestSetting:ServiceVclRequestSetting": {
             "properties": {
                 "action": {
@@ -7899,9 +7794,6 @@
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
                     "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
                 },
-                "productEnablement": {
-                    "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
-                },
                 "reuse": {
                     "type": "boolean",
                     "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
@@ -8115,9 +8007,6 @@
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
                     "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
-                },
-                "productEnablement": {
-                    "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
                 },
                 "reuse": {
                     "type": "boolean",
@@ -8345,9 +8234,6 @@
                     "package": {
                         "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
                         "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
-                    },
-                    "productEnablement": {
-                        "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
                     },
                     "reuse": {
                         "type": "boolean",
@@ -8616,10 +8502,6 @@
                         "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
                     }
                 },
-                "http3": {
-                    "type": "boolean",
-                    "description": "Enables support for the HTTP/3 (QUIC) protocol\n"
-                },
                 "imported": {
                     "type": "boolean",
                     "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished\n"
@@ -8784,9 +8666,6 @@
                     "type": "string",
                     "description": "The unique name for the Service to create\n"
                 },
-                "productEnablement": {
-                    "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
-                },
                 "requestSettings": {
                     "type": "array",
                     "items": {
@@ -8926,10 +8805,6 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
                     }
-                },
-                "http3": {
-                    "type": "boolean",
-                    "description": "Enables support for the HTTP/3 (QUIC) protocol\n"
                 },
                 "loggingBigqueries": {
                     "type": "array",
@@ -9091,9 +8966,6 @@
                     "type": "string",
                     "description": "The unique name for the Service to create\n"
                 },
-                "productEnablement": {
-                    "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
-                },
                 "requestSettings": {
                     "type": "array",
                     "items": {
@@ -9242,10 +9114,6 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
                         }
-                    },
-                    "http3": {
-                        "type": "boolean",
-                        "description": "Enables support for the HTTP/3 (QUIC) protocol\n"
                     },
                     "imported": {
                         "type": "boolean",
@@ -9410,9 +9278,6 @@
                     "name": {
                         "type": "string",
                         "description": "The unique name for the Service to create\n"
-                    },
-                    "productEnablement": {
-                        "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
                     },
                     "requestSettings": {
                         "type": "array",
