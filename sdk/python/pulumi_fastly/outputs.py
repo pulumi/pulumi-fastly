@@ -41,7 +41,6 @@ __all__ = [
     'ServiceComputeLoggingSumologic',
     'ServiceComputeLoggingSyslog',
     'ServiceComputePackage',
-    'ServiceComputeProductEnablement',
     'ServiceVclAcl',
     'ServiceVclBackend',
     'ServiceVclCacheSetting',
@@ -79,7 +78,6 @@ __all__ = [
     'ServiceVclLoggingSplunk',
     'ServiceVclLoggingSumologic',
     'ServiceVclLoggingSyslog',
-    'ServiceVclProductEnablement',
     'ServiceVclRequestSetting',
     'ServiceVclResponseObject',
     'ServiceVclSnippet',
@@ -3754,49 +3752,6 @@ class ServiceComputePackage(dict):
     @pulumi.getter(name="sourceCodeHash")
     def source_code_hash(self) -> Optional[str]:
         return pulumi.get(self, "source_code_hash")
-
-
-@pulumi.output_type
-class ServiceComputeProductEnablement(dict):
-    def __init__(__self__, *,
-                 fanout: Optional[bool] = None,
-                 name: Optional[str] = None,
-                 websockets: Optional[bool] = None):
-        """
-        :param bool fanout: Enable Fanout support
-        :param str name: Used internally by the provider to identify modified settings
-        :param bool websockets: Enable WebSockets support
-        """
-        if fanout is not None:
-            pulumi.set(__self__, "fanout", fanout)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if websockets is not None:
-            pulumi.set(__self__, "websockets", websockets)
-
-    @property
-    @pulumi.getter
-    def fanout(self) -> Optional[bool]:
-        """
-        Enable Fanout support
-        """
-        return pulumi.get(self, "fanout")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Used internally by the provider to identify modified settings
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def websockets(self) -> Optional[bool]:
-        """
-        Enable WebSockets support
-        """
-        return pulumi.get(self, "websockets")
 
 
 @pulumi.output_type
@@ -9602,108 +9557,6 @@ class ServiceVclLoggingSyslog(dict):
         Whether to use TLS for secure logging. Default `false`
         """
         return pulumi.get(self, "use_tls")
-
-
-@pulumi.output_type
-class ServiceVclProductEnablement(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "brotliCompression":
-            suggest = "brotli_compression"
-        elif key == "domainInspector":
-            suggest = "domain_inspector"
-        elif key == "imageOptimizer":
-            suggest = "image_optimizer"
-        elif key == "originInspector":
-            suggest = "origin_inspector"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceVclProductEnablement. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceVclProductEnablement.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceVclProductEnablement.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 brotli_compression: Optional[bool] = None,
-                 domain_inspector: Optional[bool] = None,
-                 image_optimizer: Optional[bool] = None,
-                 name: Optional[str] = None,
-                 origin_inspector: Optional[bool] = None,
-                 websockets: Optional[bool] = None):
-        """
-        :param bool brotli_compression: Enable Brotli Compression support
-        :param bool domain_inspector: Enable Domain Inspector support
-        :param bool image_optimizer: Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
-        :param str name: Used internally by the provider to identify modified settings
-        :param bool origin_inspector: Enable Origin Inspector support
-        :param bool websockets: Enable WebSockets support
-        """
-        if brotli_compression is not None:
-            pulumi.set(__self__, "brotli_compression", brotli_compression)
-        if domain_inspector is not None:
-            pulumi.set(__self__, "domain_inspector", domain_inspector)
-        if image_optimizer is not None:
-            pulumi.set(__self__, "image_optimizer", image_optimizer)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if origin_inspector is not None:
-            pulumi.set(__self__, "origin_inspector", origin_inspector)
-        if websockets is not None:
-            pulumi.set(__self__, "websockets", websockets)
-
-    @property
-    @pulumi.getter(name="brotliCompression")
-    def brotli_compression(self) -> Optional[bool]:
-        """
-        Enable Brotli Compression support
-        """
-        return pulumi.get(self, "brotli_compression")
-
-    @property
-    @pulumi.getter(name="domainInspector")
-    def domain_inspector(self) -> Optional[bool]:
-        """
-        Enable Domain Inspector support
-        """
-        return pulumi.get(self, "domain_inspector")
-
-    @property
-    @pulumi.getter(name="imageOptimizer")
-    def image_optimizer(self) -> Optional[bool]:
-        """
-        Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
-        """
-        return pulumi.get(self, "image_optimizer")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Used internally by the provider to identify modified settings
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="originInspector")
-    def origin_inspector(self) -> Optional[bool]:
-        """
-        Enable Origin Inspector support
-        """
-        return pulumi.get(self, "origin_inspector")
-
-    @property
-    @pulumi.getter
-    def websockets(self) -> Optional[bool]:
-        """
-        Enable WebSockets support
-        """
-        return pulumi.get(self, "websockets")
 
 
 @pulumi.output_type

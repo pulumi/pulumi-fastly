@@ -47,7 +47,6 @@ import com.pulumi.fastly.outputs.ServiceVclLoggingSftp;
 import com.pulumi.fastly.outputs.ServiceVclLoggingSplunk;
 import com.pulumi.fastly.outputs.ServiceVclLoggingSumologic;
 import com.pulumi.fastly.outputs.ServiceVclLoggingSyslog;
-import com.pulumi.fastly.outputs.ServiceVclProductEnablement;
 import com.pulumi.fastly.outputs.ServiceVclRequestSetting;
 import com.pulumi.fastly.outputs.ServiceVclResponseObject;
 import com.pulumi.fastly.outputs.ServiceVclSnippet;
@@ -574,20 +573,6 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.healthchecks);
     }
     /**
-     * Enables support for the HTTP/3 (QUIC) protocol
-     * 
-     */
-    @Export(name="http3", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> http3;
-
-    /**
-     * @return Enables support for the HTTP/3 (QUIC) protocol
-     * 
-     */
-    public Output<Optional<Boolean>> http3() {
-        return Codegen.optional(this.http3);
-    }
-    /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
@@ -770,12 +755,6 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
-    }
-    @Export(name="productEnablement", type=ServiceVclProductEnablement.class, parameters={})
-    private Output</* @Nullable */ ServiceVclProductEnablement> productEnablement;
-
-    public Output<Optional<ServiceVclProductEnablement>> productEnablement() {
-        return Codegen.optional(this.productEnablement);
     }
     @Export(name="requestSettings", type=List.class, parameters={ServiceVclRequestSetting.class})
     private Output</* @Nullable */ List<ServiceVclRequestSetting>> requestSettings;

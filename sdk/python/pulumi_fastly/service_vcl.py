@@ -32,7 +32,6 @@ class ServiceVclArgs:
                  gzips: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
-                 http3: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]] = None,
@@ -60,7 +59,6 @@ class ServiceVclArgs:
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceVclProductEnablementArgs']] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -78,7 +76,6 @@ class ServiceVclArgs:
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
-        :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -118,8 +115,6 @@ class ServiceVclArgs:
             pulumi.set(__self__, "headers", headers)
         if healthchecks is not None:
             pulumi.set(__self__, "healthchecks", healthchecks)
-        if http3 is not None:
-            pulumi.set(__self__, "http3", http3)
         if logging_bigqueries is not None:
             pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
@@ -174,8 +169,6 @@ class ServiceVclArgs:
             pulumi.set(__self__, "logging_syslogs", logging_syslogs)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if product_enablement is not None:
-            pulumi.set(__self__, "product_enablement", product_enablement)
         if request_settings is not None:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
@@ -356,18 +349,6 @@ class ServiceVclArgs:
     @healthchecks.setter
     def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]):
         pulumi.set(self, "healthchecks", value)
-
-    @property
-    @pulumi.getter
-    def http3(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Enables support for the HTTP/3 (QUIC) protocol
-        """
-        return pulumi.get(self, "http3")
-
-    @http3.setter
-    def http3(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "http3", value)
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -616,15 +597,6 @@ class ServiceVclArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceVclProductEnablementArgs']]:
-        return pulumi.get(self, "product_enablement")
-
-    @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceVclProductEnablementArgs']]):
-        pulumi.set(self, "product_enablement", value)
-
-    @property
     @pulumi.getter(name="requestSettings")
     def request_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
         return pulumi.get(self, "request_settings")
@@ -742,7 +714,6 @@ class _ServiceVclState:
                  gzips: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
-                 http3: Optional[pulumi.Input[bool]] = None,
                  imported: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
@@ -771,7 +742,6 @@ class _ServiceVclState:
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceVclProductEnablementArgs']] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -794,7 +764,6 @@ class _ServiceVclState:
         :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
                local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -842,8 +811,6 @@ class _ServiceVclState:
             pulumi.set(__self__, "headers", headers)
         if healthchecks is not None:
             pulumi.set(__self__, "healthchecks", healthchecks)
-        if http3 is not None:
-            pulumi.set(__self__, "http3", http3)
         if imported is not None:
             pulumi.set(__self__, "imported", imported)
         if logging_bigqueries is not None:
@@ -900,8 +867,6 @@ class _ServiceVclState:
             pulumi.set(__self__, "logging_syslogs", logging_syslogs)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if product_enablement is not None:
-            pulumi.set(__self__, "product_enablement", product_enablement)
         if request_settings is not None:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
@@ -1120,18 +1085,6 @@ class _ServiceVclState:
     @healthchecks.setter
     def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]):
         pulumi.set(self, "healthchecks", value)
-
-    @property
-    @pulumi.getter
-    def http3(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Enables support for the HTTP/3 (QUIC) protocol
-        """
-        return pulumi.get(self, "http3")
-
-    @http3.setter
-    def http3(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "http3", value)
 
     @property
     @pulumi.getter
@@ -1392,15 +1345,6 @@ class _ServiceVclState:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceVclProductEnablementArgs']]:
-        return pulumi.get(self, "product_enablement")
-
-    @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceVclProductEnablementArgs']]):
-        pulumi.set(self, "product_enablement", value)
-
-    @property
     @pulumi.getter(name="requestSettings")
     def request_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
         return pulumi.get(self, "request_settings")
@@ -1517,7 +1461,6 @@ class ServiceVcl(pulumi.CustomResource):
                  gzips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclGzipArgs']]]]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
-                 http3: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingCloudfileArgs']]]]] = None,
@@ -1545,7 +1488,6 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSumologicArgs']]]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceVclProductEnablementArgs']]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -1587,7 +1529,6 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
-        :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -1656,7 +1597,6 @@ class ServiceVcl(pulumi.CustomResource):
                  gzips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclGzipArgs']]]]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
-                 http3: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingCloudfileArgs']]]]] = None,
@@ -1684,7 +1624,6 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSumologicArgs']]]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceVclProductEnablementArgs']]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -1721,7 +1660,6 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["gzips"] = gzips
             __props__.__dict__["headers"] = headers
             __props__.__dict__["healthchecks"] = healthchecks
-            __props__.__dict__["http3"] = http3
             __props__.__dict__["logging_bigqueries"] = logging_bigqueries
             __props__.__dict__["logging_blobstorages"] = logging_blobstorages
             __props__.__dict__["logging_cloudfiles"] = logging_cloudfiles
@@ -1749,7 +1687,6 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["logging_sumologics"] = logging_sumologics
             __props__.__dict__["logging_syslogs"] = logging_syslogs
             __props__.__dict__["name"] = name
-            __props__.__dict__["product_enablement"] = product_enablement
             __props__.__dict__["request_settings"] = request_settings
             __props__.__dict__["response_objects"] = response_objects
             __props__.__dict__["reuse"] = reuse
@@ -1792,7 +1729,6 @@ class ServiceVcl(pulumi.CustomResource):
             gzips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclGzipArgs']]]]] = None,
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
             healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
-            http3: Optional[pulumi.Input[bool]] = None,
             imported: Optional[pulumi.Input[bool]] = None,
             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBigqueryArgs']]]]] = None,
             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBlobstorageArgs']]]]] = None,
@@ -1821,7 +1757,6 @@ class ServiceVcl(pulumi.CustomResource):
             logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSumologicArgs']]]]] = None,
             logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSyslogArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceVclProductEnablementArgs']]] = None,
             request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
             response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
             reuse: Optional[pulumi.Input[bool]] = None,
@@ -1849,7 +1784,6 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
                local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -1882,7 +1816,6 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["gzips"] = gzips
         __props__.__dict__["headers"] = headers
         __props__.__dict__["healthchecks"] = healthchecks
-        __props__.__dict__["http3"] = http3
         __props__.__dict__["imported"] = imported
         __props__.__dict__["logging_bigqueries"] = logging_bigqueries
         __props__.__dict__["logging_blobstorages"] = logging_blobstorages
@@ -1911,7 +1844,6 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["logging_sumologics"] = logging_sumologics
         __props__.__dict__["logging_syslogs"] = logging_syslogs
         __props__.__dict__["name"] = name
-        __props__.__dict__["product_enablement"] = product_enablement
         __props__.__dict__["request_settings"] = request_settings
         __props__.__dict__["response_objects"] = response_objects
         __props__.__dict__["reuse"] = reuse
@@ -2046,14 +1978,6 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def healthchecks(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclHealthcheck']]]:
         return pulumi.get(self, "healthchecks")
-
-    @property
-    @pulumi.getter
-    def http3(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Enables support for the HTTP/3 (QUIC) protocol
-        """
-        return pulumi.get(self, "http3")
 
     @property
     @pulumi.getter
@@ -2200,11 +2124,6 @@ class ServiceVcl(pulumi.CustomResource):
         The unique name for the Service to create
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> pulumi.Output[Optional['outputs.ServiceVclProductEnablement']]:
-        return pulumi.get(self, "product_enablement")
 
     @property
     @pulumi.getter(name="requestSettings")

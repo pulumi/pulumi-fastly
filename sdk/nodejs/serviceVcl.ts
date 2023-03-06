@@ -106,10 +106,6 @@ export class ServiceVcl extends pulumi.CustomResource {
     public readonly headers!: pulumi.Output<outputs.ServiceVclHeader[] | undefined>;
     public readonly healthchecks!: pulumi.Output<outputs.ServiceVclHealthcheck[] | undefined>;
     /**
-     * Enables support for the HTTP/3 (QUIC) protocol
-     */
-    public readonly http3!: pulumi.Output<boolean | undefined>;
-    /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      */
     public /*out*/ readonly imported!: pulumi.Output<boolean>;
@@ -143,7 +139,6 @@ export class ServiceVcl extends pulumi.CustomResource {
      * The unique name for the Service to create
      */
     public readonly name!: pulumi.Output<string>;
-    public readonly productEnablement!: pulumi.Output<outputs.ServiceVclProductEnablement | undefined>;
     public readonly requestSettings!: pulumi.Output<outputs.ServiceVclRequestSetting[] | undefined>;
     public readonly responseObjects!: pulumi.Output<outputs.ServiceVclResponseObject[] | undefined>;
     /**
@@ -200,7 +195,6 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["gzips"] = state ? state.gzips : undefined;
             resourceInputs["headers"] = state ? state.headers : undefined;
             resourceInputs["healthchecks"] = state ? state.healthchecks : undefined;
-            resourceInputs["http3"] = state ? state.http3 : undefined;
             resourceInputs["imported"] = state ? state.imported : undefined;
             resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
@@ -229,7 +223,6 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingSumologics"] = state ? state.loggingSumologics : undefined;
             resourceInputs["loggingSyslogs"] = state ? state.loggingSyslogs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["productEnablement"] = state ? state.productEnablement : undefined;
             resourceInputs["requestSettings"] = state ? state.requestSettings : undefined;
             resourceInputs["responseObjects"] = state ? state.responseObjects : undefined;
             resourceInputs["reuse"] = state ? state.reuse : undefined;
@@ -260,7 +253,6 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["gzips"] = args ? args.gzips : undefined;
             resourceInputs["headers"] = args ? args.headers : undefined;
             resourceInputs["healthchecks"] = args ? args.healthchecks : undefined;
-            resourceInputs["http3"] = args ? args.http3 : undefined;
             resourceInputs["loggingBigqueries"] = args ? args.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = args ? args.loggingBlobstorages : undefined;
             resourceInputs["loggingCloudfiles"] = args ? args.loggingCloudfiles : undefined;
@@ -288,7 +280,6 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingSumologics"] = args ? args.loggingSumologics : undefined;
             resourceInputs["loggingSyslogs"] = args ? args.loggingSyslogs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["productEnablement"] = args ? args.productEnablement : undefined;
             resourceInputs["requestSettings"] = args ? args.requestSettings : undefined;
             resourceInputs["responseObjects"] = args ? args.responseObjects : undefined;
             resourceInputs["reuse"] = args ? args.reuse : undefined;
@@ -361,10 +352,6 @@ export interface ServiceVclState {
     headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[]>;
     healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[]>;
     /**
-     * Enables support for the HTTP/3 (QUIC) protocol
-     */
-    http3?: pulumi.Input<boolean>;
-    /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      */
     imported?: pulumi.Input<boolean>;
@@ -398,7 +385,6 @@ export interface ServiceVclState {
      * The unique name for the Service to create
      */
     name?: pulumi.Input<string>;
-    productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
     /**
@@ -462,10 +448,6 @@ export interface ServiceVclArgs {
     gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[]>;
     headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[]>;
     healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[]>;
-    /**
-     * Enables support for the HTTP/3 (QUIC) protocol
-     */
-    http3?: pulumi.Input<boolean>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBlobstorage>[]>;
     loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingCloudfile>[]>;
@@ -496,7 +478,6 @@ export interface ServiceVclArgs {
      * The unique name for the Service to create
      */
     name?: pulumi.Input<string>;
-    productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
     /**

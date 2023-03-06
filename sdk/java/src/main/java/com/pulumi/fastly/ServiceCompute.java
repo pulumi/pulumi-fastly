@@ -40,7 +40,6 @@ import com.pulumi.fastly.outputs.ServiceComputeLoggingSplunk;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingSumologic;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingSyslog;
 import com.pulumi.fastly.outputs.ServiceComputePackage;
-import com.pulumi.fastly.outputs.ServiceComputeProductEnablement;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -377,12 +376,6 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      */
     public Output<ServiceComputePackage> package_() {
         return this.package_;
-    }
-    @Export(name="productEnablement", type=ServiceComputeProductEnablement.class, parameters={})
-    private Output</* @Nullable */ ServiceComputeProductEnablement> productEnablement;
-
-    public Output<Optional<ServiceComputeProductEnablement>> productEnablement() {
-        return Codegen.optional(this.productEnablement);
     }
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be

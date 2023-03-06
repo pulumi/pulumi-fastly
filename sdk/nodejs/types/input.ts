@@ -1080,21 +1080,6 @@ export interface ServiceComputePackage {
     sourceCodeHash?: pulumi.Input<string>;
 }
 
-export interface ServiceComputeProductEnablement {
-    /**
-     * Enable Fanout support
-     */
-    fanout?: pulumi.Input<boolean>;
-    /**
-     * Used internally by the provider to identify modified settings
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * Enable WebSockets support
-     */
-    websockets?: pulumi.Input<boolean>;
-}
-
 export interface ServiceVclAcl {
     /**
      * The ID of the ACL
@@ -2785,33 +2770,6 @@ export interface ServiceVclLoggingSyslog {
      * Whether to use TLS for secure logging. Default `false`
      */
     useTls?: pulumi.Input<boolean>;
-}
-
-export interface ServiceVclProductEnablement {
-    /**
-     * Enable Brotli Compression support
-     */
-    brotliCompression?: pulumi.Input<boolean>;
-    /**
-     * Enable Domain Inspector support
-     */
-    domainInspector?: pulumi.Input<boolean>;
-    /**
-     * Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
-     */
-    imageOptimizer?: pulumi.Input<boolean>;
-    /**
-     * Used internally by the provider to identify modified settings
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * Enable Origin Inspector support
-     */
-    originInspector?: pulumi.Input<boolean>;
-    /**
-     * Enable WebSockets support
-     */
-    websockets?: pulumi.Input<boolean>;
 }
 
 export interface ServiceVclRequestSetting {

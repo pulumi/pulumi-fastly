@@ -69,8 +69,6 @@ type ServiceVcl struct {
 	Gzips        ServiceVclGzipArrayOutput        `pulumi:"gzips"`
 	Headers      ServiceVclHeaderArrayOutput      `pulumi:"headers"`
 	Healthchecks ServiceVclHealthcheckArrayOutput `pulumi:"healthchecks"`
-	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3 pulumi.BoolPtrOutput `pulumi:"http3"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               pulumi.BoolOutput                         `pulumi:"imported"`
 	LoggingBigqueries      ServiceVclLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
@@ -100,10 +98,9 @@ type ServiceVcl struct {
 	LoggingSumologics      ServiceVclLoggingSumologicArrayOutput     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         ServiceVclLoggingSyslogArrayOutput        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
-	Name              pulumi.StringOutput                  `pulumi:"name"`
-	ProductEnablement ServiceVclProductEnablementPtrOutput `pulumi:"productEnablement"`
-	RequestSettings   ServiceVclRequestSettingArrayOutput  `pulumi:"requestSettings"`
-	ResponseObjects   ServiceVclResponseObjectArrayOutput  `pulumi:"responseObjects"`
+	Name            pulumi.StringOutput                 `pulumi:"name"`
+	RequestSettings ServiceVclRequestSettingArrayOutput `pulumi:"requestSettings"`
+	ResponseObjects ServiceVclResponseObjectArrayOutput `pulumi:"responseObjects"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -181,8 +178,6 @@ type serviceVclState struct {
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
 	Headers      []ServiceVclHeader      `pulumi:"headers"`
 	Healthchecks []ServiceVclHealthcheck `pulumi:"healthchecks"`
-	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3 *bool `pulumi:"http3"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               *bool                            `pulumi:"imported"`
 	LoggingBigqueries      []ServiceVclLoggingBigquery      `pulumi:"loggingBigqueries"`
@@ -212,10 +207,9 @@ type serviceVclState struct {
 	LoggingSumologics      []ServiceVclLoggingSumologic     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         []ServiceVclLoggingSyslog        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
-	Name              *string                      `pulumi:"name"`
-	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
-	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
-	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
+	Name            *string                    `pulumi:"name"`
+	RequestSettings []ServiceVclRequestSetting `pulumi:"requestSettings"`
+	ResponseObjects []ServiceVclResponseObject `pulumi:"responseObjects"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -262,8 +256,6 @@ type ServiceVclState struct {
 	Gzips        ServiceVclGzipArrayInput
 	Headers      ServiceVclHeaderArrayInput
 	Healthchecks ServiceVclHealthcheckArrayInput
-	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3 pulumi.BoolPtrInput
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               pulumi.BoolPtrInput
 	LoggingBigqueries      ServiceVclLoggingBigqueryArrayInput
@@ -293,10 +285,9 @@ type ServiceVclState struct {
 	LoggingSumologics      ServiceVclLoggingSumologicArrayInput
 	LoggingSyslogs         ServiceVclLoggingSyslogArrayInput
 	// The unique name for the Service to create
-	Name              pulumi.StringPtrInput
-	ProductEnablement ServiceVclProductEnablementPtrInput
-	RequestSettings   ServiceVclRequestSettingArrayInput
-	ResponseObjects   ServiceVclResponseObjectArrayInput
+	Name            pulumi.StringPtrInput
+	RequestSettings ServiceVclRequestSettingArrayInput
+	ResponseObjects ServiceVclResponseObjectArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -335,12 +326,10 @@ type serviceVclArgs struct {
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy *bool                   `pulumi:"forceDestroy"`
-	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
-	Headers      []ServiceVclHeader      `pulumi:"headers"`
-	Healthchecks []ServiceVclHealthcheck `pulumi:"healthchecks"`
-	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3                  *bool                            `pulumi:"http3"`
+	ForceDestroy           *bool                            `pulumi:"forceDestroy"`
+	Gzips                  []ServiceVclGzip                 `pulumi:"gzips"`
+	Headers                []ServiceVclHeader               `pulumi:"headers"`
+	Healthchecks           []ServiceVclHealthcheck          `pulumi:"healthchecks"`
 	LoggingBigqueries      []ServiceVclLoggingBigquery      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    []ServiceVclLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
 	LoggingCloudfiles      []ServiceVclLoggingCloudfile     `pulumi:"loggingCloudfiles"`
@@ -368,10 +357,9 @@ type serviceVclArgs struct {
 	LoggingSumologics      []ServiceVclLoggingSumologic     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         []ServiceVclLoggingSyslog        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
-	Name              *string                      `pulumi:"name"`
-	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
-	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
-	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
+	Name            *string                    `pulumi:"name"`
+	RequestSettings []ServiceVclRequestSetting `pulumi:"requestSettings"`
+	ResponseObjects []ServiceVclResponseObject `pulumi:"responseObjects"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -407,12 +395,10 @@ type ServiceVclArgs struct {
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy pulumi.BoolPtrInput
-	Gzips        ServiceVclGzipArrayInput
-	Headers      ServiceVclHeaderArrayInput
-	Healthchecks ServiceVclHealthcheckArrayInput
-	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3                  pulumi.BoolPtrInput
+	ForceDestroy           pulumi.BoolPtrInput
+	Gzips                  ServiceVclGzipArrayInput
+	Headers                ServiceVclHeaderArrayInput
+	Healthchecks           ServiceVclHealthcheckArrayInput
 	LoggingBigqueries      ServiceVclLoggingBigqueryArrayInput
 	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayInput
 	LoggingCloudfiles      ServiceVclLoggingCloudfileArrayInput
@@ -440,10 +426,9 @@ type ServiceVclArgs struct {
 	LoggingSumologics      ServiceVclLoggingSumologicArrayInput
 	LoggingSyslogs         ServiceVclLoggingSyslogArrayInput
 	// The unique name for the Service to create
-	Name              pulumi.StringPtrInput
-	ProductEnablement ServiceVclProductEnablementPtrInput
-	RequestSettings   ServiceVclRequestSettingArrayInput
-	ResponseObjects   ServiceVclResponseObjectArrayInput
+	Name            pulumi.StringPtrInput
+	RequestSettings ServiceVclRequestSettingArrayInput
+	ResponseObjects ServiceVclResponseObjectArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -633,11 +618,6 @@ func (o ServiceVclOutput) Healthchecks() ServiceVclHealthcheckArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclHealthcheckArrayOutput { return v.Healthchecks }).(ServiceVclHealthcheckArrayOutput)
 }
 
-// Enables support for the HTTP/3 (QUIC) protocol
-func (o ServiceVclOutput) Http3() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Http3 }).(pulumi.BoolPtrOutput)
-}
-
 // Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 func (o ServiceVclOutput) Imported() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolOutput { return v.Imported }).(pulumi.BoolOutput)
@@ -750,10 +730,6 @@ func (o ServiceVclOutput) LoggingSyslogs() ServiceVclLoggingSyslogArrayOutput {
 // The unique name for the Service to create
 func (o ServiceVclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o ServiceVclOutput) ProductEnablement() ServiceVclProductEnablementPtrOutput {
-	return o.ApplyT(func(v *ServiceVcl) ServiceVclProductEnablementPtrOutput { return v.ProductEnablement }).(ServiceVclProductEnablementPtrOutput)
 }
 
 func (o ServiceVclOutput) RequestSettings() ServiceVclRequestSettingArrayOutput {

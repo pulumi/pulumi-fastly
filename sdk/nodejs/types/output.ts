@@ -1122,21 +1122,6 @@ export interface ServiceComputePackage {
     sourceCodeHash: string;
 }
 
-export interface ServiceComputeProductEnablement {
-    /**
-     * Enable Fanout support
-     */
-    fanout?: boolean;
-    /**
-     * Used internally by the provider to identify modified settings
-     */
-    name: string;
-    /**
-     * Enable WebSockets support
-     */
-    websockets?: boolean;
-}
-
 export interface ServiceVclAcl {
     /**
      * The ID of the ACL
@@ -2827,33 +2812,6 @@ export interface ServiceVclLoggingSyslog {
      * Whether to use TLS for secure logging. Default `false`
      */
     useTls?: boolean;
-}
-
-export interface ServiceVclProductEnablement {
-    /**
-     * Enable Brotli Compression support
-     */
-    brotliCompression?: boolean;
-    /**
-     * Enable Domain Inspector support
-     */
-    domainInspector?: boolean;
-    /**
-     * Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
-     */
-    imageOptimizer?: boolean;
-    /**
-     * Used internally by the provider to identify modified settings
-     */
-    name: string;
-    /**
-     * Enable Origin Inspector support
-     */
-    originInspector?: boolean;
-    /**
-     * Enable WebSockets support
-     */
-    websockets?: boolean;
 }
 
 export interface ServiceVclRequestSetting {

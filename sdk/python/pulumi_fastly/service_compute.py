@@ -50,7 +50,6 @@ class ServiceComputeArgs:
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
@@ -132,8 +131,6 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "logging_syslogs", logging_syslogs)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if product_enablement is not None:
-            pulumi.set(__self__, "product_enablement", product_enablement)
         if reuse is not None:
             pulumi.set(__self__, "reuse", reuse)
         if version_comment is not None:
@@ -464,15 +461,6 @@ class ServiceComputeArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]:
-        return pulumi.get(self, "product_enablement")
-
-    @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]):
-        pulumi.set(self, "product_enablement", value)
-
-    @property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -540,7 +528,6 @@ class _ServiceComputeState:
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
@@ -638,8 +625,6 @@ class _ServiceComputeState:
             pulumi.set(__self__, "name", name)
         if package is not None:
             pulumi.set(__self__, "package", package)
-        if product_enablement is not None:
-            pulumi.set(__self__, "product_enablement", product_enablement)
         if reuse is not None:
             pulumi.set(__self__, "reuse", reuse)
         if version_comment is not None:
@@ -1020,15 +1005,6 @@ class _ServiceComputeState:
         pulumi.set(self, "package", value)
 
     @property
-    @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]:
-        return pulumi.get(self, "product_enablement")
-
-    @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]):
-        pulumi.set(self, "product_enablement", value)
-
-    @property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1094,7 +1070,6 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
-                 product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceComputeProductEnablementArgs']]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1196,7 +1171,6 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
-                 product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceComputeProductEnablementArgs']]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1246,7 +1220,6 @@ class ServiceCompute(pulumi.CustomResource):
             if package is None and not opts.urn:
                 raise TypeError("Missing required property 'package'")
             __props__.__dict__["package"] = package
-            __props__.__dict__["product_enablement"] = product_enablement
             __props__.__dict__["reuse"] = reuse
             __props__.__dict__["version_comment"] = version_comment
             __props__.__dict__["active_version"] = None
@@ -1301,7 +1274,6 @@ class ServiceCompute(pulumi.CustomResource):
             logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingSyslogArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
-            product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceComputeProductEnablementArgs']]] = None,
             reuse: Optional[pulumi.Input[bool]] = None,
             version_comment: Optional[pulumi.Input[str]] = None) -> 'ServiceCompute':
         """
@@ -1370,7 +1342,6 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["logging_syslogs"] = logging_syslogs
         __props__.__dict__["name"] = name
         __props__.__dict__["package"] = package
-        __props__.__dict__["product_enablement"] = product_enablement
         __props__.__dict__["reuse"] = reuse
         __props__.__dict__["version_comment"] = version_comment
         return ServiceCompute(resource_name, opts=opts, __props__=__props__)
@@ -1596,11 +1567,6 @@ class ServiceCompute(pulumi.CustomResource):
         The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
-
-    @property
-    @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> pulumi.Output[Optional['outputs.ServiceComputeProductEnablement']]:
-        return pulumi.get(self, "product_enablement")
 
     @property
     @pulumi.getter

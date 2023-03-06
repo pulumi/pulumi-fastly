@@ -42,7 +42,6 @@ import com.pulumi.fastly.inputs.ServiceVclLoggingSftpArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingSplunkArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingSumologicArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingSyslogArgs;
-import com.pulumi.fastly.inputs.ServiceVclProductEnablementArgs;
 import com.pulumi.fastly.inputs.ServiceVclRequestSettingArgs;
 import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
 import com.pulumi.fastly.inputs.ServiceVclSnippetArgs;
@@ -219,21 +218,6 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
 
     public Optional<Output<List<ServiceVclHealthcheckArgs>>> healthchecks() {
         return Optional.ofNullable(this.healthchecks);
-    }
-
-    /**
-     * Enables support for the HTTP/3 (QUIC) protocol
-     * 
-     */
-    @Import(name="http3")
-    private @Nullable Output<Boolean> http3;
-
-    /**
-     * @return Enables support for the HTTP/3 (QUIC) protocol
-     * 
-     */
-    public Optional<Output<Boolean>> http3() {
-        return Optional.ofNullable(this.http3);
     }
 
     @Import(name="loggingBigqueries")
@@ -433,13 +417,6 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.name);
     }
 
-    @Import(name="productEnablement")
-    private @Nullable Output<ServiceVclProductEnablementArgs> productEnablement;
-
-    public Optional<Output<ServiceVclProductEnablementArgs>> productEnablement() {
-        return Optional.ofNullable(this.productEnablement);
-    }
-
     @Import(name="requestSettings")
     private @Nullable Output<List<ServiceVclRequestSettingArgs>> requestSettings;
 
@@ -558,7 +535,6 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         this.gzips = $.gzips;
         this.headers = $.headers;
         this.healthchecks = $.healthchecks;
-        this.http3 = $.http3;
         this.loggingBigqueries = $.loggingBigqueries;
         this.loggingBlobstorages = $.loggingBlobstorages;
         this.loggingCloudfiles = $.loggingCloudfiles;
@@ -586,7 +562,6 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         this.loggingSumologics = $.loggingSumologics;
         this.loggingSyslogs = $.loggingSyslogs;
         this.name = $.name;
-        this.productEnablement = $.productEnablement;
         this.requestSettings = $.requestSettings;
         this.responseObjects = $.responseObjects;
         this.reuse = $.reuse;
@@ -880,27 +855,6 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder healthchecks(ServiceVclHealthcheckArgs... healthchecks) {
             return healthchecks(List.of(healthchecks));
-        }
-
-        /**
-         * @param http3 Enables support for the HTTP/3 (QUIC) protocol
-         * 
-         * @return builder
-         * 
-         */
-        public Builder http3(@Nullable Output<Boolean> http3) {
-            $.http3 = http3;
-            return this;
-        }
-
-        /**
-         * @param http3 Enables support for the HTTP/3 (QUIC) protocol
-         * 
-         * @return builder
-         * 
-         */
-        public Builder http3(Boolean http3) {
-            return http3(Output.of(http3));
         }
 
         public Builder loggingBigqueries(@Nullable Output<List<ServiceVclLoggingBigqueryArgs>> loggingBigqueries) {
@@ -1260,15 +1214,6 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
-        }
-
-        public Builder productEnablement(@Nullable Output<ServiceVclProductEnablementArgs> productEnablement) {
-            $.productEnablement = productEnablement;
-            return this;
-        }
-
-        public Builder productEnablement(ServiceVclProductEnablementArgs productEnablement) {
-            return productEnablement(Output.of(productEnablement));
         }
 
         public Builder requestSettings(@Nullable Output<List<ServiceVclRequestSettingArgs>> requestSettings) {

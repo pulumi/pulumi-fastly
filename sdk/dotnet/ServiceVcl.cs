@@ -122,12 +122,6 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclHealthcheck>> Healthchecks { get; private set; } = null!;
 
         /// <summary>
-        /// Enables support for the HTTP/3 (QUIC) protocol
-        /// </summary>
-        [Output("http3")]
-        public Output<bool?> Http3 { get; private set; } = null!;
-
-        /// <summary>
         /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         /// </summary>
         [Output("imported")]
@@ -216,9 +210,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
-
-        [Output("productEnablement")]
-        public Output<Outputs.ServiceVclProductEnablement?> ProductEnablement { get; private set; } = null!;
 
         [Output("requestSettings")]
         public Output<ImmutableArray<Outputs.ServiceVclRequestSetting>> RequestSettings { get; private set; } = null!;
@@ -428,12 +419,6 @@ namespace Pulumi.Fastly
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceVclHealthcheckArgs>());
             set => _healthchecks = value;
         }
-
-        /// <summary>
-        /// Enables support for the HTTP/3 (QUIC) protocol
-        /// </summary>
-        [Input("http3")]
-        public Input<bool>? Http3 { get; set; }
 
         [Input("loggingBigqueries")]
         private InputList<Inputs.ServiceVclLoggingBigqueryArgs>? _loggingBigqueries;
@@ -649,9 +634,6 @@ namespace Pulumi.Fastly
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("productEnablement")]
-        public Input<Inputs.ServiceVclProductEnablementArgs>? ProductEnablement { get; set; }
-
         [Input("requestSettings")]
         private InputList<Inputs.ServiceVclRequestSettingArgs>? _requestSettings;
         public InputList<Inputs.ServiceVclRequestSettingArgs> RequestSettings
@@ -862,12 +844,6 @@ namespace Pulumi.Fastly
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceVclHealthcheckGetArgs>());
             set => _healthchecks = value;
         }
-
-        /// <summary>
-        /// Enables support for the HTTP/3 (QUIC) protocol
-        /// </summary>
-        [Input("http3")]
-        public Input<bool>? Http3 { get; set; }
 
         /// <summary>
         /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
@@ -1088,9 +1064,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
-
-        [Input("productEnablement")]
-        public Input<Inputs.ServiceVclProductEnablementGetArgs>? ProductEnablement { get; set; }
 
         [Input("requestSettings")]
         private InputList<Inputs.ServiceVclRequestSettingGetArgs>? _requestSettings;
