@@ -22,8 +22,10 @@ import (
 	"github.com/fastly/terraform-provider-fastly/fastly"
 	"github.com/pulumi/pulumi-fastly/provider/v6/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 // all of the token components used below.
@@ -78,12 +80,7 @@ func Provider() tfbridge.ProviderInfo {
 		Config:           map[string]*tfbridge.SchemaInfo{},
 		UpstreamRepoPath: "./upstream",
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"fastly_service_acl_entries":             {Tok: makeResource(mainMod, "ServiceACLEntries")},
-			"fastly_service_authorization":           {Tok: makeResource(mainMod, "ServiceAuthorization")},
-			"fastly_service_dictionary_items":        {Tok: makeResource(mainMod, "ServiceDictionaryItems")},
-			"fastly_service_dynamic_snippet_content": {Tok: makeResource(mainMod, "ServiceDynamicSnippetContent")},
-			"fastly_service_vcl":                     {Tok: makeResource(mainMod, "ServiceVcl")},
-			"fastly_user":                            {Tok: makeResource(mainMod, "User")},
+			"fastly_service_acl_entries": {Tok: makeResource(mainMod, "ServiceACLEntries")},
 			"fastly_service_compute": {
 				Tok: makeResource(mainMod, "ServiceCompute"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -92,32 +89,9 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"fastly_service_waf_configuration":   {Tok: makeResource(mainMod, "ServiceWafConfiguration")},
-			"fastly_tls_activation":              {Tok: makeResource(mainMod, "TlsActivation")},
-			"fastly_tls_certificate":             {Tok: makeResource(mainMod, "TlsCertificate")},
-			"fastly_tls_platform_certificate":    {Tok: makeResource(mainMod, "TlsPlatformCertificate")},
-			"fastly_tls_private_key":             {Tok: makeResource(mainMod, "TlsPrivateKey")},
-			"fastly_tls_subscription":            {Tok: makeResource(mainMod, "TlsSubscription")},
-			"fastly_tls_subscription_validation": {Tok: makeResource(mainMod, "TlsSubscriptionValidation")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"fastly_ip_ranges":                    {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
-			"fastly_waf_rules":                    {Tok: makeDataSource(mainMod, "getWafRules")},
-			"fastly_tls_activation":               {Tok: makeDataSource(mainMod, "getTlsActivation")},
-			"fastly_tls_activation_ids":           {Tok: makeDataSource(mainMod, "getTlsActivationIds")},
-			"fastly_tls_certificate":              {Tok: makeDataSource(mainMod, "getTlsCertificate")},
-			"fastly_tls_certificate_ids":          {Tok: makeDataSource(mainMod, "getTlsCertificateIds")},
-			"fastly_tls_configuration":            {Tok: makeDataSource(mainMod, "getTlsConfiguration")},
-			"fastly_tls_configuration_ids":        {Tok: makeDataSource(mainMod, "getTlsConfigurationIds")},
-			"fastly_datacenters":                  {Tok: makeDataSource(mainMod, "getDatacenters")},
-			"fastly_tls_domain":                   {Tok: makeDataSource(mainMod, "getTlsDomain")},
-			"fastly_tls_platform_certificate":     {Tok: makeDataSource(mainMod, "getTlsPlatformCertificate")},
-			"fastly_tls_platform_certificate_ids": {Tok: makeDataSource(mainMod, "getTlsPlatformCertificateIds")},
-			"fastly_tls_private_key":              {Tok: makeDataSource(mainMod, "getTlsPrivateKey")},
-			"fastly_tls_private_key_ids":          {Tok: makeDataSource(mainMod, "getTlsPrivateKeyIds")},
-			"fastly_tls_subscription":             {Tok: makeDataSource(mainMod, "getTlsSubscription")},
-			"fastly_tls_subscription_ids":         {Tok: makeDataSource(mainMod, "getTlsSubscriptionIds")},
-			"fastly_services":                     {Tok: makeDataSource(mainMod, "getServices")},
+			"fastly_ip_ranges": {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
@@ -152,6 +126,10 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 	}
+
+	err := x.ComputeDefaults(&prov, x.TokensSingleModule("fastly_", mainMod,
+		x.MakeStandardToken(mainPkg)).Unmappable("_acl_", "acl is capitalized to ACL"))
+	contract.AssertNoError(err)
 
 	prov.SetAutonaming(255, "-")
 

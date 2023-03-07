@@ -355,7 +355,7 @@ class TlsSubscription(pulumi.CustomResource):
 
         > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
 
-        The example below demonstrates usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
+        The examples below demonstrate usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
 
         ## Import
 
@@ -389,7 +389,7 @@ class TlsSubscription(pulumi.CustomResource):
 
         > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
 
-        The example below demonstrates usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
+        The examples below demonstrate usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
 
         ## Import
 
