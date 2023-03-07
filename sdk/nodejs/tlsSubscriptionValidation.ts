@@ -10,49 +10,6 @@ import * as utilities from "./utilities";
  * Most commonly, this resource is used together with a resource for a DNS record and `fastly.TlsSubscription` to request a DNS validated certificate, deploy the required validation records and wait for validation to complete.
  *
  * > **Warning:** This resource implements a part of the validation workflow. It does not represent a real-world entity in Fastly, therefore changing or deleting this resource on its own has no immediate effect.
- *
- * ## Example Usage
- *
- * DNS Validation with AWS Route53:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fastly from "@pulumi/fastly";
- *
- * const domainName = "example.com";
- * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
- *     domains: [{
- *         name: domainName,
- *     }],
- *     backends: [{
- *         address: "127.0.0.1",
- *         name: "localhost",
- *     }],
- *     forceDestroy: true,
- * });
- * const exampleTlsSubscription = new fastly.TlsSubscription("exampleTlsSubscription", {
- *     domains: exampleServiceVcl.domains.apply(domains => domains.map(domain => domain.name)),
- *     certificateAuthority: "lets-encrypt",
- * });
- * const demo = aws.route53.getZone({
- *     name: domainName,
- *     privateZone: false,
- * });
- * // Set up DNS record for managed DNS domain validation method
- * const domainValidation = new aws.route53.Record("domainValidation", {
- *     name: exampleTlsSubscription.managedDnsChallenge.recordName,
- *     type: exampleTlsSubscription.managedDnsChallenge.recordType,
- *     zoneId: demo.then(demo => demo.id),
- *     allowOverwrite: true,
- *     records: [exampleTlsSubscription.managedDnsChallenge.recordValue],
- *     ttl: 60,
- * });
- * // Resource that other resources can depend on if they require the certificate to be issued
- * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("exampleTlsSubscriptionValidation", {subscriptionId: exampleTlsSubscription.id}, {
- *     dependsOn: [domainValidation],
- * });
- * ```
  */
 export class TlsSubscriptionValidation extends pulumi.CustomResource {
     /**
