@@ -34,10 +34,6 @@ export interface ServiceComputeBackend {
      */
     address: pulumi.Input<string>;
     /**
-     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
-     */
-    autoLoadbalance?: pulumi.Input<boolean>;
-    /**
      * How long to wait between bytes in milliseconds. Default `10000`
      */
     betweenBytesTimeout?: pulumi.Input<number>;
@@ -57,6 +53,10 @@ export interface ServiceComputeBackend {
      * Name of a defined `healthcheck` to assign to this backend
      */
     healthcheck?: pulumi.Input<string>;
+    /**
+     * How long in seconds to keep a persistent connection to the backend between requests.
+     */
+    keepaliveTime?: pulumi.Input<number>;
     /**
      * Maximum number of connections for this Backend. Default `200`
      */
@@ -1139,6 +1139,10 @@ export interface ServiceVclBackend {
      * Name of a defined `healthcheck` to assign to this backend
      */
     healthcheck?: pulumi.Input<string>;
+    /**
+     * How long in seconds to keep a persistent connection to the backend between requests.
+     */
+    keepaliveTime?: pulumi.Input<number>;
     /**
      * Maximum number of connections for this Backend. Default `200`
      */

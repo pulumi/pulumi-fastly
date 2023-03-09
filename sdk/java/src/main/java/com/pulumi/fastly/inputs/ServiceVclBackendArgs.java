@@ -123,6 +123,21 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * How long in seconds to keep a persistent connection to the backend between requests.
+     * 
+     */
+    @Import(name="keepaliveTime")
+    private @Nullable Output<Integer> keepaliveTime;
+
+    /**
+     * @return How long in seconds to keep a persistent connection to the backend between requests.
+     * 
+     */
+    public Optional<Output<Integer>> keepaliveTime() {
+        return Optional.ofNullable(this.keepaliveTime);
+    }
+
+    /**
      * Maximum number of connections for this Backend. Default `200`
      * 
      */
@@ -387,6 +402,7 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
         this.errorThreshold = $.errorThreshold;
         this.firstByteTimeout = $.firstByteTimeout;
         this.healthcheck = $.healthcheck;
+        this.keepaliveTime = $.keepaliveTime;
         this.maxConn = $.maxConn;
         this.maxTlsVersion = $.maxTlsVersion;
         this.minTlsVersion = $.minTlsVersion;
@@ -569,6 +585,27 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder healthcheck(String healthcheck) {
             return healthcheck(Output.of(healthcheck));
+        }
+
+        /**
+         * @param keepaliveTime How long in seconds to keep a persistent connection to the backend between requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keepaliveTime(@Nullable Output<Integer> keepaliveTime) {
+            $.keepaliveTime = keepaliveTime;
+            return this;
+        }
+
+        /**
+         * @param keepaliveTime How long in seconds to keep a persistent connection to the backend between requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keepaliveTime(Integer keepaliveTime) {
+            return keepaliveTime(Output.of(keepaliveTime));
         }
 
         /**

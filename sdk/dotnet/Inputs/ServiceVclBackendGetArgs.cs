@@ -55,6 +55,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Healthcheck { get; set; }
 
         /// <summary>
+        /// How long in seconds to keep a persistent connection to the backend between requests.
+        /// </summary>
+        [Input("keepaliveTime")]
+        public Input<int>? KeepaliveTime { get; set; }
+
+        /// <summary>
         /// Maximum number of connections for this Backend. Default `200`
         /// </summary>
         [Input("maxConn")]
