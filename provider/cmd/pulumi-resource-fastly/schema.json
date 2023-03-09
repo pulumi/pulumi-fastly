@@ -143,15 +143,6 @@
                         }
                     }
                 },
-                "autoLoadbalance": {
-                    "type": "boolean",
-                    "description": "Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "betweenBytesTimeout": {
                     "type": "integer",
                     "description": "How long to wait between bytes in milliseconds. Default `10000`\n",
@@ -191,6 +182,15 @@
                 "healthcheck": {
                     "type": "string",
                     "description": "Name of a defined `healthcheck` to assign to this backend\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "keepaliveTime": {
+                    "type": "integer",
+                    "description": "How long in seconds to keep a persistent connection to the backend between requests.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2794,6 +2794,15 @@
                 "healthcheck": {
                     "type": "string",
                     "description": "Name of a defined `healthcheck` to assign to this backend\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "keepaliveTime": {
+                    "type": "integer",
+                    "description": "How long in seconds to keep a persistent connection to the backend between requests.\n",
                     "language": {
                         "python": {
                             "mapCase": false

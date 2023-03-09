@@ -42,6 +42,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Healthcheck;
         /// <summary>
+        /// How long in seconds to keep a persistent connection to the backend between requests.
+        /// </summary>
+        public readonly int? KeepaliveTime;
+        /// <summary>
         /// Maximum number of connections for this Backend. Default `200`
         /// </summary>
         public readonly int? MaxConn;
@@ -126,6 +130,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? healthcheck,
 
+            int? keepaliveTime,
+
             int? maxConn,
 
             string? maxTlsVersion,
@@ -167,6 +173,7 @@ namespace Pulumi.Fastly.Outputs
             ErrorThreshold = errorThreshold;
             FirstByteTimeout = firstByteTimeout;
             Healthcheck = healthcheck;
+            KeepaliveTime = keepaliveTime;
             MaxConn = maxConn;
             MaxTlsVersion = maxTlsVersion;
             MinTlsVersion = minTlsVersion;
