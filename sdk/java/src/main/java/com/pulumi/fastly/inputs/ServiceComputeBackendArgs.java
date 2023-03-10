@@ -33,6 +33,21 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+     * 
+     */
+    @Import(name="autoLoadbalance")
+    private @Nullable Output<Boolean> autoLoadbalance;
+
+    /**
+     * @return Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+     * 
+     */
+    public Optional<Output<Boolean>> autoLoadbalance() {
+        return Optional.ofNullable(this.autoLoadbalance);
+    }
+
+    /**
      * How long to wait between bytes in milliseconds. Default `10000`
      * 
      */
@@ -105,21 +120,6 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<String>> healthcheck() {
         return Optional.ofNullable(this.healthcheck);
-    }
-
-    /**
-     * How long in seconds to keep a persistent connection to the backend between requests.
-     * 
-     */
-    @Import(name="keepaliveTime")
-    private @Nullable Output<Integer> keepaliveTime;
-
-    /**
-     * @return How long in seconds to keep a persistent connection to the backend between requests.
-     * 
-     */
-    public Optional<Output<Integer>> keepaliveTime() {
-        return Optional.ofNullable(this.keepaliveTime);
     }
 
     /**
@@ -366,12 +366,12 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
 
     private ServiceComputeBackendArgs(ServiceComputeBackendArgs $) {
         this.address = $.address;
+        this.autoLoadbalance = $.autoLoadbalance;
         this.betweenBytesTimeout = $.betweenBytesTimeout;
         this.connectTimeout = $.connectTimeout;
         this.errorThreshold = $.errorThreshold;
         this.firstByteTimeout = $.firstByteTimeout;
         this.healthcheck = $.healthcheck;
-        this.keepaliveTime = $.keepaliveTime;
         this.maxConn = $.maxConn;
         this.maxTlsVersion = $.maxTlsVersion;
         this.minTlsVersion = $.minTlsVersion;
@@ -427,6 +427,27 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
          */
         public Builder address(String address) {
             return address(Output.of(address));
+        }
+
+        /**
+         * @param autoLoadbalance Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoLoadbalance(@Nullable Output<Boolean> autoLoadbalance) {
+            $.autoLoadbalance = autoLoadbalance;
+            return this;
+        }
+
+        /**
+         * @param autoLoadbalance Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoLoadbalance(Boolean autoLoadbalance) {
+            return autoLoadbalance(Output.of(autoLoadbalance));
         }
 
         /**
@@ -532,27 +553,6 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
          */
         public Builder healthcheck(String healthcheck) {
             return healthcheck(Output.of(healthcheck));
-        }
-
-        /**
-         * @param keepaliveTime How long in seconds to keep a persistent connection to the backend between requests.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder keepaliveTime(@Nullable Output<Integer> keepaliveTime) {
-            $.keepaliveTime = keepaliveTime;
-            return this;
-        }
-
-        /**
-         * @param keepaliveTime How long in seconds to keep a persistent connection to the backend between requests.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder keepaliveTime(Integer keepaliveTime) {
-            return keepaliveTime(Output.of(keepaliveTime));
         }
 
         /**

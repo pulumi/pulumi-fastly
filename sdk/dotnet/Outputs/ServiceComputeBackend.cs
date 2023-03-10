@@ -18,6 +18,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Address;
         /// <summary>
+        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+        /// </summary>
+        public readonly bool? AutoLoadbalance;
+        /// <summary>
         /// How long to wait between bytes in milliseconds. Default `10000`
         /// </summary>
         public readonly int? BetweenBytesTimeout;
@@ -37,10 +41,6 @@ namespace Pulumi.Fastly.Outputs
         /// Name of a defined `healthcheck` to assign to this backend
         /// </summary>
         public readonly string? Healthcheck;
-        /// <summary>
-        /// How long in seconds to keep a persistent connection to the backend between requests.
-        /// </summary>
-        public readonly int? KeepaliveTime;
         /// <summary>
         /// Maximum number of connections for this Backend. Default `200`
         /// </summary>
@@ -110,6 +110,8 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeBackend(
             string address,
 
+            bool? autoLoadbalance,
+
             int? betweenBytesTimeout,
 
             int? connectTimeout,
@@ -119,8 +121,6 @@ namespace Pulumi.Fastly.Outputs
             int? firstByteTimeout,
 
             string? healthcheck,
-
-            int? keepaliveTime,
 
             int? maxConn,
 
@@ -155,12 +155,12 @@ namespace Pulumi.Fastly.Outputs
             int? weight)
         {
             Address = address;
+            AutoLoadbalance = autoLoadbalance;
             BetweenBytesTimeout = betweenBytesTimeout;
             ConnectTimeout = connectTimeout;
             ErrorThreshold = errorThreshold;
             FirstByteTimeout = firstByteTimeout;
             Healthcheck = healthcheck;
-            KeepaliveTime = keepaliveTime;
             MaxConn = maxConn;
             MaxTlsVersion = maxTlsVersion;
             MinTlsVersion = minTlsVersion;
