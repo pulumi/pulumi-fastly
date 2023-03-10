@@ -20,7 +20,7 @@ import (
 	"unicode"
 
 	"github.com/fastly/terraform-provider-fastly/fastly"
-	"github.com/pulumi/pulumi-fastly/provider/v6/pkg/version"
+	"github.com/pulumi/pulumi-fastly/provider/v7/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -69,16 +69,17 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                p,
-		Name:             "fastly",
-		Description:      "A Pulumi package for creating and managing fastly cloud resources.",
-		Keywords:         []string{"pulumi", "fastly"},
-		License:          "Apache-2.0",
-		Homepage:         "https://pulumi.io",
-		Repository:       "https://github.com/pulumi/pulumi-fastly",
-		GitHubOrg:        "fastly",
-		Config:           map[string]*tfbridge.SchemaInfo{},
-		UpstreamRepoPath: "./upstream",
+		P:                 p,
+		Name:              "fastly",
+		TFProviderVersion: "4",
+		Description:       "A Pulumi package for creating and managing fastly cloud resources.",
+		Keywords:          []string{"pulumi", "fastly"},
+		License:           "Apache-2.0",
+		Homepage:          "https://pulumi.io",
+		Repository:        "https://github.com/pulumi/pulumi-fastly",
+		GitHubOrg:         "fastly",
+		Config:            map[string]*tfbridge.SchemaInfo{},
+		UpstreamRepoPath:  "./upstream",
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"fastly_service_acl_entries": {Tok: makeResource(mainMod, "ServiceACLEntries")},
 			"fastly_service_compute": {

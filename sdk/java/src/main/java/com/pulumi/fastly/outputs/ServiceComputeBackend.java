@@ -19,6 +19,11 @@ public final class ServiceComputeBackend {
      */
     private String address;
     /**
+     * @return Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+     * 
+     */
+    private @Nullable Boolean autoLoadbalance;
+    /**
      * @return How long to wait between bytes in milliseconds. Default `10000`
      * 
      */
@@ -43,11 +48,6 @@ public final class ServiceComputeBackend {
      * 
      */
     private @Nullable String healthcheck;
-    /**
-     * @return How long in seconds to keep a persistent connection to the backend between requests.
-     * 
-     */
-    private @Nullable Integer keepaliveTime;
     /**
      * @return Maximum number of connections for this Backend. Default `200`
      * 
@@ -138,6 +138,13 @@ public final class ServiceComputeBackend {
         return this.address;
     }
     /**
+     * @return Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+     * 
+     */
+    public Optional<Boolean> autoLoadbalance() {
+        return Optional.ofNullable(this.autoLoadbalance);
+    }
+    /**
      * @return How long to wait between bytes in milliseconds. Default `10000`
      * 
      */
@@ -171,13 +178,6 @@ public final class ServiceComputeBackend {
      */
     public Optional<String> healthcheck() {
         return Optional.ofNullable(this.healthcheck);
-    }
-    /**
-     * @return How long in seconds to keep a persistent connection to the backend between requests.
-     * 
-     */
-    public Optional<Integer> keepaliveTime() {
-        return Optional.ofNullable(this.keepaliveTime);
     }
     /**
      * @return Maximum number of connections for this Backend. Default `200`
@@ -302,12 +302,12 @@ public final class ServiceComputeBackend {
     @CustomType.Builder
     public static final class Builder {
         private String address;
+        private @Nullable Boolean autoLoadbalance;
         private @Nullable Integer betweenBytesTimeout;
         private @Nullable Integer connectTimeout;
         private @Nullable Integer errorThreshold;
         private @Nullable Integer firstByteTimeout;
         private @Nullable String healthcheck;
-        private @Nullable Integer keepaliveTime;
         private @Nullable Integer maxConn;
         private @Nullable String maxTlsVersion;
         private @Nullable String minTlsVersion;
@@ -328,12 +328,12 @@ public final class ServiceComputeBackend {
         public Builder(ServiceComputeBackend defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.address = defaults.address;
+    	      this.autoLoadbalance = defaults.autoLoadbalance;
     	      this.betweenBytesTimeout = defaults.betweenBytesTimeout;
     	      this.connectTimeout = defaults.connectTimeout;
     	      this.errorThreshold = defaults.errorThreshold;
     	      this.firstByteTimeout = defaults.firstByteTimeout;
     	      this.healthcheck = defaults.healthcheck;
-    	      this.keepaliveTime = defaults.keepaliveTime;
     	      this.maxConn = defaults.maxConn;
     	      this.maxTlsVersion = defaults.maxTlsVersion;
     	      this.minTlsVersion = defaults.minTlsVersion;
@@ -355,6 +355,11 @@ public final class ServiceComputeBackend {
         @CustomType.Setter
         public Builder address(String address) {
             this.address = Objects.requireNonNull(address);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder autoLoadbalance(@Nullable Boolean autoLoadbalance) {
+            this.autoLoadbalance = autoLoadbalance;
             return this;
         }
         @CustomType.Setter
@@ -380,11 +385,6 @@ public final class ServiceComputeBackend {
         @CustomType.Setter
         public Builder healthcheck(@Nullable String healthcheck) {
             this.healthcheck = healthcheck;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder keepaliveTime(@Nullable Integer keepaliveTime) {
-            this.keepaliveTime = keepaliveTime;
             return this;
         }
         @CustomType.Setter
@@ -470,12 +470,12 @@ public final class ServiceComputeBackend {
         public ServiceComputeBackend build() {
             final var o = new ServiceComputeBackend();
             o.address = address;
+            o.autoLoadbalance = autoLoadbalance;
             o.betweenBytesTimeout = betweenBytesTimeout;
             o.connectTimeout = connectTimeout;
             o.errorThreshold = errorThreshold;
             o.firstByteTimeout = firstByteTimeout;
             o.healthcheck = healthcheck;
-            o.keepaliveTime = keepaliveTime;
             o.maxConn = maxConn;
             o.maxTlsVersion = maxTlsVersion;
             o.minTlsVersion = minTlsVersion;

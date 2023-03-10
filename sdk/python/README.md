@@ -3,7 +3,7 @@
 [![NPM version](https://badge.fury.io/js/%40pulumi%2Ffastly.svg)](https://www.npmjs.com/package/@pulumi/fastly)
 [![Python version](https://badge.fury.io/py/pulumi-fastly.svg)](https://pypi.org/project/pulumi-fastly)
 [![NuGet version](https://badge.fury.io/nu/pulumi.fastly.svg)](https://badge.fury.io/nu/pulumi.fastly)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-fastly/sdk/v6/go)](https://pkg.go.dev/github.com/pulumi/pulumi-fastly/sdk/v6/go)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-fastly/sdk/v7/go)](https://pkg.go.dev/github.com/pulumi/pulumi-fastly/sdk/v7/go)
 [![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-fastly/blob/master/LICENSE)
 
 # Fastly Resource Provider
@@ -35,7 +35,7 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-fastly/sdk/v6
+    $ go get github.com/pulumi/pulumi-fastly/sdk/v7
 
 ### .NET
 

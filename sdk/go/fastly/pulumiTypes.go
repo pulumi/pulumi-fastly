@@ -146,6 +146,8 @@ func (o ServiceACLEntriesEntryArrayOutput) Index(i pulumi.IntInput) ServiceACLEn
 type ServiceComputeBackend struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address string `pulumi:"address"`
+	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
 	// How long to wait between bytes in milliseconds. Default `10000`
 	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
@@ -156,8 +158,6 @@ type ServiceComputeBackend struct {
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
-	// How long in seconds to keep a persistent connection to the backend between requests.
-	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -206,6 +206,8 @@ type ServiceComputeBackendInput interface {
 type ServiceComputeBackendArgs struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address pulumi.StringInput `pulumi:"address"`
+	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
 	// How long to wait between bytes in milliseconds. Default `10000`
 	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
@@ -216,8 +218,6 @@ type ServiceComputeBackendArgs struct {
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
-	// How long in seconds to keep a persistent connection to the backend between requests.
-	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -308,6 +308,11 @@ func (o ServiceComputeBackendOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+func (o ServiceComputeBackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
+}
+
 // How long to wait between bytes in milliseconds. Default `10000`
 func (o ServiceComputeBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
@@ -331,11 +336,6 @@ func (o ServiceComputeBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 // Name of a defined `healthcheck` to assign to this backend
 func (o ServiceComputeBackendOutput) Healthcheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
-}
-
-// How long in seconds to keep a persistent connection to the backend between requests.
-func (o ServiceComputeBackendOutput) KeepaliveTime() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.KeepaliveTime }).(pulumi.IntPtrOutput)
 }
 
 // Maximum number of connections for this Backend. Default `200`
@@ -5309,8 +5309,6 @@ type ServiceVclBackend struct {
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
-	// How long in seconds to keep a persistent connection to the backend between requests.
-	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -5373,8 +5371,6 @@ type ServiceVclBackendArgs struct {
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
-	// How long in seconds to keep a persistent connection to the backend between requests.
-	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -5495,11 +5491,6 @@ func (o ServiceVclBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 // Name of a defined `healthcheck` to assign to this backend
 func (o ServiceVclBackendOutput) Healthcheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
-}
-
-// How long in seconds to keep a persistent connection to the backend between requests.
-func (o ServiceVclBackendOutput) KeepaliveTime() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceVclBackend) *int { return v.KeepaliveTime }).(pulumi.IntPtrOutput)
 }
 
 // Maximum number of connections for this Backend. Default `200`
