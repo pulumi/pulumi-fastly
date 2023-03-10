@@ -4,7 +4,6 @@ go 1.19
 
 require (
 	github.com/fastly/terraform-provider-fastly v0.0.0
-	github.com/pulumi/pulumi-fastly/provider/v7 v7.0.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.42.1
 	github.com/pulumi/pulumi/sdk/v3 v3.56.0
 )
