@@ -1,7 +1,7 @@
 {
     "name": "@pulumi/fastly",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing fastly cloud resources.. Based on terraform-provider-fastly: version vv4",
+    "description": "A Pulumi package for creating and managing fastly cloud resources.. Based on terraform-provider-fastly: version v4",
     "keywords": [
         "pulumi",
         "fastly"

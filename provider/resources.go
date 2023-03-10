@@ -71,7 +71,7 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:                 p,
 		Name:              "fastly",
-		TFProviderVersion: "v4",
+		TFProviderVersion: "4",
 		Description:       "A Pulumi package for creating and managing fastly cloud resources.",
 		Keywords:          []string{"pulumi", "fastly"},
 		License:           "Apache-2.0",
