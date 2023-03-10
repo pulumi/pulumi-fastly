@@ -37,7 +37,7 @@
                 "@types/node": "^10.0.0"
             },
             "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing fastly cloud resources.",
+            "packageDescription": "A Pulumi package for creating and managing fastly cloud resources.. Based on terraform-provider-fastly: version vv4",
             "packageName": "",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fastly/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fastly` repo](https://github.com/fastly/terraform-provider-fastly/issues).",
             "typescriptVersion": ""
@@ -143,6 +143,15 @@
                         }
                     }
                 },
+                "autoLoadbalance": {
+                    "type": "boolean",
+                    "description": "Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "betweenBytesTimeout": {
                     "type": "integer",
                     "description": "How long to wait between bytes in milliseconds. Default `10000`\n",
@@ -182,15 +191,6 @@
                 "healthcheck": {
                     "type": "string",
                     "description": "Name of a defined `healthcheck` to assign to this backend\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "keepaliveTime": {
-                    "type": "integer",
-                    "description": "How long in seconds to keep a persistent connection to the backend between requests.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2794,15 +2794,6 @@
                 "healthcheck": {
                     "type": "string",
                     "description": "Name of a defined `healthcheck` to assign to this backend\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "keepaliveTime": {
-                    "type": "integer",
-                    "description": "How long in seconds to keep a persistent connection to the backend between requests.\n",
                     "language": {
                         "python": {
                             "mapCase": false
