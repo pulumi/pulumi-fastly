@@ -49,6 +49,11 @@ public final class ServiceVclBackend {
      */
     private @Nullable String healthcheck;
     /**
+     * @return How long in seconds to keep a persistent connection to the backend between requests.
+     * 
+     */
+    private @Nullable Integer keepaliveTime;
+    /**
      * @return Maximum number of connections for this Backend. Default `200`
      * 
      */
@@ -183,6 +188,13 @@ public final class ServiceVclBackend {
      */
     public Optional<String> healthcheck() {
         return Optional.ofNullable(this.healthcheck);
+    }
+    /**
+     * @return How long in seconds to keep a persistent connection to the backend between requests.
+     * 
+     */
+    public Optional<Integer> keepaliveTime() {
+        return Optional.ofNullable(this.keepaliveTime);
     }
     /**
      * @return Maximum number of connections for this Backend. Default `200`
@@ -320,6 +332,7 @@ public final class ServiceVclBackend {
         private @Nullable Integer errorThreshold;
         private @Nullable Integer firstByteTimeout;
         private @Nullable String healthcheck;
+        private @Nullable Integer keepaliveTime;
         private @Nullable Integer maxConn;
         private @Nullable String maxTlsVersion;
         private @Nullable String minTlsVersion;
@@ -347,6 +360,7 @@ public final class ServiceVclBackend {
     	      this.errorThreshold = defaults.errorThreshold;
     	      this.firstByteTimeout = defaults.firstByteTimeout;
     	      this.healthcheck = defaults.healthcheck;
+    	      this.keepaliveTime = defaults.keepaliveTime;
     	      this.maxConn = defaults.maxConn;
     	      this.maxTlsVersion = defaults.maxTlsVersion;
     	      this.minTlsVersion = defaults.minTlsVersion;
@@ -399,6 +413,11 @@ public final class ServiceVclBackend {
         @CustomType.Setter
         public Builder healthcheck(@Nullable String healthcheck) {
             this.healthcheck = healthcheck;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder keepaliveTime(@Nullable Integer keepaliveTime) {
+            this.keepaliveTime = keepaliveTime;
             return this;
         }
         @CustomType.Setter
@@ -495,6 +514,7 @@ public final class ServiceVclBackend {
             o.errorThreshold = errorThreshold;
             o.firstByteTimeout = firstByteTimeout;
             o.healthcheck = healthcheck;
+            o.keepaliveTime = keepaliveTime;
             o.maxConn = maxConn;
             o.maxTlsVersion = maxTlsVersion;
             o.minTlsVersion = minTlsVersion;

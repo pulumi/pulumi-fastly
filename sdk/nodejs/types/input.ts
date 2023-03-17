@@ -34,10 +34,6 @@ export interface ServiceComputeBackend {
      */
     address: pulumi.Input<string>;
     /**
-     * Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
-     */
-    autoLoadbalance?: pulumi.Input<boolean>;
-    /**
      * How long to wait between bytes in milliseconds. Default `10000`
      */
     betweenBytesTimeout?: pulumi.Input<number>;
@@ -57,6 +53,10 @@ export interface ServiceComputeBackend {
      * Name of a defined `healthcheck` to assign to this backend
      */
     healthcheck?: pulumi.Input<string>;
+    /**
+     * How long in seconds to keep a persistent connection to the backend between requests.
+     */
+    keepaliveTime?: pulumi.Input<number>;
     /**
      * Maximum number of connections for this Backend. Default `200`
      */
@@ -1074,9 +1074,13 @@ export interface ServiceComputeLoggingSyslog {
 
 export interface ServiceComputePackage {
     /**
-     * The path to the Wasm deployment package within your local filesystem
+     * The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      */
-    filename: pulumi.Input<string>;
+    content?: pulumi.Input<string>;
+    /**
+     * The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+     */
+    filename?: pulumi.Input<string>;
     sourceCodeHash?: pulumi.Input<string>;
 }
 
@@ -1139,6 +1143,10 @@ export interface ServiceVclBackend {
      * Name of a defined `healthcheck` to assign to this backend
      */
     healthcheck?: pulumi.Input<string>;
+    /**
+     * How long in seconds to keep a persistent connection to the backend between requests.
+     */
+    keepaliveTime?: pulumi.Input<number>;
     /**
      * Maximum number of connections for this Backend. Default `200`
      */

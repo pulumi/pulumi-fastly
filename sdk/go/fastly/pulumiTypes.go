@@ -146,8 +146,6 @@ func (o ServiceACLEntriesEntryArrayOutput) Index(i pulumi.IntInput) ServiceACLEn
 type ServiceComputeBackend struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address string `pulumi:"address"`
-	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
-	AutoLoadbalance *bool `pulumi:"autoLoadbalance"`
 	// How long to wait between bytes in milliseconds. Default `10000`
 	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
@@ -158,6 +156,8 @@ type ServiceComputeBackend struct {
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
+	// How long in seconds to keep a persistent connection to the backend between requests.
+	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -206,8 +206,6 @@ type ServiceComputeBackendInput interface {
 type ServiceComputeBackendArgs struct {
 	// An IPv4, hostname, or IPv6 address for the Backend
 	Address pulumi.StringInput `pulumi:"address"`
-	// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
-	AutoLoadbalance pulumi.BoolPtrInput `pulumi:"autoLoadbalance"`
 	// How long to wait between bytes in milliseconds. Default `10000`
 	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
@@ -218,6 +216,8 @@ type ServiceComputeBackendArgs struct {
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
+	// How long in seconds to keep a persistent connection to the backend between requests.
+	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -308,11 +308,6 @@ func (o ServiceComputeBackendOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
-func (o ServiceComputeBackendOutput) AutoLoadbalance() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.AutoLoadbalance }).(pulumi.BoolPtrOutput)
-}
-
 // How long to wait between bytes in milliseconds. Default `10000`
 func (o ServiceComputeBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.BetweenBytesTimeout }).(pulumi.IntPtrOutput)
@@ -336,6 +331,11 @@ func (o ServiceComputeBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 // Name of a defined `healthcheck` to assign to this backend
 func (o ServiceComputeBackendOutput) Healthcheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
+}
+
+// How long in seconds to keep a persistent connection to the backend between requests.
+func (o ServiceComputeBackendOutput) KeepaliveTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.KeepaliveTime }).(pulumi.IntPtrOutput)
 }
 
 // Maximum number of connections for this Backend. Default `200`
@@ -4853,8 +4853,10 @@ func (o ServiceComputeLoggingSyslogArrayOutput) Index(i pulumi.IntInput) Service
 }
 
 type ServiceComputePackage struct {
-	// The path to the Wasm deployment package within your local filesystem
-	Filename       string  `pulumi:"filename"`
+	// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+	Content *string `pulumi:"content"`
+	// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+	Filename       *string `pulumi:"filename"`
 	SourceCodeHash *string `pulumi:"sourceCodeHash"`
 }
 
@@ -4870,8 +4872,10 @@ type ServiceComputePackageInput interface {
 }
 
 type ServiceComputePackageArgs struct {
-	// The path to the Wasm deployment package within your local filesystem
-	Filename       pulumi.StringInput    `pulumi:"filename"`
+	// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+	Content pulumi.StringPtrInput `pulumi:"content"`
+	// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+	Filename       pulumi.StringPtrInput `pulumi:"filename"`
 	SourceCodeHash pulumi.StringPtrInput `pulumi:"sourceCodeHash"`
 }
 
@@ -4952,9 +4956,14 @@ func (o ServiceComputePackageOutput) ToServiceComputePackagePtrOutputWithContext
 	}).(ServiceComputePackagePtrOutput)
 }
 
-// The path to the Wasm deployment package within your local filesystem
-func (o ServiceComputePackageOutput) Filename() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceComputePackage) string { return v.Filename }).(pulumi.StringOutput)
+// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+func (o ServiceComputePackageOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputePackage) *string { return v.Content }).(pulumi.StringPtrOutput)
+}
+
+// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+func (o ServiceComputePackageOutput) Filename() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputePackage) *string { return v.Filename }).(pulumi.StringPtrOutput)
 }
 
 func (o ServiceComputePackageOutput) SourceCodeHash() pulumi.StringPtrOutput {
@@ -4985,13 +4994,23 @@ func (o ServiceComputePackagePtrOutput) Elem() ServiceComputePackageOutput {
 	}).(ServiceComputePackageOutput)
 }
 
-// The path to the Wasm deployment package within your local filesystem
+// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+func (o ServiceComputePackagePtrOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputePackage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Content
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
 func (o ServiceComputePackagePtrOutput) Filename() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputePackage) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Filename
+		return v.Filename
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5309,6 +5328,8 @@ type ServiceVclBackend struct {
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
+	// How long in seconds to keep a persistent connection to the backend between requests.
+	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -5371,6 +5392,8 @@ type ServiceVclBackendArgs struct {
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
+	// How long in seconds to keep a persistent connection to the backend between requests.
+	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
 	// Maximum allowed TLS version on SSL connections to this backend.
@@ -5491,6 +5514,11 @@ func (o ServiceVclBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 // Name of a defined `healthcheck` to assign to this backend
 func (o ServiceVclBackendOutput) Healthcheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
+}
+
+// How long in seconds to keep a persistent connection to the backend between requests.
+func (o ServiceVclBackendOutput) KeepaliveTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *int { return v.KeepaliveTime }).(pulumi.IntPtrOutput)
 }
 
 // Maximum number of connections for this Backend. Default `200`
