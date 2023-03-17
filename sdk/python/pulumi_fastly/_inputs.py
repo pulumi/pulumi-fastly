@@ -182,12 +182,12 @@ class ServiceComputeBackendArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[str],
                  name: pulumi.Input[str],
-                 auto_loadbalance: Optional[pulumi.Input[bool]] = None,
                  between_bytes_timeout: Optional[pulumi.Input[int]] = None,
                  connect_timeout: Optional[pulumi.Input[int]] = None,
                  error_threshold: Optional[pulumi.Input[int]] = None,
                  first_byte_timeout: Optional[pulumi.Input[int]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
+                 keepalive_time: Optional[pulumi.Input[int]] = None,
                  max_conn: Optional[pulumi.Input[int]] = None,
                  max_tls_version: Optional[pulumi.Input[str]] = None,
                  min_tls_version: Optional[pulumi.Input[str]] = None,
@@ -206,12 +206,12 @@ class ServiceComputeBackendArgs:
         """
         :param pulumi.Input[str] address: An IPv4, hostname, or IPv6 address for the Backend
         :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input[bool] auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         :param pulumi.Input[int] between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param pulumi.Input[int] connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
         :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
         :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend
+        :param pulumi.Input[int] keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
         :param pulumi.Input[int] max_conn: Maximum number of connections for this Backend. Default `200`
         :param pulumi.Input[str] max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
         :param pulumi.Input[str] min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
@@ -230,8 +230,6 @@ class ServiceComputeBackendArgs:
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
-        if auto_loadbalance is not None:
-            pulumi.set(__self__, "auto_loadbalance", auto_loadbalance)
         if between_bytes_timeout is not None:
             pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
@@ -242,6 +240,8 @@ class ServiceComputeBackendArgs:
             pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
             pulumi.set(__self__, "healthcheck", healthcheck)
+        if keepalive_time is not None:
+            pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
             pulumi.set(__self__, "max_conn", max_conn)
         if max_tls_version is not None:
@@ -296,18 +296,6 @@ class ServiceComputeBackendArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="autoLoadbalance")
-    def auto_loadbalance(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
-        """
-        return pulumi.get(self, "auto_loadbalance")
-
-    @auto_loadbalance.setter
-    def auto_loadbalance(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "auto_loadbalance", value)
 
     @property
     @pulumi.getter(name="betweenBytesTimeout")
@@ -368,6 +356,18 @@ class ServiceComputeBackendArgs:
     @healthcheck.setter
     def healthcheck(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "healthcheck", value)
+
+    @property
+    @pulumi.getter(name="keepaliveTime")
+    def keepalive_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        How long in seconds to keep a persistent connection to the backend between requests.
+        """
+        return pulumi.get(self, "keepalive_time")
+
+    @keepalive_time.setter
+    def keepalive_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "keepalive_time", value)
 
     @property
     @pulumi.getter(name="maxConn")
@@ -4134,25 +4134,42 @@ class ServiceComputeLoggingSyslogArgs:
 @pulumi.input_type
 class ServiceComputePackageArgs:
     def __init__(__self__, *,
-                 filename: pulumi.Input[str],
+                 content: Optional[pulumi.Input[str]] = None,
+                 filename: Optional[pulumi.Input[str]] = None,
                  source_code_hash: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] filename: The path to the Wasm deployment package within your local filesystem
+        :param pulumi.Input[str] content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+        :param pulumi.Input[str] filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
         """
-        pulumi.set(__self__, "filename", filename)
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if filename is not None:
+            pulumi.set(__self__, "filename", filename)
         if source_code_hash is not None:
             pulumi.set(__self__, "source_code_hash", source_code_hash)
 
     @property
     @pulumi.getter
-    def filename(self) -> pulumi.Input[str]:
+    def content(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to the Wasm deployment package within your local filesystem
+        The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def filename(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
         """
         return pulumi.get(self, "filename")
 
     @filename.setter
-    def filename(self, value: pulumi.Input[str]):
+    def filename(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "filename", value)
 
     @property
@@ -4285,6 +4302,7 @@ class ServiceVclBackendArgs:
                  error_threshold: Optional[pulumi.Input[int]] = None,
                  first_byte_timeout: Optional[pulumi.Input[int]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
+                 keepalive_time: Optional[pulumi.Input[int]] = None,
                  max_conn: Optional[pulumi.Input[int]] = None,
                  max_tls_version: Optional[pulumi.Input[str]] = None,
                  min_tls_version: Optional[pulumi.Input[str]] = None,
@@ -4310,6 +4328,7 @@ class ServiceVclBackendArgs:
         :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
         :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend
+        :param pulumi.Input[int] keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
         :param pulumi.Input[int] max_conn: Maximum number of connections for this Backend. Default `200`
         :param pulumi.Input[str] max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
         :param pulumi.Input[str] min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
@@ -4341,6 +4360,8 @@ class ServiceVclBackendArgs:
             pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
             pulumi.set(__self__, "healthcheck", healthcheck)
+        if keepalive_time is not None:
+            pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
             pulumi.set(__self__, "max_conn", max_conn)
         if max_tls_version is not None:
@@ -4469,6 +4490,18 @@ class ServiceVclBackendArgs:
     @healthcheck.setter
     def healthcheck(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "healthcheck", value)
+
+    @property
+    @pulumi.getter(name="keepaliveTime")
+    def keepalive_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        How long in seconds to keep a persistent connection to the backend between requests.
+        """
+        return pulumi.get(self, "keepalive_time")
+
+    @keepalive_time.setter
+    def keepalive_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "keepalive_time", value)
 
     @property
     @pulumi.getter(name="maxConn")

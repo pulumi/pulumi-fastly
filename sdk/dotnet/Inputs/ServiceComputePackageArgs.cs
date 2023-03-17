@@ -13,10 +13,16 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputePackageArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The path to the Wasm deployment package within your local filesystem
+        /// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
         /// </summary>
-        [Input("filename", required: true)]
-        public Input<string> Filename { get; set; } = null!;
+        [Input("content")]
+        public Input<string>? Content { get; set; }
+
+        /// <summary>
+        /// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+        /// </summary>
+        [Input("filename")]
+        public Input<string>? Filename { get; set; }
 
         [Input("sourceCodeHash")]
         public Input<string>? SourceCodeHash { get; set; }

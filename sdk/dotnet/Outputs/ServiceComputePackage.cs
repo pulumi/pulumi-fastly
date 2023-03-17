@@ -14,17 +14,24 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputePackage
     {
         /// <summary>
-        /// The path to the Wasm deployment package within your local filesystem
+        /// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
         /// </summary>
-        public readonly string Filename;
+        public readonly string? Content;
+        /// <summary>
+        /// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+        /// </summary>
+        public readonly string? Filename;
         public readonly string? SourceCodeHash;
 
         [OutputConstructor]
         private ServiceComputePackage(
-            string filename,
+            string? content,
+
+            string? filename,
 
             string? sourceCodeHash)
         {
+            Content = content;
             Filename = filename;
             SourceCodeHash = sourceCodeHash;
         }

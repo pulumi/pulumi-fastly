@@ -16,18 +16,33 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
     public static final ServiceComputePackageArgs Empty = new ServiceComputePackageArgs();
 
     /**
-     * The path to the Wasm deployment package within your local filesystem
+     * The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      * 
      */
-    @Import(name="filename", required=true)
-    private Output<String> filename;
+    @Import(name="content")
+    private @Nullable Output<String> content;
 
     /**
-     * @return The path to the Wasm deployment package within your local filesystem
+     * @return The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      * 
      */
-    public Output<String> filename() {
-        return this.filename;
+    public Optional<Output<String>> content() {
+        return Optional.ofNullable(this.content);
+    }
+
+    /**
+     * The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+     * 
+     */
+    @Import(name="filename")
+    private @Nullable Output<String> filename;
+
+    /**
+     * @return The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+     * 
+     */
+    public Optional<Output<String>> filename() {
+        return Optional.ofNullable(this.filename);
     }
 
     @Import(name="sourceCodeHash")
@@ -40,6 +55,7 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
     private ServiceComputePackageArgs() {}
 
     private ServiceComputePackageArgs(ServiceComputePackageArgs $) {
+        this.content = $.content;
         this.filename = $.filename;
         this.sourceCodeHash = $.sourceCodeHash;
     }
@@ -63,18 +79,39 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param filename The path to the Wasm deployment package within your local filesystem
+         * @param content The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
          * 
          * @return builder
          * 
          */
-        public Builder filename(Output<String> filename) {
+        public Builder content(@Nullable Output<String> content) {
+            $.content = content;
+            return this;
+        }
+
+        /**
+         * @param content The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+         * 
+         * @return builder
+         * 
+         */
+        public Builder content(String content) {
+            return content(Output.of(content));
+        }
+
+        /**
+         * @param filename The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+         * 
+         * @return builder
+         * 
+         */
+        public Builder filename(@Nullable Output<String> filename) {
             $.filename = filename;
             return this;
         }
 
         /**
-         * @param filename The path to the Wasm deployment package within your local filesystem
+         * @param filename The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
          * 
          * @return builder
          * 
@@ -93,7 +130,6 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
         }
 
         public ServiceComputePackageArgs build() {
-            $.filename = Objects.requireNonNull($.filename, "expected parameter 'filename' to be non-null");
             return $;
         }
     }

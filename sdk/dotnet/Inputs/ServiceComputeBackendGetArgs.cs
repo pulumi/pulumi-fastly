@@ -19,12 +19,6 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
-        /// </summary>
-        [Input("autoLoadbalance")]
-        public Input<bool>? AutoLoadbalance { get; set; }
-
-        /// <summary>
         /// How long to wait between bytes in milliseconds. Default `10000`
         /// </summary>
         [Input("betweenBytesTimeout")]
@@ -53,6 +47,12 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("healthcheck")]
         public Input<string>? Healthcheck { get; set; }
+
+        /// <summary>
+        /// How long in seconds to keep a persistent connection to the backend between requests.
+        /// </summary>
+        [Input("keepaliveTime")]
+        public Input<int>? KeepaliveTime { get; set; }
 
         /// <summary>
         /// Maximum number of connections for this Backend. Default `200`

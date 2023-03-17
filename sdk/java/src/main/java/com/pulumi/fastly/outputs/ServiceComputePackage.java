@@ -12,19 +12,31 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceComputePackage {
     /**
-     * @return The path to the Wasm deployment package within your local filesystem
+     * @return The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      * 
      */
-    private String filename;
+    private @Nullable String content;
+    /**
+     * @return The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+     * 
+     */
+    private @Nullable String filename;
     private @Nullable String sourceCodeHash;
 
     private ServiceComputePackage() {}
     /**
-     * @return The path to the Wasm deployment package within your local filesystem
+     * @return The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      * 
      */
-    public String filename() {
-        return this.filename;
+    public Optional<String> content() {
+        return Optional.ofNullable(this.content);
+    }
+    /**
+     * @return The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+     * 
+     */
+    public Optional<String> filename() {
+        return Optional.ofNullable(this.filename);
     }
     public Optional<String> sourceCodeHash() {
         return Optional.ofNullable(this.sourceCodeHash);
@@ -39,18 +51,25 @@ public final class ServiceComputePackage {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String filename;
+        private @Nullable String content;
+        private @Nullable String filename;
         private @Nullable String sourceCodeHash;
         public Builder() {}
         public Builder(ServiceComputePackage defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.content = defaults.content;
     	      this.filename = defaults.filename;
     	      this.sourceCodeHash = defaults.sourceCodeHash;
         }
 
         @CustomType.Setter
-        public Builder filename(String filename) {
-            this.filename = Objects.requireNonNull(filename);
+        public Builder content(@Nullable String content) {
+            this.content = content;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder filename(@Nullable String filename) {
+            this.filename = filename;
             return this;
         }
         @CustomType.Setter
@@ -60,6 +79,7 @@ public final class ServiceComputePackage {
         }
         public ServiceComputePackage build() {
             final var o = new ServiceComputePackage();
+            o.content = content;
             o.filename = filename;
             o.sourceCodeHash = sourceCodeHash;
             return o;
