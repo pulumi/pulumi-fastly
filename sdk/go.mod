@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-fastly/sdk/v6
+module github.com/pulumi/pulumi-fastly/sdk/v7
 
 go 1.19
 
