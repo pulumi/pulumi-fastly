@@ -80,6 +80,8 @@ __all__ = [
     'ServiceVclLoggingSumologicArgs',
     'ServiceVclLoggingSyslogArgs',
     'ServiceVclProductEnablementArgs',
+    'ServiceVclRateLimiterArgs',
+    'ServiceVclRateLimiterResponseArgs',
     'ServiceVclRequestSettingArgs',
     'ServiceVclResponseObjectArgs',
     'ServiceVclSnippetArgs',
@@ -10843,6 +10845,252 @@ class ServiceVclProductEnablementArgs:
     @websockets.setter
     def websockets(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "websockets", value)
+
+
+@pulumi.input_type
+class ServiceVclRateLimiterArgs:
+    def __init__(__self__, *,
+                 action: pulumi.Input[str],
+                 client_key: pulumi.Input[str],
+                 http_methods: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 penalty_box_duration: pulumi.Input[int],
+                 rps_limit: pulumi.Input[int],
+                 window_size: pulumi.Input[int],
+                 feature_revision: Optional[pulumi.Input[int]] = None,
+                 logger_type: Optional[pulumi.Input[str]] = None,
+                 ratelimiter_id: Optional[pulumi.Input[str]] = None,
+                 response: Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']] = None,
+                 response_object_name: Optional[pulumi.Input[str]] = None,
+                 uri_dictionary_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] action: The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        :param pulumi.Input[str] client_key: Comma-separated list of VCL variables used to generate a counter key to identify a client
+        :param pulumi.Input[str] http_methods: Comma-separated list of HTTP methods to apply rate limiting to
+        :param pulumi.Input[str] name: A unique human readable name for the rate limiting rule
+        :param pulumi.Input[int] penalty_box_duration: Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+        :param pulumi.Input[int] rps_limit: Upper limit of requests per second allowed by the rate limiter
+        :param pulumi.Input[int] window_size: Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+        :param pulumi.Input[int] feature_revision: Revision number of the rate limiting feature implementation
+        :param pulumi.Input[str] logger_type: Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+        :param pulumi.Input[str] ratelimiter_id: Alphanumeric string identifying the rate limiter
+        :param pulumi.Input['ServiceVclRateLimiterResponseArgs'] response: Custom response to be sent when the rate limit is exceeded. Required if action is response
+        :param pulumi.Input[str] response_object_name: Name of existing response object. Required if action is response_object
+        :param pulumi.Input[str] uri_dictionary_name: The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "client_key", client_key)
+        pulumi.set(__self__, "http_methods", http_methods)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "penalty_box_duration", penalty_box_duration)
+        pulumi.set(__self__, "rps_limit", rps_limit)
+        pulumi.set(__self__, "window_size", window_size)
+        if feature_revision is not None:
+            pulumi.set(__self__, "feature_revision", feature_revision)
+        if logger_type is not None:
+            pulumi.set(__self__, "logger_type", logger_type)
+        if ratelimiter_id is not None:
+            pulumi.set(__self__, "ratelimiter_id", ratelimiter_id)
+        if response is not None:
+            pulumi.set(__self__, "response", response)
+        if response_object_name is not None:
+            pulumi.set(__self__, "response_object_name", response_object_name)
+        if uri_dictionary_name is not None:
+            pulumi.set(__self__, "uri_dictionary_name", uri_dictionary_name)
+
+    @property
+    @pulumi.getter
+    def action(self) -> pulumi.Input[str]:
+        """
+        The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: pulumi.Input[str]):
+        pulumi.set(self, "action", value)
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> pulumi.Input[str]:
+        """
+        Comma-separated list of VCL variables used to generate a counter key to identify a client
+        """
+        return pulumi.get(self, "client_key")
+
+    @client_key.setter
+    def client_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_key", value)
+
+    @property
+    @pulumi.getter(name="httpMethods")
+    def http_methods(self) -> pulumi.Input[str]:
+        """
+        Comma-separated list of HTTP methods to apply rate limiting to
+        """
+        return pulumi.get(self, "http_methods")
+
+    @http_methods.setter
+    def http_methods(self, value: pulumi.Input[str]):
+        pulumi.set(self, "http_methods", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        A unique human readable name for the rate limiting rule
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="penaltyBoxDuration")
+    def penalty_box_duration(self) -> pulumi.Input[int]:
+        """
+        Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+        """
+        return pulumi.get(self, "penalty_box_duration")
+
+    @penalty_box_duration.setter
+    def penalty_box_duration(self, value: pulumi.Input[int]):
+        pulumi.set(self, "penalty_box_duration", value)
+
+    @property
+    @pulumi.getter(name="rpsLimit")
+    def rps_limit(self) -> pulumi.Input[int]:
+        """
+        Upper limit of requests per second allowed by the rate limiter
+        """
+        return pulumi.get(self, "rps_limit")
+
+    @rps_limit.setter
+    def rps_limit(self, value: pulumi.Input[int]):
+        pulumi.set(self, "rps_limit", value)
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> pulumi.Input[int]:
+        """
+        Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+        """
+        return pulumi.get(self, "window_size")
+
+    @window_size.setter
+    def window_size(self, value: pulumi.Input[int]):
+        pulumi.set(self, "window_size", value)
+
+    @property
+    @pulumi.getter(name="featureRevision")
+    def feature_revision(self) -> Optional[pulumi.Input[int]]:
+        """
+        Revision number of the rate limiting feature implementation
+        """
+        return pulumi.get(self, "feature_revision")
+
+    @feature_revision.setter
+    def feature_revision(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "feature_revision", value)
+
+    @property
+    @pulumi.getter(name="loggerType")
+    def logger_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+        """
+        return pulumi.get(self, "logger_type")
+
+    @logger_type.setter
+    def logger_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "logger_type", value)
+
+    @property
+    @pulumi.getter(name="ratelimiterId")
+    def ratelimiter_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alphanumeric string identifying the rate limiter
+        """
+        return pulumi.get(self, "ratelimiter_id")
+
+    @ratelimiter_id.setter
+    def ratelimiter_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ratelimiter_id", value)
+
+    @property
+    @pulumi.getter
+    def response(self) -> Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']]:
+        """
+        Custom response to be sent when the rate limit is exceeded. Required if action is response
+        """
+        return pulumi.get(self, "response")
+
+    @response.setter
+    def response(self, value: Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']]):
+        pulumi.set(self, "response", value)
+
+    @property
+    @pulumi.getter(name="responseObjectName")
+    def response_object_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of existing response object. Required if action is response_object
+        """
+        return pulumi.get(self, "response_object_name")
+
+    @response_object_name.setter
+    def response_object_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "response_object_name", value)
+
+    @property
+    @pulumi.getter(name="uriDictionaryName")
+    def uri_dictionary_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+        """
+        return pulumi.get(self, "uri_dictionary_name")
+
+    @uri_dictionary_name.setter
+    def uri_dictionary_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uri_dictionary_name", value)
+
+
+@pulumi.input_type
+class ServiceVclRateLimiterResponseArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 content_type: pulumi.Input[str],
+                 status: pulumi.Input[int]):
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "content_type", content_type)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "content_type")
+
+    @content_type.setter
+    def content_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content_type", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: pulumi.Input[int]):
+        pulumi.set(self, "status", value)
 
 
 @pulumi.input_type

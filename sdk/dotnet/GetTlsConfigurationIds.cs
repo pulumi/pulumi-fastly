@@ -29,7 +29,7 @@ namespace Pulumi.Fastly
         /// 
         ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
         ///     {
-        ///         ConfigurationId = data.Fastly_tls_configuration.Example.Ids[0],
+        ///         ConfigurationId = exampleTlsConfigurationIds.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
         ///     });
         /// 
         ///     // ...

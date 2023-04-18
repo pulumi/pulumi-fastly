@@ -1546,7 +1546,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1586,7 +1586,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1626,7 +1626,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1666,7 +1666,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1706,7 +1706,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1746,7 +1746,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
