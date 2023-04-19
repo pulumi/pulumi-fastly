@@ -66,7 +66,7 @@ def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
     import pulumi_fastly as fastly
 
     example_tls_configuration_ids = fastly.get_tls_configuration_ids()
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=data["fastly_tls_configuration"]["example"]["ids"])
+    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration_ids.ids[0])
     # ...
     ```
     """

@@ -102,6 +102,7 @@ type ServiceVcl struct {
 	// The unique name for the Service to create
 	Name              pulumi.StringOutput                  `pulumi:"name"`
 	ProductEnablement ServiceVclProductEnablementPtrOutput `pulumi:"productEnablement"`
+	RateLimiters      ServiceVclRateLimiterArrayOutput     `pulumi:"rateLimiters"`
 	RequestSettings   ServiceVclRequestSettingArrayOutput  `pulumi:"requestSettings"`
 	ResponseObjects   ServiceVclResponseObjectArrayOutput  `pulumi:"responseObjects"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -214,6 +215,7 @@ type serviceVclState struct {
 	// The unique name for the Service to create
 	Name              *string                      `pulumi:"name"`
 	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
+	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
 	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -295,6 +297,7 @@ type ServiceVclState struct {
 	// The unique name for the Service to create
 	Name              pulumi.StringPtrInput
 	ProductEnablement ServiceVclProductEnablementPtrInput
+	RateLimiters      ServiceVclRateLimiterArrayInput
 	RequestSettings   ServiceVclRequestSettingArrayInput
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -370,6 +373,7 @@ type serviceVclArgs struct {
 	// The unique name for the Service to create
 	Name              *string                      `pulumi:"name"`
 	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
+	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
 	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -442,6 +446,7 @@ type ServiceVclArgs struct {
 	// The unique name for the Service to create
 	Name              pulumi.StringPtrInput
 	ProductEnablement ServiceVclProductEnablementPtrInput
+	RateLimiters      ServiceVclRateLimiterArrayInput
 	RequestSettings   ServiceVclRequestSettingArrayInput
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -754,6 +759,10 @@ func (o ServiceVclOutput) Name() pulumi.StringOutput {
 
 func (o ServiceVclOutput) ProductEnablement() ServiceVclProductEnablementPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclProductEnablementPtrOutput { return v.ProductEnablement }).(ServiceVclProductEnablementPtrOutput)
+}
+
+func (o ServiceVclOutput) RateLimiters() ServiceVclRateLimiterArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclRateLimiterArrayOutput { return v.RateLimiters }).(ServiceVclRateLimiterArrayOutput)
 }
 
 func (o ServiceVclOutput) RequestSettings() ServiceVclRequestSettingArrayOutput {

@@ -61,6 +61,7 @@ class ServiceVclArgs:
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  product_enablement: Optional[pulumi.Input['ServiceVclProductEnablementArgs']] = None,
+                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -176,6 +177,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "name", name)
         if product_enablement is not None:
             pulumi.set(__self__, "product_enablement", product_enablement)
+        if rate_limiters is not None:
+            pulumi.set(__self__, "rate_limiters", rate_limiters)
         if request_settings is not None:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
@@ -625,6 +628,15 @@ class ServiceVclArgs:
         pulumi.set(self, "product_enablement", value)
 
     @property
+    @pulumi.getter(name="rateLimiters")
+    def rate_limiters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]:
+        return pulumi.get(self, "rate_limiters")
+
+    @rate_limiters.setter
+    def rate_limiters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]):
+        pulumi.set(self, "rate_limiters", value)
+
+    @property
     @pulumi.getter(name="requestSettings")
     def request_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
         return pulumi.get(self, "request_settings")
@@ -772,6 +784,7 @@ class _ServiceVclState:
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  product_enablement: Optional[pulumi.Input['ServiceVclProductEnablementArgs']] = None,
+                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -902,6 +915,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "name", name)
         if product_enablement is not None:
             pulumi.set(__self__, "product_enablement", product_enablement)
+        if rate_limiters is not None:
+            pulumi.set(__self__, "rate_limiters", rate_limiters)
         if request_settings is not None:
             pulumi.set(__self__, "request_settings", request_settings)
         if response_objects is not None:
@@ -1401,6 +1416,15 @@ class _ServiceVclState:
         pulumi.set(self, "product_enablement", value)
 
     @property
+    @pulumi.getter(name="rateLimiters")
+    def rate_limiters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]:
+        return pulumi.get(self, "rate_limiters")
+
+    @rate_limiters.setter
+    def rate_limiters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]):
+        pulumi.set(self, "rate_limiters", value)
+
+    @property
     @pulumi.getter(name="requestSettings")
     def request_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
         return pulumi.get(self, "request_settings")
@@ -1546,6 +1570,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceVclProductEnablementArgs']]] = None,
+                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRateLimiterArgs']]]]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -1685,6 +1710,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSyslogArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceVclProductEnablementArgs']]] = None,
+                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRateLimiterArgs']]]]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
@@ -1750,6 +1776,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["logging_syslogs"] = logging_syslogs
             __props__.__dict__["name"] = name
             __props__.__dict__["product_enablement"] = product_enablement
+            __props__.__dict__["rate_limiters"] = rate_limiters
             __props__.__dict__["request_settings"] = request_settings
             __props__.__dict__["response_objects"] = response_objects
             __props__.__dict__["reuse"] = reuse
@@ -1822,6 +1849,7 @@ class ServiceVcl(pulumi.CustomResource):
             logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingSyslogArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceVclProductEnablementArgs']]] = None,
+            rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRateLimiterArgs']]]]] = None,
             request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclRequestSettingArgs']]]]] = None,
             response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]]] = None,
             reuse: Optional[pulumi.Input[bool]] = None,
@@ -1912,6 +1940,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["logging_syslogs"] = logging_syslogs
         __props__.__dict__["name"] = name
         __props__.__dict__["product_enablement"] = product_enablement
+        __props__.__dict__["rate_limiters"] = rate_limiters
         __props__.__dict__["request_settings"] = request_settings
         __props__.__dict__["response_objects"] = response_objects
         __props__.__dict__["reuse"] = reuse
@@ -2205,6 +2234,11 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="productEnablement")
     def product_enablement(self) -> pulumi.Output[Optional['outputs.ServiceVclProductEnablement']]:
         return pulumi.get(self, "product_enablement")
+
+    @property
+    @pulumi.getter(name="rateLimiters")
+    def rate_limiters(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclRateLimiter']]]:
+        return pulumi.get(self, "rate_limiters")
 
     @property
     @pulumi.getter(name="requestSettings")

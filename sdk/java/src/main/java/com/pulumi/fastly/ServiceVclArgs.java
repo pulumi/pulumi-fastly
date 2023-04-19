@@ -43,6 +43,7 @@ import com.pulumi.fastly.inputs.ServiceVclLoggingSplunkArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingSumologicArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingSyslogArgs;
 import com.pulumi.fastly.inputs.ServiceVclProductEnablementArgs;
+import com.pulumi.fastly.inputs.ServiceVclRateLimiterArgs;
 import com.pulumi.fastly.inputs.ServiceVclRequestSettingArgs;
 import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
 import com.pulumi.fastly.inputs.ServiceVclSnippetArgs;
@@ -440,6 +441,13 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.productEnablement);
     }
 
+    @Import(name="rateLimiters")
+    private @Nullable Output<List<ServiceVclRateLimiterArgs>> rateLimiters;
+
+    public Optional<Output<List<ServiceVclRateLimiterArgs>>> rateLimiters() {
+        return Optional.ofNullable(this.rateLimiters);
+    }
+
     @Import(name="requestSettings")
     private @Nullable Output<List<ServiceVclRequestSettingArgs>> requestSettings;
 
@@ -587,6 +595,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         this.loggingSyslogs = $.loggingSyslogs;
         this.name = $.name;
         this.productEnablement = $.productEnablement;
+        this.rateLimiters = $.rateLimiters;
         this.requestSettings = $.requestSettings;
         this.responseObjects = $.responseObjects;
         this.reuse = $.reuse;
@@ -1269,6 +1278,19 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder productEnablement(ServiceVclProductEnablementArgs productEnablement) {
             return productEnablement(Output.of(productEnablement));
+        }
+
+        public Builder rateLimiters(@Nullable Output<List<ServiceVclRateLimiterArgs>> rateLimiters) {
+            $.rateLimiters = rateLimiters;
+            return this;
+        }
+
+        public Builder rateLimiters(List<ServiceVclRateLimiterArgs> rateLimiters) {
+            return rateLimiters(Output.of(rateLimiters));
+        }
+
+        public Builder rateLimiters(ServiceVclRateLimiterArgs... rateLimiters) {
+            return rateLimiters(List.of(rateLimiters));
         }
 
         public Builder requestSettings(@Nullable Output<List<ServiceVclRequestSettingArgs>> requestSettings) {

@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'ServiceACLEntriesEntry',
@@ -80,6 +81,8 @@ __all__ = [
     'ServiceVclLoggingSumologic',
     'ServiceVclLoggingSyslog',
     'ServiceVclProductEnablement',
+    'ServiceVclRateLimiter',
+    'ServiceVclRateLimiterResponse',
     'ServiceVclRequestSetting',
     'ServiceVclResponseObject',
     'ServiceVclSnippet',
@@ -90,6 +93,7 @@ __all__ = [
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
     'GetDatacentersPopResult',
+    'GetDictionariesDictionaryResult',
     'GetServicesDetailResult',
     'GetTlsConfigurationDnsRecordResult',
     'GetWafRulesRuleResult',
@@ -9734,6 +9738,240 @@ class ServiceVclProductEnablement(dict):
 
 
 @pulumi.output_type
+class ServiceVclRateLimiter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientKey":
+            suggest = "client_key"
+        elif key == "httpMethods":
+            suggest = "http_methods"
+        elif key == "penaltyBoxDuration":
+            suggest = "penalty_box_duration"
+        elif key == "rpsLimit":
+            suggest = "rps_limit"
+        elif key == "windowSize":
+            suggest = "window_size"
+        elif key == "featureRevision":
+            suggest = "feature_revision"
+        elif key == "loggerType":
+            suggest = "logger_type"
+        elif key == "ratelimiterId":
+            suggest = "ratelimiter_id"
+        elif key == "responseObjectName":
+            suggest = "response_object_name"
+        elif key == "uriDictionaryName":
+            suggest = "uri_dictionary_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclRateLimiter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclRateLimiter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclRateLimiter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: str,
+                 client_key: str,
+                 http_methods: str,
+                 name: str,
+                 penalty_box_duration: int,
+                 rps_limit: int,
+                 window_size: int,
+                 feature_revision: Optional[int] = None,
+                 logger_type: Optional[str] = None,
+                 ratelimiter_id: Optional[str] = None,
+                 response: Optional['outputs.ServiceVclRateLimiterResponse'] = None,
+                 response_object_name: Optional[str] = None,
+                 uri_dictionary_name: Optional[str] = None):
+        """
+        :param str action: The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        :param str client_key: Comma-separated list of VCL variables used to generate a counter key to identify a client
+        :param str http_methods: Comma-separated list of HTTP methods to apply rate limiting to
+        :param str name: A unique human readable name for the rate limiting rule
+        :param int penalty_box_duration: Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+        :param int rps_limit: Upper limit of requests per second allowed by the rate limiter
+        :param int window_size: Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+        :param int feature_revision: Revision number of the rate limiting feature implementation
+        :param str logger_type: Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+        :param str ratelimiter_id: Alphanumeric string identifying the rate limiter
+        :param 'ServiceVclRateLimiterResponseArgs' response: Custom response to be sent when the rate limit is exceeded. Required if action is response
+        :param str response_object_name: Name of existing response object. Required if action is response_object
+        :param str uri_dictionary_name: The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "client_key", client_key)
+        pulumi.set(__self__, "http_methods", http_methods)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "penalty_box_duration", penalty_box_duration)
+        pulumi.set(__self__, "rps_limit", rps_limit)
+        pulumi.set(__self__, "window_size", window_size)
+        if feature_revision is not None:
+            pulumi.set(__self__, "feature_revision", feature_revision)
+        if logger_type is not None:
+            pulumi.set(__self__, "logger_type", logger_type)
+        if ratelimiter_id is not None:
+            pulumi.set(__self__, "ratelimiter_id", ratelimiter_id)
+        if response is not None:
+            pulumi.set(__self__, "response", response)
+        if response_object_name is not None:
+            pulumi.set(__self__, "response_object_name", response_object_name)
+        if uri_dictionary_name is not None:
+            pulumi.set(__self__, "uri_dictionary_name", uri_dictionary_name)
+
+    @property
+    @pulumi.getter
+    def action(self) -> str:
+        """
+        The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> str:
+        """
+        Comma-separated list of VCL variables used to generate a counter key to identify a client
+        """
+        return pulumi.get(self, "client_key")
+
+    @property
+    @pulumi.getter(name="httpMethods")
+    def http_methods(self) -> str:
+        """
+        Comma-separated list of HTTP methods to apply rate limiting to
+        """
+        return pulumi.get(self, "http_methods")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique human readable name for the rate limiting rule
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="penaltyBoxDuration")
+    def penalty_box_duration(self) -> int:
+        """
+        Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+        """
+        return pulumi.get(self, "penalty_box_duration")
+
+    @property
+    @pulumi.getter(name="rpsLimit")
+    def rps_limit(self) -> int:
+        """
+        Upper limit of requests per second allowed by the rate limiter
+        """
+        return pulumi.get(self, "rps_limit")
+
+    @property
+    @pulumi.getter(name="windowSize")
+    def window_size(self) -> int:
+        """
+        Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+        """
+        return pulumi.get(self, "window_size")
+
+    @property
+    @pulumi.getter(name="featureRevision")
+    def feature_revision(self) -> Optional[int]:
+        """
+        Revision number of the rate limiting feature implementation
+        """
+        return pulumi.get(self, "feature_revision")
+
+    @property
+    @pulumi.getter(name="loggerType")
+    def logger_type(self) -> Optional[str]:
+        """
+        Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+        """
+        return pulumi.get(self, "logger_type")
+
+    @property
+    @pulumi.getter(name="ratelimiterId")
+    def ratelimiter_id(self) -> Optional[str]:
+        """
+        Alphanumeric string identifying the rate limiter
+        """
+        return pulumi.get(self, "ratelimiter_id")
+
+    @property
+    @pulumi.getter
+    def response(self) -> Optional['outputs.ServiceVclRateLimiterResponse']:
+        """
+        Custom response to be sent when the rate limit is exceeded. Required if action is response
+        """
+        return pulumi.get(self, "response")
+
+    @property
+    @pulumi.getter(name="responseObjectName")
+    def response_object_name(self) -> Optional[str]:
+        """
+        Name of existing response object. Required if action is response_object
+        """
+        return pulumi.get(self, "response_object_name")
+
+    @property
+    @pulumi.getter(name="uriDictionaryName")
+    def uri_dictionary_name(self) -> Optional[str]:
+        """
+        The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+        """
+        return pulumi.get(self, "uri_dictionary_name")
+
+
+@pulumi.output_type
+class ServiceVclRateLimiterResponse(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contentType":
+            suggest = "content_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclRateLimiterResponse. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclRateLimiterResponse.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclRateLimiterResponse.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 content: str,
+                 content_type: str,
+                 status: int):
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "content_type", content_type)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> str:
+        return pulumi.get(self, "content_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class ServiceVclRequestSetting(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -10495,6 +10733,38 @@ class GetDatacentersPopResult(dict):
     @pulumi.getter
     def shield(self) -> str:
         return pulumi.get(self, "shield")
+
+
+@pulumi.output_type
+class GetDictionariesDictionaryResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str,
+                 write_only: bool):
+        """
+        :param str id: The ID of this resource.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "write_only", write_only)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="writeOnly")
+    def write_only(self) -> bool:
+        return pulumi.get(self, "write_only")
 
 
 @pulumi.output_type

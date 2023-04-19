@@ -16,6 +16,7 @@
         "config/index.ts",
         "config/vars.ts",
         "getDatacenters.ts",
+        "getDictionaries.ts",
         "getFastlyIpRanges.ts",
         "getServices.ts",
         "getTlsActivation.ts",

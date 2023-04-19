@@ -2822,6 +2822,67 @@ export interface ServiceVclProductEnablement {
     websockets?: pulumi.Input<boolean>;
 }
 
+export interface ServiceVclRateLimiter {
+    /**
+     * The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+     */
+    action: pulumi.Input<string>;
+    /**
+     * Comma-separated list of VCL variables used to generate a counter key to identify a client
+     */
+    clientKey: pulumi.Input<string>;
+    /**
+     * Revision number of the rate limiting feature implementation
+     */
+    featureRevision?: pulumi.Input<number>;
+    /**
+     * Comma-separated list of HTTP methods to apply rate limiting to
+     */
+    httpMethods: pulumi.Input<string>;
+    /**
+     * Name of the type of logging endpoint to be used when action is logOnly (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+     */
+    loggerType?: pulumi.Input<string>;
+    /**
+     * A unique human readable name for the rate limiting rule
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+     */
+    penaltyBoxDuration: pulumi.Input<number>;
+    /**
+     * Alphanumeric string identifying the rate limiter
+     */
+    ratelimiterId?: pulumi.Input<string>;
+    /**
+     * Custom response to be sent when the rate limit is exceeded. Required if action is response
+     */
+    response?: pulumi.Input<inputs.ServiceVclRateLimiterResponse>;
+    /**
+     * Name of existing response object. Required if action is response_object
+     */
+    responseObjectName?: pulumi.Input<string>;
+    /**
+     * Upper limit of requests per second allowed by the rate limiter
+     */
+    rpsLimit: pulumi.Input<number>;
+    /**
+     * The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+     */
+    uriDictionaryName?: pulumi.Input<string>;
+    /**
+     * Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+     */
+    windowSize: pulumi.Input<number>;
+}
+
+export interface ServiceVclRateLimiterResponse {
+    content: pulumi.Input<string>;
+    contentType: pulumi.Input<string>;
+    status: pulumi.Input<number>;
+}
+
 export interface ServiceVclRequestSetting {
     /**
      * Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)

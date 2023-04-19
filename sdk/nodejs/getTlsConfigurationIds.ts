@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const exampleTlsConfigurationIds = fastly.getTlsConfigurationIds({});
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: data.fastly_tls_configuration.example.ids[0]});
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfigurationIds.then(exampleTlsConfigurationIds => exampleTlsConfigurationIds.ids?.[0])});
  * // ...
  * ```
  */

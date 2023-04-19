@@ -48,6 +48,7 @@ import com.pulumi.fastly.outputs.ServiceVclLoggingSplunk;
 import com.pulumi.fastly.outputs.ServiceVclLoggingSumologic;
 import com.pulumi.fastly.outputs.ServiceVclLoggingSyslog;
 import com.pulumi.fastly.outputs.ServiceVclProductEnablement;
+import com.pulumi.fastly.outputs.ServiceVclRateLimiter;
 import com.pulumi.fastly.outputs.ServiceVclRequestSetting;
 import com.pulumi.fastly.outputs.ServiceVclResponseObject;
 import com.pulumi.fastly.outputs.ServiceVclSnippet;
@@ -776,6 +777,12 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<ServiceVclProductEnablement>> productEnablement() {
         return Codegen.optional(this.productEnablement);
+    }
+    @Export(name="rateLimiters", type=List.class, parameters={ServiceVclRateLimiter.class})
+    private Output</* @Nullable */ List<ServiceVclRateLimiter>> rateLimiters;
+
+    public Output<Optional<List<ServiceVclRateLimiter>>> rateLimiters() {
+        return Codegen.optional(this.rateLimiters);
     }
     @Export(name="requestSettings", type=List.class, parameters={ServiceVclRequestSetting.class})
     private Output</* @Nullable */ List<ServiceVclRequestSetting>> requestSettings;
