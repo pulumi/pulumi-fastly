@@ -1,0 +1,28 @@
+From 00673c35cf1c68df9cb24621d7d47e60a3d8fe47 Mon Sep 17 00:00:00 2001
+From: aq17 <aqiu@pulumi.com>
+Date: Thu, 20 Apr 2023 15:17:05 -0700
+Subject: [PATCH] Avoid panic in base_fastly_service
+
+---
+ fastly/base_fastly_service.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
+index c0c4c6f6..300676db 100644
+--- a/fastly/base_fastly_service.go
++++ b/fastly/base_fastly_service.go
+@@ -165,7 +165,11 @@ func validateUniqueNames(block string) func(_ context.Context, rd *schema.Resour
+ 	return func(_ context.Context, rd *schema.ResourceDiff, _ any) error {
+ 		names := make(map[string]int)
+ 
++		// Avoid panic in rd.GetRawConfig()
+ 		c := rd.GetRawConfig()
++		if c.IsNull() {
++			return nil
++		}
+ 		m := c.AsValueMap()
+ 		s, ok := m[block]
+ 		if ok {
+-- 
+2.39.1
+
