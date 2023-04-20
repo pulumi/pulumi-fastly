@@ -8,6 +8,8 @@ import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.fastly.Utilities;
+import com.pulumi.fastly.inputs.GetDictionariesArgs;
+import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationIdsPlainArgs;
@@ -27,6 +29,7 @@ import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
 import com.pulumi.fastly.inputs.GetWafRulesArgs;
 import com.pulumi.fastly.inputs.GetWafRulesPlainArgs;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
+import com.pulumi.fastly.outputs.GetDictionariesResult;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
 import com.pulumi.fastly.outputs.GetServicesResult;
 import com.pulumi.fastly.outputs.GetTlsActivationIdsResult;
@@ -88,6 +91,254 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetDatacentersResult> getDatacentersPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getDatacenters:getDatacenters", TypeShape.of(GetDatacentersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDictionariesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name(&#34;example.com&#34;)
+     *                 .build())
+     *             .dictionaries(            
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_1&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_2&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_3&#34;)
+     *                     .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var exampleDictionaries = FastlyFunctions.getDictionaries(GetDictionariesArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export(&#34;serviceDictionaries&#34;, exampleDictionaries.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://developer.fastly.com/reference/api/dictionaries/
+     * 
+     */
+    public static Output<GetDictionariesResult> getDictionaries(GetDictionariesArgs args) {
+        return getDictionaries(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDictionariesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name(&#34;example.com&#34;)
+     *                 .build())
+     *             .dictionaries(            
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_1&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_2&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_3&#34;)
+     *                     .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var exampleDictionaries = FastlyFunctions.getDictionaries(GetDictionariesArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export(&#34;serviceDictionaries&#34;, exampleDictionaries.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://developer.fastly.com/reference/api/dictionaries/
+     * 
+     */
+    public static CompletableFuture<GetDictionariesResult> getDictionariesPlain(GetDictionariesPlainArgs args) {
+        return getDictionariesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDictionariesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name(&#34;example.com&#34;)
+     *                 .build())
+     *             .dictionaries(            
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_1&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_2&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_3&#34;)
+     *                     .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var exampleDictionaries = FastlyFunctions.getDictionaries(GetDictionariesArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export(&#34;serviceDictionaries&#34;, exampleDictionaries.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://developer.fastly.com/reference/api/dictionaries/
+     * 
+     */
+    public static Output<GetDictionariesResult> getDictionaries(GetDictionariesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDictionariesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name(&#34;example.com&#34;)
+     *                 .build())
+     *             .dictionaries(            
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_1&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_2&#34;)
+     *                     .build(),
+     *                 ServiceVclDictionaryArgs.builder()
+     *                     .name(&#34;example_3&#34;)
+     *                     .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var exampleDictionaries = FastlyFunctions.getDictionaries(GetDictionariesArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export(&#34;serviceDictionaries&#34;, exampleDictionaries.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *     }
+     * }
+     * ```
+     * 
+     * [1]: https://developer.fastly.com/reference/api/dictionaries/
+     * 
+     */
+    public static CompletableFuture<GetDictionariesResult> getDictionariesPlain(GetDictionariesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
@@ -1546,7 +1797,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1586,7 +1837,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1626,7 +1877,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1666,7 +1917,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1706,7 +1957,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
@@ -1746,7 +1997,7 @@ public final class FastlyFunctions {
      *         final var exampleTlsConfigurationIds = FastlyFunctions.getTlsConfigurationIds();
      * 
      *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(data.fastly_tls_configuration().example().ids()[0])
+     *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }

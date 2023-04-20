@@ -12,6 +12,15 @@ export interface GetDatacentersPop {
     shield: string;
 }
 
+export interface GetDictionariesDictionary {
+    /**
+     * The ID of this resource.
+     */
+    id: string;
+    name: string;
+    writeOnly: boolean;
+}
+
 export interface GetServicesDetail {
     comment: string;
     createdAt: string;
@@ -2862,6 +2871,67 @@ export interface ServiceVclProductEnablement {
      * Enable WebSockets support
      */
     websockets?: boolean;
+}
+
+export interface ServiceVclRateLimiter {
+    /**
+     * The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+     */
+    action: string;
+    /**
+     * Comma-separated list of VCL variables used to generate a counter key to identify a client
+     */
+    clientKey: string;
+    /**
+     * Revision number of the rate limiting feature implementation
+     */
+    featureRevision?: number;
+    /**
+     * Comma-separated list of HTTP methods to apply rate limiting to
+     */
+    httpMethods: string;
+    /**
+     * Name of the type of logging endpoint to be used when action is logOnly (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+     */
+    loggerType?: string;
+    /**
+     * A unique human readable name for the rate limiting rule
+     */
+    name: string;
+    /**
+     * Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+     */
+    penaltyBoxDuration: number;
+    /**
+     * Alphanumeric string identifying the rate limiter
+     */
+    ratelimiterId: string;
+    /**
+     * Custom response to be sent when the rate limit is exceeded. Required if action is response
+     */
+    response?: outputs.ServiceVclRateLimiterResponse;
+    /**
+     * Name of existing response object. Required if action is response_object
+     */
+    responseObjectName?: string;
+    /**
+     * Upper limit of requests per second allowed by the rate limiter
+     */
+    rpsLimit: number;
+    /**
+     * The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+     */
+    uriDictionaryName?: string;
+    /**
+     * Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+     */
+    windowSize: number;
+}
+
+export interface ServiceVclRateLimiterResponse {
+    content: string;
+    contentType: string;
+    status: number;
 }
 
 export interface ServiceVclRequestSetting {

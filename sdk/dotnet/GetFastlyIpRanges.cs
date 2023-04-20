@@ -20,6 +20,7 @@ namespace Pulumi.Fastly
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Aws = Pulumi.Aws;
         /// using Fastly = Pulumi.Fastly;

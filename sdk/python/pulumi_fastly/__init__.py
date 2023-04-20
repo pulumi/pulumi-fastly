@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .get_datacenters import *
+from .get_dictionaries import *
 from .get_fastly_ip_ranges import *
 from .get_services import *
 from .get_tls_activation import *

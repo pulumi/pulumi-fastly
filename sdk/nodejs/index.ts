@@ -9,6 +9,11 @@ export { GetDatacentersResult } from "./getDatacenters";
 export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
 utilities.lazyLoad(exports, ["getDatacenters"], () => require("./getDatacenters"));
 
+export { GetDictionariesArgs, GetDictionariesResult, GetDictionariesOutputArgs } from "./getDictionaries";
+export const getDictionaries: typeof import("./getDictionaries").getDictionaries = null as any;
+export const getDictionariesOutput: typeof import("./getDictionaries").getDictionariesOutput = null as any;
+utilities.lazyLoad(exports, ["getDictionaries","getDictionariesOutput"], () => require("./getDictionaries"));
+
 export { GetFastlyIpRangesResult } from "./getFastlyIpRanges";
 export const getFastlyIpRanges: typeof import("./getFastlyIpRanges").getFastlyIpRanges = null as any;
 utilities.lazyLoad(exports, ["getFastlyIpRanges"], () => require("./getFastlyIpRanges"));

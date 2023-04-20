@@ -220,6 +220,9 @@ namespace Pulumi.Fastly
         [Output("productEnablement")]
         public Output<Outputs.ServiceVclProductEnablement?> ProductEnablement { get; private set; } = null!;
 
+        [Output("rateLimiters")]
+        public Output<ImmutableArray<Outputs.ServiceVclRateLimiter>> RateLimiters { get; private set; } = null!;
+
         [Output("requestSettings")]
         public Output<ImmutableArray<Outputs.ServiceVclRequestSetting>> RequestSettings { get; private set; } = null!;
 
@@ -651,6 +654,14 @@ namespace Pulumi.Fastly
 
         [Input("productEnablement")]
         public Input<Inputs.ServiceVclProductEnablementArgs>? ProductEnablement { get; set; }
+
+        [Input("rateLimiters")]
+        private InputList<Inputs.ServiceVclRateLimiterArgs>? _rateLimiters;
+        public InputList<Inputs.ServiceVclRateLimiterArgs> RateLimiters
+        {
+            get => _rateLimiters ?? (_rateLimiters = new InputList<Inputs.ServiceVclRateLimiterArgs>());
+            set => _rateLimiters = value;
+        }
 
         [Input("requestSettings")]
         private InputList<Inputs.ServiceVclRequestSettingArgs>? _requestSettings;
@@ -1091,6 +1102,14 @@ namespace Pulumi.Fastly
 
         [Input("productEnablement")]
         public Input<Inputs.ServiceVclProductEnablementGetArgs>? ProductEnablement { get; set; }
+
+        [Input("rateLimiters")]
+        private InputList<Inputs.ServiceVclRateLimiterGetArgs>? _rateLimiters;
+        public InputList<Inputs.ServiceVclRateLimiterGetArgs> RateLimiters
+        {
+            get => _rateLimiters ?? (_rateLimiters = new InputList<Inputs.ServiceVclRateLimiterGetArgs>());
+            set => _rateLimiters = value;
+        }
 
         [Input("requestSettings")]
         private InputList<Inputs.ServiceVclRequestSettingGetArgs>? _requestSettings;

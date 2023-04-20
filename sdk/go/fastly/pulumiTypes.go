@@ -12256,6 +12256,374 @@ func (o ServiceVclProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOutput 
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ServiceVclRateLimiter struct {
+	// The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+	Action string `pulumi:"action"`
+	// Comma-separated list of VCL variables used to generate a counter key to identify a client
+	ClientKey string `pulumi:"clientKey"`
+	// Revision number of the rate limiting feature implementation
+	FeatureRevision *int `pulumi:"featureRevision"`
+	// Comma-separated list of HTTP methods to apply rate limiting to
+	HttpMethods string `pulumi:"httpMethods"`
+	// Name of the type of logging endpoint to be used when action is logOnly (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+	LoggerType *string `pulumi:"loggerType"`
+	// A unique human readable name for the rate limiting rule
+	Name string `pulumi:"name"`
+	// Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+	PenaltyBoxDuration int `pulumi:"penaltyBoxDuration"`
+	// Alphanumeric string identifying the rate limiter
+	RatelimiterId *string `pulumi:"ratelimiterId"`
+	// Custom response to be sent when the rate limit is exceeded. Required if action is response
+	Response *ServiceVclRateLimiterResponse `pulumi:"response"`
+	// Name of existing response object. Required if action is response_object
+	ResponseObjectName *string `pulumi:"responseObjectName"`
+	// Upper limit of requests per second allowed by the rate limiter
+	RpsLimit int `pulumi:"rpsLimit"`
+	// The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+	UriDictionaryName *string `pulumi:"uriDictionaryName"`
+	// Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+	WindowSize int `pulumi:"windowSize"`
+}
+
+// ServiceVclRateLimiterInput is an input type that accepts ServiceVclRateLimiterArgs and ServiceVclRateLimiterOutput values.
+// You can construct a concrete instance of `ServiceVclRateLimiterInput` via:
+//
+//	ServiceVclRateLimiterArgs{...}
+type ServiceVclRateLimiterInput interface {
+	pulumi.Input
+
+	ToServiceVclRateLimiterOutput() ServiceVclRateLimiterOutput
+	ToServiceVclRateLimiterOutputWithContext(context.Context) ServiceVclRateLimiterOutput
+}
+
+type ServiceVclRateLimiterArgs struct {
+	// The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+	Action pulumi.StringInput `pulumi:"action"`
+	// Comma-separated list of VCL variables used to generate a counter key to identify a client
+	ClientKey pulumi.StringInput `pulumi:"clientKey"`
+	// Revision number of the rate limiting feature implementation
+	FeatureRevision pulumi.IntPtrInput `pulumi:"featureRevision"`
+	// Comma-separated list of HTTP methods to apply rate limiting to
+	HttpMethods pulumi.StringInput `pulumi:"httpMethods"`
+	// Name of the type of logging endpoint to be used when action is logOnly (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+	LoggerType pulumi.StringPtrInput `pulumi:"loggerType"`
+	// A unique human readable name for the rate limiting rule
+	Name pulumi.StringInput `pulumi:"name"`
+	// Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+	PenaltyBoxDuration pulumi.IntInput `pulumi:"penaltyBoxDuration"`
+	// Alphanumeric string identifying the rate limiter
+	RatelimiterId pulumi.StringPtrInput `pulumi:"ratelimiterId"`
+	// Custom response to be sent when the rate limit is exceeded. Required if action is response
+	Response ServiceVclRateLimiterResponsePtrInput `pulumi:"response"`
+	// Name of existing response object. Required if action is response_object
+	ResponseObjectName pulumi.StringPtrInput `pulumi:"responseObjectName"`
+	// Upper limit of requests per second allowed by the rate limiter
+	RpsLimit pulumi.IntInput `pulumi:"rpsLimit"`
+	// The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+	UriDictionaryName pulumi.StringPtrInput `pulumi:"uriDictionaryName"`
+	// Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+	WindowSize pulumi.IntInput `pulumi:"windowSize"`
+}
+
+func (ServiceVclRateLimiterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclRateLimiter)(nil)).Elem()
+}
+
+func (i ServiceVclRateLimiterArgs) ToServiceVclRateLimiterOutput() ServiceVclRateLimiterOutput {
+	return i.ToServiceVclRateLimiterOutputWithContext(context.Background())
+}
+
+func (i ServiceVclRateLimiterArgs) ToServiceVclRateLimiterOutputWithContext(ctx context.Context) ServiceVclRateLimiterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterOutput)
+}
+
+// ServiceVclRateLimiterArrayInput is an input type that accepts ServiceVclRateLimiterArray and ServiceVclRateLimiterArrayOutput values.
+// You can construct a concrete instance of `ServiceVclRateLimiterArrayInput` via:
+//
+//	ServiceVclRateLimiterArray{ ServiceVclRateLimiterArgs{...} }
+type ServiceVclRateLimiterArrayInput interface {
+	pulumi.Input
+
+	ToServiceVclRateLimiterArrayOutput() ServiceVclRateLimiterArrayOutput
+	ToServiceVclRateLimiterArrayOutputWithContext(context.Context) ServiceVclRateLimiterArrayOutput
+}
+
+type ServiceVclRateLimiterArray []ServiceVclRateLimiterInput
+
+func (ServiceVclRateLimiterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclRateLimiter)(nil)).Elem()
+}
+
+func (i ServiceVclRateLimiterArray) ToServiceVclRateLimiterArrayOutput() ServiceVclRateLimiterArrayOutput {
+	return i.ToServiceVclRateLimiterArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceVclRateLimiterArray) ToServiceVclRateLimiterArrayOutputWithContext(ctx context.Context) ServiceVclRateLimiterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterArrayOutput)
+}
+
+type ServiceVclRateLimiterOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclRateLimiterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclRateLimiter)(nil)).Elem()
+}
+
+func (o ServiceVclRateLimiterOutput) ToServiceVclRateLimiterOutput() ServiceVclRateLimiterOutput {
+	return o
+}
+
+func (o ServiceVclRateLimiterOutput) ToServiceVclRateLimiterOutputWithContext(ctx context.Context) ServiceVclRateLimiterOutput {
+	return o
+}
+
+// The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+func (o ServiceVclRateLimiterOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// Comma-separated list of VCL variables used to generate a counter key to identify a client
+func (o ServiceVclRateLimiterOutput) ClientKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) string { return v.ClientKey }).(pulumi.StringOutput)
+}
+
+// Revision number of the rate limiting feature implementation
+func (o ServiceVclRateLimiterOutput) FeatureRevision() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) *int { return v.FeatureRevision }).(pulumi.IntPtrOutput)
+}
+
+// Comma-separated list of HTTP methods to apply rate limiting to
+func (o ServiceVclRateLimiterOutput) HttpMethods() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) string { return v.HttpMethods }).(pulumi.StringOutput)
+}
+
+// Name of the type of logging endpoint to be used when action is logOnly (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+func (o ServiceVclRateLimiterOutput) LoggerType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) *string { return v.LoggerType }).(pulumi.StringPtrOutput)
+}
+
+// A unique human readable name for the rate limiting rule
+func (o ServiceVclRateLimiterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+func (o ServiceVclRateLimiterOutput) PenaltyBoxDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) int { return v.PenaltyBoxDuration }).(pulumi.IntOutput)
+}
+
+// Alphanumeric string identifying the rate limiter
+func (o ServiceVclRateLimiterOutput) RatelimiterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) *string { return v.RatelimiterId }).(pulumi.StringPtrOutput)
+}
+
+// Custom response to be sent when the rate limit is exceeded. Required if action is response
+func (o ServiceVclRateLimiterOutput) Response() ServiceVclRateLimiterResponsePtrOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) *ServiceVclRateLimiterResponse { return v.Response }).(ServiceVclRateLimiterResponsePtrOutput)
+}
+
+// Name of existing response object. Required if action is response_object
+func (o ServiceVclRateLimiterOutput) ResponseObjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) *string { return v.ResponseObjectName }).(pulumi.StringPtrOutput)
+}
+
+// Upper limit of requests per second allowed by the rate limiter
+func (o ServiceVclRateLimiterOutput) RpsLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) int { return v.RpsLimit }).(pulumi.IntOutput)
+}
+
+// The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+func (o ServiceVclRateLimiterOutput) UriDictionaryName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) *string { return v.UriDictionaryName }).(pulumi.StringPtrOutput)
+}
+
+// Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+func (o ServiceVclRateLimiterOutput) WindowSize() pulumi.IntOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiter) int { return v.WindowSize }).(pulumi.IntOutput)
+}
+
+type ServiceVclRateLimiterArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclRateLimiterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclRateLimiter)(nil)).Elem()
+}
+
+func (o ServiceVclRateLimiterArrayOutput) ToServiceVclRateLimiterArrayOutput() ServiceVclRateLimiterArrayOutput {
+	return o
+}
+
+func (o ServiceVclRateLimiterArrayOutput) ToServiceVclRateLimiterArrayOutputWithContext(ctx context.Context) ServiceVclRateLimiterArrayOutput {
+	return o
+}
+
+func (o ServiceVclRateLimiterArrayOutput) Index(i pulumi.IntInput) ServiceVclRateLimiterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclRateLimiter {
+		return vs[0].([]ServiceVclRateLimiter)[vs[1].(int)]
+	}).(ServiceVclRateLimiterOutput)
+}
+
+type ServiceVclRateLimiterResponse struct {
+	Content     string `pulumi:"content"`
+	ContentType string `pulumi:"contentType"`
+	Status      int    `pulumi:"status"`
+}
+
+// ServiceVclRateLimiterResponseInput is an input type that accepts ServiceVclRateLimiterResponseArgs and ServiceVclRateLimiterResponseOutput values.
+// You can construct a concrete instance of `ServiceVclRateLimiterResponseInput` via:
+//
+//	ServiceVclRateLimiterResponseArgs{...}
+type ServiceVclRateLimiterResponseInput interface {
+	pulumi.Input
+
+	ToServiceVclRateLimiterResponseOutput() ServiceVclRateLimiterResponseOutput
+	ToServiceVclRateLimiterResponseOutputWithContext(context.Context) ServiceVclRateLimiterResponseOutput
+}
+
+type ServiceVclRateLimiterResponseArgs struct {
+	Content     pulumi.StringInput `pulumi:"content"`
+	ContentType pulumi.StringInput `pulumi:"contentType"`
+	Status      pulumi.IntInput    `pulumi:"status"`
+}
+
+func (ServiceVclRateLimiterResponseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclRateLimiterResponse)(nil)).Elem()
+}
+
+func (i ServiceVclRateLimiterResponseArgs) ToServiceVclRateLimiterResponseOutput() ServiceVclRateLimiterResponseOutput {
+	return i.ToServiceVclRateLimiterResponseOutputWithContext(context.Background())
+}
+
+func (i ServiceVclRateLimiterResponseArgs) ToServiceVclRateLimiterResponseOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterResponseOutput)
+}
+
+func (i ServiceVclRateLimiterResponseArgs) ToServiceVclRateLimiterResponsePtrOutput() ServiceVclRateLimiterResponsePtrOutput {
+	return i.ToServiceVclRateLimiterResponsePtrOutputWithContext(context.Background())
+}
+
+func (i ServiceVclRateLimiterResponseArgs) ToServiceVclRateLimiterResponsePtrOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponsePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterResponseOutput).ToServiceVclRateLimiterResponsePtrOutputWithContext(ctx)
+}
+
+// ServiceVclRateLimiterResponsePtrInput is an input type that accepts ServiceVclRateLimiterResponseArgs, ServiceVclRateLimiterResponsePtr and ServiceVclRateLimiterResponsePtrOutput values.
+// You can construct a concrete instance of `ServiceVclRateLimiterResponsePtrInput` via:
+//
+//	        ServiceVclRateLimiterResponseArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceVclRateLimiterResponsePtrInput interface {
+	pulumi.Input
+
+	ToServiceVclRateLimiterResponsePtrOutput() ServiceVclRateLimiterResponsePtrOutput
+	ToServiceVclRateLimiterResponsePtrOutputWithContext(context.Context) ServiceVclRateLimiterResponsePtrOutput
+}
+
+type serviceVclRateLimiterResponsePtrType ServiceVclRateLimiterResponseArgs
+
+func ServiceVclRateLimiterResponsePtr(v *ServiceVclRateLimiterResponseArgs) ServiceVclRateLimiterResponsePtrInput {
+	return (*serviceVclRateLimiterResponsePtrType)(v)
+}
+
+func (*serviceVclRateLimiterResponsePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclRateLimiterResponse)(nil)).Elem()
+}
+
+func (i *serviceVclRateLimiterResponsePtrType) ToServiceVclRateLimiterResponsePtrOutput() ServiceVclRateLimiterResponsePtrOutput {
+	return i.ToServiceVclRateLimiterResponsePtrOutputWithContext(context.Background())
+}
+
+func (i *serviceVclRateLimiterResponsePtrType) ToServiceVclRateLimiterResponsePtrOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponsePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterResponsePtrOutput)
+}
+
+type ServiceVclRateLimiterResponseOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclRateLimiterResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclRateLimiterResponse)(nil)).Elem()
+}
+
+func (o ServiceVclRateLimiterResponseOutput) ToServiceVclRateLimiterResponseOutput() ServiceVclRateLimiterResponseOutput {
+	return o
+}
+
+func (o ServiceVclRateLimiterResponseOutput) ToServiceVclRateLimiterResponseOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponseOutput {
+	return o
+}
+
+func (o ServiceVclRateLimiterResponseOutput) ToServiceVclRateLimiterResponsePtrOutput() ServiceVclRateLimiterResponsePtrOutput {
+	return o.ToServiceVclRateLimiterResponsePtrOutputWithContext(context.Background())
+}
+
+func (o ServiceVclRateLimiterResponseOutput) ToServiceVclRateLimiterResponsePtrOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponsePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclRateLimiterResponse) *ServiceVclRateLimiterResponse {
+		return &v
+	}).(ServiceVclRateLimiterResponsePtrOutput)
+}
+
+func (o ServiceVclRateLimiterResponseOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiterResponse) string { return v.Content }).(pulumi.StringOutput)
+}
+
+func (o ServiceVclRateLimiterResponseOutput) ContentType() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiterResponse) string { return v.ContentType }).(pulumi.StringOutput)
+}
+
+func (o ServiceVclRateLimiterResponseOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v ServiceVclRateLimiterResponse) int { return v.Status }).(pulumi.IntOutput)
+}
+
+type ServiceVclRateLimiterResponsePtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclRateLimiterResponsePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclRateLimiterResponse)(nil)).Elem()
+}
+
+func (o ServiceVclRateLimiterResponsePtrOutput) ToServiceVclRateLimiterResponsePtrOutput() ServiceVclRateLimiterResponsePtrOutput {
+	return o
+}
+
+func (o ServiceVclRateLimiterResponsePtrOutput) ToServiceVclRateLimiterResponsePtrOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponsePtrOutput {
+	return o
+}
+
+func (o ServiceVclRateLimiterResponsePtrOutput) Elem() ServiceVclRateLimiterResponseOutput {
+	return o.ApplyT(func(v *ServiceVclRateLimiterResponse) ServiceVclRateLimiterResponse {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceVclRateLimiterResponse
+		return ret
+	}).(ServiceVclRateLimiterResponseOutput)
+}
+
+func (o ServiceVclRateLimiterResponsePtrOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclRateLimiterResponse) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Content
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceVclRateLimiterResponsePtrOutput) ContentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclRateLimiterResponse) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ContentType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceVclRateLimiterResponsePtrOutput) Status() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceVclRateLimiterResponse) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Status
+	}).(pulumi.IntPtrOutput)
+}
+
 type ServiceVclRequestSetting struct {
 	// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
 	Action *string `pulumi:"action"`
@@ -13632,6 +14000,115 @@ func (o GetDatacentersPopArrayOutput) Index(i pulumi.IntInput) GetDatacentersPop
 	}).(GetDatacentersPopOutput)
 }
 
+type GetDictionariesDictionary struct {
+	// The ID of this resource.
+	Id        string `pulumi:"id"`
+	Name      string `pulumi:"name"`
+	WriteOnly bool   `pulumi:"writeOnly"`
+}
+
+// GetDictionariesDictionaryInput is an input type that accepts GetDictionariesDictionaryArgs and GetDictionariesDictionaryOutput values.
+// You can construct a concrete instance of `GetDictionariesDictionaryInput` via:
+//
+//	GetDictionariesDictionaryArgs{...}
+type GetDictionariesDictionaryInput interface {
+	pulumi.Input
+
+	ToGetDictionariesDictionaryOutput() GetDictionariesDictionaryOutput
+	ToGetDictionariesDictionaryOutputWithContext(context.Context) GetDictionariesDictionaryOutput
+}
+
+type GetDictionariesDictionaryArgs struct {
+	// The ID of this resource.
+	Id        pulumi.StringInput `pulumi:"id"`
+	Name      pulumi.StringInput `pulumi:"name"`
+	WriteOnly pulumi.BoolInput   `pulumi:"writeOnly"`
+}
+
+func (GetDictionariesDictionaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDictionariesDictionary)(nil)).Elem()
+}
+
+func (i GetDictionariesDictionaryArgs) ToGetDictionariesDictionaryOutput() GetDictionariesDictionaryOutput {
+	return i.ToGetDictionariesDictionaryOutputWithContext(context.Background())
+}
+
+func (i GetDictionariesDictionaryArgs) ToGetDictionariesDictionaryOutputWithContext(ctx context.Context) GetDictionariesDictionaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDictionariesDictionaryOutput)
+}
+
+// GetDictionariesDictionaryArrayInput is an input type that accepts GetDictionariesDictionaryArray and GetDictionariesDictionaryArrayOutput values.
+// You can construct a concrete instance of `GetDictionariesDictionaryArrayInput` via:
+//
+//	GetDictionariesDictionaryArray{ GetDictionariesDictionaryArgs{...} }
+type GetDictionariesDictionaryArrayInput interface {
+	pulumi.Input
+
+	ToGetDictionariesDictionaryArrayOutput() GetDictionariesDictionaryArrayOutput
+	ToGetDictionariesDictionaryArrayOutputWithContext(context.Context) GetDictionariesDictionaryArrayOutput
+}
+
+type GetDictionariesDictionaryArray []GetDictionariesDictionaryInput
+
+func (GetDictionariesDictionaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDictionariesDictionary)(nil)).Elem()
+}
+
+func (i GetDictionariesDictionaryArray) ToGetDictionariesDictionaryArrayOutput() GetDictionariesDictionaryArrayOutput {
+	return i.ToGetDictionariesDictionaryArrayOutputWithContext(context.Background())
+}
+
+func (i GetDictionariesDictionaryArray) ToGetDictionariesDictionaryArrayOutputWithContext(ctx context.Context) GetDictionariesDictionaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDictionariesDictionaryArrayOutput)
+}
+
+type GetDictionariesDictionaryOutput struct{ *pulumi.OutputState }
+
+func (GetDictionariesDictionaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDictionariesDictionary)(nil)).Elem()
+}
+
+func (o GetDictionariesDictionaryOutput) ToGetDictionariesDictionaryOutput() GetDictionariesDictionaryOutput {
+	return o
+}
+
+func (o GetDictionariesDictionaryOutput) ToGetDictionariesDictionaryOutputWithContext(ctx context.Context) GetDictionariesDictionaryOutput {
+	return o
+}
+
+// The ID of this resource.
+func (o GetDictionariesDictionaryOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDictionariesDictionary) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDictionariesDictionaryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDictionariesDictionary) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDictionariesDictionaryOutput) WriteOnly() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDictionariesDictionary) bool { return v.WriteOnly }).(pulumi.BoolOutput)
+}
+
+type GetDictionariesDictionaryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDictionariesDictionaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDictionariesDictionary)(nil)).Elem()
+}
+
+func (o GetDictionariesDictionaryArrayOutput) ToGetDictionariesDictionaryArrayOutput() GetDictionariesDictionaryArrayOutput {
+	return o
+}
+
+func (o GetDictionariesDictionaryArrayOutput) ToGetDictionariesDictionaryArrayOutputWithContext(ctx context.Context) GetDictionariesDictionaryArrayOutput {
+	return o
+}
+
+func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictionariesDictionaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDictionariesDictionary {
+		return vs[0].([]GetDictionariesDictionary)[vs[1].(int)]
+	}).(GetDictionariesDictionaryOutput)
+}
+
 type GetServicesDetail struct {
 	Comment    string `pulumi:"comment"`
 	CreatedAt  string `pulumi:"createdAt"`
@@ -14133,6 +14610,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingSyslogArrayInput)(nil)).Elem(), ServiceVclLoggingSyslogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementInput)(nil)).Elem(), ServiceVclProductEnablementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementPtrInput)(nil)).Elem(), ServiceVclProductEnablementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRateLimiterInput)(nil)).Elem(), ServiceVclRateLimiterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRateLimiterArrayInput)(nil)).Elem(), ServiceVclRateLimiterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRateLimiterResponseInput)(nil)).Elem(), ServiceVclRateLimiterResponseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRateLimiterResponsePtrInput)(nil)).Elem(), ServiceVclRateLimiterResponseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRequestSettingInput)(nil)).Elem(), ServiceVclRequestSettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRequestSettingArrayInput)(nil)).Elem(), ServiceVclRequestSettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclResponseObjectInput)(nil)).Elem(), ServiceVclResponseObjectArgs{})
@@ -14153,6 +14634,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopInput)(nil)).Elem(), GetDatacentersPopArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopArrayInput)(nil)).Elem(), GetDatacentersPopArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryInput)(nil)).Elem(), GetDictionariesDictionaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailInput)(nil)).Elem(), GetServicesDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailArrayInput)(nil)).Elem(), GetServicesDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
@@ -14299,6 +14782,10 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclLoggingSyslogArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementPtrOutput{})
+	pulumi.RegisterOutputType(ServiceVclRateLimiterOutput{})
+	pulumi.RegisterOutputType(ServiceVclRateLimiterArrayOutput{})
+	pulumi.RegisterOutputType(ServiceVclRateLimiterResponseOutput{})
+	pulumi.RegisterOutputType(ServiceVclRateLimiterResponsePtrOutput{})
 	pulumi.RegisterOutputType(ServiceVclRequestSettingOutput{})
 	pulumi.RegisterOutputType(ServiceVclRequestSettingArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclResponseObjectOutput{})
@@ -14319,6 +14806,8 @@ func init() {
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopArrayOutput{})
+	pulumi.RegisterOutputType(GetDictionariesDictionaryOutput{})
+	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})

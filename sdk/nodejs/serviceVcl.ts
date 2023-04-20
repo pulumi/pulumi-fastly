@@ -144,6 +144,7 @@ export class ServiceVcl extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     public readonly productEnablement!: pulumi.Output<outputs.ServiceVclProductEnablement | undefined>;
+    public readonly rateLimiters!: pulumi.Output<outputs.ServiceVclRateLimiter[] | undefined>;
     public readonly requestSettings!: pulumi.Output<outputs.ServiceVclRequestSetting[] | undefined>;
     public readonly responseObjects!: pulumi.Output<outputs.ServiceVclResponseObject[] | undefined>;
     /**
@@ -230,6 +231,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = state ? state.loggingSyslogs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["productEnablement"] = state ? state.productEnablement : undefined;
+            resourceInputs["rateLimiters"] = state ? state.rateLimiters : undefined;
             resourceInputs["requestSettings"] = state ? state.requestSettings : undefined;
             resourceInputs["responseObjects"] = state ? state.responseObjects : undefined;
             resourceInputs["reuse"] = state ? state.reuse : undefined;
@@ -289,6 +291,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingSyslogs"] = args ? args.loggingSyslogs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["productEnablement"] = args ? args.productEnablement : undefined;
+            resourceInputs["rateLimiters"] = args ? args.rateLimiters : undefined;
             resourceInputs["requestSettings"] = args ? args.requestSettings : undefined;
             resourceInputs["responseObjects"] = args ? args.responseObjects : undefined;
             resourceInputs["reuse"] = args ? args.reuse : undefined;
@@ -399,6 +402,7 @@ export interface ServiceVclState {
      */
     name?: pulumi.Input<string>;
     productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement>;
+    rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[]>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
     /**
@@ -497,6 +501,7 @@ export interface ServiceVclArgs {
      */
     name?: pulumi.Input<string>;
     productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement>;
+    rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[]>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
     /**
