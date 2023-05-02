@@ -130,6 +130,9 @@ func NewServiceVcl(ctx *pulumi.Context,
 	if args.Domains == nil {
 		return nil, errors.New("invalid value for required argument 'Domains'")
 	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	var resource ServiceVcl
 	err := ctx.RegisterResource("fastly:index/serviceVcl:ServiceVcl", name, args, &resource, opts...)
 	if err != nil {
@@ -371,7 +374,7 @@ type serviceVclArgs struct {
 	LoggingSumologics      []ServiceVclLoggingSumologic     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         []ServiceVclLoggingSyslog        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
-	Name              *string                      `pulumi:"name"`
+	Name              string                       `pulumi:"name"`
 	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
 	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
 	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
@@ -444,7 +447,7 @@ type ServiceVclArgs struct {
 	LoggingSumologics      ServiceVclLoggingSumologicArrayInput
 	LoggingSyslogs         ServiceVclLoggingSyslogArrayInput
 	// The unique name for the Service to create
-	Name              pulumi.StringPtrInput
+	Name              pulumi.StringInput
 	ProductEnablement ServiceVclProductEnablementPtrInput
 	RateLimiters      ServiceVclRateLimiterArrayInput
 	RequestSettings   ServiceVclRequestSettingArrayInput

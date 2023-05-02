@@ -15,7 +15,7 @@ __all__ = ['UserArgs', 'User']
 class UserArgs:
     def __init__(__self__, *,
                  login: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None,
+                 name: pulumi.Input[str],
                  role: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a User resource.
@@ -24,8 +24,7 @@ class UserArgs:
         :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
         pulumi.set(__self__, "login", login)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "name", name)
         if role is not None:
             pulumi.set(__self__, "role", role)
 
@@ -43,14 +42,14 @@ class UserArgs:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
+    def name(self) -> pulumi.Input[str]:
         """
         The real life name of the user
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
+    def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
 
     @property
@@ -144,7 +143,9 @@ class User(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.User("demo", login="demo@example.com")
+        demo = fastly.User("demo",
+            login="demo@example.com",
+            name="Demo User")
         ```
 
         ## Import
@@ -180,7 +181,9 @@ class User(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.User("demo", login="demo@example.com")
+        demo = fastly.User("demo",
+            login="demo@example.com",
+            name="Demo User")
         ```
 
         ## Import
@@ -221,6 +224,8 @@ class User(pulumi.CustomResource):
             if login is None and not opts.urn:
                 raise TypeError("Missing required property 'login'")
             __props__.__dict__["login"] = login
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["role"] = role
         super(User, __self__).__init__(

@@ -122,6 +122,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .name(&#34;Example Service&#34;)
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name(&#34;example.com&#34;)
      *                 .build())
@@ -184,6 +185,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .name(&#34;Example Service&#34;)
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name(&#34;example.com&#34;)
      *                 .build())
@@ -246,6 +248,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .name(&#34;Example Service&#34;)
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name(&#34;example.com&#34;)
      *                 .build())
@@ -308,6 +311,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
+     *             .name(&#34;Example Service&#34;)
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name(&#34;example.com&#34;)
      *                 .build())

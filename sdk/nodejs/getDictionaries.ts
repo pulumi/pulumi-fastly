@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
+ *     name: "Example Service",
  *     domains: [{
  *         name: "example.com",
  *     }],
@@ -95,6 +96,7 @@ export interface GetDictionariesResult {
  * import * as fastly from "@pulumi/fastly";
  *
  * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
+ *     name: "Example Service",
  *     domains: [{
  *         name: "example.com",
  *     }],

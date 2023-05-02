@@ -53,6 +53,7 @@ import javax.annotation.Nullable;
  * 
  *         var demoTlsPrivateKey = new TlsPrivateKey(&#34;demoTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
  *             .keyPem(demoPrivateKey.privateKeyPem())
+ *             .name(&#34;tf-demo&#34;)
  *             .build());
  * 
  *     }

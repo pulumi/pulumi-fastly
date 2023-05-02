@@ -7,8 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class TlsPrivateKeyArgs extends com.pulumi.resources.ResourceArgs {
@@ -34,15 +32,15 @@ public final class TlsPrivateKeyArgs extends com.pulumi.resources.ResourceArgs {
      * Customisable name of the private key.
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return Customisable name of the private key.
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     private TlsPrivateKeyArgs() {}
@@ -97,7 +95,7 @@ public final class TlsPrivateKeyArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -114,6 +112,7 @@ public final class TlsPrivateKeyArgs extends com.pulumi.resources.ResourceArgs {
 
         public TlsPrivateKeyArgs build() {
             $.keyPem = Objects.requireNonNull($.keyPem, "expected parameter 'keyPem' to be non-null");
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             return $;
         }
     }

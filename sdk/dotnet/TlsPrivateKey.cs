@@ -35,6 +35,7 @@ namespace Pulumi.Fastly
     ///     var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new()
     ///     {
     ///         KeyPem = demoPrivateKey.PrivateKeyPem,
+    ///         Name = "tf-demo",
     ///     });
     /// 
     /// });
@@ -162,8 +163,8 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Customisable name of the private key.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         public TlsPrivateKeyArgs()
         {

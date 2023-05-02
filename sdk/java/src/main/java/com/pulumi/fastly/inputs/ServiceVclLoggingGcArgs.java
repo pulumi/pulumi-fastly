@@ -182,6 +182,21 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The ID of your Google Cloud Platform project
+     * 
+     */
+    @Import(name="projectId", required=true)
+    private Output<String> projectId;
+
+    /**
+     * @return The ID of your Google Cloud Platform project
+     * 
+     */
+    public Output<String> projectId() {
+        return this.projectId;
+    }
+
+    /**
      * Name of a condition to apply this logging.
      * 
      */
@@ -255,6 +270,7 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
         this.path = $.path;
         this.period = $.period;
         this.placement = $.placement;
+        this.projectId = $.projectId;
         this.responseCondition = $.responseCondition;
         this.secretKey = $.secretKey;
         this.timestampFormat = $.timestampFormat;
@@ -511,6 +527,27 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param projectId The ID of your Google Cloud Platform project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId The ID of your Google Cloud Platform project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
+        }
+
+        /**
          * @param responseCondition Name of a condition to apply this logging.
          * 
          * @return builder
@@ -597,6 +634,7 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
         public ServiceVclLoggingGcArgs build() {
             $.bucketName = Objects.requireNonNull($.bucketName, "expected parameter 'bucketName' to be non-null");
             $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             return $;
         }
     }

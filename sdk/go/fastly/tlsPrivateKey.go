@@ -40,6 +40,7 @@ import (
 //			}
 //			_, err = fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
 //				KeyPem: demoPrivateKey.PrivateKeyPem,
+//				Name:   pulumi.String("tf-demo"),
 //			})
 //			if err != nil {
 //				return err
@@ -87,6 +88,9 @@ func NewTlsPrivateKey(ctx *pulumi.Context,
 
 	if args.KeyPem == nil {
 		return nil, errors.New("invalid value for required argument 'KeyPem'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.KeyPem != nil {
 		args.KeyPem = pulumi.ToSecret(args.KeyPem).(pulumi.StringInput)
@@ -158,7 +162,7 @@ type tlsPrivateKeyArgs struct {
 	// Private key in PEM format.
 	KeyPem string `pulumi:"keyPem"`
 	// Customisable name of the private key.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a TlsPrivateKey resource.
@@ -166,7 +170,7 @@ type TlsPrivateKeyArgs struct {
 	// Private key in PEM format.
 	KeyPem pulumi.StringInput
 	// Customisable name of the private key.
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 }
 
 func (TlsPrivateKeyArgs) ElementType() reflect.Type {

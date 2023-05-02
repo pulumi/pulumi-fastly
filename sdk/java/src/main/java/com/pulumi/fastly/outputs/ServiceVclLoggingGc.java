@@ -68,6 +68,11 @@ public final class ServiceVclLoggingGc {
      */
     private @Nullable String placement;
     /**
+     * @return The ID of your Google Cloud Platform project
+     * 
+     */
+    private String projectId;
+    /**
      * @return Name of a condition to apply this logging.
      * 
      */
@@ -167,6 +172,13 @@ public final class ServiceVclLoggingGc {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return The ID of your Google Cloud Platform project
+     * 
+     */
+    public String projectId() {
+        return this.projectId;
+    }
+    /**
      * @return Name of a condition to apply this logging.
      * 
      */
@@ -215,6 +227,7 @@ public final class ServiceVclLoggingGc {
         private @Nullable String path;
         private @Nullable Integer period;
         private @Nullable String placement;
+        private String projectId;
         private @Nullable String responseCondition;
         private @Nullable String secretKey;
         private @Nullable String timestampFormat;
@@ -233,6 +246,7 @@ public final class ServiceVclLoggingGc {
     	      this.path = defaults.path;
     	      this.period = defaults.period;
     	      this.placement = defaults.placement;
+    	      this.projectId = defaults.projectId;
     	      this.responseCondition = defaults.responseCondition;
     	      this.secretKey = defaults.secretKey;
     	      this.timestampFormat = defaults.timestampFormat;
@@ -295,6 +309,11 @@ public final class ServiceVclLoggingGc {
             return this;
         }
         @CustomType.Setter
+        public Builder projectId(String projectId) {
+            this.projectId = Objects.requireNonNull(projectId);
+            return this;
+        }
+        @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
             this.responseCondition = responseCondition;
             return this;
@@ -327,6 +346,7 @@ public final class ServiceVclLoggingGc {
             o.path = path;
             o.period = period;
             o.placement = placement;
+            o.projectId = projectId;
             o.responseCondition = responseCondition;
             o.secretKey = secretKey;
             o.timestampFormat = timestampFormat;

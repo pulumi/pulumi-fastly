@@ -254,9 +254,13 @@ class TlsCertificate(pulumi.CustomResource):
                 "server_auth",
             ],
             dns_names=["example.com"])
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        example = fastly.TlsCertificate("example", certificate_body=cert.cert_pem,
-        opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey",
+            key_pem=key_private_key.private_key_pem,
+            name="tf-demo")
+        example = fastly.TlsCertificate("example",
+            name="tf-demo",
+            certificate_body=cert.cert_pem,
+            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         # The private key has to be present before the certificate can be uploaded
         ```
         ## Updating certificates
@@ -318,9 +322,13 @@ class TlsCertificate(pulumi.CustomResource):
                 "server_auth",
             ],
             dns_names=["example.com"])
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        example = fastly.TlsCertificate("example", certificate_body=cert.cert_pem,
-        opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey",
+            key_pem=key_private_key.private_key_pem,
+            name="tf-demo")
+        example = fastly.TlsCertificate("example",
+            name="tf-demo",
+            certificate_body=cert.cert_pem,
+            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         # The private key has to be present before the certificate can be uploaded
         ```
         ## Updating certificates

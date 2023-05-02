@@ -160,6 +160,7 @@ class TlsActivation(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo_service_vcl = fastly.ServiceVcl("demoServiceVcl",
+            name="my-service",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
             )],
@@ -168,9 +169,13 @@ class TlsActivation(pulumi.CustomResource):
                 name="localhost",
             )],
             force_destroy=True)
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem="...")
-        demo_tls_certificate = fastly.TlsCertificate("demoTlsCertificate", certificate_body="...",
-        opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
+        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey",
+            key_pem="...",
+            name="demo-key")
+        demo_tls_certificate = fastly.TlsCertificate("demoTlsCertificate",
+            certificate_body="...",
+            name="demo-cert",
+            opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",
@@ -213,6 +218,7 @@ class TlsActivation(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo_service_vcl = fastly.ServiceVcl("demoServiceVcl",
+            name="my-service",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
             )],
@@ -221,9 +227,13 @@ class TlsActivation(pulumi.CustomResource):
                 name="localhost",
             )],
             force_destroy=True)
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem="...")
-        demo_tls_certificate = fastly.TlsCertificate("demoTlsCertificate", certificate_body="...",
-        opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
+        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey",
+            key_pem="...",
+            name="demo-key")
+        demo_tls_certificate = fastly.TlsCertificate("demoTlsCertificate",
+            certificate_body="...",
+            name="demo-cert",
+            opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",

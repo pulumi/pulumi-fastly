@@ -308,15 +308,15 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
      * The unique name for the Service to create
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return The unique name for the Service to create
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     /**
@@ -899,7 +899,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -992,6 +992,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
 
         public ServiceComputeArgs build() {
             $.domains = Objects.requireNonNull($.domains, "expected parameter 'domains' to be non-null");
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             $.package_ = Objects.requireNonNull($.package_, "expected parameter 'package' to be non-null");
             return $;
         }

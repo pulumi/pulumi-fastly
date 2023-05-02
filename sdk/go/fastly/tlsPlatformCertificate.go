@@ -100,6 +100,7 @@ import (
 //			}
 //			keyTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "keyTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
 //				KeyPem: keyPrivateKey.PrivateKeyPem,
+//				Name:   pulumi.String("tf-demo"),
 //			})
 //			if err != nil {
 //				return err

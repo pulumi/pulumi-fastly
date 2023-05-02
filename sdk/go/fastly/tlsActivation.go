@@ -32,6 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demoServiceVcl, err := fastly.NewServiceVcl(ctx, "demoServiceVcl", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("my-service"),
 //				Domains: fastly.ServiceVclDomainArray{
 //					&fastly.ServiceVclDomainArgs{
 //						Name: pulumi.String("example.com"),
@@ -50,12 +51,14 @@ import (
 //			}
 //			demoTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
 //				KeyPem: pulumi.String("..."),
+//				Name:   pulumi.String("demo-key"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			demoTlsCertificate, err := fastly.NewTlsCertificate(ctx, "demoTlsCertificate", &fastly.TlsCertificateArgs{
 //				CertificateBody: pulumi.String("..."),
+//				Name:            pulumi.String("demo-cert"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				demoTlsPrivateKey,
 //			}))

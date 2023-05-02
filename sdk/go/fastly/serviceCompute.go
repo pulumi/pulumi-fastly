@@ -100,6 +100,9 @@ func NewServiceCompute(ctx *pulumi.Context,
 	if args.Domains == nil {
 		return nil, errors.New("invalid value for required argument 'Domains'")
 	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.Package == nil {
 		return nil, errors.New("invalid value for required argument 'Package'")
 	}
@@ -286,7 +289,7 @@ type serviceComputeArgs struct {
 	LoggingSumologics      []ServiceComputeLoggingSumologic     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         []ServiceComputeLoggingSyslog        `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackage            `pulumi:"package"`
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
@@ -337,7 +340,7 @@ type ServiceComputeArgs struct {
 	LoggingSumologics      ServiceComputeLoggingSumologicArrayInput
 	LoggingSyslogs         ServiceComputeLoggingSyslogArrayInput
 	// The unique name for the Service to create
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackageInput
 	ProductEnablement ServiceComputeProductEnablementPtrInput

@@ -34,15 +34,15 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
      * The real life name of the user
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return The real life name of the user
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     /**
@@ -113,7 +113,7 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -151,6 +151,7 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
 
         public UserArgs build() {
             $.login = Objects.requireNonNull($.login, "expected parameter 'login' to be non-null");
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             return $;
         }
     }

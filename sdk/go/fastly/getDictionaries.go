@@ -27,6 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			exampleServiceVcl, err := fastly.NewServiceVcl(ctx, "exampleServiceVcl", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("Example Service"),
 //				Domains: fastly.ServiceVclDomainArray{
 //					&fastly.ServiceVclDomainArgs{
 //						Name: pulumi.String("example.com"),

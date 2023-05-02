@@ -61,11 +61,13 @@ import (
 //			}
 //			keyTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "keyTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
 //				KeyPem: keyPrivateKey.PrivateKeyPem,
+//				Name:   pulumi.String("tf-demo"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = fastly.NewTlsCertificate(ctx, "example", &fastly.TlsCertificateArgs{
+//				Name:            pulumi.String("tf-demo"),
 //				CertificateBody: cert.CertPem,
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				keyTlsPrivateKey,

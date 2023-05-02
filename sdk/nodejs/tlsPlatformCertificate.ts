@@ -58,7 +58,10 @@ import * as utilities from "./utilities";
  * const config = fastly.getTlsConfiguration({
  *     tlsService: "PLATFORM",
  * });
- * const keyTlsPrivateKey = new fastly.TlsPrivateKey("keyTlsPrivateKey", {keyPem: keyPrivateKey.privateKeyPem});
+ * const keyTlsPrivateKey = new fastly.TlsPrivateKey("keyTlsPrivateKey", {
+ *     keyPem: keyPrivateKey.privateKeyPem,
+ *     name: "tf-demo",
+ * });
  * const certTlsPlatformCertificate = new fastly.TlsPlatformCertificate("certTlsPlatformCertificate", {
  *     certificateBody: certLocallySignedCert.certPem,
  *     intermediatesBlob: ca.certPem,

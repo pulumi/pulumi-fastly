@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const demoServiceVcl = new fastly.ServiceVcl("demoServiceVcl", {
+ *     name: "my-service",
  *     domains: [{
  *         name: "example.com",
  *     }],
@@ -27,8 +28,14 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demoTlsPrivateKey", {keyPem: "..."});
- * const demoTlsCertificate = new fastly.TlsCertificate("demoTlsCertificate", {certificateBody: "..."}, {
+ * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demoTlsPrivateKey", {
+ *     keyPem: "...",
+ *     name: "demo-key",
+ * });
+ * const demoTlsCertificate = new fastly.TlsCertificate("demoTlsCertificate", {
+ *     certificateBody: "...",
+ *     name: "demo-cert",
+ * }, {
  *     dependsOn: [demoTlsPrivateKey],
  * });
  * const test = new fastly.TlsActivation("test", {

@@ -15,15 +15,14 @@ __all__ = ['TlsPrivateKeyArgs', 'TlsPrivateKey']
 class TlsPrivateKeyArgs:
     def __init__(__self__, *,
                  key_pem: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: pulumi.Input[str]):
         """
         The set of arguments for constructing a TlsPrivateKey resource.
         :param pulumi.Input[str] key_pem: Private key in PEM format.
         :param pulumi.Input[str] name: Customisable name of the private key.
         """
         pulumi.set(__self__, "key_pem", key_pem)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="keyPem")
@@ -39,14 +38,14 @@ class TlsPrivateKeyArgs:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
+    def name(self) -> pulumi.Input[str]:
         """
         Customisable name of the private key.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
+    def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
 
 
@@ -193,7 +192,9 @@ class TlsPrivateKey(pulumi.CustomResource):
         import pulumi_tls as tls
 
         demo_private_key = tls.PrivateKey("demoPrivateKey", algorithm="RSA")
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem=demo_private_key.private_key_pem)
+        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey",
+            key_pem=demo_private_key.private_key_pem,
+            name="tf-demo")
         ```
 
         ## Import
@@ -230,7 +231,9 @@ class TlsPrivateKey(pulumi.CustomResource):
         import pulumi_tls as tls
 
         demo_private_key = tls.PrivateKey("demoPrivateKey", algorithm="RSA")
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem=demo_private_key.private_key_pem)
+        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey",
+            key_pem=demo_private_key.private_key_pem,
+            name="tf-demo")
         ```
 
         ## Import
@@ -270,6 +273,8 @@ class TlsPrivateKey(pulumi.CustomResource):
             if key_pem is None and not opts.urn:
                 raise TypeError("Missing required property 'key_pem'")
             __props__.__dict__["key_pem"] = None if key_pem is None else pulumi.Output.secret(key_pem)
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["created_at"] = None
             __props__.__dict__["key_length"] = None

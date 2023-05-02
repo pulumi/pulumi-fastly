@@ -28,6 +28,7 @@ namespace Pulumi.Fastly
         /// {
         ///     var exampleServiceVcl = new Fastly.ServiceVcl("exampleServiceVcl", new()
         ///     {
+        ///         Name = "Example Service",
         ///         Domains = new[]
         ///         {
         ///             new Fastly.Inputs.ServiceVclDomainArgs
@@ -90,6 +91,7 @@ namespace Pulumi.Fastly
         /// {
         ///     var exampleServiceVcl = new Fastly.ServiceVcl("exampleServiceVcl", new()
         ///     {
+        ///         Name = "Example Service",
         ///         Domains = new[]
         ///         {
         ///             new Fastly.Inputs.ServiceVclDomainArgs

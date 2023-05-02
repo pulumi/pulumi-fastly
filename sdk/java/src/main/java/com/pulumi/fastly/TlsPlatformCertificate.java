@@ -109,6 +109,7 @@ import javax.annotation.Nullable;
  * 
  *         var keyTlsPrivateKey = new TlsPrivateKey(&#34;keyTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
  *             .keyPem(keyPrivateKey.privateKeyPem())
+ *             .name(&#34;tf-demo&#34;)
  *             .build());
  * 
  *         var certTlsPlatformCertificate = new TlsPlatformCertificate(&#34;certTlsPlatformCertificate&#34;, TlsPlatformCertificateArgs.builder()        

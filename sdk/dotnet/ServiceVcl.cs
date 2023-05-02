@@ -649,8 +649,8 @@ namespace Pulumi.Fastly
         /// <summary>
         /// The unique name for the Service to create
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         [Input("productEnablement")]
         public Input<Inputs.ServiceVclProductEnablementArgs>? ProductEnablement { get; set; }

@@ -17,6 +17,7 @@ __all__ = ['ServiceVclArgs', 'ServiceVcl']
 class ServiceVclArgs:
     def __init__(__self__, *,
                  domains: pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]],
+                 name: pulumi.Input[str],
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]] = None,
                  activate: Optional[pulumi.Input[bool]] = None,
                  backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]] = None,
@@ -59,7 +60,6 @@ class ServiceVclArgs:
                  logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]] = None,
                  logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]] = None,
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
                  product_enablement: Optional[pulumi.Input['ServiceVclProductEnablementArgs']] = None,
                  rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]] = None,
                  request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
@@ -74,13 +74,13 @@ class ServiceVclArgs:
         """
         The set of arguments for constructing a ServiceVcl resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -89,6 +89,7 @@ class ServiceVclArgs:
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
+        pulumi.set(__self__, "name", name)
         if acls is not None:
             pulumi.set(__self__, "acls", acls)
         if activate is not None:
@@ -173,8 +174,6 @@ class ServiceVclArgs:
             pulumi.set(__self__, "logging_sumologics", logging_sumologics)
         if logging_syslogs is not None:
             pulumi.set(__self__, "logging_syslogs", logging_syslogs)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if product_enablement is not None:
             pulumi.set(__self__, "product_enablement", product_enablement)
         if rate_limiters is not None:
@@ -209,6 +208,18 @@ class ServiceVclArgs:
     @domains.setter
     def domains(self, value: pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]):
         pulumi.set(self, "domains", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The unique name for the Service to create
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -605,18 +616,6 @@ class ServiceVclArgs:
     @logging_syslogs.setter
     def logging_syslogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]):
         pulumi.set(self, "logging_syslogs", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The unique name for the Service to create
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="productEnablement")
@@ -1774,6 +1773,8 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["logging_splunks"] = logging_splunks
             __props__.__dict__["logging_sumologics"] = logging_sumologics
             __props__.__dict__["logging_syslogs"] = logging_syslogs
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["product_enablement"] = product_enablement
             __props__.__dict__["rate_limiters"] = rate_limiters

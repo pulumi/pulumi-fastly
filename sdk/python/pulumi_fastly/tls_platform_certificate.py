@@ -307,7 +307,9 @@ class TlsPlatformCertificate(pulumi.CustomResource):
                 "server_auth",
             ])
         config = fastly.get_tls_configuration(tls_service="PLATFORM")
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey",
+            key_pem=key_private_key.private_key_pem,
+            name="tf-demo")
         cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
             certificate_body=cert_locally_signed_cert.cert_pem,
             intermediates_blob=ca.cert_pem,
@@ -386,7 +388,9 @@ class TlsPlatformCertificate(pulumi.CustomResource):
                 "server_auth",
             ])
         config = fastly.get_tls_configuration(tls_service="PLATFORM")
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey",
+            key_pem=key_private_key.private_key_pem,
+            name="tf-demo")
         cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
             certificate_body=cert_locally_signed_cert.cert_pem,
             intermediates_blob=ca.cert_pem,

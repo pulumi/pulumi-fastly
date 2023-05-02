@@ -190,6 +190,9 @@ export class ServiceCompute extends pulumi.CustomResource {
             if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.package === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'package'");
             }
@@ -378,7 +381,7 @@ export interface ServiceComputeArgs {
     /**
      * The unique name for the Service to create
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */

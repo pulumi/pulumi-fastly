@@ -97,6 +97,7 @@ namespace Pulumi.Fastly
     ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new()
     ///     {
     ///         KeyPem = keyPrivateKey.PrivateKeyPem,
+    ///         Name = "tf-demo",
     ///     });
     /// 
     ///     var certTlsPlatformCertificate = new Fastly.TlsPlatformCertificate("certTlsPlatformCertificate", new()

@@ -56,6 +56,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;demofastly&#34;)
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name(&#34;example.com&#34;)
  *                 .comment(&#34;demo&#34;)
@@ -131,6 +132,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;demofastly&#34;)
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name(&#34;example.com&#34;)
  *                 .comment(&#34;demo&#34;)
@@ -214,6 +216,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;demofastly&#34;)
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name(&#34;example.com&#34;)
  *                 .comment(&#34;demo&#34;)
@@ -304,6 +307,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
  *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;demofastly&#34;)
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name(&#34;example.com&#34;)
  *                 .comment(&#34;demo&#34;)
@@ -389,6 +393,7 @@ import javax.annotation.Nullable;
  *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
  *         final var individualRules = config.get(&#34;individualRules&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
  *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;demofastly&#34;)
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name(&#34;example.com&#34;)
  *                 .comment(&#34;demo&#34;)
@@ -474,6 +479,7 @@ import javax.annotation.Nullable;
  *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
  *         final var specificRuleRevisions = config.get(&#34;specificRuleRevisions&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
  *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;demofastly&#34;)
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name(&#34;example.com&#34;)
  *                 .comment(&#34;demo&#34;)
@@ -559,6 +565,7 @@ import javax.annotation.Nullable;
  *         final var typeStatus = config.get(&#34;typeStatus&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
  *         final var individualRules = config.get(&#34;individualRules&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
  *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;demofastly&#34;)
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name(&#34;example.com&#34;)
  *                 .comment(&#34;demo&#34;)

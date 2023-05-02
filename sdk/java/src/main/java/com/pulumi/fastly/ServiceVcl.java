@@ -107,6 +107,7 @@ import javax.annotation.Nullable;
  *                 .name(&#34;demo.notexample.com&#34;)
  *                 .build())
  *             .forceDestroy(true)
+ *             .name(&#34;demofastly&#34;)
  *             .build());
  * 
  *     }
@@ -169,6 +170,7 @@ import javax.annotation.Nullable;
  *                 .name(&#34;remove x-amz-request-id&#34;)
  *                 .type(&#34;cache&#34;)
  *                 .build())
+ *             .name(&#34;demofastly&#34;)
  *             .build());
  * 
  *         var website = new BucketV2(&#34;website&#34;, BucketV2Args.builder()        
@@ -217,6 +219,7 @@ import javax.annotation.Nullable;
  *                 .name(&#34;demo.notexample.com&#34;)
  *                 .build())
  *             .forceDestroy(true)
+ *             .name(&#34;demofastly&#34;)
  *             .vcls(            
  *                 ServiceVclVclArgs.builder()
  *                     .content(Files.readString(Paths.get(String.format(&#34;%s/my_custom_main.vcl&#34;, path.module()))))
@@ -283,6 +286,7 @@ import javax.annotation.Nullable;
  *                 .name(&#34;demo.notexample.com&#34;)
  *                 .build())
  *             .forceDestroy(true)
+ *             .name(&#34;demofastly&#34;)
  *             .build());
  * 
  *     }
@@ -338,6 +342,7 @@ import javax.annotation.Nullable;
  *                 .name(&#34;example.com&#34;)
  *                 .build())
  *             .forceDestroy(true)
+ *             .name(&#34;demofastly&#34;)
  *             .responseObjects(ServiceVclResponseObjectArgs.builder()
  *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
  *                 .contentType(&#34;text/html&#34;)

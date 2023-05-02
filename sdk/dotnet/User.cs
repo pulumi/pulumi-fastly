@@ -29,6 +29,7 @@ namespace Pulumi.Fastly
     ///     var demo = new Fastly.User("demo", new()
     ///     {
     ///         Login = "demo@example.com",
+    ///         Name = "Demo User",
     ///     });
     /// 
     /// });
@@ -118,8 +119,8 @@ namespace Pulumi.Fastly
         /// <summary>
         /// The real life name of the user
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)

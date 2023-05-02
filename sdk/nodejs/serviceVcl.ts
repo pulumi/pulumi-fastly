@@ -246,6 +246,9 @@ export class ServiceVcl extends pulumi.CustomResource {
             if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             resourceInputs["acls"] = args ? args.acls : undefined;
             resourceInputs["activate"] = args ? args.activate : undefined;
             resourceInputs["backends"] = args ? args.backends : undefined;
@@ -499,7 +502,7 @@ export interface ServiceVclArgs {
     /**
      * The unique name for the Service to create
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement>;
     rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[]>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;

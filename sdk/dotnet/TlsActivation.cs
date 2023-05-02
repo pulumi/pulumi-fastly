@@ -28,6 +28,7 @@ namespace Pulumi.Fastly
     /// {
     ///     var demoServiceVcl = new Fastly.ServiceVcl("demoServiceVcl", new()
     ///     {
+    ///         Name = "my-service",
     ///         Domains = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclDomainArgs
@@ -49,11 +50,13 @@ namespace Pulumi.Fastly
     ///     var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new()
     ///     {
     ///         KeyPem = "...",
+    ///         Name = "demo-key",
     ///     });
     /// 
     ///     var demoTlsCertificate = new Fastly.TlsCertificate("demoTlsCertificate", new()
     ///     {
     ///         CertificateBody = "...",
+    ///         Name = "demo-cert",
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn = new[]

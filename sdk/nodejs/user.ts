@@ -17,7 +17,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demo = new fastly.User("demo", {login: "demo@example.com"});
+ * const demo = new fastly.User("demo", {
+ *     login: "demo@example.com",
+ *     name: "Demo User",
+ * });
  * ```
  *
  * ## Import
@@ -90,6 +93,9 @@ export class User extends pulumi.CustomResource {
             if ((!args || args.login === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'login'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             resourceInputs["login"] = args ? args.login : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
@@ -128,7 +134,7 @@ export interface UserArgs {
     /**
      * The real life name of the user
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
      */

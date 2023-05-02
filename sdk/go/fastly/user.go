@@ -33,6 +33,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := fastly.NewUser(ctx, "demo", &fastly.UserArgs{
 //				Login: pulumi.String("demo@example.com"),
+//				Name:  pulumi.String("Demo User"),
 //			})
 //			if err != nil {
 //				return err
@@ -72,6 +73,9 @@ func NewUser(ctx *pulumi.Context,
 
 	if args.Login == nil {
 		return nil, errors.New("invalid value for required argument 'Login'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	var resource User
 	err := ctx.RegisterResource("fastly:index/user:User", name, args, &resource, opts...)
@@ -120,7 +124,7 @@ type userArgs struct {
 	// The email address, which is the login name, of the User
 	Login string `pulumi:"login"`
 	// The real life name of the user
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
 	Role *string `pulumi:"role"`
 }
@@ -130,7 +134,7 @@ type UserArgs struct {
 	// The email address, which is the login name, of the User
 	Login pulumi.StringInput
 	// The real life name of the user
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
 	Role pulumi.StringPtrInput
 }

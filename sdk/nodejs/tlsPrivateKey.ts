@@ -19,7 +19,10 @@ import * as utilities from "./utilities";
  * import * as tls from "@pulumi/tls";
  *
  * const demoPrivateKey = new tls.PrivateKey("demoPrivateKey", {algorithm: "RSA"});
- * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demoTlsPrivateKey", {keyPem: demoPrivateKey.privateKeyPem});
+ * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demoTlsPrivateKey", {
+ *     keyPem: demoPrivateKey.privateKeyPem,
+ *     name: "tf-demo",
+ * });
  * ```
  *
  * ## Import
@@ -112,6 +115,9 @@ export class TlsPrivateKey extends pulumi.CustomResource {
             if ((!args || args.keyPem === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'keyPem'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             resourceInputs["keyPem"] = args?.keyPem ? pulumi.secret(args.keyPem) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -172,5 +178,5 @@ export interface TlsPrivateKeyArgs {
     /**
      * Customisable name of the private key.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
 }

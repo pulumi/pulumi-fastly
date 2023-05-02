@@ -94,6 +94,7 @@ def get_dictionaries(service_id: Optional[str] = None,
     import pulumi_fastly as fastly
 
     example_service_vcl = fastly.ServiceVcl("exampleServiceVcl",
+        name="Example Service",
         domains=[fastly.ServiceVclDomainArgs(
             name="example.com",
         )],
@@ -147,6 +148,7 @@ def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
     import pulumi_fastly as fastly
 
     example_service_vcl = fastly.ServiceVcl("exampleServiceVcl",
+        name="Example Service",
         domains=[fastly.ServiceVclDomainArgs(
             name="example.com",
         )],
