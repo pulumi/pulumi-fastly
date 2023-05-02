@@ -2,46 +2,1504 @@
     "auto-aliasing": {
         "resources": {
             "fastly_service_acl_entries": {
-                "current": "fastly:index/serviceACLEntries:ServiceACLEntries"
+                "current": "fastly:index/serviceACLEntries:ServiceACLEntries",
+                "fields": {
+                    "acl_id": {},
+                    "entry": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "comment": {},
+                                "id": {},
+                                "ip": {},
+                                "negated": {},
+                                "subnet": {}
+                            }
+                        }
+                    },
+                    "manage_entries": {},
+                    "service_id": {}
+                }
             },
             "fastly_service_authorization": {
-                "current": "fastly:index/serviceAuthorization:ServiceAuthorization"
+                "current": "fastly:index/serviceAuthorization:ServiceAuthorization",
+                "fields": {
+                    "id": {},
+                    "permission": {},
+                    "service_id": {},
+                    "user_id": {}
+                }
             },
             "fastly_service_compute": {
-                "current": "fastly:index/serviceCompute:ServiceCompute"
+                "current": "fastly:index/serviceCompute:ServiceCompute",
+                "fields": {
+                    "activate": {},
+                    "active_version": {},
+                    "backend": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "between_bytes_timeout": {},
+                                "connect_timeout": {},
+                                "error_threshold": {},
+                                "first_byte_timeout": {},
+                                "healthcheck": {},
+                                "keepalive_time": {},
+                                "max_conn": {},
+                                "max_tls_version": {},
+                                "min_tls_version": {},
+                                "name": {},
+                                "override_host": {},
+                                "port": {},
+                                "shield": {},
+                                "ssl_ca_cert": {},
+                                "ssl_cert_hostname": {},
+                                "ssl_check_cert": {},
+                                "ssl_ciphers": {},
+                                "ssl_client_cert": {},
+                                "ssl_client_key": {},
+                                "ssl_sni_hostname": {},
+                                "use_ssl": {},
+                                "weight": {}
+                            }
+                        }
+                    },
+                    "cloned_version": {},
+                    "comment": {},
+                    "dictionary": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dictionary_id": {},
+                                "force_destroy": {},
+                                "name": {},
+                                "write_only": {}
+                            }
+                        }
+                    },
+                    "domain": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "comment": {},
+                                "name": {}
+                            }
+                        }
+                    },
+                    "force_destroy": {},
+                    "force_refresh": {},
+                    "imported": {},
+                    "logging_bigquery": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "dataset": {},
+                                "email": {},
+                                "name": {},
+                                "project_id": {},
+                                "secret_key": {},
+                                "table": {},
+                                "template": {}
+                            }
+                        }
+                    },
+                    "logging_blobstorage": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "compression_codec": {},
+                                "container": {},
+                                "file_max_bytes": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "public_key": {},
+                                "sas_token": {},
+                                "timestamp_format": {}
+                            }
+                        }
+                    },
+                    "logging_cloudfiles": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "public_key": {},
+                                "region": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_datadog": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "region": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_digitalocean": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "domain": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "public_key": {},
+                                "secret_key": {},
+                                "timestamp_format": {}
+                            }
+                        }
+                    },
+                    "logging_elasticsearch": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "index": {},
+                                "name": {},
+                                "password": {},
+                                "pipeline": {},
+                                "request_max_bytes": {},
+                                "request_max_entries": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "url": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_ftp": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "compression_codec": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "password": {},
+                                "path": {},
+                                "period": {},
+                                "port": {},
+                                "public_key": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_gcs": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "project_id": {},
+                                "secret_key": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_googlepubsub": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "name": {},
+                                "project_id": {},
+                                "secret_key": {},
+                                "topic": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_heroku": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "token": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_honeycomb": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dataset": {},
+                                "name": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_https": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "content_type": {},
+                                "header_name": {},
+                                "header_value": {},
+                                "json_format": {},
+                                "message_type": {},
+                                "method": {},
+                                "name": {},
+                                "request_max_bytes": {},
+                                "request_max_entries": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_kafka": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "auth_method": {},
+                                "brokers": {},
+                                "compression_codec": {},
+                                "name": {},
+                                "parse_log_keyvals": {},
+                                "password": {},
+                                "request_max_bytes": {},
+                                "required_acks": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "topic": {},
+                                "use_tls": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_kinesis": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "iam_role": {},
+                                "name": {},
+                                "region": {},
+                                "secret_key": {},
+                                "topic": {}
+                            }
+                        }
+                    },
+                    "logging_logentries": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "port": {},
+                                "token": {},
+                                "use_tls": {}
+                            }
+                        }
+                    },
+                    "logging_loggly": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_logshuttle": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "token": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_newrelic": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "region": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_openstack": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "public_key": {},
+                                "timestamp_format": {},
+                                "url": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_papertrail": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "name": {},
+                                "port": {}
+                            }
+                        }
+                    },
+                    "logging_s3": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "acl": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "domain": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "public_key": {},
+                                "redundancy": {},
+                                "s3_access_key": {},
+                                "s3_iam_role": {},
+                                "s3_secret_key": {},
+                                "server_side_encryption": {},
+                                "server_side_encryption_kms_key_id": {},
+                                "timestamp_format": {}
+                            }
+                        }
+                    },
+                    "logging_scalyr": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "region": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_sftp": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "compression_codec": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "password": {},
+                                "path": {},
+                                "period": {},
+                                "port": {},
+                                "public_key": {},
+                                "secret_key": {},
+                                "ssh_known_hosts": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_splunk": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "token": {},
+                                "url": {},
+                                "use_tls": {}
+                            }
+                        }
+                    },
+                    "logging_sumologic": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "message_type": {},
+                                "name": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_syslog": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "message_type": {},
+                                "name": {},
+                                "port": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "token": {},
+                                "use_tls": {}
+                            }
+                        }
+                    },
+                    "name": {},
+                    "package": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "content": {},
+                                "filename": {},
+                                "source_code_hash": {}
+                            }
+                        }
+                    },
+                    "product_enablement": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "fanout": {},
+                                "name": {},
+                                "websockets": {}
+                            }
+                        }
+                    },
+                    "reuse": {},
+                    "version_comment": {}
+                }
             },
             "fastly_service_dictionary_items": {
-                "current": "fastly:index/serviceDictionaryItems:ServiceDictionaryItems"
+                "current": "fastly:index/serviceDictionaryItems:ServiceDictionaryItems",
+                "fields": {
+                    "dictionary_id": {},
+                    "items": {},
+                    "manage_items": {},
+                    "service_id": {}
+                }
             },
             "fastly_service_dynamic_snippet_content": {
-                "current": "fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent"
+                "current": "fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent",
+                "fields": {
+                    "content": {},
+                    "manage_snippets": {},
+                    "service_id": {},
+                    "snippet_id": {}
+                }
             },
             "fastly_service_vcl": {
-                "current": "fastly:index/serviceVcl:ServiceVcl"
+                "current": "fastly:index/serviceVcl:ServiceVcl",
+                "fields": {
+                    "acl": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "acl_id": {},
+                                "force_destroy": {},
+                                "name": {}
+                            }
+                        }
+                    },
+                    "activate": {},
+                    "active_version": {},
+                    "backend": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "auto_loadbalance": {},
+                                "between_bytes_timeout": {},
+                                "connect_timeout": {},
+                                "error_threshold": {},
+                                "first_byte_timeout": {},
+                                "healthcheck": {},
+                                "keepalive_time": {},
+                                "max_conn": {},
+                                "max_tls_version": {},
+                                "min_tls_version": {},
+                                "name": {},
+                                "override_host": {},
+                                "port": {},
+                                "request_condition": {},
+                                "shield": {},
+                                "ssl_ca_cert": {},
+                                "ssl_cert_hostname": {},
+                                "ssl_check_cert": {},
+                                "ssl_ciphers": {},
+                                "ssl_client_cert": {},
+                                "ssl_client_key": {},
+                                "ssl_sni_hostname": {},
+                                "use_ssl": {},
+                                "weight": {}
+                            }
+                        }
+                    },
+                    "cache_setting": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "action": {},
+                                "cache_condition": {},
+                                "name": {},
+                                "stale_ttl": {},
+                                "ttl": {}
+                            }
+                        }
+                    },
+                    "cloned_version": {},
+                    "comment": {},
+                    "condition": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "name": {},
+                                "priority": {},
+                                "statement": {},
+                                "type": {}
+                            }
+                        }
+                    },
+                    "default_host": {},
+                    "default_ttl": {},
+                    "dictionary": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dictionary_id": {},
+                                "force_destroy": {},
+                                "name": {},
+                                "write_only": {}
+                            }
+                        }
+                    },
+                    "director": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "backends": {
+                                    "maxItemsOne": false,
+                                    "elem": {}
+                                },
+                                "comment": {},
+                                "name": {},
+                                "quorum": {},
+                                "retries": {},
+                                "shield": {},
+                                "type": {}
+                            }
+                        }
+                    },
+                    "domain": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "comment": {},
+                                "name": {}
+                            }
+                        }
+                    },
+                    "dynamicsnippet": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "content": {},
+                                "name": {},
+                                "priority": {},
+                                "snippet_id": {},
+                                "type": {}
+                            }
+                        }
+                    },
+                    "force_destroy": {},
+                    "force_refresh": {},
+                    "gzip": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "cache_condition": {},
+                                "content_types": {
+                                    "maxItemsOne": false,
+                                    "elem": {}
+                                },
+                                "extensions": {
+                                    "maxItemsOne": false,
+                                    "elem": {}
+                                },
+                                "name": {}
+                            }
+                        }
+                    },
+                    "header": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "action": {},
+                                "cache_condition": {},
+                                "destination": {},
+                                "ignore_if_set": {},
+                                "name": {},
+                                "priority": {},
+                                "regex": {},
+                                "request_condition": {},
+                                "response_condition": {},
+                                "source": {},
+                                "substitution": {},
+                                "type": {}
+                            }
+                        }
+                    },
+                    "healthcheck": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "check_interval": {},
+                                "expected_response": {},
+                                "headers": {
+                                    "maxItemsOne": false,
+                                    "elem": {}
+                                },
+                                "host": {},
+                                "http_version": {},
+                                "initial": {},
+                                "method": {},
+                                "name": {},
+                                "path": {},
+                                "threshold": {},
+                                "timeout": {},
+                                "window": {}
+                            }
+                        }
+                    },
+                    "http3": {},
+                    "imported": {},
+                    "logging_bigquery": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "dataset": {},
+                                "email": {},
+                                "format": {},
+                                "name": {},
+                                "placement": {},
+                                "project_id": {},
+                                "response_condition": {},
+                                "secret_key": {},
+                                "table": {},
+                                "template": {}
+                            }
+                        }
+                    },
+                    "logging_blobstorage": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "compression_codec": {},
+                                "container": {},
+                                "file_max_bytes": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "public_key": {},
+                                "response_condition": {},
+                                "sas_token": {},
+                                "timestamp_format": {}
+                            }
+                        }
+                    },
+                    "logging_cloudfiles": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "public_key": {},
+                                "region": {},
+                                "response_condition": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_datadog": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "region": {},
+                                "response_condition": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_digitalocean": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "domain": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "public_key": {},
+                                "response_condition": {},
+                                "secret_key": {},
+                                "timestamp_format": {}
+                            }
+                        }
+                    },
+                    "logging_elasticsearch": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "index": {},
+                                "name": {},
+                                "password": {},
+                                "pipeline": {},
+                                "placement": {},
+                                "request_max_bytes": {},
+                                "request_max_entries": {},
+                                "response_condition": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "url": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_ftp": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "compression_codec": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "password": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "port": {},
+                                "public_key": {},
+                                "response_condition": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_gcs": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "project_id": {},
+                                "response_condition": {},
+                                "secret_key": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_googlepubsub": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "account_name": {},
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "project_id": {},
+                                "response_condition": {},
+                                "secret_key": {},
+                                "topic": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_heroku": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "response_condition": {},
+                                "token": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_honeycomb": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dataset": {},
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "response_condition": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_https": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "content_type": {},
+                                "format": {},
+                                "format_version": {},
+                                "header_name": {},
+                                "header_value": {},
+                                "json_format": {},
+                                "message_type": {},
+                                "method": {},
+                                "name": {},
+                                "placement": {},
+                                "request_max_bytes": {},
+                                "request_max_entries": {},
+                                "response_condition": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_kafka": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "auth_method": {},
+                                "brokers": {},
+                                "compression_codec": {},
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "parse_log_keyvals": {},
+                                "password": {},
+                                "placement": {},
+                                "request_max_bytes": {},
+                                "required_acks": {},
+                                "response_condition": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "topic": {},
+                                "use_tls": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_kinesis": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "format": {},
+                                "format_version": {},
+                                "iam_role": {},
+                                "name": {},
+                                "placement": {},
+                                "region": {},
+                                "response_condition": {},
+                                "secret_key": {},
+                                "topic": {}
+                            }
+                        }
+                    },
+                    "logging_logentries": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "port": {},
+                                "response_condition": {},
+                                "token": {},
+                                "use_tls": {}
+                            }
+                        }
+                    },
+                    "logging_loggly": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "response_condition": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_logshuttle": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "response_condition": {},
+                                "token": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_newrelic": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "region": {},
+                                "response_condition": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_openstack": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "access_key": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "public_key": {},
+                                "response_condition": {},
+                                "timestamp_format": {},
+                                "url": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_papertrail": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "port": {},
+                                "response_condition": {}
+                            }
+                        }
+                    },
+                    "logging_s3": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "acl": {},
+                                "bucket_name": {},
+                                "compression_codec": {},
+                                "domain": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "public_key": {},
+                                "redundancy": {},
+                                "response_condition": {},
+                                "s3_access_key": {},
+                                "s3_iam_role": {},
+                                "s3_secret_key": {},
+                                "server_side_encryption": {},
+                                "server_side_encryption_kms_key_id": {},
+                                "timestamp_format": {}
+                            }
+                        }
+                    },
+                    "logging_scalyr": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "region": {},
+                                "response_condition": {},
+                                "token": {}
+                            }
+                        }
+                    },
+                    "logging_sftp": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "compression_codec": {},
+                                "format": {},
+                                "format_version": {},
+                                "gzip_level": {},
+                                "message_type": {},
+                                "name": {},
+                                "password": {},
+                                "path": {},
+                                "period": {},
+                                "placement": {},
+                                "port": {},
+                                "public_key": {},
+                                "response_condition": {},
+                                "secret_key": {},
+                                "ssh_known_hosts": {},
+                                "timestamp_format": {},
+                                "user": {}
+                            }
+                        }
+                    },
+                    "logging_splunk": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "name": {},
+                                "placement": {},
+                                "response_condition": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "token": {},
+                                "url": {},
+                                "use_tls": {}
+                            }
+                        }
+                    },
+                    "logging_sumologic": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "format": {},
+                                "format_version": {},
+                                "message_type": {},
+                                "name": {},
+                                "placement": {},
+                                "response_condition": {},
+                                "url": {}
+                            }
+                        }
+                    },
+                    "logging_syslog": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "address": {},
+                                "format": {},
+                                "format_version": {},
+                                "message_type": {},
+                                "name": {},
+                                "placement": {},
+                                "port": {},
+                                "response_condition": {},
+                                "tls_ca_cert": {},
+                                "tls_client_cert": {},
+                                "tls_client_key": {},
+                                "tls_hostname": {},
+                                "token": {},
+                                "use_tls": {}
+                            }
+                        }
+                    },
+                    "name": {},
+                    "product_enablement": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "brotli_compression": {},
+                                "domain_inspector": {},
+                                "image_optimizer": {},
+                                "name": {},
+                                "origin_inspector": {},
+                                "websockets": {}
+                            }
+                        }
+                    },
+                    "rate_limiter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "action": {},
+                                "client_key": {},
+                                "feature_revision": {},
+                                "http_methods": {},
+                                "logger_type": {},
+                                "name": {},
+                                "penalty_box_duration": {},
+                                "ratelimiter_id": {},
+                                "response": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "content": {},
+                                            "content_type": {},
+                                            "status": {}
+                                        }
+                                    }
+                                },
+                                "response_object_name": {},
+                                "rps_limit": {},
+                                "uri_dictionary_name": {},
+                                "window_size": {}
+                            }
+                        }
+                    },
+                    "request_setting": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "action": {},
+                                "bypass_busy_wait": {},
+                                "default_host": {},
+                                "force_miss": {},
+                                "force_ssl": {},
+                                "geo_headers": {},
+                                "hash_keys": {},
+                                "max_stale_age": {},
+                                "name": {},
+                                "request_condition": {},
+                                "timer_support": {},
+                                "xff": {}
+                            }
+                        }
+                    },
+                    "response_object": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "cache_condition": {},
+                                "content": {},
+                                "content_type": {},
+                                "name": {},
+                                "request_condition": {},
+                                "response": {},
+                                "status": {}
+                            }
+                        }
+                    },
+                    "reuse": {},
+                    "snippet": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "content": {},
+                                "name": {},
+                                "priority": {},
+                                "type": {}
+                            }
+                        }
+                    },
+                    "stale_if_error": {},
+                    "stale_if_error_ttl": {},
+                    "vcl": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "content": {},
+                                "main": {},
+                                "name": {}
+                            }
+                        }
+                    },
+                    "version_comment": {},
+                    "waf": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "disabled": {},
+                                "prefetch_condition": {},
+                                "response_object": {},
+                                "waf_id": {}
+                            }
+                        }
+                    }
+                }
             },
             "fastly_service_waf_configuration": {
-                "current": "fastly:index/serviceWafConfiguration:ServiceWafConfiguration"
+                "current": "fastly:index/serviceWafConfiguration:ServiceWafConfiguration",
+                "fields": {
+                    "activate": {},
+                    "active": {},
+                    "allowed_http_versions": {},
+                    "allowed_methods": {},
+                    "allowed_request_content_type": {},
+                    "allowed_request_content_type_charset": {},
+                    "arg_length": {},
+                    "arg_name_length": {},
+                    "cloned_version": {},
+                    "combined_file_sizes": {},
+                    "critical_anomaly_score": {},
+                    "crs_validate_utf8_encoding": {},
+                    "error_anomaly_score": {},
+                    "high_risk_country_codes": {},
+                    "http_violation_score_threshold": {},
+                    "inbound_anomaly_score_threshold": {},
+                    "lfi_score_threshold": {},
+                    "max_file_size": {},
+                    "max_num_args": {},
+                    "notice_anomaly_score": {},
+                    "number": {},
+                    "paranoia_level": {},
+                    "php_injection_score_threshold": {},
+                    "rce_score_threshold": {},
+                    "restricted_extensions": {},
+                    "restricted_headers": {},
+                    "rfi_score_threshold": {},
+                    "rule": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "modsec_rule_id": {},
+                                "revision": {},
+                                "status": {}
+                            }
+                        }
+                    },
+                    "rule_exclusion": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "condition": {},
+                                "exclusion_type": {},
+                                "modsec_rule_ids": {
+                                    "maxItemsOne": false,
+                                    "elem": {}
+                                },
+                                "name": {},
+                                "number": {}
+                            }
+                        }
+                    },
+                    "session_fixation_score_threshold": {},
+                    "sql_injection_score_threshold": {},
+                    "total_arg_length": {},
+                    "waf_id": {},
+                    "warning_anomaly_score": {},
+                    "xss_score_threshold": {}
+                }
             },
             "fastly_tls_activation": {
-                "current": "fastly:index/tlsActivation:TlsActivation"
+                "current": "fastly:index/tlsActivation:TlsActivation",
+                "fields": {
+                    "certificate_id": {},
+                    "configuration_id": {},
+                    "created_at": {},
+                    "domain": {}
+                }
             },
             "fastly_tls_certificate": {
-                "current": "fastly:index/tlsCertificate:TlsCertificate"
+                "current": "fastly:index/tlsCertificate:TlsCertificate",
+                "fields": {
+                    "certificate_body": {},
+                    "created_at": {},
+                    "domains": {
+                        "maxItemsOne": false,
+                        "elem": {}
+                    },
+                    "issued_to": {},
+                    "issuer": {},
+                    "name": {},
+                    "replace": {},
+                    "serial_number": {},
+                    "signature_algorithm": {},
+                    "updated_at": {}
+                }
             },
             "fastly_tls_platform_certificate": {
-                "current": "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate"
+                "current": "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate",
+                "fields": {
+                    "allow_untrusted_root": {},
+                    "certificate_body": {},
+                    "configuration_id": {},
+                    "created_at": {},
+                    "domains": {
+                        "maxItemsOne": false,
+                        "elem": {}
+                    },
+                    "intermediates_blob": {},
+                    "not_after": {},
+                    "not_before": {},
+                    "replace": {},
+                    "updated_at": {}
+                }
             },
             "fastly_tls_private_key": {
-                "current": "fastly:index/tlsPrivateKey:TlsPrivateKey"
+                "current": "fastly:index/tlsPrivateKey:TlsPrivateKey",
+                "fields": {
+                    "created_at": {},
+                    "key_length": {},
+                    "key_pem": {},
+                    "key_type": {},
+                    "name": {},
+                    "public_key_sha1": {},
+                    "replace": {}
+                }
             },
             "fastly_tls_subscription": {
-                "current": "fastly:index/tlsSubscription:TlsSubscription"
+                "current": "fastly:index/tlsSubscription:TlsSubscription",
+                "fields": {
+                    "certificate_authority": {},
+                    "certificate_id": {},
+                    "common_name": {},
+                    "configuration_id": {},
+                    "created_at": {},
+                    "domains": {
+                        "maxItemsOne": false,
+                        "elem": {}
+                    },
+                    "force_destroy": {},
+                    "force_update": {},
+                    "managed_dns_challenge": {
+                        "elem": {}
+                    },
+                    "managed_dns_challenges": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "record_name": {},
+                                "record_type": {},
+                                "record_value": {}
+                            }
+                        }
+                    },
+                    "managed_http_challenges": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "record_name": {},
+                                "record_type": {},
+                                "record_values": {
+                                    "maxItemsOne": false,
+                                    "elem": {}
+                                }
+                            }
+                        }
+                    },
+                    "state": {},
+                    "updated_at": {}
+                }
             },
             "fastly_tls_subscription_validation": {
-                "current": "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation"
+                "current": "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation",
+                "fields": {
+                    "subscription_id": {}
+                }
             },
             "fastly_user": {
-                "current": "fastly:index/user:User"
+                "current": "fastly:index/user:User",
+                "fields": {
+                    "login": {},
+                    "name": {},
+                    "role": {}
+                }
             }
         },
         "datasources": {
@@ -218,6 +1676,7 @@
                 "compressionCodec": "compression_codec",
                 "gzipLevel": "gzip_level",
                 "messageType": "message_type",
+                "projectId": "project_id",
                 "secretKey": "secret_key",
                 "timestampFormat": "timestamp_format"
             },
@@ -434,6 +1893,7 @@
                 "formatVersion": "format_version",
                 "gzipLevel": "gzip_level",
                 "messageType": "message_type",
+                "projectId": "project_id",
                 "responseCondition": "response_condition",
                 "secretKey": "secret_key",
                 "timestampFormat": "timestamp_format"
