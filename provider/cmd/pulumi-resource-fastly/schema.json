@@ -662,6 +662,10 @@
                     "type": "integer",
                     "description": "How frequently the logs should be transferred, in seconds (Default 3600)\n"
                 },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of your Google Cloud Platform project\n"
+                },
                 "secretKey": {
                     "type": "string",
                     "description": "The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required\n",
@@ -679,7 +683,8 @@
             "type": "object",
             "required": [
                 "bucketName",
-                "name"
+                "name",
+                "projectId"
             ]
         },
         "fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub": {
@@ -2448,6 +2453,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of your Google Cloud Platform project\n"
+                },
                 "responseCondition": {
                     "type": "string",
                     "description": "Name of a condition to apply this logging.\n"
@@ -2469,7 +2478,8 @@
             "type": "object",
             "required": [
                 "bucketName",
-                "name"
+                "name",
+                "projectId"
             ]
         },
         "fastly:index/ServiceVclLoggingGooglepubsub:ServiceVclLoggingGooglepubsub": {
