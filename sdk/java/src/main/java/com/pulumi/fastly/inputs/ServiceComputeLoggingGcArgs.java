@@ -137,6 +137,21 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * The ID of your Google Cloud Platform project
+     * 
+     */
+    @Import(name="projectId", required=true)
+    private Output<String> projectId;
+
+    /**
+     * @return The ID of your Google Cloud Platform project
+     * 
+     */
+    public Output<String> projectId() {
+        return this.projectId;
+    }
+
+    /**
      * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      * 
      */
@@ -192,6 +207,7 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
         this.name = $.name;
         this.path = $.path;
         this.period = $.period;
+        this.projectId = $.projectId;
         this.secretKey = $.secretKey;
         this.timestampFormat = $.timestampFormat;
         this.user = $.user;
@@ -384,6 +400,27 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param projectId The ID of your Google Cloud Platform project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId The ID of your Google Cloud Platform project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
+        }
+
+        /**
          * @param secretKey The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
          * 
          * @return builder
@@ -449,6 +486,7 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
         public ServiceComputeLoggingGcArgs build() {
             $.bucketName = Objects.requireNonNull($.bucketName, "expected parameter 'bucketName' to be non-null");
             $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             return $;
         }
     }
