@@ -58,6 +58,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Placement;
         /// <summary>
+        /// The ID of your Google Cloud Platform project
+        /// </summary>
+        public readonly string ProjectId;
+        /// <summary>
         /// Name of a condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
@@ -98,6 +102,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? placement,
 
+            string projectId,
+
             string? responseCondition,
 
             string? secretKey,
@@ -117,6 +123,7 @@ namespace Pulumi.Fastly.Outputs
             Path = path;
             Period = period;
             Placement = placement;
+            ProjectId = projectId;
             ResponseCondition = responseCondition;
             SecretKey = secretKey;
             TimestampFormat = timestampFormat;

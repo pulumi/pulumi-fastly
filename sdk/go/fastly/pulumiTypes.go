@@ -1937,6 +1937,8 @@ type ServiceComputeLoggingGc struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period *int `pulumi:"period"`
+	// The ID of your Google Cloud Platform project
+	ProjectId string `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -1973,6 +1975,8 @@ type ServiceComputeLoggingGcArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// The ID of your Google Cloud Platform project
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -2070,6 +2074,11 @@ func (o ServiceComputeLoggingGcOutput) Path() pulumi.StringPtrOutput {
 // How frequently the logs should be transferred, in seconds (Default 3600)
 func (o ServiceComputeLoggingGcOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// The ID of your Google Cloud Platform project
+func (o ServiceComputeLoggingGcOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGc) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -8431,6 +8440,8 @@ type ServiceVclLoggingGc struct {
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// The ID of your Google Cloud Platform project
+	ProjectId string `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -8475,6 +8486,8 @@ type ServiceVclLoggingGcArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The ID of your Google Cloud Platform project
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -8589,6 +8602,11 @@ func (o ServiceVclLoggingGcOutput) Period() pulumi.IntPtrOutput {
 // Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingGcOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// The ID of your Google Cloud Platform project
+func (o ServiceVclLoggingGcOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGc) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // Name of a condition to apply this logging.

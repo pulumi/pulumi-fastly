@@ -1818,6 +1818,7 @@ class ServiceComputeLoggingGcArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  name: pulumi.Input[str],
+                 project_id: pulumi.Input[str],
                  account_name: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  gzip_level: Optional[pulumi.Input[int]] = None,
@@ -1830,6 +1831,7 @@ class ServiceComputeLoggingGcArgs:
         """
         :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
         :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -1842,6 +1844,7 @@ class ServiceComputeLoggingGcArgs:
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
@@ -1884,6 +1887,18 @@ class ServiceComputeLoggingGcArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The ID of your Google Cloud Platform project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
 
     @property
     @pulumi.getter(name="accountName")
@@ -7213,6 +7228,7 @@ class ServiceVclLoggingGcArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  name: pulumi.Input[str],
+                 project_id: pulumi.Input[str],
                  account_name: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
@@ -7229,6 +7245,7 @@ class ServiceVclLoggingGcArgs:
         """
         :param pulumi.Input[str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
         :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
@@ -7245,6 +7262,7 @@ class ServiceVclLoggingGcArgs:
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
@@ -7295,6 +7313,18 @@ class ServiceVclLoggingGcArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The ID of your Google Cloud Platform project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
 
     @property
     @pulumi.getter(name="accountName")

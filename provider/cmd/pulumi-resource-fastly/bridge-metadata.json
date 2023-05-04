@@ -2,13 +2,113 @@
     "auto-aliasing": {
         "resources": {
             "fastly_service_acl_entries": {
-                "current": "fastly:index/serviceACLEntries:ServiceACLEntries"
+                "current": "fastly:index/serviceACLEntries:ServiceACLEntries",
+                "fields": {
+                    "entry": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_service_authorization": {
                 "current": "fastly:index/serviceAuthorization:ServiceAuthorization"
             },
             "fastly_service_compute": {
-                "current": "fastly:index/serviceCompute:ServiceCompute"
+                "current": "fastly:index/serviceCompute:ServiceCompute",
+                "fields": {
+                    "backend": {
+                        "maxItemsOne": false
+                    },
+                    "dictionary": {
+                        "maxItemsOne": false
+                    },
+                    "domain": {
+                        "maxItemsOne": false
+                    },
+                    "logging_bigquery": {
+                        "maxItemsOne": false
+                    },
+                    "logging_blobstorage": {
+                        "maxItemsOne": false
+                    },
+                    "logging_cloudfiles": {
+                        "maxItemsOne": false
+                    },
+                    "logging_datadog": {
+                        "maxItemsOne": false
+                    },
+                    "logging_digitalocean": {
+                        "maxItemsOne": false
+                    },
+                    "logging_elasticsearch": {
+                        "maxItemsOne": false
+                    },
+                    "logging_ftp": {
+                        "maxItemsOne": false
+                    },
+                    "logging_gcs": {
+                        "maxItemsOne": false
+                    },
+                    "logging_googlepubsub": {
+                        "maxItemsOne": false
+                    },
+                    "logging_heroku": {
+                        "maxItemsOne": false
+                    },
+                    "logging_honeycomb": {
+                        "maxItemsOne": false
+                    },
+                    "logging_https": {
+                        "maxItemsOne": false
+                    },
+                    "logging_kafka": {
+                        "maxItemsOne": false
+                    },
+                    "logging_kinesis": {
+                        "maxItemsOne": false
+                    },
+                    "logging_logentries": {
+                        "maxItemsOne": false
+                    },
+                    "logging_loggly": {
+                        "maxItemsOne": false
+                    },
+                    "logging_logshuttle": {
+                        "maxItemsOne": false
+                    },
+                    "logging_newrelic": {
+                        "maxItemsOne": false
+                    },
+                    "logging_openstack": {
+                        "maxItemsOne": false
+                    },
+                    "logging_papertrail": {
+                        "maxItemsOne": false
+                    },
+                    "logging_s3": {
+                        "maxItemsOne": false
+                    },
+                    "logging_scalyr": {
+                        "maxItemsOne": false
+                    },
+                    "logging_sftp": {
+                        "maxItemsOne": false
+                    },
+                    "logging_splunk": {
+                        "maxItemsOne": false
+                    },
+                    "logging_sumologic": {
+                        "maxItemsOne": false
+                    },
+                    "logging_syslog": {
+                        "maxItemsOne": false
+                    },
+                    "package": {
+                        "maxItemsOne": true
+                    },
+                    "product_enablement": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "fastly_service_dictionary_items": {
                 "current": "fastly:index/serviceDictionaryItems:ServiceDictionaryItems"
@@ -17,25 +117,233 @@
                 "current": "fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent"
             },
             "fastly_service_vcl": {
-                "current": "fastly:index/serviceVcl:ServiceVcl"
+                "current": "fastly:index/serviceVcl:ServiceVcl",
+                "fields": {
+                    "acl": {
+                        "maxItemsOne": false
+                    },
+                    "backend": {
+                        "maxItemsOne": false
+                    },
+                    "cache_setting": {
+                        "maxItemsOne": false
+                    },
+                    "condition": {
+                        "maxItemsOne": false
+                    },
+                    "dictionary": {
+                        "maxItemsOne": false
+                    },
+                    "director": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "backends": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "domain": {
+                        "maxItemsOne": false
+                    },
+                    "dynamicsnippet": {
+                        "maxItemsOne": false
+                    },
+                    "gzip": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "content_types": {
+                                    "maxItemsOne": false
+                                },
+                                "extensions": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "header": {
+                        "maxItemsOne": false
+                    },
+                    "healthcheck": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "headers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "logging_bigquery": {
+                        "maxItemsOne": false
+                    },
+                    "logging_blobstorage": {
+                        "maxItemsOne": false
+                    },
+                    "logging_cloudfiles": {
+                        "maxItemsOne": false
+                    },
+                    "logging_datadog": {
+                        "maxItemsOne": false
+                    },
+                    "logging_digitalocean": {
+                        "maxItemsOne": false
+                    },
+                    "logging_elasticsearch": {
+                        "maxItemsOne": false
+                    },
+                    "logging_ftp": {
+                        "maxItemsOne": false
+                    },
+                    "logging_gcs": {
+                        "maxItemsOne": false
+                    },
+                    "logging_googlepubsub": {
+                        "maxItemsOne": false
+                    },
+                    "logging_heroku": {
+                        "maxItemsOne": false
+                    },
+                    "logging_honeycomb": {
+                        "maxItemsOne": false
+                    },
+                    "logging_https": {
+                        "maxItemsOne": false
+                    },
+                    "logging_kafka": {
+                        "maxItemsOne": false
+                    },
+                    "logging_kinesis": {
+                        "maxItemsOne": false
+                    },
+                    "logging_logentries": {
+                        "maxItemsOne": false
+                    },
+                    "logging_loggly": {
+                        "maxItemsOne": false
+                    },
+                    "logging_logshuttle": {
+                        "maxItemsOne": false
+                    },
+                    "logging_newrelic": {
+                        "maxItemsOne": false
+                    },
+                    "logging_openstack": {
+                        "maxItemsOne": false
+                    },
+                    "logging_papertrail": {
+                        "maxItemsOne": false
+                    },
+                    "logging_s3": {
+                        "maxItemsOne": false
+                    },
+                    "logging_scalyr": {
+                        "maxItemsOne": false
+                    },
+                    "logging_sftp": {
+                        "maxItemsOne": false
+                    },
+                    "logging_splunk": {
+                        "maxItemsOne": false
+                    },
+                    "logging_sumologic": {
+                        "maxItemsOne": false
+                    },
+                    "logging_syslog": {
+                        "maxItemsOne": false
+                    },
+                    "product_enablement": {
+                        "maxItemsOne": true
+                    },
+                    "rate_limiter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "response": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    },
+                    "request_setting": {
+                        "maxItemsOne": false
+                    },
+                    "response_object": {
+                        "maxItemsOne": false
+                    },
+                    "snippet": {
+                        "maxItemsOne": false
+                    },
+                    "vcl": {
+                        "maxItemsOne": false
+                    },
+                    "waf": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "fastly_service_waf_configuration": {
-                "current": "fastly:index/serviceWafConfiguration:ServiceWafConfiguration"
+                "current": "fastly:index/serviceWafConfiguration:ServiceWafConfiguration",
+                "fields": {
+                    "rule": {
+                        "maxItemsOne": false
+                    },
+                    "rule_exclusion": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "modsec_rule_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "fastly_tls_activation": {
                 "current": "fastly:index/tlsActivation:TlsActivation"
             },
             "fastly_tls_certificate": {
-                "current": "fastly:index/tlsCertificate:TlsCertificate"
+                "current": "fastly:index/tlsCertificate:TlsCertificate",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_platform_certificate": {
-                "current": "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate"
+                "current": "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_private_key": {
                 "current": "fastly:index/tlsPrivateKey:TlsPrivateKey"
             },
             "fastly_tls_subscription": {
-                "current": "fastly:index/tlsSubscription:TlsSubscription"
+                "current": "fastly:index/tlsSubscription:TlsSubscription",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    },
+                    "managed_dns_challenges": {
+                        "maxItemsOne": false
+                    },
+                    "managed_http_challenges": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "record_values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "fastly_tls_subscription_validation": {
                 "current": "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation"
@@ -218,6 +526,7 @@
                 "compressionCodec": "compression_codec",
                 "gzipLevel": "gzip_level",
                 "messageType": "message_type",
+                "projectId": "project_id",
                 "secretKey": "secret_key",
                 "timestampFormat": "timestamp_format"
             },
@@ -434,6 +743,7 @@
                 "formatVersion": "format_version",
                 "gzipLevel": "gzip_level",
                 "messageType": "message_type",
+                "projectId": "project_id",
                 "responseCondition": "response_condition",
                 "secretKey": "secret_key",
                 "timestampFormat": "timestamp_format"
