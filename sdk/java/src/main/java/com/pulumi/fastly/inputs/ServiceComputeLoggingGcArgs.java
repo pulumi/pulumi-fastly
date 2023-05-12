@@ -140,15 +140,15 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
      * The ID of your Google Cloud Platform project
      * 
      */
-    @Import(name="projectId", required=true)
-    private Output<String> projectId;
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
 
     /**
      * @return The ID of your Google Cloud Platform project
      * 
      */
-    public Output<String> projectId() {
-        return this.projectId;
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
     }
 
     /**
@@ -405,7 +405,7 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
          * @return builder
          * 
          */
-        public Builder projectId(Output<String> projectId) {
+        public Builder projectId(@Nullable Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
@@ -486,7 +486,6 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
         public ServiceComputeLoggingGcArgs build() {
             $.bucketName = Objects.requireNonNull($.bucketName, "expected parameter 'bucketName' to be non-null");
             $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             return $;
         }
     }

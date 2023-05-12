@@ -1640,8 +1640,6 @@ class ServiceComputeLoggingGc(dict):
         suggest = None
         if key == "bucketName":
             suggest = "bucket_name"
-        elif key == "projectId":
-            suggest = "project_id"
         elif key == "accountName":
             suggest = "account_name"
         elif key == "compressionCodec":
@@ -1650,6 +1648,8 @@ class ServiceComputeLoggingGc(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "projectId":
+            suggest = "project_id"
         elif key == "secretKey":
             suggest = "secret_key"
         elif key == "timestampFormat":
@@ -1669,33 +1669,32 @@ class ServiceComputeLoggingGc(dict):
     def __init__(__self__, *,
                  bucket_name: str,
                  name: str,
-                 project_id: str,
                  account_name: Optional[str] = None,
                  compression_codec: Optional[str] = None,
                  gzip_level: Optional[int] = None,
                  message_type: Optional[str] = None,
                  path: Optional[str] = None,
                  period: Optional[int] = None,
+                 project_id: Optional[str] = None,
                  secret_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None,
                  user: Optional[str] = None):
         """
         :param str bucket_name: The name of the bucket in which to store the logs
         :param str name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str project_id: The ID of your Google Cloud Platform project
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param int period: How frequently the logs should be transferred, in seconds (Default 3600)
+        :param str project_id: The ID of your Google Cloud Platform project
         :param str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
@@ -1708,6 +1707,8 @@ class ServiceComputeLoggingGc(dict):
             pulumi.set(__self__, "path", path)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if timestamp_format is not None:
@@ -1730,14 +1731,6 @@ class ServiceComputeLoggingGc(dict):
         A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The ID of your Google Cloud Platform project
-        """
-        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="accountName")
@@ -1786,6 +1779,14 @@ class ServiceComputeLoggingGc(dict):
         How frequently the logs should be transferred, in seconds (Default 3600)
         """
         return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        The ID of your Google Cloud Platform project
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="secretKey")
@@ -6478,8 +6479,6 @@ class ServiceVclLoggingGc(dict):
         suggest = None
         if key == "bucketName":
             suggest = "bucket_name"
-        elif key == "projectId":
-            suggest = "project_id"
         elif key == "accountName":
             suggest = "account_name"
         elif key == "compressionCodec":
@@ -6490,6 +6489,8 @@ class ServiceVclLoggingGc(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "projectId":
+            suggest = "project_id"
         elif key == "responseCondition":
             suggest = "response_condition"
         elif key == "secretKey":
@@ -6511,7 +6512,6 @@ class ServiceVclLoggingGc(dict):
     def __init__(__self__, *,
                  bucket_name: str,
                  name: str,
-                 project_id: str,
                  account_name: Optional[str] = None,
                  compression_codec: Optional[str] = None,
                  format: Optional[str] = None,
@@ -6521,6 +6521,7 @@ class ServiceVclLoggingGc(dict):
                  path: Optional[str] = None,
                  period: Optional[int] = None,
                  placement: Optional[str] = None,
+                 project_id: Optional[str] = None,
                  response_condition: Optional[str] = None,
                  secret_key: Optional[str] = None,
                  timestamp_format: Optional[str] = None,
@@ -6528,7 +6529,6 @@ class ServiceVclLoggingGc(dict):
         """
         :param str bucket_name: The name of the bucket in which to store the logs
         :param str name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
-        :param str project_id: The ID of your Google Cloud Platform project
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param str format: Apache-style string or VCL variables to use for log formatting
@@ -6538,6 +6538,7 @@ class ServiceVclLoggingGc(dict):
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param int period: How frequently the logs should be transferred, in seconds (Default 3600)
         :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str project_id: The ID of your Google Cloud Platform project
         :param str response_condition: Name of a condition to apply this logging.
         :param str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -6545,7 +6546,6 @@ class ServiceVclLoggingGc(dict):
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
@@ -6564,6 +6564,8 @@ class ServiceVclLoggingGc(dict):
             pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
         if secret_key is not None:
@@ -6588,14 +6590,6 @@ class ServiceVclLoggingGc(dict):
         A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The ID of your Google Cloud Platform project
-        """
-        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="accountName")
@@ -6668,6 +6662,14 @@ class ServiceVclLoggingGc(dict):
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        The ID of your Google Cloud Platform project
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="responseCondition")

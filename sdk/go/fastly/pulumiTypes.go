@@ -1938,7 +1938,7 @@ type ServiceComputeLoggingGc struct {
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period *int `pulumi:"period"`
 	// The ID of your Google Cloud Platform project
-	ProjectId string `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -1976,7 +1976,7 @@ type ServiceComputeLoggingGcArgs struct {
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The ID of your Google Cloud Platform project
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -2077,8 +2077,8 @@ func (o ServiceComputeLoggingGcOutput) Period() pulumi.IntPtrOutput {
 }
 
 // The ID of your Google Cloud Platform project
-func (o ServiceComputeLoggingGcOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceComputeLoggingGc) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o ServiceComputeLoggingGcOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -8441,7 +8441,7 @@ type ServiceVclLoggingGc struct {
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
-	ProjectId string `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -8487,7 +8487,7 @@ type ServiceVclLoggingGcArgs struct {
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -8605,8 +8605,8 @@ func (o ServiceVclLoggingGcOutput) Placement() pulumi.StringPtrOutput {
 }
 
 // The ID of your Google Cloud Platform project
-func (o ServiceVclLoggingGcOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceVclLoggingGc) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o ServiceVclLoggingGcOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // Name of a condition to apply this logging.
