@@ -683,8 +683,7 @@
             "type": "object",
             "required": [
                 "bucketName",
-                "name",
-                "projectId"
+                "name"
             ]
         },
         "fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub": {
@@ -2478,8 +2477,7 @@
             "type": "object",
             "required": [
                 "bucketName",
-                "name",
-                "projectId"
+                "name"
             ]
         },
         "fastly:index/ServiceVclLoggingGooglepubsub:ServiceVclLoggingGooglepubsub": {
@@ -6973,7 +6971,7 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Always delete subscription, even when active domains are present. Defaults to false.\n"
+                    "description": "Always delete subscription, even when active domains are present. Defaults to false.\n\n!\u003e **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.\n"
                 },
                 "forceUpdate": {
                     "type": "boolean",
@@ -7046,7 +7044,7 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Always delete subscription, even when active domains are present. Defaults to false.\n"
+                    "description": "Always delete subscription, even when active domains are present. Defaults to false.\n\n!\u003e **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.\n"
                 },
                 "forceUpdate": {
                     "type": "boolean",
@@ -7090,7 +7088,7 @@
                     },
                     "forceDestroy": {
                         "type": "boolean",
-                        "description": "Always delete subscription, even when active domains are present. Defaults to false.\n"
+                        "description": "Always delete subscription, even when active domains are present. Defaults to false.\n\n!\u003e **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.\n"
                     },
                     "forceUpdate": {
                         "type": "boolean",
@@ -7422,7 +7420,7 @@
             }
         },
         "fastly:index/getTlsActivationIds:getTlsActivationIds": {
-            "description": "Use this data source to get the list of TLS Activation identifiers in Fastly.\n",
+            "description": "Use this data source to get the list of TLS Activation identifiers in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleTlsActivationIds = fastly.getTlsActivationIds({\n    certificateId: fastly_tls_certificate.example.id,\n});\nconst exampleTlsActivation = exampleTlsActivationIds.then(exampleTlsActivationIds =\u003e .map(([, ]) =\u003e (fastly.getTlsActivation({\n    id: __value,\n}))));\nexport const activationDomains = exampleTlsActivation.map(a =\u003e (a.domain));\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\nexample_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]\npulumi.export(\"activationDomains\", [a.domain for a in example_tls_activation])\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getTlsActivationIds.\n",
                 "properties": {
@@ -7931,7 +7929,7 @@
             }
         },
         "fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds": {
-            "description": "Use this data source to get the list of TLS private key identifiers in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = fastly.getTlsPrivateKeyIds({});\nconst example = fastly.getTlsPrivateKey({\n    id: fastly_tls_private_key_ids.demo.ids[0],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.get_tls_private_key_ids()\nexample = fastly.get_tls_private_key(id=fastly_tls_private_key_ids[\"demo\"][\"ids\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var demo = Fastly.GetTlsPrivateKeyIds.Invoke();\n\n    var example = Fastly.GetTlsPrivateKey.Invoke(new()\n    {\n        Id = fastly_tls_private_key_ids.Demo.Ids[0],\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v7/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.LookupTlsPrivateKey(ctx, \u0026fastly.LookupTlsPrivateKeyArgs{\n\t\t\tId: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var demo = FastlyFunctions.getTlsPrivateKeyIds();\n\n        final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()\n            .id(fastly_tls_private_key_ids.demo().ids()[0])\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  demo:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKeyIds\n      Arguments: {}\n  example:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKey\n      Arguments:\n        id: ${fastly_tls_private_key_ids.demo.ids[0]}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Use this data source to get the list of TLS private key identifiers in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = fastly.getTlsPrivateKeyIds({});\nconst example = fastly.getTlsPrivateKey({\n    id: fastly_tls_private_key_ids.demo.ids[0],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.get_tls_private_key_ids()\nexample = fastly.get_tls_private_key(id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var demo = Fastly.GetTlsPrivateKeyIds.Invoke();\n\n    var example = Fastly.GetTlsPrivateKey.Invoke(new()\n    {\n        Id = fastly_tls_private_key_ids.Demo.Ids[0],\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v7/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.LookupTlsPrivateKey(ctx, \u0026fastly.LookupTlsPrivateKeyArgs{\n\t\t\tId: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var demo = FastlyFunctions.getTlsPrivateKeyIds();\n\n        final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()\n            .id(fastly_tls_private_key_ids.demo().ids()[0])\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  demo:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKeyIds\n      Arguments: {}\n  example:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKey\n      Arguments:\n        id: ${fastly_tls_private_key_ids.demo.ids[0]}\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getTlsPrivateKeyIds.\n",
                 "properties": {
@@ -8034,7 +8032,7 @@
             }
         },
         "fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds": {
-            "description": "Use this data source to get the list of IDs of TLS Subscriptions in Fastly.\n",
+            "description": "Use this data source to get the list of IDs of TLS Subscriptions in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleTlsSubscriptionIds = fastly.getTlsSubscriptionIds({});\nconst exampleTlsSubscription = exampleTlsSubscriptionIds.then(exampleTlsSubscriptionIds =\u003e .map(([, ]) =\u003e (fastly.getTlsSubscription({\n    id: __value,\n}))));\nexport const subscriptionDomains = exampleTlsSubscription.map(a =\u003e (a.certificateAuthority));\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_tls_subscription_ids = fastly.get_tls_subscription_ids()\nexample_tls_subscription = [fastly.get_tls_subscription(id=__value) for __key, __value in example_tls_subscription_ids.ids]\npulumi.export(\"subscriptionDomains\", [a.certificate_authority for a in example_tls_subscription])\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getTlsSubscriptionIds.\n",
                 "properties": {
