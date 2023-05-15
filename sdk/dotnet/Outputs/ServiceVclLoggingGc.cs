@@ -60,7 +60,7 @@ namespace Pulumi.Fastly.Outputs
         /// <summary>
         /// The ID of your Google Cloud Platform project
         /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// Name of a condition to apply this logging.
         /// </summary>
@@ -102,7 +102,7 @@ namespace Pulumi.Fastly.Outputs
 
             string? placement,
 
-            string projectId,
+            string? projectId,
 
             string? responseCondition,
 

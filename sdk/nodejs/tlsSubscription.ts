@@ -79,6 +79,8 @@ export class TlsSubscription extends pulumi.CustomResource {
     public readonly domains!: pulumi.Output<string[]>;
     /**
      * Always delete subscription, even when active domains are present. Defaults to false.
+     *
+     * !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
     /**
@@ -191,6 +193,8 @@ export interface TlsSubscriptionState {
     domains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Always delete subscription, even when active domains are present. Defaults to false.
+     *
+     * !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
      */
     forceDestroy?: pulumi.Input<boolean>;
     /**
@@ -243,6 +247,8 @@ export interface TlsSubscriptionArgs {
     domains: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Always delete subscription, even when active domains are present. Defaults to false.
+     *
+     * !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
      */
     forceDestroy?: pulumi.Input<boolean>;
     /**

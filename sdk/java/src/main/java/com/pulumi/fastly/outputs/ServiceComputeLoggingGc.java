@@ -56,7 +56,7 @@ public final class ServiceComputeLoggingGc {
      * @return The ID of your Google Cloud Platform project
      * 
      */
-    private String projectId;
+    private @Nullable String projectId;
     /**
      * @return The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      * 
@@ -134,8 +134,8 @@ public final class ServiceComputeLoggingGc {
      * @return The ID of your Google Cloud Platform project
      * 
      */
-    public String projectId() {
-        return this.projectId;
+    public Optional<String> projectId() {
+        return Optional.ofNullable(this.projectId);
     }
     /**
      * @return The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -176,7 +176,7 @@ public final class ServiceComputeLoggingGc {
         private String name;
         private @Nullable String path;
         private @Nullable Integer period;
-        private String projectId;
+        private @Nullable String projectId;
         private @Nullable String secretKey;
         private @Nullable String timestampFormat;
         private @Nullable String user;
@@ -238,8 +238,8 @@ public final class ServiceComputeLoggingGc {
             return this;
         }
         @CustomType.Setter
-        public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+        public Builder projectId(@Nullable String projectId) {
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter

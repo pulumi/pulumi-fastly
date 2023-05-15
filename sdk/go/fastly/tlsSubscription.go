@@ -46,6 +46,8 @@ type TlsSubscription struct {
 	// List of domains on which to enable TLS.
 	Domains pulumi.StringArrayOutput `pulumi:"domains"`
 	// Always delete subscription, even when active domains are present. Defaults to false.
+	//
+	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate pulumi.BoolPtrOutput `pulumi:"forceUpdate"`
@@ -111,6 +113,8 @@ type tlsSubscriptionState struct {
 	// List of domains on which to enable TLS.
 	Domains []string `pulumi:"domains"`
 	// Always delete subscription, even when active domains are present. Defaults to false.
+	//
+	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate *bool `pulumi:"forceUpdate"`
@@ -142,6 +146,8 @@ type TlsSubscriptionState struct {
 	// List of domains on which to enable TLS.
 	Domains pulumi.StringArrayInput
 	// Always delete subscription, even when active domains are present. Defaults to false.
+	//
+	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
 	ForceDestroy pulumi.BoolPtrInput
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate pulumi.BoolPtrInput
@@ -173,6 +179,8 @@ type tlsSubscriptionArgs struct {
 	// List of domains on which to enable TLS.
 	Domains []string `pulumi:"domains"`
 	// Always delete subscription, even when active domains are present. Defaults to false.
+	//
+	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate *bool `pulumi:"forceUpdate"`
@@ -189,6 +197,8 @@ type TlsSubscriptionArgs struct {
 	// List of domains on which to enable TLS.
 	Domains pulumi.StringArrayInput
 	// Always delete subscription, even when active domains are present. Defaults to false.
+	//
+	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
 	ForceDestroy pulumi.BoolPtrInput
 	// Always update subscription, even when active domains are present. Defaults to false.
 	ForceUpdate pulumi.BoolPtrInput
@@ -312,6 +322,8 @@ func (o TlsSubscriptionOutput) Domains() pulumi.StringArrayOutput {
 }
 
 // Always delete subscription, even when active domains are present. Defaults to false.
+//
+// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
 func (o TlsSubscriptionOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TlsSubscription) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }

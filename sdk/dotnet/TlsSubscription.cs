@@ -69,6 +69,8 @@ namespace Pulumi.Fastly
 
         /// <summary>
         /// Always delete subscription, even when active domains are present. Defaults to false.
+        /// 
+        /// !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -187,6 +189,8 @@ namespace Pulumi.Fastly
 
         /// <summary>
         /// Always delete subscription, even when active domains are present. Defaults to false.
+        /// 
+        /// !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -249,6 +253,8 @@ namespace Pulumi.Fastly
 
         /// <summary>
         /// Always delete subscription, even when active domains are present. Defaults to false.
+        /// 
+        /// !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }

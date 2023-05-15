@@ -71,7 +71,7 @@ public final class ServiceVclLoggingGc {
      * @return The ID of your Google Cloud Platform project
      * 
      */
-    private String projectId;
+    private @Nullable String projectId;
     /**
      * @return Name of a condition to apply this logging.
      * 
@@ -175,8 +175,8 @@ public final class ServiceVclLoggingGc {
      * @return The ID of your Google Cloud Platform project
      * 
      */
-    public String projectId() {
-        return this.projectId;
+    public Optional<String> projectId() {
+        return Optional.ofNullable(this.projectId);
     }
     /**
      * @return Name of a condition to apply this logging.
@@ -227,7 +227,7 @@ public final class ServiceVclLoggingGc {
         private @Nullable String path;
         private @Nullable Integer period;
         private @Nullable String placement;
-        private String projectId;
+        private @Nullable String projectId;
         private @Nullable String responseCondition;
         private @Nullable String secretKey;
         private @Nullable String timestampFormat;
@@ -309,8 +309,8 @@ public final class ServiceVclLoggingGc {
             return this;
         }
         @CustomType.Setter
-        public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+        public Builder projectId(@Nullable String projectId) {
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter

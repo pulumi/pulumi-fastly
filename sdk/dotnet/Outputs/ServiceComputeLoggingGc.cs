@@ -48,7 +48,7 @@ namespace Pulumi.Fastly.Outputs
         /// <summary>
         /// The ID of your Google Cloud Platform project
         /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         /// </summary>
@@ -80,7 +80,7 @@ namespace Pulumi.Fastly.Outputs
 
             int? period,
 
-            string projectId,
+            string? projectId,
 
             string? secretKey,
 

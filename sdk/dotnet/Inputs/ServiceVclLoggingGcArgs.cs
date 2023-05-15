@@ -81,8 +81,8 @@ namespace Pulumi.Fastly.Inputs
         /// <summary>
         /// The ID of your Google Cloud Platform project
         /// </summary>
-        [Input("projectId", required: true)]
-        public Input<string> ProjectId { get; set; } = null!;
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Name of a condition to apply this logging.
