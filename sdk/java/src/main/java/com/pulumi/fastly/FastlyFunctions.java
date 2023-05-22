@@ -10,6 +10,8 @@ import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
+import com.pulumi.fastly.inputs.GetPackageHashArgs;
+import com.pulumi.fastly.inputs.GetPackageHashPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationIdsPlainArgs;
@@ -31,6 +33,7 @@ import com.pulumi.fastly.inputs.GetWafRulesPlainArgs;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
+import com.pulumi.fastly.outputs.GetPackageHashResult;
 import com.pulumi.fastly.outputs.GetServicesResult;
 import com.pulumi.fastly.outputs.GetTlsActivationIdsResult;
 import com.pulumi.fastly.outputs.GetTlsActivationResult;
@@ -633,6 +636,288 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getFastlyIpRanges:getFastlyIpRanges", TypeShape.of(GetFastlyIpRangesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+     * import com.pulumi.fastly.ServiceCompute;
+     * import com.pulumi.fastly.ServiceComputeArgs;
+     * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .build());
+     * 
+     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *             .package_(ServiceComputePackageArgs.builder()
+     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
+     *                 .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetPackageHashResult> getPackageHash() {
+        return getPackageHash(GetPackageHashArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+     * import com.pulumi.fastly.ServiceCompute;
+     * import com.pulumi.fastly.ServiceComputeArgs;
+     * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .build());
+     * 
+     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *             .package_(ServiceComputePackageArgs.builder()
+     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
+     *                 .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetPackageHashResult> getPackageHashPlain() {
+        return getPackageHashPlain(GetPackageHashPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+     * import com.pulumi.fastly.ServiceCompute;
+     * import com.pulumi.fastly.ServiceComputeArgs;
+     * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .build());
+     * 
+     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *             .package_(ServiceComputePackageArgs.builder()
+     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
+     *                 .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetPackageHashResult> getPackageHash(GetPackageHashArgs args) {
+        return getPackageHash(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+     * import com.pulumi.fastly.ServiceCompute;
+     * import com.pulumi.fastly.ServiceComputeArgs;
+     * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .build());
+     * 
+     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *             .package_(ServiceComputePackageArgs.builder()
+     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
+     *                 .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetPackageHashResult> getPackageHashPlain(GetPackageHashPlainArgs args) {
+        return getPackageHashPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+     * import com.pulumi.fastly.ServiceCompute;
+     * import com.pulumi.fastly.ServiceComputeArgs;
+     * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .build());
+     * 
+     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *             .package_(ServiceComputePackageArgs.builder()
+     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
+     *                 .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetPackageHashResult> getPackageHash(GetPackageHashArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getPackageHash:getPackageHash", TypeShape.of(GetPackageHashResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+     * import com.pulumi.fastly.ServiceCompute;
+     * import com.pulumi.fastly.ServiceComputeArgs;
+     * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .build());
+     * 
+     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *             .package_(ServiceComputePackageArgs.builder()
+     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
+     *                 .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetPackageHashResult> getPackageHashPlain(GetPackageHashPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getPackageHash:getPackageHash", TypeShape.of(GetPackageHashResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).

@@ -8,6 +8,7 @@ import typing
 from .get_datacenters import *
 from .get_dictionaries import *
 from .get_fastly_ip_ranges import *
+from .get_package_hash import *
 from .get_services import *
 from .get_tls_activation import *
 from .get_tls_activation_ids import *

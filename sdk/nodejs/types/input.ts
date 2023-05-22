@@ -1085,6 +1085,9 @@ export interface ServiceComputePackage {
      * The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
      */
     filename?: pulumi.Input<string>;
+    /**
+     * Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     */
     sourceCodeHash?: pulumi.Input<string>;
 }
 
