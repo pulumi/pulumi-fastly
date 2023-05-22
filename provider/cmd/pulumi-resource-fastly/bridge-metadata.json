@@ -362,6 +362,9 @@
             "fastly_ip_ranges": {
                 "current": "fastly:index/getFastlyIpRanges:getFastlyIpRanges"
             },
+            "fastly_package_hash": {
+                "current": "fastly:index/getPackageHash:getPackageHash"
+            },
             "fastly_services": {
                 "current": "fastly:index/getServices:getServices"
             },
@@ -430,6 +433,7 @@
             "fastly:index/getDatacenters:getDatacenters": "fastly_datacenters",
             "fastly:index/getDictionaries:getDictionaries": "fastly_dictionaries",
             "fastly:index/getFastlyIpRanges:getFastlyIpRanges": "fastly_ip_ranges",
+            "fastly:index/getPackageHash:getPackageHash": "fastly_package_hash",
             "fastly:index/getServices:getServices": "fastly_services",
             "fastly:index/getTlsActivation:getTlsActivation": "fastly_tls_activation",
             "fastly:index/getTlsActivationIds:getTlsActivationIds": "fastly_tls_activation_ids",
