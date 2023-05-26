@@ -10,7 +10,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class ServiceComputePackage {
+public final class GetPackageHashResult {
     /**
      * @return The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      * 
@@ -22,12 +22,17 @@ public final class ServiceComputePackage {
      */
     private @Nullable String filename;
     /**
-     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     * @return A SHA512 hash of all files (in sorted order) within the package.
      * 
      */
-    private @Nullable String sourceCodeHash;
+    private String hash;
+    /**
+     * @return The provider-assigned unique ID for this managed resource.
+     * 
+     */
+    private String id;
 
-    private ServiceComputePackage() {}
+    private GetPackageHashResult() {}
     /**
      * @return The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      * 
@@ -43,31 +48,40 @@ public final class ServiceComputePackage {
         return Optional.ofNullable(this.filename);
     }
     /**
-     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     * @return A SHA512 hash of all files (in sorted order) within the package.
      * 
      */
-    public Optional<String> sourceCodeHash() {
-        return Optional.ofNullable(this.sourceCodeHash);
+    public String hash() {
+        return this.hash;
+    }
+    /**
+     * @return The provider-assigned unique ID for this managed resource.
+     * 
+     */
+    public String id() {
+        return this.id;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public static Builder builder(ServiceComputePackage defaults) {
+    public static Builder builder(GetPackageHashResult defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String content;
         private @Nullable String filename;
-        private @Nullable String sourceCodeHash;
+        private String hash;
+        private String id;
         public Builder() {}
-        public Builder(ServiceComputePackage defaults) {
+        public Builder(GetPackageHashResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.content = defaults.content;
     	      this.filename = defaults.filename;
-    	      this.sourceCodeHash = defaults.sourceCodeHash;
+    	      this.hash = defaults.hash;
+    	      this.id = defaults.id;
         }
 
         @CustomType.Setter
@@ -81,15 +95,21 @@ public final class ServiceComputePackage {
             return this;
         }
         @CustomType.Setter
-        public Builder sourceCodeHash(@Nullable String sourceCodeHash) {
-            this.sourceCodeHash = sourceCodeHash;
+        public Builder hash(String hash) {
+            this.hash = Objects.requireNonNull(hash);
             return this;
         }
-        public ServiceComputePackage build() {
-            final var o = new ServiceComputePackage();
+        @CustomType.Setter
+        public Builder id(String id) {
+            this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        public GetPackageHashResult build() {
+            final var o = new GetPackageHashResult();
             o.content = content;
             o.filename = filename;
-            o.sourceCodeHash = sourceCodeHash;
+            o.hash = hash;
+            o.id = id;
             return o;
         }
     }

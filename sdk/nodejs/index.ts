@@ -18,6 +18,11 @@ export { GetFastlyIpRangesResult } from "./getFastlyIpRanges";
 export const getFastlyIpRanges: typeof import("./getFastlyIpRanges").getFastlyIpRanges = null as any;
 utilities.lazyLoad(exports, ["getFastlyIpRanges"], () => require("./getFastlyIpRanges"));
 
+export { GetPackageHashArgs, GetPackageHashResult, GetPackageHashOutputArgs } from "./getPackageHash";
+export const getPackageHash: typeof import("./getPackageHash").getPackageHash = null as any;
+export const getPackageHashOutput: typeof import("./getPackageHash").getPackageHashOutput = null as any;
+utilities.lazyLoad(exports, ["getPackageHash","getPackageHashOutput"], () => require("./getPackageHash"));
+
 export { GetServicesResult } from "./getServices";
 export const getServices: typeof import("./getServices").getServices = null as any;
 utilities.lazyLoad(exports, ["getServices"], () => require("./getServices"));

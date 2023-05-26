@@ -21,6 +21,9 @@ namespace Pulumi.Fastly.Outputs
         /// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
         /// </summary>
         public readonly string? Filename;
+        /// <summary>
+        /// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+        /// </summary>
         public readonly string? SourceCodeHash;
 
         [OutputConstructor]

@@ -18,6 +18,7 @@
         "getDatacenters.ts",
         "getDictionaries.ts",
         "getFastlyIpRanges.ts",
+        "getPackageHash.ts",
         "getServices.ts",
         "getTlsActivation.ts",
         "getTlsActivationIds.ts",

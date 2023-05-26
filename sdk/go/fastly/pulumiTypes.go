@@ -4865,7 +4865,8 @@ type ServiceComputePackage struct {
 	// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
 	Content *string `pulumi:"content"`
 	// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
-	Filename       *string `pulumi:"filename"`
+	Filename *string `pulumi:"filename"`
+	// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
 	SourceCodeHash *string `pulumi:"sourceCodeHash"`
 }
 
@@ -4884,7 +4885,8 @@ type ServiceComputePackageArgs struct {
 	// The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
 	Content pulumi.StringPtrInput `pulumi:"content"`
 	// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
-	Filename       pulumi.StringPtrInput `pulumi:"filename"`
+	Filename pulumi.StringPtrInput `pulumi:"filename"`
+	// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
 	SourceCodeHash pulumi.StringPtrInput `pulumi:"sourceCodeHash"`
 }
 
@@ -4975,6 +4977,7 @@ func (o ServiceComputePackageOutput) Filename() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputePackage) *string { return v.Filename }).(pulumi.StringPtrOutput)
 }
 
+// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
 func (o ServiceComputePackageOutput) SourceCodeHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputePackage) *string { return v.SourceCodeHash }).(pulumi.StringPtrOutput)
 }
@@ -5023,6 +5026,7 @@ func (o ServiceComputePackagePtrOutput) Filename() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
 func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputePackage) *string {
 		if v == nil {

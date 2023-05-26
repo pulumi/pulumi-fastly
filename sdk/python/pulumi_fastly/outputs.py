@@ -3757,6 +3757,7 @@ class ServiceComputePackage(dict):
         """
         :param str content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
         :param str filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+        :param str source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
@@ -3784,6 +3785,9 @@ class ServiceComputePackage(dict):
     @property
     @pulumi.getter(name="sourceCodeHash")
     def source_code_hash(self) -> Optional[str]:
+        """
+        Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+        """
         return pulumi.get(self, "source_code_hash")
 
 

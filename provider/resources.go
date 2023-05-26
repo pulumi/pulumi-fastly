@@ -22,7 +22,7 @@ import (
 	"unicode"
 
 	"github.com/fastly/terraform-provider-fastly/fastly"
-	"github.com/pulumi/pulumi-fastly/provider/v7/pkg/version"
+	"github.com/pulumi/pulumi-fastly/provider/v8/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"

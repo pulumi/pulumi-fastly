@@ -11,9 +11,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class ServiceComputePackageArgs extends com.pulumi.resources.ResourceArgs {
+public final class GetPackageHashArgs extends com.pulumi.resources.InvokeArgs {
 
-    public static final ServiceComputePackageArgs Empty = new ServiceComputePackageArgs();
+    public static final GetPackageHashArgs Empty = new GetPackageHashArgs();
 
     /**
      * The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
@@ -45,45 +45,29 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.filename);
     }
 
-    /**
-     * Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
-     * 
-     */
-    @Import(name="sourceCodeHash")
-    private @Nullable Output<String> sourceCodeHash;
+    private GetPackageHashArgs() {}
 
-    /**
-     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
-     * 
-     */
-    public Optional<Output<String>> sourceCodeHash() {
-        return Optional.ofNullable(this.sourceCodeHash);
-    }
-
-    private ServiceComputePackageArgs() {}
-
-    private ServiceComputePackageArgs(ServiceComputePackageArgs $) {
+    private GetPackageHashArgs(GetPackageHashArgs $) {
         this.content = $.content;
         this.filename = $.filename;
-        this.sourceCodeHash = $.sourceCodeHash;
     }
 
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(ServiceComputePackageArgs defaults) {
+    public static Builder builder(GetPackageHashArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private ServiceComputePackageArgs $;
+        private GetPackageHashArgs $;
 
         public Builder() {
-            $ = new ServiceComputePackageArgs();
+            $ = new GetPackageHashArgs();
         }
 
-        public Builder(ServiceComputePackageArgs defaults) {
-            $ = new ServiceComputePackageArgs(Objects.requireNonNull(defaults));
+        public Builder(GetPackageHashArgs defaults) {
+            $ = new GetPackageHashArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -128,28 +112,7 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
             return filename(Output.of(filename));
         }
 
-        /**
-         * @param sourceCodeHash Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder sourceCodeHash(@Nullable Output<String> sourceCodeHash) {
-            $.sourceCodeHash = sourceCodeHash;
-            return this;
-        }
-
-        /**
-         * @param sourceCodeHash Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder sourceCodeHash(String sourceCodeHash) {
-            return sourceCodeHash(Output.of(sourceCodeHash));
-        }
-
-        public ServiceComputePackageArgs build() {
+        public GetPackageHashArgs build() {
             return $;
         }
     }
