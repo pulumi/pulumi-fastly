@@ -1447,6 +1447,36 @@
                 }
             }
         },
+        "fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink": {
+            "properties": {
+                "linkId": {
+                    "type": "string",
+                    "description": "An alphanumeric string identifying the resource link.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the resource link.\n"
+                },
+                "resourceId": {
+                    "type": "string",
+                    "description": "The ID of the underlying linked resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "resourceId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "linkId",
+                        "name",
+                        "resourceId"
+                    ]
+                }
+            }
+        },
         "fastly:index/ServiceVclAcl:ServiceVclAcl": {
             "properties": {
                 "aclId": {
@@ -3522,7 +3552,7 @@
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)\n"
+                    "description": "The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)\n"
                 },
                 "clientKey": {
                     "type": "string",
@@ -4107,6 +4137,156 @@
         }
     },
     "resources": {
+        "fastly:index/configstore:Configstore": {
+            "description": "Provides a container that lets you store data in key-value pairs that are accessible to Compute@Edge services during request processing.\n\nIn order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\n// IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n// This requires a two-step `pulumi up` as we can't guarantee deletion order.\n// e.g. resource_link deletion within fastly_service_compute might not finish first.\nconst exampleConfigstore = new fastly.Configstore(\"exampleConfigstore\", {});\nconst examplePackageHash = fastly.getPackageHash({\n    filename: \"package.tar.gz\",\n});\nconst exampleServiceCompute = new fastly.ServiceCompute(\"exampleServiceCompute\", {\n    domains: [{\n        name: \"demo.example.com\",\n    }],\n    \"package\": {\n        filename: \"package.tar.gz\",\n        sourceCodeHash: examplePackageHash.then(examplePackageHash =\u003e examplePackageHash.hash),\n    },\n    resourceLinks: [{\n        name: \"my_resource_link\",\n        resourceId: exampleConfigstore.id,\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\n# IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n# This requires a two-step `pulumi up` as we can't guarantee deletion order.\n# e.g. resource_link deletion within fastly_service_compute might not finish first.\nexample_configstore = fastly.Configstore(\"exampleConfigstore\")\nexample_package_hash = fastly.get_package_hash(filename=\"package.tar.gz\")\nexample_service_compute = fastly.ServiceCompute(\"exampleServiceCompute\",\n    domains=[fastly.ServiceComputeDomainArgs(\n        name=\"demo.example.com\",\n    )],\n    package=fastly.ServiceComputePackageArgs(\n        filename=\"package.tar.gz\",\n        source_code_hash=example_package_hash.hash,\n    ),\n    resource_links=[fastly.ServiceComputeResourceLinkArgs(\n        name=\"my_resource_link\",\n        resource_id=example_configstore.id,\n    )],\n    force_destroy=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n    // This requires a two-step `pulumi up` as we can't guarantee deletion order.\n    // e.g. resource_link deletion within fastly_service_compute might not finish first.\n    var exampleConfigstore = new Fastly.Configstore(\"exampleConfigstore\");\n\n    var examplePackageHash = Fastly.GetPackageHash.Invoke(new()\n    {\n        Filename = \"package.tar.gz\",\n    });\n\n    var exampleServiceCompute = new Fastly.ServiceCompute(\"exampleServiceCompute\", new()\n    {\n        Domains = new[]\n        {\n            new Fastly.Inputs.ServiceComputeDomainArgs\n            {\n                Name = \"demo.example.com\",\n            },\n        },\n        Package = new Fastly.Inputs.ServiceComputePackageArgs\n        {\n            Filename = \"package.tar.gz\",\n            SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =\u003e getPackageHashResult.Hash),\n        },\n        ResourceLinks = new[]\n        {\n            new Fastly.Inputs.ServiceComputeResourceLinkArgs\n            {\n                Name = \"my_resource_link\",\n                ResourceId = exampleConfigstore.Id,\n            },\n        },\n        ForceDestroy = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleConfigstore, err := fastly.NewConfigstore(ctx, \"exampleConfigstore\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texamplePackageHash, err := fastly.GetPackageHash(ctx, \u0026fastly.GetPackageHashArgs{\n\t\t\tFilename: pulumi.StringRef(\"package.tar.gz\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewServiceCompute(ctx, \"exampleServiceCompute\", \u0026fastly.ServiceComputeArgs{\n\t\t\tDomains: fastly.ServiceComputeDomainArray{\n\t\t\t\t\u0026fastly.ServiceComputeDomainArgs{\n\t\t\t\t\tName: pulumi.String(\"demo.example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tPackage: \u0026fastly.ServiceComputePackageArgs{\n\t\t\t\tFilename:       pulumi.String(\"package.tar.gz\"),\n\t\t\t\tSourceCodeHash: *pulumi.String(examplePackageHash.Hash),\n\t\t\t},\n\t\t\tResourceLinks: fastly.ServiceComputeResourceLinkArray{\n\t\t\t\t\u0026fastly.ServiceComputeResourceLinkArgs{\n\t\t\t\t\tName:       pulumi.String(\"my_resource_link\"),\n\t\t\t\t\tResourceId: exampleConfigstore.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.Configstore;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetPackageHashArgs;\nimport com.pulumi.fastly.ServiceCompute;\nimport com.pulumi.fastly.ServiceComputeArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeDomainArgs;\nimport com.pulumi.fastly.inputs.ServiceComputePackageArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleConfigstore = new Configstore(\"exampleConfigstore\");\n\n        final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()\n            .filename(\"package.tar.gz\")\n            .build());\n\n        var exampleServiceCompute = new ServiceCompute(\"exampleServiceCompute\", ServiceComputeArgs.builder()        \n            .domains(ServiceComputeDomainArgs.builder()\n                .name(\"demo.example.com\")\n                .build())\n            .package_(ServiceComputePackageArgs.builder()\n                .filename(\"package.tar.gz\")\n                .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -\u003e getPackageHashResult.hash()))\n                .build())\n            .resourceLinks(ServiceComputeResourceLinkArgs.builder()\n                .name(\"my_resource_link\")\n                .resourceId(exampleConfigstore.id())\n                .build())\n            .forceDestroy(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n  # This requires a two-step `pulumi up` as we can't guarantee deletion order.\n  # e.g. resource_link deletion within fastly_service_compute might not finish first.\n  exampleConfigstore:\n    type: fastly:Configstore\n  exampleServiceCompute:\n    type: fastly:ServiceCompute\n    properties:\n      domains:\n        - name: demo.example.com\n      package:\n        filename: package.tar.gz\n        sourceCodeHash: ${examplePackageHash.hash}\n      resourceLinks:\n        - name: my_resource_link\n          resourceId: ${exampleConfigstore.id}\n      forceDestroy: true\nvariables:\n  examplePackageHash:\n    fn::invoke:\n      Function: fastly:getPackageHash\n      Arguments:\n        filename: package.tar.gz\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nFastly Config Stores can be imported using their Store ID, e.g.\n\n```sh\n $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
+            "properties": {
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Allow the Config Store to be deleted, even if it contains entries. Defaults to false.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Allow the Config Store to be deleted, even if it contains entries. Defaults to false.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Configstore resources.\n",
+                "properties": {
+                    "forceDestroy": {
+                        "type": "boolean",
+                        "description": "Allow the Config Store to be deleted, even if it contains entries. Defaults to false.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/configstoreEntries:ConfigstoreEntries": {
+            "description": "\n\n\n## Import\n\nFastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.\n\n```sh\n $ pulumi import fastly:index/configstoreEntries:ConfigstoreEntries example xxxxxxxxxxxxxxxxxxxx/entries\n```\n\n ",
+            "properties": {
+                "entries": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "A map representing an entry in the Config Store, (key/value)\n"
+                },
+                "manageEntries": {
+                    "type": "boolean",
+                    "description": "Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added\nexternally from the config seeded values.\n"
+                },
+                "storeId": {
+                    "type": "string",
+                    "description": "An alphanumeric string identifying the Config Store.\n"
+                }
+            },
+            "required": [
+                "entries",
+                "storeId"
+            ],
+            "inputProperties": {
+                "entries": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "A map representing an entry in the Config Store, (key/value)\n"
+                },
+                "manageEntries": {
+                    "type": "boolean",
+                    "description": "Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added\nexternally from the config seeded values.\n"
+                },
+                "storeId": {
+                    "type": "string",
+                    "description": "An alphanumeric string identifying the Config Store.\n"
+                }
+            },
+            "requiredInputs": [
+                "entries",
+                "storeId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConfigstoreEntries resources.\n",
+                "properties": {
+                    "entries": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "A map representing an entry in the Config Store, (key/value)\n"
+                    },
+                    "manageEntries": {
+                        "type": "boolean",
+                        "description": "Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added\nexternally from the config seeded values.\n"
+                    },
+                    "storeId": {
+                        "type": "string",
+                        "description": "An alphanumeric string identifying the Config Store.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/kvstore:Kvstore": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\n// IMPORTANT: Deleting a KV Store requires first deleting its resource_link.\n// This requires a two-step `pulumi up` as we can't guarantee deletion order.\n// e.g. resource_link deletion within fastly_service_compute might not finish first.\nconst exampleKvstore = new fastly.Kvstore(\"exampleKvstore\", {});\nconst examplePackageHash = fastly.getPackageHash({\n    filename: \"package.tar.gz\",\n});\nconst exampleServiceCompute = new fastly.ServiceCompute(\"exampleServiceCompute\", {\n    domains: [{\n        name: \"demo.example.com\",\n    }],\n    \"package\": {\n        filename: \"package.tar.gz\",\n        sourceCodeHash: examplePackageHash.then(examplePackageHash =\u003e examplePackageHash.hash),\n    },\n    resourceLinks: [{\n        name: \"my_resource_link\",\n        resourceId: exampleKvstore.id,\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\n# IMPORTANT: Deleting a KV Store requires first deleting its resource_link.\n# This requires a two-step `pulumi up` as we can't guarantee deletion order.\n# e.g. resource_link deletion within fastly_service_compute might not finish first.\nexample_kvstore = fastly.Kvstore(\"exampleKvstore\")\nexample_package_hash = fastly.get_package_hash(filename=\"package.tar.gz\")\nexample_service_compute = fastly.ServiceCompute(\"exampleServiceCompute\",\n    domains=[fastly.ServiceComputeDomainArgs(\n        name=\"demo.example.com\",\n    )],\n    package=fastly.ServiceComputePackageArgs(\n        filename=\"package.tar.gz\",\n        source_code_hash=example_package_hash.hash,\n    ),\n    resource_links=[fastly.ServiceComputeResourceLinkArgs(\n        name=\"my_resource_link\",\n        resource_id=example_kvstore.id,\n    )],\n    force_destroy=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // IMPORTANT: Deleting a KV Store requires first deleting its resource_link.\n    // This requires a two-step `pulumi up` as we can't guarantee deletion order.\n    // e.g. resource_link deletion within fastly_service_compute might not finish first.\n    var exampleKvstore = new Fastly.Kvstore(\"exampleKvstore\");\n\n    var examplePackageHash = Fastly.GetPackageHash.Invoke(new()\n    {\n        Filename = \"package.tar.gz\",\n    });\n\n    var exampleServiceCompute = new Fastly.ServiceCompute(\"exampleServiceCompute\", new()\n    {\n        Domains = new[]\n        {\n            new Fastly.Inputs.ServiceComputeDomainArgs\n            {\n                Name = \"demo.example.com\",\n            },\n        },\n        Package = new Fastly.Inputs.ServiceComputePackageArgs\n        {\n            Filename = \"package.tar.gz\",\n            SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =\u003e getPackageHashResult.Hash),\n        },\n        ResourceLinks = new[]\n        {\n            new Fastly.Inputs.ServiceComputeResourceLinkArgs\n            {\n                Name = \"my_resource_link\",\n                ResourceId = exampleKvstore.Id,\n            },\n        },\n        ForceDestroy = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleKvstore, err := fastly.NewKvstore(ctx, \"exampleKvstore\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texamplePackageHash, err := fastly.GetPackageHash(ctx, \u0026fastly.GetPackageHashArgs{\n\t\t\tFilename: pulumi.StringRef(\"package.tar.gz\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewServiceCompute(ctx, \"exampleServiceCompute\", \u0026fastly.ServiceComputeArgs{\n\t\t\tDomains: fastly.ServiceComputeDomainArray{\n\t\t\t\t\u0026fastly.ServiceComputeDomainArgs{\n\t\t\t\t\tName: pulumi.String(\"demo.example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tPackage: \u0026fastly.ServiceComputePackageArgs{\n\t\t\t\tFilename:       pulumi.String(\"package.tar.gz\"),\n\t\t\t\tSourceCodeHash: *pulumi.String(examplePackageHash.Hash),\n\t\t\t},\n\t\t\tResourceLinks: fastly.ServiceComputeResourceLinkArray{\n\t\t\t\t\u0026fastly.ServiceComputeResourceLinkArgs{\n\t\t\t\t\tName:       pulumi.String(\"my_resource_link\"),\n\t\t\t\t\tResourceId: exampleKvstore.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.Kvstore;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetPackageHashArgs;\nimport com.pulumi.fastly.ServiceCompute;\nimport com.pulumi.fastly.ServiceComputeArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeDomainArgs;\nimport com.pulumi.fastly.inputs.ServiceComputePackageArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleKvstore = new Kvstore(\"exampleKvstore\");\n\n        final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()\n            .filename(\"package.tar.gz\")\n            .build());\n\n        var exampleServiceCompute = new ServiceCompute(\"exampleServiceCompute\", ServiceComputeArgs.builder()        \n            .domains(ServiceComputeDomainArgs.builder()\n                .name(\"demo.example.com\")\n                .build())\n            .package_(ServiceComputePackageArgs.builder()\n                .filename(\"package.tar.gz\")\n                .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -\u003e getPackageHashResult.hash()))\n                .build())\n            .resourceLinks(ServiceComputeResourceLinkArgs.builder()\n                .name(\"my_resource_link\")\n                .resourceId(exampleKvstore.id())\n                .build())\n            .forceDestroy(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # IMPORTANT: Deleting a KV Store requires first deleting its resource_link.\n  # This requires a two-step `pulumi up` as we can't guarantee deletion order.\n  # e.g. resource_link deletion within fastly_service_compute might not finish first.\n  exampleKvstore:\n    type: fastly:Kvstore\n  exampleServiceCompute:\n    type: fastly:ServiceCompute\n    properties:\n      domains:\n        - name: demo.example.com\n      package:\n        filename: package.tar.gz\n        sourceCodeHash: ${examplePackageHash.hash}\n      resourceLinks:\n        - name: my_resource_link\n          resourceId: ${exampleKvstore.id}\n      forceDestroy: true\nvariables:\n  examplePackageHash:\n    fn::invoke:\n      Function: fastly:getPackageHash\n      Arguments:\n        filename: package.tar.gz\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nFastly KV Stores can be imported using their Store ID, e.g.\n\n```sh\n $ pulumi import fastly:index/kvstore:Kvstore example xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
+            "properties": {
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Allow the KV Store to be deleted, even if it contains entries. Defaults to false.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "Allow the KV Store to be deleted, even if it contains entries. Defaults to false.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Kvstore resources.\n",
+                "properties": {
+                    "forceDestroy": {
+                        "type": "boolean",
+                        "description": "Allow the KV Store to be deleted, even if it contains entries. Defaults to false.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "fastly:index/serviceACLEntries:ServiceACLEntries": {
             "description": "\n\n\n## Import\n\nThis is an example of the import command being applied to the resource named `fastly_service_acl_entries.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.\n\n```sh\n $ pulumi import fastly:index/serviceACLEntries:ServiceACLEntries entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx\n```\n\n If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries.entries ",
             "properties": {
@@ -4469,6 +4649,13 @@
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
                 },
+                "resourceLinks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink"
+                    },
+                    "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
+                },
                 "reuse": {
                     "type": "boolean",
                     "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
@@ -4685,6 +4872,13 @@
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
+                },
+                "resourceLinks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink"
+                    },
+                    "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
                 },
                 "reuse": {
                     "type": "boolean",
@@ -4915,6 +5109,13 @@
                     },
                     "productEnablement": {
                         "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
+                    },
+                    "resourceLinks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink"
+                        },
+                        "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
                     },
                     "reuse": {
                         "type": "boolean",
@@ -6536,6 +6737,10 @@
                 "domain": {
                     "type": "string",
                     "description": "Domain to enable TLS on. Must be assigned to an existing Fastly Service.\n"
+                },
+                "mutualAuthenticationId": {
+                    "type": "string",
+                    "description": "An alphanumeric string identifying a mutual authentication.\n"
                 }
             },
             "required": [
@@ -6558,6 +6763,10 @@
                     "type": "string",
                     "description": "Domain to enable TLS on. Must be assigned to an existing Fastly Service.\n",
                     "willReplaceOnChanges": true
+                },
+                "mutualAuthenticationId": {
+                    "type": "string",
+                    "description": "An alphanumeric string identifying a mutual authentication.\n"
                 }
             },
             "requiredInputs": [
@@ -6584,6 +6793,10 @@
                         "type": "string",
                         "description": "Domain to enable TLS on. Must be assigned to an existing Fastly Service.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "mutualAuthenticationId": {
+                        "type": "string",
+                        "description": "An alphanumeric string identifying a mutual authentication.\n"
                     }
                 },
                 "type": "object"
@@ -6706,6 +6919,107 @@
                     "updatedAt": {
                         "type": "string",
                         "description": "Timestamp (GMT) when the certificate was last updated.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication": {
+            "properties": {
+                "certBundle": {
+                    "type": "string",
+                    "description": "One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time in ISO 8601 format.\n"
+                },
+                "enforced": {
+                    "type": "boolean",
+                    "description": "Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).\n"
+                },
+                "include": {
+                    "type": "string",
+                    "description": "Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A custom name for your mutual authentication. If name is not supplied we will auto-generate one.\n"
+                },
+                "tlsActivations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of alphanumeric strings identifying TLS activations.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Date and time in ISO 8601 format.\n"
+                }
+            },
+            "required": [
+                "certBundle",
+                "createdAt",
+                "enforced",
+                "name",
+                "tlsActivations",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "certBundle": {
+                    "type": "string",
+                    "description": "One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.\n"
+                },
+                "enforced": {
+                    "type": "boolean",
+                    "description": "Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).\n"
+                },
+                "include": {
+                    "type": "string",
+                    "description": "Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A custom name for your mutual authentication. If name is not supplied we will auto-generate one.\n"
+                }
+            },
+            "requiredInputs": [
+                "certBundle"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TlsMutualAuthentication resources.\n",
+                "properties": {
+                    "certBundle": {
+                        "type": "string",
+                        "description": "One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Date and time in ISO 8601 format.\n"
+                    },
+                    "enforced": {
+                        "type": "boolean",
+                        "description": "Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).\n"
+                    },
+                    "include": {
+                        "type": "string",
+                        "description": "Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A custom name for your mutual authentication. If name is not supplied we will auto-generate one.\n"
+                    },
+                    "tlsActivations": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of alphanumeric strings identifying TLS activations.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Date and time in ISO 8601 format.\n"
                     }
                 },
                 "type": "object"
@@ -7464,7 +7778,7 @@
             }
         },
         "fastly:index/getTlsActivationIds:getTlsActivationIds": {
-            "description": "Use this data source to get the list of TLS Activation identifiers in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleTlsActivationIds = fastly.getTlsActivationIds({\n    certificateId: fastly_tls_certificate.example.id,\n});\nconst exampleTlsActivation = exampleTlsActivationIds.then(exampleTlsActivationIds =\u003e .map(([, ]) =\u003e (fastly.getTlsActivation({\n    id: __value,\n}))));\nexport const activationDomains = exampleTlsActivation.map(a =\u003e (a.domain));\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\nexample_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]\npulumi.export(\"activationDomains\", [a.domain for a in example_tls_activation])\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Use this data source to get the list of TLS Activation identifiers in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleTlsActivationIds = fastly.getTlsActivationIds({\n    certificateId: fastly_tls_certificate.example.id,\n});\nconst exampleTlsActivation = exampleTlsActivationIds.then(exampleTlsActivationIds =\u003e .map(([, ]) =\u003e (fastly.getTlsActivation({\n    id: __value,\n}))));\nexport const activationDomains = exampleTlsActivation.map(a =\u003e (a.domain));\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=fastly_tls_certificate[\"example\"][\"id\"])\nexample_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]\npulumi.export(\"activationDomains\", [a.domain for a in example_tls_activation])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleTlsActivationIds = Fastly.GetTlsActivationIds.Invoke(new()\n    {\n        CertificateId = fastly_tls_certificate.Example.Id,\n    });\n\n    var exampleTlsActivation = .Select(__value =\u003e \n    {\n        return  Fastly.GetTlsActivation.Invoke(new()\n        {\n            Id = __value,\n        });\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"activationDomains\"] = exampleTlsActivation.Select(a =\u003e \n        {\n            return  a.Domain;\n        }),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleTlsActivationIds, err := fastly.GetTlsActivationIds(ctx, \u0026fastly.GetTlsActivationIdsArgs{\n\t\t\tCertificateId: pulumi.StringRef(fastly_tls_certificate.Example.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleTlsActivation := \"TODO: For expression\"\n\t\tctx.Export(\"activationDomains\", \"TODO: For expression\")\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getTlsActivationIds.\n",
                 "properties": {
@@ -7973,7 +8287,7 @@
             }
         },
         "fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds": {
-            "description": "Use this data source to get the list of TLS private key identifiers in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = fastly.getTlsPrivateKeyIds({});\nconst example = fastly.getTlsPrivateKey({\n    id: fastly_tls_private_key_ids.demo.ids[0],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.get_tls_private_key_ids()\nexample = fastly.get_tls_private_key(id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var demo = Fastly.GetTlsPrivateKeyIds.Invoke();\n\n    var example = Fastly.GetTlsPrivateKey.Invoke(new()\n    {\n        Id = fastly_tls_private_key_ids.Demo.Ids[0],\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.LookupTlsPrivateKey(ctx, \u0026fastly.LookupTlsPrivateKeyArgs{\n\t\t\tId: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var demo = FastlyFunctions.getTlsPrivateKeyIds();\n\n        final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()\n            .id(fastly_tls_private_key_ids.demo().ids()[0])\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  demo:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKeyIds\n      Arguments: {}\n  example:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKey\n      Arguments:\n        id: ${fastly_tls_private_key_ids.demo.ids[0]}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Use this data source to get the list of TLS private key identifiers in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = fastly.getTlsPrivateKeyIds({});\nconst example = fastly.getTlsPrivateKey({\n    id: fastly_tls_private_key_ids.demo.ids[0],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.get_tls_private_key_ids()\nexample = fastly.get_tls_private_key(id=fastly_tls_private_key_ids[\"demo\"][\"ids\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var demo = Fastly.GetTlsPrivateKeyIds.Invoke();\n\n    var example = Fastly.GetTlsPrivateKey.Invoke(new()\n    {\n        Id = fastly_tls_private_key_ids.Demo.Ids[0],\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.LookupTlsPrivateKey(ctx, \u0026fastly.LookupTlsPrivateKeyArgs{\n\t\t\tId: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var demo = FastlyFunctions.getTlsPrivateKeyIds();\n\n        final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()\n            .id(fastly_tls_private_key_ids.demo().ids()[0])\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  demo:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKeyIds\n      Arguments: {}\n  example:\n    fn::invoke:\n      Function: fastly:getTlsPrivateKey\n      Arguments:\n        id: ${fastly_tls_private_key_ids.demo.ids[0]}\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getTlsPrivateKeyIds.\n",
                 "properties": {
@@ -8076,7 +8390,7 @@
             }
         },
         "fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds": {
-            "description": "Use this data source to get the list of IDs of TLS Subscriptions in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleTlsSubscriptionIds = fastly.getTlsSubscriptionIds({});\nconst exampleTlsSubscription = exampleTlsSubscriptionIds.then(exampleTlsSubscriptionIds =\u003e .map(([, ]) =\u003e (fastly.getTlsSubscription({\n    id: __value,\n}))));\nexport const subscriptionDomains = exampleTlsSubscription.map(a =\u003e (a.certificateAuthority));\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_tls_subscription_ids = fastly.get_tls_subscription_ids()\nexample_tls_subscription = [fastly.get_tls_subscription(id=__value) for __key, __value in example_tls_subscription_ids.ids]\npulumi.export(\"subscriptionDomains\", [a.certificate_authority for a in example_tls_subscription])\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Use this data source to get the list of IDs of TLS Subscriptions in Fastly.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleTlsSubscriptionIds = fastly.getTlsSubscriptionIds({});\nconst exampleTlsSubscription = exampleTlsSubscriptionIds.then(exampleTlsSubscriptionIds =\u003e .map(([, ]) =\u003e (fastly.getTlsSubscription({\n    id: __value,\n}))));\nexport const subscriptionDomains = exampleTlsSubscription.map(a =\u003e (a.certificateAuthority));\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_tls_subscription_ids = fastly.get_tls_subscription_ids()\nexample_tls_subscription = [fastly.get_tls_subscription(id=__value) for __key, __value in example_tls_subscription_ids.ids]\npulumi.export(\"subscriptionDomains\", [a.certificate_authority for a in example_tls_subscription])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleTlsSubscriptionIds = Fastly.GetTlsSubscriptionIds.Invoke();\n\n    var exampleTlsSubscription = .Select(__value =\u003e \n    {\n        return  Fastly.GetTlsSubscription.Invoke(new()\n        {\n            Id = __value,\n        });\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"subscriptionDomains\"] = exampleTlsSubscription.Select(a =\u003e \n        {\n            return  a.CertificateAuthority;\n        }),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleTlsSubscriptionIds, err := fastly.GetTlsSubscriptionIds(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleTlsSubscription := \"TODO: For expression\"\n\t\tctx.Export(\"subscriptionDomains\", \"TODO: For expression\")\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getTlsSubscriptionIds.\n",
                 "properties": {

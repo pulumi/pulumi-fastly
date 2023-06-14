@@ -1,6 +1,15 @@
 {
     "auto-aliasing": {
         "resources": {
+            "fastly_configstore": {
+                "current": "fastly:index/configstore:Configstore"
+            },
+            "fastly_configstore_entries": {
+                "current": "fastly:index/configstoreEntries:ConfigstoreEntries"
+            },
+            "fastly_kvstore": {
+                "current": "fastly:index/kvstore:Kvstore"
+            },
             "fastly_service_acl_entries": {
                 "current": "fastly:index/serviceACLEntries:ServiceACLEntries",
                 "fields": {
@@ -107,6 +116,9 @@
                     },
                     "product_enablement": {
                         "maxItemsOne": true
+                    },
+                    "resource_link": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -313,6 +325,14 @@
                     }
                 }
             },
+            "fastly_tls_mutual_authentication": {
+                "current": "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication",
+                "fields": {
+                    "tls_activations": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_tls_platform_certificate": {
                 "current": "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate",
                 "fields": {
@@ -414,6 +434,9 @@
     },
     "renames": {
         "resources": {
+            "fastly:index/configstore:Configstore": "fastly_configstore",
+            "fastly:index/configstoreEntries:ConfigstoreEntries": "fastly_configstore_entries",
+            "fastly:index/kvstore:Kvstore": "fastly_kvstore",
             "fastly:index/serviceACLEntries:ServiceACLEntries": "fastly_service_acl_entries",
             "fastly:index/serviceAuthorization:ServiceAuthorization": "fastly_service_authorization",
             "fastly:index/serviceCompute:ServiceCompute": "fastly_service_compute",
@@ -423,6 +446,7 @@
             "fastly:index/serviceWafConfiguration:ServiceWafConfiguration": "fastly_service_waf_configuration",
             "fastly:index/tlsActivation:TlsActivation": "fastly_tls_activation",
             "fastly:index/tlsCertificate:TlsCertificate": "fastly_tls_certificate",
+            "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication": "fastly_tls_mutual_authentication",
             "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate": "fastly_tls_platform_certificate",
             "fastly:index/tlsPrivateKey:TlsPrivateKey": "fastly_tls_private_key",
             "fastly:index/tlsSubscription:TlsSubscription": "fastly_tls_subscription",
@@ -623,6 +647,10 @@
             },
             "fastly:index/ServiceComputePackage:ServiceComputePackage": {
                 "sourceCodeHash": "source_code_hash"
+            },
+            "fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink": {
+                "linkId": "link_id",
+                "resourceId": "resource_id"
             },
             "fastly:index/ServiceVclAcl:ServiceVclAcl": {
                 "aclId": "acl_id",
@@ -948,6 +976,13 @@
                 "recordType": "record_type",
                 "recordValues": "record_values"
             },
+            "fastly:index/configstore:Configstore": {
+                "forceDestroy": "force_destroy"
+            },
+            "fastly:index/configstoreEntries:ConfigstoreEntries": {
+                "manageEntries": "manage_entries",
+                "storeId": "store_id"
+            },
             "fastly:index/getDictionaries:getDictionaries": {
                 "serviceId": "service_id",
                 "serviceVersion": "service_version"
@@ -1024,6 +1059,9 @@
                 "latestRevisionNumber": "latest_revision_number",
                 "modsecRuleId": "modsec_rule_id"
             },
+            "fastly:index/kvstore:Kvstore": {
+                "forceDestroy": "force_destroy"
+            },
             "fastly:index/serviceACLEntries:ServiceACLEntries": {
                 "aclId": "acl_id",
                 "entries": "entry",
@@ -1069,6 +1107,7 @@
                 "loggingSumologics": "logging_sumologic",
                 "loggingSyslogs": "logging_syslog",
                 "productEnablement": "product_enablement",
+                "resourceLinks": "resource_link",
                 "versionComment": "version_comment"
             },
             "fastly:index/serviceDictionaryItems:ServiceDictionaryItems": {
@@ -1172,7 +1211,8 @@
             "fastly:index/tlsActivation:TlsActivation": {
                 "certificateId": "certificate_id",
                 "configurationId": "configuration_id",
-                "createdAt": "created_at"
+                "createdAt": "created_at",
+                "mutualAuthenticationId": "mutual_authentication_id"
             },
             "fastly:index/tlsCertificate:TlsCertificate": {
                 "certificateBody": "certificate_body",
@@ -1180,6 +1220,12 @@
                 "issuedTo": "issued_to",
                 "serialNumber": "serial_number",
                 "signatureAlgorithm": "signature_algorithm",
+                "updatedAt": "updated_at"
+            },
+            "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication": {
+                "certBundle": "cert_bundle",
+                "createdAt": "created_at",
+                "tlsActivations": "tls_activations",
                 "updatedAt": "updated_at"
             },
             "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate": {
