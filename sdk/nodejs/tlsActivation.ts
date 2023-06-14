@@ -93,6 +93,10 @@ export class TlsActivation extends pulumi.CustomResource {
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
     public readonly domain!: pulumi.Output<string>;
+    /**
+     * An alphanumeric string identifying a mutual authentication.
+     */
+    public readonly mutualAuthenticationId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a TlsActivation resource with the given unique name, arguments, and options.
@@ -111,6 +115,7 @@ export class TlsActivation extends pulumi.CustomResource {
             resourceInputs["configurationId"] = state ? state.configurationId : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["mutualAuthenticationId"] = state ? state.mutualAuthenticationId : undefined;
         } else {
             const args = argsOrState as TlsActivationArgs | undefined;
             if ((!args || args.certificateId === undefined) && !opts.urn) {
@@ -122,6 +127,7 @@ export class TlsActivation extends pulumi.CustomResource {
             resourceInputs["certificateId"] = args ? args.certificateId : undefined;
             resourceInputs["configurationId"] = args ? args.configurationId : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["mutualAuthenticationId"] = args ? args.mutualAuthenticationId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -149,6 +155,10 @@ export interface TlsActivationState {
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
     domain?: pulumi.Input<string>;
+    /**
+     * An alphanumeric string identifying a mutual authentication.
+     */
+    mutualAuthenticationId?: pulumi.Input<string>;
 }
 
 /**
@@ -167,4 +177,8 @@ export interface TlsActivationArgs {
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
     domain: pulumi.Input<string>;
+    /**
+     * An alphanumeric string identifying a mutual authentication.
+     */
+    mutualAuthenticationId?: pulumi.Input<string>;
 }

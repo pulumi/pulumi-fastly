@@ -5,6 +5,8 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .configstore import *
+from .configstore_entries import *
 from .get_datacenters import *
 from .get_dictionaries import *
 from .get_fastly_ip_ranges import *
@@ -24,6 +26,7 @@ from .get_tls_private_key_ids import *
 from .get_tls_subscription import *
 from .get_tls_subscription_ids import *
 from .get_waf_rules import *
+from .kvstore import *
 from .provider import *
 from .service_acl_entries import *
 from .service_authorization import *
@@ -34,6 +37,7 @@ from .service_vcl import *
 from .service_waf_configuration import *
 from .tls_activation import *
 from .tls_certificate import *
+from .tls_mutual_authentication import *
 from .tls_platform_certificate import *
 from .tls_private_key import *
 from .tls_subscription import *
@@ -52,6 +56,30 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "fastly",
+  "mod": "index/configstore",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/configstore:Configstore": "Configstore"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/configstoreEntries",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/configstoreEntries:ConfigstoreEntries": "ConfigstoreEntries"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/kvstore",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/kvstore:Kvstore": "Kvstore"
+  }
+ },
  {
   "pkg": "fastly",
   "mod": "index/serviceACLEntries",
@@ -122,6 +150,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/tlsCertificate:TlsCertificate": "TlsCertificate"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/tlsMutualAuthentication",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication": "TlsMutualAuthentication"
   }
  },
  {

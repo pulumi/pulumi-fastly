@@ -20,6 +20,12 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fastly:index/configstore:Configstore":
+		r = &Configstore{}
+	case "fastly:index/configstoreEntries:ConfigstoreEntries":
+		r = &ConfigstoreEntries{}
+	case "fastly:index/kvstore:Kvstore":
+		r = &Kvstore{}
 	case "fastly:index/serviceACLEntries:ServiceACLEntries":
 		r = &ServiceACLEntries{}
 	case "fastly:index/serviceAuthorization:ServiceAuthorization":
@@ -38,6 +44,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TlsActivation{}
 	case "fastly:index/tlsCertificate:TlsCertificate":
 		r = &TlsCertificate{}
+	case "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication":
+		r = &TlsMutualAuthentication{}
 	case "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate":
 		r = &TlsPlatformCertificate{}
 	case "fastly:index/tlsPrivateKey:TlsPrivateKey":
@@ -76,6 +84,21 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 
 func init() {
 	version, _ := PkgVersion()
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/configstore",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/configstoreEntries",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/kvstore",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/serviceACLEntries",
@@ -119,6 +142,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/tlsCertificate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tlsMutualAuthentication",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

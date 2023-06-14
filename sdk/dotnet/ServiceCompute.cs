@@ -177,6 +177,12 @@ namespace Pulumi.Fastly
         public Output<Outputs.ServiceComputeProductEnablement?> ProductEnablement { get; private set; } = null!;
 
         /// <summary>
+        /// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        /// </summary>
+        [Output("resourceLinks")]
+        public Output<ImmutableArray<Outputs.ServiceComputeResourceLink>> ResourceLinks { get; private set; } = null!;
+
+        /// <summary>
         /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
         /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
         /// an active service will cause an error. Default `false`
@@ -505,6 +511,18 @@ namespace Pulumi.Fastly
         [Input("productEnablement")]
         public Input<Inputs.ServiceComputeProductEnablementArgs>? ProductEnablement { get; set; }
 
+        [Input("resourceLinks")]
+        private InputList<Inputs.ServiceComputeResourceLinkArgs>? _resourceLinks;
+
+        /// <summary>
+        /// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        /// </summary>
+        public InputList<Inputs.ServiceComputeResourceLinkArgs> ResourceLinks
+        {
+            get => _resourceLinks ?? (_resourceLinks = new InputList<Inputs.ServiceComputeResourceLinkArgs>());
+            set => _resourceLinks = value;
+        }
+
         /// <summary>
         /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
         /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -821,6 +839,18 @@ namespace Pulumi.Fastly
 
         [Input("productEnablement")]
         public Input<Inputs.ServiceComputeProductEnablementGetArgs>? ProductEnablement { get; set; }
+
+        [Input("resourceLinks")]
+        private InputList<Inputs.ServiceComputeResourceLinkGetArgs>? _resourceLinks;
+
+        /// <summary>
+        /// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        /// </summary>
+        public InputList<Inputs.ServiceComputeResourceLinkGetArgs> ResourceLinks
+        {
+            get => _resourceLinks ?? (_resourceLinks = new InputList<Inputs.ServiceComputeResourceLinkGetArgs>());
+            set => _resourceLinks = value;
+        }
 
         /// <summary>
         /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be

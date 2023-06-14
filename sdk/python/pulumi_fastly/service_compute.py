@@ -51,6 +51,7 @@ class ServiceComputeArgs:
                  logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
+                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
@@ -61,6 +62,7 @@ class ServiceComputeArgs:
         :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -134,6 +136,8 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "name", name)
         if product_enablement is not None:
             pulumi.set(__self__, "product_enablement", product_enablement)
+        if resource_links is not None:
+            pulumi.set(__self__, "resource_links", resource_links)
         if reuse is not None:
             pulumi.set(__self__, "reuse", reuse)
         if version_comment is not None:
@@ -473,6 +477,18 @@ class ServiceComputeArgs:
         pulumi.set(self, "product_enablement", value)
 
     @property
+    @pulumi.getter(name="resourceLinks")
+    def resource_links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]:
+        """
+        A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        """
+        return pulumi.get(self, "resource_links")
+
+    @resource_links.setter
+    def resource_links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]):
+        pulumi.set(self, "resource_links", value)
+
+    @property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -541,6 +557,7 @@ class _ServiceComputeState:
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
                  product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
+                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
@@ -557,6 +574,7 @@ class _ServiceComputeState:
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -640,6 +658,8 @@ class _ServiceComputeState:
             pulumi.set(__self__, "package", package)
         if product_enablement is not None:
             pulumi.set(__self__, "product_enablement", product_enablement)
+        if resource_links is not None:
+            pulumi.set(__self__, "resource_links", resource_links)
         if reuse is not None:
             pulumi.set(__self__, "reuse", reuse)
         if version_comment is not None:
@@ -1029,6 +1049,18 @@ class _ServiceComputeState:
         pulumi.set(self, "product_enablement", value)
 
     @property
+    @pulumi.getter(name="resourceLinks")
+    def resource_links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]:
+        """
+        A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        """
+        return pulumi.get(self, "resource_links")
+
+    @resource_links.setter
+    def resource_links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]):
+        pulumi.set(self, "resource_links", value)
+
+    @property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1095,6 +1127,7 @@ class ServiceCompute(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
                  product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceComputeProductEnablementArgs']]] = None,
+                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1121,6 +1154,7 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -1197,6 +1231,7 @@ class ServiceCompute(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
                  product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceComputeProductEnablementArgs']]] = None,
+                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1247,6 +1282,7 @@ class ServiceCompute(pulumi.CustomResource):
                 raise TypeError("Missing required property 'package'")
             __props__.__dict__["package"] = package
             __props__.__dict__["product_enablement"] = product_enablement
+            __props__.__dict__["resource_links"] = resource_links
             __props__.__dict__["reuse"] = reuse
             __props__.__dict__["version_comment"] = version_comment
             __props__.__dict__["active_version"] = None
@@ -1302,6 +1338,7 @@ class ServiceCompute(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             package: Optional[pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']]] = None,
             product_enablement: Optional[pulumi.Input[pulumi.InputType['ServiceComputeProductEnablementArgs']]] = None,
+            resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]]] = None,
             reuse: Optional[pulumi.Input[bool]] = None,
             version_comment: Optional[pulumi.Input[str]] = None) -> 'ServiceCompute':
         """
@@ -1323,6 +1360,7 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -1371,6 +1409,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["package"] = package
         __props__.__dict__["product_enablement"] = product_enablement
+        __props__.__dict__["resource_links"] = resource_links
         __props__.__dict__["reuse"] = reuse
         __props__.__dict__["version_comment"] = version_comment
         return ServiceCompute(resource_name, opts=opts, __props__=__props__)
@@ -1601,6 +1640,14 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter(name="productEnablement")
     def product_enablement(self) -> pulumi.Output[Optional['outputs.ServiceComputeProductEnablement']]:
         return pulumi.get(self, "product_enablement")
+
+    @property
+    @pulumi.getter(name="resourceLinks")
+    def resource_links(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeResourceLink']]]:
+        """
+        A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        """
+        return pulumi.get(self, "resource_links")
 
     @property
     @pulumi.getter

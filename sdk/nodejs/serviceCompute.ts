@@ -121,6 +121,10 @@ export class ServiceCompute extends pulumi.CustomResource {
     public readonly package!: pulumi.Output<outputs.ServiceComputePackage>;
     public readonly productEnablement!: pulumi.Output<outputs.ServiceComputeProductEnablement | undefined>;
     /**
+     * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+     */
+    public readonly resourceLinks!: pulumi.Output<outputs.ServiceComputeResourceLink[] | undefined>;
+    /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
      * an active service will cause an error. Default `false`
@@ -183,6 +187,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["package"] = state ? state.package : undefined;
             resourceInputs["productEnablement"] = state ? state.productEnablement : undefined;
+            resourceInputs["resourceLinks"] = state ? state.resourceLinks : undefined;
             resourceInputs["reuse"] = state ? state.reuse : undefined;
             resourceInputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
@@ -228,6 +233,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["package"] = args ? args.package : undefined;
             resourceInputs["productEnablement"] = args ? args.productEnablement : undefined;
+            resourceInputs["resourceLinks"] = args ? args.resourceLinks : undefined;
             resourceInputs["reuse"] = args ? args.reuse : undefined;
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
@@ -316,6 +322,10 @@ export interface ServiceComputeState {
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
     /**
+     * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+     */
+    resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
+    /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
      * an active service will cause an error. Default `false`
@@ -384,6 +394,10 @@ export interface ServiceComputeArgs {
      */
     package: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
+    /**
+     * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+     */
+    resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy

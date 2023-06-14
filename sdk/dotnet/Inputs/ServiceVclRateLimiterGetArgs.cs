@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclRateLimiterGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        /// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;

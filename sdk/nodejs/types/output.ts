@@ -1157,6 +1157,21 @@ export interface ServiceComputeProductEnablement {
     websockets?: boolean;
 }
 
+export interface ServiceComputeResourceLink {
+    /**
+     * An alphanumeric string identifying the resource link.
+     */
+    linkId: string;
+    /**
+     * The name of the resource link.
+     */
+    name: string;
+    /**
+     * The ID of the underlying linked resource.
+     */
+    resourceId: string;
+}
+
 export interface ServiceVclAcl {
     /**
      * The ID of the ACL
@@ -2886,7 +2901,7 @@ export interface ServiceVclProductEnablement {
 
 export interface ServiceVclRateLimiter {
     /**
-     * The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+     * The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
      */
     action: string;
     /**

@@ -60,12 +60,28 @@ public final class TlsActivationArgs extends com.pulumi.resources.ResourceArgs {
         return this.domain;
     }
 
+    /**
+     * An alphanumeric string identifying a mutual authentication.
+     * 
+     */
+    @Import(name="mutualAuthenticationId")
+    private @Nullable Output<String> mutualAuthenticationId;
+
+    /**
+     * @return An alphanumeric string identifying a mutual authentication.
+     * 
+     */
+    public Optional<Output<String>> mutualAuthenticationId() {
+        return Optional.ofNullable(this.mutualAuthenticationId);
+    }
+
     private TlsActivationArgs() {}
 
     private TlsActivationArgs(TlsActivationArgs $) {
         this.certificateId = $.certificateId;
         this.configurationId = $.configurationId;
         this.domain = $.domain;
+        this.mutualAuthenticationId = $.mutualAuthenticationId;
     }
 
     public static Builder builder() {
@@ -147,6 +163,27 @@ public final class TlsActivationArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder domain(String domain) {
             return domain(Output.of(domain));
+        }
+
+        /**
+         * @param mutualAuthenticationId An alphanumeric string identifying a mutual authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mutualAuthenticationId(@Nullable Output<String> mutualAuthenticationId) {
+            $.mutualAuthenticationId = mutualAuthenticationId;
+            return this;
+        }
+
+        /**
+         * @param mutualAuthenticationId An alphanumeric string identifying a mutual authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mutualAuthenticationId(String mutualAuthenticationId) {
+            return mutualAuthenticationId(Output.of(mutualAuthenticationId));
         }
 
         public TlsActivationArgs build() {

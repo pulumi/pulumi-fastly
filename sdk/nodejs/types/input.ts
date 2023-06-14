@@ -1106,6 +1106,21 @@ export interface ServiceComputeProductEnablement {
     websockets?: pulumi.Input<boolean>;
 }
 
+export interface ServiceComputeResourceLink {
+    /**
+     * An alphanumeric string identifying the resource link.
+     */
+    linkId?: pulumi.Input<string>;
+    /**
+     * The name of the resource link.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the underlying linked resource.
+     */
+    resourceId: pulumi.Input<string>;
+}
+
 export interface ServiceVclAcl {
     /**
      * The ID of the ACL
@@ -2835,7 +2850,7 @@ export interface ServiceVclProductEnablement {
 
 export interface ServiceVclRateLimiter {
     /**
-     * The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+     * The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
      */
     action: pulumi.Input<string>;
     /**

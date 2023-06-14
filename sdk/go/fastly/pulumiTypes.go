@@ -5211,6 +5211,121 @@ func (o ServiceComputeProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ServiceComputeResourceLink struct {
+	// An alphanumeric string identifying the resource link.
+	LinkId *string `pulumi:"linkId"`
+	// The name of the resource link.
+	Name string `pulumi:"name"`
+	// The ID of the underlying linked resource.
+	ResourceId string `pulumi:"resourceId"`
+}
+
+// ServiceComputeResourceLinkInput is an input type that accepts ServiceComputeResourceLinkArgs and ServiceComputeResourceLinkOutput values.
+// You can construct a concrete instance of `ServiceComputeResourceLinkInput` via:
+//
+//	ServiceComputeResourceLinkArgs{...}
+type ServiceComputeResourceLinkInput interface {
+	pulumi.Input
+
+	ToServiceComputeResourceLinkOutput() ServiceComputeResourceLinkOutput
+	ToServiceComputeResourceLinkOutputWithContext(context.Context) ServiceComputeResourceLinkOutput
+}
+
+type ServiceComputeResourceLinkArgs struct {
+	// An alphanumeric string identifying the resource link.
+	LinkId pulumi.StringPtrInput `pulumi:"linkId"`
+	// The name of the resource link.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the underlying linked resource.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+}
+
+func (ServiceComputeResourceLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeResourceLink)(nil)).Elem()
+}
+
+func (i ServiceComputeResourceLinkArgs) ToServiceComputeResourceLinkOutput() ServiceComputeResourceLinkOutput {
+	return i.ToServiceComputeResourceLinkOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeResourceLinkArgs) ToServiceComputeResourceLinkOutputWithContext(ctx context.Context) ServiceComputeResourceLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeResourceLinkOutput)
+}
+
+// ServiceComputeResourceLinkArrayInput is an input type that accepts ServiceComputeResourceLinkArray and ServiceComputeResourceLinkArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeResourceLinkArrayInput` via:
+//
+//	ServiceComputeResourceLinkArray{ ServiceComputeResourceLinkArgs{...} }
+type ServiceComputeResourceLinkArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeResourceLinkArrayOutput() ServiceComputeResourceLinkArrayOutput
+	ToServiceComputeResourceLinkArrayOutputWithContext(context.Context) ServiceComputeResourceLinkArrayOutput
+}
+
+type ServiceComputeResourceLinkArray []ServiceComputeResourceLinkInput
+
+func (ServiceComputeResourceLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeResourceLink)(nil)).Elem()
+}
+
+func (i ServiceComputeResourceLinkArray) ToServiceComputeResourceLinkArrayOutput() ServiceComputeResourceLinkArrayOutput {
+	return i.ToServiceComputeResourceLinkArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeResourceLinkArray) ToServiceComputeResourceLinkArrayOutputWithContext(ctx context.Context) ServiceComputeResourceLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeResourceLinkArrayOutput)
+}
+
+type ServiceComputeResourceLinkOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeResourceLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeResourceLink)(nil)).Elem()
+}
+
+func (o ServiceComputeResourceLinkOutput) ToServiceComputeResourceLinkOutput() ServiceComputeResourceLinkOutput {
+	return o
+}
+
+func (o ServiceComputeResourceLinkOutput) ToServiceComputeResourceLinkOutputWithContext(ctx context.Context) ServiceComputeResourceLinkOutput {
+	return o
+}
+
+// An alphanumeric string identifying the resource link.
+func (o ServiceComputeResourceLinkOutput) LinkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeResourceLink) *string { return v.LinkId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the resource link.
+func (o ServiceComputeResourceLinkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeResourceLink) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the underlying linked resource.
+func (o ServiceComputeResourceLinkOutput) ResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeResourceLink) string { return v.ResourceId }).(pulumi.StringOutput)
+}
+
+type ServiceComputeResourceLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeResourceLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeResourceLink)(nil)).Elem()
+}
+
+func (o ServiceComputeResourceLinkArrayOutput) ToServiceComputeResourceLinkArrayOutput() ServiceComputeResourceLinkArrayOutput {
+	return o
+}
+
+func (o ServiceComputeResourceLinkArrayOutput) ToServiceComputeResourceLinkArrayOutputWithContext(ctx context.Context) ServiceComputeResourceLinkArrayOutput {
+	return o
+}
+
+func (o ServiceComputeResourceLinkArrayOutput) Index(i pulumi.IntInput) ServiceComputeResourceLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeResourceLink {
+		return vs[0].([]ServiceComputeResourceLink)[vs[1].(int)]
+	}).(ServiceComputeResourceLinkOutput)
+}
+
 type ServiceVclAcl struct {
 	// The ID of the ACL
 	AclId *string `pulumi:"aclId"`
@@ -12279,7 +12394,7 @@ func (o ServiceVclProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOutput 
 }
 
 type ServiceVclRateLimiter struct {
-	// The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+	// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
 	Action string `pulumi:"action"`
 	// Comma-separated list of VCL variables used to generate a counter key to identify a client
 	ClientKey string `pulumi:"clientKey"`
@@ -12319,7 +12434,7 @@ type ServiceVclRateLimiterInput interface {
 }
 
 type ServiceVclRateLimiterArgs struct {
-	// The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+	// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
 	Action pulumi.StringInput `pulumi:"action"`
 	// Comma-separated list of VCL variables used to generate a counter key to identify a client
 	ClientKey pulumi.StringInput `pulumi:"clientKey"`
@@ -12398,7 +12513,7 @@ func (o ServiceVclRateLimiterOutput) ToServiceVclRateLimiterOutputWithContext(ct
 	return o
 }
 
-// The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
 func (o ServiceVclRateLimiterOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclRateLimiter) string { return v.Action }).(pulumi.StringOutput)
 }
@@ -14556,6 +14671,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePackagePtrInput)(nil)).Elem(), ServiceComputePackageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementPtrInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeResourceLinkInput)(nil)).Elem(), ServiceComputeResourceLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeResourceLinkArrayInput)(nil)).Elem(), ServiceComputeResourceLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclAclInput)(nil)).Elem(), ServiceVclAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclAclArrayInput)(nil)).Elem(), ServiceVclAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclBackendInput)(nil)).Elem(), ServiceVclBackendArgs{})
@@ -14728,6 +14845,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputePackagePtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementPtrOutput{})
+	pulumi.RegisterOutputType(ServiceComputeResourceLinkOutput{})
+	pulumi.RegisterOutputType(ServiceComputeResourceLinkArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclAclOutput{})
 	pulumi.RegisterOutputType(ServiceVclAclArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclBackendOutput{})
