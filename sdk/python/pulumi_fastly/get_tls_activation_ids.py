@@ -79,7 +79,7 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    example_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=fastly_tls_certificate["example"]["id"])
     example_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]
     pulumi.export("activationDomains", [a.domain for a in example_tls_activation])
     ```
@@ -110,7 +110,7 @@ def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    example_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=fastly_tls_certificate["example"]["id"])
     example_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]
     pulumi.export("activationDomains", [a.domain for a in example_tls_activation])
     ```

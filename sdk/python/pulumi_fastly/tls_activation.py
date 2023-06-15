@@ -16,17 +16,21 @@ class TlsActivationArgs:
     def __init__(__self__, *,
                  certificate_id: pulumi.Input[str],
                  domain: pulumi.Input[str],
-                 configuration_id: Optional[pulumi.Input[str]] = None):
+                 configuration_id: Optional[pulumi.Input[str]] = None,
+                 mutual_authentication_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TlsActivation resource.
         :param pulumi.Input[str] certificate_id: ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
         :param pulumi.Input[str] domain: Domain to enable TLS on. Must be assigned to an existing Fastly Service.
         :param pulumi.Input[str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
+        :param pulumi.Input[str] mutual_authentication_id: An alphanumeric string identifying a mutual authentication.
         """
         pulumi.set(__self__, "certificate_id", certificate_id)
         pulumi.set(__self__, "domain", domain)
         if configuration_id is not None:
             pulumi.set(__self__, "configuration_id", configuration_id)
+        if mutual_authentication_id is not None:
+            pulumi.set(__self__, "mutual_authentication_id", mutual_authentication_id)
 
     @property
     @pulumi.getter(name="certificateId")
@@ -64,6 +68,18 @@ class TlsActivationArgs:
     def configuration_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "configuration_id", value)
 
+    @property
+    @pulumi.getter(name="mutualAuthenticationId")
+    def mutual_authentication_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        An alphanumeric string identifying a mutual authentication.
+        """
+        return pulumi.get(self, "mutual_authentication_id")
+
+    @mutual_authentication_id.setter
+    def mutual_authentication_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mutual_authentication_id", value)
+
 
 @pulumi.input_type
 class _TlsActivationState:
@@ -71,13 +87,15 @@ class _TlsActivationState:
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  configuration_id: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
-                 domain: Optional[pulumi.Input[str]] = None):
+                 domain: Optional[pulumi.Input[str]] = None,
+                 mutual_authentication_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TlsActivation resources.
         :param pulumi.Input[str] certificate_id: ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
         :param pulumi.Input[str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
         :param pulumi.Input[str] created_at: Time-stamp (GMT) when TLS was enabled.
         :param pulumi.Input[str] domain: Domain to enable TLS on. Must be assigned to an existing Fastly Service.
+        :param pulumi.Input[str] mutual_authentication_id: An alphanumeric string identifying a mutual authentication.
         """
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
@@ -87,6 +105,8 @@ class _TlsActivationState:
             pulumi.set(__self__, "created_at", created_at)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if mutual_authentication_id is not None:
+            pulumi.set(__self__, "mutual_authentication_id", mutual_authentication_id)
 
     @property
     @pulumi.getter(name="certificateId")
@@ -136,6 +156,18 @@ class _TlsActivationState:
     def domain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "domain", value)
 
+    @property
+    @pulumi.getter(name="mutualAuthenticationId")
+    def mutual_authentication_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        An alphanumeric string identifying a mutual authentication.
+        """
+        return pulumi.get(self, "mutual_authentication_id")
+
+    @mutual_authentication_id.setter
+    def mutual_authentication_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mutual_authentication_id", value)
+
 
 class TlsActivation(pulumi.CustomResource):
     @overload
@@ -145,6 +177,7 @@ class TlsActivation(pulumi.CustomResource):
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  configuration_id: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 mutual_authentication_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Enables TLS on a domain using a specified custom TLS certificate.
@@ -192,6 +225,7 @@ class TlsActivation(pulumi.CustomResource):
         :param pulumi.Input[str] certificate_id: ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
         :param pulumi.Input[str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
         :param pulumi.Input[str] domain: Domain to enable TLS on. Must be assigned to an existing Fastly Service.
+        :param pulumi.Input[str] mutual_authentication_id: An alphanumeric string identifying a mutual authentication.
         """
         ...
     @overload
@@ -258,6 +292,7 @@ class TlsActivation(pulumi.CustomResource):
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  configuration_id: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 mutual_authentication_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -274,6 +309,7 @@ class TlsActivation(pulumi.CustomResource):
             if domain is None and not opts.urn:
                 raise TypeError("Missing required property 'domain'")
             __props__.__dict__["domain"] = domain
+            __props__.__dict__["mutual_authentication_id"] = mutual_authentication_id
             __props__.__dict__["created_at"] = None
         super(TlsActivation, __self__).__init__(
             'fastly:index/tlsActivation:TlsActivation',
@@ -288,7 +324,8 @@ class TlsActivation(pulumi.CustomResource):
             certificate_id: Optional[pulumi.Input[str]] = None,
             configuration_id: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            domain: Optional[pulumi.Input[str]] = None) -> 'TlsActivation':
+            domain: Optional[pulumi.Input[str]] = None,
+            mutual_authentication_id: Optional[pulumi.Input[str]] = None) -> 'TlsActivation':
         """
         Get an existing TlsActivation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -300,6 +337,7 @@ class TlsActivation(pulumi.CustomResource):
         :param pulumi.Input[str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
         :param pulumi.Input[str] created_at: Time-stamp (GMT) when TLS was enabled.
         :param pulumi.Input[str] domain: Domain to enable TLS on. Must be assigned to an existing Fastly Service.
+        :param pulumi.Input[str] mutual_authentication_id: An alphanumeric string identifying a mutual authentication.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -309,6 +347,7 @@ class TlsActivation(pulumi.CustomResource):
         __props__.__dict__["configuration_id"] = configuration_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["domain"] = domain
+        __props__.__dict__["mutual_authentication_id"] = mutual_authentication_id
         return TlsActivation(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -342,4 +381,12 @@ class TlsActivation(pulumi.CustomResource):
         Domain to enable TLS on. Must be assigned to an existing Fastly Service.
         """
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="mutualAuthenticationId")
+    def mutual_authentication_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        An alphanumeric string identifying a mutual authentication.
+        """
+        return pulumi.get(self, "mutual_authentication_id")
 

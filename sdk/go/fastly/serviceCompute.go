@@ -82,6 +82,8 @@ type ServiceCompute struct {
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackageOutput              `pulumi:"package"`
 	ProductEnablement ServiceComputeProductEnablementPtrOutput `pulumi:"productEnablement"`
+	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+	ResourceLinks ServiceComputeResourceLinkArrayOutput `pulumi:"resourceLinks"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -176,6 +178,8 @@ type serviceComputeState struct {
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           *ServiceComputePackage           `pulumi:"package"`
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
+	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -236,6 +240,8 @@ type ServiceComputeState struct {
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrInput
 	ProductEnablement ServiceComputeProductEnablementPtrInput
+	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+	ResourceLinks ServiceComputeResourceLinkArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -290,6 +296,8 @@ type serviceComputeArgs struct {
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackage            `pulumi:"package"`
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
+	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -341,6 +349,8 @@ type ServiceComputeArgs struct {
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackageInput
 	ProductEnablement ServiceComputeProductEnablementPtrInput
+	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+	ResourceLinks ServiceComputeResourceLinkArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
 	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
 	// an active service will cause an error. Default `false`
@@ -602,6 +612,11 @@ func (o ServiceComputeOutput) Package() ServiceComputePackageOutput {
 
 func (o ServiceComputeOutput) ProductEnablement() ServiceComputeProductEnablementPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeProductEnablementPtrOutput { return v.ProductEnablement }).(ServiceComputeProductEnablementPtrOutput)
+}
+
+// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+func (o ServiceComputeOutput) ResourceLinks() ServiceComputeResourceLinkArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeResourceLinkArrayOutput { return v.ResourceLinks }).(ServiceComputeResourceLinkArrayOutput)
 }
 
 // Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be

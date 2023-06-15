@@ -43,6 +43,7 @@ __all__ = [
     'ServiceComputeLoggingSyslog',
     'ServiceComputePackage',
     'ServiceComputeProductEnablement',
+    'ServiceComputeResourceLink',
     'ServiceVclAcl',
     'ServiceVclBackend',
     'ServiceVclCacheSetting',
@@ -3832,6 +3833,66 @@ class ServiceComputeProductEnablement(dict):
         Enable WebSockets support
         """
         return pulumi.get(self, "websockets")
+
+
+@pulumi.output_type
+class ServiceComputeResourceLink(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceId":
+            suggest = "resource_id"
+        elif key == "linkId":
+            suggest = "link_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeResourceLink. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeResourceLink.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeResourceLink.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 resource_id: str,
+                 link_id: Optional[str] = None):
+        """
+        :param str name: The name of the resource link.
+        :param str resource_id: The ID of the underlying linked resource.
+        :param str link_id: An alphanumeric string identifying the resource link.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "resource_id", resource_id)
+        if link_id is not None:
+            pulumi.set(__self__, "link_id", link_id)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the resource link.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of the underlying linked resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="linkId")
+    def link_id(self) -> Optional[str]:
+        """
+        An alphanumeric string identifying the resource link.
+        """
+        return pulumi.get(self, "link_id")
 
 
 @pulumi.output_type
@@ -9821,7 +9882,7 @@ class ServiceVclRateLimiter(dict):
                  response_object_name: Optional[str] = None,
                  uri_dictionary_name: Optional[str] = None):
         """
-        :param str action: The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        :param str action: The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
         :param str client_key: Comma-separated list of VCL variables used to generate a counter key to identify a client
         :param str http_methods: Comma-separated list of HTTP methods to apply rate limiting to
         :param str name: A unique human readable name for the rate limiting rule
@@ -9859,7 +9920,7 @@ class ServiceVclRateLimiter(dict):
     @pulumi.getter
     def action(self) -> str:
         """
-        The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
         """
         return pulumi.get(self, "action")
 

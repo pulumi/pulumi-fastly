@@ -36,6 +36,7 @@ import com.pulumi.fastly.inputs.ServiceComputeLoggingSumologicArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingSyslogArgs;
 import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
 import com.pulumi.fastly.inputs.ServiceComputeProductEnablementArgs;
+import com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -407,6 +408,21 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+     * 
+     */
+    @Import(name="resourceLinks")
+    private @Nullable Output<List<ServiceComputeResourceLinkArgs>> resourceLinks;
+
+    /**
+     * @return A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+     * 
+     */
+    public Optional<Output<List<ServiceComputeResourceLinkArgs>>> resourceLinks() {
+        return Optional.ofNullable(this.resourceLinks);
+    }
+
+    /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
      * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
      * an active service will cause an error. Default `false`
@@ -482,6 +498,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         this.name = $.name;
         this.package_ = $.package_;
         this.productEnablement = $.productEnablement;
+        this.resourceLinks = $.resourceLinks;
         this.reuse = $.reuse;
         this.versionComment = $.versionComment;
     }
@@ -1099,6 +1116,37 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
 
         public Builder productEnablement(ServiceComputeProductEnablementArgs productEnablement) {
             return productEnablement(Output.of(productEnablement));
+        }
+
+        /**
+         * @param resourceLinks A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resourceLinks(@Nullable Output<List<ServiceComputeResourceLinkArgs>> resourceLinks) {
+            $.resourceLinks = resourceLinks;
+            return this;
+        }
+
+        /**
+         * @param resourceLinks A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resourceLinks(List<ServiceComputeResourceLinkArgs> resourceLinks) {
+            return resourceLinks(Output.of(resourceLinks));
+        }
+
+        /**
+         * @param resourceLinks A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resourceLinks(ServiceComputeResourceLinkArgs... resourceLinks) {
+            return resourceLinks(List.of(resourceLinks));
         }
 
         /**

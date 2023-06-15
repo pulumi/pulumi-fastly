@@ -42,6 +42,7 @@ __all__ = [
     'ServiceComputeLoggingSyslogArgs',
     'ServiceComputePackageArgs',
     'ServiceComputeProductEnablementArgs',
+    'ServiceComputeResourceLinkArgs',
     'ServiceVclAclArgs',
     'ServiceVclBackendArgs',
     'ServiceVclCacheSettingArgs',
@@ -4257,6 +4258,59 @@ class ServiceComputeProductEnablementArgs:
     @websockets.setter
     def websockets(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "websockets", value)
+
+
+@pulumi.input_type
+class ServiceComputeResourceLinkArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 resource_id: pulumi.Input[str],
+                 link_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: The name of the resource link.
+        :param pulumi.Input[str] resource_id: The ID of the underlying linked resource.
+        :param pulumi.Input[str] link_id: An alphanumeric string identifying the resource link.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "resource_id", resource_id)
+        if link_id is not None:
+            pulumi.set(__self__, "link_id", link_id)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the resource link.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the underlying linked resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @resource_id.setter
+    def resource_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_id", value)
+
+    @property
+    @pulumi.getter(name="linkId")
+    def link_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        An alphanumeric string identifying the resource link.
+        """
+        return pulumi.get(self, "link_id")
+
+    @link_id.setter
+    def link_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "link_id", value)
 
 
 @pulumi.input_type
@@ -10900,7 +10954,7 @@ class ServiceVclRateLimiterArgs:
                  response_object_name: Optional[pulumi.Input[str]] = None,
                  uri_dictionary_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] action: The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        :param pulumi.Input[str] action: The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
         :param pulumi.Input[str] client_key: Comma-separated list of VCL variables used to generate a counter key to identify a client
         :param pulumi.Input[str] http_methods: Comma-separated list of HTTP methods to apply rate limiting to
         :param pulumi.Input[str] name: A unique human readable name for the rate limiting rule
@@ -10938,7 +10992,7 @@ class ServiceVclRateLimiterArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        The action to take when a rate limiter violation is detected (one of: log*only, log*only, response_object)
+        The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
         """
         return pulumi.get(self, "action")
 

@@ -11,6 +11,7 @@ import com.pulumi.fastly.TlsActivationArgs;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.TlsActivationState;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -151,6 +152,20 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      */
     public Output<String> domain() {
         return this.domain;
+    }
+    /**
+     * An alphanumeric string identifying a mutual authentication.
+     * 
+     */
+    @Export(name="mutualAuthenticationId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> mutualAuthenticationId;
+
+    /**
+     * @return An alphanumeric string identifying a mutual authentication.
+     * 
+     */
+    public Output<Optional<String>> mutualAuthenticationId() {
+        return Codegen.optional(this.mutualAuthenticationId);
     }
 
     /**

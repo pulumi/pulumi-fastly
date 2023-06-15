@@ -41,6 +41,7 @@ import com.pulumi.fastly.outputs.ServiceComputeLoggingSumologic;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingSyslog;
 import com.pulumi.fastly.outputs.ServiceComputePackage;
 import com.pulumi.fastly.outputs.ServiceComputeProductEnablement;
+import com.pulumi.fastly.outputs.ServiceComputeResourceLink;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -383,6 +384,20 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<ServiceComputeProductEnablement>> productEnablement() {
         return Codegen.optional(this.productEnablement);
+    }
+    /**
+     * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+     * 
+     */
+    @Export(name="resourceLinks", type=List.class, parameters={ServiceComputeResourceLink.class})
+    private Output</* @Nullable */ List<ServiceComputeResourceLink>> resourceLinks;
+
+    /**
+     * @return A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+     * 
+     */
+    public Output<Optional<List<ServiceComputeResourceLink>>> resourceLinks() {
+        return Codegen.optional(this.resourceLinks);
     }
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be

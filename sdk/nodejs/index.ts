@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { ConfigstoreArgs, ConfigstoreState } from "./configstore";
+export type Configstore = import("./configstore").Configstore;
+export const Configstore: typeof import("./configstore").Configstore = null as any;
+utilities.lazyLoad(exports, ["Configstore"], () => require("./configstore"));
+
+export { ConfigstoreEntriesArgs, ConfigstoreEntriesState } from "./configstoreEntries";
+export type ConfigstoreEntries = import("./configstoreEntries").ConfigstoreEntries;
+export const ConfigstoreEntries: typeof import("./configstoreEntries").ConfigstoreEntries = null as any;
+utilities.lazyLoad(exports, ["ConfigstoreEntries"], () => require("./configstoreEntries"));
+
 export { GetDatacentersResult } from "./getDatacenters";
 export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
 utilities.lazyLoad(exports, ["getDatacenters"], () => require("./getDatacenters"));
@@ -92,6 +102,11 @@ export const getWafRules: typeof import("./getWafRules").getWafRules = null as a
 export const getWafRulesOutput: typeof import("./getWafRules").getWafRulesOutput = null as any;
 utilities.lazyLoad(exports, ["getWafRules","getWafRulesOutput"], () => require("./getWafRules"));
 
+export { KvstoreArgs, KvstoreState } from "./kvstore";
+export type Kvstore = import("./kvstore").Kvstore;
+export const Kvstore: typeof import("./kvstore").Kvstore = null as any;
+utilities.lazyLoad(exports, ["Kvstore"], () => require("./kvstore"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -142,6 +157,11 @@ export type TlsCertificate = import("./tlsCertificate").TlsCertificate;
 export const TlsCertificate: typeof import("./tlsCertificate").TlsCertificate = null as any;
 utilities.lazyLoad(exports, ["TlsCertificate"], () => require("./tlsCertificate"));
 
+export { TlsMutualAuthenticationArgs, TlsMutualAuthenticationState } from "./tlsMutualAuthentication";
+export type TlsMutualAuthentication = import("./tlsMutualAuthentication").TlsMutualAuthentication;
+export const TlsMutualAuthentication: typeof import("./tlsMutualAuthentication").TlsMutualAuthentication = null as any;
+utilities.lazyLoad(exports, ["TlsMutualAuthentication"], () => require("./tlsMutualAuthentication"));
+
 export { TlsPlatformCertificateArgs, TlsPlatformCertificateState } from "./tlsPlatformCertificate";
 export type TlsPlatformCertificate = import("./tlsPlatformCertificate").TlsPlatformCertificate;
 export const TlsPlatformCertificate: typeof import("./tlsPlatformCertificate").TlsPlatformCertificate = null as any;
@@ -181,6 +201,12 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "fastly:index/configstore:Configstore":
+                return new Configstore(name, <any>undefined, { urn })
+            case "fastly:index/configstoreEntries:ConfigstoreEntries":
+                return new ConfigstoreEntries(name, <any>undefined, { urn })
+            case "fastly:index/kvstore:Kvstore":
+                return new Kvstore(name, <any>undefined, { urn })
             case "fastly:index/serviceACLEntries:ServiceACLEntries":
                 return new ServiceACLEntries(name, <any>undefined, { urn })
             case "fastly:index/serviceAuthorization:ServiceAuthorization":
@@ -199,6 +225,8 @@ const _module = {
                 return new TlsActivation(name, <any>undefined, { urn })
             case "fastly:index/tlsCertificate:TlsCertificate":
                 return new TlsCertificate(name, <any>undefined, { urn })
+            case "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication":
+                return new TlsMutualAuthentication(name, <any>undefined, { urn })
             case "fastly:index/tlsPlatformCertificate:TlsPlatformCertificate":
                 return new TlsPlatformCertificate(name, <any>undefined, { urn })
             case "fastly:index/tlsPrivateKey:TlsPrivateKey":
@@ -214,6 +242,9 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceAuthorization", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceCompute", _module)
@@ -223,6 +254,7 @@ pulumi.runtime.registerResourceModule("fastly", "index/serviceVcl", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceWafConfiguration", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsActivation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsCertificate", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/tlsMutualAuthentication", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsPlatformCertificate", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsPrivateKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscription", _module)

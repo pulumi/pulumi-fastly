@@ -114,6 +114,12 @@ namespace Pulumi.Fastly
         [Output("domain")]
         public Output<string> Domain { get; private set; } = null!;
 
+        /// <summary>
+        /// An alphanumeric string identifying a mutual authentication.
+        /// </summary>
+        [Output("mutualAuthenticationId")]
+        public Output<string?> MutualAuthenticationId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a TlsActivation resource with the given unique name, arguments, and options.
@@ -178,6 +184,12 @@ namespace Pulumi.Fastly
         [Input("domain", required: true)]
         public Input<string> Domain { get; set; } = null!;
 
+        /// <summary>
+        /// An alphanumeric string identifying a mutual authentication.
+        /// </summary>
+        [Input("mutualAuthenticationId")]
+        public Input<string>? MutualAuthenticationId { get; set; }
+
         public TlsActivationArgs()
         {
         }
@@ -209,6 +221,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
+
+        /// <summary>
+        /// An alphanumeric string identifying a mutual authentication.
+        /// </summary>
+        [Input("mutualAuthenticationId")]
+        public Input<string>? MutualAuthenticationId { get; set; }
 
         public TlsActivationState()
         {
