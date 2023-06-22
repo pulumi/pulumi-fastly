@@ -77,6 +77,21 @@ public final class ServiceVclLoggingS3Args extends com.pulumi.resources.Resource
     }
 
     /**
+     * Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    @Import(name="fileMaxBytes")
+    private @Nullable Output<Integer> fileMaxBytes;
+
+    /**
+     * @return Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    public Optional<Output<Integer>> fileMaxBytes() {
+        return Optional.ofNullable(this.fileMaxBytes);
+    }
+
+    /**
      * Apache-style string or VCL variables to use for log formatting.
      * 
      */
@@ -338,6 +353,7 @@ public final class ServiceVclLoggingS3Args extends com.pulumi.resources.Resource
         this.bucketName = $.bucketName;
         this.compressionCodec = $.compressionCodec;
         this.domain = $.domain;
+        this.fileMaxBytes = $.fileMaxBytes;
         this.format = $.format;
         this.formatVersion = $.formatVersion;
         this.gzipLevel = $.gzipLevel;
@@ -457,6 +473,27 @@ public final class ServiceVclLoggingS3Args extends com.pulumi.resources.Resource
          */
         public Builder domain(String domain) {
             return domain(Output.of(domain));
+        }
+
+        /**
+         * @param fileMaxBytes Maximum size of an uploaded log file, if non-zero.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fileMaxBytes(@Nullable Output<Integer> fileMaxBytes) {
+            $.fileMaxBytes = fileMaxBytes;
+            return this;
+        }
+
+        /**
+         * @param fileMaxBytes Maximum size of an uploaded log file, if non-zero.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fileMaxBytes(Integer fileMaxBytes) {
+            return fileMaxBytes(Output.of(fileMaxBytes));
         }
 
         /**

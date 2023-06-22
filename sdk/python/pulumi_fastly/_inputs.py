@@ -3252,6 +3252,7 @@ class ServiceComputeLoggingS3Args:
                  acl: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 file_max_bytes: Optional[pulumi.Input[int]] = None,
                  gzip_level: Optional[pulumi.Input[int]] = None,
                  message_type: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -3270,6 +3271,7 @@ class ServiceComputeLoggingS3Args:
         :param pulumi.Input[str] acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        :param pulumi.Input[int] file_max_bytes: Maximum size of an uploaded log file, if non-zero.
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
@@ -3291,6 +3293,8 @@ class ServiceComputeLoggingS3Args:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if file_max_bytes is not None:
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
         if gzip_level is not None:
             pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
@@ -3375,6 +3379,18 @@ class ServiceComputeLoggingS3Args:
     @domain.setter
     def domain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="fileMaxBytes")
+    def file_max_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum size of an uploaded log file, if non-zero.
+        """
+        return pulumi.get(self, "file_max_bytes")
+
+    @file_max_bytes.setter
+    def file_max_bytes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_max_bytes", value)
 
     @property
     @pulumi.getter(name="gzipLevel")
@@ -9552,6 +9568,7 @@ class ServiceVclLoggingS3Args:
                  acl: Optional[pulumi.Input[str]] = None,
                  compression_codec: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
+                 file_max_bytes: Optional[pulumi.Input[int]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  format_version: Optional[pulumi.Input[int]] = None,
                  gzip_level: Optional[pulumi.Input[int]] = None,
@@ -9574,6 +9591,7 @@ class ServiceVclLoggingS3Args:
         :param pulumi.Input[str] acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[str] domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        :param pulumi.Input[int] file_max_bytes: Maximum size of an uploaded log file, if non-zero.
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -9599,6 +9617,8 @@ class ServiceVclLoggingS3Args:
             pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if file_max_bytes is not None:
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if format_version is not None:
@@ -9691,6 +9711,18 @@ class ServiceVclLoggingS3Args:
     @domain.setter
     def domain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="fileMaxBytes")
+    def file_max_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum size of an uploaded log file, if non-zero.
+        """
+        return pulumi.get(self, "file_max_bytes")
+
+    @file_max_bytes.setter
+    def file_max_bytes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_max_bytes", value)
 
     @property
     @pulumi.getter

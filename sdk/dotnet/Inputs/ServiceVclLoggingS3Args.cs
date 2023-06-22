@@ -37,6 +37,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Domain { get; set; }
 
         /// <summary>
+        /// Maximum size of an uploaded log file, if non-zero.
+        /// </summary>
+        [Input("fileMaxBytes")]
+        public Input<int>? FileMaxBytes { get; set; }
+
+        /// <summary>
         /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]

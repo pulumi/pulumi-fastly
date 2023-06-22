@@ -3847,6 +3847,8 @@ type ServiceComputeLoggingS3 struct {
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain *string `pulumi:"domain"`
+	// Maximum size of an uploaded log file, if non-zero.
+	FileMaxBytes *int `pulumi:"fileMaxBytes"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
 	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -3895,6 +3897,8 @@ type ServiceComputeLoggingS3Args struct {
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Maximum size of an uploaded log file, if non-zero.
+	FileMaxBytes pulumi.IntPtrInput `pulumi:"fileMaxBytes"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -3992,6 +3996,11 @@ func (o ServiceComputeLoggingS3Output) CompressionCodec() pulumi.StringPtrOutput
 // If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 func (o ServiceComputeLoggingS3Output) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// Maximum size of an uploaded log file, if non-zero.
+func (o ServiceComputeLoggingS3Output) FileMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingS3) *int { return v.FileMaxBytes }).(pulumi.IntPtrOutput)
 }
 
 // Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -10931,6 +10940,8 @@ type ServiceVclLoggingS3 struct {
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain *string `pulumi:"domain"`
+	// Maximum size of an uploaded log file, if non-zero.
+	FileMaxBytes *int `pulumi:"fileMaxBytes"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
@@ -10987,6 +10998,8 @@ type ServiceVclLoggingS3Args struct {
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Maximum size of an uploaded log file, if non-zero.
+	FileMaxBytes pulumi.IntPtrInput `pulumi:"fileMaxBytes"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
@@ -11092,6 +11105,11 @@ func (o ServiceVclLoggingS3Output) CompressionCodec() pulumi.StringPtrOutput {
 // If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 func (o ServiceVclLoggingS3Output) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// Maximum size of an uploaded log file, if non-zero.
+func (o ServiceVclLoggingS3Output) FileMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingS3) *int { return v.FileMaxBytes }).(pulumi.IntPtrOutput)
 }
 
 // Apache-style string or VCL variables to use for log formatting.

@@ -33,6 +33,11 @@ public final class ServiceVclLoggingS3 {
      */
     private @Nullable String domain;
     /**
+     * @return Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    private @Nullable Integer fileMaxBytes;
+    /**
      * @return Apache-style string or VCL variables to use for log formatting.
      * 
      */
@@ -146,6 +151,13 @@ public final class ServiceVclLoggingS3 {
      */
     public Optional<String> domain() {
         return Optional.ofNullable(this.domain);
+    }
+    /**
+     * @return Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    public Optional<Integer> fileMaxBytes() {
+        return Optional.ofNullable(this.fileMaxBytes);
     }
     /**
      * @return Apache-style string or VCL variables to use for log formatting.
@@ -280,6 +292,7 @@ public final class ServiceVclLoggingS3 {
         private String bucketName;
         private @Nullable String compressionCodec;
         private @Nullable String domain;
+        private @Nullable Integer fileMaxBytes;
         private @Nullable String format;
         private @Nullable Integer formatVersion;
         private @Nullable Integer gzipLevel;
@@ -304,6 +317,7 @@ public final class ServiceVclLoggingS3 {
     	      this.bucketName = defaults.bucketName;
     	      this.compressionCodec = defaults.compressionCodec;
     	      this.domain = defaults.domain;
+    	      this.fileMaxBytes = defaults.fileMaxBytes;
     	      this.format = defaults.format;
     	      this.formatVersion = defaults.formatVersion;
     	      this.gzipLevel = defaults.gzipLevel;
@@ -341,6 +355,11 @@ public final class ServiceVclLoggingS3 {
         @CustomType.Setter
         public Builder domain(@Nullable String domain) {
             this.domain = domain;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder fileMaxBytes(@Nullable Integer fileMaxBytes) {
+            this.fileMaxBytes = fileMaxBytes;
             return this;
         }
         @CustomType.Setter
@@ -434,6 +453,7 @@ public final class ServiceVclLoggingS3 {
             o.bucketName = bucketName;
             o.compressionCodec = compressionCodec;
             o.domain = domain;
+            o.fileMaxBytes = fileMaxBytes;
             o.format = format;
             o.formatVersion = formatVersion;
             o.gzipLevel = gzipLevel;
