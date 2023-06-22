@@ -77,6 +77,21 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
+     * Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    @Import(name="fileMaxBytes")
+    private @Nullable Output<Integer> fileMaxBytes;
+
+    /**
+     * @return Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    public Optional<Output<Integer>> fileMaxBytes() {
+        return Optional.ofNullable(this.fileMaxBytes);
+    }
+
+    /**
      * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      * 
      */
@@ -278,6 +293,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         this.bucketName = $.bucketName;
         this.compressionCodec = $.compressionCodec;
         this.domain = $.domain;
+        this.fileMaxBytes = $.fileMaxBytes;
         this.gzipLevel = $.gzipLevel;
         this.messageType = $.messageType;
         this.name = $.name;
@@ -393,6 +409,27 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
          */
         public Builder domain(String domain) {
             return domain(Output.of(domain));
+        }
+
+        /**
+         * @param fileMaxBytes Maximum size of an uploaded log file, if non-zero.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fileMaxBytes(@Nullable Output<Integer> fileMaxBytes) {
+            $.fileMaxBytes = fileMaxBytes;
+            return this;
+        }
+
+        /**
+         * @param fileMaxBytes Maximum size of an uploaded log file, if non-zero.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fileMaxBytes(Integer fileMaxBytes) {
+            return fileMaxBytes(Output.of(fileMaxBytes));
         }
 
         /**

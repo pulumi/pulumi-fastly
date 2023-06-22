@@ -33,6 +33,11 @@ public final class ServiceComputeLoggingS3 {
      */
     private @Nullable String domain;
     /**
+     * @return Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    private @Nullable Integer fileMaxBytes;
+    /**
      * @return Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      * 
      */
@@ -126,6 +131,13 @@ public final class ServiceComputeLoggingS3 {
      */
     public Optional<String> domain() {
         return Optional.ofNullable(this.domain);
+    }
+    /**
+     * @return Maximum size of an uploaded log file, if non-zero.
+     * 
+     */
+    public Optional<Integer> fileMaxBytes() {
+        return Optional.ofNullable(this.fileMaxBytes);
     }
     /**
      * @return Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -232,6 +244,7 @@ public final class ServiceComputeLoggingS3 {
         private String bucketName;
         private @Nullable String compressionCodec;
         private @Nullable String domain;
+        private @Nullable Integer fileMaxBytes;
         private @Nullable Integer gzipLevel;
         private @Nullable String messageType;
         private String name;
@@ -252,6 +265,7 @@ public final class ServiceComputeLoggingS3 {
     	      this.bucketName = defaults.bucketName;
     	      this.compressionCodec = defaults.compressionCodec;
     	      this.domain = defaults.domain;
+    	      this.fileMaxBytes = defaults.fileMaxBytes;
     	      this.gzipLevel = defaults.gzipLevel;
     	      this.messageType = defaults.messageType;
     	      this.name = defaults.name;
@@ -285,6 +299,11 @@ public final class ServiceComputeLoggingS3 {
         @CustomType.Setter
         public Builder domain(@Nullable String domain) {
             this.domain = domain;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder fileMaxBytes(@Nullable Integer fileMaxBytes) {
+            this.fileMaxBytes = fileMaxBytes;
             return this;
         }
         @CustomType.Setter
@@ -358,6 +377,7 @@ public final class ServiceComputeLoggingS3 {
             o.bucketName = bucketName;
             o.compressionCodec = compressionCodec;
             o.domain = domain;
+            o.fileMaxBytes = fileMaxBytes;
             o.gzipLevel = gzipLevel;
             o.messageType = messageType;
             o.name = name;

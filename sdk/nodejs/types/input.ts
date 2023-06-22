@@ -856,6 +856,10 @@ export interface ServiceComputeLoggingS3 {
      */
     domain?: pulumi.Input<string>;
     /**
+     * Maximum size of an uploaded log file, if non-zero.
+     */
+    fileMaxBytes?: pulumi.Input<number>;
+    /**
      * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
      */
     gzipLevel?: pulumi.Input<number>;
@@ -2504,6 +2508,10 @@ export interface ServiceVclLoggingS3 {
      * If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
      */
     domain?: pulumi.Input<string>;
+    /**
+     * Maximum size of an uploaded log file, if non-zero.
+     */
+    fileMaxBytes?: pulumi.Input<number>;
     /**
      * Apache-style string or VCL variables to use for log formatting.
      */

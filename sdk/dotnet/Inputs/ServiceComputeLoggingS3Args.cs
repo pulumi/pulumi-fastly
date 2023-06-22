@@ -37,6 +37,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Domain { get; set; }
 
         /// <summary>
+        /// Maximum size of an uploaded log file, if non-zero.
+        /// </summary>
+        [Input("fileMaxBytes")]
+        public Input<int>? FileMaxBytes { get; set; }
+
+        /// <summary>
         /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         /// </summary>
         [Input("gzipLevel")]

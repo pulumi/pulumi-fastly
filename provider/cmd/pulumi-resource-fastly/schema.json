@@ -1131,6 +1131,10 @@
                     "type": "string",
                     "description": "If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`\n"
                 },
+                "fileMaxBytes": {
+                    "type": "integer",
+                    "description": "Maximum size of an uploaded log file, if non-zero.\n"
+                },
                 "gzipLevel": {
                     "type": "integer",
                     "description": "Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`\n"
@@ -3147,6 +3151,10 @@
                 "domain": {
                     "type": "string",
                     "description": "If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`\n"
+                },
+                "fileMaxBytes": {
+                    "type": "integer",
+                    "description": "Maximum size of an uploaded log file, if non-zero.\n"
                 },
                 "format": {
                     "type": "string",

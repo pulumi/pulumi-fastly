@@ -30,6 +30,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Domain;
         /// <summary>
+        /// Maximum size of an uploaded log file, if non-zero.
+        /// </summary>
+        public readonly int? FileMaxBytes;
+        /// <summary>
         /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         /// </summary>
         public readonly int? GzipLevel;
@@ -92,6 +96,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? domain,
 
+            int? fileMaxBytes,
+
             int? gzipLevel,
 
             string? messageType,
@@ -122,6 +128,7 @@ namespace Pulumi.Fastly.Outputs
             BucketName = bucketName;
             CompressionCodec = compressionCodec;
             Domain = domain;
+            FileMaxBytes = fileMaxBytes;
             GzipLevel = gzipLevel;
             MessageType = messageType;
             Name = name;

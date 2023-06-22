@@ -30,6 +30,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Domain;
         /// <summary>
+        /// Maximum size of an uploaded log file, if non-zero.
+        /// </summary>
+        public readonly int? FileMaxBytes;
+        /// <summary>
         /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         public readonly string? Format;
@@ -108,6 +112,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? domain,
 
+            int? fileMaxBytes,
+
             string? format,
 
             int? formatVersion,
@@ -146,6 +152,7 @@ namespace Pulumi.Fastly.Outputs
             BucketName = bucketName;
             CompressionCodec = compressionCodec;
             Domain = domain;
+            FileMaxBytes = fileMaxBytes;
             Format = format;
             FormatVersion = formatVersion;
             GzipLevel = gzipLevel;

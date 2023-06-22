@@ -608,6 +608,7 @@
             "fastly:index/ServiceComputeLoggingS3:ServiceComputeLoggingS3": {
                 "bucketName": "bucket_name",
                 "compressionCodec": "compression_codec",
+                "fileMaxBytes": "file_max_bytes",
                 "gzipLevel": "gzip_level",
                 "messageType": "message_type",
                 "publicKey": "public_key",
@@ -866,6 +867,7 @@
             "fastly:index/ServiceVclLoggingS3:ServiceVclLoggingS3": {
                 "bucketName": "bucket_name",
                 "compressionCodec": "compression_codec",
+                "fileMaxBytes": "file_max_bytes",
                 "formatVersion": "format_version",
                 "gzipLevel": "gzip_level",
                 "messageType": "message_type",
