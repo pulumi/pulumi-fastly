@@ -730,8 +730,8 @@ github.com/evanphx/json-patch v4.9.0+incompatible/go.mod h1:50XU6AFN0ol/bzJsmQLi
 github.com/evanphx/json-patch v4.11.0+incompatible/go.mod h1:50XU6AFN0ol/bzJsmQLiYLvXMP4fmwYFNcr97nuDLSk=
 github.com/evanphx/json-patch v4.12.0+incompatible/go.mod h1:50XU6AFN0ol/bzJsmQLiYLvXMP4fmwYFNcr97nuDLSk=
 github.com/evanphx/json-patch/v5 v5.5.0/go.mod h1:G79N1coSVB93tBe7j6PhzjmR3/2VvlbKOFpnXhI9Bw4=
-github.com/fastly/go-fastly/v8 v8.5.1 h1:5fBBlpN2tFbrK4zXHYic2oLcPvxFqEIB9l+leH5UqGU=
-github.com/fastly/go-fastly/v8 v8.5.1/go.mod h1:m/QWKyZsuH8Ow3tDkRLqlbvbJdxalRGkTT3ZKxZJ4eo=
+github.com/fastly/go-fastly/v8 v8.5.2 h1:l3uuaxWADj+uSK79KTvQlF7t4TdpiqE+56ZAamPx/uw=
+github.com/fastly/go-fastly/v8 v8.5.2/go.mod h1:m/QWKyZsuH8Ow3tDkRLqlbvbJdxalRGkTT3ZKxZJ4eo=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=
 github.com/fatih/color v1.10.0/go.mod h1:ELkj/draVOlAH/xkhN6mQ50Qd0MPOk5AAr3maGEBuJM=
