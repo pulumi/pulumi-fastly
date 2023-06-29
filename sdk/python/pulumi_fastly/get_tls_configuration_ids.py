@@ -75,5 +75,5 @@ def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsConfigurationIds:getTlsConfigurationIds', __args__, opts=opts, typ=GetTlsConfigurationIdsResult).value
 
     return AwaitableGetTlsConfigurationIdsResult(
-        id=__ret__.id,
-        ids=__ret__.ids)
+        id=pulumi.get(__ret__, 'id'),
+        ids=pulumi.get(__ret__, 'ids'))

@@ -160,14 +160,14 @@ def get_tls_platform_certificate(domains: Optional[Sequence[str]] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate', __args__, opts=opts, typ=GetTlsPlatformCertificateResult).value
 
     return AwaitableGetTlsPlatformCertificateResult(
-        configuration_id=__ret__.configuration_id,
-        created_at=__ret__.created_at,
-        domains=__ret__.domains,
-        id=__ret__.id,
-        not_after=__ret__.not_after,
-        not_before=__ret__.not_before,
-        replace=__ret__.replace,
-        updated_at=__ret__.updated_at)
+        configuration_id=pulumi.get(__ret__, 'configuration_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        domains=pulumi.get(__ret__, 'domains'),
+        id=pulumi.get(__ret__, 'id'),
+        not_after=pulumi.get(__ret__, 'not_after'),
+        not_before=pulumi.get(__ret__, 'not_before'),
+        replace=pulumi.get(__ret__, 'replace'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_tls_platform_certificate)

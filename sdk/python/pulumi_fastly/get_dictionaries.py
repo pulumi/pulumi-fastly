@@ -127,10 +127,10 @@ def get_dictionaries(service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getDictionaries:getDictionaries', __args__, opts=opts, typ=GetDictionariesResult).value
 
     return AwaitableGetDictionariesResult(
-        dictionaries=__ret__.dictionaries,
-        id=__ret__.id,
-        service_id=__ret__.service_id,
-        service_version=__ret__.service_version)
+        dictionaries=pulumi.get(__ret__, 'dictionaries'),
+        id=pulumi.get(__ret__, 'id'),
+        service_id=pulumi.get(__ret__, 'service_id'),
+        service_version=pulumi.get(__ret__, 'service_version'))
 
 
 @_utilities.lift_output_func(get_dictionaries)

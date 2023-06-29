@@ -130,11 +130,11 @@ def get_tls_activation(certificate_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsActivation:getTlsActivation', __args__, opts=opts, typ=GetTlsActivationResult).value
 
     return AwaitableGetTlsActivationResult(
-        certificate_id=__ret__.certificate_id,
-        configuration_id=__ret__.configuration_id,
-        created_at=__ret__.created_at,
-        domain=__ret__.domain,
-        id=__ret__.id)
+        certificate_id=pulumi.get(__ret__, 'certificate_id'),
+        configuration_id=pulumi.get(__ret__, 'configuration_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        domain=pulumi.get(__ret__, 'domain'),
+        id=pulumi.get(__ret__, 'id'))
 
 
 @_utilities.lift_output_func(get_tls_activation)

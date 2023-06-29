@@ -374,61 +374,171 @@
         },
         "datasources": {
             "fastly_datacenters": {
-                "current": "fastly:index/getDatacenters:getDatacenters"
+                "current": "fastly:index/getDatacenters:getDatacenters",
+                "fields": {
+                    "pops": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_dictionaries": {
-                "current": "fastly:index/getDictionaries:getDictionaries"
+                "current": "fastly:index/getDictionaries:getDictionaries",
+                "fields": {
+                    "dictionaries": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_ip_ranges": {
-                "current": "fastly:index/getFastlyIpRanges:getFastlyIpRanges"
+                "current": "fastly:index/getFastlyIpRanges:getFastlyIpRanges",
+                "fields": {
+                    "cidr_blocks": {
+                        "maxItemsOne": false
+                    },
+                    "ipv6_cidr_blocks": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_package_hash": {
                 "current": "fastly:index/getPackageHash:getPackageHash"
             },
             "fastly_services": {
-                "current": "fastly:index/getServices:getServices"
+                "current": "fastly:index/getServices:getServices",
+                "fields": {
+                    "details": {
+                        "maxItemsOne": false
+                    },
+                    "ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_activation": {
                 "current": "fastly:index/getTlsActivation:getTlsActivation"
             },
             "fastly_tls_activation_ids": {
-                "current": "fastly:index/getTlsActivationIds:getTlsActivationIds"
+                "current": "fastly:index/getTlsActivationIds:getTlsActivationIds",
+                "fields": {
+                    "ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_certificate": {
-                "current": "fastly:index/getTlsCertificate:getTlsCertificate"
+                "current": "fastly:index/getTlsCertificate:getTlsCertificate",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_certificate_ids": {
-                "current": "fastly:index/getTlsCertificateIds:getTlsCertificateIds"
+                "current": "fastly:index/getTlsCertificateIds:getTlsCertificateIds",
+                "fields": {
+                    "ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_configuration": {
-                "current": "fastly:index/getTlsConfiguration:getTlsConfiguration"
+                "current": "fastly:index/getTlsConfiguration:getTlsConfiguration",
+                "fields": {
+                    "dns_records": {
+                        "maxItemsOne": false
+                    },
+                    "http_protocols": {
+                        "maxItemsOne": false
+                    },
+                    "tls_protocols": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_configuration_ids": {
-                "current": "fastly:index/getTlsConfigurationIds:getTlsConfigurationIds"
+                "current": "fastly:index/getTlsConfigurationIds:getTlsConfigurationIds",
+                "fields": {
+                    "ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_domain": {
-                "current": "fastly:index/getTlsDomain:getTlsDomain"
+                "current": "fastly:index/getTlsDomain:getTlsDomain",
+                "fields": {
+                    "tls_activation_ids": {
+                        "maxItemsOne": false
+                    },
+                    "tls_certificate_ids": {
+                        "maxItemsOne": false
+                    },
+                    "tls_subscription_ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_platform_certificate": {
-                "current": "fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate"
+                "current": "fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_platform_certificate_ids": {
-                "current": "fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds"
+                "current": "fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds",
+                "fields": {
+                    "ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_private_key": {
                 "current": "fastly:index/getTlsPrivateKey:getTlsPrivateKey"
             },
             "fastly_tls_private_key_ids": {
-                "current": "fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds"
+                "current": "fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds",
+                "fields": {
+                    "ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_subscription": {
-                "current": "fastly:index/getTlsSubscription:getTlsSubscription"
+                "current": "fastly:index/getTlsSubscription:getTlsSubscription",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_tls_subscription_ids": {
-                "current": "fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds"
+                "current": "fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds",
+                "fields": {
+                    "ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_waf_rules": {
-                "current": "fastly:index/getWafRules:getWafRules"
+                "current": "fastly:index/getWafRules:getWafRules",
+                "fields": {
+                    "exclude_modsec_rule_ids": {
+                        "maxItemsOne": false
+                    },
+                    "modsec_rule_ids": {
+                        "maxItemsOne": false
+                    },
+                    "publishers": {
+                        "maxItemsOne": false
+                    },
+                    "rules": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             }
         }
     },

@@ -74,5 +74,5 @@ def get_tls_platform_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds', __args__, opts=opts, typ=GetTlsPlatformCertificateIdsResult).value
 
     return AwaitableGetTlsPlatformCertificateIdsResult(
-        id=__ret__.id,
-        ids=__ret__.ids)
+        id=pulumi.get(__ret__, 'id'),
+        ids=pulumi.get(__ret__, 'ids'))

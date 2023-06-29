@@ -115,11 +115,11 @@ def get_tls_domain(domain: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsDomain:getTlsDomain', __args__, opts=opts, typ=GetTlsDomainResult).value
 
     return AwaitableGetTlsDomainResult(
-        domain=__ret__.domain,
-        id=__ret__.id,
-        tls_activation_ids=__ret__.tls_activation_ids,
-        tls_certificate_ids=__ret__.tls_certificate_ids,
-        tls_subscription_ids=__ret__.tls_subscription_ids)
+        domain=pulumi.get(__ret__, 'domain'),
+        id=pulumi.get(__ret__, 'id'),
+        tls_activation_ids=pulumi.get(__ret__, 'tls_activation_ids'),
+        tls_certificate_ids=pulumi.get(__ret__, 'tls_certificate_ids'),
+        tls_subscription_ids=pulumi.get(__ret__, 'tls_subscription_ids'))
 
 
 @_utilities.lift_output_func(get_tls_domain)

@@ -75,5 +75,5 @@ def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds', __args__, opts=opts, typ=GetTlsSubscriptionIdsResult).value
 
     return AwaitableGetTlsSubscriptionIdsResult(
-        id=__ret__.id,
-        ids=__ret__.ids)
+        id=pulumi.get(__ret__, 'id'),
+        ids=pulumi.get(__ret__, 'ids'))

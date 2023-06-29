@@ -160,14 +160,14 @@ def get_tls_subscription(certificate_authority: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsSubscription:getTlsSubscription', __args__, opts=opts, typ=GetTlsSubscriptionResult).value
 
     return AwaitableGetTlsSubscriptionResult(
-        certificate_authority=__ret__.certificate_authority,
-        common_name=__ret__.common_name,
-        configuration_id=__ret__.configuration_id,
-        created_at=__ret__.created_at,
-        domains=__ret__.domains,
-        id=__ret__.id,
-        state=__ret__.state,
-        updated_at=__ret__.updated_at)
+        certificate_authority=pulumi.get(__ret__, 'certificate_authority'),
+        common_name=pulumi.get(__ret__, 'common_name'),
+        configuration_id=pulumi.get(__ret__, 'configuration_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        domains=pulumi.get(__ret__, 'domains'),
+        id=pulumi.get(__ret__, 'id'),
+        state=pulumi.get(__ret__, 'state'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_tls_subscription)
