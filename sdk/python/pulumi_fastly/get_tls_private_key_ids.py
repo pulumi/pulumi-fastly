@@ -74,5 +74,5 @@ def get_tls_private_key_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds', __args__, opts=opts, typ=GetTlsPrivateKeyIdsResult).value
 
     return AwaitableGetTlsPrivateKeyIdsResult(
-        id=__ret__.id,
-        ids=__ret__.ids)
+        id=pulumi.get(__ret__, 'id'),
+        ids=pulumi.get(__ret__, 'ids'))

@@ -193,16 +193,16 @@ def get_tls_certificate(domains: Optional[Sequence[str]] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsCertificate:getTlsCertificate', __args__, opts=opts, typ=GetTlsCertificateResult).value
 
     return AwaitableGetTlsCertificateResult(
-        created_at=__ret__.created_at,
-        domains=__ret__.domains,
-        id=__ret__.id,
-        issued_to=__ret__.issued_to,
-        issuer=__ret__.issuer,
-        name=__ret__.name,
-        replace=__ret__.replace,
-        serial_number=__ret__.serial_number,
-        signature_algorithm=__ret__.signature_algorithm,
-        updated_at=__ret__.updated_at)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        domains=pulumi.get(__ret__, 'domains'),
+        id=pulumi.get(__ret__, 'id'),
+        issued_to=pulumi.get(__ret__, 'issued_to'),
+        issuer=pulumi.get(__ret__, 'issuer'),
+        name=pulumi.get(__ret__, 'name'),
+        replace=pulumi.get(__ret__, 'replace'),
+        serial_number=pulumi.get(__ret__, 'serial_number'),
+        signature_algorithm=pulumi.get(__ret__, 'signature_algorithm'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_tls_certificate)

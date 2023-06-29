@@ -287,6 +287,9 @@ class _TlsSubscriptionState:
         """
         The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
         """
+        warnings.warn("""Use 'managed_dns_challenges' attribute instead""", DeprecationWarning)
+        pulumi.log.warn("""managed_dns_challenge is deprecated: Use 'managed_dns_challenges' attribute instead""")
+
         return pulumi.get(self, "managed_dns_challenge")
 
     @managed_dns_challenge.setter
@@ -593,6 +596,9 @@ class TlsSubscription(pulumi.CustomResource):
         """
         The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
         """
+        warnings.warn("""Use 'managed_dns_challenges' attribute instead""", DeprecationWarning)
+        pulumi.log.warn("""managed_dns_challenge is deprecated: Use 'managed_dns_challenges' attribute instead""")
+
         return pulumi.get(self, "managed_dns_challenge")
 
     @property

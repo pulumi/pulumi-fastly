@@ -111,10 +111,10 @@ def get_package_hash(content: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getPackageHash:getPackageHash', __args__, opts=opts, typ=GetPackageHashResult).value
 
     return AwaitableGetPackageHashResult(
-        content=__ret__.content,
-        filename=__ret__.filename,
-        hash=__ret__.hash,
-        id=__ret__.id)
+        content=pulumi.get(__ret__, 'content'),
+        filename=pulumi.get(__ret__, 'filename'),
+        hash=pulumi.get(__ret__, 'hash'),
+        id=pulumi.get(__ret__, 'id'))
 
 
 @_utilities.lift_output_func(get_package_hash)

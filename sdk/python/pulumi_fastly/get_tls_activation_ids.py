@@ -93,9 +93,9 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsActivationIds:getTlsActivationIds', __args__, opts=opts, typ=GetTlsActivationIdsResult).value
 
     return AwaitableGetTlsActivationIdsResult(
-        certificate_id=__ret__.certificate_id,
-        id=__ret__.id,
-        ids=__ret__.ids)
+        certificate_id=pulumi.get(__ret__, 'certificate_id'),
+        id=pulumi.get(__ret__, 'id'),
+        ids=pulumi.get(__ret__, 'ids'))
 
 
 @_utilities.lift_output_func(get_tls_activation_ids)

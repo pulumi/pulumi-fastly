@@ -127,12 +127,12 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getWafRules:getWafRules', __args__, opts=opts, typ=GetWafRulesResult).value
 
     return AwaitableGetWafRulesResult(
-        exclude_modsec_rule_ids=__ret__.exclude_modsec_rule_ids,
-        id=__ret__.id,
-        modsec_rule_ids=__ret__.modsec_rule_ids,
-        publishers=__ret__.publishers,
-        rules=__ret__.rules,
-        tags=__ret__.tags)
+        exclude_modsec_rule_ids=pulumi.get(__ret__, 'exclude_modsec_rule_ids'),
+        id=pulumi.get(__ret__, 'id'),
+        modsec_rule_ids=pulumi.get(__ret__, 'modsec_rule_ids'),
+        publishers=pulumi.get(__ret__, 'publishers'),
+        rules=pulumi.get(__ret__, 'rules'),
+        tags=pulumi.get(__ret__, 'tags'))
 
 
 @_utilities.lift_output_func(get_waf_rules)

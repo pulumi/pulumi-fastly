@@ -77,6 +77,6 @@ def get_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSer
     __ret__ = pulumi.runtime.invoke('fastly:index/getServices:getServices', __args__, opts=opts, typ=GetServicesResult).value
 
     return AwaitableGetServicesResult(
-        details=__ret__.details,
-        id=__ret__.id,
-        ids=__ret__.ids)
+        details=pulumi.get(__ret__, 'details'),
+        id=pulumi.get(__ret__, 'id'),
+        ids=pulumi.get(__ret__, 'ids'))

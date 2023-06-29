@@ -162,13 +162,13 @@ def get_tls_private_key(created_at: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsPrivateKey:getTlsPrivateKey', __args__, opts=opts, typ=GetTlsPrivateKeyResult).value
 
     return AwaitableGetTlsPrivateKeyResult(
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        key_length=__ret__.key_length,
-        key_type=__ret__.key_type,
-        name=__ret__.name,
-        public_key_sha1=__ret__.public_key_sha1,
-        replace=__ret__.replace)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        key_length=pulumi.get(__ret__, 'key_length'),
+        key_type=pulumi.get(__ret__, 'key_type'),
+        name=pulumi.get(__ret__, 'name'),
+        public_key_sha1=pulumi.get(__ret__, 'public_key_sha1'),
+        replace=pulumi.get(__ret__, 'replace'))
 
 
 @_utilities.lift_output_func(get_tls_private_key)

@@ -187,15 +187,15 @@ def get_tls_configuration(default: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('fastly:index/getTlsConfiguration:getTlsConfiguration', __args__, opts=opts, typ=GetTlsConfigurationResult).value
 
     return AwaitableGetTlsConfigurationResult(
-        created_at=__ret__.created_at,
-        default=__ret__.default,
-        dns_records=__ret__.dns_records,
-        http_protocols=__ret__.http_protocols,
-        id=__ret__.id,
-        name=__ret__.name,
-        tls_protocols=__ret__.tls_protocols,
-        tls_service=__ret__.tls_service,
-        updated_at=__ret__.updated_at)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        default=pulumi.get(__ret__, 'default'),
+        dns_records=pulumi.get(__ret__, 'dns_records'),
+        http_protocols=pulumi.get(__ret__, 'http_protocols'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        tls_protocols=pulumi.get(__ret__, 'tls_protocols'),
+        tls_service=pulumi.get(__ret__, 'tls_service'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_tls_configuration)

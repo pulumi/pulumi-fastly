@@ -65,5 +65,5 @@ def get_datacenters(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     __ret__ = pulumi.runtime.invoke('fastly:index/getDatacenters:getDatacenters', __args__, opts=opts, typ=GetDatacentersResult).value
 
     return AwaitableGetDatacentersResult(
-        id=__ret__.id,
-        pops=__ret__.pops)
+        id=pulumi.get(__ret__, 'id'),
+        pops=pulumi.get(__ret__, 'pops'))

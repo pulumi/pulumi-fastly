@@ -95,6 +95,6 @@ def get_fastly_ip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
     __ret__ = pulumi.runtime.invoke('fastly:index/getFastlyIpRanges:getFastlyIpRanges', __args__, opts=opts, typ=GetFastlyIpRangesResult).value
 
     return AwaitableGetFastlyIpRangesResult(
-        cidr_blocks=__ret__.cidr_blocks,
-        id=__ret__.id,
-        ipv6_cidr_blocks=__ret__.ipv6_cidr_blocks)
+        cidr_blocks=pulumi.get(__ret__, 'cidr_blocks'),
+        id=pulumi.get(__ret__, 'id'),
+        ipv6_cidr_blocks=pulumi.get(__ret__, 'ipv6_cidr_blocks'))
