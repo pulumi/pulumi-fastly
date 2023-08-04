@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -134,6 +135,7 @@ func NewTlsCertificate(ctx *pulumi.Context,
 	if args.CertificateBody == nil {
 		return nil, errors.New("invalid value for required argument 'CertificateBody'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TlsCertificate
 	err := ctx.RegisterResource("fastly:index/tlsCertificate:TlsCertificate", name, args, &resource, opts...)
 	if err != nil {

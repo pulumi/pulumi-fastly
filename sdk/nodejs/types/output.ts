@@ -5,6 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetConfigstoresStore {
+    /**
+     * The ID of this resource.
+     */
+    id: string;
+    name: string;
+}
+
 export interface GetDatacentersPop {
     code: string;
     group: string;
@@ -19,6 +27,14 @@ export interface GetDictionariesDictionary {
     id: string;
     name: string;
     writeOnly: boolean;
+}
+
+export interface GetKvstoresStore {
+    /**
+     * The ID of this resource.
+     */
+    id: string;
+    name: string;
 }
 
 export interface GetServicesDetail {
@@ -92,10 +108,6 @@ export interface ServiceComputeBackend {
      * How long to wait for a timeout in milliseconds. Default `1000`
      */
     connectTimeout?: number;
-    /**
-     * Number of errors to allow before the Backend is marked as down. Default `0`
-     */
-    errorThreshold?: number;
     /**
      * How long to wait for the first bytes in milliseconds. Default `15000`
      */
@@ -1208,10 +1220,6 @@ export interface ServiceVclBackend {
      * How long to wait for a timeout in milliseconds. Default `1000`
      */
     connectTimeout?: number;
-    /**
-     * Number of errors to allow before the Backend is marked as down. Default `0`
-     */
-    errorThreshold?: number;
     /**
      * How long to wait for the first bytes in milliseconds. Default `15000`
      */
@@ -3008,7 +3016,7 @@ export interface ServiceVclRequestSetting {
      */
     name: string;
     /**
-     * Name of already defined `condition` to determine if this request setting should be applied
+     * Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
      */
     requestCondition?: string;
     /**

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -116,6 +117,7 @@ func NewTlsActivation(ctx *pulumi.Context,
 	if args.Domain == nil {
 		return nil, errors.New("invalid value for required argument 'Domain'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TlsActivation
 	err := ctx.RegisterResource("fastly:index/tlsActivation:TlsActivation", name, args, &resource, opts...)
 	if err != nil {

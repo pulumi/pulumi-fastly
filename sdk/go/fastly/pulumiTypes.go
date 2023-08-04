@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type ServiceACLEntriesEntry struct {
 	// A personal freeform descriptive note
@@ -150,8 +153,6 @@ type ServiceComputeBackend struct {
 	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold *int `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -210,8 +211,6 @@ type ServiceComputeBackendArgs struct {
 	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -316,11 +315,6 @@ func (o ServiceComputeBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 // How long to wait for a timeout in milliseconds. Default `1000`
 func (o ServiceComputeBackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
-}
-
-// Number of errors to allow before the Backend is marked as down. Default `0`
-func (o ServiceComputeBackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
 // How long to wait for the first bytes in milliseconds. Default `15000`
@@ -5459,8 +5453,6 @@ type ServiceVclBackend struct {
 	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold *int `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -5523,8 +5515,6 @@ type ServiceVclBackendArgs struct {
 	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
-	// Number of errors to allow before the Backend is marked as down. Default `0`
-	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -5636,11 +5626,6 @@ func (o ServiceVclBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 // How long to wait for a timeout in milliseconds. Default `1000`
 func (o ServiceVclBackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
-}
-
-// Number of errors to allow before the Backend is marked as down. Default `0`
-func (o ServiceVclBackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceVclBackend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
 // How long to wait for the first bytes in milliseconds. Default `15000`
@@ -12800,7 +12785,7 @@ type ServiceVclRequestSetting struct {
 	MaxStaleAge *int `pulumi:"maxStaleAge"`
 	// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Name of already defined `condition` to determine if this request setting should be applied
+	// Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
 	RequestCondition *string `pulumi:"requestCondition"`
 	// Injects the X-Timer info into the request for viewing origin fetch durations
 	TimerSupport *bool `pulumi:"timerSupport"`
@@ -12840,7 +12825,7 @@ type ServiceVclRequestSettingArgs struct {
 	MaxStaleAge pulumi.IntPtrInput `pulumi:"maxStaleAge"`
 	// Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Name of already defined `condition` to determine if this request setting should be applied
+	// Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
 	// Injects the X-Timer info into the request for viewing origin fetch durations
 	TimerSupport pulumi.BoolPtrInput `pulumi:"timerSupport"`
@@ -12946,7 +12931,7 @@ func (o ServiceVclRequestSettingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclRequestSetting) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Name of already defined `condition` to determine if this request setting should be applied
+// Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
 func (o ServiceVclRequestSettingOutput) RequestCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclRequestSetting) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
 }
@@ -14043,6 +14028,109 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput)
 	}).(TlsSubscriptionManagedHttpChallengeOutput)
 }
 
+type GetConfigstoresStore struct {
+	// The ID of this resource.
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+}
+
+// GetConfigstoresStoreInput is an input type that accepts GetConfigstoresStoreArgs and GetConfigstoresStoreOutput values.
+// You can construct a concrete instance of `GetConfigstoresStoreInput` via:
+//
+//	GetConfigstoresStoreArgs{...}
+type GetConfigstoresStoreInput interface {
+	pulumi.Input
+
+	ToGetConfigstoresStoreOutput() GetConfigstoresStoreOutput
+	ToGetConfigstoresStoreOutputWithContext(context.Context) GetConfigstoresStoreOutput
+}
+
+type GetConfigstoresStoreArgs struct {
+	// The ID of this resource.
+	Id   pulumi.StringInput `pulumi:"id"`
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetConfigstoresStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigstoresStore)(nil)).Elem()
+}
+
+func (i GetConfigstoresStoreArgs) ToGetConfigstoresStoreOutput() GetConfigstoresStoreOutput {
+	return i.ToGetConfigstoresStoreOutputWithContext(context.Background())
+}
+
+func (i GetConfigstoresStoreArgs) ToGetConfigstoresStoreOutputWithContext(ctx context.Context) GetConfigstoresStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigstoresStoreOutput)
+}
+
+// GetConfigstoresStoreArrayInput is an input type that accepts GetConfigstoresStoreArray and GetConfigstoresStoreArrayOutput values.
+// You can construct a concrete instance of `GetConfigstoresStoreArrayInput` via:
+//
+//	GetConfigstoresStoreArray{ GetConfigstoresStoreArgs{...} }
+type GetConfigstoresStoreArrayInput interface {
+	pulumi.Input
+
+	ToGetConfigstoresStoreArrayOutput() GetConfigstoresStoreArrayOutput
+	ToGetConfigstoresStoreArrayOutputWithContext(context.Context) GetConfigstoresStoreArrayOutput
+}
+
+type GetConfigstoresStoreArray []GetConfigstoresStoreInput
+
+func (GetConfigstoresStoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigstoresStore)(nil)).Elem()
+}
+
+func (i GetConfigstoresStoreArray) ToGetConfigstoresStoreArrayOutput() GetConfigstoresStoreArrayOutput {
+	return i.ToGetConfigstoresStoreArrayOutputWithContext(context.Background())
+}
+
+func (i GetConfigstoresStoreArray) ToGetConfigstoresStoreArrayOutputWithContext(ctx context.Context) GetConfigstoresStoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigstoresStoreArrayOutput)
+}
+
+type GetConfigstoresStoreOutput struct{ *pulumi.OutputState }
+
+func (GetConfigstoresStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigstoresStore)(nil)).Elem()
+}
+
+func (o GetConfigstoresStoreOutput) ToGetConfigstoresStoreOutput() GetConfigstoresStoreOutput {
+	return o
+}
+
+func (o GetConfigstoresStoreOutput) ToGetConfigstoresStoreOutputWithContext(ctx context.Context) GetConfigstoresStoreOutput {
+	return o
+}
+
+// The ID of this resource.
+func (o GetConfigstoresStoreOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigstoresStore) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetConfigstoresStoreOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigstoresStore) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetConfigstoresStoreArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConfigstoresStoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigstoresStore)(nil)).Elem()
+}
+
+func (o GetConfigstoresStoreArrayOutput) ToGetConfigstoresStoreArrayOutput() GetConfigstoresStoreArrayOutput {
+	return o
+}
+
+func (o GetConfigstoresStoreArrayOutput) ToGetConfigstoresStoreArrayOutputWithContext(ctx context.Context) GetConfigstoresStoreArrayOutput {
+	return o
+}
+
+func (o GetConfigstoresStoreArrayOutput) Index(i pulumi.IntInput) GetConfigstoresStoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConfigstoresStore {
+		return vs[0].([]GetConfigstoresStore)[vs[1].(int)]
+	}).(GetConfigstoresStoreOutput)
+}
+
 type GetDatacentersPop struct {
 	Code   string `pulumi:"code"`
 	Group  string `pulumi:"group"`
@@ -14262,6 +14350,109 @@ func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictio
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDictionariesDictionary {
 		return vs[0].([]GetDictionariesDictionary)[vs[1].(int)]
 	}).(GetDictionariesDictionaryOutput)
+}
+
+type GetKvstoresStore struct {
+	// The ID of this resource.
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+}
+
+// GetKvstoresStoreInput is an input type that accepts GetKvstoresStoreArgs and GetKvstoresStoreOutput values.
+// You can construct a concrete instance of `GetKvstoresStoreInput` via:
+//
+//	GetKvstoresStoreArgs{...}
+type GetKvstoresStoreInput interface {
+	pulumi.Input
+
+	ToGetKvstoresStoreOutput() GetKvstoresStoreOutput
+	ToGetKvstoresStoreOutputWithContext(context.Context) GetKvstoresStoreOutput
+}
+
+type GetKvstoresStoreArgs struct {
+	// The ID of this resource.
+	Id   pulumi.StringInput `pulumi:"id"`
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetKvstoresStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKvstoresStore)(nil)).Elem()
+}
+
+func (i GetKvstoresStoreArgs) ToGetKvstoresStoreOutput() GetKvstoresStoreOutput {
+	return i.ToGetKvstoresStoreOutputWithContext(context.Background())
+}
+
+func (i GetKvstoresStoreArgs) ToGetKvstoresStoreOutputWithContext(ctx context.Context) GetKvstoresStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKvstoresStoreOutput)
+}
+
+// GetKvstoresStoreArrayInput is an input type that accepts GetKvstoresStoreArray and GetKvstoresStoreArrayOutput values.
+// You can construct a concrete instance of `GetKvstoresStoreArrayInput` via:
+//
+//	GetKvstoresStoreArray{ GetKvstoresStoreArgs{...} }
+type GetKvstoresStoreArrayInput interface {
+	pulumi.Input
+
+	ToGetKvstoresStoreArrayOutput() GetKvstoresStoreArrayOutput
+	ToGetKvstoresStoreArrayOutputWithContext(context.Context) GetKvstoresStoreArrayOutput
+}
+
+type GetKvstoresStoreArray []GetKvstoresStoreInput
+
+func (GetKvstoresStoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKvstoresStore)(nil)).Elem()
+}
+
+func (i GetKvstoresStoreArray) ToGetKvstoresStoreArrayOutput() GetKvstoresStoreArrayOutput {
+	return i.ToGetKvstoresStoreArrayOutputWithContext(context.Background())
+}
+
+func (i GetKvstoresStoreArray) ToGetKvstoresStoreArrayOutputWithContext(ctx context.Context) GetKvstoresStoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKvstoresStoreArrayOutput)
+}
+
+type GetKvstoresStoreOutput struct{ *pulumi.OutputState }
+
+func (GetKvstoresStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKvstoresStore)(nil)).Elem()
+}
+
+func (o GetKvstoresStoreOutput) ToGetKvstoresStoreOutput() GetKvstoresStoreOutput {
+	return o
+}
+
+func (o GetKvstoresStoreOutput) ToGetKvstoresStoreOutputWithContext(ctx context.Context) GetKvstoresStoreOutput {
+	return o
+}
+
+// The ID of this resource.
+func (o GetKvstoresStoreOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKvstoresStore) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetKvstoresStoreOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKvstoresStore) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetKvstoresStoreArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKvstoresStoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKvstoresStore)(nil)).Elem()
+}
+
+func (o GetKvstoresStoreArrayOutput) ToGetKvstoresStoreArrayOutput() GetKvstoresStoreArrayOutput {
+	return o
+}
+
+func (o GetKvstoresStoreArrayOutput) ToGetKvstoresStoreArrayOutputWithContext(ctx context.Context) GetKvstoresStoreArrayOutput {
+	return o
+}
+
+func (o GetKvstoresStoreArrayOutput) Index(i pulumi.IntInput) GetKvstoresStoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKvstoresStore {
+		return vs[0].([]GetKvstoresStore)[vs[1].(int)]
+	}).(GetKvstoresStoreOutput)
 }
 
 type GetServicesDetail struct {
@@ -14789,10 +14980,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigstoresStoreInput)(nil)).Elem(), GetConfigstoresStoreArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigstoresStoreArrayInput)(nil)).Elem(), GetConfigstoresStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopInput)(nil)).Elem(), GetDatacentersPopArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopArrayInput)(nil)).Elem(), GetDatacentersPopArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryInput)(nil)).Elem(), GetDictionariesDictionaryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreInput)(nil)).Elem(), GetKvstoresStoreArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreArrayInput)(nil)).Elem(), GetKvstoresStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailInput)(nil)).Elem(), GetServicesDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailArrayInput)(nil)).Elem(), GetServicesDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
@@ -14963,10 +15158,14 @@ func init() {
 	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
+	pulumi.RegisterOutputType(GetConfigstoresStoreOutput{})
+	pulumi.RegisterOutputType(GetConfigstoresStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopArrayOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
+	pulumi.RegisterOutputType(GetKvstoresStoreOutput{})
+	pulumi.RegisterOutputType(GetKvstoresStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})

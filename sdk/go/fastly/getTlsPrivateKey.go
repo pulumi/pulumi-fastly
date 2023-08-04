@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -48,6 +49,7 @@ import (
 //
 // ```
 func LookupTlsPrivateKey(ctx *pulumi.Context, args *LookupTlsPrivateKeyArgs, opts ...pulumi.InvokeOption) (*LookupTlsPrivateKeyResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsPrivateKeyResult
 	err := ctx.Invoke("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args, &rv, opts...)
 	if err != nil {

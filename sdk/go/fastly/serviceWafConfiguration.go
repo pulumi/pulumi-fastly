@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -121,6 +122,7 @@ func NewServiceWafConfiguration(ctx *pulumi.Context,
 	if args.WafId == nil {
 		return nil, errors.New("invalid value for required argument 'WafId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceWafConfiguration
 	err := ctx.RegisterResource("fastly:index/serviceWafConfiguration:ServiceWafConfiguration", name, args, &resource, opts...)
 	if err != nil {

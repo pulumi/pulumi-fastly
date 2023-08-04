@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,6 +39,7 @@ import (
 //
 // ```
 func GetTlsDomain(ctx *pulumi.Context, args *GetTlsDomainArgs, opts ...pulumi.InvokeOption) (*GetTlsDomainResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsDomainResult
 	err := ctx.Invoke("fastly:index/getTlsDomain:getTlsDomain", args, &rv, opts...)
 	if err != nil {

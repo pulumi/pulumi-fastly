@@ -161,14 +161,14 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Name of already defined `condition` to determine if this request setting should be applied
+     * Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
      * 
      */
     @Import(name="requestCondition")
     private @Nullable Output<String> requestCondition;
 
     /**
-     * @return Name of already defined `condition` to determine if this request setting should be applied
+     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
      * 
      */
     public Optional<Output<String>> requestCondition() {
@@ -438,7 +438,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied
+         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
          * 
          * @return builder
          * 
@@ -449,7 +449,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied
+         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
          * 
          * @return builder
          * 

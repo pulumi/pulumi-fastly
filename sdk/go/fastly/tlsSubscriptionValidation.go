@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,6 +34,7 @@ func NewTlsSubscriptionValidation(ctx *pulumi.Context,
 	if args.SubscriptionId == nil {
 		return nil, errors.New("invalid value for required argument 'SubscriptionId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TlsSubscriptionValidation
 	err := ctx.RegisterResource("fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation", name, args, &resource, opts...)
 	if err != nil {

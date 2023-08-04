@@ -4,11 +4,13 @@
 package fastly
 
 import (
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).
 func GetServices(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetServicesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServicesResult
 	err := ctx.Invoke("fastly:index/getServices:getServices", nil, &rv, opts...)
 	if err != nil {

@@ -50,7 +50,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Name of already defined `condition` to determine if this request setting should be applied
+        /// Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>

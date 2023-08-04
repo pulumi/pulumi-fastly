@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -45,6 +46,7 @@ func NewConfigstoreEntries(ctx *pulumi.Context,
 	if args.StoreId == nil {
 		return nil, errors.New("invalid value for required argument 'StoreId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ConfigstoreEntries
 	err := ctx.RegisterResource("fastly:index/configstoreEntries:ConfigstoreEntries", name, args, &resource, opts...)
 	if err != nil {
