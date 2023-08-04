@@ -4,6 +4,7 @@
 package fastly
 
 import (
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +40,7 @@ import (
 //
 // ```
 func GetTlsCertificateIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsCertificateIdsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsCertificateIdsResult
 	err := ctx.Invoke("fastly:index/getTlsCertificateIds:getTlsCertificateIds", nil, &rv, opts...)
 	if err != nil {

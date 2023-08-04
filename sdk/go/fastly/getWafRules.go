@@ -7,10 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetWafRules(ctx *pulumi.Context, args *GetWafRulesArgs, opts ...pulumi.InvokeOption) (*GetWafRulesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetWafRulesResult
 	err := ctx.Invoke("fastly:index/getWafRules:getWafRules", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,6 +52,7 @@ func NewServiceDynamicSnippetContent(ctx *pulumi.Context,
 	if args.SnippetId == nil {
 		return nil, errors.New("invalid value for required argument 'SnippetId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceDynamicSnippetContent
 	err := ctx.RegisterResource("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent", name, args, &resource, opts...)
 	if err != nil {

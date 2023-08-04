@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -88,6 +89,7 @@ func NewKvstore(ctx *pulumi.Context,
 		args = &KvstoreArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Kvstore
 	err := ctx.RegisterResource("fastly:index/kvstore:Kvstore", name, args, &resource, opts...)
 	if err != nil {

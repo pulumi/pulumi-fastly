@@ -30,9 +30,11 @@ import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
 import com.pulumi.fastly.inputs.GetWafRulesArgs;
 import com.pulumi.fastly.inputs.GetWafRulesPlainArgs;
+import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
+import com.pulumi.fastly.outputs.GetKvstoresResult;
 import com.pulumi.fastly.outputs.GetPackageHashResult;
 import com.pulumi.fastly.outputs.GetServicesResult;
 import com.pulumi.fastly.outputs.GetTlsActivationIdsResult;
@@ -53,6 +55,24 @@ import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class FastlyFunctions {
+    public static Output<GetConfigstoresResult> getConfigstores() {
+        return getConfigstores(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetConfigstoresResult> getConfigstoresPlain() {
+        return getConfigstoresPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetConfigstoresResult> getConfigstores(InvokeArgs args) {
+        return getConfigstores(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetConfigstoresResult> getConfigstoresPlain(InvokeArgs args) {
+        return getConfigstoresPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetConfigstoresResult> getConfigstores(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getConfigstores:getConfigstores", TypeShape.of(GetConfigstoresResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetConfigstoresResult> getConfigstoresPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getConfigstores:getConfigstores", TypeShape.of(GetConfigstoresResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
      * 
@@ -636,6 +656,24 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getFastlyIpRanges:getFastlyIpRanges", TypeShape.of(GetFastlyIpRangesResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetKvstoresResult> getKvstores() {
+        return getKvstores(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetKvstoresResult> getKvstoresPlain() {
+        return getKvstoresPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetKvstoresResult> getKvstores(InvokeArgs args) {
+        return getKvstores(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetKvstoresResult> getKvstoresPlain(InvokeArgs args) {
+        return getKvstoresPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetKvstoresResult> getKvstores(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getKvstores:getKvstores", TypeShape.of(GetKvstoresResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetKvstoresResult> getKvstoresPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getKvstores:getKvstores", TypeShape.of(GetKvstoresResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.

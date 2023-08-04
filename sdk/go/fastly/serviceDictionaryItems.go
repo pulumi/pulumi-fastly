@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -48,6 +49,7 @@ func NewServiceDictionaryItems(ctx *pulumi.Context,
 	if args.ServiceId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceDictionaryItems
 	err := ctx.RegisterResource("fastly:index/serviceDictionaryItems:ServiceDictionaryItems", name, args, &resource, opts...)
 	if err != nil {

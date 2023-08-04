@@ -4,6 +4,7 @@
 package fastly
 
 import (
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -50,6 +51,7 @@ import (
 //
 // [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
 func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFastlyIpRangesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFastlyIpRangesResult
 	err := ctx.Invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, &rv, opts...)
 	if err != nil {

@@ -24,10 +24,9 @@ import (
 	"github.com/fastly/terraform-provider-fastly/fastly"
 	"github.com/pulumi/pulumi-fastly/provider/v8/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 // all of the token components used below.
@@ -130,12 +129,10 @@ func Provider() tfbridge.ProviderInfo {
 		}, MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
 
-	err := x.ComputeDefaults(&prov, x.TokensSingleModule("fastly_", mainMod,
-		x.MakeStandardToken(mainPkg)).Unmappable("_acl_", "acl is capitalized to ACL"))
-	contract.AssertNoErrorf(err, "failed to apply auto token mapping")
-	err = x.AutoAliasing(&prov, prov.GetMetadata())
-	contract.AssertNoErrorf(err, "auto aliasing apply failed")
-
+	prov.MustComputeTokens(tks.SingleModule("fastly_", mainMod,
+		tks.MakeStandard(mainPkg)).
+		Ignore("_acl_")) // acl is capitalized to ACL
+	prov.MustApplyAutoAliases()
 	prov.SetAutonaming(255, "-")
 
 	return prov

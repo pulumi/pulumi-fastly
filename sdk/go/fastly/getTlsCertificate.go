@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,6 +45,7 @@ import (
 //
 // ```
 func LookupTlsCertificate(ctx *pulumi.Context, args *LookupTlsCertificateArgs, opts ...pulumi.InvokeOption) (*LookupTlsCertificateResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsCertificateResult
 	err := ctx.Invoke("fastly:index/getTlsCertificate:getTlsCertificate", args, &rv, opts...)
 	if err != nil {

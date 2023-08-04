@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,6 +41,7 @@ import (
 //
 // ```
 func LookupTlsSubscription(ctx *pulumi.Context, args *LookupTlsSubscriptionArgs, opts ...pulumi.InvokeOption) (*LookupTlsSubscriptionResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsSubscriptionResult
 	err := ctx.Invoke("fastly:index/getTlsSubscription:getTlsSubscription", args, &rv, opts...)
 	if err != nil {

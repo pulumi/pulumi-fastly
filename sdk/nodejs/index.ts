@@ -15,6 +15,10 @@ export type ConfigstoreEntries = import("./configstoreEntries").ConfigstoreEntri
 export const ConfigstoreEntries: typeof import("./configstoreEntries").ConfigstoreEntries = null as any;
 utilities.lazyLoad(exports, ["ConfigstoreEntries"], () => require("./configstoreEntries"));
 
+export { GetConfigstoresResult } from "./getConfigstores";
+export const getConfigstores: typeof import("./getConfigstores").getConfigstores = null as any;
+utilities.lazyLoad(exports, ["getConfigstores"], () => require("./getConfigstores"));
+
 export { GetDatacentersResult } from "./getDatacenters";
 export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
 utilities.lazyLoad(exports, ["getDatacenters"], () => require("./getDatacenters"));
@@ -27,6 +31,10 @@ utilities.lazyLoad(exports, ["getDictionaries","getDictionariesOutput"], () => r
 export { GetFastlyIpRangesResult } from "./getFastlyIpRanges";
 export const getFastlyIpRanges: typeof import("./getFastlyIpRanges").getFastlyIpRanges = null as any;
 utilities.lazyLoad(exports, ["getFastlyIpRanges"], () => require("./getFastlyIpRanges"));
+
+export { GetKvstoresResult } from "./getKvstores";
+export const getKvstores: typeof import("./getKvstores").getKvstores = null as any;
+utilities.lazyLoad(exports, ["getKvstores"], () => require("./getKvstores"));
 
 export { GetPackageHashArgs, GetPackageHashResult, GetPackageHashOutputArgs } from "./getPackageHash";
 export const getPackageHash: typeof import("./getPackageHash").getPackageHash = null as any;

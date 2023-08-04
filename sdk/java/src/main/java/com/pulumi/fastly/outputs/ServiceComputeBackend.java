@@ -29,11 +29,6 @@ public final class ServiceComputeBackend {
      */
     private @Nullable Integer connectTimeout;
     /**
-     * @return Number of errors to allow before the Backend is marked as down. Default `0`
-     * 
-     */
-    private @Nullable Integer errorThreshold;
-    /**
      * @return How long to wait for the first bytes in milliseconds. Default `15000`
      * 
      */
@@ -150,13 +145,6 @@ public final class ServiceComputeBackend {
      */
     public Optional<Integer> connectTimeout() {
         return Optional.ofNullable(this.connectTimeout);
-    }
-    /**
-     * @return Number of errors to allow before the Backend is marked as down. Default `0`
-     * 
-     */
-    public Optional<Integer> errorThreshold() {
-        return Optional.ofNullable(this.errorThreshold);
     }
     /**
      * @return How long to wait for the first bytes in milliseconds. Default `15000`
@@ -304,7 +292,6 @@ public final class ServiceComputeBackend {
         private String address;
         private @Nullable Integer betweenBytesTimeout;
         private @Nullable Integer connectTimeout;
-        private @Nullable Integer errorThreshold;
         private @Nullable Integer firstByteTimeout;
         private @Nullable String healthcheck;
         private @Nullable Integer keepaliveTime;
@@ -330,7 +317,6 @@ public final class ServiceComputeBackend {
     	      this.address = defaults.address;
     	      this.betweenBytesTimeout = defaults.betweenBytesTimeout;
     	      this.connectTimeout = defaults.connectTimeout;
-    	      this.errorThreshold = defaults.errorThreshold;
     	      this.firstByteTimeout = defaults.firstByteTimeout;
     	      this.healthcheck = defaults.healthcheck;
     	      this.keepaliveTime = defaults.keepaliveTime;
@@ -365,11 +351,6 @@ public final class ServiceComputeBackend {
         @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
             this.connectTimeout = connectTimeout;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder errorThreshold(@Nullable Integer errorThreshold) {
-            this.errorThreshold = errorThreshold;
             return this;
         }
         @CustomType.Setter
@@ -472,7 +453,6 @@ public final class ServiceComputeBackend {
             o.address = address;
             o.betweenBytesTimeout = betweenBytesTimeout;
             o.connectTimeout = connectTimeout;
-            o.errorThreshold = errorThreshold;
             o.firstByteTimeout = firstByteTimeout;
             o.healthcheck = healthcheck;
             o.keepaliveTime = keepaliveTime;

@@ -187,7 +187,6 @@ class ServiceComputeBackendArgs:
                  name: pulumi.Input[str],
                  between_bytes_timeout: Optional[pulumi.Input[int]] = None,
                  connect_timeout: Optional[pulumi.Input[int]] = None,
-                 error_threshold: Optional[pulumi.Input[int]] = None,
                  first_byte_timeout: Optional[pulumi.Input[int]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  keepalive_time: Optional[pulumi.Input[int]] = None,
@@ -211,7 +210,6 @@ class ServiceComputeBackendArgs:
         :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[int] between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param pulumi.Input[int] connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
-        :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
         :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param pulumi.Input[int] keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
@@ -237,8 +235,6 @@ class ServiceComputeBackendArgs:
             pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
-        if error_threshold is not None:
-            pulumi.set(__self__, "error_threshold", error_threshold)
         if first_byte_timeout is not None:
             pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
@@ -323,18 +319,6 @@ class ServiceComputeBackendArgs:
     @connect_timeout.setter
     def connect_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "connect_timeout", value)
-
-    @property
-    @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of errors to allow before the Backend is marked as down. Default `0`
-        """
-        return pulumi.get(self, "error_threshold")
-
-    @error_threshold.setter
-    def error_threshold(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "error_threshold", value)
 
     @property
     @pulumi.getter(name="firstByteTimeout")
@@ -4391,7 +4375,6 @@ class ServiceVclBackendArgs:
                  auto_loadbalance: Optional[pulumi.Input[bool]] = None,
                  between_bytes_timeout: Optional[pulumi.Input[int]] = None,
                  connect_timeout: Optional[pulumi.Input[int]] = None,
-                 error_threshold: Optional[pulumi.Input[int]] = None,
                  first_byte_timeout: Optional[pulumi.Input[int]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  keepalive_time: Optional[pulumi.Input[int]] = None,
@@ -4417,7 +4400,6 @@ class ServiceVclBackendArgs:
         :param pulumi.Input[bool] auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         :param pulumi.Input[int] between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param pulumi.Input[int] connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
-        :param pulumi.Input[int] error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
         :param pulumi.Input[int] first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param pulumi.Input[str] healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param pulumi.Input[int] keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
@@ -4446,8 +4428,6 @@ class ServiceVclBackendArgs:
             pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
-        if error_threshold is not None:
-            pulumi.set(__self__, "error_threshold", error_threshold)
         if first_byte_timeout is not None:
             pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
@@ -4546,18 +4526,6 @@ class ServiceVclBackendArgs:
     @connect_timeout.setter
     def connect_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "connect_timeout", value)
-
-    @property
-    @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of errors to allow before the Backend is marked as down. Default `0`
-        """
-        return pulumi.get(self, "error_threshold")
-
-    @error_threshold.setter
-    def error_threshold(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "error_threshold", value)
 
     @property
     @pulumi.getter(name="firstByteTimeout")
@@ -11240,7 +11208,7 @@ class ServiceVclRequestSettingArgs:
         :param pulumi.Input[bool] geo_headers: Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         :param pulumi.Input[str] hash_keys: Comma separated list of varnish request object fields that should be in the hash key
         :param pulumi.Input[int] max_stale_age: How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
-        :param pulumi.Input[str] request_condition: Name of already defined `condition` to determine if this request setting should be applied
+        :param pulumi.Input[str] request_condition: Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
         :param pulumi.Input[bool] timer_support: Injects the X-Timer info into the request for viewing origin fetch durations
         :param pulumi.Input[str] xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         """
@@ -11386,7 +11354,7 @@ class ServiceVclRequestSettingArgs:
     @pulumi.getter(name="requestCondition")
     def request_condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of already defined `condition` to determine if this request setting should be applied
+        Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
         """
         return pulumi.get(self, "request_condition")
 

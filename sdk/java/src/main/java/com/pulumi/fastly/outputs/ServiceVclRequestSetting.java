@@ -63,7 +63,7 @@ public final class ServiceVclRequestSetting {
      */
     private String name;
     /**
-     * @return Name of already defined `condition` to determine if this request setting should be applied
+     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
      * 
      */
     private @Nullable String requestCondition;
@@ -147,7 +147,7 @@ public final class ServiceVclRequestSetting {
         return this.name;
     }
     /**
-     * @return Name of already defined `condition` to determine if this request setting should be applied
+     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
      * 
      */
     public Optional<String> requestCondition() {

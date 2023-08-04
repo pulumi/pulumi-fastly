@@ -42,10 +42,6 @@ export interface ServiceComputeBackend {
      */
     connectTimeout?: pulumi.Input<number>;
     /**
-     * Number of errors to allow before the Backend is marked as down. Default `0`
-     */
-    errorThreshold?: pulumi.Input<number>;
-    /**
      * How long to wait for the first bytes in milliseconds. Default `15000`
      */
     firstByteTimeout?: pulumi.Input<number>;
@@ -1157,10 +1153,6 @@ export interface ServiceVclBackend {
      * How long to wait for a timeout in milliseconds. Default `1000`
      */
     connectTimeout?: pulumi.Input<number>;
-    /**
-     * Number of errors to allow before the Backend is marked as down. Default `0`
-     */
-    errorThreshold?: pulumi.Input<number>;
     /**
      * How long to wait for the first bytes in milliseconds. Default `15000`
      */
@@ -2957,7 +2949,7 @@ export interface ServiceVclRequestSetting {
      */
     name: pulumi.Input<string>;
     /**
-     * Name of already defined `condition` to determine if this request setting should be applied
+     * Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
      */
     requestCondition?: pulumi.Input<string>;
     /**

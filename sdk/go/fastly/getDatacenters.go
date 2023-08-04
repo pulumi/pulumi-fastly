@@ -4,11 +4,13 @@
 package fastly
 
 import (
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
 func GetDatacenters(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetDatacentersResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDatacentersResult
 	err := ctx.Invoke("fastly:index/getDatacenters:getDatacenters", nil, &rv, opts...)
 	if err != nil {

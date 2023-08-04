@@ -93,8 +93,10 @@ __all__ = [
     'ServiceWafConfigurationRuleExclusion',
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
+    'GetConfigstoresStoreResult',
     'GetDatacentersPopResult',
     'GetDictionariesDictionaryResult',
+    'GetKvstoresStoreResult',
     'GetServicesDetailResult',
     'GetTlsConfigurationDnsRecordResult',
     'GetWafRulesRuleResult',
@@ -175,8 +177,6 @@ class ServiceComputeBackend(dict):
             suggest = "between_bytes_timeout"
         elif key == "connectTimeout":
             suggest = "connect_timeout"
-        elif key == "errorThreshold":
-            suggest = "error_threshold"
         elif key == "firstByteTimeout":
             suggest = "first_byte_timeout"
         elif key == "keepaliveTime":
@@ -222,7 +222,6 @@ class ServiceComputeBackend(dict):
                  name: str,
                  between_bytes_timeout: Optional[int] = None,
                  connect_timeout: Optional[int] = None,
-                 error_threshold: Optional[int] = None,
                  first_byte_timeout: Optional[int] = None,
                  healthcheck: Optional[str] = None,
                  keepalive_time: Optional[int] = None,
@@ -246,7 +245,6 @@ class ServiceComputeBackend(dict):
         :param str name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
         :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param int connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
-        :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
         :param int first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param str healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param int keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
@@ -272,8 +270,6 @@ class ServiceComputeBackend(dict):
             pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
-        if error_threshold is not None:
-            pulumi.set(__self__, "error_threshold", error_threshold)
         if first_byte_timeout is not None:
             pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
@@ -342,14 +338,6 @@ class ServiceComputeBackend(dict):
         How long to wait for a timeout in milliseconds. Default `1000`
         """
         return pulumi.get(self, "connect_timeout")
-
-    @property
-    @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[int]:
-        """
-        Number of errors to allow before the Backend is marked as down. Default `0`
-        """
-        return pulumi.get(self, "error_threshold")
 
     @property
     @pulumi.getter(name="firstByteTimeout")
@@ -3981,8 +3969,6 @@ class ServiceVclBackend(dict):
             suggest = "between_bytes_timeout"
         elif key == "connectTimeout":
             suggest = "connect_timeout"
-        elif key == "errorThreshold":
-            suggest = "error_threshold"
         elif key == "firstByteTimeout":
             suggest = "first_byte_timeout"
         elif key == "keepaliveTime":
@@ -4031,7 +4017,6 @@ class ServiceVclBackend(dict):
                  auto_loadbalance: Optional[bool] = None,
                  between_bytes_timeout: Optional[int] = None,
                  connect_timeout: Optional[int] = None,
-                 error_threshold: Optional[int] = None,
                  first_byte_timeout: Optional[int] = None,
                  healthcheck: Optional[str] = None,
                  keepalive_time: Optional[int] = None,
@@ -4057,7 +4042,6 @@ class ServiceVclBackend(dict):
         :param bool auto_loadbalance: Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         :param int between_bytes_timeout: How long to wait between bytes in milliseconds. Default `10000`
         :param int connect_timeout: How long to wait for a timeout in milliseconds. Default `1000`
-        :param int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
         :param int first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param str healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param int keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
@@ -4086,8 +4070,6 @@ class ServiceVclBackend(dict):
             pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
-        if error_threshold is not None:
-            pulumi.set(__self__, "error_threshold", error_threshold)
         if first_byte_timeout is not None:
             pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
@@ -4166,14 +4148,6 @@ class ServiceVclBackend(dict):
         How long to wait for a timeout in milliseconds. Default `1000`
         """
         return pulumi.get(self, "connect_timeout")
-
-    @property
-    @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[int]:
-        """
-        Number of errors to allow before the Backend is marked as down. Default `0`
-        """
-        return pulumi.get(self, "error_threshold")
 
     @property
     @pulumi.getter(name="firstByteTimeout")
@@ -10150,7 +10124,7 @@ class ServiceVclRequestSetting(dict):
         :param bool geo_headers: Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         :param str hash_keys: Comma separated list of varnish request object fields that should be in the hash key
         :param int max_stale_age: How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
-        :param str request_condition: Name of already defined `condition` to determine if this request setting should be applied
+        :param str request_condition: Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
         :param bool timer_support: Injects the X-Timer info into the request for viewing origin fetch durations
         :param str xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         """
@@ -10257,7 +10231,7 @@ class ServiceVclRequestSetting(dict):
     @pulumi.getter(name="requestCondition")
     def request_condition(self) -> Optional[str]:
         """
-        Name of already defined `condition` to determine if this request setting should be applied
+        Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
         """
         return pulumi.get(self, "request_condition")
 
@@ -10827,6 +10801,31 @@ class TlsSubscriptionManagedHttpChallenge(dict):
 
 
 @pulumi.output_type
+class GetConfigstoresStoreResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        """
+        :param str id: The ID of this resource.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetDatacentersPopResult(dict):
     def __init__(__self__, *,
                  code: str,
@@ -10889,6 +10888,31 @@ class GetDictionariesDictionaryResult(dict):
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> bool:
         return pulumi.get(self, "write_only")
+
+
+@pulumi.output_type
+class GetKvstoresStoreResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        """
+        :param str id: The ID of this resource.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

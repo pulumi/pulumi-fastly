@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,6 +41,7 @@ import (
 //
 // ```
 func GetTlsActivationIds(ctx *pulumi.Context, args *GetTlsActivationIdsArgs, opts ...pulumi.InvokeOption) (*GetTlsActivationIdsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsActivationIdsResult
 	err := ctx.Invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", args, &rv, opts...)
 	if err != nil {

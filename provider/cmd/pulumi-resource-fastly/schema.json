@@ -14,21 +14,22 @@
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
             "namespaces": {
                 "fastly": "Fastly"
             },
-            "packageReferences": {
-                "Pulumi": "3.*"
-            }
+            "compatibility": "tfbridge20"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+            "generateExtraInputTypes": true
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageDescription": "A Pulumi package for creating and managing fastly cloud resources.. Based on terraform-provider-fastly: version v4",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fastly/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fastly` repo](https://github.com/fastly/terraform-provider-fastly/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -36,18 +37,16 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing fastly cloud resources.. Based on terraform-provider-fastly: version v4",
-            "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fastly/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fastly` repo](https://github.com/fastly/terraform-provider-fastly/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fastly/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fastly` repo](https://github.com/fastly/terraform-provider-fastly/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fastly/terraform-provider-fastly)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fastly` repo](https://github.com/pulumi/pulumi-fastly/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fastly` repo](https://github.com/fastly/terraform-provider-fastly/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {
@@ -120,10 +119,6 @@
                 "connectTimeout": {
                     "type": "integer",
                     "description": "How long to wait for a timeout in milliseconds. Default `1000`\n"
-                },
-                "errorThreshold": {
-                    "type": "integer",
-                    "description": "Number of errors to allow before the Backend is marked as down. Default `0`\n"
                 },
                 "firstByteTimeout": {
                     "type": "integer",
@@ -1526,10 +1521,6 @@
                 "connectTimeout": {
                     "type": "integer",
                     "description": "How long to wait for a timeout in milliseconds. Default `1000`\n"
-                },
-                "errorThreshold": {
-                    "type": "integer",
-                    "description": "Number of errors to allow before the Backend is marked as down. Default `0`\n"
                 },
                 "firstByteTimeout": {
                     "type": "integer",
@@ -3696,7 +3687,7 @@
                 },
                 "requestCondition": {
                     "type": "string",
-                    "description": "Name of already defined `condition` to determine if this request setting should be applied\n"
+                    "description": "Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)\n"
                 },
                 "timerSupport": {
                     "type": "boolean",
@@ -3955,6 +3946,27 @@
                 }
             }
         },
+        "fastly:index/getConfigstoresStore:getConfigstoresStore": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "fastly:index/getDatacentersPop:getDatacentersPop": {
             "properties": {
                 "code": {
@@ -4001,6 +4013,27 @@
                 "id",
                 "name",
                 "writeOnly"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fastly:index/getKvstoresStore:getKvstoresStore": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name"
             ],
             "language": {
                 "nodejs": {
@@ -7544,6 +7577,29 @@
         }
     },
     "functions": {
+        "fastly:index/getConfigstores:getConfigstores": {
+            "outputs": {
+                "description": "A collection of values returned by getConfigstores.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "stores": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getConfigstoresStore:getConfigstoresStore"
+                        },
+                        "description": "List of all Config Stores.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "stores",
+                    "id"
+                ]
+            }
+        },
         "fastly:index/getDatacenters:getDatacenters": {
             "description": "Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).\n",
             "outputs": {
@@ -7648,6 +7704,29 @@
                 "required": [
                     "cidrBlocks",
                     "ipv6CidrBlocks",
+                    "id"
+                ]
+            }
+        },
+        "fastly:index/getKvstores:getKvstores": {
+            "outputs": {
+                "description": "A collection of values returned by getKvstores.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "stores": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getKvstoresStore:getKvstoresStore"
+                        },
+                        "description": "List of all KV Stores.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "stores",
                     "id"
                 ]
             }

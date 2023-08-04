@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -105,6 +106,7 @@ func NewServiceCompute(ctx *pulumi.Context,
 	if args.Package == nil {
 		return nil, errors.New("invalid value for required argument 'Package'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceCompute
 	err := ctx.RegisterResource("fastly:index/serviceCompute:ServiceCompute", name, args, &resource, opts...)
 	if err != nil {

@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // Fastly API Key from https://app.fastly.com/#account
 func GetApiKey(ctx *pulumi.Context) string {

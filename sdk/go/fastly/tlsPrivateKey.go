@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -95,6 +96,7 @@ func NewTlsPrivateKey(ctx *pulumi.Context,
 		"keyPem",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TlsPrivateKey
 	err := ctx.RegisterResource("fastly:index/tlsPrivateKey:TlsPrivateKey", name, args, &resource, opts...)
 	if err != nil {
