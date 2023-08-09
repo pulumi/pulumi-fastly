@@ -366,18 +366,18 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      * 
      */
     @Export(name="package", type=ServiceComputePackage.class, parameters={})
-    private Output<ServiceComputePackage> package_;
+    private Output</* @Nullable */ ServiceComputePackage> package_;
 
     /**
-     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      * 
      */
-    public Output<ServiceComputePackage> package_() {
-        return this.package_;
+    public Output<Optional<ServiceComputePackage>> package_() {
+        return Codegen.optional(this.package_);
     }
     @Export(name="productEnablement", type=ServiceComputeProductEnablement.class, parameters={})
     private Output</* @Nullable */ ServiceComputeProductEnablement> productEnablement;

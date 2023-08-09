@@ -109,6 +109,10 @@ export interface ServiceComputeBackend {
      */
     connectTimeout?: number;
     /**
+     * Number of errors to allow before the Backend is marked as down. Default `0`
+     */
+    errorThreshold?: number;
+    /**
      * How long to wait for the first bytes in milliseconds. Default `15000`
      */
     firstByteTimeout?: number;
@@ -1220,6 +1224,10 @@ export interface ServiceVclBackend {
      * How long to wait for a timeout in milliseconds. Default `1000`
      */
     connectTimeout?: number;
+    /**
+     * Number of errors to allow before the Backend is marked as down. Default `0`
+     */
+    errorThreshold?: number;
     /**
      * How long to wait for the first bytes in milliseconds. Default `15000`
      */

@@ -116,9 +116,9 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
-    public readonly package!: pulumi.Output<outputs.ServiceComputePackage>;
+    public readonly package!: pulumi.Output<outputs.ServiceComputePackage | undefined>;
     public readonly productEnablement!: pulumi.Output<outputs.ServiceComputeProductEnablement | undefined>;
     /**
      * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
@@ -194,9 +194,6 @@ export class ServiceCompute extends pulumi.CustomResource {
             const args = argsOrState as ServiceComputeArgs | undefined;
             if ((!args || args.domains === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
-            }
-            if ((!args || args.package === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'package'");
             }
             resourceInputs["activate"] = args ? args.activate : undefined;
             resourceInputs["backends"] = args ? args.backends : undefined;
@@ -317,7 +314,7 @@ export interface ServiceComputeState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
@@ -390,9 +387,9 @@ export interface ServiceComputeArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
      */
-    package: pulumi.Input<inputs.ServiceComputePackage>;
+    package?: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
     /**
      * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.

@@ -26,6 +26,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? ConnectTimeout;
         /// <summary>
+        /// Number of errors to allow before the Backend is marked as down. Default `0`
+        /// </summary>
+        public readonly int? ErrorThreshold;
+        /// <summary>
         /// How long to wait for the first bytes in milliseconds. Default `15000`
         /// </summary>
         public readonly int? FirstByteTimeout;
@@ -110,6 +114,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? connectTimeout,
 
+            int? errorThreshold,
+
             int? firstByteTimeout,
 
             string? healthcheck,
@@ -151,6 +157,7 @@ namespace Pulumi.Fastly.Outputs
             Address = address;
             BetweenBytesTimeout = betweenBytesTimeout;
             ConnectTimeout = connectTimeout;
+            ErrorThreshold = errorThreshold;
             FirstByteTimeout = firstByteTimeout;
             Healthcheck = healthcheck;
             KeepaliveTime = keepaliveTime;

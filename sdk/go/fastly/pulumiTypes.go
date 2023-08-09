@@ -153,6 +153,8 @@ type ServiceComputeBackend struct {
 	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold *int `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -211,6 +213,8 @@ type ServiceComputeBackendArgs struct {
 	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -315,6 +319,11 @@ func (o ServiceComputeBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 // How long to wait for a timeout in milliseconds. Default `1000`
 func (o ServiceComputeBackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Number of errors to allow before the Backend is marked as down. Default `0`
+func (o ServiceComputeBackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
 // How long to wait for the first bytes in milliseconds. Default `15000`
@@ -5453,6 +5462,8 @@ type ServiceVclBackend struct {
 	BetweenBytesTimeout *int `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold *int `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -5515,6 +5526,8 @@ type ServiceVclBackendArgs struct {
 	BetweenBytesTimeout pulumi.IntPtrInput `pulumi:"betweenBytesTimeout"`
 	// How long to wait for a timeout in milliseconds. Default `1000`
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// Number of errors to allow before the Backend is marked as down. Default `0`
+	ErrorThreshold pulumi.IntPtrInput `pulumi:"errorThreshold"`
 	// How long to wait for the first bytes in milliseconds. Default `15000`
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
@@ -5626,6 +5639,11 @@ func (o ServiceVclBackendOutput) BetweenBytesTimeout() pulumi.IntPtrOutput {
 // How long to wait for a timeout in milliseconds. Default `1000`
 func (o ServiceVclBackendOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Number of errors to allow before the Backend is marked as down. Default `0`
+func (o ServiceVclBackendOutput) ErrorThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *int { return v.ErrorThreshold }).(pulumi.IntPtrOutput)
 }
 
 // How long to wait for the first bytes in milliseconds. Default `15000`
