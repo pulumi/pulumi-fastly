@@ -78,6 +78,21 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Number of errors to allow before the Backend is marked as down. Default `0`
+     * 
+     */
+    @Import(name="errorThreshold")
+    private @Nullable Output<Integer> errorThreshold;
+
+    /**
+     * @return Number of errors to allow before the Backend is marked as down. Default `0`
+     * 
+     */
+    public Optional<Output<Integer>> errorThreshold() {
+        return Optional.ofNullable(this.errorThreshold);
+    }
+
+    /**
      * How long to wait for the first bytes in milliseconds. Default `15000`
      * 
      */
@@ -384,6 +399,7 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
         this.autoLoadbalance = $.autoLoadbalance;
         this.betweenBytesTimeout = $.betweenBytesTimeout;
         this.connectTimeout = $.connectTimeout;
+        this.errorThreshold = $.errorThreshold;
         this.firstByteTimeout = $.firstByteTimeout;
         this.healthcheck = $.healthcheck;
         this.keepaliveTime = $.keepaliveTime;
@@ -506,6 +522,27 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder connectTimeout(Integer connectTimeout) {
             return connectTimeout(Output.of(connectTimeout));
+        }
+
+        /**
+         * @param errorThreshold Number of errors to allow before the Backend is marked as down. Default `0`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder errorThreshold(@Nullable Output<Integer> errorThreshold) {
+            $.errorThreshold = errorThreshold;
+            return this;
+        }
+
+        /**
+         * @param errorThreshold Number of errors to allow before the Backend is marked as down. Default `0`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder errorThreshold(Integer errorThreshold) {
+            return errorThreshold(Output.of(errorThreshold));
         }
 
         /**

@@ -31,6 +31,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? ConnectTimeout { get; set; }
 
         /// <summary>
+        /// Number of errors to allow before the Backend is marked as down. Default `0`
+        /// </summary>
+        [Input("errorThreshold")]
+        public Input<int>? ErrorThreshold { get; set; }
+
+        /// <summary>
         /// How long to wait for the first bytes in milliseconds. Default `15000`
         /// </summary>
         [Input("firstByteTimeout")]

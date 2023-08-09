@@ -606,6 +606,7 @@
             "fastly:index/ServiceComputeBackend:ServiceComputeBackend": {
                 "betweenBytesTimeout": "between_bytes_timeout",
                 "connectTimeout": "connect_timeout",
+                "errorThreshold": "error_threshold",
                 "firstByteTimeout": "first_byte_timeout",
                 "keepaliveTime": "keepalive_time",
                 "maxConn": "max_conn",
@@ -788,6 +789,7 @@
                 "autoLoadbalance": "auto_loadbalance",
                 "betweenBytesTimeout": "between_bytes_timeout",
                 "connectTimeout": "connect_timeout",
+                "errorThreshold": "error_threshold",
                 "firstByteTimeout": "first_byte_timeout",
                 "keepaliveTime": "keepalive_time",
                 "maxConn": "max_conn",

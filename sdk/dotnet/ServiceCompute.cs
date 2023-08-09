@@ -168,10 +168,10 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Output("package")]
-        public Output<Outputs.ServiceComputePackage> Package { get; private set; } = null!;
+        public Output<Outputs.ServiceComputePackage?> Package { get; private set; } = null!;
 
         [Output("productEnablement")]
         public Output<Outputs.ServiceComputeProductEnablement?> ProductEnablement { get; private set; } = null!;
@@ -503,10 +503,10 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         /// </summary>
-        [Input("package", required: true)]
-        public Input<Inputs.ServiceComputePackageArgs> Package { get; set; } = null!;
+        [Input("package")]
+        public Input<Inputs.ServiceComputePackageArgs>? Package { get; set; }
 
         [Input("productEnablement")]
         public Input<Inputs.ServiceComputeProductEnablementArgs>? ProductEnablement { get; set; }
@@ -832,7 +832,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }
