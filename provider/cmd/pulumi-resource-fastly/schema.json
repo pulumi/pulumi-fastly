@@ -120,6 +120,10 @@
                     "type": "integer",
                     "description": "How long to wait for a timeout in milliseconds. Default `1000`\n"
                 },
+                "errorThreshold": {
+                    "type": "integer",
+                    "description": "Number of errors to allow before the Backend is marked as down. Default `0`\n"
+                },
                 "firstByteTimeout": {
                     "type": "integer",
                     "description": "How long to wait for the first bytes in milliseconds. Default `15000`\n"
@@ -1521,6 +1525,10 @@
                 "connectTimeout": {
                     "type": "integer",
                     "description": "How long to wait for a timeout in milliseconds. Default `1000`\n"
+                },
+                "errorThreshold": {
+                    "type": "integer",
+                    "description": "Number of errors to allow before the Backend is marked as down. Default `0`\n"
                 },
                 "firstByteTimeout": {
                     "type": "integer",
@@ -4685,7 +4693,7 @@
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
+                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
@@ -4712,8 +4720,7 @@
                 "domains",
                 "forceRefresh",
                 "imported",
-                "name",
-                "package"
+                "name"
             ],
             "inputProperties": {
                 "activate": {
@@ -4909,7 +4916,7 @@
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
+                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
@@ -4931,8 +4938,7 @@
                 }
             },
             "requiredInputs": [
-                "domains",
-                "package"
+                "domains"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ServiceCompute resources.\n",
@@ -5146,7 +5152,7 @@
                     },
                     "package": {
                         "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                        "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service. See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
+                        "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)\n"
                     },
                     "productEnablement": {
                         "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
