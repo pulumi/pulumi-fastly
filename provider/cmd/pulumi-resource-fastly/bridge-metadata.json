@@ -10,6 +10,9 @@
             "fastly_kvstore": {
                 "current": "fastly:index/kvstore:Kvstore"
             },
+            "fastly_secretstore": {
+                "current": "fastly:index/secretstore:Secretstore"
+            },
             "fastly_service_acl_entries": {
                 "current": "fastly:index/serviceACLEntries:ServiceACLEntries",
                 "fields": {
@@ -419,6 +422,14 @@
             "fastly_package_hash": {
                 "current": "fastly:index/getPackageHash:getPackageHash"
             },
+            "fastly_secretstores": {
+                "current": "fastly:index/getSecretstores:getSecretstores",
+                "fields": {
+                    "stores": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_services": {
                 "current": "fastly:index/getServices:getServices",
                 "fields": {
@@ -563,6 +574,7 @@
             "fastly:index/configstore:Configstore": "fastly_configstore",
             "fastly:index/configstoreEntries:ConfigstoreEntries": "fastly_configstore_entries",
             "fastly:index/kvstore:Kvstore": "fastly_kvstore",
+            "fastly:index/secretstore:Secretstore": "fastly_secretstore",
             "fastly:index/serviceACLEntries:ServiceACLEntries": "fastly_service_acl_entries",
             "fastly:index/serviceAuthorization:ServiceAuthorization": "fastly_service_authorization",
             "fastly:index/serviceCompute:ServiceCompute": "fastly_service_compute",
@@ -586,6 +598,7 @@
             "fastly:index/getFastlyIpRanges:getFastlyIpRanges": "fastly_ip_ranges",
             "fastly:index/getKvstores:getKvstores": "fastly_kvstores",
             "fastly:index/getPackageHash:getPackageHash": "fastly_package_hash",
+            "fastly:index/getSecretstores:getSecretstores": "fastly_secretstores",
             "fastly:index/getServices:getServices": "fastly_services",
             "fastly:index/getTlsActivation:getTlsActivation": "fastly_tls_activation",
             "fastly:index/getTlsActivationIds:getTlsActivationIds": "fastly_tls_activation_ids",
