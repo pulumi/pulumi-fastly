@@ -14473,6 +14473,109 @@ func (o GetKvstoresStoreArrayOutput) Index(i pulumi.IntInput) GetKvstoresStoreOu
 	}).(GetKvstoresStoreOutput)
 }
 
+type GetSecretstoresStore struct {
+	// The ID of this resource.
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+}
+
+// GetSecretstoresStoreInput is an input type that accepts GetSecretstoresStoreArgs and GetSecretstoresStoreOutput values.
+// You can construct a concrete instance of `GetSecretstoresStoreInput` via:
+//
+//	GetSecretstoresStoreArgs{...}
+type GetSecretstoresStoreInput interface {
+	pulumi.Input
+
+	ToGetSecretstoresStoreOutput() GetSecretstoresStoreOutput
+	ToGetSecretstoresStoreOutputWithContext(context.Context) GetSecretstoresStoreOutput
+}
+
+type GetSecretstoresStoreArgs struct {
+	// The ID of this resource.
+	Id   pulumi.StringInput `pulumi:"id"`
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSecretstoresStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretstoresStore)(nil)).Elem()
+}
+
+func (i GetSecretstoresStoreArgs) ToGetSecretstoresStoreOutput() GetSecretstoresStoreOutput {
+	return i.ToGetSecretstoresStoreOutputWithContext(context.Background())
+}
+
+func (i GetSecretstoresStoreArgs) ToGetSecretstoresStoreOutputWithContext(ctx context.Context) GetSecretstoresStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretstoresStoreOutput)
+}
+
+// GetSecretstoresStoreArrayInput is an input type that accepts GetSecretstoresStoreArray and GetSecretstoresStoreArrayOutput values.
+// You can construct a concrete instance of `GetSecretstoresStoreArrayInput` via:
+//
+//	GetSecretstoresStoreArray{ GetSecretstoresStoreArgs{...} }
+type GetSecretstoresStoreArrayInput interface {
+	pulumi.Input
+
+	ToGetSecretstoresStoreArrayOutput() GetSecretstoresStoreArrayOutput
+	ToGetSecretstoresStoreArrayOutputWithContext(context.Context) GetSecretstoresStoreArrayOutput
+}
+
+type GetSecretstoresStoreArray []GetSecretstoresStoreInput
+
+func (GetSecretstoresStoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretstoresStore)(nil)).Elem()
+}
+
+func (i GetSecretstoresStoreArray) ToGetSecretstoresStoreArrayOutput() GetSecretstoresStoreArrayOutput {
+	return i.ToGetSecretstoresStoreArrayOutputWithContext(context.Background())
+}
+
+func (i GetSecretstoresStoreArray) ToGetSecretstoresStoreArrayOutputWithContext(ctx context.Context) GetSecretstoresStoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretstoresStoreArrayOutput)
+}
+
+type GetSecretstoresStoreOutput struct{ *pulumi.OutputState }
+
+func (GetSecretstoresStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretstoresStore)(nil)).Elem()
+}
+
+func (o GetSecretstoresStoreOutput) ToGetSecretstoresStoreOutput() GetSecretstoresStoreOutput {
+	return o
+}
+
+func (o GetSecretstoresStoreOutput) ToGetSecretstoresStoreOutputWithContext(ctx context.Context) GetSecretstoresStoreOutput {
+	return o
+}
+
+// The ID of this resource.
+func (o GetSecretstoresStoreOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretstoresStore) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSecretstoresStoreOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretstoresStore) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSecretstoresStoreArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSecretstoresStoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretstoresStore)(nil)).Elem()
+}
+
+func (o GetSecretstoresStoreArrayOutput) ToGetSecretstoresStoreArrayOutput() GetSecretstoresStoreArrayOutput {
+	return o
+}
+
+func (o GetSecretstoresStoreArrayOutput) ToGetSecretstoresStoreArrayOutputWithContext(ctx context.Context) GetSecretstoresStoreArrayOutput {
+	return o
+}
+
+func (o GetSecretstoresStoreArrayOutput) Index(i pulumi.IntInput) GetSecretstoresStoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSecretstoresStore {
+		return vs[0].([]GetSecretstoresStore)[vs[1].(int)]
+	}).(GetSecretstoresStoreOutput)
+}
+
 type GetServicesDetail struct {
 	Comment    string `pulumi:"comment"`
 	CreatedAt  string `pulumi:"createdAt"`
@@ -15006,6 +15109,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreInput)(nil)).Elem(), GetKvstoresStoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreArrayInput)(nil)).Elem(), GetKvstoresStoreArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretstoresStoreInput)(nil)).Elem(), GetSecretstoresStoreArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretstoresStoreArrayInput)(nil)).Elem(), GetSecretstoresStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailInput)(nil)).Elem(), GetServicesDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailArrayInput)(nil)).Elem(), GetServicesDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
@@ -15184,6 +15289,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
 	pulumi.RegisterOutputType(GetKvstoresStoreOutput{})
 	pulumi.RegisterOutputType(GetKvstoresStoreArrayOutput{})
+	pulumi.RegisterOutputType(GetSecretstoresStoreOutput{})
+	pulumi.RegisterOutputType(GetSecretstoresStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})

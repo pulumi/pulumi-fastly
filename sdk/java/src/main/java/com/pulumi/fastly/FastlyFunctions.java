@@ -36,6 +36,7 @@ import com.pulumi.fastly.outputs.GetDictionariesResult;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
 import com.pulumi.fastly.outputs.GetKvstoresResult;
 import com.pulumi.fastly.outputs.GetPackageHashResult;
+import com.pulumi.fastly.outputs.GetSecretstoresResult;
 import com.pulumi.fastly.outputs.GetServicesResult;
 import com.pulumi.fastly.outputs.GetTlsActivationIdsResult;
 import com.pulumi.fastly.outputs.GetTlsActivationResult;
@@ -956,6 +957,24 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetPackageHashResult> getPackageHashPlain(GetPackageHashPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getPackageHash:getPackageHash", TypeShape.of(GetPackageHashResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSecretstoresResult> getSecretstores() {
+        return getSecretstores(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSecretstoresResult> getSecretstoresPlain() {
+        return getSecretstoresPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetSecretstoresResult> getSecretstores(InvokeArgs args) {
+        return getSecretstores(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSecretstoresResult> getSecretstoresPlain(InvokeArgs args) {
+        return getSecretstoresPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetSecretstoresResult> getSecretstores(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getSecretstores:getSecretstores", TypeShape.of(GetSecretstoresResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetSecretstoresResult> getSecretstoresPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getSecretstores:getSecretstores", TypeShape.of(GetSecretstoresResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).

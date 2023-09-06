@@ -13,6 +13,7 @@ from .get_dictionaries import *
 from .get_fastly_ip_ranges import *
 from .get_kvstores import *
 from .get_package_hash import *
+from .get_secretstores import *
 from .get_services import *
 from .get_tls_activation import *
 from .get_tls_activation_ids import *
@@ -30,6 +31,7 @@ from .get_tls_subscription_ids import *
 from .get_waf_rules import *
 from .kvstore import *
 from .provider import *
+from .secretstore import *
 from .service_acl_entries import *
 from .service_authorization import *
 from .service_compute import *
@@ -80,6 +82,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/kvstore:Kvstore": "Kvstore"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/secretstore",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/secretstore:Secretstore": "Secretstore"
   }
  },
  {

@@ -41,6 +41,10 @@ export const getPackageHash: typeof import("./getPackageHash").getPackageHash = 
 export const getPackageHashOutput: typeof import("./getPackageHash").getPackageHashOutput = null as any;
 utilities.lazyLoad(exports, ["getPackageHash","getPackageHashOutput"], () => require("./getPackageHash"));
 
+export { GetSecretstoresResult } from "./getSecretstores";
+export const getSecretstores: typeof import("./getSecretstores").getSecretstores = null as any;
+utilities.lazyLoad(exports, ["getSecretstores"], () => require("./getSecretstores"));
+
 export { GetServicesResult } from "./getServices";
 export const getServices: typeof import("./getServices").getServices = null as any;
 utilities.lazyLoad(exports, ["getServices"], () => require("./getServices"));
@@ -119,6 +123,11 @@ export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { SecretstoreArgs, SecretstoreState } from "./secretstore";
+export type Secretstore = import("./secretstore").Secretstore;
+export const Secretstore: typeof import("./secretstore").Secretstore = null as any;
+utilities.lazyLoad(exports, ["Secretstore"], () => require("./secretstore"));
 
 export { ServiceACLEntriesArgs, ServiceACLEntriesState } from "./serviceACLEntries";
 export type ServiceACLEntries = import("./serviceACLEntries").ServiceACLEntries;
@@ -215,6 +224,8 @@ const _module = {
                 return new ConfigstoreEntries(name, <any>undefined, { urn })
             case "fastly:index/kvstore:Kvstore":
                 return new Kvstore(name, <any>undefined, { urn })
+            case "fastly:index/secretstore:Secretstore":
+                return new Secretstore(name, <any>undefined, { urn })
             case "fastly:index/serviceACLEntries:ServiceACLEntries":
                 return new ServiceACLEntries(name, <any>undefined, { urn })
             case "fastly:index/serviceAuthorization:ServiceAuthorization":
@@ -253,6 +264,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/secretstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceAuthorization", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceCompute", _module)
