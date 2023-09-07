@@ -97,6 +97,7 @@ __all__ = [
     'GetDatacentersPopResult',
     'GetDictionariesDictionaryResult',
     'GetKvstoresStoreResult',
+    'GetSecretstoresStoreResult',
     'GetServicesDetailResult',
     'GetTlsConfigurationDnsRecordResult',
     'GetWafRulesRuleResult',
@@ -10920,6 +10921,31 @@ class GetDictionariesDictionaryResult(dict):
 
 @pulumi.output_type
 class GetKvstoresStoreResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        """
+        :param str id: The ID of this resource.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSecretstoresStoreResult(dict):
     def __init__(__self__, *,
                  id: str,
                  name: str):

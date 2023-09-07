@@ -37,6 +37,14 @@ export interface GetKvstoresStore {
     name: string;
 }
 
+export interface GetSecretstoresStore {
+    /**
+     * The ID of this resource.
+     */
+    id: string;
+    name: string;
+}
+
 export interface GetServicesDetail {
     comment: string;
     createdAt: string;
