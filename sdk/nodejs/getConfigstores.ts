@@ -26,3 +26,6 @@ export interface GetConfigstoresResult {
      */
     readonly stores: outputs.GetConfigstoresStore[];
 }
+export function getConfigstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetConfigstoresResult> {
+    return pulumi.output(getConfigstores(opts))
+}

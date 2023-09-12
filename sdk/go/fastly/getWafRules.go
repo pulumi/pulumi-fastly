@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetWafRules(ctx *pulumi.Context, args *GetWafRulesArgs, opts ...pulumi.InvokeOption) (*GetWafRulesResult, error) {
@@ -91,6 +92,12 @@ func (o GetWafRulesResultOutput) ToGetWafRulesResultOutput() GetWafRulesResultOu
 
 func (o GetWafRulesResultOutput) ToGetWafRulesResultOutputWithContext(ctx context.Context) GetWafRulesResultOutput {
 	return o
+}
+
+func (o GetWafRulesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetWafRulesResult] {
+	return pulumix.Output[GetWafRulesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A list of modsecurity rules IDs to be excluded from the data set.

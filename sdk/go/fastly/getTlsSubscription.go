@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get information about a TLS subscription.
@@ -124,6 +125,12 @@ func (o LookupTlsSubscriptionResultOutput) ToLookupTlsSubscriptionResultOutput()
 
 func (o LookupTlsSubscriptionResultOutput) ToLookupTlsSubscriptionResultOutputWithContext(ctx context.Context) LookupTlsSubscriptionResultOutput {
 	return o
+}
+
+func (o LookupTlsSubscriptionResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTlsSubscriptionResult] {
+	return pulumix.Output[LookupTlsSubscriptionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The entity that issues and certifies the TLS certificates for the subscription.

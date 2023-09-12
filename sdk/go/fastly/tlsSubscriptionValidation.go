@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource represents a successful validation of a Fastly TLS Subscription in concert with other resources.
@@ -104,6 +105,12 @@ func (i *TlsSubscriptionValidation) ToTlsSubscriptionValidationOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionValidationOutput)
 }
 
+func (i *TlsSubscriptionValidation) ToOutput(ctx context.Context) pulumix.Output[*TlsSubscriptionValidation] {
+	return pulumix.Output[*TlsSubscriptionValidation]{
+		OutputState: i.ToTlsSubscriptionValidationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TlsSubscriptionValidationArrayInput is an input type that accepts TlsSubscriptionValidationArray and TlsSubscriptionValidationArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionValidationArrayInput` via:
 //
@@ -127,6 +134,12 @@ func (i TlsSubscriptionValidationArray) ToTlsSubscriptionValidationArrayOutput()
 
 func (i TlsSubscriptionValidationArray) ToTlsSubscriptionValidationArrayOutputWithContext(ctx context.Context) TlsSubscriptionValidationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionValidationArrayOutput)
+}
+
+func (i TlsSubscriptionValidationArray) ToOutput(ctx context.Context) pulumix.Output[[]*TlsSubscriptionValidation] {
+	return pulumix.Output[[]*TlsSubscriptionValidation]{
+		OutputState: i.ToTlsSubscriptionValidationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TlsSubscriptionValidationMapInput is an input type that accepts TlsSubscriptionValidationMap and TlsSubscriptionValidationMapOutput values.
@@ -154,6 +167,12 @@ func (i TlsSubscriptionValidationMap) ToTlsSubscriptionValidationMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionValidationMapOutput)
 }
 
+func (i TlsSubscriptionValidationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsSubscriptionValidation] {
+	return pulumix.Output[map[string]*TlsSubscriptionValidation]{
+		OutputState: i.ToTlsSubscriptionValidationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TlsSubscriptionValidationOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionValidationOutput) ElementType() reflect.Type {
@@ -166,6 +185,12 @@ func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationOutput() Tls
 
 func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationOutputWithContext(ctx context.Context) TlsSubscriptionValidationOutput {
 	return o
+}
+
+func (o TlsSubscriptionValidationOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsSubscriptionValidation] {
+	return pulumix.Output[*TlsSubscriptionValidation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the TLS Subscription that should be validated.
@@ -187,6 +212,12 @@ func (o TlsSubscriptionValidationArrayOutput) ToTlsSubscriptionValidationArrayOu
 	return o
 }
 
+func (o TlsSubscriptionValidationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TlsSubscriptionValidation] {
+	return pulumix.Output[[]*TlsSubscriptionValidation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o TlsSubscriptionValidationArrayOutput) Index(i pulumi.IntInput) TlsSubscriptionValidationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsSubscriptionValidation {
 		return vs[0].([]*TlsSubscriptionValidation)[vs[1].(int)]
@@ -205,6 +236,12 @@ func (o TlsSubscriptionValidationMapOutput) ToTlsSubscriptionValidationMapOutput
 
 func (o TlsSubscriptionValidationMapOutput) ToTlsSubscriptionValidationMapOutputWithContext(ctx context.Context) TlsSubscriptionValidationMapOutput {
 	return o
+}
+
+func (o TlsSubscriptionValidationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsSubscriptionValidation] {
+	return pulumix.Output[map[string]*TlsSubscriptionValidation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TlsSubscriptionValidationMapOutput) MapIndex(k pulumi.StringInput) TlsSubscriptionValidationOutput {

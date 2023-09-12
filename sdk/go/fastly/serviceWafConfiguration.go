@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Defines a set of Web Application Firewall configuration options that can be used to populate a service WAF. This resource will configure rules, thresholds and other settings for a WAF.
@@ -444,6 +445,12 @@ func (i *ServiceWafConfiguration) ToServiceWafConfigurationOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationOutput)
 }
 
+func (i *ServiceWafConfiguration) ToOutput(ctx context.Context) pulumix.Output[*ServiceWafConfiguration] {
+	return pulumix.Output[*ServiceWafConfiguration]{
+		OutputState: i.ToServiceWafConfigurationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceWafConfigurationArrayInput is an input type that accepts ServiceWafConfigurationArray and ServiceWafConfigurationArrayOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationArrayInput` via:
 //
@@ -467,6 +474,12 @@ func (i ServiceWafConfigurationArray) ToServiceWafConfigurationArrayOutput() Ser
 
 func (i ServiceWafConfigurationArray) ToServiceWafConfigurationArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationArrayOutput)
+}
+
+func (i ServiceWafConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceWafConfiguration] {
+	return pulumix.Output[[]*ServiceWafConfiguration]{
+		OutputState: i.ToServiceWafConfigurationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ServiceWafConfigurationMapInput is an input type that accepts ServiceWafConfigurationMap and ServiceWafConfigurationMapOutput values.
@@ -494,6 +507,12 @@ func (i ServiceWafConfigurationMap) ToServiceWafConfigurationMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationMapOutput)
 }
 
+func (i ServiceWafConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceWafConfiguration] {
+	return pulumix.Output[map[string]*ServiceWafConfiguration]{
+		OutputState: i.ToServiceWafConfigurationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceWafConfigurationOutput struct{ *pulumi.OutputState }
 
 func (ServiceWafConfigurationOutput) ElementType() reflect.Type {
@@ -506,6 +525,12 @@ func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutput() Service
 
 func (o ServiceWafConfigurationOutput) ToServiceWafConfigurationOutputWithContext(ctx context.Context) ServiceWafConfigurationOutput {
 	return o
+}
+
+func (o ServiceWafConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceWafConfiguration] {
+	return pulumix.Output[*ServiceWafConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -697,6 +722,12 @@ func (o ServiceWafConfigurationArrayOutput) ToServiceWafConfigurationArrayOutput
 	return o
 }
 
+func (o ServiceWafConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceWafConfiguration] {
+	return pulumix.Output[[]*ServiceWafConfiguration]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceWafConfigurationArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceWafConfiguration {
 		return vs[0].([]*ServiceWafConfiguration)[vs[1].(int)]
@@ -715,6 +746,12 @@ func (o ServiceWafConfigurationMapOutput) ToServiceWafConfigurationMapOutput() S
 
 func (o ServiceWafConfigurationMapOutput) ToServiceWafConfigurationMapOutputWithContext(ctx context.Context) ServiceWafConfigurationMapOutput {
 	return o
+}
+
+func (o ServiceWafConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceWafConfiguration] {
+	return pulumix.Output[map[string]*ServiceWafConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceWafConfigurationMapOutput) MapIndex(k pulumi.StringInput) ServiceWafConfigurationOutput {

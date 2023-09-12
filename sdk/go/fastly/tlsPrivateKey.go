@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Uploads a Custom TLS Private Key to Fastly. This can be combined with a `TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
@@ -194,6 +195,12 @@ func (i *TlsPrivateKey) ToTlsPrivateKeyOutputWithContext(ctx context.Context) Tl
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPrivateKeyOutput)
 }
 
+func (i *TlsPrivateKey) ToOutput(ctx context.Context) pulumix.Output[*TlsPrivateKey] {
+	return pulumix.Output[*TlsPrivateKey]{
+		OutputState: i.ToTlsPrivateKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TlsPrivateKeyArrayInput is an input type that accepts TlsPrivateKeyArray and TlsPrivateKeyArrayOutput values.
 // You can construct a concrete instance of `TlsPrivateKeyArrayInput` via:
 //
@@ -217,6 +224,12 @@ func (i TlsPrivateKeyArray) ToTlsPrivateKeyArrayOutput() TlsPrivateKeyArrayOutpu
 
 func (i TlsPrivateKeyArray) ToTlsPrivateKeyArrayOutputWithContext(ctx context.Context) TlsPrivateKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPrivateKeyArrayOutput)
+}
+
+func (i TlsPrivateKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*TlsPrivateKey] {
+	return pulumix.Output[[]*TlsPrivateKey]{
+		OutputState: i.ToTlsPrivateKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TlsPrivateKeyMapInput is an input type that accepts TlsPrivateKeyMap and TlsPrivateKeyMapOutput values.
@@ -244,6 +257,12 @@ func (i TlsPrivateKeyMap) ToTlsPrivateKeyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPrivateKeyMapOutput)
 }
 
+func (i TlsPrivateKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsPrivateKey] {
+	return pulumix.Output[map[string]*TlsPrivateKey]{
+		OutputState: i.ToTlsPrivateKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TlsPrivateKeyOutput struct{ *pulumi.OutputState }
 
 func (TlsPrivateKeyOutput) ElementType() reflect.Type {
@@ -256,6 +275,12 @@ func (o TlsPrivateKeyOutput) ToTlsPrivateKeyOutput() TlsPrivateKeyOutput {
 
 func (o TlsPrivateKeyOutput) ToTlsPrivateKeyOutputWithContext(ctx context.Context) TlsPrivateKeyOutput {
 	return o
+}
+
+func (o TlsPrivateKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsPrivateKey] {
+	return pulumix.Output[*TlsPrivateKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Time-stamp (GMT) when the private key was created.
@@ -307,6 +332,12 @@ func (o TlsPrivateKeyArrayOutput) ToTlsPrivateKeyArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o TlsPrivateKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TlsPrivateKey] {
+	return pulumix.Output[[]*TlsPrivateKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o TlsPrivateKeyArrayOutput) Index(i pulumi.IntInput) TlsPrivateKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsPrivateKey {
 		return vs[0].([]*TlsPrivateKey)[vs[1].(int)]
@@ -325,6 +356,12 @@ func (o TlsPrivateKeyMapOutput) ToTlsPrivateKeyMapOutput() TlsPrivateKeyMapOutpu
 
 func (o TlsPrivateKeyMapOutput) ToTlsPrivateKeyMapOutputWithContext(ctx context.Context) TlsPrivateKeyMapOutput {
 	return o
+}
+
+func (o TlsPrivateKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsPrivateKey] {
+	return pulumix.Output[map[string]*TlsPrivateKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TlsPrivateKeyMapOutput) MapIndex(k pulumi.StringInput) TlsPrivateKeyOutput {

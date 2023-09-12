@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -62,6 +63,12 @@ func (i ServiceACLEntriesEntryArgs) ToServiceACLEntriesEntryOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesEntryOutput)
 }
 
+func (i ServiceACLEntriesEntryArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceACLEntriesEntry] {
+	return pulumix.Output[ServiceACLEntriesEntry]{
+		OutputState: i.ToServiceACLEntriesEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceACLEntriesEntryArrayInput is an input type that accepts ServiceACLEntriesEntryArray and ServiceACLEntriesEntryArrayOutput values.
 // You can construct a concrete instance of `ServiceACLEntriesEntryArrayInput` via:
 //
@@ -87,6 +94,12 @@ func (i ServiceACLEntriesEntryArray) ToServiceACLEntriesEntryArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesEntryArrayOutput)
 }
 
+func (i ServiceACLEntriesEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceACLEntriesEntry] {
+	return pulumix.Output[[]ServiceACLEntriesEntry]{
+		OutputState: i.ToServiceACLEntriesEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceACLEntriesEntryOutput struct{ *pulumi.OutputState }
 
 func (ServiceACLEntriesEntryOutput) ElementType() reflect.Type {
@@ -99,6 +112,12 @@ func (o ServiceACLEntriesEntryOutput) ToServiceACLEntriesEntryOutput() ServiceAC
 
 func (o ServiceACLEntriesEntryOutput) ToServiceACLEntriesEntryOutputWithContext(ctx context.Context) ServiceACLEntriesEntryOutput {
 	return o
+}
+
+func (o ServiceACLEntriesEntryOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceACLEntriesEntry] {
+	return pulumix.Output[ServiceACLEntriesEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A personal freeform descriptive note
@@ -138,6 +157,12 @@ func (o ServiceACLEntriesEntryArrayOutput) ToServiceACLEntriesEntryArrayOutput()
 
 func (o ServiceACLEntriesEntryArrayOutput) ToServiceACLEntriesEntryArrayOutputWithContext(ctx context.Context) ServiceACLEntriesEntryArrayOutput {
 	return o
+}
+
+func (o ServiceACLEntriesEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceACLEntriesEntry] {
+	return pulumix.Output[[]ServiceACLEntriesEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceACLEntriesEntryArrayOutput) Index(i pulumi.IntInput) ServiceACLEntriesEntryOutput {
@@ -267,6 +292,12 @@ func (i ServiceComputeBackendArgs) ToServiceComputeBackendOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBackendOutput)
 }
 
+func (i ServiceComputeBackendArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeBackend] {
+	return pulumix.Output[ServiceComputeBackend]{
+		OutputState: i.ToServiceComputeBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeBackendArrayInput is an input type that accepts ServiceComputeBackendArray and ServiceComputeBackendArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeBackendArrayInput` via:
 //
@@ -292,6 +323,12 @@ func (i ServiceComputeBackendArray) ToServiceComputeBackendArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeBackendArrayOutput)
 }
 
+func (i ServiceComputeBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeBackend] {
+	return pulumix.Output[[]ServiceComputeBackend]{
+		OutputState: i.ToServiceComputeBackendArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeBackendOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeBackendOutput) ElementType() reflect.Type {
@@ -304,6 +341,12 @@ func (o ServiceComputeBackendOutput) ToServiceComputeBackendOutput() ServiceComp
 
 func (o ServiceComputeBackendOutput) ToServiceComputeBackendOutputWithContext(ctx context.Context) ServiceComputeBackendOutput {
 	return o
+}
+
+func (o ServiceComputeBackendOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeBackend] {
+	return pulumix.Output[ServiceComputeBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An IPv4, hostname, or IPv6 address for the Backend
@@ -435,6 +478,12 @@ func (o ServiceComputeBackendArrayOutput) ToServiceComputeBackendArrayOutputWith
 	return o
 }
 
+func (o ServiceComputeBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeBackend] {
+	return pulumix.Output[[]ServiceComputeBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeBackendArrayOutput) Index(i pulumi.IntInput) ServiceComputeBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeBackend {
 		return vs[0].([]ServiceComputeBackend)[vs[1].(int)]
@@ -484,6 +533,12 @@ func (i ServiceComputeDictionaryArgs) ToServiceComputeDictionaryOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDictionaryOutput)
 }
 
+func (i ServiceComputeDictionaryArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeDictionary] {
+	return pulumix.Output[ServiceComputeDictionary]{
+		OutputState: i.ToServiceComputeDictionaryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeDictionaryArrayInput is an input type that accepts ServiceComputeDictionaryArray and ServiceComputeDictionaryArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeDictionaryArrayInput` via:
 //
@@ -509,6 +564,12 @@ func (i ServiceComputeDictionaryArray) ToServiceComputeDictionaryArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDictionaryArrayOutput)
 }
 
+func (i ServiceComputeDictionaryArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeDictionary] {
+	return pulumix.Output[[]ServiceComputeDictionary]{
+		OutputState: i.ToServiceComputeDictionaryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeDictionaryOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeDictionaryOutput) ElementType() reflect.Type {
@@ -521,6 +582,12 @@ func (o ServiceComputeDictionaryOutput) ToServiceComputeDictionaryOutput() Servi
 
 func (o ServiceComputeDictionaryOutput) ToServiceComputeDictionaryOutputWithContext(ctx context.Context) ServiceComputeDictionaryOutput {
 	return o
+}
+
+func (o ServiceComputeDictionaryOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeDictionary] {
+	return pulumix.Output[ServiceComputeDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the dictionary
@@ -554,6 +621,12 @@ func (o ServiceComputeDictionaryArrayOutput) ToServiceComputeDictionaryArrayOutp
 
 func (o ServiceComputeDictionaryArrayOutput) ToServiceComputeDictionaryArrayOutputWithContext(ctx context.Context) ServiceComputeDictionaryArrayOutput {
 	return o
+}
+
+func (o ServiceComputeDictionaryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeDictionary] {
+	return pulumix.Output[[]ServiceComputeDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeDictionaryArrayOutput) Index(i pulumi.IntInput) ServiceComputeDictionaryOutput {
@@ -599,6 +672,12 @@ func (i ServiceComputeDomainArgs) ToServiceComputeDomainOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDomainOutput)
 }
 
+func (i ServiceComputeDomainArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeDomain] {
+	return pulumix.Output[ServiceComputeDomain]{
+		OutputState: i.ToServiceComputeDomainOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeDomainArrayInput is an input type that accepts ServiceComputeDomainArray and ServiceComputeDomainArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeDomainArrayInput` via:
 //
@@ -624,6 +703,12 @@ func (i ServiceComputeDomainArray) ToServiceComputeDomainArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeDomainArrayOutput)
 }
 
+func (i ServiceComputeDomainArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeDomain] {
+	return pulumix.Output[[]ServiceComputeDomain]{
+		OutputState: i.ToServiceComputeDomainArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeDomainOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeDomainOutput) ElementType() reflect.Type {
@@ -636,6 +721,12 @@ func (o ServiceComputeDomainOutput) ToServiceComputeDomainOutput() ServiceComput
 
 func (o ServiceComputeDomainOutput) ToServiceComputeDomainOutputWithContext(ctx context.Context) ServiceComputeDomainOutput {
 	return o
+}
+
+func (o ServiceComputeDomainOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeDomain] {
+	return pulumix.Output[ServiceComputeDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An optional comment about the Domain.
@@ -660,6 +751,12 @@ func (o ServiceComputeDomainArrayOutput) ToServiceComputeDomainArrayOutput() Ser
 
 func (o ServiceComputeDomainArrayOutput) ToServiceComputeDomainArrayOutputWithContext(ctx context.Context) ServiceComputeDomainArrayOutput {
 	return o
+}
+
+func (o ServiceComputeDomainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeDomain] {
+	return pulumix.Output[[]ServiceComputeDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeDomainArrayOutput) Index(i pulumi.IntInput) ServiceComputeDomainOutput {
@@ -729,6 +826,12 @@ func (i ServiceComputeLoggingBigqueryArgs) ToServiceComputeLoggingBigqueryOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingBigqueryOutput)
 }
 
+func (i ServiceComputeLoggingBigqueryArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingBigquery] {
+	return pulumix.Output[ServiceComputeLoggingBigquery]{
+		OutputState: i.ToServiceComputeLoggingBigqueryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingBigqueryArrayInput is an input type that accepts ServiceComputeLoggingBigqueryArray and ServiceComputeLoggingBigqueryArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingBigqueryArrayInput` via:
 //
@@ -754,6 +857,12 @@ func (i ServiceComputeLoggingBigqueryArray) ToServiceComputeLoggingBigqueryArray
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingBigqueryArrayOutput)
 }
 
+func (i ServiceComputeLoggingBigqueryArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingBigquery] {
+	return pulumix.Output[[]ServiceComputeLoggingBigquery]{
+		OutputState: i.ToServiceComputeLoggingBigqueryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingBigqueryOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingBigqueryOutput) ElementType() reflect.Type {
@@ -766,6 +875,12 @@ func (o ServiceComputeLoggingBigqueryOutput) ToServiceComputeLoggingBigqueryOutp
 
 func (o ServiceComputeLoggingBigqueryOutput) ToServiceComputeLoggingBigqueryOutputWithContext(ctx context.Context) ServiceComputeLoggingBigqueryOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingBigqueryOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingBigquery] {
+	return pulumix.Output[ServiceComputeLoggingBigquery]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -820,6 +935,12 @@ func (o ServiceComputeLoggingBigqueryArrayOutput) ToServiceComputeLoggingBigquer
 
 func (o ServiceComputeLoggingBigqueryArrayOutput) ToServiceComputeLoggingBigqueryArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingBigqueryArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingBigqueryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingBigquery] {
+	return pulumix.Output[[]ServiceComputeLoggingBigquery]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingBigqueryArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingBigqueryOutput {
@@ -905,6 +1026,12 @@ func (i ServiceComputeLoggingBlobstorageArgs) ToServiceComputeLoggingBlobstorage
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingBlobstorageOutput)
 }
 
+func (i ServiceComputeLoggingBlobstorageArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingBlobstorage] {
+	return pulumix.Output[ServiceComputeLoggingBlobstorage]{
+		OutputState: i.ToServiceComputeLoggingBlobstorageOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingBlobstorageArrayInput is an input type that accepts ServiceComputeLoggingBlobstorageArray and ServiceComputeLoggingBlobstorageArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingBlobstorageArrayInput` via:
 //
@@ -930,6 +1057,12 @@ func (i ServiceComputeLoggingBlobstorageArray) ToServiceComputeLoggingBlobstorag
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingBlobstorageArrayOutput)
 }
 
+func (i ServiceComputeLoggingBlobstorageArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingBlobstorage] {
+	return pulumix.Output[[]ServiceComputeLoggingBlobstorage]{
+		OutputState: i.ToServiceComputeLoggingBlobstorageArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingBlobstorageOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingBlobstorageOutput) ElementType() reflect.Type {
@@ -942,6 +1075,12 @@ func (o ServiceComputeLoggingBlobstorageOutput) ToServiceComputeLoggingBlobstora
 
 func (o ServiceComputeLoggingBlobstorageOutput) ToServiceComputeLoggingBlobstorageOutputWithContext(ctx context.Context) ServiceComputeLoggingBlobstorageOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingBlobstorageOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingBlobstorage] {
+	return pulumix.Output[ServiceComputeLoggingBlobstorage]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique Azure Blob Storage namespace in which your data objects are stored
@@ -1016,6 +1155,12 @@ func (o ServiceComputeLoggingBlobstorageArrayOutput) ToServiceComputeLoggingBlob
 
 func (o ServiceComputeLoggingBlobstorageArrayOutput) ToServiceComputeLoggingBlobstorageArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingBlobstorageArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingBlobstorageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingBlobstorage] {
+	return pulumix.Output[[]ServiceComputeLoggingBlobstorage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingBlobstorageArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingBlobstorageOutput {
@@ -1101,6 +1246,12 @@ func (i ServiceComputeLoggingCloudfileArgs) ToServiceComputeLoggingCloudfileOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingCloudfileOutput)
 }
 
+func (i ServiceComputeLoggingCloudfileArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingCloudfile] {
+	return pulumix.Output[ServiceComputeLoggingCloudfile]{
+		OutputState: i.ToServiceComputeLoggingCloudfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingCloudfileArrayInput is an input type that accepts ServiceComputeLoggingCloudfileArray and ServiceComputeLoggingCloudfileArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingCloudfileArrayInput` via:
 //
@@ -1126,6 +1277,12 @@ func (i ServiceComputeLoggingCloudfileArray) ToServiceComputeLoggingCloudfileArr
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingCloudfileArrayOutput)
 }
 
+func (i ServiceComputeLoggingCloudfileArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingCloudfile] {
+	return pulumix.Output[[]ServiceComputeLoggingCloudfile]{
+		OutputState: i.ToServiceComputeLoggingCloudfileArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingCloudfileOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingCloudfileOutput) ElementType() reflect.Type {
@@ -1138,6 +1295,12 @@ func (o ServiceComputeLoggingCloudfileOutput) ToServiceComputeLoggingCloudfileOu
 
 func (o ServiceComputeLoggingCloudfileOutput) ToServiceComputeLoggingCloudfileOutputWithContext(ctx context.Context) ServiceComputeLoggingCloudfileOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingCloudfileOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingCloudfile] {
+	return pulumix.Output[ServiceComputeLoggingCloudfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Your Cloud File account access key
@@ -1214,6 +1377,12 @@ func (o ServiceComputeLoggingCloudfileArrayOutput) ToServiceComputeLoggingCloudf
 	return o
 }
 
+func (o ServiceComputeLoggingCloudfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingCloudfile] {
+	return pulumix.Output[[]ServiceComputeLoggingCloudfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingCloudfileArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingCloudfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingCloudfile {
 		return vs[0].([]ServiceComputeLoggingCloudfile)[vs[1].(int)]
@@ -1261,6 +1430,12 @@ func (i ServiceComputeLoggingDatadogArgs) ToServiceComputeLoggingDatadogOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDatadogOutput)
 }
 
+func (i ServiceComputeLoggingDatadogArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingDatadog] {
+	return pulumix.Output[ServiceComputeLoggingDatadog]{
+		OutputState: i.ToServiceComputeLoggingDatadogOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingDatadogArrayInput is an input type that accepts ServiceComputeLoggingDatadogArray and ServiceComputeLoggingDatadogArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingDatadogArrayInput` via:
 //
@@ -1286,6 +1461,12 @@ func (i ServiceComputeLoggingDatadogArray) ToServiceComputeLoggingDatadogArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDatadogArrayOutput)
 }
 
+func (i ServiceComputeLoggingDatadogArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingDatadog] {
+	return pulumix.Output[[]ServiceComputeLoggingDatadog]{
+		OutputState: i.ToServiceComputeLoggingDatadogArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingDatadogOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingDatadogOutput) ElementType() reflect.Type {
@@ -1298,6 +1479,12 @@ func (o ServiceComputeLoggingDatadogOutput) ToServiceComputeLoggingDatadogOutput
 
 func (o ServiceComputeLoggingDatadogOutput) ToServiceComputeLoggingDatadogOutputWithContext(ctx context.Context) ServiceComputeLoggingDatadogOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingDatadogOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingDatadog] {
+	return pulumix.Output[ServiceComputeLoggingDatadog]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -1327,6 +1514,12 @@ func (o ServiceComputeLoggingDatadogArrayOutput) ToServiceComputeLoggingDatadogA
 
 func (o ServiceComputeLoggingDatadogArrayOutput) ToServiceComputeLoggingDatadogArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingDatadogArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingDatadogArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingDatadog] {
+	return pulumix.Output[[]ServiceComputeLoggingDatadog]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingDatadogArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingDatadogOutput {
@@ -1412,6 +1605,12 @@ func (i ServiceComputeLoggingDigitaloceanArgs) ToServiceComputeLoggingDigitaloce
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDigitaloceanOutput)
 }
 
+func (i ServiceComputeLoggingDigitaloceanArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingDigitalocean] {
+	return pulumix.Output[ServiceComputeLoggingDigitalocean]{
+		OutputState: i.ToServiceComputeLoggingDigitaloceanOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingDigitaloceanArrayInput is an input type that accepts ServiceComputeLoggingDigitaloceanArray and ServiceComputeLoggingDigitaloceanArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingDigitaloceanArrayInput` via:
 //
@@ -1437,6 +1636,12 @@ func (i ServiceComputeLoggingDigitaloceanArray) ToServiceComputeLoggingDigitaloc
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingDigitaloceanArrayOutput)
 }
 
+func (i ServiceComputeLoggingDigitaloceanArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingDigitalocean] {
+	return pulumix.Output[[]ServiceComputeLoggingDigitalocean]{
+		OutputState: i.ToServiceComputeLoggingDigitaloceanArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingDigitaloceanOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingDigitaloceanOutput) ElementType() reflect.Type {
@@ -1449,6 +1654,12 @@ func (o ServiceComputeLoggingDigitaloceanOutput) ToServiceComputeLoggingDigitalo
 
 func (o ServiceComputeLoggingDigitaloceanOutput) ToServiceComputeLoggingDigitaloceanOutputWithContext(ctx context.Context) ServiceComputeLoggingDigitaloceanOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingDigitaloceanOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingDigitalocean] {
+	return pulumix.Output[ServiceComputeLoggingDigitalocean]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Your DigitalOcean Spaces account access key
@@ -1523,6 +1734,12 @@ func (o ServiceComputeLoggingDigitaloceanArrayOutput) ToServiceComputeLoggingDig
 
 func (o ServiceComputeLoggingDigitaloceanArrayOutput) ToServiceComputeLoggingDigitaloceanArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingDigitaloceanArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingDigitaloceanArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingDigitalocean] {
+	return pulumix.Output[[]ServiceComputeLoggingDigitalocean]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingDigitaloceanArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingDigitaloceanOutput {
@@ -1608,6 +1825,12 @@ func (i ServiceComputeLoggingElasticsearchArgs) ToServiceComputeLoggingElasticse
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingElasticsearchOutput)
 }
 
+func (i ServiceComputeLoggingElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingElasticsearch] {
+	return pulumix.Output[ServiceComputeLoggingElasticsearch]{
+		OutputState: i.ToServiceComputeLoggingElasticsearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingElasticsearchArrayInput is an input type that accepts ServiceComputeLoggingElasticsearchArray and ServiceComputeLoggingElasticsearchArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingElasticsearchArrayInput` via:
 //
@@ -1633,6 +1856,12 @@ func (i ServiceComputeLoggingElasticsearchArray) ToServiceComputeLoggingElastics
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingElasticsearchArrayOutput)
 }
 
+func (i ServiceComputeLoggingElasticsearchArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingElasticsearch] {
+	return pulumix.Output[[]ServiceComputeLoggingElasticsearch]{
+		OutputState: i.ToServiceComputeLoggingElasticsearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingElasticsearchOutput) ElementType() reflect.Type {
@@ -1645,6 +1874,12 @@ func (o ServiceComputeLoggingElasticsearchOutput) ToServiceComputeLoggingElastic
 
 func (o ServiceComputeLoggingElasticsearchOutput) ToServiceComputeLoggingElasticsearchOutputWithContext(ctx context.Context) ServiceComputeLoggingElasticsearchOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingElasticsearch] {
+	return pulumix.Output[ServiceComputeLoggingElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the Elasticsearch index to send documents (logs) to
@@ -1719,6 +1954,12 @@ func (o ServiceComputeLoggingElasticsearchArrayOutput) ToServiceComputeLoggingEl
 
 func (o ServiceComputeLoggingElasticsearchArrayOutput) ToServiceComputeLoggingElasticsearchArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingElasticsearchArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingElasticsearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingElasticsearch] {
+	return pulumix.Output[[]ServiceComputeLoggingElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingElasticsearchOutput {
@@ -1804,6 +2045,12 @@ func (i ServiceComputeLoggingFtpArgs) ToServiceComputeLoggingFtpOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingFtpOutput)
 }
 
+func (i ServiceComputeLoggingFtpArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingFtp] {
+	return pulumix.Output[ServiceComputeLoggingFtp]{
+		OutputState: i.ToServiceComputeLoggingFtpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingFtpArrayInput is an input type that accepts ServiceComputeLoggingFtpArray and ServiceComputeLoggingFtpArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingFtpArrayInput` via:
 //
@@ -1829,6 +2076,12 @@ func (i ServiceComputeLoggingFtpArray) ToServiceComputeLoggingFtpArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingFtpArrayOutput)
 }
 
+func (i ServiceComputeLoggingFtpArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingFtp] {
+	return pulumix.Output[[]ServiceComputeLoggingFtp]{
+		OutputState: i.ToServiceComputeLoggingFtpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingFtpOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingFtpOutput) ElementType() reflect.Type {
@@ -1841,6 +2094,12 @@ func (o ServiceComputeLoggingFtpOutput) ToServiceComputeLoggingFtpOutput() Servi
 
 func (o ServiceComputeLoggingFtpOutput) ToServiceComputeLoggingFtpOutputWithContext(ctx context.Context) ServiceComputeLoggingFtpOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingFtpOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingFtp] {
+	return pulumix.Output[ServiceComputeLoggingFtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The FTP address to stream logs to
@@ -1915,6 +2174,12 @@ func (o ServiceComputeLoggingFtpArrayOutput) ToServiceComputeLoggingFtpArrayOutp
 
 func (o ServiceComputeLoggingFtpArrayOutput) ToServiceComputeLoggingFtpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingFtpArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingFtpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingFtp] {
+	return pulumix.Output[[]ServiceComputeLoggingFtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingFtpArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingFtpOutput {
@@ -2000,6 +2265,12 @@ func (i ServiceComputeLoggingGcArgs) ToServiceComputeLoggingGcOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGcOutput)
 }
 
+func (i ServiceComputeLoggingGcArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingGc] {
+	return pulumix.Output[ServiceComputeLoggingGc]{
+		OutputState: i.ToServiceComputeLoggingGcOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingGcArrayInput is an input type that accepts ServiceComputeLoggingGcArray and ServiceComputeLoggingGcArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingGcArrayInput` via:
 //
@@ -2025,6 +2296,12 @@ func (i ServiceComputeLoggingGcArray) ToServiceComputeLoggingGcArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGcArrayOutput)
 }
 
+func (i ServiceComputeLoggingGcArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingGc] {
+	return pulumix.Output[[]ServiceComputeLoggingGc]{
+		OutputState: i.ToServiceComputeLoggingGcArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingGcOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingGcOutput) ElementType() reflect.Type {
@@ -2037,6 +2314,12 @@ func (o ServiceComputeLoggingGcOutput) ToServiceComputeLoggingGcOutput() Service
 
 func (o ServiceComputeLoggingGcOutput) ToServiceComputeLoggingGcOutputWithContext(ctx context.Context) ServiceComputeLoggingGcOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingGcOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingGc] {
+	return pulumix.Output[ServiceComputeLoggingGc]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -2113,6 +2396,12 @@ func (o ServiceComputeLoggingGcArrayOutput) ToServiceComputeLoggingGcArrayOutput
 	return o
 }
 
+func (o ServiceComputeLoggingGcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingGc] {
+	return pulumix.Output[[]ServiceComputeLoggingGc]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingGcArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingGcOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingGc {
 		return vs[0].([]ServiceComputeLoggingGc)[vs[1].(int)]
@@ -2172,6 +2461,12 @@ func (i ServiceComputeLoggingGooglepubsubArgs) ToServiceComputeLoggingGooglepubs
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGooglepubsubOutput)
 }
 
+func (i ServiceComputeLoggingGooglepubsubArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingGooglepubsub] {
+	return pulumix.Output[ServiceComputeLoggingGooglepubsub]{
+		OutputState: i.ToServiceComputeLoggingGooglepubsubOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingGooglepubsubArrayInput is an input type that accepts ServiceComputeLoggingGooglepubsubArray and ServiceComputeLoggingGooglepubsubArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingGooglepubsubArrayInput` via:
 //
@@ -2197,6 +2492,12 @@ func (i ServiceComputeLoggingGooglepubsubArray) ToServiceComputeLoggingGooglepub
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGooglepubsubArrayOutput)
 }
 
+func (i ServiceComputeLoggingGooglepubsubArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingGooglepubsub] {
+	return pulumix.Output[[]ServiceComputeLoggingGooglepubsub]{
+		OutputState: i.ToServiceComputeLoggingGooglepubsubArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingGooglepubsubOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingGooglepubsubOutput) ElementType() reflect.Type {
@@ -2209,6 +2510,12 @@ func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepu
 
 func (o ServiceComputeLoggingGooglepubsubOutput) ToServiceComputeLoggingGooglepubsubOutputWithContext(ctx context.Context) ServiceComputeLoggingGooglepubsubOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingGooglepubsubOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingGooglepubsub] {
+	return pulumix.Output[ServiceComputeLoggingGooglepubsub]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -2253,6 +2560,12 @@ func (o ServiceComputeLoggingGooglepubsubArrayOutput) ToServiceComputeLoggingGoo
 
 func (o ServiceComputeLoggingGooglepubsubArrayOutput) ToServiceComputeLoggingGooglepubsubArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingGooglepubsubArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingGooglepubsubArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingGooglepubsub] {
+	return pulumix.Output[[]ServiceComputeLoggingGooglepubsub]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingGooglepubsubOutput {
@@ -2302,6 +2615,12 @@ func (i ServiceComputeLoggingHerokuArgs) ToServiceComputeLoggingHerokuOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHerokuOutput)
 }
 
+func (i ServiceComputeLoggingHerokuArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingHeroku] {
+	return pulumix.Output[ServiceComputeLoggingHeroku]{
+		OutputState: i.ToServiceComputeLoggingHerokuOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingHerokuArrayInput is an input type that accepts ServiceComputeLoggingHerokuArray and ServiceComputeLoggingHerokuArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHerokuArrayInput` via:
 //
@@ -2327,6 +2646,12 @@ func (i ServiceComputeLoggingHerokuArray) ToServiceComputeLoggingHerokuArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHerokuArrayOutput)
 }
 
+func (i ServiceComputeLoggingHerokuArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingHeroku] {
+	return pulumix.Output[[]ServiceComputeLoggingHeroku]{
+		OutputState: i.ToServiceComputeLoggingHerokuArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingHerokuOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingHerokuOutput) ElementType() reflect.Type {
@@ -2339,6 +2664,12 @@ func (o ServiceComputeLoggingHerokuOutput) ToServiceComputeLoggingHerokuOutput()
 
 func (o ServiceComputeLoggingHerokuOutput) ToServiceComputeLoggingHerokuOutputWithContext(ctx context.Context) ServiceComputeLoggingHerokuOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingHerokuOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingHeroku] {
+	return pulumix.Output[ServiceComputeLoggingHeroku]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -2368,6 +2699,12 @@ func (o ServiceComputeLoggingHerokuArrayOutput) ToServiceComputeLoggingHerokuArr
 
 func (o ServiceComputeLoggingHerokuArrayOutput) ToServiceComputeLoggingHerokuArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingHerokuArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingHerokuArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingHeroku] {
+	return pulumix.Output[[]ServiceComputeLoggingHeroku]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingHerokuArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingHerokuOutput {
@@ -2417,6 +2754,12 @@ func (i ServiceComputeLoggingHoneycombArgs) ToServiceComputeLoggingHoneycombOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHoneycombOutput)
 }
 
+func (i ServiceComputeLoggingHoneycombArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingHoneycomb] {
+	return pulumix.Output[ServiceComputeLoggingHoneycomb]{
+		OutputState: i.ToServiceComputeLoggingHoneycombOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingHoneycombArrayInput is an input type that accepts ServiceComputeLoggingHoneycombArray and ServiceComputeLoggingHoneycombArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHoneycombArrayInput` via:
 //
@@ -2442,6 +2785,12 @@ func (i ServiceComputeLoggingHoneycombArray) ToServiceComputeLoggingHoneycombArr
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHoneycombArrayOutput)
 }
 
+func (i ServiceComputeLoggingHoneycombArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingHoneycomb] {
+	return pulumix.Output[[]ServiceComputeLoggingHoneycomb]{
+		OutputState: i.ToServiceComputeLoggingHoneycombArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingHoneycombOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingHoneycombOutput) ElementType() reflect.Type {
@@ -2454,6 +2803,12 @@ func (o ServiceComputeLoggingHoneycombOutput) ToServiceComputeLoggingHoneycombOu
 
 func (o ServiceComputeLoggingHoneycombOutput) ToServiceComputeLoggingHoneycombOutputWithContext(ctx context.Context) ServiceComputeLoggingHoneycombOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingHoneycombOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingHoneycomb] {
+	return pulumix.Output[ServiceComputeLoggingHoneycomb]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Honeycomb Dataset you want to log to
@@ -2483,6 +2838,12 @@ func (o ServiceComputeLoggingHoneycombArrayOutput) ToServiceComputeLoggingHoneyc
 
 func (o ServiceComputeLoggingHoneycombArrayOutput) ToServiceComputeLoggingHoneycombArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingHoneycombArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingHoneycombArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingHoneycomb] {
+	return pulumix.Output[[]ServiceComputeLoggingHoneycomb]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingHoneycombArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingHoneycombOutput {
@@ -2576,6 +2937,12 @@ func (i ServiceComputeLoggingHttpArgs) ToServiceComputeLoggingHttpOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHttpOutput)
 }
 
+func (i ServiceComputeLoggingHttpArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingHttp] {
+	return pulumix.Output[ServiceComputeLoggingHttp]{
+		OutputState: i.ToServiceComputeLoggingHttpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingHttpArrayInput is an input type that accepts ServiceComputeLoggingHttpArray and ServiceComputeLoggingHttpArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingHttpArrayInput` via:
 //
@@ -2601,6 +2968,12 @@ func (i ServiceComputeLoggingHttpArray) ToServiceComputeLoggingHttpArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingHttpArrayOutput)
 }
 
+func (i ServiceComputeLoggingHttpArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingHttp] {
+	return pulumix.Output[[]ServiceComputeLoggingHttp]{
+		OutputState: i.ToServiceComputeLoggingHttpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingHttpOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingHttpOutput) ElementType() reflect.Type {
@@ -2613,6 +2986,12 @@ func (o ServiceComputeLoggingHttpOutput) ToServiceComputeLoggingHttpOutput() Ser
 
 func (o ServiceComputeLoggingHttpOutput) ToServiceComputeLoggingHttpOutputWithContext(ctx context.Context) ServiceComputeLoggingHttpOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingHttpOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingHttp] {
+	return pulumix.Output[ServiceComputeLoggingHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Value of the `Content-Type` header sent with the request
@@ -2697,6 +3076,12 @@ func (o ServiceComputeLoggingHttpArrayOutput) ToServiceComputeLoggingHttpArrayOu
 
 func (o ServiceComputeLoggingHttpArrayOutput) ToServiceComputeLoggingHttpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingHttpArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingHttpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingHttp] {
+	return pulumix.Output[[]ServiceComputeLoggingHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingHttpArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingHttpOutput {
@@ -2794,6 +3179,12 @@ func (i ServiceComputeLoggingKafkaArgs) ToServiceComputeLoggingKafkaOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKafkaOutput)
 }
 
+func (i ServiceComputeLoggingKafkaArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingKafka] {
+	return pulumix.Output[ServiceComputeLoggingKafka]{
+		OutputState: i.ToServiceComputeLoggingKafkaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingKafkaArrayInput is an input type that accepts ServiceComputeLoggingKafkaArray and ServiceComputeLoggingKafkaArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingKafkaArrayInput` via:
 //
@@ -2819,6 +3210,12 @@ func (i ServiceComputeLoggingKafkaArray) ToServiceComputeLoggingKafkaArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKafkaArrayOutput)
 }
 
+func (i ServiceComputeLoggingKafkaArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingKafka] {
+	return pulumix.Output[[]ServiceComputeLoggingKafka]{
+		OutputState: i.ToServiceComputeLoggingKafkaArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingKafkaOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingKafkaOutput) ElementType() reflect.Type {
@@ -2831,6 +3228,12 @@ func (o ServiceComputeLoggingKafkaOutput) ToServiceComputeLoggingKafkaOutput() S
 
 func (o ServiceComputeLoggingKafkaOutput) ToServiceComputeLoggingKafkaOutputWithContext(ctx context.Context) ServiceComputeLoggingKafkaOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingKafkaOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingKafka] {
+	return pulumix.Output[ServiceComputeLoggingKafka]{
+		OutputState: o.OutputState,
+	}
 }
 
 // SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
@@ -2922,6 +3325,12 @@ func (o ServiceComputeLoggingKafkaArrayOutput) ToServiceComputeLoggingKafkaArray
 	return o
 }
 
+func (o ServiceComputeLoggingKafkaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingKafka] {
+	return pulumix.Output[[]ServiceComputeLoggingKafka]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingKafkaArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingKafkaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingKafka {
 		return vs[0].([]ServiceComputeLoggingKafka)[vs[1].(int)]
@@ -2981,6 +3390,12 @@ func (i ServiceComputeLoggingKineseArgs) ToServiceComputeLoggingKineseOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKineseOutput)
 }
 
+func (i ServiceComputeLoggingKineseArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingKinese] {
+	return pulumix.Output[ServiceComputeLoggingKinese]{
+		OutputState: i.ToServiceComputeLoggingKineseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingKineseArrayInput is an input type that accepts ServiceComputeLoggingKineseArray and ServiceComputeLoggingKineseArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingKineseArrayInput` via:
 //
@@ -3006,6 +3421,12 @@ func (i ServiceComputeLoggingKineseArray) ToServiceComputeLoggingKineseArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingKineseArrayOutput)
 }
 
+func (i ServiceComputeLoggingKineseArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingKinese] {
+	return pulumix.Output[[]ServiceComputeLoggingKinese]{
+		OutputState: i.ToServiceComputeLoggingKineseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingKineseOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingKineseOutput) ElementType() reflect.Type {
@@ -3018,6 +3439,12 @@ func (o ServiceComputeLoggingKineseOutput) ToServiceComputeLoggingKineseOutput()
 
 func (o ServiceComputeLoggingKineseOutput) ToServiceComputeLoggingKineseOutputWithContext(ctx context.Context) ServiceComputeLoggingKineseOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingKineseOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingKinese] {
+	return pulumix.Output[ServiceComputeLoggingKinese]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The AWS access key to be used to write to the stream
@@ -3062,6 +3489,12 @@ func (o ServiceComputeLoggingKineseArrayOutput) ToServiceComputeLoggingKineseArr
 
 func (o ServiceComputeLoggingKineseArrayOutput) ToServiceComputeLoggingKineseArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingKineseArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingKineseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingKinese] {
+	return pulumix.Output[[]ServiceComputeLoggingKinese]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingKineseArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingKineseOutput {
@@ -3115,6 +3548,12 @@ func (i ServiceComputeLoggingLogentryArgs) ToServiceComputeLoggingLogentryOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogentryOutput)
 }
 
+func (i ServiceComputeLoggingLogentryArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingLogentry] {
+	return pulumix.Output[ServiceComputeLoggingLogentry]{
+		OutputState: i.ToServiceComputeLoggingLogentryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingLogentryArrayInput is an input type that accepts ServiceComputeLoggingLogentryArray and ServiceComputeLoggingLogentryArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogentryArrayInput` via:
 //
@@ -3140,6 +3579,12 @@ func (i ServiceComputeLoggingLogentryArray) ToServiceComputeLoggingLogentryArray
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogentryArrayOutput)
 }
 
+func (i ServiceComputeLoggingLogentryArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingLogentry] {
+	return pulumix.Output[[]ServiceComputeLoggingLogentry]{
+		OutputState: i.ToServiceComputeLoggingLogentryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingLogentryOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingLogentryOutput) ElementType() reflect.Type {
@@ -3152,6 +3597,12 @@ func (o ServiceComputeLoggingLogentryOutput) ToServiceComputeLoggingLogentryOutp
 
 func (o ServiceComputeLoggingLogentryOutput) ToServiceComputeLoggingLogentryOutputWithContext(ctx context.Context) ServiceComputeLoggingLogentryOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingLogentryOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingLogentry] {
+	return pulumix.Output[ServiceComputeLoggingLogentry]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -3186,6 +3637,12 @@ func (o ServiceComputeLoggingLogentryArrayOutput) ToServiceComputeLoggingLogentr
 
 func (o ServiceComputeLoggingLogentryArrayOutput) ToServiceComputeLoggingLogentryArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingLogentryArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingLogentryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingLogentry] {
+	return pulumix.Output[[]ServiceComputeLoggingLogentry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingLogentryArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingLogentryOutput {
@@ -3231,6 +3688,12 @@ func (i ServiceComputeLoggingLogglyArgs) ToServiceComputeLoggingLogglyOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogglyOutput)
 }
 
+func (i ServiceComputeLoggingLogglyArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingLoggly] {
+	return pulumix.Output[ServiceComputeLoggingLoggly]{
+		OutputState: i.ToServiceComputeLoggingLogglyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingLogglyArrayInput is an input type that accepts ServiceComputeLoggingLogglyArray and ServiceComputeLoggingLogglyArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogglyArrayInput` via:
 //
@@ -3256,6 +3719,12 @@ func (i ServiceComputeLoggingLogglyArray) ToServiceComputeLoggingLogglyArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogglyArrayOutput)
 }
 
+func (i ServiceComputeLoggingLogglyArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingLoggly] {
+	return pulumix.Output[[]ServiceComputeLoggingLoggly]{
+		OutputState: i.ToServiceComputeLoggingLogglyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingLogglyOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingLogglyOutput) ElementType() reflect.Type {
@@ -3268,6 +3737,12 @@ func (o ServiceComputeLoggingLogglyOutput) ToServiceComputeLoggingLogglyOutput()
 
 func (o ServiceComputeLoggingLogglyOutput) ToServiceComputeLoggingLogglyOutputWithContext(ctx context.Context) ServiceComputeLoggingLogglyOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingLogglyOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingLoggly] {
+	return pulumix.Output[ServiceComputeLoggingLoggly]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -3292,6 +3767,12 @@ func (o ServiceComputeLoggingLogglyArrayOutput) ToServiceComputeLoggingLogglyArr
 
 func (o ServiceComputeLoggingLogglyArrayOutput) ToServiceComputeLoggingLogglyArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingLogglyArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingLogglyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingLoggly] {
+	return pulumix.Output[[]ServiceComputeLoggingLoggly]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingLogglyArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingLogglyOutput {
@@ -3341,6 +3822,12 @@ func (i ServiceComputeLoggingLogshuttleArgs) ToServiceComputeLoggingLogshuttleOu
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogshuttleOutput)
 }
 
+func (i ServiceComputeLoggingLogshuttleArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingLogshuttle] {
+	return pulumix.Output[ServiceComputeLoggingLogshuttle]{
+		OutputState: i.ToServiceComputeLoggingLogshuttleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingLogshuttleArrayInput is an input type that accepts ServiceComputeLoggingLogshuttleArray and ServiceComputeLoggingLogshuttleArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingLogshuttleArrayInput` via:
 //
@@ -3366,6 +3853,12 @@ func (i ServiceComputeLoggingLogshuttleArray) ToServiceComputeLoggingLogshuttleA
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingLogshuttleArrayOutput)
 }
 
+func (i ServiceComputeLoggingLogshuttleArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingLogshuttle] {
+	return pulumix.Output[[]ServiceComputeLoggingLogshuttle]{
+		OutputState: i.ToServiceComputeLoggingLogshuttleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingLogshuttleOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingLogshuttleOutput) ElementType() reflect.Type {
@@ -3378,6 +3871,12 @@ func (o ServiceComputeLoggingLogshuttleOutput) ToServiceComputeLoggingLogshuttle
 
 func (o ServiceComputeLoggingLogshuttleOutput) ToServiceComputeLoggingLogshuttleOutputWithContext(ctx context.Context) ServiceComputeLoggingLogshuttleOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingLogshuttleOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingLogshuttle] {
+	return pulumix.Output[ServiceComputeLoggingLogshuttle]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -3407,6 +3906,12 @@ func (o ServiceComputeLoggingLogshuttleArrayOutput) ToServiceComputeLoggingLogsh
 
 func (o ServiceComputeLoggingLogshuttleArrayOutput) ToServiceComputeLoggingLogshuttleArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingLogshuttleArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingLogshuttleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingLogshuttle] {
+	return pulumix.Output[[]ServiceComputeLoggingLogshuttle]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingLogshuttleOutput {
@@ -3456,6 +3961,12 @@ func (i ServiceComputeLoggingNewrelicArgs) ToServiceComputeLoggingNewrelicOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingNewrelicOutput)
 }
 
+func (i ServiceComputeLoggingNewrelicArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingNewrelic] {
+	return pulumix.Output[ServiceComputeLoggingNewrelic]{
+		OutputState: i.ToServiceComputeLoggingNewrelicOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingNewrelicArrayInput is an input type that accepts ServiceComputeLoggingNewrelicArray and ServiceComputeLoggingNewrelicArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingNewrelicArrayInput` via:
 //
@@ -3481,6 +3992,12 @@ func (i ServiceComputeLoggingNewrelicArray) ToServiceComputeLoggingNewrelicArray
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingNewrelicArrayOutput)
 }
 
+func (i ServiceComputeLoggingNewrelicArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingNewrelic] {
+	return pulumix.Output[[]ServiceComputeLoggingNewrelic]{
+		OutputState: i.ToServiceComputeLoggingNewrelicArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingNewrelicOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingNewrelicOutput) ElementType() reflect.Type {
@@ -3493,6 +4010,12 @@ func (o ServiceComputeLoggingNewrelicOutput) ToServiceComputeLoggingNewrelicOutp
 
 func (o ServiceComputeLoggingNewrelicOutput) ToServiceComputeLoggingNewrelicOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingNewrelicOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingNewrelic] {
+	return pulumix.Output[ServiceComputeLoggingNewrelic]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -3522,6 +4045,12 @@ func (o ServiceComputeLoggingNewrelicArrayOutput) ToServiceComputeLoggingNewreli
 
 func (o ServiceComputeLoggingNewrelicArrayOutput) ToServiceComputeLoggingNewrelicArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingNewrelicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingNewrelic] {
+	return pulumix.Output[[]ServiceComputeLoggingNewrelic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingNewrelicArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingNewrelicOutput {
@@ -3607,6 +4136,12 @@ func (i ServiceComputeLoggingOpenstackArgs) ToServiceComputeLoggingOpenstackOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingOpenstackOutput)
 }
 
+func (i ServiceComputeLoggingOpenstackArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingOpenstack] {
+	return pulumix.Output[ServiceComputeLoggingOpenstack]{
+		OutputState: i.ToServiceComputeLoggingOpenstackOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingOpenstackArrayInput is an input type that accepts ServiceComputeLoggingOpenstackArray and ServiceComputeLoggingOpenstackArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingOpenstackArrayInput` via:
 //
@@ -3632,6 +4167,12 @@ func (i ServiceComputeLoggingOpenstackArray) ToServiceComputeLoggingOpenstackArr
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingOpenstackArrayOutput)
 }
 
+func (i ServiceComputeLoggingOpenstackArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingOpenstack] {
+	return pulumix.Output[[]ServiceComputeLoggingOpenstack]{
+		OutputState: i.ToServiceComputeLoggingOpenstackArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingOpenstackOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingOpenstackOutput) ElementType() reflect.Type {
@@ -3644,6 +4185,12 @@ func (o ServiceComputeLoggingOpenstackOutput) ToServiceComputeLoggingOpenstackOu
 
 func (o ServiceComputeLoggingOpenstackOutput) ToServiceComputeLoggingOpenstackOutputWithContext(ctx context.Context) ServiceComputeLoggingOpenstackOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingOpenstackOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingOpenstack] {
+	return pulumix.Output[ServiceComputeLoggingOpenstack]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Your OpenStack account access key
@@ -3720,6 +4267,12 @@ func (o ServiceComputeLoggingOpenstackArrayOutput) ToServiceComputeLoggingOpenst
 	return o
 }
 
+func (o ServiceComputeLoggingOpenstackArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingOpenstack] {
+	return pulumix.Output[[]ServiceComputeLoggingOpenstack]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingOpenstackArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingOpenstackOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingOpenstack {
 		return vs[0].([]ServiceComputeLoggingOpenstack)[vs[1].(int)]
@@ -3767,6 +4320,12 @@ func (i ServiceComputeLoggingPapertrailArgs) ToServiceComputeLoggingPapertrailOu
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingPapertrailOutput)
 }
 
+func (i ServiceComputeLoggingPapertrailArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingPapertrail] {
+	return pulumix.Output[ServiceComputeLoggingPapertrail]{
+		OutputState: i.ToServiceComputeLoggingPapertrailOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingPapertrailArrayInput is an input type that accepts ServiceComputeLoggingPapertrailArray and ServiceComputeLoggingPapertrailArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingPapertrailArrayInput` via:
 //
@@ -3792,6 +4351,12 @@ func (i ServiceComputeLoggingPapertrailArray) ToServiceComputeLoggingPapertrailA
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingPapertrailArrayOutput)
 }
 
+func (i ServiceComputeLoggingPapertrailArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingPapertrail] {
+	return pulumix.Output[[]ServiceComputeLoggingPapertrail]{
+		OutputState: i.ToServiceComputeLoggingPapertrailArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingPapertrailOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingPapertrailOutput) ElementType() reflect.Type {
@@ -3804,6 +4369,12 @@ func (o ServiceComputeLoggingPapertrailOutput) ToServiceComputeLoggingPapertrail
 
 func (o ServiceComputeLoggingPapertrailOutput) ToServiceComputeLoggingPapertrailOutputWithContext(ctx context.Context) ServiceComputeLoggingPapertrailOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingPapertrailOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingPapertrail] {
+	return pulumix.Output[ServiceComputeLoggingPapertrail]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The address of the Papertrail endpoint
@@ -3833,6 +4404,12 @@ func (o ServiceComputeLoggingPapertrailArrayOutput) ToServiceComputeLoggingPaper
 
 func (o ServiceComputeLoggingPapertrailArrayOutput) ToServiceComputeLoggingPapertrailArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingPapertrailArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingPapertrailArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingPapertrail] {
+	return pulumix.Output[[]ServiceComputeLoggingPapertrail]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingPapertrailArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingPapertrailOutput {
@@ -3942,6 +4519,12 @@ func (i ServiceComputeLoggingS3Args) ToServiceComputeLoggingS3OutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingS3Output)
 }
 
+func (i ServiceComputeLoggingS3Args) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingS3] {
+	return pulumix.Output[ServiceComputeLoggingS3]{
+		OutputState: i.ToServiceComputeLoggingS3OutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingS3ArrayInput is an input type that accepts ServiceComputeLoggingS3Array and ServiceComputeLoggingS3ArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingS3ArrayInput` via:
 //
@@ -3967,6 +4550,12 @@ func (i ServiceComputeLoggingS3Array) ToServiceComputeLoggingS3ArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingS3ArrayOutput)
 }
 
+func (i ServiceComputeLoggingS3Array) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingS3] {
+	return pulumix.Output[[]ServiceComputeLoggingS3]{
+		OutputState: i.ToServiceComputeLoggingS3ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingS3Output struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingS3Output) ElementType() reflect.Type {
@@ -3979,6 +4568,12 @@ func (o ServiceComputeLoggingS3Output) ToServiceComputeLoggingS3Output() Service
 
 func (o ServiceComputeLoggingS3Output) ToServiceComputeLoggingS3OutputWithContext(ctx context.Context) ServiceComputeLoggingS3Output {
 	return o
+}
+
+func (o ServiceComputeLoggingS3Output) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingS3] {
+	return pulumix.Output[ServiceComputeLoggingS3]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
@@ -4085,6 +4680,12 @@ func (o ServiceComputeLoggingS3ArrayOutput) ToServiceComputeLoggingS3ArrayOutput
 	return o
 }
 
+func (o ServiceComputeLoggingS3ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingS3] {
+	return pulumix.Output[[]ServiceComputeLoggingS3]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingS3ArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingS3Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingS3 {
 		return vs[0].([]ServiceComputeLoggingS3)[vs[1].(int)]
@@ -4132,6 +4733,12 @@ func (i ServiceComputeLoggingScalyrArgs) ToServiceComputeLoggingScalyrOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingScalyrOutput)
 }
 
+func (i ServiceComputeLoggingScalyrArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingScalyr] {
+	return pulumix.Output[ServiceComputeLoggingScalyr]{
+		OutputState: i.ToServiceComputeLoggingScalyrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingScalyrArrayInput is an input type that accepts ServiceComputeLoggingScalyrArray and ServiceComputeLoggingScalyrArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingScalyrArrayInput` via:
 //
@@ -4157,6 +4764,12 @@ func (i ServiceComputeLoggingScalyrArray) ToServiceComputeLoggingScalyrArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingScalyrArrayOutput)
 }
 
+func (i ServiceComputeLoggingScalyrArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingScalyr] {
+	return pulumix.Output[[]ServiceComputeLoggingScalyr]{
+		OutputState: i.ToServiceComputeLoggingScalyrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingScalyrOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingScalyrOutput) ElementType() reflect.Type {
@@ -4169,6 +4782,12 @@ func (o ServiceComputeLoggingScalyrOutput) ToServiceComputeLoggingScalyrOutput()
 
 func (o ServiceComputeLoggingScalyrOutput) ToServiceComputeLoggingScalyrOutputWithContext(ctx context.Context) ServiceComputeLoggingScalyrOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingScalyrOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingScalyr] {
+	return pulumix.Output[ServiceComputeLoggingScalyr]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -4198,6 +4817,12 @@ func (o ServiceComputeLoggingScalyrArrayOutput) ToServiceComputeLoggingScalyrArr
 
 func (o ServiceComputeLoggingScalyrArrayOutput) ToServiceComputeLoggingScalyrArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingScalyrArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingScalyrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingScalyr] {
+	return pulumix.Output[[]ServiceComputeLoggingScalyr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingScalyrArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingScalyrOutput {
@@ -4291,6 +4916,12 @@ func (i ServiceComputeLoggingSftpArgs) ToServiceComputeLoggingSftpOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSftpOutput)
 }
 
+func (i ServiceComputeLoggingSftpArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSftp] {
+	return pulumix.Output[ServiceComputeLoggingSftp]{
+		OutputState: i.ToServiceComputeLoggingSftpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingSftpArrayInput is an input type that accepts ServiceComputeLoggingSftpArray and ServiceComputeLoggingSftpArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSftpArrayInput` via:
 //
@@ -4316,6 +4947,12 @@ func (i ServiceComputeLoggingSftpArray) ToServiceComputeLoggingSftpArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSftpArrayOutput)
 }
 
+func (i ServiceComputeLoggingSftpArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSftp] {
+	return pulumix.Output[[]ServiceComputeLoggingSftp]{
+		OutputState: i.ToServiceComputeLoggingSftpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingSftpOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingSftpOutput) ElementType() reflect.Type {
@@ -4328,6 +4965,12 @@ func (o ServiceComputeLoggingSftpOutput) ToServiceComputeLoggingSftpOutput() Ser
 
 func (o ServiceComputeLoggingSftpOutput) ToServiceComputeLoggingSftpOutputWithContext(ctx context.Context) ServiceComputeLoggingSftpOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingSftpOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSftp] {
+	return pulumix.Output[ServiceComputeLoggingSftp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The SFTP address to stream logs to
@@ -4414,6 +5057,12 @@ func (o ServiceComputeLoggingSftpArrayOutput) ToServiceComputeLoggingSftpArrayOu
 	return o
 }
 
+func (o ServiceComputeLoggingSftpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSftp] {
+	return pulumix.Output[[]ServiceComputeLoggingSftp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingSftpArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingSftpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingSftp {
 		return vs[0].([]ServiceComputeLoggingSftp)[vs[1].(int)]
@@ -4481,6 +5130,12 @@ func (i ServiceComputeLoggingSplunkArgs) ToServiceComputeLoggingSplunkOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSplunkOutput)
 }
 
+func (i ServiceComputeLoggingSplunkArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSplunk] {
+	return pulumix.Output[ServiceComputeLoggingSplunk]{
+		OutputState: i.ToServiceComputeLoggingSplunkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingSplunkArrayInput is an input type that accepts ServiceComputeLoggingSplunkArray and ServiceComputeLoggingSplunkArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSplunkArrayInput` via:
 //
@@ -4506,6 +5161,12 @@ func (i ServiceComputeLoggingSplunkArray) ToServiceComputeLoggingSplunkArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSplunkArrayOutput)
 }
 
+func (i ServiceComputeLoggingSplunkArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSplunk] {
+	return pulumix.Output[[]ServiceComputeLoggingSplunk]{
+		OutputState: i.ToServiceComputeLoggingSplunkArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingSplunkOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingSplunkOutput) ElementType() reflect.Type {
@@ -4518,6 +5179,12 @@ func (o ServiceComputeLoggingSplunkOutput) ToServiceComputeLoggingSplunkOutput()
 
 func (o ServiceComputeLoggingSplunkOutput) ToServiceComputeLoggingSplunkOutputWithContext(ctx context.Context) ServiceComputeLoggingSplunkOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingSplunkOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSplunk] {
+	return pulumix.Output[ServiceComputeLoggingSplunk]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -4574,6 +5241,12 @@ func (o ServiceComputeLoggingSplunkArrayOutput) ToServiceComputeLoggingSplunkArr
 	return o
 }
 
+func (o ServiceComputeLoggingSplunkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSplunk] {
+	return pulumix.Output[[]ServiceComputeLoggingSplunk]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingSplunkArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingSplunkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingSplunk {
 		return vs[0].([]ServiceComputeLoggingSplunk)[vs[1].(int)]
@@ -4621,6 +5294,12 @@ func (i ServiceComputeLoggingSumologicArgs) ToServiceComputeLoggingSumologicOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSumologicOutput)
 }
 
+func (i ServiceComputeLoggingSumologicArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSumologic] {
+	return pulumix.Output[ServiceComputeLoggingSumologic]{
+		OutputState: i.ToServiceComputeLoggingSumologicOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingSumologicArrayInput is an input type that accepts ServiceComputeLoggingSumologicArray and ServiceComputeLoggingSumologicArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSumologicArrayInput` via:
 //
@@ -4646,6 +5325,12 @@ func (i ServiceComputeLoggingSumologicArray) ToServiceComputeLoggingSumologicArr
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSumologicArrayOutput)
 }
 
+func (i ServiceComputeLoggingSumologicArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSumologic] {
+	return pulumix.Output[[]ServiceComputeLoggingSumologic]{
+		OutputState: i.ToServiceComputeLoggingSumologicArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingSumologicOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingSumologicOutput) ElementType() reflect.Type {
@@ -4658,6 +5343,12 @@ func (o ServiceComputeLoggingSumologicOutput) ToServiceComputeLoggingSumologicOu
 
 func (o ServiceComputeLoggingSumologicOutput) ToServiceComputeLoggingSumologicOutputWithContext(ctx context.Context) ServiceComputeLoggingSumologicOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingSumologicOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSumologic] {
+	return pulumix.Output[ServiceComputeLoggingSumologic]{
+		OutputState: o.OutputState,
+	}
 }
 
 // How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -4687,6 +5378,12 @@ func (o ServiceComputeLoggingSumologicArrayOutput) ToServiceComputeLoggingSumolo
 
 func (o ServiceComputeLoggingSumologicArrayOutput) ToServiceComputeLoggingSumologicArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingSumologicArrayOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingSumologicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSumologic] {
+	return pulumix.Output[[]ServiceComputeLoggingSumologic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeLoggingSumologicArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingSumologicOutput {
@@ -4764,6 +5461,12 @@ func (i ServiceComputeLoggingSyslogArgs) ToServiceComputeLoggingSyslogOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSyslogOutput)
 }
 
+func (i ServiceComputeLoggingSyslogArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSyslog] {
+	return pulumix.Output[ServiceComputeLoggingSyslog]{
+		OutputState: i.ToServiceComputeLoggingSyslogOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeLoggingSyslogArrayInput is an input type that accepts ServiceComputeLoggingSyslogArray and ServiceComputeLoggingSyslogArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeLoggingSyslogArrayInput` via:
 //
@@ -4789,6 +5492,12 @@ func (i ServiceComputeLoggingSyslogArray) ToServiceComputeLoggingSyslogArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingSyslogArrayOutput)
 }
 
+func (i ServiceComputeLoggingSyslogArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSyslog] {
+	return pulumix.Output[[]ServiceComputeLoggingSyslog]{
+		OutputState: i.ToServiceComputeLoggingSyslogArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeLoggingSyslogOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingSyslogOutput) ElementType() reflect.Type {
@@ -4801,6 +5510,12 @@ func (o ServiceComputeLoggingSyslogOutput) ToServiceComputeLoggingSyslogOutput()
 
 func (o ServiceComputeLoggingSyslogOutput) ToServiceComputeLoggingSyslogOutputWithContext(ctx context.Context) ServiceComputeLoggingSyslogOutput {
 	return o
+}
+
+func (o ServiceComputeLoggingSyslogOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeLoggingSyslog] {
+	return pulumix.Output[ServiceComputeLoggingSyslog]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A hostname or IPv4 address of the Syslog endpoint
@@ -4867,6 +5582,12 @@ func (o ServiceComputeLoggingSyslogArrayOutput) ToServiceComputeLoggingSyslogArr
 	return o
 }
 
+func (o ServiceComputeLoggingSyslogArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeLoggingSyslog] {
+	return pulumix.Output[[]ServiceComputeLoggingSyslog]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceComputeLoggingSyslogArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingSyslogOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingSyslog {
 		return vs[0].([]ServiceComputeLoggingSyslog)[vs[1].(int)]
@@ -4914,6 +5635,12 @@ func (i ServiceComputePackageArgs) ToServiceComputePackageOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePackageOutput)
 }
 
+func (i ServiceComputePackageArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputePackage] {
+	return pulumix.Output[ServiceComputePackage]{
+		OutputState: i.ToServiceComputePackageOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ServiceComputePackageArgs) ToServiceComputePackagePtrOutput() ServiceComputePackagePtrOutput {
 	return i.ToServiceComputePackagePtrOutputWithContext(context.Background())
 }
@@ -4955,6 +5682,12 @@ func (i *serviceComputePackagePtrType) ToServiceComputePackagePtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputePackagePtrOutput)
 }
 
+func (i *serviceComputePackagePtrType) ToOutput(ctx context.Context) pulumix.Output[*ServiceComputePackage] {
+	return pulumix.Output[*ServiceComputePackage]{
+		OutputState: i.ToServiceComputePackagePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputePackageOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputePackageOutput) ElementType() reflect.Type {
@@ -4977,6 +5710,12 @@ func (o ServiceComputePackageOutput) ToServiceComputePackagePtrOutputWithContext
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputePackage) *ServiceComputePackage {
 		return &v
 	}).(ServiceComputePackagePtrOutput)
+}
+
+func (o ServiceComputePackageOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputePackage] {
+	return pulumix.Output[ServiceComputePackage]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
@@ -5006,6 +5745,12 @@ func (o ServiceComputePackagePtrOutput) ToServiceComputePackagePtrOutput() Servi
 
 func (o ServiceComputePackagePtrOutput) ToServiceComputePackagePtrOutputWithContext(ctx context.Context) ServiceComputePackagePtrOutput {
 	return o
+}
+
+func (o ServiceComputePackagePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceComputePackage] {
+	return pulumix.Output[*ServiceComputePackage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputePackagePtrOutput) Elem() ServiceComputePackageOutput {
@@ -5089,6 +5834,12 @@ func (i ServiceComputeProductEnablementArgs) ToServiceComputeProductEnablementOu
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementOutput)
 }
 
+func (i ServiceComputeProductEnablementArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeProductEnablement] {
+	return pulumix.Output[ServiceComputeProductEnablement]{
+		OutputState: i.ToServiceComputeProductEnablementOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ServiceComputeProductEnablementArgs) ToServiceComputeProductEnablementPtrOutput() ServiceComputeProductEnablementPtrOutput {
 	return i.ToServiceComputeProductEnablementPtrOutputWithContext(context.Background())
 }
@@ -5130,6 +5881,12 @@ func (i *serviceComputeProductEnablementPtrType) ToServiceComputeProductEnableme
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementPtrOutput)
 }
 
+func (i *serviceComputeProductEnablementPtrType) ToOutput(ctx context.Context) pulumix.Output[*ServiceComputeProductEnablement] {
+	return pulumix.Output[*ServiceComputeProductEnablement]{
+		OutputState: i.ToServiceComputeProductEnablementPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeProductEnablementOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeProductEnablementOutput) ElementType() reflect.Type {
@@ -5152,6 +5909,12 @@ func (o ServiceComputeProductEnablementOutput) ToServiceComputeProductEnablement
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputeProductEnablement) *ServiceComputeProductEnablement {
 		return &v
 	}).(ServiceComputeProductEnablementPtrOutput)
+}
+
+func (o ServiceComputeProductEnablementOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeProductEnablement] {
+	return pulumix.Output[ServiceComputeProductEnablement]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enable Fanout support
@@ -5181,6 +5944,12 @@ func (o ServiceComputeProductEnablementPtrOutput) ToServiceComputeProductEnablem
 
 func (o ServiceComputeProductEnablementPtrOutput) ToServiceComputeProductEnablementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementPtrOutput {
 	return o
+}
+
+func (o ServiceComputeProductEnablementPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceComputeProductEnablement] {
+	return pulumix.Output[*ServiceComputeProductEnablement]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeProductEnablementPtrOutput) Elem() ServiceComputeProductEnablementOutput {
@@ -5264,6 +6033,12 @@ func (i ServiceComputeResourceLinkArgs) ToServiceComputeResourceLinkOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeResourceLinkOutput)
 }
 
+func (i ServiceComputeResourceLinkArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeResourceLink] {
+	return pulumix.Output[ServiceComputeResourceLink]{
+		OutputState: i.ToServiceComputeResourceLinkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceComputeResourceLinkArrayInput is an input type that accepts ServiceComputeResourceLinkArray and ServiceComputeResourceLinkArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeResourceLinkArrayInput` via:
 //
@@ -5289,6 +6064,12 @@ func (i ServiceComputeResourceLinkArray) ToServiceComputeResourceLinkArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeResourceLinkArrayOutput)
 }
 
+func (i ServiceComputeResourceLinkArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeResourceLink] {
+	return pulumix.Output[[]ServiceComputeResourceLink]{
+		OutputState: i.ToServiceComputeResourceLinkArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceComputeResourceLinkOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeResourceLinkOutput) ElementType() reflect.Type {
@@ -5301,6 +6082,12 @@ func (o ServiceComputeResourceLinkOutput) ToServiceComputeResourceLinkOutput() S
 
 func (o ServiceComputeResourceLinkOutput) ToServiceComputeResourceLinkOutputWithContext(ctx context.Context) ServiceComputeResourceLinkOutput {
 	return o
+}
+
+func (o ServiceComputeResourceLinkOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceComputeResourceLink] {
+	return pulumix.Output[ServiceComputeResourceLink]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An alphanumeric string identifying the resource link.
@@ -5330,6 +6117,12 @@ func (o ServiceComputeResourceLinkArrayOutput) ToServiceComputeResourceLinkArray
 
 func (o ServiceComputeResourceLinkArrayOutput) ToServiceComputeResourceLinkArrayOutputWithContext(ctx context.Context) ServiceComputeResourceLinkArrayOutput {
 	return o
+}
+
+func (o ServiceComputeResourceLinkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceComputeResourceLink] {
+	return pulumix.Output[[]ServiceComputeResourceLink]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceComputeResourceLinkArrayOutput) Index(i pulumi.IntInput) ServiceComputeResourceLinkOutput {
@@ -5379,6 +6172,12 @@ func (i ServiceVclAclArgs) ToServiceVclAclOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclAclOutput)
 }
 
+func (i ServiceVclAclArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclAcl] {
+	return pulumix.Output[ServiceVclAcl]{
+		OutputState: i.ToServiceVclAclOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclAclArrayInput is an input type that accepts ServiceVclAclArray and ServiceVclAclArrayOutput values.
 // You can construct a concrete instance of `ServiceVclAclArrayInput` via:
 //
@@ -5404,6 +6203,12 @@ func (i ServiceVclAclArray) ToServiceVclAclArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclAclArrayOutput)
 }
 
+func (i ServiceVclAclArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclAcl] {
+	return pulumix.Output[[]ServiceVclAcl]{
+		OutputState: i.ToServiceVclAclArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclAclOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclAclOutput) ElementType() reflect.Type {
@@ -5416,6 +6221,12 @@ func (o ServiceVclAclOutput) ToServiceVclAclOutput() ServiceVclAclOutput {
 
 func (o ServiceVclAclOutput) ToServiceVclAclOutputWithContext(ctx context.Context) ServiceVclAclOutput {
 	return o
+}
+
+func (o ServiceVclAclOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclAcl] {
+	return pulumix.Output[ServiceVclAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the ACL
@@ -5445,6 +6256,12 @@ func (o ServiceVclAclArrayOutput) ToServiceVclAclArrayOutput() ServiceVclAclArra
 
 func (o ServiceVclAclArrayOutput) ToServiceVclAclArrayOutputWithContext(ctx context.Context) ServiceVclAclArrayOutput {
 	return o
+}
+
+func (o ServiceVclAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclAcl] {
+	return pulumix.Output[[]ServiceVclAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclAclArrayOutput) Index(i pulumi.IntInput) ServiceVclAclOutput {
@@ -5582,6 +6399,12 @@ func (i ServiceVclBackendArgs) ToServiceVclBackendOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclBackendOutput)
 }
 
+func (i ServiceVclBackendArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclBackend] {
+	return pulumix.Output[ServiceVclBackend]{
+		OutputState: i.ToServiceVclBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclBackendArrayInput is an input type that accepts ServiceVclBackendArray and ServiceVclBackendArrayOutput values.
 // You can construct a concrete instance of `ServiceVclBackendArrayInput` via:
 //
@@ -5607,6 +6430,12 @@ func (i ServiceVclBackendArray) ToServiceVclBackendArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclBackendArrayOutput)
 }
 
+func (i ServiceVclBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclBackend] {
+	return pulumix.Output[[]ServiceVclBackend]{
+		OutputState: i.ToServiceVclBackendArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclBackendOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclBackendOutput) ElementType() reflect.Type {
@@ -5619,6 +6448,12 @@ func (o ServiceVclBackendOutput) ToServiceVclBackendOutput() ServiceVclBackendOu
 
 func (o ServiceVclBackendOutput) ToServiceVclBackendOutputWithContext(ctx context.Context) ServiceVclBackendOutput {
 	return o
+}
+
+func (o ServiceVclBackendOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclBackend] {
+	return pulumix.Output[ServiceVclBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An IPv4, hostname, or IPv6 address for the Backend
@@ -5760,6 +6595,12 @@ func (o ServiceVclBackendArrayOutput) ToServiceVclBackendArrayOutputWithContext(
 	return o
 }
 
+func (o ServiceVclBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclBackend] {
+	return pulumix.Output[[]ServiceVclBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclBackendArrayOutput) Index(i pulumi.IntInput) ServiceVclBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclBackend {
 		return vs[0].([]ServiceVclBackend)[vs[1].(int)]
@@ -5815,6 +6656,12 @@ func (i ServiceVclCacheSettingArgs) ToServiceVclCacheSettingOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclCacheSettingOutput)
 }
 
+func (i ServiceVclCacheSettingArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclCacheSetting] {
+	return pulumix.Output[ServiceVclCacheSetting]{
+		OutputState: i.ToServiceVclCacheSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclCacheSettingArrayInput is an input type that accepts ServiceVclCacheSettingArray and ServiceVclCacheSettingArrayOutput values.
 // You can construct a concrete instance of `ServiceVclCacheSettingArrayInput` via:
 //
@@ -5840,6 +6687,12 @@ func (i ServiceVclCacheSettingArray) ToServiceVclCacheSettingArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclCacheSettingArrayOutput)
 }
 
+func (i ServiceVclCacheSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclCacheSetting] {
+	return pulumix.Output[[]ServiceVclCacheSetting]{
+		OutputState: i.ToServiceVclCacheSettingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclCacheSettingOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclCacheSettingOutput) ElementType() reflect.Type {
@@ -5852,6 +6705,12 @@ func (o ServiceVclCacheSettingOutput) ToServiceVclCacheSettingOutput() ServiceVc
 
 func (o ServiceVclCacheSettingOutput) ToServiceVclCacheSettingOutputWithContext(ctx context.Context) ServiceVclCacheSettingOutput {
 	return o
+}
+
+func (o ServiceVclCacheSettingOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclCacheSetting] {
+	return pulumix.Output[ServiceVclCacheSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 // One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
@@ -5891,6 +6750,12 @@ func (o ServiceVclCacheSettingArrayOutput) ToServiceVclCacheSettingArrayOutput()
 
 func (o ServiceVclCacheSettingArrayOutput) ToServiceVclCacheSettingArrayOutputWithContext(ctx context.Context) ServiceVclCacheSettingArrayOutput {
 	return o
+}
+
+func (o ServiceVclCacheSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclCacheSetting] {
+	return pulumix.Output[[]ServiceVclCacheSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclCacheSettingArrayOutput) Index(i pulumi.IntInput) ServiceVclCacheSettingOutput {
@@ -5944,6 +6809,12 @@ func (i ServiceVclConditionArgs) ToServiceVclConditionOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclConditionOutput)
 }
 
+func (i ServiceVclConditionArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclCondition] {
+	return pulumix.Output[ServiceVclCondition]{
+		OutputState: i.ToServiceVclConditionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclConditionArrayInput is an input type that accepts ServiceVclConditionArray and ServiceVclConditionArrayOutput values.
 // You can construct a concrete instance of `ServiceVclConditionArrayInput` via:
 //
@@ -5969,6 +6840,12 @@ func (i ServiceVclConditionArray) ToServiceVclConditionArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclConditionArrayOutput)
 }
 
+func (i ServiceVclConditionArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclCondition] {
+	return pulumix.Output[[]ServiceVclCondition]{
+		OutputState: i.ToServiceVclConditionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclConditionOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclConditionOutput) ElementType() reflect.Type {
@@ -5981,6 +6858,12 @@ func (o ServiceVclConditionOutput) ToServiceVclConditionOutput() ServiceVclCondi
 
 func (o ServiceVclConditionOutput) ToServiceVclConditionOutputWithContext(ctx context.Context) ServiceVclConditionOutput {
 	return o
+}
+
+func (o ServiceVclConditionOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclCondition] {
+	return pulumix.Output[ServiceVclCondition]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
@@ -6015,6 +6898,12 @@ func (o ServiceVclConditionArrayOutput) ToServiceVclConditionArrayOutput() Servi
 
 func (o ServiceVclConditionArrayOutput) ToServiceVclConditionArrayOutputWithContext(ctx context.Context) ServiceVclConditionArrayOutput {
 	return o
+}
+
+func (o ServiceVclConditionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclCondition] {
+	return pulumix.Output[[]ServiceVclCondition]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclConditionArrayOutput) Index(i pulumi.IntInput) ServiceVclConditionOutput {
@@ -6066,6 +6955,12 @@ func (i ServiceVclDictionaryArgs) ToServiceVclDictionaryOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDictionaryOutput)
 }
 
+func (i ServiceVclDictionaryArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDictionary] {
+	return pulumix.Output[ServiceVclDictionary]{
+		OutputState: i.ToServiceVclDictionaryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclDictionaryArrayInput is an input type that accepts ServiceVclDictionaryArray and ServiceVclDictionaryArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDictionaryArrayInput` via:
 //
@@ -6091,6 +6986,12 @@ func (i ServiceVclDictionaryArray) ToServiceVclDictionaryArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDictionaryArrayOutput)
 }
 
+func (i ServiceVclDictionaryArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDictionary] {
+	return pulumix.Output[[]ServiceVclDictionary]{
+		OutputState: i.ToServiceVclDictionaryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclDictionaryOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclDictionaryOutput) ElementType() reflect.Type {
@@ -6103,6 +7004,12 @@ func (o ServiceVclDictionaryOutput) ToServiceVclDictionaryOutput() ServiceVclDic
 
 func (o ServiceVclDictionaryOutput) ToServiceVclDictionaryOutputWithContext(ctx context.Context) ServiceVclDictionaryOutput {
 	return o
+}
+
+func (o ServiceVclDictionaryOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDictionary] {
+	return pulumix.Output[ServiceVclDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the dictionary
@@ -6136,6 +7043,12 @@ func (o ServiceVclDictionaryArrayOutput) ToServiceVclDictionaryArrayOutput() Ser
 
 func (o ServiceVclDictionaryArrayOutput) ToServiceVclDictionaryArrayOutputWithContext(ctx context.Context) ServiceVclDictionaryArrayOutput {
 	return o
+}
+
+func (o ServiceVclDictionaryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDictionary] {
+	return pulumix.Output[[]ServiceVclDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclDictionaryArrayOutput) Index(i pulumi.IntInput) ServiceVclDictionaryOutput {
@@ -6201,6 +7114,12 @@ func (i ServiceVclDirectorArgs) ToServiceVclDirectorOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDirectorOutput)
 }
 
+func (i ServiceVclDirectorArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDirector] {
+	return pulumix.Output[ServiceVclDirector]{
+		OutputState: i.ToServiceVclDirectorOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclDirectorArrayInput is an input type that accepts ServiceVclDirectorArray and ServiceVclDirectorArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDirectorArrayInput` via:
 //
@@ -6226,6 +7145,12 @@ func (i ServiceVclDirectorArray) ToServiceVclDirectorArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDirectorArrayOutput)
 }
 
+func (i ServiceVclDirectorArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDirector] {
+	return pulumix.Output[[]ServiceVclDirector]{
+		OutputState: i.ToServiceVclDirectorArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclDirectorOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclDirectorOutput) ElementType() reflect.Type {
@@ -6238,6 +7163,12 @@ func (o ServiceVclDirectorOutput) ToServiceVclDirectorOutput() ServiceVclDirecto
 
 func (o ServiceVclDirectorOutput) ToServiceVclDirectorOutputWithContext(ctx context.Context) ServiceVclDirectorOutput {
 	return o
+}
+
+func (o ServiceVclDirectorOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDirector] {
+	return pulumix.Output[ServiceVclDirector]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
@@ -6289,6 +7220,12 @@ func (o ServiceVclDirectorArrayOutput) ToServiceVclDirectorArrayOutputWithContex
 	return o
 }
 
+func (o ServiceVclDirectorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDirector] {
+	return pulumix.Output[[]ServiceVclDirector]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclDirectorArrayOutput) Index(i pulumi.IntInput) ServiceVclDirectorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclDirector {
 		return vs[0].([]ServiceVclDirector)[vs[1].(int)]
@@ -6332,6 +7269,12 @@ func (i ServiceVclDomainArgs) ToServiceVclDomainOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDomainOutput)
 }
 
+func (i ServiceVclDomainArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDomain] {
+	return pulumix.Output[ServiceVclDomain]{
+		OutputState: i.ToServiceVclDomainOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclDomainArrayInput is an input type that accepts ServiceVclDomainArray and ServiceVclDomainArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDomainArrayInput` via:
 //
@@ -6357,6 +7300,12 @@ func (i ServiceVclDomainArray) ToServiceVclDomainArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDomainArrayOutput)
 }
 
+func (i ServiceVclDomainArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDomain] {
+	return pulumix.Output[[]ServiceVclDomain]{
+		OutputState: i.ToServiceVclDomainArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclDomainOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclDomainOutput) ElementType() reflect.Type {
@@ -6369,6 +7318,12 @@ func (o ServiceVclDomainOutput) ToServiceVclDomainOutput() ServiceVclDomainOutpu
 
 func (o ServiceVclDomainOutput) ToServiceVclDomainOutputWithContext(ctx context.Context) ServiceVclDomainOutput {
 	return o
+}
+
+func (o ServiceVclDomainOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDomain] {
+	return pulumix.Output[ServiceVclDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An optional comment about the Domain.
@@ -6393,6 +7348,12 @@ func (o ServiceVclDomainArrayOutput) ToServiceVclDomainArrayOutput() ServiceVclD
 
 func (o ServiceVclDomainArrayOutput) ToServiceVclDomainArrayOutputWithContext(ctx context.Context) ServiceVclDomainArrayOutput {
 	return o
+}
+
+func (o ServiceVclDomainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDomain] {
+	return pulumix.Output[[]ServiceVclDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclDomainArrayOutput) Index(i pulumi.IntInput) ServiceVclDomainOutput {
@@ -6450,6 +7411,12 @@ func (i ServiceVclDynamicsnippetArgs) ToServiceVclDynamicsnippetOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDynamicsnippetOutput)
 }
 
+func (i ServiceVclDynamicsnippetArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDynamicsnippet] {
+	return pulumix.Output[ServiceVclDynamicsnippet]{
+		OutputState: i.ToServiceVclDynamicsnippetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclDynamicsnippetArrayInput is an input type that accepts ServiceVclDynamicsnippetArray and ServiceVclDynamicsnippetArrayOutput values.
 // You can construct a concrete instance of `ServiceVclDynamicsnippetArrayInput` via:
 //
@@ -6475,6 +7442,12 @@ func (i ServiceVclDynamicsnippetArray) ToServiceVclDynamicsnippetArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclDynamicsnippetArrayOutput)
 }
 
+func (i ServiceVclDynamicsnippetArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDynamicsnippet] {
+	return pulumix.Output[[]ServiceVclDynamicsnippet]{
+		OutputState: i.ToServiceVclDynamicsnippetArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclDynamicsnippetOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclDynamicsnippetOutput) ElementType() reflect.Type {
@@ -6487,6 +7460,12 @@ func (o ServiceVclDynamicsnippetOutput) ToServiceVclDynamicsnippetOutput() Servi
 
 func (o ServiceVclDynamicsnippetOutput) ToServiceVclDynamicsnippetOutputWithContext(ctx context.Context) ServiceVclDynamicsnippetOutput {
 	return o
+}
+
+func (o ServiceVclDynamicsnippetOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclDynamicsnippet] {
+	return pulumix.Output[ServiceVclDynamicsnippet]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The VCL code that specifies exactly what the snippet does
@@ -6526,6 +7505,12 @@ func (o ServiceVclDynamicsnippetArrayOutput) ToServiceVclDynamicsnippetArrayOutp
 
 func (o ServiceVclDynamicsnippetArrayOutput) ToServiceVclDynamicsnippetArrayOutputWithContext(ctx context.Context) ServiceVclDynamicsnippetArrayOutput {
 	return o
+}
+
+func (o ServiceVclDynamicsnippetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclDynamicsnippet] {
+	return pulumix.Output[[]ServiceVclDynamicsnippet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclDynamicsnippetArrayOutput) Index(i pulumi.IntInput) ServiceVclDynamicsnippetOutput {
@@ -6579,6 +7564,12 @@ func (i ServiceVclGzipArgs) ToServiceVclGzipOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclGzipOutput)
 }
 
+func (i ServiceVclGzipArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclGzip] {
+	return pulumix.Output[ServiceVclGzip]{
+		OutputState: i.ToServiceVclGzipOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclGzipArrayInput is an input type that accepts ServiceVclGzipArray and ServiceVclGzipArrayOutput values.
 // You can construct a concrete instance of `ServiceVclGzipArrayInput` via:
 //
@@ -6604,6 +7595,12 @@ func (i ServiceVclGzipArray) ToServiceVclGzipArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclGzipArrayOutput)
 }
 
+func (i ServiceVclGzipArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclGzip] {
+	return pulumix.Output[[]ServiceVclGzip]{
+		OutputState: i.ToServiceVclGzipArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclGzipOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclGzipOutput) ElementType() reflect.Type {
@@ -6616,6 +7613,12 @@ func (o ServiceVclGzipOutput) ToServiceVclGzipOutput() ServiceVclGzipOutput {
 
 func (o ServiceVclGzipOutput) ToServiceVclGzipOutputWithContext(ctx context.Context) ServiceVclGzipOutput {
 	return o
+}
+
+func (o ServiceVclGzipOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclGzip] {
+	return pulumix.Output[ServiceVclGzip]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
@@ -6650,6 +7653,12 @@ func (o ServiceVclGzipArrayOutput) ToServiceVclGzipArrayOutput() ServiceVclGzipA
 
 func (o ServiceVclGzipArrayOutput) ToServiceVclGzipArrayOutputWithContext(ctx context.Context) ServiceVclGzipArrayOutput {
 	return o
+}
+
+func (o ServiceVclGzipArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclGzip] {
+	return pulumix.Output[[]ServiceVclGzip]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclGzipArrayOutput) Index(i pulumi.IntInput) ServiceVclGzipOutput {
@@ -6735,6 +7744,12 @@ func (i ServiceVclHeaderArgs) ToServiceVclHeaderOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclHeaderOutput)
 }
 
+func (i ServiceVclHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclHeader] {
+	return pulumix.Output[ServiceVclHeader]{
+		OutputState: i.ToServiceVclHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclHeaderArrayInput is an input type that accepts ServiceVclHeaderArray and ServiceVclHeaderArrayOutput values.
 // You can construct a concrete instance of `ServiceVclHeaderArrayInput` via:
 //
@@ -6760,6 +7775,12 @@ func (i ServiceVclHeaderArray) ToServiceVclHeaderArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclHeaderArrayOutput)
 }
 
+func (i ServiceVclHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclHeader] {
+	return pulumix.Output[[]ServiceVclHeader]{
+		OutputState: i.ToServiceVclHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclHeaderOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclHeaderOutput) ElementType() reflect.Type {
@@ -6772,6 +7793,12 @@ func (o ServiceVclHeaderOutput) ToServiceVclHeaderOutput() ServiceVclHeaderOutpu
 
 func (o ServiceVclHeaderOutput) ToServiceVclHeaderOutputWithContext(ctx context.Context) ServiceVclHeaderOutput {
 	return o
+}
+
+func (o ServiceVclHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclHeader] {
+	return pulumix.Output[ServiceVclHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
@@ -6846,6 +7873,12 @@ func (o ServiceVclHeaderArrayOutput) ToServiceVclHeaderArrayOutput() ServiceVclH
 
 func (o ServiceVclHeaderArrayOutput) ToServiceVclHeaderArrayOutputWithContext(ctx context.Context) ServiceVclHeaderArrayOutput {
 	return o
+}
+
+func (o ServiceVclHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclHeader] {
+	return pulumix.Output[[]ServiceVclHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclHeaderArrayOutput) Index(i pulumi.IntInput) ServiceVclHeaderOutput {
@@ -6931,6 +7964,12 @@ func (i ServiceVclHealthcheckArgs) ToServiceVclHealthcheckOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclHealthcheckOutput)
 }
 
+func (i ServiceVclHealthcheckArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclHealthcheck] {
+	return pulumix.Output[ServiceVclHealthcheck]{
+		OutputState: i.ToServiceVclHealthcheckOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclHealthcheckArrayInput is an input type that accepts ServiceVclHealthcheckArray and ServiceVclHealthcheckArrayOutput values.
 // You can construct a concrete instance of `ServiceVclHealthcheckArrayInput` via:
 //
@@ -6956,6 +7995,12 @@ func (i ServiceVclHealthcheckArray) ToServiceVclHealthcheckArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclHealthcheckArrayOutput)
 }
 
+func (i ServiceVclHealthcheckArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclHealthcheck] {
+	return pulumix.Output[[]ServiceVclHealthcheck]{
+		OutputState: i.ToServiceVclHealthcheckArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclHealthcheckOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclHealthcheckOutput) ElementType() reflect.Type {
@@ -6968,6 +8013,12 @@ func (o ServiceVclHealthcheckOutput) ToServiceVclHealthcheckOutput() ServiceVclH
 
 func (o ServiceVclHealthcheckOutput) ToServiceVclHealthcheckOutputWithContext(ctx context.Context) ServiceVclHealthcheckOutput {
 	return o
+}
+
+func (o ServiceVclHealthcheckOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclHealthcheck] {
+	return pulumix.Output[ServiceVclHealthcheck]{
+		OutputState: o.OutputState,
+	}
 }
 
 // How often to run the Healthcheck in milliseconds. Default `5000`
@@ -7042,6 +8093,12 @@ func (o ServiceVclHealthcheckArrayOutput) ToServiceVclHealthcheckArrayOutput() S
 
 func (o ServiceVclHealthcheckArrayOutput) ToServiceVclHealthcheckArrayOutputWithContext(ctx context.Context) ServiceVclHealthcheckArrayOutput {
 	return o
+}
+
+func (o ServiceVclHealthcheckArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclHealthcheck] {
+	return pulumix.Output[[]ServiceVclHealthcheck]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclHealthcheckArrayOutput) Index(i pulumi.IntInput) ServiceVclHealthcheckOutput {
@@ -7123,6 +8180,12 @@ func (i ServiceVclLoggingBigqueryArgs) ToServiceVclLoggingBigqueryOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingBigqueryOutput)
 }
 
+func (i ServiceVclLoggingBigqueryArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingBigquery] {
+	return pulumix.Output[ServiceVclLoggingBigquery]{
+		OutputState: i.ToServiceVclLoggingBigqueryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingBigqueryArrayInput is an input type that accepts ServiceVclLoggingBigqueryArray and ServiceVclLoggingBigqueryArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingBigqueryArrayInput` via:
 //
@@ -7148,6 +8211,12 @@ func (i ServiceVclLoggingBigqueryArray) ToServiceVclLoggingBigqueryArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingBigqueryArrayOutput)
 }
 
+func (i ServiceVclLoggingBigqueryArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingBigquery] {
+	return pulumix.Output[[]ServiceVclLoggingBigquery]{
+		OutputState: i.ToServiceVclLoggingBigqueryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingBigqueryOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingBigqueryOutput) ElementType() reflect.Type {
@@ -7160,6 +8229,12 @@ func (o ServiceVclLoggingBigqueryOutput) ToServiceVclLoggingBigqueryOutput() Ser
 
 func (o ServiceVclLoggingBigqueryOutput) ToServiceVclLoggingBigqueryOutputWithContext(ctx context.Context) ServiceVclLoggingBigqueryOutput {
 	return o
+}
+
+func (o ServiceVclLoggingBigqueryOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingBigquery] {
+	return pulumix.Output[ServiceVclLoggingBigquery]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -7229,6 +8304,12 @@ func (o ServiceVclLoggingBigqueryArrayOutput) ToServiceVclLoggingBigqueryArrayOu
 
 func (o ServiceVclLoggingBigqueryArrayOutput) ToServiceVclLoggingBigqueryArrayOutputWithContext(ctx context.Context) ServiceVclLoggingBigqueryArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingBigqueryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingBigquery] {
+	return pulumix.Output[[]ServiceVclLoggingBigquery]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingBigqueryArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingBigqueryOutput {
@@ -7330,6 +8411,12 @@ func (i ServiceVclLoggingBlobstorageArgs) ToServiceVclLoggingBlobstorageOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingBlobstorageOutput)
 }
 
+func (i ServiceVclLoggingBlobstorageArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingBlobstorage] {
+	return pulumix.Output[ServiceVclLoggingBlobstorage]{
+		OutputState: i.ToServiceVclLoggingBlobstorageOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingBlobstorageArrayInput is an input type that accepts ServiceVclLoggingBlobstorageArray and ServiceVclLoggingBlobstorageArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingBlobstorageArrayInput` via:
 //
@@ -7355,6 +8442,12 @@ func (i ServiceVclLoggingBlobstorageArray) ToServiceVclLoggingBlobstorageArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingBlobstorageArrayOutput)
 }
 
+func (i ServiceVclLoggingBlobstorageArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingBlobstorage] {
+	return pulumix.Output[[]ServiceVclLoggingBlobstorage]{
+		OutputState: i.ToServiceVclLoggingBlobstorageArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingBlobstorageOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingBlobstorageOutput) ElementType() reflect.Type {
@@ -7367,6 +8460,12 @@ func (o ServiceVclLoggingBlobstorageOutput) ToServiceVclLoggingBlobstorageOutput
 
 func (o ServiceVclLoggingBlobstorageOutput) ToServiceVclLoggingBlobstorageOutputWithContext(ctx context.Context) ServiceVclLoggingBlobstorageOutput {
 	return o
+}
+
+func (o ServiceVclLoggingBlobstorageOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingBlobstorage] {
+	return pulumix.Output[ServiceVclLoggingBlobstorage]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique Azure Blob Storage namespace in which your data objects are stored
@@ -7461,6 +8560,12 @@ func (o ServiceVclLoggingBlobstorageArrayOutput) ToServiceVclLoggingBlobstorageA
 
 func (o ServiceVclLoggingBlobstorageArrayOutput) ToServiceVclLoggingBlobstorageArrayOutputWithContext(ctx context.Context) ServiceVclLoggingBlobstorageArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingBlobstorageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingBlobstorage] {
+	return pulumix.Output[[]ServiceVclLoggingBlobstorage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingBlobstorageArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingBlobstorageOutput {
@@ -7562,6 +8667,12 @@ func (i ServiceVclLoggingCloudfileArgs) ToServiceVclLoggingCloudfileOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingCloudfileOutput)
 }
 
+func (i ServiceVclLoggingCloudfileArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingCloudfile] {
+	return pulumix.Output[ServiceVclLoggingCloudfile]{
+		OutputState: i.ToServiceVclLoggingCloudfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingCloudfileArrayInput is an input type that accepts ServiceVclLoggingCloudfileArray and ServiceVclLoggingCloudfileArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingCloudfileArrayInput` via:
 //
@@ -7587,6 +8698,12 @@ func (i ServiceVclLoggingCloudfileArray) ToServiceVclLoggingCloudfileArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingCloudfileArrayOutput)
 }
 
+func (i ServiceVclLoggingCloudfileArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingCloudfile] {
+	return pulumix.Output[[]ServiceVclLoggingCloudfile]{
+		OutputState: i.ToServiceVclLoggingCloudfileArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingCloudfileOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingCloudfileOutput) ElementType() reflect.Type {
@@ -7599,6 +8716,12 @@ func (o ServiceVclLoggingCloudfileOutput) ToServiceVclLoggingCloudfileOutput() S
 
 func (o ServiceVclLoggingCloudfileOutput) ToServiceVclLoggingCloudfileOutputWithContext(ctx context.Context) ServiceVclLoggingCloudfileOutput {
 	return o
+}
+
+func (o ServiceVclLoggingCloudfileOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingCloudfile] {
+	return pulumix.Output[ServiceVclLoggingCloudfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Your Cloud File account access key
@@ -7695,6 +8818,12 @@ func (o ServiceVclLoggingCloudfileArrayOutput) ToServiceVclLoggingCloudfileArray
 	return o
 }
 
+func (o ServiceVclLoggingCloudfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingCloudfile] {
+	return pulumix.Output[[]ServiceVclLoggingCloudfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingCloudfileArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingCloudfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingCloudfile {
 		return vs[0].([]ServiceVclLoggingCloudfile)[vs[1].(int)]
@@ -7758,6 +8887,12 @@ func (i ServiceVclLoggingDatadogArgs) ToServiceVclLoggingDatadogOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingDatadogOutput)
 }
 
+func (i ServiceVclLoggingDatadogArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingDatadog] {
+	return pulumix.Output[ServiceVclLoggingDatadog]{
+		OutputState: i.ToServiceVclLoggingDatadogOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingDatadogArrayInput is an input type that accepts ServiceVclLoggingDatadogArray and ServiceVclLoggingDatadogArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingDatadogArrayInput` via:
 //
@@ -7783,6 +8918,12 @@ func (i ServiceVclLoggingDatadogArray) ToServiceVclLoggingDatadogArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingDatadogArrayOutput)
 }
 
+func (i ServiceVclLoggingDatadogArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingDatadog] {
+	return pulumix.Output[[]ServiceVclLoggingDatadog]{
+		OutputState: i.ToServiceVclLoggingDatadogArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingDatadogOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingDatadogOutput) ElementType() reflect.Type {
@@ -7795,6 +8936,12 @@ func (o ServiceVclLoggingDatadogOutput) ToServiceVclLoggingDatadogOutput() Servi
 
 func (o ServiceVclLoggingDatadogOutput) ToServiceVclLoggingDatadogOutputWithContext(ctx context.Context) ServiceVclLoggingDatadogOutput {
 	return o
+}
+
+func (o ServiceVclLoggingDatadogOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingDatadog] {
+	return pulumix.Output[ServiceVclLoggingDatadog]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache-style string or VCL variables to use for log formatting.
@@ -7844,6 +8991,12 @@ func (o ServiceVclLoggingDatadogArrayOutput) ToServiceVclLoggingDatadogArrayOutp
 
 func (o ServiceVclLoggingDatadogArrayOutput) ToServiceVclLoggingDatadogArrayOutputWithContext(ctx context.Context) ServiceVclLoggingDatadogArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingDatadogArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingDatadog] {
+	return pulumix.Output[[]ServiceVclLoggingDatadog]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingDatadogArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingDatadogOutput {
@@ -7945,6 +9098,12 @@ func (i ServiceVclLoggingDigitaloceanArgs) ToServiceVclLoggingDigitaloceanOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingDigitaloceanOutput)
 }
 
+func (i ServiceVclLoggingDigitaloceanArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingDigitalocean] {
+	return pulumix.Output[ServiceVclLoggingDigitalocean]{
+		OutputState: i.ToServiceVclLoggingDigitaloceanOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingDigitaloceanArrayInput is an input type that accepts ServiceVclLoggingDigitaloceanArray and ServiceVclLoggingDigitaloceanArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingDigitaloceanArrayInput` via:
 //
@@ -7970,6 +9129,12 @@ func (i ServiceVclLoggingDigitaloceanArray) ToServiceVclLoggingDigitaloceanArray
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingDigitaloceanArrayOutput)
 }
 
+func (i ServiceVclLoggingDigitaloceanArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingDigitalocean] {
+	return pulumix.Output[[]ServiceVclLoggingDigitalocean]{
+		OutputState: i.ToServiceVclLoggingDigitaloceanArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingDigitaloceanOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingDigitaloceanOutput) ElementType() reflect.Type {
@@ -7982,6 +9147,12 @@ func (o ServiceVclLoggingDigitaloceanOutput) ToServiceVclLoggingDigitaloceanOutp
 
 func (o ServiceVclLoggingDigitaloceanOutput) ToServiceVclLoggingDigitaloceanOutputWithContext(ctx context.Context) ServiceVclLoggingDigitaloceanOutput {
 	return o
+}
+
+func (o ServiceVclLoggingDigitaloceanOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingDigitalocean] {
+	return pulumix.Output[ServiceVclLoggingDigitalocean]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Your DigitalOcean Spaces account access key
@@ -8076,6 +9247,12 @@ func (o ServiceVclLoggingDigitaloceanArrayOutput) ToServiceVclLoggingDigitalocea
 
 func (o ServiceVclLoggingDigitaloceanArrayOutput) ToServiceVclLoggingDigitaloceanArrayOutputWithContext(ctx context.Context) ServiceVclLoggingDigitaloceanArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingDigitaloceanArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingDigitalocean] {
+	return pulumix.Output[[]ServiceVclLoggingDigitalocean]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingDigitaloceanArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingDigitaloceanOutput {
@@ -8177,6 +9354,12 @@ func (i ServiceVclLoggingElasticsearchArgs) ToServiceVclLoggingElasticsearchOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingElasticsearchOutput)
 }
 
+func (i ServiceVclLoggingElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingElasticsearch] {
+	return pulumix.Output[ServiceVclLoggingElasticsearch]{
+		OutputState: i.ToServiceVclLoggingElasticsearchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingElasticsearchArrayInput is an input type that accepts ServiceVclLoggingElasticsearchArray and ServiceVclLoggingElasticsearchArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingElasticsearchArrayInput` via:
 //
@@ -8202,6 +9385,12 @@ func (i ServiceVclLoggingElasticsearchArray) ToServiceVclLoggingElasticsearchArr
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingElasticsearchArrayOutput)
 }
 
+func (i ServiceVclLoggingElasticsearchArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingElasticsearch] {
+	return pulumix.Output[[]ServiceVclLoggingElasticsearch]{
+		OutputState: i.ToServiceVclLoggingElasticsearchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingElasticsearchOutput) ElementType() reflect.Type {
@@ -8214,6 +9403,12 @@ func (o ServiceVclLoggingElasticsearchOutput) ToServiceVclLoggingElasticsearchOu
 
 func (o ServiceVclLoggingElasticsearchOutput) ToServiceVclLoggingElasticsearchOutputWithContext(ctx context.Context) ServiceVclLoggingElasticsearchOutput {
 	return o
+}
+
+func (o ServiceVclLoggingElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingElasticsearch] {
+	return pulumix.Output[ServiceVclLoggingElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache-style string or VCL variables to use for log formatting.
@@ -8308,6 +9503,12 @@ func (o ServiceVclLoggingElasticsearchArrayOutput) ToServiceVclLoggingElasticsea
 
 func (o ServiceVclLoggingElasticsearchArrayOutput) ToServiceVclLoggingElasticsearchArrayOutputWithContext(ctx context.Context) ServiceVclLoggingElasticsearchArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingElasticsearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingElasticsearch] {
+	return pulumix.Output[[]ServiceVclLoggingElasticsearch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingElasticsearchOutput {
@@ -8409,6 +9610,12 @@ func (i ServiceVclLoggingFtpArgs) ToServiceVclLoggingFtpOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingFtpOutput)
 }
 
+func (i ServiceVclLoggingFtpArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingFtp] {
+	return pulumix.Output[ServiceVclLoggingFtp]{
+		OutputState: i.ToServiceVclLoggingFtpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingFtpArrayInput is an input type that accepts ServiceVclLoggingFtpArray and ServiceVclLoggingFtpArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingFtpArrayInput` via:
 //
@@ -8434,6 +9641,12 @@ func (i ServiceVclLoggingFtpArray) ToServiceVclLoggingFtpArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingFtpArrayOutput)
 }
 
+func (i ServiceVclLoggingFtpArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingFtp] {
+	return pulumix.Output[[]ServiceVclLoggingFtp]{
+		OutputState: i.ToServiceVclLoggingFtpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingFtpOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingFtpOutput) ElementType() reflect.Type {
@@ -8446,6 +9659,12 @@ func (o ServiceVclLoggingFtpOutput) ToServiceVclLoggingFtpOutput() ServiceVclLog
 
 func (o ServiceVclLoggingFtpOutput) ToServiceVclLoggingFtpOutputWithContext(ctx context.Context) ServiceVclLoggingFtpOutput {
 	return o
+}
+
+func (o ServiceVclLoggingFtpOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingFtp] {
+	return pulumix.Output[ServiceVclLoggingFtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The FTP address to stream logs to
@@ -8540,6 +9759,12 @@ func (o ServiceVclLoggingFtpArrayOutput) ToServiceVclLoggingFtpArrayOutput() Ser
 
 func (o ServiceVclLoggingFtpArrayOutput) ToServiceVclLoggingFtpArrayOutputWithContext(ctx context.Context) ServiceVclLoggingFtpArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingFtpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingFtp] {
+	return pulumix.Output[[]ServiceVclLoggingFtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingFtpArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingFtpOutput {
@@ -8641,6 +9866,12 @@ func (i ServiceVclLoggingGcArgs) ToServiceVclLoggingGcOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingGcOutput)
 }
 
+func (i ServiceVclLoggingGcArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingGc] {
+	return pulumix.Output[ServiceVclLoggingGc]{
+		OutputState: i.ToServiceVclLoggingGcOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingGcArrayInput is an input type that accepts ServiceVclLoggingGcArray and ServiceVclLoggingGcArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingGcArrayInput` via:
 //
@@ -8666,6 +9897,12 @@ func (i ServiceVclLoggingGcArray) ToServiceVclLoggingGcArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingGcArrayOutput)
 }
 
+func (i ServiceVclLoggingGcArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingGc] {
+	return pulumix.Output[[]ServiceVclLoggingGc]{
+		OutputState: i.ToServiceVclLoggingGcArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingGcOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingGcOutput) ElementType() reflect.Type {
@@ -8678,6 +9915,12 @@ func (o ServiceVclLoggingGcOutput) ToServiceVclLoggingGcOutput() ServiceVclLoggi
 
 func (o ServiceVclLoggingGcOutput) ToServiceVclLoggingGcOutputWithContext(ctx context.Context) ServiceVclLoggingGcOutput {
 	return o
+}
+
+func (o ServiceVclLoggingGcOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingGc] {
+	return pulumix.Output[ServiceVclLoggingGc]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -8774,6 +10017,12 @@ func (o ServiceVclLoggingGcArrayOutput) ToServiceVclLoggingGcArrayOutputWithCont
 	return o
 }
 
+func (o ServiceVclLoggingGcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingGc] {
+	return pulumix.Output[[]ServiceVclLoggingGc]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingGcArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingGcOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingGc {
 		return vs[0].([]ServiceVclLoggingGc)[vs[1].(int)]
@@ -8849,6 +10098,12 @@ func (i ServiceVclLoggingGooglepubsubArgs) ToServiceVclLoggingGooglepubsubOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingGooglepubsubOutput)
 }
 
+func (i ServiceVclLoggingGooglepubsubArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingGooglepubsub] {
+	return pulumix.Output[ServiceVclLoggingGooglepubsub]{
+		OutputState: i.ToServiceVclLoggingGooglepubsubOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingGooglepubsubArrayInput is an input type that accepts ServiceVclLoggingGooglepubsubArray and ServiceVclLoggingGooglepubsubArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingGooglepubsubArrayInput` via:
 //
@@ -8874,6 +10129,12 @@ func (i ServiceVclLoggingGooglepubsubArray) ToServiceVclLoggingGooglepubsubArray
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingGooglepubsubArrayOutput)
 }
 
+func (i ServiceVclLoggingGooglepubsubArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingGooglepubsub] {
+	return pulumix.Output[[]ServiceVclLoggingGooglepubsub]{
+		OutputState: i.ToServiceVclLoggingGooglepubsubArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingGooglepubsubOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingGooglepubsubOutput) ElementType() reflect.Type {
@@ -8886,6 +10147,12 @@ func (o ServiceVclLoggingGooglepubsubOutput) ToServiceVclLoggingGooglepubsubOutp
 
 func (o ServiceVclLoggingGooglepubsubOutput) ToServiceVclLoggingGooglepubsubOutputWithContext(ctx context.Context) ServiceVclLoggingGooglepubsubOutput {
 	return o
+}
+
+func (o ServiceVclLoggingGooglepubsubOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingGooglepubsub] {
+	return pulumix.Output[ServiceVclLoggingGooglepubsub]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -8952,6 +10219,12 @@ func (o ServiceVclLoggingGooglepubsubArrayOutput) ToServiceVclLoggingGooglepubsu
 	return o
 }
 
+func (o ServiceVclLoggingGooglepubsubArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingGooglepubsub] {
+	return pulumix.Output[[]ServiceVclLoggingGooglepubsub]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingGooglepubsubOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingGooglepubsub {
 		return vs[0].([]ServiceVclLoggingGooglepubsub)[vs[1].(int)]
@@ -9015,6 +10288,12 @@ func (i ServiceVclLoggingHerokusArgs) ToServiceVclLoggingHerokusOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingHerokusOutput)
 }
 
+func (i ServiceVclLoggingHerokusArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingHerokus] {
+	return pulumix.Output[ServiceVclLoggingHerokus]{
+		OutputState: i.ToServiceVclLoggingHerokusOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingHerokusArrayInput is an input type that accepts ServiceVclLoggingHerokusArray and ServiceVclLoggingHerokusArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHerokusArrayInput` via:
 //
@@ -9040,6 +10319,12 @@ func (i ServiceVclLoggingHerokusArray) ToServiceVclLoggingHerokusArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingHerokusArrayOutput)
 }
 
+func (i ServiceVclLoggingHerokusArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingHerokus] {
+	return pulumix.Output[[]ServiceVclLoggingHerokus]{
+		OutputState: i.ToServiceVclLoggingHerokusArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingHerokusOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingHerokusOutput) ElementType() reflect.Type {
@@ -9052,6 +10337,12 @@ func (o ServiceVclLoggingHerokusOutput) ToServiceVclLoggingHerokusOutput() Servi
 
 func (o ServiceVclLoggingHerokusOutput) ToServiceVclLoggingHerokusOutputWithContext(ctx context.Context) ServiceVclLoggingHerokusOutput {
 	return o
+}
+
+func (o ServiceVclLoggingHerokusOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingHerokus] {
+	return pulumix.Output[ServiceVclLoggingHerokus]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache-style string or VCL variables to use for log formatting.
@@ -9101,6 +10392,12 @@ func (o ServiceVclLoggingHerokusArrayOutput) ToServiceVclLoggingHerokusArrayOutp
 
 func (o ServiceVclLoggingHerokusArrayOutput) ToServiceVclLoggingHerokusArrayOutputWithContext(ctx context.Context) ServiceVclLoggingHerokusArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingHerokusArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingHerokus] {
+	return pulumix.Output[[]ServiceVclLoggingHerokus]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingHerokusArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingHerokusOutput {
@@ -9166,6 +10463,12 @@ func (i ServiceVclLoggingHoneycombArgs) ToServiceVclLoggingHoneycombOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingHoneycombOutput)
 }
 
+func (i ServiceVclLoggingHoneycombArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingHoneycomb] {
+	return pulumix.Output[ServiceVclLoggingHoneycomb]{
+		OutputState: i.ToServiceVclLoggingHoneycombOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingHoneycombArrayInput is an input type that accepts ServiceVclLoggingHoneycombArray and ServiceVclLoggingHoneycombArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHoneycombArrayInput` via:
 //
@@ -9191,6 +10494,12 @@ func (i ServiceVclLoggingHoneycombArray) ToServiceVclLoggingHoneycombArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingHoneycombArrayOutput)
 }
 
+func (i ServiceVclLoggingHoneycombArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingHoneycomb] {
+	return pulumix.Output[[]ServiceVclLoggingHoneycomb]{
+		OutputState: i.ToServiceVclLoggingHoneycombArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingHoneycombOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingHoneycombOutput) ElementType() reflect.Type {
@@ -9203,6 +10512,12 @@ func (o ServiceVclLoggingHoneycombOutput) ToServiceVclLoggingHoneycombOutput() S
 
 func (o ServiceVclLoggingHoneycombOutput) ToServiceVclLoggingHoneycombOutputWithContext(ctx context.Context) ServiceVclLoggingHoneycombOutput {
 	return o
+}
+
+func (o ServiceVclLoggingHoneycombOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingHoneycomb] {
+	return pulumix.Output[ServiceVclLoggingHoneycomb]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Honeycomb Dataset you want to log to
@@ -9252,6 +10567,12 @@ func (o ServiceVclLoggingHoneycombArrayOutput) ToServiceVclLoggingHoneycombArray
 
 func (o ServiceVclLoggingHoneycombArrayOutput) ToServiceVclLoggingHoneycombArrayOutputWithContext(ctx context.Context) ServiceVclLoggingHoneycombArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingHoneycombArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingHoneycomb] {
+	return pulumix.Output[[]ServiceVclLoggingHoneycomb]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingHoneycombArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingHoneycombOutput {
@@ -9361,6 +10682,12 @@ func (i ServiceVclLoggingHttpArgs) ToServiceVclLoggingHttpOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingHttpOutput)
 }
 
+func (i ServiceVclLoggingHttpArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingHttp] {
+	return pulumix.Output[ServiceVclLoggingHttp]{
+		OutputState: i.ToServiceVclLoggingHttpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingHttpArrayInput is an input type that accepts ServiceVclLoggingHttpArray and ServiceVclLoggingHttpArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingHttpArrayInput` via:
 //
@@ -9386,6 +10713,12 @@ func (i ServiceVclLoggingHttpArray) ToServiceVclLoggingHttpArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingHttpArrayOutput)
 }
 
+func (i ServiceVclLoggingHttpArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingHttp] {
+	return pulumix.Output[[]ServiceVclLoggingHttp]{
+		OutputState: i.ToServiceVclLoggingHttpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingHttpOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingHttpOutput) ElementType() reflect.Type {
@@ -9398,6 +10731,12 @@ func (o ServiceVclLoggingHttpOutput) ToServiceVclLoggingHttpOutput() ServiceVclL
 
 func (o ServiceVclLoggingHttpOutput) ToServiceVclLoggingHttpOutputWithContext(ctx context.Context) ServiceVclLoggingHttpOutput {
 	return o
+}
+
+func (o ServiceVclLoggingHttpOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingHttp] {
+	return pulumix.Output[ServiceVclLoggingHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Value of the `Content-Type` header sent with the request
@@ -9502,6 +10841,12 @@ func (o ServiceVclLoggingHttpArrayOutput) ToServiceVclLoggingHttpArrayOutput() S
 
 func (o ServiceVclLoggingHttpArrayOutput) ToServiceVclLoggingHttpArrayOutputWithContext(ctx context.Context) ServiceVclLoggingHttpArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingHttpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingHttp] {
+	return pulumix.Output[[]ServiceVclLoggingHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingHttpArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingHttpOutput {
@@ -9615,6 +10960,12 @@ func (i ServiceVclLoggingKafkaArgs) ToServiceVclLoggingKafkaOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingKafkaOutput)
 }
 
+func (i ServiceVclLoggingKafkaArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingKafka] {
+	return pulumix.Output[ServiceVclLoggingKafka]{
+		OutputState: i.ToServiceVclLoggingKafkaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingKafkaArrayInput is an input type that accepts ServiceVclLoggingKafkaArray and ServiceVclLoggingKafkaArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingKafkaArrayInput` via:
 //
@@ -9640,6 +10991,12 @@ func (i ServiceVclLoggingKafkaArray) ToServiceVclLoggingKafkaArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingKafkaArrayOutput)
 }
 
+func (i ServiceVclLoggingKafkaArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingKafka] {
+	return pulumix.Output[[]ServiceVclLoggingKafka]{
+		OutputState: i.ToServiceVclLoggingKafkaArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingKafkaOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingKafkaOutput) ElementType() reflect.Type {
@@ -9652,6 +11009,12 @@ func (o ServiceVclLoggingKafkaOutput) ToServiceVclLoggingKafkaOutput() ServiceVc
 
 func (o ServiceVclLoggingKafkaOutput) ToServiceVclLoggingKafkaOutputWithContext(ctx context.Context) ServiceVclLoggingKafkaOutput {
 	return o
+}
+
+func (o ServiceVclLoggingKafkaOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingKafka] {
+	return pulumix.Output[ServiceVclLoggingKafka]{
+		OutputState: o.OutputState,
+	}
 }
 
 // SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
@@ -9763,6 +11126,12 @@ func (o ServiceVclLoggingKafkaArrayOutput) ToServiceVclLoggingKafkaArrayOutputWi
 	return o
 }
 
+func (o ServiceVclLoggingKafkaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingKafka] {
+	return pulumix.Output[[]ServiceVclLoggingKafka]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingKafkaArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingKafkaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingKafka {
 		return vs[0].([]ServiceVclLoggingKafka)[vs[1].(int)]
@@ -9838,6 +11207,12 @@ func (i ServiceVclLoggingKineseArgs) ToServiceVclLoggingKineseOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingKineseOutput)
 }
 
+func (i ServiceVclLoggingKineseArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingKinese] {
+	return pulumix.Output[ServiceVclLoggingKinese]{
+		OutputState: i.ToServiceVclLoggingKineseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingKineseArrayInput is an input type that accepts ServiceVclLoggingKineseArray and ServiceVclLoggingKineseArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingKineseArrayInput` via:
 //
@@ -9863,6 +11238,12 @@ func (i ServiceVclLoggingKineseArray) ToServiceVclLoggingKineseArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingKineseArrayOutput)
 }
 
+func (i ServiceVclLoggingKineseArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingKinese] {
+	return pulumix.Output[[]ServiceVclLoggingKinese]{
+		OutputState: i.ToServiceVclLoggingKineseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingKineseOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingKineseOutput) ElementType() reflect.Type {
@@ -9875,6 +11256,12 @@ func (o ServiceVclLoggingKineseOutput) ToServiceVclLoggingKineseOutput() Service
 
 func (o ServiceVclLoggingKineseOutput) ToServiceVclLoggingKineseOutputWithContext(ctx context.Context) ServiceVclLoggingKineseOutput {
 	return o
+}
+
+func (o ServiceVclLoggingKineseOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingKinese] {
+	return pulumix.Output[ServiceVclLoggingKinese]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The AWS access key to be used to write to the stream
@@ -9939,6 +11326,12 @@ func (o ServiceVclLoggingKineseArrayOutput) ToServiceVclLoggingKineseArrayOutput
 
 func (o ServiceVclLoggingKineseArrayOutput) ToServiceVclLoggingKineseArrayOutputWithContext(ctx context.Context) ServiceVclLoggingKineseArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingKineseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingKinese] {
+	return pulumix.Output[[]ServiceVclLoggingKinese]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingKineseArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingKineseOutput {
@@ -10008,6 +11401,12 @@ func (i ServiceVclLoggingLogentryArgs) ToServiceVclLoggingLogentryOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingLogentryOutput)
 }
 
+func (i ServiceVclLoggingLogentryArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingLogentry] {
+	return pulumix.Output[ServiceVclLoggingLogentry]{
+		OutputState: i.ToServiceVclLoggingLogentryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingLogentryArrayInput is an input type that accepts ServiceVclLoggingLogentryArray and ServiceVclLoggingLogentryArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogentryArrayInput` via:
 //
@@ -10033,6 +11432,12 @@ func (i ServiceVclLoggingLogentryArray) ToServiceVclLoggingLogentryArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingLogentryArrayOutput)
 }
 
+func (i ServiceVclLoggingLogentryArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingLogentry] {
+	return pulumix.Output[[]ServiceVclLoggingLogentry]{
+		OutputState: i.ToServiceVclLoggingLogentryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingLogentryOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingLogentryOutput) ElementType() reflect.Type {
@@ -10045,6 +11450,12 @@ func (o ServiceVclLoggingLogentryOutput) ToServiceVclLoggingLogentryOutput() Ser
 
 func (o ServiceVclLoggingLogentryOutput) ToServiceVclLoggingLogentryOutputWithContext(ctx context.Context) ServiceVclLoggingLogentryOutput {
 	return o
+}
+
+func (o ServiceVclLoggingLogentryOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingLogentry] {
+	return pulumix.Output[ServiceVclLoggingLogentry]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache-style string or VCL variables to use for log formatting
@@ -10099,6 +11510,12 @@ func (o ServiceVclLoggingLogentryArrayOutput) ToServiceVclLoggingLogentryArrayOu
 
 func (o ServiceVclLoggingLogentryArrayOutput) ToServiceVclLoggingLogentryArrayOutputWithContext(ctx context.Context) ServiceVclLoggingLogentryArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingLogentryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingLogentry] {
+	return pulumix.Output[[]ServiceVclLoggingLogentry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingLogentryArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingLogentryOutput {
@@ -10160,6 +11577,12 @@ func (i ServiceVclLoggingLogglyArgs) ToServiceVclLoggingLogglyOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingLogglyOutput)
 }
 
+func (i ServiceVclLoggingLogglyArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingLoggly] {
+	return pulumix.Output[ServiceVclLoggingLoggly]{
+		OutputState: i.ToServiceVclLoggingLogglyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingLogglyArrayInput is an input type that accepts ServiceVclLoggingLogglyArray and ServiceVclLoggingLogglyArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogglyArrayInput` via:
 //
@@ -10185,6 +11608,12 @@ func (i ServiceVclLoggingLogglyArray) ToServiceVclLoggingLogglyArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingLogglyArrayOutput)
 }
 
+func (i ServiceVclLoggingLogglyArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingLoggly] {
+	return pulumix.Output[[]ServiceVclLoggingLoggly]{
+		OutputState: i.ToServiceVclLoggingLogglyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingLogglyOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingLogglyOutput) ElementType() reflect.Type {
@@ -10197,6 +11626,12 @@ func (o ServiceVclLoggingLogglyOutput) ToServiceVclLoggingLogglyOutput() Service
 
 func (o ServiceVclLoggingLogglyOutput) ToServiceVclLoggingLogglyOutputWithContext(ctx context.Context) ServiceVclLoggingLogglyOutput {
 	return o
+}
+
+func (o ServiceVclLoggingLogglyOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingLoggly] {
+	return pulumix.Output[ServiceVclLoggingLoggly]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache-style string or VCL variables to use for log formatting.
@@ -10241,6 +11676,12 @@ func (o ServiceVclLoggingLogglyArrayOutput) ToServiceVclLoggingLogglyArrayOutput
 
 func (o ServiceVclLoggingLogglyArrayOutput) ToServiceVclLoggingLogglyArrayOutputWithContext(ctx context.Context) ServiceVclLoggingLogglyArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingLogglyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingLoggly] {
+	return pulumix.Output[[]ServiceVclLoggingLoggly]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingLogglyArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingLogglyOutput {
@@ -10306,6 +11747,12 @@ func (i ServiceVclLoggingLogshuttleArgs) ToServiceVclLoggingLogshuttleOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingLogshuttleOutput)
 }
 
+func (i ServiceVclLoggingLogshuttleArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingLogshuttle] {
+	return pulumix.Output[ServiceVclLoggingLogshuttle]{
+		OutputState: i.ToServiceVclLoggingLogshuttleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingLogshuttleArrayInput is an input type that accepts ServiceVclLoggingLogshuttleArray and ServiceVclLoggingLogshuttleArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingLogshuttleArrayInput` via:
 //
@@ -10331,6 +11778,12 @@ func (i ServiceVclLoggingLogshuttleArray) ToServiceVclLoggingLogshuttleArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingLogshuttleArrayOutput)
 }
 
+func (i ServiceVclLoggingLogshuttleArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingLogshuttle] {
+	return pulumix.Output[[]ServiceVclLoggingLogshuttle]{
+		OutputState: i.ToServiceVclLoggingLogshuttleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingLogshuttleOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingLogshuttleOutput) ElementType() reflect.Type {
@@ -10343,6 +11796,12 @@ func (o ServiceVclLoggingLogshuttleOutput) ToServiceVclLoggingLogshuttleOutput()
 
 func (o ServiceVclLoggingLogshuttleOutput) ToServiceVclLoggingLogshuttleOutputWithContext(ctx context.Context) ServiceVclLoggingLogshuttleOutput {
 	return o
+}
+
+func (o ServiceVclLoggingLogshuttleOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingLogshuttle] {
+	return pulumix.Output[ServiceVclLoggingLogshuttle]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache style log formatting.
@@ -10392,6 +11851,12 @@ func (o ServiceVclLoggingLogshuttleArrayOutput) ToServiceVclLoggingLogshuttleArr
 
 func (o ServiceVclLoggingLogshuttleArrayOutput) ToServiceVclLoggingLogshuttleArrayOutputWithContext(ctx context.Context) ServiceVclLoggingLogshuttleArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingLogshuttleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingLogshuttle] {
+	return pulumix.Output[[]ServiceVclLoggingLogshuttle]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingLogshuttleOutput {
@@ -10457,6 +11922,12 @@ func (i ServiceVclLoggingNewrelicArgs) ToServiceVclLoggingNewrelicOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingNewrelicOutput)
 }
 
+func (i ServiceVclLoggingNewrelicArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingNewrelic] {
+	return pulumix.Output[ServiceVclLoggingNewrelic]{
+		OutputState: i.ToServiceVclLoggingNewrelicOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingNewrelicArrayInput is an input type that accepts ServiceVclLoggingNewrelicArray and ServiceVclLoggingNewrelicArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingNewrelicArrayInput` via:
 //
@@ -10482,6 +11953,12 @@ func (i ServiceVclLoggingNewrelicArray) ToServiceVclLoggingNewrelicArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingNewrelicArrayOutput)
 }
 
+func (i ServiceVclLoggingNewrelicArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingNewrelic] {
+	return pulumix.Output[[]ServiceVclLoggingNewrelic]{
+		OutputState: i.ToServiceVclLoggingNewrelicArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingNewrelicOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingNewrelicOutput) ElementType() reflect.Type {
@@ -10494,6 +11971,12 @@ func (o ServiceVclLoggingNewrelicOutput) ToServiceVclLoggingNewrelicOutput() Ser
 
 func (o ServiceVclLoggingNewrelicOutput) ToServiceVclLoggingNewrelicOutputWithContext(ctx context.Context) ServiceVclLoggingNewrelicOutput {
 	return o
+}
+
+func (o ServiceVclLoggingNewrelicOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingNewrelic] {
+	return pulumix.Output[ServiceVclLoggingNewrelic]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
@@ -10543,6 +12026,12 @@ func (o ServiceVclLoggingNewrelicArrayOutput) ToServiceVclLoggingNewrelicArrayOu
 
 func (o ServiceVclLoggingNewrelicArrayOutput) ToServiceVclLoggingNewrelicArrayOutputWithContext(ctx context.Context) ServiceVclLoggingNewrelicArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingNewrelicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingNewrelic] {
+	return pulumix.Output[[]ServiceVclLoggingNewrelic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingNewrelicArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingNewrelicOutput {
@@ -10644,6 +12133,12 @@ func (i ServiceVclLoggingOpenstackArgs) ToServiceVclLoggingOpenstackOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingOpenstackOutput)
 }
 
+func (i ServiceVclLoggingOpenstackArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingOpenstack] {
+	return pulumix.Output[ServiceVclLoggingOpenstack]{
+		OutputState: i.ToServiceVclLoggingOpenstackOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingOpenstackArrayInput is an input type that accepts ServiceVclLoggingOpenstackArray and ServiceVclLoggingOpenstackArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingOpenstackArrayInput` via:
 //
@@ -10669,6 +12164,12 @@ func (i ServiceVclLoggingOpenstackArray) ToServiceVclLoggingOpenstackArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingOpenstackArrayOutput)
 }
 
+func (i ServiceVclLoggingOpenstackArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingOpenstack] {
+	return pulumix.Output[[]ServiceVclLoggingOpenstack]{
+		OutputState: i.ToServiceVclLoggingOpenstackArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingOpenstackOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingOpenstackOutput) ElementType() reflect.Type {
@@ -10681,6 +12182,12 @@ func (o ServiceVclLoggingOpenstackOutput) ToServiceVclLoggingOpenstackOutput() S
 
 func (o ServiceVclLoggingOpenstackOutput) ToServiceVclLoggingOpenstackOutputWithContext(ctx context.Context) ServiceVclLoggingOpenstackOutput {
 	return o
+}
+
+func (o ServiceVclLoggingOpenstackOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingOpenstack] {
+	return pulumix.Output[ServiceVclLoggingOpenstack]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Your OpenStack account access key
@@ -10777,6 +12284,12 @@ func (o ServiceVclLoggingOpenstackArrayOutput) ToServiceVclLoggingOpenstackArray
 	return o
 }
 
+func (o ServiceVclLoggingOpenstackArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingOpenstack] {
+	return pulumix.Output[[]ServiceVclLoggingOpenstack]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingOpenstackArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingOpenstackOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingOpenstack {
 		return vs[0].([]ServiceVclLoggingOpenstack)[vs[1].(int)]
@@ -10840,6 +12353,12 @@ func (i ServiceVclLoggingPapertrailArgs) ToServiceVclLoggingPapertrailOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingPapertrailOutput)
 }
 
+func (i ServiceVclLoggingPapertrailArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingPapertrail] {
+	return pulumix.Output[ServiceVclLoggingPapertrail]{
+		OutputState: i.ToServiceVclLoggingPapertrailOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingPapertrailArrayInput is an input type that accepts ServiceVclLoggingPapertrailArray and ServiceVclLoggingPapertrailArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingPapertrailArrayInput` via:
 //
@@ -10865,6 +12384,12 @@ func (i ServiceVclLoggingPapertrailArray) ToServiceVclLoggingPapertrailArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingPapertrailArrayOutput)
 }
 
+func (i ServiceVclLoggingPapertrailArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingPapertrail] {
+	return pulumix.Output[[]ServiceVclLoggingPapertrail]{
+		OutputState: i.ToServiceVclLoggingPapertrailArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingPapertrailOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingPapertrailOutput) ElementType() reflect.Type {
@@ -10877,6 +12402,12 @@ func (o ServiceVclLoggingPapertrailOutput) ToServiceVclLoggingPapertrailOutput()
 
 func (o ServiceVclLoggingPapertrailOutput) ToServiceVclLoggingPapertrailOutputWithContext(ctx context.Context) ServiceVclLoggingPapertrailOutput {
 	return o
+}
+
+func (o ServiceVclLoggingPapertrailOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingPapertrail] {
+	return pulumix.Output[ServiceVclLoggingPapertrail]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The address of the Papertrail endpoint
@@ -10926,6 +12457,12 @@ func (o ServiceVclLoggingPapertrailArrayOutput) ToServiceVclLoggingPapertrailArr
 
 func (o ServiceVclLoggingPapertrailArrayOutput) ToServiceVclLoggingPapertrailArrayOutputWithContext(ctx context.Context) ServiceVclLoggingPapertrailArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingPapertrailArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingPapertrail] {
+	return pulumix.Output[[]ServiceVclLoggingPapertrail]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingPapertrailArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingPapertrailOutput {
@@ -11051,6 +12588,12 @@ func (i ServiceVclLoggingS3Args) ToServiceVclLoggingS3OutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingS3Output)
 }
 
+func (i ServiceVclLoggingS3Args) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingS3] {
+	return pulumix.Output[ServiceVclLoggingS3]{
+		OutputState: i.ToServiceVclLoggingS3OutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingS3ArrayInput is an input type that accepts ServiceVclLoggingS3Array and ServiceVclLoggingS3ArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingS3ArrayInput` via:
 //
@@ -11076,6 +12619,12 @@ func (i ServiceVclLoggingS3Array) ToServiceVclLoggingS3ArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingS3ArrayOutput)
 }
 
+func (i ServiceVclLoggingS3Array) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingS3] {
+	return pulumix.Output[[]ServiceVclLoggingS3]{
+		OutputState: i.ToServiceVclLoggingS3ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingS3Output struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingS3Output) ElementType() reflect.Type {
@@ -11088,6 +12637,12 @@ func (o ServiceVclLoggingS3Output) ToServiceVclLoggingS3Output() ServiceVclLoggi
 
 func (o ServiceVclLoggingS3Output) ToServiceVclLoggingS3OutputWithContext(ctx context.Context) ServiceVclLoggingS3Output {
 	return o
+}
+
+func (o ServiceVclLoggingS3Output) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingS3] {
+	return pulumix.Output[ServiceVclLoggingS3]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
@@ -11214,6 +12769,12 @@ func (o ServiceVclLoggingS3ArrayOutput) ToServiceVclLoggingS3ArrayOutputWithCont
 	return o
 }
 
+func (o ServiceVclLoggingS3ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingS3] {
+	return pulumix.Output[[]ServiceVclLoggingS3]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingS3ArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingS3Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingS3 {
 		return vs[0].([]ServiceVclLoggingS3)[vs[1].(int)]
@@ -11277,6 +12838,12 @@ func (i ServiceVclLoggingScalyrArgs) ToServiceVclLoggingScalyrOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingScalyrOutput)
 }
 
+func (i ServiceVclLoggingScalyrArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingScalyr] {
+	return pulumix.Output[ServiceVclLoggingScalyr]{
+		OutputState: i.ToServiceVclLoggingScalyrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingScalyrArrayInput is an input type that accepts ServiceVclLoggingScalyrArray and ServiceVclLoggingScalyrArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingScalyrArrayInput` via:
 //
@@ -11302,6 +12869,12 @@ func (i ServiceVclLoggingScalyrArray) ToServiceVclLoggingScalyrArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingScalyrArrayOutput)
 }
 
+func (i ServiceVclLoggingScalyrArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingScalyr] {
+	return pulumix.Output[[]ServiceVclLoggingScalyr]{
+		OutputState: i.ToServiceVclLoggingScalyrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingScalyrOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingScalyrOutput) ElementType() reflect.Type {
@@ -11314,6 +12887,12 @@ func (o ServiceVclLoggingScalyrOutput) ToServiceVclLoggingScalyrOutput() Service
 
 func (o ServiceVclLoggingScalyrOutput) ToServiceVclLoggingScalyrOutputWithContext(ctx context.Context) ServiceVclLoggingScalyrOutput {
 	return o
+}
+
+func (o ServiceVclLoggingScalyrOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingScalyr] {
+	return pulumix.Output[ServiceVclLoggingScalyr]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache style log formatting.
@@ -11363,6 +12942,12 @@ func (o ServiceVclLoggingScalyrArrayOutput) ToServiceVclLoggingScalyrArrayOutput
 
 func (o ServiceVclLoggingScalyrArrayOutput) ToServiceVclLoggingScalyrArrayOutputWithContext(ctx context.Context) ServiceVclLoggingScalyrArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingScalyrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingScalyr] {
+	return pulumix.Output[[]ServiceVclLoggingScalyr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingScalyrArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingScalyrOutput {
@@ -11472,6 +13057,12 @@ func (i ServiceVclLoggingSftpArgs) ToServiceVclLoggingSftpOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSftpOutput)
 }
 
+func (i ServiceVclLoggingSftpArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSftp] {
+	return pulumix.Output[ServiceVclLoggingSftp]{
+		OutputState: i.ToServiceVclLoggingSftpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingSftpArrayInput is an input type that accepts ServiceVclLoggingSftpArray and ServiceVclLoggingSftpArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSftpArrayInput` via:
 //
@@ -11497,6 +13088,12 @@ func (i ServiceVclLoggingSftpArray) ToServiceVclLoggingSftpArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSftpArrayOutput)
 }
 
+func (i ServiceVclLoggingSftpArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSftp] {
+	return pulumix.Output[[]ServiceVclLoggingSftp]{
+		OutputState: i.ToServiceVclLoggingSftpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingSftpOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingSftpOutput) ElementType() reflect.Type {
@@ -11509,6 +13106,12 @@ func (o ServiceVclLoggingSftpOutput) ToServiceVclLoggingSftpOutput() ServiceVclL
 
 func (o ServiceVclLoggingSftpOutput) ToServiceVclLoggingSftpOutputWithContext(ctx context.Context) ServiceVclLoggingSftpOutput {
 	return o
+}
+
+func (o ServiceVclLoggingSftpOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSftp] {
+	return pulumix.Output[ServiceVclLoggingSftp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The SFTP address to stream logs to
@@ -11615,6 +13218,12 @@ func (o ServiceVclLoggingSftpArrayOutput) ToServiceVclLoggingSftpArrayOutputWith
 	return o
 }
 
+func (o ServiceVclLoggingSftpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSftp] {
+	return pulumix.Output[[]ServiceVclLoggingSftp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingSftpArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingSftpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingSftp {
 		return vs[0].([]ServiceVclLoggingSftp)[vs[1].(int)]
@@ -11698,6 +13307,12 @@ func (i ServiceVclLoggingSplunkArgs) ToServiceVclLoggingSplunkOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSplunkOutput)
 }
 
+func (i ServiceVclLoggingSplunkArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSplunk] {
+	return pulumix.Output[ServiceVclLoggingSplunk]{
+		OutputState: i.ToServiceVclLoggingSplunkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingSplunkArrayInput is an input type that accepts ServiceVclLoggingSplunkArray and ServiceVclLoggingSplunkArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSplunkArrayInput` via:
 //
@@ -11723,6 +13338,12 @@ func (i ServiceVclLoggingSplunkArray) ToServiceVclLoggingSplunkArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSplunkArrayOutput)
 }
 
+func (i ServiceVclLoggingSplunkArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSplunk] {
+	return pulumix.Output[[]ServiceVclLoggingSplunk]{
+		OutputState: i.ToServiceVclLoggingSplunkArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingSplunkOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingSplunkOutput) ElementType() reflect.Type {
@@ -11735,6 +13356,12 @@ func (o ServiceVclLoggingSplunkOutput) ToServiceVclLoggingSplunkOutput() Service
 
 func (o ServiceVclLoggingSplunkOutput) ToServiceVclLoggingSplunkOutputWithContext(ctx context.Context) ServiceVclLoggingSplunkOutput {
 	return o
+}
+
+func (o ServiceVclLoggingSplunkOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSplunk] {
+	return pulumix.Output[ServiceVclLoggingSplunk]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
@@ -11811,6 +13438,12 @@ func (o ServiceVclLoggingSplunkArrayOutput) ToServiceVclLoggingSplunkArrayOutput
 	return o
 }
 
+func (o ServiceVclLoggingSplunkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSplunk] {
+	return pulumix.Output[[]ServiceVclLoggingSplunk]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingSplunkArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingSplunkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingSplunk {
 		return vs[0].([]ServiceVclLoggingSplunk)[vs[1].(int)]
@@ -11874,6 +13507,12 @@ func (i ServiceVclLoggingSumologicArgs) ToServiceVclLoggingSumologicOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSumologicOutput)
 }
 
+func (i ServiceVclLoggingSumologicArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSumologic] {
+	return pulumix.Output[ServiceVclLoggingSumologic]{
+		OutputState: i.ToServiceVclLoggingSumologicOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingSumologicArrayInput is an input type that accepts ServiceVclLoggingSumologicArray and ServiceVclLoggingSumologicArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSumologicArrayInput` via:
 //
@@ -11899,6 +13538,12 @@ func (i ServiceVclLoggingSumologicArray) ToServiceVclLoggingSumologicArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSumologicArrayOutput)
 }
 
+func (i ServiceVclLoggingSumologicArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSumologic] {
+	return pulumix.Output[[]ServiceVclLoggingSumologic]{
+		OutputState: i.ToServiceVclLoggingSumologicArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingSumologicOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingSumologicOutput) ElementType() reflect.Type {
@@ -11911,6 +13556,12 @@ func (o ServiceVclLoggingSumologicOutput) ToServiceVclLoggingSumologicOutput() S
 
 func (o ServiceVclLoggingSumologicOutput) ToServiceVclLoggingSumologicOutputWithContext(ctx context.Context) ServiceVclLoggingSumologicOutput {
 	return o
+}
+
+func (o ServiceVclLoggingSumologicOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSumologic] {
+	return pulumix.Output[ServiceVclLoggingSumologic]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Apache-style string or VCL variables to use for log formatting
@@ -11960,6 +13611,12 @@ func (o ServiceVclLoggingSumologicArrayOutput) ToServiceVclLoggingSumologicArray
 
 func (o ServiceVclLoggingSumologicArrayOutput) ToServiceVclLoggingSumologicArrayOutputWithContext(ctx context.Context) ServiceVclLoggingSumologicArrayOutput {
 	return o
+}
+
+func (o ServiceVclLoggingSumologicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSumologic] {
+	return pulumix.Output[[]ServiceVclLoggingSumologic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclLoggingSumologicArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingSumologicOutput {
@@ -12053,6 +13710,12 @@ func (i ServiceVclLoggingSyslogArgs) ToServiceVclLoggingSyslogOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSyslogOutput)
 }
 
+func (i ServiceVclLoggingSyslogArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSyslog] {
+	return pulumix.Output[ServiceVclLoggingSyslog]{
+		OutputState: i.ToServiceVclLoggingSyslogOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclLoggingSyslogArrayInput is an input type that accepts ServiceVclLoggingSyslogArray and ServiceVclLoggingSyslogArrayOutput values.
 // You can construct a concrete instance of `ServiceVclLoggingSyslogArrayInput` via:
 //
@@ -12078,6 +13741,12 @@ func (i ServiceVclLoggingSyslogArray) ToServiceVclLoggingSyslogArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingSyslogArrayOutput)
 }
 
+func (i ServiceVclLoggingSyslogArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSyslog] {
+	return pulumix.Output[[]ServiceVclLoggingSyslog]{
+		OutputState: i.ToServiceVclLoggingSyslogArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclLoggingSyslogOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclLoggingSyslogOutput) ElementType() reflect.Type {
@@ -12090,6 +13759,12 @@ func (o ServiceVclLoggingSyslogOutput) ToServiceVclLoggingSyslogOutput() Service
 
 func (o ServiceVclLoggingSyslogOutput) ToServiceVclLoggingSyslogOutputWithContext(ctx context.Context) ServiceVclLoggingSyslogOutput {
 	return o
+}
+
+func (o ServiceVclLoggingSyslogOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclLoggingSyslog] {
+	return pulumix.Output[ServiceVclLoggingSyslog]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A hostname or IPv4 address of the Syslog endpoint
@@ -12176,6 +13851,12 @@ func (o ServiceVclLoggingSyslogArrayOutput) ToServiceVclLoggingSyslogArrayOutput
 	return o
 }
 
+func (o ServiceVclLoggingSyslogArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclLoggingSyslog] {
+	return pulumix.Output[[]ServiceVclLoggingSyslog]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclLoggingSyslogArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingSyslogOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingSyslog {
 		return vs[0].([]ServiceVclLoggingSyslog)[vs[1].(int)]
@@ -12235,6 +13916,12 @@ func (i ServiceVclProductEnablementArgs) ToServiceVclProductEnablementOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementOutput)
 }
 
+func (i ServiceVclProductEnablementArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclProductEnablement] {
+	return pulumix.Output[ServiceVclProductEnablement]{
+		OutputState: i.ToServiceVclProductEnablementOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ServiceVclProductEnablementArgs) ToServiceVclProductEnablementPtrOutput() ServiceVclProductEnablementPtrOutput {
 	return i.ToServiceVclProductEnablementPtrOutputWithContext(context.Background())
 }
@@ -12276,6 +13963,12 @@ func (i *serviceVclProductEnablementPtrType) ToServiceVclProductEnablementPtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementPtrOutput)
 }
 
+func (i *serviceVclProductEnablementPtrType) ToOutput(ctx context.Context) pulumix.Output[*ServiceVclProductEnablement] {
+	return pulumix.Output[*ServiceVclProductEnablement]{
+		OutputState: i.ToServiceVclProductEnablementPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclProductEnablementOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclProductEnablementOutput) ElementType() reflect.Type {
@@ -12298,6 +13991,12 @@ func (o ServiceVclProductEnablementOutput) ToServiceVclProductEnablementPtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclProductEnablement) *ServiceVclProductEnablement {
 		return &v
 	}).(ServiceVclProductEnablementPtrOutput)
+}
+
+func (o ServiceVclProductEnablementOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclProductEnablement] {
+	return pulumix.Output[ServiceVclProductEnablement]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enable Brotli Compression support
@@ -12342,6 +14041,12 @@ func (o ServiceVclProductEnablementPtrOutput) ToServiceVclProductEnablementPtrOu
 
 func (o ServiceVclProductEnablementPtrOutput) ToServiceVclProductEnablementPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementPtrOutput {
 	return o
+}
+
+func (o ServiceVclProductEnablementPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceVclProductEnablement] {
+	return pulumix.Output[*ServiceVclProductEnablement]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclProductEnablementPtrOutput) Elem() ServiceVclProductEnablementOutput {
@@ -12495,6 +14200,12 @@ func (i ServiceVclRateLimiterArgs) ToServiceVclRateLimiterOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterOutput)
 }
 
+func (i ServiceVclRateLimiterArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclRateLimiter] {
+	return pulumix.Output[ServiceVclRateLimiter]{
+		OutputState: i.ToServiceVclRateLimiterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclRateLimiterArrayInput is an input type that accepts ServiceVclRateLimiterArray and ServiceVclRateLimiterArrayOutput values.
 // You can construct a concrete instance of `ServiceVclRateLimiterArrayInput` via:
 //
@@ -12520,6 +14231,12 @@ func (i ServiceVclRateLimiterArray) ToServiceVclRateLimiterArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterArrayOutput)
 }
 
+func (i ServiceVclRateLimiterArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclRateLimiter] {
+	return pulumix.Output[[]ServiceVclRateLimiter]{
+		OutputState: i.ToServiceVclRateLimiterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclRateLimiterOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclRateLimiterOutput) ElementType() reflect.Type {
@@ -12532,6 +14249,12 @@ func (o ServiceVclRateLimiterOutput) ToServiceVclRateLimiterOutput() ServiceVclR
 
 func (o ServiceVclRateLimiterOutput) ToServiceVclRateLimiterOutputWithContext(ctx context.Context) ServiceVclRateLimiterOutput {
 	return o
+}
+
+func (o ServiceVclRateLimiterOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclRateLimiter] {
+	return pulumix.Output[ServiceVclRateLimiter]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
@@ -12613,6 +14336,12 @@ func (o ServiceVclRateLimiterArrayOutput) ToServiceVclRateLimiterArrayOutputWith
 	return o
 }
 
+func (o ServiceVclRateLimiterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclRateLimiter] {
+	return pulumix.Output[[]ServiceVclRateLimiter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclRateLimiterArrayOutput) Index(i pulumi.IntInput) ServiceVclRateLimiterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclRateLimiter {
 		return vs[0].([]ServiceVclRateLimiter)[vs[1].(int)]
@@ -12652,6 +14381,12 @@ func (i ServiceVclRateLimiterResponseArgs) ToServiceVclRateLimiterResponseOutput
 
 func (i ServiceVclRateLimiterResponseArgs) ToServiceVclRateLimiterResponseOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterResponseOutput)
+}
+
+func (i ServiceVclRateLimiterResponseArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclRateLimiterResponse] {
+	return pulumix.Output[ServiceVclRateLimiterResponse]{
+		OutputState: i.ToServiceVclRateLimiterResponseOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ServiceVclRateLimiterResponseArgs) ToServiceVclRateLimiterResponsePtrOutput() ServiceVclRateLimiterResponsePtrOutput {
@@ -12695,6 +14430,12 @@ func (i *serviceVclRateLimiterResponsePtrType) ToServiceVclRateLimiterResponsePt
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRateLimiterResponsePtrOutput)
 }
 
+func (i *serviceVclRateLimiterResponsePtrType) ToOutput(ctx context.Context) pulumix.Output[*ServiceVclRateLimiterResponse] {
+	return pulumix.Output[*ServiceVclRateLimiterResponse]{
+		OutputState: i.ToServiceVclRateLimiterResponsePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclRateLimiterResponseOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclRateLimiterResponseOutput) ElementType() reflect.Type {
@@ -12717,6 +14458,12 @@ func (o ServiceVclRateLimiterResponseOutput) ToServiceVclRateLimiterResponsePtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclRateLimiterResponse) *ServiceVclRateLimiterResponse {
 		return &v
 	}).(ServiceVclRateLimiterResponsePtrOutput)
+}
+
+func (o ServiceVclRateLimiterResponseOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclRateLimiterResponse] {
+	return pulumix.Output[ServiceVclRateLimiterResponse]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclRateLimiterResponseOutput) Content() pulumi.StringOutput {
@@ -12743,6 +14490,12 @@ func (o ServiceVclRateLimiterResponsePtrOutput) ToServiceVclRateLimiterResponseP
 
 func (o ServiceVclRateLimiterResponsePtrOutput) ToServiceVclRateLimiterResponsePtrOutputWithContext(ctx context.Context) ServiceVclRateLimiterResponsePtrOutput {
 	return o
+}
+
+func (o ServiceVclRateLimiterResponsePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceVclRateLimiterResponse] {
+	return pulumix.Output[*ServiceVclRateLimiterResponse]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclRateLimiterResponsePtrOutput) Elem() ServiceVclRateLimiterResponseOutput {
@@ -12863,6 +14616,12 @@ func (i ServiceVclRequestSettingArgs) ToServiceVclRequestSettingOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRequestSettingOutput)
 }
 
+func (i ServiceVclRequestSettingArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclRequestSetting] {
+	return pulumix.Output[ServiceVclRequestSetting]{
+		OutputState: i.ToServiceVclRequestSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclRequestSettingArrayInput is an input type that accepts ServiceVclRequestSettingArray and ServiceVclRequestSettingArrayOutput values.
 // You can construct a concrete instance of `ServiceVclRequestSettingArrayInput` via:
 //
@@ -12888,6 +14647,12 @@ func (i ServiceVclRequestSettingArray) ToServiceVclRequestSettingArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclRequestSettingArrayOutput)
 }
 
+func (i ServiceVclRequestSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclRequestSetting] {
+	return pulumix.Output[[]ServiceVclRequestSetting]{
+		OutputState: i.ToServiceVclRequestSettingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclRequestSettingOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclRequestSettingOutput) ElementType() reflect.Type {
@@ -12900,6 +14665,12 @@ func (o ServiceVclRequestSettingOutput) ToServiceVclRequestSettingOutput() Servi
 
 func (o ServiceVclRequestSettingOutput) ToServiceVclRequestSettingOutputWithContext(ctx context.Context) ServiceVclRequestSettingOutput {
 	return o
+}
+
+func (o ServiceVclRequestSettingOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclRequestSetting] {
+	return pulumix.Output[ServiceVclRequestSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
@@ -12978,6 +14749,12 @@ func (o ServiceVclRequestSettingArrayOutput) ToServiceVclRequestSettingArrayOutp
 	return o
 }
 
+func (o ServiceVclRequestSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclRequestSetting] {
+	return pulumix.Output[[]ServiceVclRequestSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceVclRequestSettingArrayOutput) Index(i pulumi.IntInput) ServiceVclRequestSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclRequestSetting {
 		return vs[0].([]ServiceVclRequestSetting)[vs[1].(int)]
@@ -13041,6 +14818,12 @@ func (i ServiceVclResponseObjectArgs) ToServiceVclResponseObjectOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclResponseObjectOutput)
 }
 
+func (i ServiceVclResponseObjectArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclResponseObject] {
+	return pulumix.Output[ServiceVclResponseObject]{
+		OutputState: i.ToServiceVclResponseObjectOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclResponseObjectArrayInput is an input type that accepts ServiceVclResponseObjectArray and ServiceVclResponseObjectArrayOutput values.
 // You can construct a concrete instance of `ServiceVclResponseObjectArrayInput` via:
 //
@@ -13066,6 +14849,12 @@ func (i ServiceVclResponseObjectArray) ToServiceVclResponseObjectArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclResponseObjectArrayOutput)
 }
 
+func (i ServiceVclResponseObjectArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclResponseObject] {
+	return pulumix.Output[[]ServiceVclResponseObject]{
+		OutputState: i.ToServiceVclResponseObjectArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclResponseObjectOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclResponseObjectOutput) ElementType() reflect.Type {
@@ -13078,6 +14867,12 @@ func (o ServiceVclResponseObjectOutput) ToServiceVclResponseObjectOutput() Servi
 
 func (o ServiceVclResponseObjectOutput) ToServiceVclResponseObjectOutputWithContext(ctx context.Context) ServiceVclResponseObjectOutput {
 	return o
+}
+
+func (o ServiceVclResponseObjectOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclResponseObject] {
+	return pulumix.Output[ServiceVclResponseObject]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
@@ -13127,6 +14922,12 @@ func (o ServiceVclResponseObjectArrayOutput) ToServiceVclResponseObjectArrayOutp
 
 func (o ServiceVclResponseObjectArrayOutput) ToServiceVclResponseObjectArrayOutputWithContext(ctx context.Context) ServiceVclResponseObjectArrayOutput {
 	return o
+}
+
+func (o ServiceVclResponseObjectArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclResponseObject] {
+	return pulumix.Output[[]ServiceVclResponseObject]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclResponseObjectArrayOutput) Index(i pulumi.IntInput) ServiceVclResponseObjectOutput {
@@ -13180,6 +14981,12 @@ func (i ServiceVclSnippetArgs) ToServiceVclSnippetOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclSnippetOutput)
 }
 
+func (i ServiceVclSnippetArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclSnippet] {
+	return pulumix.Output[ServiceVclSnippet]{
+		OutputState: i.ToServiceVclSnippetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclSnippetArrayInput is an input type that accepts ServiceVclSnippetArray and ServiceVclSnippetArrayOutput values.
 // You can construct a concrete instance of `ServiceVclSnippetArrayInput` via:
 //
@@ -13205,6 +15012,12 @@ func (i ServiceVclSnippetArray) ToServiceVclSnippetArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclSnippetArrayOutput)
 }
 
+func (i ServiceVclSnippetArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclSnippet] {
+	return pulumix.Output[[]ServiceVclSnippet]{
+		OutputState: i.ToServiceVclSnippetArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclSnippetOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclSnippetOutput) ElementType() reflect.Type {
@@ -13217,6 +15030,12 @@ func (o ServiceVclSnippetOutput) ToServiceVclSnippetOutput() ServiceVclSnippetOu
 
 func (o ServiceVclSnippetOutput) ToServiceVclSnippetOutputWithContext(ctx context.Context) ServiceVclSnippetOutput {
 	return o
+}
+
+func (o ServiceVclSnippetOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclSnippet] {
+	return pulumix.Output[ServiceVclSnippet]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The VCL code that specifies exactly what the snippet does
@@ -13251,6 +15070,12 @@ func (o ServiceVclSnippetArrayOutput) ToServiceVclSnippetArrayOutput() ServiceVc
 
 func (o ServiceVclSnippetArrayOutput) ToServiceVclSnippetArrayOutputWithContext(ctx context.Context) ServiceVclSnippetArrayOutput {
 	return o
+}
+
+func (o ServiceVclSnippetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclSnippet] {
+	return pulumix.Output[[]ServiceVclSnippet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclSnippetArrayOutput) Index(i pulumi.IntInput) ServiceVclSnippetOutput {
@@ -13300,6 +15125,12 @@ func (i ServiceVclVclArgs) ToServiceVclVclOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclVclOutput)
 }
 
+func (i ServiceVclVclArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclVcl] {
+	return pulumix.Output[ServiceVclVcl]{
+		OutputState: i.ToServiceVclVclOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceVclVclArrayInput is an input type that accepts ServiceVclVclArray and ServiceVclVclArrayOutput values.
 // You can construct a concrete instance of `ServiceVclVclArrayInput` via:
 //
@@ -13325,6 +15156,12 @@ func (i ServiceVclVclArray) ToServiceVclVclArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclVclArrayOutput)
 }
 
+func (i ServiceVclVclArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclVcl] {
+	return pulumix.Output[[]ServiceVclVcl]{
+		OutputState: i.ToServiceVclVclArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclVclOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclVclOutput) ElementType() reflect.Type {
@@ -13337,6 +15174,12 @@ func (o ServiceVclVclOutput) ToServiceVclVclOutput() ServiceVclVclOutput {
 
 func (o ServiceVclVclOutput) ToServiceVclVclOutputWithContext(ctx context.Context) ServiceVclVclOutput {
 	return o
+}
+
+func (o ServiceVclVclOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclVcl] {
+	return pulumix.Output[ServiceVclVcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The custom VCL code to upload
@@ -13366,6 +15209,12 @@ func (o ServiceVclVclArrayOutput) ToServiceVclVclArrayOutput() ServiceVclVclArra
 
 func (o ServiceVclVclArrayOutput) ToServiceVclVclArrayOutputWithContext(ctx context.Context) ServiceVclVclArrayOutput {
 	return o
+}
+
+func (o ServiceVclVclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceVclVcl] {
+	return pulumix.Output[[]ServiceVclVcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclVclArrayOutput) Index(i pulumi.IntInput) ServiceVclVclOutput {
@@ -13419,6 +15268,12 @@ func (i ServiceVclWafArgs) ToServiceVclWafOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclWafOutput)
 }
 
+func (i ServiceVclWafArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceVclWaf] {
+	return pulumix.Output[ServiceVclWaf]{
+		OutputState: i.ToServiceVclWafOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ServiceVclWafArgs) ToServiceVclWafPtrOutput() ServiceVclWafPtrOutput {
 	return i.ToServiceVclWafPtrOutputWithContext(context.Background())
 }
@@ -13460,6 +15315,12 @@ func (i *serviceVclWafPtrType) ToServiceVclWafPtrOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclWafPtrOutput)
 }
 
+func (i *serviceVclWafPtrType) ToOutput(ctx context.Context) pulumix.Output[*ServiceVclWaf] {
+	return pulumix.Output[*ServiceVclWaf]{
+		OutputState: i.ToServiceVclWafPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceVclWafOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclWafOutput) ElementType() reflect.Type {
@@ -13482,6 +15343,12 @@ func (o ServiceVclWafOutput) ToServiceVclWafPtrOutputWithContext(ctx context.Con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclWaf) *ServiceVclWaf {
 		return &v
 	}).(ServiceVclWafPtrOutput)
+}
+
+func (o ServiceVclWafOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceVclWaf] {
+	return pulumix.Output[ServiceVclWaf]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
@@ -13516,6 +15383,12 @@ func (o ServiceVclWafPtrOutput) ToServiceVclWafPtrOutput() ServiceVclWafPtrOutpu
 
 func (o ServiceVclWafPtrOutput) ToServiceVclWafPtrOutputWithContext(ctx context.Context) ServiceVclWafPtrOutput {
 	return o
+}
+
+func (o ServiceVclWafPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceVclWaf] {
+	return pulumix.Output[*ServiceVclWaf]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceVclWafPtrOutput) Elem() ServiceVclWafOutput {
@@ -13609,6 +15482,12 @@ func (i ServiceWafConfigurationRuleArgs) ToServiceWafConfigurationRuleOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleOutput)
 }
 
+func (i ServiceWafConfigurationRuleArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceWafConfigurationRule] {
+	return pulumix.Output[ServiceWafConfigurationRule]{
+		OutputState: i.ToServiceWafConfigurationRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceWafConfigurationRuleArrayInput is an input type that accepts ServiceWafConfigurationRuleArray and ServiceWafConfigurationRuleArrayOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationRuleArrayInput` via:
 //
@@ -13634,6 +15513,12 @@ func (i ServiceWafConfigurationRuleArray) ToServiceWafConfigurationRuleArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleArrayOutput)
 }
 
+func (i ServiceWafConfigurationRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceWafConfigurationRule] {
+	return pulumix.Output[[]ServiceWafConfigurationRule]{
+		OutputState: i.ToServiceWafConfigurationRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceWafConfigurationRuleOutput struct{ *pulumi.OutputState }
 
 func (ServiceWafConfigurationRuleOutput) ElementType() reflect.Type {
@@ -13646,6 +15531,12 @@ func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutput()
 
 func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleOutput {
 	return o
+}
+
+func (o ServiceWafConfigurationRuleOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceWafConfigurationRule] {
+	return pulumix.Output[ServiceWafConfigurationRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Web Application Firewall rule's modsecurity ID
@@ -13675,6 +15566,12 @@ func (o ServiceWafConfigurationRuleArrayOutput) ToServiceWafConfigurationRuleArr
 
 func (o ServiceWafConfigurationRuleArrayOutput) ToServiceWafConfigurationRuleArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleArrayOutput {
 	return o
+}
+
+func (o ServiceWafConfigurationRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceWafConfigurationRule] {
+	return pulumix.Output[[]ServiceWafConfigurationRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceWafConfigurationRuleArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationRuleOutput {
@@ -13732,6 +15629,12 @@ func (i ServiceWafConfigurationRuleExclusionArgs) ToServiceWafConfigurationRuleE
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleExclusionOutput)
 }
 
+func (i ServiceWafConfigurationRuleExclusionArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceWafConfigurationRuleExclusion] {
+	return pulumix.Output[ServiceWafConfigurationRuleExclusion]{
+		OutputState: i.ToServiceWafConfigurationRuleExclusionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceWafConfigurationRuleExclusionArrayInput is an input type that accepts ServiceWafConfigurationRuleExclusionArray and ServiceWafConfigurationRuleExclusionArrayOutput values.
 // You can construct a concrete instance of `ServiceWafConfigurationRuleExclusionArrayInput` via:
 //
@@ -13757,6 +15660,12 @@ func (i ServiceWafConfigurationRuleExclusionArray) ToServiceWafConfigurationRule
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleExclusionArrayOutput)
 }
 
+func (i ServiceWafConfigurationRuleExclusionArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceWafConfigurationRuleExclusion] {
+	return pulumix.Output[[]ServiceWafConfigurationRuleExclusion]{
+		OutputState: i.ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceWafConfigurationRuleExclusionOutput struct{ *pulumi.OutputState }
 
 func (ServiceWafConfigurationRuleExclusionOutput) ElementType() reflect.Type {
@@ -13769,6 +15678,12 @@ func (o ServiceWafConfigurationRuleExclusionOutput) ToServiceWafConfigurationRul
 
 func (o ServiceWafConfigurationRuleExclusionOutput) ToServiceWafConfigurationRuleExclusionOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionOutput {
 	return o
+}
+
+func (o ServiceWafConfigurationRuleExclusionOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceWafConfigurationRuleExclusion] {
+	return pulumix.Output[ServiceWafConfigurationRuleExclusion]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A conditional expression in VCL used to determine if the condition is met
@@ -13808,6 +15723,12 @@ func (o ServiceWafConfigurationRuleExclusionArrayOutput) ToServiceWafConfigurati
 
 func (o ServiceWafConfigurationRuleExclusionArrayOutput) ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionArrayOutput {
 	return o
+}
+
+func (o ServiceWafConfigurationRuleExclusionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceWafConfigurationRuleExclusion] {
+	return pulumix.Output[[]ServiceWafConfigurationRuleExclusion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceWafConfigurationRuleExclusionArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationRuleExclusionOutput {
@@ -13857,6 +15778,12 @@ func (i TlsSubscriptionManagedDnsChallengeArgs) ToTlsSubscriptionManagedDnsChall
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionManagedDnsChallengeOutput)
 }
 
+func (i TlsSubscriptionManagedDnsChallengeArgs) ToOutput(ctx context.Context) pulumix.Output[TlsSubscriptionManagedDnsChallenge] {
+	return pulumix.Output[TlsSubscriptionManagedDnsChallenge]{
+		OutputState: i.ToTlsSubscriptionManagedDnsChallengeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TlsSubscriptionManagedDnsChallengeArrayInput is an input type that accepts TlsSubscriptionManagedDnsChallengeArray and TlsSubscriptionManagedDnsChallengeArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionManagedDnsChallengeArrayInput` via:
 //
@@ -13882,6 +15809,12 @@ func (i TlsSubscriptionManagedDnsChallengeArray) ToTlsSubscriptionManagedDnsChal
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionManagedDnsChallengeArrayOutput)
 }
 
+func (i TlsSubscriptionManagedDnsChallengeArray) ToOutput(ctx context.Context) pulumix.Output[[]TlsSubscriptionManagedDnsChallenge] {
+	return pulumix.Output[[]TlsSubscriptionManagedDnsChallenge]{
+		OutputState: i.ToTlsSubscriptionManagedDnsChallengeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TlsSubscriptionManagedDnsChallengeOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionManagedDnsChallengeOutput) ElementType() reflect.Type {
@@ -13894,6 +15827,12 @@ func (o TlsSubscriptionManagedDnsChallengeOutput) ToTlsSubscriptionManagedDnsCha
 
 func (o TlsSubscriptionManagedDnsChallengeOutput) ToTlsSubscriptionManagedDnsChallengeOutputWithContext(ctx context.Context) TlsSubscriptionManagedDnsChallengeOutput {
 	return o
+}
+
+func (o TlsSubscriptionManagedDnsChallengeOutput) ToOutput(ctx context.Context) pulumix.Output[TlsSubscriptionManagedDnsChallenge] {
+	return pulumix.Output[TlsSubscriptionManagedDnsChallenge]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
@@ -13923,6 +15862,12 @@ func (o TlsSubscriptionManagedDnsChallengeArrayOutput) ToTlsSubscriptionManagedD
 
 func (o TlsSubscriptionManagedDnsChallengeArrayOutput) ToTlsSubscriptionManagedDnsChallengeArrayOutputWithContext(ctx context.Context) TlsSubscriptionManagedDnsChallengeArrayOutput {
 	return o
+}
+
+func (o TlsSubscriptionManagedDnsChallengeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]TlsSubscriptionManagedDnsChallenge] {
+	return pulumix.Output[[]TlsSubscriptionManagedDnsChallenge]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TlsSubscriptionManagedDnsChallengeArrayOutput) Index(i pulumi.IntInput) TlsSubscriptionManagedDnsChallengeOutput {
@@ -13972,6 +15917,12 @@ func (i TlsSubscriptionManagedHttpChallengeArgs) ToTlsSubscriptionManagedHttpCha
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionManagedHttpChallengeOutput)
 }
 
+func (i TlsSubscriptionManagedHttpChallengeArgs) ToOutput(ctx context.Context) pulumix.Output[TlsSubscriptionManagedHttpChallenge] {
+	return pulumix.Output[TlsSubscriptionManagedHttpChallenge]{
+		OutputState: i.ToTlsSubscriptionManagedHttpChallengeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TlsSubscriptionManagedHttpChallengeArrayInput is an input type that accepts TlsSubscriptionManagedHttpChallengeArray and TlsSubscriptionManagedHttpChallengeArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionManagedHttpChallengeArrayInput` via:
 //
@@ -13997,6 +15948,12 @@ func (i TlsSubscriptionManagedHttpChallengeArray) ToTlsSubscriptionManagedHttpCh
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionManagedHttpChallengeArrayOutput)
 }
 
+func (i TlsSubscriptionManagedHttpChallengeArray) ToOutput(ctx context.Context) pulumix.Output[[]TlsSubscriptionManagedHttpChallenge] {
+	return pulumix.Output[[]TlsSubscriptionManagedHttpChallenge]{
+		OutputState: i.ToTlsSubscriptionManagedHttpChallengeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TlsSubscriptionManagedHttpChallengeOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionManagedHttpChallengeOutput) ElementType() reflect.Type {
@@ -14009,6 +15966,12 @@ func (o TlsSubscriptionManagedHttpChallengeOutput) ToTlsSubscriptionManagedHttpC
 
 func (o TlsSubscriptionManagedHttpChallengeOutput) ToTlsSubscriptionManagedHttpChallengeOutputWithContext(ctx context.Context) TlsSubscriptionManagedHttpChallengeOutput {
 	return o
+}
+
+func (o TlsSubscriptionManagedHttpChallengeOutput) ToOutput(ctx context.Context) pulumix.Output[TlsSubscriptionManagedHttpChallenge] {
+	return pulumix.Output[TlsSubscriptionManagedHttpChallenge]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
@@ -14038,6 +16001,12 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) ToTlsSubscriptionManaged
 
 func (o TlsSubscriptionManagedHttpChallengeArrayOutput) ToTlsSubscriptionManagedHttpChallengeArrayOutputWithContext(ctx context.Context) TlsSubscriptionManagedHttpChallengeArrayOutput {
 	return o
+}
+
+func (o TlsSubscriptionManagedHttpChallengeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]TlsSubscriptionManagedHttpChallenge] {
+	return pulumix.Output[[]TlsSubscriptionManagedHttpChallenge]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput) TlsSubscriptionManagedHttpChallengeOutput {
@@ -14081,6 +16050,12 @@ func (i GetConfigstoresStoreArgs) ToGetConfigstoresStoreOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetConfigstoresStoreOutput)
 }
 
+func (i GetConfigstoresStoreArgs) ToOutput(ctx context.Context) pulumix.Output[GetConfigstoresStore] {
+	return pulumix.Output[GetConfigstoresStore]{
+		OutputState: i.ToGetConfigstoresStoreOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetConfigstoresStoreArrayInput is an input type that accepts GetConfigstoresStoreArray and GetConfigstoresStoreArrayOutput values.
 // You can construct a concrete instance of `GetConfigstoresStoreArrayInput` via:
 //
@@ -14106,6 +16081,12 @@ func (i GetConfigstoresStoreArray) ToGetConfigstoresStoreArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetConfigstoresStoreArrayOutput)
 }
 
+func (i GetConfigstoresStoreArray) ToOutput(ctx context.Context) pulumix.Output[[]GetConfigstoresStore] {
+	return pulumix.Output[[]GetConfigstoresStore]{
+		OutputState: i.ToGetConfigstoresStoreArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetConfigstoresStoreOutput struct{ *pulumi.OutputState }
 
 func (GetConfigstoresStoreOutput) ElementType() reflect.Type {
@@ -14118,6 +16099,12 @@ func (o GetConfigstoresStoreOutput) ToGetConfigstoresStoreOutput() GetConfigstor
 
 func (o GetConfigstoresStoreOutput) ToGetConfigstoresStoreOutputWithContext(ctx context.Context) GetConfigstoresStoreOutput {
 	return o
+}
+
+func (o GetConfigstoresStoreOutput) ToOutput(ctx context.Context) pulumix.Output[GetConfigstoresStore] {
+	return pulumix.Output[GetConfigstoresStore]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of this resource.
@@ -14141,6 +16128,12 @@ func (o GetConfigstoresStoreArrayOutput) ToGetConfigstoresStoreArrayOutput() Get
 
 func (o GetConfigstoresStoreArrayOutput) ToGetConfigstoresStoreArrayOutputWithContext(ctx context.Context) GetConfigstoresStoreArrayOutput {
 	return o
+}
+
+func (o GetConfigstoresStoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetConfigstoresStore] {
+	return pulumix.Output[[]GetConfigstoresStore]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetConfigstoresStoreArrayOutput) Index(i pulumi.IntInput) GetConfigstoresStoreOutput {
@@ -14186,6 +16179,12 @@ func (i GetDatacentersPopArgs) ToGetDatacentersPopOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatacentersPopOutput)
 }
 
+func (i GetDatacentersPopArgs) ToOutput(ctx context.Context) pulumix.Output[GetDatacentersPop] {
+	return pulumix.Output[GetDatacentersPop]{
+		OutputState: i.ToGetDatacentersPopOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDatacentersPopArrayInput is an input type that accepts GetDatacentersPopArray and GetDatacentersPopArrayOutput values.
 // You can construct a concrete instance of `GetDatacentersPopArrayInput` via:
 //
@@ -14211,6 +16210,12 @@ func (i GetDatacentersPopArray) ToGetDatacentersPopArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatacentersPopArrayOutput)
 }
 
+func (i GetDatacentersPopArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDatacentersPop] {
+	return pulumix.Output[[]GetDatacentersPop]{
+		OutputState: i.ToGetDatacentersPopArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDatacentersPopOutput struct{ *pulumi.OutputState }
 
 func (GetDatacentersPopOutput) ElementType() reflect.Type {
@@ -14223,6 +16228,12 @@ func (o GetDatacentersPopOutput) ToGetDatacentersPopOutput() GetDatacentersPopOu
 
 func (o GetDatacentersPopOutput) ToGetDatacentersPopOutputWithContext(ctx context.Context) GetDatacentersPopOutput {
 	return o
+}
+
+func (o GetDatacentersPopOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatacentersPop] {
+	return pulumix.Output[GetDatacentersPop]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDatacentersPopOutput) Code() pulumi.StringOutput {
@@ -14253,6 +16264,12 @@ func (o GetDatacentersPopArrayOutput) ToGetDatacentersPopArrayOutput() GetDatace
 
 func (o GetDatacentersPopArrayOutput) ToGetDatacentersPopArrayOutputWithContext(ctx context.Context) GetDatacentersPopArrayOutput {
 	return o
+}
+
+func (o GetDatacentersPopArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDatacentersPop] {
+	return pulumix.Output[[]GetDatacentersPop]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDatacentersPopArrayOutput) Index(i pulumi.IntInput) GetDatacentersPopOutput {
@@ -14298,6 +16315,12 @@ func (i GetDictionariesDictionaryArgs) ToGetDictionariesDictionaryOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDictionariesDictionaryOutput)
 }
 
+func (i GetDictionariesDictionaryArgs) ToOutput(ctx context.Context) pulumix.Output[GetDictionariesDictionary] {
+	return pulumix.Output[GetDictionariesDictionary]{
+		OutputState: i.ToGetDictionariesDictionaryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDictionariesDictionaryArrayInput is an input type that accepts GetDictionariesDictionaryArray and GetDictionariesDictionaryArrayOutput values.
 // You can construct a concrete instance of `GetDictionariesDictionaryArrayInput` via:
 //
@@ -14323,6 +16346,12 @@ func (i GetDictionariesDictionaryArray) ToGetDictionariesDictionaryArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetDictionariesDictionaryArrayOutput)
 }
 
+func (i GetDictionariesDictionaryArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDictionariesDictionary] {
+	return pulumix.Output[[]GetDictionariesDictionary]{
+		OutputState: i.ToGetDictionariesDictionaryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDictionariesDictionaryOutput struct{ *pulumi.OutputState }
 
 func (GetDictionariesDictionaryOutput) ElementType() reflect.Type {
@@ -14335,6 +16364,12 @@ func (o GetDictionariesDictionaryOutput) ToGetDictionariesDictionaryOutput() Get
 
 func (o GetDictionariesDictionaryOutput) ToGetDictionariesDictionaryOutputWithContext(ctx context.Context) GetDictionariesDictionaryOutput {
 	return o
+}
+
+func (o GetDictionariesDictionaryOutput) ToOutput(ctx context.Context) pulumix.Output[GetDictionariesDictionary] {
+	return pulumix.Output[GetDictionariesDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of this resource.
@@ -14362,6 +16397,12 @@ func (o GetDictionariesDictionaryArrayOutput) ToGetDictionariesDictionaryArrayOu
 
 func (o GetDictionariesDictionaryArrayOutput) ToGetDictionariesDictionaryArrayOutputWithContext(ctx context.Context) GetDictionariesDictionaryArrayOutput {
 	return o
+}
+
+func (o GetDictionariesDictionaryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDictionariesDictionary] {
+	return pulumix.Output[[]GetDictionariesDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictionariesDictionaryOutput {
@@ -14405,6 +16446,12 @@ func (i GetKvstoresStoreArgs) ToGetKvstoresStoreOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetKvstoresStoreOutput)
 }
 
+func (i GetKvstoresStoreArgs) ToOutput(ctx context.Context) pulumix.Output[GetKvstoresStore] {
+	return pulumix.Output[GetKvstoresStore]{
+		OutputState: i.ToGetKvstoresStoreOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetKvstoresStoreArrayInput is an input type that accepts GetKvstoresStoreArray and GetKvstoresStoreArrayOutput values.
 // You can construct a concrete instance of `GetKvstoresStoreArrayInput` via:
 //
@@ -14430,6 +16477,12 @@ func (i GetKvstoresStoreArray) ToGetKvstoresStoreArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetKvstoresStoreArrayOutput)
 }
 
+func (i GetKvstoresStoreArray) ToOutput(ctx context.Context) pulumix.Output[[]GetKvstoresStore] {
+	return pulumix.Output[[]GetKvstoresStore]{
+		OutputState: i.ToGetKvstoresStoreArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetKvstoresStoreOutput struct{ *pulumi.OutputState }
 
 func (GetKvstoresStoreOutput) ElementType() reflect.Type {
@@ -14442,6 +16495,12 @@ func (o GetKvstoresStoreOutput) ToGetKvstoresStoreOutput() GetKvstoresStoreOutpu
 
 func (o GetKvstoresStoreOutput) ToGetKvstoresStoreOutputWithContext(ctx context.Context) GetKvstoresStoreOutput {
 	return o
+}
+
+func (o GetKvstoresStoreOutput) ToOutput(ctx context.Context) pulumix.Output[GetKvstoresStore] {
+	return pulumix.Output[GetKvstoresStore]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of this resource.
@@ -14465,6 +16524,12 @@ func (o GetKvstoresStoreArrayOutput) ToGetKvstoresStoreArrayOutput() GetKvstores
 
 func (o GetKvstoresStoreArrayOutput) ToGetKvstoresStoreArrayOutputWithContext(ctx context.Context) GetKvstoresStoreArrayOutput {
 	return o
+}
+
+func (o GetKvstoresStoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetKvstoresStore] {
+	return pulumix.Output[[]GetKvstoresStore]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetKvstoresStoreArrayOutput) Index(i pulumi.IntInput) GetKvstoresStoreOutput {
@@ -14508,6 +16573,12 @@ func (i GetSecretstoresStoreArgs) ToGetSecretstoresStoreOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetSecretstoresStoreOutput)
 }
 
+func (i GetSecretstoresStoreArgs) ToOutput(ctx context.Context) pulumix.Output[GetSecretstoresStore] {
+	return pulumix.Output[GetSecretstoresStore]{
+		OutputState: i.ToGetSecretstoresStoreOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetSecretstoresStoreArrayInput is an input type that accepts GetSecretstoresStoreArray and GetSecretstoresStoreArrayOutput values.
 // You can construct a concrete instance of `GetSecretstoresStoreArrayInput` via:
 //
@@ -14533,6 +16604,12 @@ func (i GetSecretstoresStoreArray) ToGetSecretstoresStoreArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetSecretstoresStoreArrayOutput)
 }
 
+func (i GetSecretstoresStoreArray) ToOutput(ctx context.Context) pulumix.Output[[]GetSecretstoresStore] {
+	return pulumix.Output[[]GetSecretstoresStore]{
+		OutputState: i.ToGetSecretstoresStoreArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetSecretstoresStoreOutput struct{ *pulumi.OutputState }
 
 func (GetSecretstoresStoreOutput) ElementType() reflect.Type {
@@ -14545,6 +16622,12 @@ func (o GetSecretstoresStoreOutput) ToGetSecretstoresStoreOutput() GetSecretstor
 
 func (o GetSecretstoresStoreOutput) ToGetSecretstoresStoreOutputWithContext(ctx context.Context) GetSecretstoresStoreOutput {
 	return o
+}
+
+func (o GetSecretstoresStoreOutput) ToOutput(ctx context.Context) pulumix.Output[GetSecretstoresStore] {
+	return pulumix.Output[GetSecretstoresStore]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of this resource.
@@ -14568,6 +16651,12 @@ func (o GetSecretstoresStoreArrayOutput) ToGetSecretstoresStoreArrayOutput() Get
 
 func (o GetSecretstoresStoreArrayOutput) ToGetSecretstoresStoreArrayOutputWithContext(ctx context.Context) GetSecretstoresStoreArrayOutput {
 	return o
+}
+
+func (o GetSecretstoresStoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetSecretstoresStore] {
+	return pulumix.Output[[]GetSecretstoresStore]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSecretstoresStoreArrayOutput) Index(i pulumi.IntInput) GetSecretstoresStoreOutput {
@@ -14623,6 +16712,12 @@ func (i GetServicesDetailArgs) ToGetServicesDetailOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetServicesDetailOutput)
 }
 
+func (i GetServicesDetailArgs) ToOutput(ctx context.Context) pulumix.Output[GetServicesDetail] {
+	return pulumix.Output[GetServicesDetail]{
+		OutputState: i.ToGetServicesDetailOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetServicesDetailArrayInput is an input type that accepts GetServicesDetailArray and GetServicesDetailArrayOutput values.
 // You can construct a concrete instance of `GetServicesDetailArrayInput` via:
 //
@@ -14648,6 +16743,12 @@ func (i GetServicesDetailArray) ToGetServicesDetailArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetServicesDetailArrayOutput)
 }
 
+func (i GetServicesDetailArray) ToOutput(ctx context.Context) pulumix.Output[[]GetServicesDetail] {
+	return pulumix.Output[[]GetServicesDetail]{
+		OutputState: i.ToGetServicesDetailArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetServicesDetailOutput struct{ *pulumi.OutputState }
 
 func (GetServicesDetailOutput) ElementType() reflect.Type {
@@ -14660,6 +16761,12 @@ func (o GetServicesDetailOutput) ToGetServicesDetailOutput() GetServicesDetailOu
 
 func (o GetServicesDetailOutput) ToGetServicesDetailOutputWithContext(ctx context.Context) GetServicesDetailOutput {
 	return o
+}
+
+func (o GetServicesDetailOutput) ToOutput(ctx context.Context) pulumix.Output[GetServicesDetail] {
+	return pulumix.Output[GetServicesDetail]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetServicesDetailOutput) Comment() pulumi.StringOutput {
@@ -14709,6 +16816,12 @@ func (o GetServicesDetailArrayOutput) ToGetServicesDetailArrayOutputWithContext(
 	return o
 }
 
+func (o GetServicesDetailArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetServicesDetail] {
+	return pulumix.Output[[]GetServicesDetail]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetServicesDetailArrayOutput) Index(i pulumi.IntInput) GetServicesDetailOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServicesDetail {
 		return vs[0].([]GetServicesDetail)[vs[1].(int)]
@@ -14750,6 +16863,12 @@ func (i GetTlsConfigurationDnsRecordArgs) ToGetTlsConfigurationDnsRecordOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetTlsConfigurationDnsRecordOutput)
 }
 
+func (i GetTlsConfigurationDnsRecordArgs) ToOutput(ctx context.Context) pulumix.Output[GetTlsConfigurationDnsRecord] {
+	return pulumix.Output[GetTlsConfigurationDnsRecord]{
+		OutputState: i.ToGetTlsConfigurationDnsRecordOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetTlsConfigurationDnsRecordArrayInput is an input type that accepts GetTlsConfigurationDnsRecordArray and GetTlsConfigurationDnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetTlsConfigurationDnsRecordArrayInput` via:
 //
@@ -14775,6 +16894,12 @@ func (i GetTlsConfigurationDnsRecordArray) ToGetTlsConfigurationDnsRecordArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetTlsConfigurationDnsRecordArrayOutput)
 }
 
+func (i GetTlsConfigurationDnsRecordArray) ToOutput(ctx context.Context) pulumix.Output[[]GetTlsConfigurationDnsRecord] {
+	return pulumix.Output[[]GetTlsConfigurationDnsRecord]{
+		OutputState: i.ToGetTlsConfigurationDnsRecordArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetTlsConfigurationDnsRecordOutput struct{ *pulumi.OutputState }
 
 func (GetTlsConfigurationDnsRecordOutput) ElementType() reflect.Type {
@@ -14787,6 +16912,12 @@ func (o GetTlsConfigurationDnsRecordOutput) ToGetTlsConfigurationDnsRecordOutput
 
 func (o GetTlsConfigurationDnsRecordOutput) ToGetTlsConfigurationDnsRecordOutputWithContext(ctx context.Context) GetTlsConfigurationDnsRecordOutput {
 	return o
+}
+
+func (o GetTlsConfigurationDnsRecordOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsConfigurationDnsRecord] {
+	return pulumix.Output[GetTlsConfigurationDnsRecord]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetTlsConfigurationDnsRecordOutput) RecordType() pulumi.StringOutput {
@@ -14813,6 +16944,12 @@ func (o GetTlsConfigurationDnsRecordArrayOutput) ToGetTlsConfigurationDnsRecordA
 
 func (o GetTlsConfigurationDnsRecordArrayOutput) ToGetTlsConfigurationDnsRecordArrayOutputWithContext(ctx context.Context) GetTlsConfigurationDnsRecordArrayOutput {
 	return o
+}
+
+func (o GetTlsConfigurationDnsRecordArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetTlsConfigurationDnsRecord] {
+	return pulumix.Output[[]GetTlsConfigurationDnsRecord]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetTlsConfigurationDnsRecordArrayOutput) Index(i pulumi.IntInput) GetTlsConfigurationDnsRecordOutput {
@@ -14862,6 +16999,12 @@ func (i GetWafRulesRuleArgs) ToGetWafRulesRuleOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetWafRulesRuleOutput)
 }
 
+func (i GetWafRulesRuleArgs) ToOutput(ctx context.Context) pulumix.Output[GetWafRulesRule] {
+	return pulumix.Output[GetWafRulesRule]{
+		OutputState: i.ToGetWafRulesRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetWafRulesRuleArrayInput is an input type that accepts GetWafRulesRuleArray and GetWafRulesRuleArrayOutput values.
 // You can construct a concrete instance of `GetWafRulesRuleArrayInput` via:
 //
@@ -14887,6 +17030,12 @@ func (i GetWafRulesRuleArray) ToGetWafRulesRuleArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetWafRulesRuleArrayOutput)
 }
 
+func (i GetWafRulesRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetWafRulesRule] {
+	return pulumix.Output[[]GetWafRulesRule]{
+		OutputState: i.ToGetWafRulesRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetWafRulesRuleOutput struct{ *pulumi.OutputState }
 
 func (GetWafRulesRuleOutput) ElementType() reflect.Type {
@@ -14899,6 +17048,12 @@ func (o GetWafRulesRuleOutput) ToGetWafRulesRuleOutput() GetWafRulesRuleOutput {
 
 func (o GetWafRulesRuleOutput) ToGetWafRulesRuleOutputWithContext(ctx context.Context) GetWafRulesRuleOutput {
 	return o
+}
+
+func (o GetWafRulesRuleOutput) ToOutput(ctx context.Context) pulumix.Output[GetWafRulesRule] {
+	return pulumix.Output[GetWafRulesRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The rule's latest revision.
@@ -14928,6 +17083,12 @@ func (o GetWafRulesRuleArrayOutput) ToGetWafRulesRuleArrayOutput() GetWafRulesRu
 
 func (o GetWafRulesRuleArrayOutput) ToGetWafRulesRuleArrayOutputWithContext(ctx context.Context) GetWafRulesRuleArrayOutput {
 	return o
+}
+
+func (o GetWafRulesRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetWafRulesRule] {
+	return pulumix.Output[[]GetWafRulesRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetWafRulesRuleArrayOutput) Index(i pulumi.IntInput) GetWafRulesRuleOutput {

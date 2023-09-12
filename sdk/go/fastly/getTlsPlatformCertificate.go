@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get information of a Platform TLS certificate for use with other resources.
@@ -122,6 +123,12 @@ func (o LookupTlsPlatformCertificateResultOutput) ToLookupTlsPlatformCertificate
 
 func (o LookupTlsPlatformCertificateResultOutput) ToLookupTlsPlatformCertificateResultOutputWithContext(ctx context.Context) LookupTlsPlatformCertificateResultOutput {
 	return o
+}
+
+func (o LookupTlsPlatformCertificateResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTlsPlatformCertificateResult] {
+	return pulumix.Output[LookupTlsPlatformCertificateResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // ID of TLS configuration used to terminate TLS traffic.

@@ -33,18 +33,15 @@ namespace Pulumi.Fastly
         /// 
         ///     var exampleTlsActivation = .Select(__value =&gt; 
         ///     {
-        ///         return  Fastly.GetTlsActivation.Invoke(new()
+        ///         return Fastly.GetTlsActivation.Invoke(new()
         ///         {
         ///             Id = __value,
         ///         });
-        ///     });
+        ///     }).ToList();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["activationDomains"] = exampleTlsActivation.Select(a =&gt; 
-        ///         {
-        ///             return  a.Domain;
-        ///         }),
+        ///         ["activationDomains"] = exampleTlsActivation,
         ///     };
         /// });
         /// ```
@@ -76,18 +73,15 @@ namespace Pulumi.Fastly
         /// 
         ///     var exampleTlsActivation = .Select(__value =&gt; 
         ///     {
-        ///         return  Fastly.GetTlsActivation.Invoke(new()
+        ///         return Fastly.GetTlsActivation.Invoke(new()
         ///         {
         ///             Id = __value,
         ///         });
-        ///     });
+        ///     }).ToList();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["activationDomains"] = exampleTlsActivation.Select(a =&gt; 
-        ///         {
-        ///             return  a.Domain;
-        ///         }),
+        ///         ["activationDomains"] = exampleTlsActivation,
         ///     };
         /// });
         /// ```

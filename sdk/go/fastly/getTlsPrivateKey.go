@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get information on a TLS Private Key uploaded to Fastly.
@@ -138,6 +139,12 @@ func (o LookupTlsPrivateKeyResultOutput) ToLookupTlsPrivateKeyResultOutput() Loo
 
 func (o LookupTlsPrivateKeyResultOutput) ToLookupTlsPrivateKeyResultOutputWithContext(ctx context.Context) LookupTlsPrivateKeyResultOutput {
 	return o
+}
+
+func (o LookupTlsPrivateKeyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTlsPrivateKeyResult] {
+	return pulumix.Output[LookupTlsPrivateKeyResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Timestamp (GMT) when the private key was created.

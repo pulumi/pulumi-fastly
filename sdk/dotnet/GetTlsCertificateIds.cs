@@ -41,6 +41,37 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetTlsCertificateIdsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsCertificateIdsResult>("fastly:index/getTlsCertificateIds:getTlsCertificateIds", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the IDs of available TLS certificates for use with other resources.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleTlsCertificateIds = Fastly.GetTlsCertificateIds.Invoke();
+        /// 
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
+        ///     {
+        ///         CertificateId = exampleTlsCertificateIds.Apply(getTlsCertificateIdsResult =&gt; getTlsCertificateIdsResult.Ids[0]),
+        ///     });
+        /// 
+        ///     // ...
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetTlsCertificateIdsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsCertificateIdsResult>("fastly:index/getTlsCertificateIds:getTlsCertificateIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

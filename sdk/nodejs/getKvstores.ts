@@ -26,3 +26,6 @@ export interface GetKvstoresResult {
      */
     readonly stores: outputs.GetKvstoresStore[];
 }
+export function getKvstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetKvstoresResult> {
+    return pulumi.output(getKvstores(opts))
+}

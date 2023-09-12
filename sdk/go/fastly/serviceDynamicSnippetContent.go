@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -146,6 +147,12 @@ func (i *ServiceDynamicSnippetContent) ToServiceDynamicSnippetContentOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentOutput)
 }
 
+func (i *ServiceDynamicSnippetContent) ToOutput(ctx context.Context) pulumix.Output[*ServiceDynamicSnippetContent] {
+	return pulumix.Output[*ServiceDynamicSnippetContent]{
+		OutputState: i.ToServiceDynamicSnippetContentOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceDynamicSnippetContentArrayInput is an input type that accepts ServiceDynamicSnippetContentArray and ServiceDynamicSnippetContentArrayOutput values.
 // You can construct a concrete instance of `ServiceDynamicSnippetContentArrayInput` via:
 //
@@ -169,6 +176,12 @@ func (i ServiceDynamicSnippetContentArray) ToServiceDynamicSnippetContentArrayOu
 
 func (i ServiceDynamicSnippetContentArray) ToServiceDynamicSnippetContentArrayOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentArrayOutput)
+}
+
+func (i ServiceDynamicSnippetContentArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceDynamicSnippetContent] {
+	return pulumix.Output[[]*ServiceDynamicSnippetContent]{
+		OutputState: i.ToServiceDynamicSnippetContentArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ServiceDynamicSnippetContentMapInput is an input type that accepts ServiceDynamicSnippetContentMap and ServiceDynamicSnippetContentMapOutput values.
@@ -196,6 +209,12 @@ func (i ServiceDynamicSnippetContentMap) ToServiceDynamicSnippetContentMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDynamicSnippetContentMapOutput)
 }
 
+func (i ServiceDynamicSnippetContentMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceDynamicSnippetContent] {
+	return pulumix.Output[map[string]*ServiceDynamicSnippetContent]{
+		OutputState: i.ToServiceDynamicSnippetContentMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceDynamicSnippetContentOutput struct{ *pulumi.OutputState }
 
 func (ServiceDynamicSnippetContentOutput) ElementType() reflect.Type {
@@ -208,6 +227,12 @@ func (o ServiceDynamicSnippetContentOutput) ToServiceDynamicSnippetContentOutput
 
 func (o ServiceDynamicSnippetContentOutput) ToServiceDynamicSnippetContentOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentOutput {
 	return o
+}
+
+func (o ServiceDynamicSnippetContentOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceDynamicSnippetContent] {
+	return pulumix.Output[*ServiceDynamicSnippetContent]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The VCL code that specifies exactly what the snippet does
@@ -244,6 +269,12 @@ func (o ServiceDynamicSnippetContentArrayOutput) ToServiceDynamicSnippetContentA
 	return o
 }
 
+func (o ServiceDynamicSnippetContentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceDynamicSnippetContent] {
+	return pulumix.Output[[]*ServiceDynamicSnippetContent]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceDynamicSnippetContentArrayOutput) Index(i pulumi.IntInput) ServiceDynamicSnippetContentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceDynamicSnippetContent {
 		return vs[0].([]*ServiceDynamicSnippetContent)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o ServiceDynamicSnippetContentMapOutput) ToServiceDynamicSnippetContentMap
 
 func (o ServiceDynamicSnippetContentMapOutput) ToServiceDynamicSnippetContentMapOutputWithContext(ctx context.Context) ServiceDynamicSnippetContentMapOutput {
 	return o
+}
+
+func (o ServiceDynamicSnippetContentMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceDynamicSnippetContent] {
+	return pulumix.Output[map[string]*ServiceDynamicSnippetContent]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceDynamicSnippetContentMapOutput) MapIndex(k pulumi.StringInput) ServiceDynamicSnippetContentOutput {

@@ -29,3 +29,9 @@ export interface GetDatacentersResult {
      */
     readonly pops: outputs.GetDatacentersPop[];
 }
+/**
+ * Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
+ */
+export function getDatacentersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDatacentersResult> {
+    return pulumi.output(getDatacenters(opts))
+}
