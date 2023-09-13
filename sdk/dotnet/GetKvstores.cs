@@ -13,6 +13,9 @@ namespace Pulumi.Fastly
     {
         public static Task<GetKvstoresResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetKvstoresResult>("fastly:index/getKvstores:getKvstores", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<GetKvstoresResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKvstoresResult>("fastly:index/getKvstores:getKvstores", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

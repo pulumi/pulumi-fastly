@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -157,6 +158,12 @@ func (i *Secretstore) ToSecretstoreOutputWithContext(ctx context.Context) Secret
 	return pulumi.ToOutputWithContext(ctx, i).(SecretstoreOutput)
 }
 
+func (i *Secretstore) ToOutput(ctx context.Context) pulumix.Output[*Secretstore] {
+	return pulumix.Output[*Secretstore]{
+		OutputState: i.ToSecretstoreOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretstoreArrayInput is an input type that accepts SecretstoreArray and SecretstoreArrayOutput values.
 // You can construct a concrete instance of `SecretstoreArrayInput` via:
 //
@@ -180,6 +187,12 @@ func (i SecretstoreArray) ToSecretstoreArrayOutput() SecretstoreArrayOutput {
 
 func (i SecretstoreArray) ToSecretstoreArrayOutputWithContext(ctx context.Context) SecretstoreArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretstoreArrayOutput)
+}
+
+func (i SecretstoreArray) ToOutput(ctx context.Context) pulumix.Output[[]*Secretstore] {
+	return pulumix.Output[[]*Secretstore]{
+		OutputState: i.ToSecretstoreArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretstoreMapInput is an input type that accepts SecretstoreMap and SecretstoreMapOutput values.
@@ -207,6 +220,12 @@ func (i SecretstoreMap) ToSecretstoreMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SecretstoreMapOutput)
 }
 
+func (i SecretstoreMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Secretstore] {
+	return pulumix.Output[map[string]*Secretstore]{
+		OutputState: i.ToSecretstoreMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretstoreOutput struct{ *pulumi.OutputState }
 
 func (SecretstoreOutput) ElementType() reflect.Type {
@@ -219,6 +238,12 @@ func (o SecretstoreOutput) ToSecretstoreOutput() SecretstoreOutput {
 
 func (o SecretstoreOutput) ToSecretstoreOutputWithContext(ctx context.Context) SecretstoreOutput {
 	return o
+}
+
+func (o SecretstoreOutput) ToOutput(ctx context.Context) pulumix.Output[*Secretstore] {
+	return pulumix.Output[*Secretstore]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A human-readable name for the Secret Store. The value must contain only letters, numbers, dashes (-), underscores (*), or periods (.). It is important to note that changing this attribute will delete and recreate the Secret Store, and discard the current entries. You MUST first delete the associated resource*link block from your service before modifying this field.
@@ -240,6 +265,12 @@ func (o SecretstoreArrayOutput) ToSecretstoreArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o SecretstoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Secretstore] {
+	return pulumix.Output[[]*Secretstore]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretstoreArrayOutput) Index(i pulumi.IntInput) SecretstoreOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Secretstore {
 		return vs[0].([]*Secretstore)[vs[1].(int)]
@@ -258,6 +289,12 @@ func (o SecretstoreMapOutput) ToSecretstoreMapOutput() SecretstoreMapOutput {
 
 func (o SecretstoreMapOutput) ToSecretstoreMapOutputWithContext(ctx context.Context) SecretstoreMapOutput {
 	return o
+}
+
+func (o SecretstoreMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Secretstore] {
+	return pulumix.Output[map[string]*Secretstore]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretstoreMapOutput) MapIndex(k pulumi.StringInput) SecretstoreOutput {

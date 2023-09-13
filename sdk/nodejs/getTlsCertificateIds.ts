@@ -38,3 +38,20 @@ export interface GetTlsCertificateIdsResult {
      */
     readonly ids: string[];
 }
+/**
+ * Use this data source to get the IDs of available TLS certificates for use with other resources.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleTlsCertificateIds = fastly.getTlsCertificateIds({});
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {certificateId: exampleTlsCertificateIds.then(exampleTlsCertificateIds => exampleTlsCertificateIds.ids?.[0])});
+ * // ...
+ * ```
+ */
+export function getTlsCertificateIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsCertificateIdsResult> {
+    return pulumi.output(getTlsCertificateIds(opts))
+}

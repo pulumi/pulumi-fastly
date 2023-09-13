@@ -38,3 +38,20 @@ export interface GetTlsConfigurationIdsResult {
      */
     readonly ids: string[];
 }
+/**
+ * Use this data source to get the IDs of available TLS configurations for use with other resources.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleTlsConfigurationIds = fastly.getTlsConfigurationIds({});
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfigurationIds.then(exampleTlsConfigurationIds => exampleTlsConfigurationIds.ids?.[0])});
+ * // ...
+ * ```
+ */
+export function getTlsConfigurationIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationIdsResult> {
+    return pulumi.output(getTlsConfigurationIds(opts))
+}

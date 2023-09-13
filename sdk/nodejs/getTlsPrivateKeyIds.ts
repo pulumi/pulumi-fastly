@@ -39,3 +39,21 @@ export interface GetTlsPrivateKeyIdsResult {
      */
     readonly ids: string[];
 }
+/**
+ * Use this data source to get the list of TLS private key identifiers in Fastly.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = fastly.getTlsPrivateKeyIds({});
+ * const example = fastly.getTlsPrivateKey({
+ *     id: fastly_tls_private_key_ids.demo.ids[0],
+ * });
+ * ```
+ */
+export function getTlsPrivateKeyIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyIdsResult> {
+    return pulumi.output(getTlsPrivateKeyIds(opts))
+}

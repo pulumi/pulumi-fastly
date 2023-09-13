@@ -16,6 +16,12 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Task<GetDatacentersResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatacentersResult>("fastly:index/getDatacenters:getDatacenters", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
+        /// </summary>
+        public static Output<GetDatacentersResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("fastly:index/getDatacenters:getDatacenters", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

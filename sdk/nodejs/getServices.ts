@@ -33,3 +33,9 @@ export interface GetServicesResult {
      */
     readonly ids: string[];
 }
+/**
+ * Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).
+ */
+export function getServicesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetServicesResult> {
+    return pulumi.output(getServices(opts))
+}

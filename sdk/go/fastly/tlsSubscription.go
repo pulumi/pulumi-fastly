@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Enables TLS on a domain using a certificate managed by Fastly.
@@ -229,6 +230,12 @@ func (i *TlsSubscription) ToTlsSubscriptionOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionOutput)
 }
 
+func (i *TlsSubscription) ToOutput(ctx context.Context) pulumix.Output[*TlsSubscription] {
+	return pulumix.Output[*TlsSubscription]{
+		OutputState: i.ToTlsSubscriptionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TlsSubscriptionArrayInput is an input type that accepts TlsSubscriptionArray and TlsSubscriptionArrayOutput values.
 // You can construct a concrete instance of `TlsSubscriptionArrayInput` via:
 //
@@ -252,6 +259,12 @@ func (i TlsSubscriptionArray) ToTlsSubscriptionArrayOutput() TlsSubscriptionArra
 
 func (i TlsSubscriptionArray) ToTlsSubscriptionArrayOutputWithContext(ctx context.Context) TlsSubscriptionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionArrayOutput)
+}
+
+func (i TlsSubscriptionArray) ToOutput(ctx context.Context) pulumix.Output[[]*TlsSubscription] {
+	return pulumix.Output[[]*TlsSubscription]{
+		OutputState: i.ToTlsSubscriptionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TlsSubscriptionMapInput is an input type that accepts TlsSubscriptionMap and TlsSubscriptionMapOutput values.
@@ -279,6 +292,12 @@ func (i TlsSubscriptionMap) ToTlsSubscriptionMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(TlsSubscriptionMapOutput)
 }
 
+func (i TlsSubscriptionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsSubscription] {
+	return pulumix.Output[map[string]*TlsSubscription]{
+		OutputState: i.ToTlsSubscriptionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TlsSubscriptionOutput struct{ *pulumi.OutputState }
 
 func (TlsSubscriptionOutput) ElementType() reflect.Type {
@@ -291,6 +310,12 @@ func (o TlsSubscriptionOutput) ToTlsSubscriptionOutput() TlsSubscriptionOutput {
 
 func (o TlsSubscriptionOutput) ToTlsSubscriptionOutputWithContext(ctx context.Context) TlsSubscriptionOutput {
 	return o
+}
+
+func (o TlsSubscriptionOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsSubscription] {
+	return pulumix.Output[*TlsSubscription]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
@@ -378,6 +403,12 @@ func (o TlsSubscriptionArrayOutput) ToTlsSubscriptionArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o TlsSubscriptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TlsSubscription] {
+	return pulumix.Output[[]*TlsSubscription]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o TlsSubscriptionArrayOutput) Index(i pulumi.IntInput) TlsSubscriptionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsSubscription {
 		return vs[0].([]*TlsSubscription)[vs[1].(int)]
@@ -396,6 +427,12 @@ func (o TlsSubscriptionMapOutput) ToTlsSubscriptionMapOutput() TlsSubscriptionMa
 
 func (o TlsSubscriptionMapOutput) ToTlsSubscriptionMapOutputWithContext(ctx context.Context) TlsSubscriptionMapOutput {
 	return o
+}
+
+func (o TlsSubscriptionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsSubscription] {
+	return pulumix.Output[map[string]*TlsSubscription]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TlsSubscriptionMapOutput) MapIndex(k pulumi.StringInput) TlsSubscriptionOutput {

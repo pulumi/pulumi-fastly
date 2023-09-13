@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a container that lets you store data in key-value pairs that are accessible to Compute@Edge services during request processing.
@@ -171,6 +172,12 @@ func (i *Configstore) ToConfigstoreOutputWithContext(ctx context.Context) Config
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigstoreOutput)
 }
 
+func (i *Configstore) ToOutput(ctx context.Context) pulumix.Output[*Configstore] {
+	return pulumix.Output[*Configstore]{
+		OutputState: i.ToConfigstoreOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ConfigstoreArrayInput is an input type that accepts ConfigstoreArray and ConfigstoreArrayOutput values.
 // You can construct a concrete instance of `ConfigstoreArrayInput` via:
 //
@@ -194,6 +201,12 @@ func (i ConfigstoreArray) ToConfigstoreArrayOutput() ConfigstoreArrayOutput {
 
 func (i ConfigstoreArray) ToConfigstoreArrayOutputWithContext(ctx context.Context) ConfigstoreArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigstoreArrayOutput)
+}
+
+func (i ConfigstoreArray) ToOutput(ctx context.Context) pulumix.Output[[]*Configstore] {
+	return pulumix.Output[[]*Configstore]{
+		OutputState: i.ToConfigstoreArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ConfigstoreMapInput is an input type that accepts ConfigstoreMap and ConfigstoreMapOutput values.
@@ -221,6 +234,12 @@ func (i ConfigstoreMap) ToConfigstoreMapOutputWithContext(ctx context.Context) C
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigstoreMapOutput)
 }
 
+func (i ConfigstoreMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Configstore] {
+	return pulumix.Output[map[string]*Configstore]{
+		OutputState: i.ToConfigstoreMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ConfigstoreOutput struct{ *pulumi.OutputState }
 
 func (ConfigstoreOutput) ElementType() reflect.Type {
@@ -233,6 +252,12 @@ func (o ConfigstoreOutput) ToConfigstoreOutput() ConfigstoreOutput {
 
 func (o ConfigstoreOutput) ToConfigstoreOutputWithContext(ctx context.Context) ConfigstoreOutput {
 	return o
+}
+
+func (o ConfigstoreOutput) ToOutput(ctx context.Context) pulumix.Output[*Configstore] {
+	return pulumix.Output[*Configstore]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Allow the Config Store to be deleted, even if it contains entries. Defaults to false.
@@ -259,6 +284,12 @@ func (o ConfigstoreArrayOutput) ToConfigstoreArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o ConfigstoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Configstore] {
+	return pulumix.Output[[]*Configstore]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ConfigstoreArrayOutput) Index(i pulumi.IntInput) ConfigstoreOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Configstore {
 		return vs[0].([]*Configstore)[vs[1].(int)]
@@ -277,6 +308,12 @@ func (o ConfigstoreMapOutput) ToConfigstoreMapOutput() ConfigstoreMapOutput {
 
 func (o ConfigstoreMapOutput) ToConfigstoreMapOutputWithContext(ctx context.Context) ConfigstoreMapOutput {
 	return o
+}
+
+func (o ConfigstoreMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Configstore] {
+	return pulumix.Output[map[string]*Configstore]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ConfigstoreMapOutput) MapIndex(k pulumi.StringInput) ConfigstoreOutput {

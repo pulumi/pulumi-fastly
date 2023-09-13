@@ -26,3 +26,6 @@ export interface GetSecretstoresResult {
      */
     readonly stores: outputs.GetSecretstoresStore[];
 }
+export function getSecretstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretstoresResult> {
+    return pulumi.output(getSecretstores(opts))
+}

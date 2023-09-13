@@ -13,6 +13,9 @@ namespace Pulumi.Fastly
     {
         public static Task<GetSecretstoresResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretstoresResult>("fastly:index/getSecretstores:getSecretstores", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<GetSecretstoresResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretstoresResult>("fastly:index/getSecretstores:getSecretstores", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

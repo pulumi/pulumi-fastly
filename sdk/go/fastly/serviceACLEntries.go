@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -143,6 +144,12 @@ func (i *ServiceACLEntries) ToServiceACLEntriesOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesOutput)
 }
 
+func (i *ServiceACLEntries) ToOutput(ctx context.Context) pulumix.Output[*ServiceACLEntries] {
+	return pulumix.Output[*ServiceACLEntries]{
+		OutputState: i.ToServiceACLEntriesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServiceACLEntriesArrayInput is an input type that accepts ServiceACLEntriesArray and ServiceACLEntriesArrayOutput values.
 // You can construct a concrete instance of `ServiceACLEntriesArrayInput` via:
 //
@@ -166,6 +173,12 @@ func (i ServiceACLEntriesArray) ToServiceACLEntriesArrayOutput() ServiceACLEntri
 
 func (i ServiceACLEntriesArray) ToServiceACLEntriesArrayOutputWithContext(ctx context.Context) ServiceACLEntriesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesArrayOutput)
+}
+
+func (i ServiceACLEntriesArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceACLEntries] {
+	return pulumix.Output[[]*ServiceACLEntries]{
+		OutputState: i.ToServiceACLEntriesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ServiceACLEntriesMapInput is an input type that accepts ServiceACLEntriesMap and ServiceACLEntriesMapOutput values.
@@ -193,6 +206,12 @@ func (i ServiceACLEntriesMap) ToServiceACLEntriesMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceACLEntriesMapOutput)
 }
 
+func (i ServiceACLEntriesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceACLEntries] {
+	return pulumix.Output[map[string]*ServiceACLEntries]{
+		OutputState: i.ToServiceACLEntriesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServiceACLEntriesOutput struct{ *pulumi.OutputState }
 
 func (ServiceACLEntriesOutput) ElementType() reflect.Type {
@@ -205,6 +224,12 @@ func (o ServiceACLEntriesOutput) ToServiceACLEntriesOutput() ServiceACLEntriesOu
 
 func (o ServiceACLEntriesOutput) ToServiceACLEntriesOutputWithContext(ctx context.Context) ServiceACLEntriesOutput {
 	return o
+}
+
+func (o ServiceACLEntriesOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceACLEntries] {
+	return pulumix.Output[*ServiceACLEntries]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the ACL that the items belong to
@@ -241,6 +266,12 @@ func (o ServiceACLEntriesArrayOutput) ToServiceACLEntriesArrayOutputWithContext(
 	return o
 }
 
+func (o ServiceACLEntriesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceACLEntries] {
+	return pulumix.Output[[]*ServiceACLEntries]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceACLEntriesArrayOutput) Index(i pulumi.IntInput) ServiceACLEntriesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceACLEntries {
 		return vs[0].([]*ServiceACLEntries)[vs[1].(int)]
@@ -259,6 +290,12 @@ func (o ServiceACLEntriesMapOutput) ToServiceACLEntriesMapOutput() ServiceACLEnt
 
 func (o ServiceACLEntriesMapOutput) ToServiceACLEntriesMapOutputWithContext(ctx context.Context) ServiceACLEntriesMapOutput {
 	return o
+}
+
+func (o ServiceACLEntriesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceACLEntries] {
+	return pulumix.Output[map[string]*ServiceACLEntries]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceACLEntriesMapOutput) MapIndex(k pulumi.StringInput) ServiceACLEntriesOutput {

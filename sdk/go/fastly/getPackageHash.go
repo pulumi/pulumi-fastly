@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
@@ -115,6 +116,12 @@ func (o GetPackageHashResultOutput) ToGetPackageHashResultOutput() GetPackageHas
 
 func (o GetPackageHashResultOutput) ToGetPackageHashResultOutputWithContext(ctx context.Context) GetPackageHashResultOutput {
 	return o
+}
+
+func (o GetPackageHashResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPackageHashResult] {
+	return pulumix.Output[GetPackageHashResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
