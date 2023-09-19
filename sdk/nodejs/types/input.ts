@@ -82,6 +82,10 @@ export interface ServiceComputeBackend {
      */
     port?: pulumi.Input<number>;
     /**
+     * Value that when shared across backends will enable those backends to share the same health check.
+     */
+    shareKey?: pulumi.Input<string>;
+    /**
      * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      */
     shield?: pulumi.Input<string>;
@@ -1201,6 +1205,10 @@ export interface ServiceVclBackend {
      * Name of a condition, which if met, will select this backend during a request.
      */
     requestCondition?: pulumi.Input<string>;
+    /**
+     * Value that when shared across backends will enable those backends to share the same health check.
+     */
+    shareKey?: pulumi.Input<string>;
     /**
      * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      */

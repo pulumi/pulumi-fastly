@@ -192,6 +192,8 @@ class ServiceComputeBackend(dict):
             suggest = "min_tls_version"
         elif key == "overrideHost":
             suggest = "override_host"
+        elif key == "shareKey":
+            suggest = "share_key"
         elif key == "sslCaCert":
             suggest = "ssl_ca_cert"
         elif key == "sslCertHostname":
@@ -234,6 +236,7 @@ class ServiceComputeBackend(dict):
                  min_tls_version: Optional[str] = None,
                  override_host: Optional[str] = None,
                  port: Optional[int] = None,
+                 share_key: Optional[str] = None,
                  shield: Optional[str] = None,
                  ssl_ca_cert: Optional[str] = None,
                  ssl_cert_hostname: Optional[str] = None,
@@ -258,6 +261,7 @@ class ServiceComputeBackend(dict):
         :param str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param str override_host: The hostname to override the Host header
         :param int port: The port number on which the Backend responds. Default `80`
+        :param str share_key: Value that when shared across backends will enable those backends to share the same health check.
         :param str shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         :param str ssl_ca_cert: CA certificate attached to origin.
         :param str ssl_cert_hostname: Configure certificate validation. Does not affect SNI at all
@@ -293,6 +297,8 @@ class ServiceComputeBackend(dict):
             pulumi.set(__self__, "override_host", override_host)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if share_key is not None:
+            pulumi.set(__self__, "share_key", share_key)
         if shield is not None:
             pulumi.set(__self__, "shield", shield)
         if ssl_ca_cert is not None:
@@ -417,6 +423,14 @@ class ServiceComputeBackend(dict):
         The port number on which the Backend responds. Default `80`
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="shareKey")
+    def share_key(self) -> Optional[str]:
+        """
+        Value that when shared across backends will enable those backends to share the same health check.
+        """
+        return pulumi.get(self, "share_key")
 
     @property
     @pulumi.getter
@@ -4000,6 +4014,8 @@ class ServiceVclBackend(dict):
             suggest = "override_host"
         elif key == "requestCondition":
             suggest = "request_condition"
+        elif key == "shareKey":
+            suggest = "share_key"
         elif key == "sslCaCert":
             suggest = "ssl_ca_cert"
         elif key == "sslCertHostname":
@@ -4044,6 +4060,7 @@ class ServiceVclBackend(dict):
                  override_host: Optional[str] = None,
                  port: Optional[int] = None,
                  request_condition: Optional[str] = None,
+                 share_key: Optional[str] = None,
                  shield: Optional[str] = None,
                  ssl_ca_cert: Optional[str] = None,
                  ssl_cert_hostname: Optional[str] = None,
@@ -4070,6 +4087,7 @@ class ServiceVclBackend(dict):
         :param str override_host: The hostname to override the Host header
         :param int port: The port number on which the Backend responds. Default `80`
         :param str request_condition: Name of a condition, which if met, will select this backend during a request.
+        :param str share_key: Value that when shared across backends will enable those backends to share the same health check.
         :param str shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         :param str ssl_ca_cert: CA certificate attached to origin.
         :param str ssl_cert_hostname: Configure certificate validation. Does not affect SNI at all
@@ -4109,6 +4127,8 @@ class ServiceVclBackend(dict):
             pulumi.set(__self__, "port", port)
         if request_condition is not None:
             pulumi.set(__self__, "request_condition", request_condition)
+        if share_key is not None:
+            pulumi.set(__self__, "share_key", share_key)
         if shield is not None:
             pulumi.set(__self__, "shield", shield)
         if ssl_ca_cert is not None:
@@ -4249,6 +4269,14 @@ class ServiceVclBackend(dict):
         Name of a condition, which if met, will select this backend during a request.
         """
         return pulumi.get(self, "request_condition")
+
+    @property
+    @pulumi.getter(name="shareKey")
+    def share_key(self) -> Optional[str]:
+        """
+        Value that when shared across backends will enable those backends to share the same health check.
+        """
+        return pulumi.get(self, "share_key")
 
     @property
     @pulumi.getter

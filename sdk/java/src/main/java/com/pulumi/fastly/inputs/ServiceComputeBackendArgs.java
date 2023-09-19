@@ -213,6 +213,21 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    @Import(name="shareKey")
+    private @Nullable Output<String> shareKey;
+
+    /**
+     * @return Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    public Optional<Output<String>> shareKey() {
+        return Optional.ofNullable(this.shareKey);
+    }
+
+    /**
      * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      * 
      */
@@ -378,6 +393,7 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
         this.name = $.name;
         this.overrideHost = $.overrideHost;
         this.port = $.port;
+        this.shareKey = $.shareKey;
         this.shield = $.shield;
         this.sslCaCert = $.sslCaCert;
         this.sslCertHostname = $.sslCertHostname;
@@ -679,6 +695,27 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
          */
         public Builder port(Integer port) {
             return port(Output.of(port));
+        }
+
+        /**
+         * @param shareKey Value that when shared across backends will enable those backends to share the same health check.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shareKey(@Nullable Output<String> shareKey) {
+            $.shareKey = shareKey;
+            return this;
+        }
+
+        /**
+         * @param shareKey Value that when shared across backends will enable those backends to share the same health check.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shareKey(String shareKey) {
+            return shareKey(Output.of(shareKey));
         }
 
         /**
