@@ -243,6 +243,21 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    @Import(name="shareKey")
+    private @Nullable Output<String> shareKey;
+
+    /**
+     * @return Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    public Optional<Output<String>> shareKey() {
+        return Optional.ofNullable(this.shareKey);
+    }
+
+    /**
      * The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      * 
      */
@@ -410,6 +425,7 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
         this.overrideHost = $.overrideHost;
         this.port = $.port;
         this.requestCondition = $.requestCondition;
+        this.shareKey = $.shareKey;
         this.shield = $.shield;
         this.sslCaCert = $.sslCaCert;
         this.sslCertHostname = $.sslCertHostname;
@@ -753,6 +769,27 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder requestCondition(String requestCondition) {
             return requestCondition(Output.of(requestCondition));
+        }
+
+        /**
+         * @param shareKey Value that when shared across backends will enable those backends to share the same health check.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shareKey(@Nullable Output<String> shareKey) {
+            $.shareKey = shareKey;
+            return this;
+        }
+
+        /**
+         * @param shareKey Value that when shared across backends will enable those backends to share the same health check.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shareKey(String shareKey) {
+            return shareKey(Output.of(shareKey));
         }
 
         /**

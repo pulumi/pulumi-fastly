@@ -91,6 +91,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
+        /// Value that when shared across backends will enable those backends to share the same health check.
+        /// </summary>
+        [Input("shareKey")]
+        public Input<string>? ShareKey { get; set; }
+
+        /// <summary>
         /// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         /// </summary>
         [Input("shield")]

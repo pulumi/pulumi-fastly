@@ -198,6 +198,8 @@ type ServiceComputeBackend struct {
 	OverrideHost *string `pulumi:"overrideHost"`
 	// The port number on which the Backend responds. Default `80`
 	Port *int `pulumi:"port"`
+	// Value that when shared across backends will enable those backends to share the same health check.
+	ShareKey *string `pulumi:"shareKey"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
 	Shield *string `pulumi:"shield"`
 	// CA certificate attached to origin.
@@ -258,6 +260,8 @@ type ServiceComputeBackendArgs struct {
 	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
 	// The port number on which the Backend responds. Default `80`
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Value that when shared across backends will enable those backends to share the same health check.
+	ShareKey pulumi.StringPtrInput `pulumi:"shareKey"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
 	// CA certificate attached to origin.
@@ -412,6 +416,11 @@ func (o ServiceComputeBackendOutput) OverrideHost() pulumi.StringPtrOutput {
 // The port number on which the Backend responds. Default `80`
 func (o ServiceComputeBackendOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Value that when shared across backends will enable those backends to share the same health check.
+func (o ServiceComputeBackendOutput) ShareKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.ShareKey }).(pulumi.StringPtrOutput)
 }
 
 // The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
@@ -6301,6 +6310,8 @@ type ServiceVclBackend struct {
 	Port *int `pulumi:"port"`
 	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition *string `pulumi:"requestCondition"`
+	// Value that when shared across backends will enable those backends to share the same health check.
+	ShareKey *string `pulumi:"shareKey"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
 	Shield *string `pulumi:"shield"`
 	// CA certificate attached to origin.
@@ -6365,6 +6376,8 @@ type ServiceVclBackendArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
+	// Value that when shared across backends will enable those backends to share the same health check.
+	ShareKey pulumi.StringPtrInput `pulumi:"shareKey"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
 	Shield pulumi.StringPtrInput `pulumi:"shield"`
 	// CA certificate attached to origin.
@@ -6529,6 +6542,11 @@ func (o ServiceVclBackendOutput) Port() pulumi.IntPtrOutput {
 // Name of a condition, which if met, will select this backend during a request.
 func (o ServiceVclBackendOutput) RequestCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.RequestCondition }).(pulumi.StringPtrOutput)
+}
+
+// Value that when shared across backends will enable those backends to share the same health check.
+func (o ServiceVclBackendOutput) ShareKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *string { return v.ShareKey }).(pulumi.StringPtrOutput)
 }
 
 // The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response

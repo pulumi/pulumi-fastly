@@ -74,6 +74,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>
+        /// Value that when shared across backends will enable those backends to share the same health check.
+        /// </summary>
+        public readonly string? ShareKey;
+        /// <summary>
         /// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         /// </summary>
         public readonly string? Shield;
@@ -146,6 +150,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? requestCondition,
 
+            string? shareKey,
+
             string? shield,
 
             string? sslCaCert,
@@ -181,6 +187,7 @@ namespace Pulumi.Fastly.Outputs
             OverrideHost = overrideHost;
             Port = port;
             RequestCondition = requestCondition;
+            ShareKey = shareKey;
             Shield = shield;
             SslCaCert = sslCaCert;
             SslCertHostname = sslCertHostname;

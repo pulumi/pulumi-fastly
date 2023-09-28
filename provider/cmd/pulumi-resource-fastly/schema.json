@@ -162,6 +162,10 @@
                     "type": "integer",
                     "description": "The port number on which the Backend responds. Default `80`\n"
                 },
+                "shareKey": {
+                    "type": "string",
+                    "description": "Value that when shared across backends will enable those backends to share the same health check.\n"
+                },
                 "shield": {
                     "type": "string",
                     "description": "The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response\n"
@@ -1571,6 +1575,10 @@
                 "requestCondition": {
                     "type": "string",
                     "description": "Name of a condition, which if met, will select this backend during a request.\n"
+                },
+                "shareKey": {
+                    "type": "string",
+                    "description": "Value that when shared across backends will enable those backends to share the same health check.\n"
                 },
                 "shield": {
                     "type": "string",

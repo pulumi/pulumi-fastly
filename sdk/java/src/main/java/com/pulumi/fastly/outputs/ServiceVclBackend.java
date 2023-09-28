@@ -89,6 +89,11 @@ public final class ServiceVclBackend {
      */
     private @Nullable String requestCondition;
     /**
+     * @return Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    private @Nullable String shareKey;
+    /**
      * @return The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      * 
      */
@@ -246,6 +251,13 @@ public final class ServiceVclBackend {
         return Optional.ofNullable(this.requestCondition);
     }
     /**
+     * @return Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    public Optional<String> shareKey() {
+        return Optional.ofNullable(this.shareKey);
+    }
+    /**
      * @return The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      * 
      */
@@ -340,6 +352,7 @@ public final class ServiceVclBackend {
         private @Nullable String overrideHost;
         private @Nullable Integer port;
         private @Nullable String requestCondition;
+        private @Nullable String shareKey;
         private @Nullable String shield;
         private @Nullable String sslCaCert;
         private @Nullable String sslCertHostname;
@@ -368,6 +381,7 @@ public final class ServiceVclBackend {
     	      this.overrideHost = defaults.overrideHost;
     	      this.port = defaults.port;
     	      this.requestCondition = defaults.requestCondition;
+    	      this.shareKey = defaults.shareKey;
     	      this.shield = defaults.shield;
     	      this.sslCaCert = defaults.sslCaCert;
     	      this.sslCertHostname = defaults.sslCertHostname;
@@ -456,6 +470,11 @@ public final class ServiceVclBackend {
             return this;
         }
         @CustomType.Setter
+        public Builder shareKey(@Nullable String shareKey) {
+            this.shareKey = shareKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder shield(@Nullable String shield) {
             this.shield = shield;
             return this;
@@ -522,6 +541,7 @@ public final class ServiceVclBackend {
             o.overrideHost = overrideHost;
             o.port = port;
             o.requestCondition = requestCondition;
+            o.shareKey = shareKey;
             o.shield = shield;
             o.sslCaCert = sslCaCert;
             o.sslCertHostname = sslCertHostname;

@@ -79,6 +79,11 @@ public final class ServiceComputeBackend {
      */
     private @Nullable Integer port;
     /**
+     * @return Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    private @Nullable String shareKey;
+    /**
      * @return The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      * 
      */
@@ -222,6 +227,13 @@ public final class ServiceComputeBackend {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Value that when shared across backends will enable those backends to share the same health check.
+     * 
+     */
+    public Optional<String> shareKey() {
+        return Optional.ofNullable(this.shareKey);
+    }
+    /**
      * @return The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
      * 
      */
@@ -314,6 +326,7 @@ public final class ServiceComputeBackend {
         private String name;
         private @Nullable String overrideHost;
         private @Nullable Integer port;
+        private @Nullable String shareKey;
         private @Nullable String shield;
         private @Nullable String sslCaCert;
         private @Nullable String sslCertHostname;
@@ -340,6 +353,7 @@ public final class ServiceComputeBackend {
     	      this.name = defaults.name;
     	      this.overrideHost = defaults.overrideHost;
     	      this.port = defaults.port;
+    	      this.shareKey = defaults.shareKey;
     	      this.shield = defaults.shield;
     	      this.sslCaCert = defaults.sslCaCert;
     	      this.sslCertHostname = defaults.sslCertHostname;
@@ -418,6 +432,11 @@ public final class ServiceComputeBackend {
             return this;
         }
         @CustomType.Setter
+        public Builder shareKey(@Nullable String shareKey) {
+            this.shareKey = shareKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder shield(@Nullable String shield) {
             this.shield = shield;
             return this;
@@ -482,6 +501,7 @@ public final class ServiceComputeBackend {
             o.name = name;
             o.overrideHost = overrideHost;
             o.port = port;
+            o.shareKey = shareKey;
             o.shield = shield;
             o.sslCaCert = sslCaCert;
             o.sslCertHostname = sslCertHostname;
