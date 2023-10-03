@@ -3648,13 +3648,16 @@
         "fastly:index/ServiceVclRateLimiterResponse:ServiceVclRateLimiterResponse": {
             "properties": {
                 "content": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The VCL code that specifies exactly what the snippet does\n"
                 },
                 "contentType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Value of the `Content-Type` header sent with the request\n"
                 },
                 "status": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "HTTP response status code (e.g. 429)\n"
                 }
             },
             "type": "object",
@@ -3912,16 +3915,13 @@
         "fastly:index/TlsSubscriptionManagedDnsChallenge:TlsSubscriptionManagedDnsChallenge": {
             "properties": {
                 "recordName": {
-                    "type": "string",
-                    "description": "The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.\n"
+                    "type": "string"
                 },
                 "recordType": {
-                    "type": "string",
-                    "description": "The type of DNS record to add, e.g. `A`, or `CNAME`.\n"
+                    "type": "string"
                 },
                 "recordValue": {
-                    "type": "string",
-                    "description": "The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.\n"
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -3938,19 +3938,16 @@
         "fastly:index/TlsSubscriptionManagedHttpChallenge:TlsSubscriptionManagedHttpChallenge": {
             "properties": {
                 "recordName": {
-                    "type": "string",
-                    "description": "The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.\n"
+                    "type": "string"
                 },
                 "recordType": {
-                    "type": "string",
-                    "description": "The type of DNS record to add, e.g. `A`, or `CNAME`.\n"
+                    "type": "string"
                 },
                 "recordValues": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "description": "A list with the value(s) to which the DNS record should point.\n"
+                    }
                 }
             },
             "type": "object",
@@ -3967,8 +3964,7 @@
         "fastly:index/getConfigstoresStore:getConfigstoresStore": {
             "properties": {
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -4016,8 +4012,7 @@
         "fastly:index/getDictionariesDictionary:getDictionariesDictionary": {
             "properties": {
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -4041,8 +4036,7 @@
         "fastly:index/getKvstoresStore:getKvstoresStore": {
             "properties": {
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -4062,8 +4056,7 @@
         "fastly:index/getSecretstoresStore:getSecretstoresStore": {
             "properties": {
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -4092,8 +4085,7 @@
                     "type": "string"
                 },
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -4152,16 +4144,13 @@
         "fastly:index/getWafRulesRule:getWafRulesRule": {
             "properties": {
                 "latestRevisionNumber": {
-                    "type": "integer",
-                    "description": "The rule's latest revision.\n"
+                    "type": "integer"
                 },
                 "modsecRuleId": {
-                    "type": "integer",
-                    "description": "The rule's modsecurity ID.\n"
+                    "type": "integer"
                 },
                 "type": {
-                    "type": "string",
-                    "description": "The rule's type.\n"
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -4565,7 +4554,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "description": "An optional comment about the Domain.\n"
                 },
                 "dictionaries": {
                     "type": "array",
@@ -4578,11 +4567,11 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)\n"
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
+                    "description": "Allow the dictionary to be deleted, even if it contains entries. Defaults to false.\n"
                 },
                 "forceRefresh": {
                     "type": "boolean",
@@ -4750,7 +4739,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
@@ -4796,7 +4785,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "description": "An optional comment about the Domain.\n"
                 },
                 "dictionaries": {
                     "type": "array",
@@ -4809,11 +4798,11 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)\n"
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
+                    "description": "Allow the dictionary to be deleted, even if it contains entries. Defaults to false.\n"
                 },
                 "loggingBigqueries": {
                     "type": "array",
@@ -4973,7 +4962,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
@@ -5024,7 +5013,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "Description field for the service. Default `Managed by Terraform`\n"
+                        "description": "An optional comment about the Domain.\n"
                     },
                     "dictionaries": {
                         "type": "array",
@@ -5037,11 +5026,11 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                         },
-                        "description": "A set of Domain names to serve as entry points for your Service\n"
+                        "description": "The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)\n"
                     },
                     "forceDestroy": {
                         "type": "boolean",
-                        "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
+                        "description": "Allow the dictionary to be deleted, even if it contains entries. Defaults to false.\n"
                     },
                     "forceRefresh": {
                         "type": "boolean",
@@ -5209,7 +5198,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The unique name for the Service to create\n"
+                        "description": "Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource\n"
                     },
                     "package": {
                         "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
@@ -5397,7 +5386,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclAcl:ServiceVclAcl"
-                    }
+                    },
+                    "description": "The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`\n"
                 },
                 "activate": {
                     "type": "boolean",
@@ -5425,7 +5415,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "description": "An optional comment about the Director\n"
                 },
                 "conditions": {
                     "type": "array",
@@ -5435,7 +5425,7 @@
                 },
                 "defaultHost": {
                     "type": "string",
-                    "description": "The default hostname\n"
+                    "description": "Sets the host header\n"
                 },
                 "defaultTtl": {
                     "type": "integer",
@@ -5458,7 +5448,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclDomain:ServiceVclDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)\n"
                 },
                 "dynamicsnippets": {
                     "type": "array",
@@ -5468,7 +5458,7 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
+                    "description": "Allow the ACL to be deleted, even if it contains entries. Defaults to false.\n"
                 },
                 "forceRefresh": {
                     "type": "boolean",
@@ -5490,7 +5480,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
-                    }
+                    },
+                    "description": "Name of a defined `healthcheck` to assign to this backend\n"
                 },
                 "http3": {
                     "type": "boolean",
@@ -5658,7 +5649,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL\n"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
@@ -5679,7 +5670,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclResponseObject:ServiceVclResponseObject"
-                    }
+                    },
+                    "description": "The name of the response object used by the Web Application Firewall\n"
                 },
                 "reuse": {
                     "type": "boolean",
@@ -5726,7 +5718,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclAcl:ServiceVclAcl"
-                    }
+                    },
+                    "description": "The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`\n"
                 },
                 "activate": {
                     "type": "boolean",
@@ -5746,7 +5739,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "description": "An optional comment about the Director\n"
                 },
                 "conditions": {
                     "type": "array",
@@ -5756,7 +5749,7 @@
                 },
                 "defaultHost": {
                     "type": "string",
-                    "description": "The default hostname\n"
+                    "description": "Sets the host header\n"
                 },
                 "defaultTtl": {
                     "type": "integer",
@@ -5779,7 +5772,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclDomain:ServiceVclDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)\n"
                 },
                 "dynamicsnippets": {
                     "type": "array",
@@ -5789,7 +5782,7 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
+                    "description": "Allow the ACL to be deleted, even if it contains entries. Defaults to false.\n"
                 },
                 "gzips": {
                     "type": "array",
@@ -5807,7 +5800,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
-                    }
+                    },
+                    "description": "Name of a defined `healthcheck` to assign to this backend\n"
                 },
                 "http3": {
                     "type": "boolean",
@@ -5971,7 +5965,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL\n"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
@@ -5992,7 +5986,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclResponseObject:ServiceVclResponseObject"
-                    }
+                    },
+                    "description": "The name of the response object used by the Web Application Firewall\n"
                 },
                 "reuse": {
                     "type": "boolean",
@@ -6036,7 +6031,8 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclAcl:ServiceVclAcl"
-                        }
+                        },
+                        "description": "The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`\n"
                     },
                     "activate": {
                         "type": "boolean",
@@ -6064,7 +6060,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "Description field for the service. Default `Managed by Terraform`\n"
+                        "description": "An optional comment about the Director\n"
                     },
                     "conditions": {
                         "type": "array",
@@ -6074,7 +6070,7 @@
                     },
                     "defaultHost": {
                         "type": "string",
-                        "description": "The default hostname\n"
+                        "description": "Sets the host header\n"
                     },
                     "defaultTtl": {
                         "type": "integer",
@@ -6097,7 +6093,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclDomain:ServiceVclDomain"
                         },
-                        "description": "A set of Domain names to serve as entry points for your Service\n"
+                        "description": "The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)\n"
                     },
                     "dynamicsnippets": {
                         "type": "array",
@@ -6107,7 +6103,7 @@
                     },
                     "forceDestroy": {
                         "type": "boolean",
-                        "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
+                        "description": "Allow the ACL to be deleted, even if it contains entries. Defaults to false.\n"
                     },
                     "forceRefresh": {
                         "type": "boolean",
@@ -6129,7 +6125,8 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclHealthcheck:ServiceVclHealthcheck"
-                        }
+                        },
+                        "description": "Name of a defined `healthcheck` to assign to this backend\n"
                     },
                     "http3": {
                         "type": "boolean",
@@ -6297,7 +6294,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The unique name for the Service to create\n"
+                        "description": "A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL\n"
                     },
                     "productEnablement": {
                         "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
@@ -6318,7 +6315,8 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclResponseObject:ServiceVclResponseObject"
-                        }
+                        },
+                        "description": "The name of the response object used by the Web Application Firewall\n"
                     },
                     "reuse": {
                         "type": "boolean",
@@ -6440,7 +6438,7 @@
                 },
                 "number": {
                     "type": "integer",
-                    "description": "The WAF firewall version\n"
+                    "description": "The numeric ID assigned to the WAF Rule Exclusion\n"
                 },
                 "paranoiaLevel": {
                     "type": "integer",
@@ -6760,7 +6758,7 @@
                     },
                     "number": {
                         "type": "integer",
-                        "description": "The WAF firewall version\n"
+                        "description": "The numeric ID assigned to the WAF Rule Exclusion\n"
                     },
                     "paranoiaLevel": {
                         "type": "integer",
