@@ -13,17 +13,8 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetWafRulesRuleResult
     {
-        /// <summary>
-        /// The rule's latest revision.
-        /// </summary>
         public readonly int LatestRevisionNumber;
-        /// <summary>
-        /// The rule's modsecurity ID.
-        /// </summary>
         public readonly int ModsecRuleId;
-        /// <summary>
-        /// The rule's type.
-        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

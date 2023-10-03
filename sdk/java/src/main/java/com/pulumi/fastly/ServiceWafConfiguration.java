@@ -914,14 +914,14 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
         return this.noticeAnomalyScore;
     }
     /**
-     * The WAF firewall version
+     * The numeric ID assigned to the WAF Rule Exclusion
      * 
      */
     @Export(name="number", type=Integer.class, parameters={})
     private Output<Integer> number;
 
     /**
-     * @return The WAF firewall version
+     * @return The numeric ID assigned to the WAF Rule Exclusion
      * 
      */
     public Output<Integer> number() {

@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetFastlyIpRangesResult',
     'AwaitableGetFastlyIpRangesResult',
     'get_fastly_ip_ranges',
+    'get_fastly_ip_ranges_output',
 ]
 
 @pulumi.output_type
@@ -98,3 +99,30 @@ def get_fastly_ip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
         cidr_blocks=pulumi.get(__ret__, 'cidr_blocks'),
         id=pulumi.get(__ret__, 'id'),
         ipv6_cidr_blocks=pulumi.get(__ret__, 'ipv6_cidr_blocks'))
+
+
+@_utilities.lift_output_func(get_fastly_ip_ranges)
+def get_fastly_ip_ranges_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFastlyIpRangesResult]:
+    """
+    Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_fastly as fastly
+
+    fastly = fastly.get_fastly_ip_ranges()
+    from_fastly = aws.ec2.SecurityGroup("fromFastly", ingress=[aws.ec2.SecurityGroupIngressArgs(
+        from_port=443,
+        to_port=443,
+        protocol="tcp",
+        cidr_blocks=fastly.cidr_blocks,
+        ipv6_cidr_blocks=fastly.ipv6_cidr_blocks,
+    )])
+    ```
+
+    [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
+    """
+    ...

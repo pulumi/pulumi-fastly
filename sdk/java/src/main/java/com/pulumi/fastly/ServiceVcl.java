@@ -384,9 +384,17 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="fastly:index/serviceVcl:ServiceVcl")
 public class ServiceVcl extends com.pulumi.resources.CustomResource {
+    /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     * 
+     */
     @Export(name="acls", type=List.class, parameters={ServiceVclAcl.class})
     private Output</* @Nullable */ List<ServiceVclAcl>> acls;
 
+    /**
+     * @return The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     * 
+     */
     public Output<Optional<List<ServiceVclAcl>>> acls() {
         return Codegen.optional(this.acls);
     }
@@ -445,14 +453,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return this.clonedVersion;
     }
     /**
-     * Description field for the service. Default `Managed by Terraform`
+     * An optional comment about the Director
      * 
      */
     @Export(name="comment", type=String.class, parameters={})
     private Output</* @Nullable */ String> comment;
 
     /**
-     * @return Description field for the service. Default `Managed by Terraform`
+     * @return An optional comment about the Director
      * 
      */
     public Output<Optional<String>> comment() {
@@ -465,14 +473,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.conditions);
     }
     /**
-     * The default hostname
+     * Sets the host header
      * 
      */
     @Export(name="defaultHost", type=String.class, parameters={})
     private Output</* @Nullable */ String> defaultHost;
 
     /**
-     * @return The default hostname
+     * @return Sets the host header
      * 
      */
     public Output<Optional<String>> defaultHost() {
@@ -505,14 +513,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.directors);
     }
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
      * 
      */
     @Export(name="domains", type=List.class, parameters={ServiceVclDomain.class})
     private Output<List<ServiceVclDomain>> domains;
 
     /**
-     * @return A set of Domain names to serve as entry points for your Service
+     * @return The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
      * 
      */
     public Output<List<ServiceVclDomain>> domains() {
@@ -525,14 +533,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.dynamicsnippets);
     }
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * Allow the ACL to be deleted, even if it contains entries. Defaults to false.
      * 
      */
     @Export(name="forceDestroy", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * @return Allow the ACL to be deleted, even if it contains entries. Defaults to false.
      * 
      */
     public Output<Optional<Boolean>> forceDestroy() {
@@ -568,9 +576,17 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<ServiceVclHeader>>> headers() {
         return Codegen.optional(this.headers);
     }
+    /**
+     * Name of a defined `healthcheck` to assign to this backend
+     * 
+     */
     @Export(name="healthchecks", type=List.class, parameters={ServiceVclHealthcheck.class})
     private Output</* @Nullable */ List<ServiceVclHealthcheck>> healthchecks;
 
+    /**
+     * @return Name of a defined `healthcheck` to assign to this backend
+     * 
+     */
     public Output<Optional<List<ServiceVclHealthcheck>>> healthchecks() {
         return Codegen.optional(this.healthchecks);
     }
@@ -759,14 +775,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.loggingSyslogs);
     }
     /**
-     * The unique name for the Service to create
+     * A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return The unique name for the Service to create
+     * @return A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
      * 
      */
     public Output<String> name() {
@@ -790,9 +806,17 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<ServiceVclRequestSetting>>> requestSettings() {
         return Codegen.optional(this.requestSettings);
     }
+    /**
+     * The name of the response object used by the Web Application Firewall
+     * 
+     */
     @Export(name="responseObjects", type=List.class, parameters={ServiceVclResponseObject.class})
     private Output</* @Nullable */ List<ServiceVclResponseObject>> responseObjects;
 
+    /**
+     * @return The name of the response object used by the Web Application Firewall
+     * 
+     */
     public Output<Optional<List<ServiceVclResponseObject>>> responseObjects() {
         return Codegen.optional(this.responseObjects);
     }

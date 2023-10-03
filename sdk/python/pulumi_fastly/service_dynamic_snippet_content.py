@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ServiceDynamicSnippetContentArgs', 'ServiceDynamicSnippetContent']
@@ -25,11 +25,26 @@ class ServiceDynamicSnippetContentArgs:
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
         :param pulumi.Input[bool] manage_snippets: Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
         """
-        pulumi.set(__self__, "content", content)
-        pulumi.set(__self__, "service_id", service_id)
-        pulumi.set(__self__, "snippet_id", snippet_id)
+        ServiceDynamicSnippetContentArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content=content,
+            service_id=service_id,
+            snippet_id=snippet_id,
+            manage_snippets=manage_snippets,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content: pulumi.Input[str],
+             service_id: pulumi.Input[str],
+             snippet_id: pulumi.Input[str],
+             manage_snippets: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("content", content)
+        _setter("service_id", service_id)
+        _setter("snippet_id", snippet_id)
         if manage_snippets is not None:
-            pulumi.set(__self__, "manage_snippets", manage_snippets)
+            _setter("manage_snippets", manage_snippets)
 
     @property
     @pulumi.getter
@@ -94,14 +109,29 @@ class _ServiceDynamicSnippetContentState:
         :param pulumi.Input[str] service_id: The ID of the service that the dynamic snippet belongs to
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet that the content belong to
         """
+        _ServiceDynamicSnippetContentState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content=content,
+            manage_snippets=manage_snippets,
+            service_id=service_id,
+            snippet_id=snippet_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content: Optional[pulumi.Input[str]] = None,
+             manage_snippets: Optional[pulumi.Input[bool]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
+             snippet_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if content is not None:
-            pulumi.set(__self__, "content", content)
+            _setter("content", content)
         if manage_snippets is not None:
-            pulumi.set(__self__, "manage_snippets", manage_snippets)
+            _setter("manage_snippets", manage_snippets)
         if service_id is not None:
-            pulumi.set(__self__, "service_id", service_id)
+            _setter("service_id", service_id)
         if snippet_id is not None:
-            pulumi.set(__self__, "snippet_id", snippet_id)
+            _setter("snippet_id", snippet_id)
 
     @property
     @pulumi.getter
@@ -207,6 +237,10 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ServiceDynamicSnippetContentArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

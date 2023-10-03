@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TlsCertificateArgs', 'TlsCertificate']
@@ -21,9 +21,20 @@ class TlsCertificateArgs:
         :param pulumi.Input[str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
         :param pulumi.Input[str] name: Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
         """
-        pulumi.set(__self__, "certificate_body", certificate_body)
+        TlsCertificateArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            certificate_body=certificate_body,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             certificate_body: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("certificate_body", certificate_body)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="certificateBody")
@@ -76,26 +87,53 @@ class _TlsCertificateState:
         :param pulumi.Input[str] signature_algorithm: The algorithm used to sign the certificate.
         :param pulumi.Input[str] updated_at: Timestamp (GMT) when the certificate was last updated.
         """
+        _TlsCertificateState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            certificate_body=certificate_body,
+            created_at=created_at,
+            domains=domains,
+            issued_to=issued_to,
+            issuer=issuer,
+            name=name,
+            replace=replace,
+            serial_number=serial_number,
+            signature_algorithm=signature_algorithm,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             certificate_body: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             issued_to: Optional[pulumi.Input[str]] = None,
+             issuer: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             replace: Optional[pulumi.Input[bool]] = None,
+             serial_number: Optional[pulumi.Input[str]] = None,
+             signature_algorithm: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if certificate_body is not None:
-            pulumi.set(__self__, "certificate_body", certificate_body)
+            _setter("certificate_body", certificate_body)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if domains is not None:
-            pulumi.set(__self__, "domains", domains)
+            _setter("domains", domains)
         if issued_to is not None:
-            pulumi.set(__self__, "issued_to", issued_to)
+            _setter("issued_to", issued_to)
         if issuer is not None:
-            pulumi.set(__self__, "issuer", issuer)
+            _setter("issuer", issuer)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if replace is not None:
-            pulumi.set(__self__, "replace", replace)
+            _setter("replace", replace)
         if serial_number is not None:
-            pulumi.set(__self__, "serial_number", serial_number)
+            _setter("serial_number", serial_number)
         if signature_algorithm is not None:
-            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+            _setter("signature_algorithm", signature_algorithm)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter(name="certificateBody")
@@ -353,6 +391,10 @@ class TlsCertificate(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TlsCertificateArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

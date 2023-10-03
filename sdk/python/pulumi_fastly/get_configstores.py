@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetConfigstoresResult',
     'AwaitableGetConfigstoresResult',
     'get_configstores',
+    'get_configstores_output',
 ]
 
 @pulumi.output_type
@@ -67,3 +68,11 @@ def get_configstores(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetConfigstoresResult(
         id=pulumi.get(__ret__, 'id'),
         stores=pulumi.get(__ret__, 'stores'))
+
+
+@_utilities.lift_output_func(get_configstores)
+def get_configstores_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConfigstoresResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

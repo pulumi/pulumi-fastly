@@ -12,12 +12,21 @@ namespace Pulumi.Fastly.Inputs
 
     public sealed class ServiceVclRateLimiterResponseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The VCL code that specifies exactly what the snippet does
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
+        /// <summary>
+        /// Value of the `Content-Type` header sent with the request
+        /// </summary>
         [Input("contentType", required: true)]
         public Input<string> ContentType { get; set; } = null!;
 
+        /// <summary>
+        /// HTTP response status code (e.g. 429)
+        /// </summary>
         [Input("status", required: true)]
         public Input<int> Status { get; set; } = null!;
 

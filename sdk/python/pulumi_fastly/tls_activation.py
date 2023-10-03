@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TlsActivationArgs', 'TlsActivation']
@@ -25,12 +25,27 @@ class TlsActivationArgs:
         :param pulumi.Input[str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
         :param pulumi.Input[str] mutual_authentication_id: An alphanumeric string identifying a mutual authentication.
         """
-        pulumi.set(__self__, "certificate_id", certificate_id)
-        pulumi.set(__self__, "domain", domain)
+        TlsActivationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            certificate_id=certificate_id,
+            domain=domain,
+            configuration_id=configuration_id,
+            mutual_authentication_id=mutual_authentication_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             certificate_id: pulumi.Input[str],
+             domain: pulumi.Input[str],
+             configuration_id: Optional[pulumi.Input[str]] = None,
+             mutual_authentication_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("certificate_id", certificate_id)
+        _setter("domain", domain)
         if configuration_id is not None:
-            pulumi.set(__self__, "configuration_id", configuration_id)
+            _setter("configuration_id", configuration_id)
         if mutual_authentication_id is not None:
-            pulumi.set(__self__, "mutual_authentication_id", mutual_authentication_id)
+            _setter("mutual_authentication_id", mutual_authentication_id)
 
     @property
     @pulumi.getter(name="certificateId")
@@ -97,16 +112,33 @@ class _TlsActivationState:
         :param pulumi.Input[str] domain: Domain to enable TLS on. Must be assigned to an existing Fastly Service.
         :param pulumi.Input[str] mutual_authentication_id: An alphanumeric string identifying a mutual authentication.
         """
+        _TlsActivationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            certificate_id=certificate_id,
+            configuration_id=configuration_id,
+            created_at=created_at,
+            domain=domain,
+            mutual_authentication_id=mutual_authentication_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             certificate_id: Optional[pulumi.Input[str]] = None,
+             configuration_id: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             domain: Optional[pulumi.Input[str]] = None,
+             mutual_authentication_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if certificate_id is not None:
-            pulumi.set(__self__, "certificate_id", certificate_id)
+            _setter("certificate_id", certificate_id)
         if configuration_id is not None:
-            pulumi.set(__self__, "configuration_id", configuration_id)
+            _setter("configuration_id", configuration_id)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
         if mutual_authentication_id is not None:
-            pulumi.set(__self__, "mutual_authentication_id", mutual_authentication_id)
+            _setter("mutual_authentication_id", mutual_authentication_id)
 
     @property
     @pulumi.getter(name="certificateId")
@@ -284,6 +316,10 @@ class TlsActivation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TlsActivationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -81,69 +81,140 @@ class ServiceWafConfigurationArgs:
         :param pulumi.Input[int] warning_anomaly_score: Score value to add for warning anomalies
         :param pulumi.Input[int] xss_score_threshold: XSS attack threshold
         """
-        pulumi.set(__self__, "waf_id", waf_id)
+        ServiceWafConfigurationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            waf_id=waf_id,
+            activate=activate,
+            allowed_http_versions=allowed_http_versions,
+            allowed_methods=allowed_methods,
+            allowed_request_content_type=allowed_request_content_type,
+            allowed_request_content_type_charset=allowed_request_content_type_charset,
+            arg_length=arg_length,
+            arg_name_length=arg_name_length,
+            combined_file_sizes=combined_file_sizes,
+            critical_anomaly_score=critical_anomaly_score,
+            crs_validate_utf8_encoding=crs_validate_utf8_encoding,
+            error_anomaly_score=error_anomaly_score,
+            high_risk_country_codes=high_risk_country_codes,
+            http_violation_score_threshold=http_violation_score_threshold,
+            inbound_anomaly_score_threshold=inbound_anomaly_score_threshold,
+            lfi_score_threshold=lfi_score_threshold,
+            max_file_size=max_file_size,
+            max_num_args=max_num_args,
+            notice_anomaly_score=notice_anomaly_score,
+            paranoia_level=paranoia_level,
+            php_injection_score_threshold=php_injection_score_threshold,
+            rce_score_threshold=rce_score_threshold,
+            restricted_extensions=restricted_extensions,
+            restricted_headers=restricted_headers,
+            rfi_score_threshold=rfi_score_threshold,
+            rule_exclusions=rule_exclusions,
+            rules=rules,
+            session_fixation_score_threshold=session_fixation_score_threshold,
+            sql_injection_score_threshold=sql_injection_score_threshold,
+            total_arg_length=total_arg_length,
+            warning_anomaly_score=warning_anomaly_score,
+            xss_score_threshold=xss_score_threshold,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             waf_id: pulumi.Input[str],
+             activate: Optional[pulumi.Input[bool]] = None,
+             allowed_http_versions: Optional[pulumi.Input[str]] = None,
+             allowed_methods: Optional[pulumi.Input[str]] = None,
+             allowed_request_content_type: Optional[pulumi.Input[str]] = None,
+             allowed_request_content_type_charset: Optional[pulumi.Input[str]] = None,
+             arg_length: Optional[pulumi.Input[int]] = None,
+             arg_name_length: Optional[pulumi.Input[int]] = None,
+             combined_file_sizes: Optional[pulumi.Input[int]] = None,
+             critical_anomaly_score: Optional[pulumi.Input[int]] = None,
+             crs_validate_utf8_encoding: Optional[pulumi.Input[bool]] = None,
+             error_anomaly_score: Optional[pulumi.Input[int]] = None,
+             high_risk_country_codes: Optional[pulumi.Input[str]] = None,
+             http_violation_score_threshold: Optional[pulumi.Input[int]] = None,
+             inbound_anomaly_score_threshold: Optional[pulumi.Input[int]] = None,
+             lfi_score_threshold: Optional[pulumi.Input[int]] = None,
+             max_file_size: Optional[pulumi.Input[int]] = None,
+             max_num_args: Optional[pulumi.Input[int]] = None,
+             notice_anomaly_score: Optional[pulumi.Input[int]] = None,
+             paranoia_level: Optional[pulumi.Input[int]] = None,
+             php_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+             rce_score_threshold: Optional[pulumi.Input[int]] = None,
+             restricted_extensions: Optional[pulumi.Input[str]] = None,
+             restricted_headers: Optional[pulumi.Input[str]] = None,
+             rfi_score_threshold: Optional[pulumi.Input[int]] = None,
+             rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceWafConfigurationRuleExclusionArgs']]]] = None,
+             rules: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceWafConfigurationRuleArgs']]]] = None,
+             session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
+             sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+             total_arg_length: Optional[pulumi.Input[int]] = None,
+             warning_anomaly_score: Optional[pulumi.Input[int]] = None,
+             xss_score_threshold: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("waf_id", waf_id)
         if activate is not None:
-            pulumi.set(__self__, "activate", activate)
+            _setter("activate", activate)
         if allowed_http_versions is not None:
-            pulumi.set(__self__, "allowed_http_versions", allowed_http_versions)
+            _setter("allowed_http_versions", allowed_http_versions)
         if allowed_methods is not None:
-            pulumi.set(__self__, "allowed_methods", allowed_methods)
+            _setter("allowed_methods", allowed_methods)
         if allowed_request_content_type is not None:
-            pulumi.set(__self__, "allowed_request_content_type", allowed_request_content_type)
+            _setter("allowed_request_content_type", allowed_request_content_type)
         if allowed_request_content_type_charset is not None:
-            pulumi.set(__self__, "allowed_request_content_type_charset", allowed_request_content_type_charset)
+            _setter("allowed_request_content_type_charset", allowed_request_content_type_charset)
         if arg_length is not None:
-            pulumi.set(__self__, "arg_length", arg_length)
+            _setter("arg_length", arg_length)
         if arg_name_length is not None:
-            pulumi.set(__self__, "arg_name_length", arg_name_length)
+            _setter("arg_name_length", arg_name_length)
         if combined_file_sizes is not None:
-            pulumi.set(__self__, "combined_file_sizes", combined_file_sizes)
+            _setter("combined_file_sizes", combined_file_sizes)
         if critical_anomaly_score is not None:
-            pulumi.set(__self__, "critical_anomaly_score", critical_anomaly_score)
+            _setter("critical_anomaly_score", critical_anomaly_score)
         if crs_validate_utf8_encoding is not None:
-            pulumi.set(__self__, "crs_validate_utf8_encoding", crs_validate_utf8_encoding)
+            _setter("crs_validate_utf8_encoding", crs_validate_utf8_encoding)
         if error_anomaly_score is not None:
-            pulumi.set(__self__, "error_anomaly_score", error_anomaly_score)
+            _setter("error_anomaly_score", error_anomaly_score)
         if high_risk_country_codes is not None:
-            pulumi.set(__self__, "high_risk_country_codes", high_risk_country_codes)
+            _setter("high_risk_country_codes", high_risk_country_codes)
         if http_violation_score_threshold is not None:
-            pulumi.set(__self__, "http_violation_score_threshold", http_violation_score_threshold)
+            _setter("http_violation_score_threshold", http_violation_score_threshold)
         if inbound_anomaly_score_threshold is not None:
-            pulumi.set(__self__, "inbound_anomaly_score_threshold", inbound_anomaly_score_threshold)
+            _setter("inbound_anomaly_score_threshold", inbound_anomaly_score_threshold)
         if lfi_score_threshold is not None:
-            pulumi.set(__self__, "lfi_score_threshold", lfi_score_threshold)
+            _setter("lfi_score_threshold", lfi_score_threshold)
         if max_file_size is not None:
-            pulumi.set(__self__, "max_file_size", max_file_size)
+            _setter("max_file_size", max_file_size)
         if max_num_args is not None:
-            pulumi.set(__self__, "max_num_args", max_num_args)
+            _setter("max_num_args", max_num_args)
         if notice_anomaly_score is not None:
-            pulumi.set(__self__, "notice_anomaly_score", notice_anomaly_score)
+            _setter("notice_anomaly_score", notice_anomaly_score)
         if paranoia_level is not None:
-            pulumi.set(__self__, "paranoia_level", paranoia_level)
+            _setter("paranoia_level", paranoia_level)
         if php_injection_score_threshold is not None:
-            pulumi.set(__self__, "php_injection_score_threshold", php_injection_score_threshold)
+            _setter("php_injection_score_threshold", php_injection_score_threshold)
         if rce_score_threshold is not None:
-            pulumi.set(__self__, "rce_score_threshold", rce_score_threshold)
+            _setter("rce_score_threshold", rce_score_threshold)
         if restricted_extensions is not None:
-            pulumi.set(__self__, "restricted_extensions", restricted_extensions)
+            _setter("restricted_extensions", restricted_extensions)
         if restricted_headers is not None:
-            pulumi.set(__self__, "restricted_headers", restricted_headers)
+            _setter("restricted_headers", restricted_headers)
         if rfi_score_threshold is not None:
-            pulumi.set(__self__, "rfi_score_threshold", rfi_score_threshold)
+            _setter("rfi_score_threshold", rfi_score_threshold)
         if rule_exclusions is not None:
-            pulumi.set(__self__, "rule_exclusions", rule_exclusions)
+            _setter("rule_exclusions", rule_exclusions)
         if rules is not None:
-            pulumi.set(__self__, "rules", rules)
+            _setter("rules", rules)
         if session_fixation_score_threshold is not None:
-            pulumi.set(__self__, "session_fixation_score_threshold", session_fixation_score_threshold)
+            _setter("session_fixation_score_threshold", session_fixation_score_threshold)
         if sql_injection_score_threshold is not None:
-            pulumi.set(__self__, "sql_injection_score_threshold", sql_injection_score_threshold)
+            _setter("sql_injection_score_threshold", sql_injection_score_threshold)
         if total_arg_length is not None:
-            pulumi.set(__self__, "total_arg_length", total_arg_length)
+            _setter("total_arg_length", total_arg_length)
         if warning_anomaly_score is not None:
-            pulumi.set(__self__, "warning_anomaly_score", warning_anomaly_score)
+            _setter("warning_anomaly_score", warning_anomaly_score)
         if xss_score_threshold is not None:
-            pulumi.set(__self__, "xss_score_threshold", xss_score_threshold)
+            _setter("xss_score_threshold", xss_score_threshold)
 
     @property
     @pulumi.getter(name="wafId")
@@ -584,7 +655,7 @@ class _ServiceWafConfigurationState:
         :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes
         :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed
         :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies
-        :param pulumi.Input[int] number: The WAF firewall version
+        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion
         :param pulumi.Input[int] paranoia_level: The configured paranoia level
         :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold
         :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold
@@ -598,76 +669,153 @@ class _ServiceWafConfigurationState:
         :param pulumi.Input[int] warning_anomaly_score: Score value to add for warning anomalies
         :param pulumi.Input[int] xss_score_threshold: XSS attack threshold
         """
+        _ServiceWafConfigurationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            activate=activate,
+            active=active,
+            allowed_http_versions=allowed_http_versions,
+            allowed_methods=allowed_methods,
+            allowed_request_content_type=allowed_request_content_type,
+            allowed_request_content_type_charset=allowed_request_content_type_charset,
+            arg_length=arg_length,
+            arg_name_length=arg_name_length,
+            cloned_version=cloned_version,
+            combined_file_sizes=combined_file_sizes,
+            critical_anomaly_score=critical_anomaly_score,
+            crs_validate_utf8_encoding=crs_validate_utf8_encoding,
+            error_anomaly_score=error_anomaly_score,
+            high_risk_country_codes=high_risk_country_codes,
+            http_violation_score_threshold=http_violation_score_threshold,
+            inbound_anomaly_score_threshold=inbound_anomaly_score_threshold,
+            lfi_score_threshold=lfi_score_threshold,
+            max_file_size=max_file_size,
+            max_num_args=max_num_args,
+            notice_anomaly_score=notice_anomaly_score,
+            number=number,
+            paranoia_level=paranoia_level,
+            php_injection_score_threshold=php_injection_score_threshold,
+            rce_score_threshold=rce_score_threshold,
+            restricted_extensions=restricted_extensions,
+            restricted_headers=restricted_headers,
+            rfi_score_threshold=rfi_score_threshold,
+            rule_exclusions=rule_exclusions,
+            rules=rules,
+            session_fixation_score_threshold=session_fixation_score_threshold,
+            sql_injection_score_threshold=sql_injection_score_threshold,
+            total_arg_length=total_arg_length,
+            waf_id=waf_id,
+            warning_anomaly_score=warning_anomaly_score,
+            xss_score_threshold=xss_score_threshold,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             activate: Optional[pulumi.Input[bool]] = None,
+             active: Optional[pulumi.Input[bool]] = None,
+             allowed_http_versions: Optional[pulumi.Input[str]] = None,
+             allowed_methods: Optional[pulumi.Input[str]] = None,
+             allowed_request_content_type: Optional[pulumi.Input[str]] = None,
+             allowed_request_content_type_charset: Optional[pulumi.Input[str]] = None,
+             arg_length: Optional[pulumi.Input[int]] = None,
+             arg_name_length: Optional[pulumi.Input[int]] = None,
+             cloned_version: Optional[pulumi.Input[int]] = None,
+             combined_file_sizes: Optional[pulumi.Input[int]] = None,
+             critical_anomaly_score: Optional[pulumi.Input[int]] = None,
+             crs_validate_utf8_encoding: Optional[pulumi.Input[bool]] = None,
+             error_anomaly_score: Optional[pulumi.Input[int]] = None,
+             high_risk_country_codes: Optional[pulumi.Input[str]] = None,
+             http_violation_score_threshold: Optional[pulumi.Input[int]] = None,
+             inbound_anomaly_score_threshold: Optional[pulumi.Input[int]] = None,
+             lfi_score_threshold: Optional[pulumi.Input[int]] = None,
+             max_file_size: Optional[pulumi.Input[int]] = None,
+             max_num_args: Optional[pulumi.Input[int]] = None,
+             notice_anomaly_score: Optional[pulumi.Input[int]] = None,
+             number: Optional[pulumi.Input[int]] = None,
+             paranoia_level: Optional[pulumi.Input[int]] = None,
+             php_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+             rce_score_threshold: Optional[pulumi.Input[int]] = None,
+             restricted_extensions: Optional[pulumi.Input[str]] = None,
+             restricted_headers: Optional[pulumi.Input[str]] = None,
+             rfi_score_threshold: Optional[pulumi.Input[int]] = None,
+             rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceWafConfigurationRuleExclusionArgs']]]] = None,
+             rules: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceWafConfigurationRuleArgs']]]] = None,
+             session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
+             sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
+             total_arg_length: Optional[pulumi.Input[int]] = None,
+             waf_id: Optional[pulumi.Input[str]] = None,
+             warning_anomaly_score: Optional[pulumi.Input[int]] = None,
+             xss_score_threshold: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if activate is not None:
-            pulumi.set(__self__, "activate", activate)
+            _setter("activate", activate)
         if active is not None:
-            pulumi.set(__self__, "active", active)
+            _setter("active", active)
         if allowed_http_versions is not None:
-            pulumi.set(__self__, "allowed_http_versions", allowed_http_versions)
+            _setter("allowed_http_versions", allowed_http_versions)
         if allowed_methods is not None:
-            pulumi.set(__self__, "allowed_methods", allowed_methods)
+            _setter("allowed_methods", allowed_methods)
         if allowed_request_content_type is not None:
-            pulumi.set(__self__, "allowed_request_content_type", allowed_request_content_type)
+            _setter("allowed_request_content_type", allowed_request_content_type)
         if allowed_request_content_type_charset is not None:
-            pulumi.set(__self__, "allowed_request_content_type_charset", allowed_request_content_type_charset)
+            _setter("allowed_request_content_type_charset", allowed_request_content_type_charset)
         if arg_length is not None:
-            pulumi.set(__self__, "arg_length", arg_length)
+            _setter("arg_length", arg_length)
         if arg_name_length is not None:
-            pulumi.set(__self__, "arg_name_length", arg_name_length)
+            _setter("arg_name_length", arg_name_length)
         if cloned_version is not None:
-            pulumi.set(__self__, "cloned_version", cloned_version)
+            _setter("cloned_version", cloned_version)
         if combined_file_sizes is not None:
-            pulumi.set(__self__, "combined_file_sizes", combined_file_sizes)
+            _setter("combined_file_sizes", combined_file_sizes)
         if critical_anomaly_score is not None:
-            pulumi.set(__self__, "critical_anomaly_score", critical_anomaly_score)
+            _setter("critical_anomaly_score", critical_anomaly_score)
         if crs_validate_utf8_encoding is not None:
-            pulumi.set(__self__, "crs_validate_utf8_encoding", crs_validate_utf8_encoding)
+            _setter("crs_validate_utf8_encoding", crs_validate_utf8_encoding)
         if error_anomaly_score is not None:
-            pulumi.set(__self__, "error_anomaly_score", error_anomaly_score)
+            _setter("error_anomaly_score", error_anomaly_score)
         if high_risk_country_codes is not None:
-            pulumi.set(__self__, "high_risk_country_codes", high_risk_country_codes)
+            _setter("high_risk_country_codes", high_risk_country_codes)
         if http_violation_score_threshold is not None:
-            pulumi.set(__self__, "http_violation_score_threshold", http_violation_score_threshold)
+            _setter("http_violation_score_threshold", http_violation_score_threshold)
         if inbound_anomaly_score_threshold is not None:
-            pulumi.set(__self__, "inbound_anomaly_score_threshold", inbound_anomaly_score_threshold)
+            _setter("inbound_anomaly_score_threshold", inbound_anomaly_score_threshold)
         if lfi_score_threshold is not None:
-            pulumi.set(__self__, "lfi_score_threshold", lfi_score_threshold)
+            _setter("lfi_score_threshold", lfi_score_threshold)
         if max_file_size is not None:
-            pulumi.set(__self__, "max_file_size", max_file_size)
+            _setter("max_file_size", max_file_size)
         if max_num_args is not None:
-            pulumi.set(__self__, "max_num_args", max_num_args)
+            _setter("max_num_args", max_num_args)
         if notice_anomaly_score is not None:
-            pulumi.set(__self__, "notice_anomaly_score", notice_anomaly_score)
+            _setter("notice_anomaly_score", notice_anomaly_score)
         if number is not None:
-            pulumi.set(__self__, "number", number)
+            _setter("number", number)
         if paranoia_level is not None:
-            pulumi.set(__self__, "paranoia_level", paranoia_level)
+            _setter("paranoia_level", paranoia_level)
         if php_injection_score_threshold is not None:
-            pulumi.set(__self__, "php_injection_score_threshold", php_injection_score_threshold)
+            _setter("php_injection_score_threshold", php_injection_score_threshold)
         if rce_score_threshold is not None:
-            pulumi.set(__self__, "rce_score_threshold", rce_score_threshold)
+            _setter("rce_score_threshold", rce_score_threshold)
         if restricted_extensions is not None:
-            pulumi.set(__self__, "restricted_extensions", restricted_extensions)
+            _setter("restricted_extensions", restricted_extensions)
         if restricted_headers is not None:
-            pulumi.set(__self__, "restricted_headers", restricted_headers)
+            _setter("restricted_headers", restricted_headers)
         if rfi_score_threshold is not None:
-            pulumi.set(__self__, "rfi_score_threshold", rfi_score_threshold)
+            _setter("rfi_score_threshold", rfi_score_threshold)
         if rule_exclusions is not None:
-            pulumi.set(__self__, "rule_exclusions", rule_exclusions)
+            _setter("rule_exclusions", rule_exclusions)
         if rules is not None:
-            pulumi.set(__self__, "rules", rules)
+            _setter("rules", rules)
         if session_fixation_score_threshold is not None:
-            pulumi.set(__self__, "session_fixation_score_threshold", session_fixation_score_threshold)
+            _setter("session_fixation_score_threshold", session_fixation_score_threshold)
         if sql_injection_score_threshold is not None:
-            pulumi.set(__self__, "sql_injection_score_threshold", sql_injection_score_threshold)
+            _setter("sql_injection_score_threshold", sql_injection_score_threshold)
         if total_arg_length is not None:
-            pulumi.set(__self__, "total_arg_length", total_arg_length)
+            _setter("total_arg_length", total_arg_length)
         if waf_id is not None:
-            pulumi.set(__self__, "waf_id", waf_id)
+            _setter("waf_id", waf_id)
         if warning_anomaly_score is not None:
-            pulumi.set(__self__, "warning_anomaly_score", warning_anomaly_score)
+            _setter("warning_anomaly_score", warning_anomaly_score)
         if xss_score_threshold is not None:
-            pulumi.set(__self__, "xss_score_threshold", xss_score_threshold)
+            _setter("xss_score_threshold", xss_score_threshold)
 
     @property
     @pulumi.getter
@@ -913,7 +1061,7 @@ class _ServiceWafConfigurationState:
     @pulumi.getter
     def number(self) -> Optional[pulumi.Input[int]]:
         """
-        The WAF firewall version
+        The numeric ID assigned to the WAF Rule Exclusion
         """
         return pulumi.get(self, "number")
 
@@ -1225,6 +1373,10 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ServiceWafConfigurationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1380,7 +1532,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes
         :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed
         :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies
-        :param pulumi.Input[int] number: The WAF firewall version
+        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion
         :param pulumi.Input[int] paranoia_level: The configured paranoia level
         :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold
         :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold
@@ -1599,7 +1751,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def number(self) -> pulumi.Output[int]:
         """
-        The WAF firewall version
+        The numeric ID assigned to the WAF Rule Exclusion
         """
         return pulumi.get(self, "number")
 

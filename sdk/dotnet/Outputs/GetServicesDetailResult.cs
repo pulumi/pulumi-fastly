@@ -16,9 +16,6 @@ namespace Pulumi.Fastly.Outputs
         public readonly string Comment;
         public readonly string CreatedAt;
         public readonly string CustomerId;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string Id;
         public readonly string Name;
         public readonly string Type;

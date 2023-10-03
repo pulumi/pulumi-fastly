@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['UserArgs', 'User']
@@ -23,11 +23,24 @@ class UserArgs:
         :param pulumi.Input[str] name: The real life name of the user
         :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
-        pulumi.set(__self__, "login", login)
+        UserArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            login=login,
+            name=name,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             login: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("login", login)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if role is not None:
-            pulumi.set(__self__, "role", role)
+            _setter("role", role)
 
     @property
     @pulumi.getter
@@ -78,12 +91,25 @@ class _UserState:
         :param pulumi.Input[str] name: The real life name of the user
         :param pulumi.Input[str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
         """
+        _UserState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            login=login,
+            name=name,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             login: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if login is not None:
-            pulumi.set(__self__, "login", login)
+            _setter("login", login)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if role is not None:
-            pulumi.set(__self__, "role", role)
+            _setter("role", role)
 
     @property
     @pulumi.getter
@@ -201,6 +227,10 @@ class User(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

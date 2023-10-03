@@ -35,6 +35,9 @@ namespace Pulumi.Fastly
     [FastlyResourceType("fastly:index/serviceVcl:ServiceVcl")]
     public partial class ServiceVcl : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.ServiceVclAcl>> Acls { get; private set; } = null!;
 
@@ -63,7 +66,7 @@ namespace Pulumi.Fastly
         public Output<int> ClonedVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
+        /// An optional comment about the Director
         /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
@@ -72,7 +75,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclCondition>> Conditions { get; private set; } = null!;
 
         /// <summary>
-        /// The default hostname
+        /// Sets the host header
         /// </summary>
         [Output("defaultHost")]
         public Output<string?> DefaultHost { get; private set; } = null!;
@@ -90,7 +93,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclDirector>> Directors { get; private set; } = null!;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your Service
+        /// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         /// </summary>
         [Output("domains")]
         public Output<ImmutableArray<Outputs.ServiceVclDomain>> Domains { get; private set; } = null!;
@@ -99,7 +102,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclDynamicsnippet>> Dynamicsnippets { get; private set; } = null!;
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -118,6 +121,9 @@ namespace Pulumi.Fastly
         [Output("headers")]
         public Output<ImmutableArray<Outputs.ServiceVclHeader>> Headers { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of a defined `healthcheck` to assign to this backend
+        /// </summary>
         [Output("healthchecks")]
         public Output<ImmutableArray<Outputs.ServiceVclHealthcheck>> Healthchecks { get; private set; } = null!;
 
@@ -212,7 +218,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclLoggingSyslog>> LoggingSyslogs { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name for the Service to create
+        /// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -226,6 +232,9 @@ namespace Pulumi.Fastly
         [Output("requestSettings")]
         public Output<ImmutableArray<Outputs.ServiceVclRequestSetting>> RequestSettings { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the response object used by the Web Application Firewall
+        /// </summary>
         [Output("responseObjects")]
         public Output<ImmutableArray<Outputs.ServiceVclResponseObject>> ResponseObjects { get; private set; } = null!;
 
@@ -312,6 +321,10 @@ namespace Pulumi.Fastly
     {
         [Input("acls")]
         private InputList<Inputs.ServiceVclAclArgs>? _acls;
+
+        /// <summary>
+        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        /// </summary>
         public InputList<Inputs.ServiceVclAclArgs> Acls
         {
             get => _acls ?? (_acls = new InputList<Inputs.ServiceVclAclArgs>());
@@ -341,7 +354,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
+        /// An optional comment about the Director
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -355,7 +368,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The default hostname
+        /// Sets the host header
         /// </summary>
         [Input("defaultHost")]
         public Input<string>? DefaultHost { get; set; }
@@ -386,7 +399,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceVclDomainArgs>? _domains;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your Service
+        /// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         /// </summary>
         public InputList<Inputs.ServiceVclDomainArgs> Domains
         {
@@ -403,7 +416,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -426,6 +439,10 @@ namespace Pulumi.Fastly
 
         [Input("healthchecks")]
         private InputList<Inputs.ServiceVclHealthcheckArgs>? _healthchecks;
+
+        /// <summary>
+        /// Name of a defined `healthcheck` to assign to this backend
+        /// </summary>
         public InputList<Inputs.ServiceVclHealthcheckArgs> Healthchecks
         {
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceVclHealthcheckArgs>());
@@ -647,7 +664,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create
+        /// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -673,6 +690,10 @@ namespace Pulumi.Fastly
 
         [Input("responseObjects")]
         private InputList<Inputs.ServiceVclResponseObjectArgs>? _responseObjects;
+
+        /// <summary>
+        /// The name of the response object used by the Web Application Firewall
+        /// </summary>
         public InputList<Inputs.ServiceVclResponseObjectArgs> ResponseObjects
         {
             get => _responseObjects ?? (_responseObjects = new InputList<Inputs.ServiceVclResponseObjectArgs>());
@@ -734,6 +755,10 @@ namespace Pulumi.Fastly
     {
         [Input("acls")]
         private InputList<Inputs.ServiceVclAclGetArgs>? _acls;
+
+        /// <summary>
+        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        /// </summary>
         public InputList<Inputs.ServiceVclAclGetArgs> Acls
         {
             get => _acls ?? (_acls = new InputList<Inputs.ServiceVclAclGetArgs>());
@@ -775,7 +800,7 @@ namespace Pulumi.Fastly
         public Input<int>? ClonedVersion { get; set; }
 
         /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
+        /// An optional comment about the Director
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -789,7 +814,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The default hostname
+        /// Sets the host header
         /// </summary>
         [Input("defaultHost")]
         public Input<string>? DefaultHost { get; set; }
@@ -820,7 +845,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceVclDomainGetArgs>? _domains;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your Service
+        /// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         /// </summary>
         public InputList<Inputs.ServiceVclDomainGetArgs> Domains
         {
@@ -837,7 +862,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Allow the ACL to be deleted, even if it contains entries. Defaults to false.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -868,6 +893,10 @@ namespace Pulumi.Fastly
 
         [Input("healthchecks")]
         private InputList<Inputs.ServiceVclHealthcheckGetArgs>? _healthchecks;
+
+        /// <summary>
+        /// Name of a defined `healthcheck` to assign to this backend
+        /// </summary>
         public InputList<Inputs.ServiceVclHealthcheckGetArgs> Healthchecks
         {
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceVclHealthcheckGetArgs>());
@@ -1095,7 +1124,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create
+        /// A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -1121,6 +1150,10 @@ namespace Pulumi.Fastly
 
         [Input("responseObjects")]
         private InputList<Inputs.ServiceVclResponseObjectGetArgs>? _responseObjects;
+
+        /// <summary>
+        /// The name of the response object used by the Web Application Firewall
+        /// </summary>
         public InputList<Inputs.ServiceVclResponseObjectGetArgs> ResponseObjects
         {
             get => _responseObjects ?? (_responseObjects = new InputList<Inputs.ServiceVclResponseObjectGetArgs>());
