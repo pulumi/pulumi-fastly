@@ -9,18 +9,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetConfigstoresStore {
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private String id;
     private String name;
 
     private GetConfigstoresStore() {}
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

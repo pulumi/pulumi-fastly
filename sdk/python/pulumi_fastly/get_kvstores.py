@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetKvstoresResult',
     'AwaitableGetKvstoresResult',
     'get_kvstores',
+    'get_kvstores_output',
 ]
 
 @pulumi.output_type
@@ -67,3 +68,11 @@ def get_kvstores(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKvs
     return AwaitableGetKvstoresResult(
         id=pulumi.get(__ret__, 'id'),
         stores=pulumi.get(__ret__, 'stores'))
+
+
+@_utilities.lift_output_func(get_kvstores)
+def get_kvstores_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKvstoresResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

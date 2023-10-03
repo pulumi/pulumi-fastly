@@ -6,9 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface GetConfigstoresStore {
-    /**
-     * The ID of this resource.
-     */
     id: string;
     name: string;
 }
@@ -21,26 +18,17 @@ export interface GetDatacentersPop {
 }
 
 export interface GetDictionariesDictionary {
-    /**
-     * The ID of this resource.
-     */
     id: string;
     name: string;
     writeOnly: boolean;
 }
 
 export interface GetKvstoresStore {
-    /**
-     * The ID of this resource.
-     */
     id: string;
     name: string;
 }
 
 export interface GetSecretstoresStore {
-    /**
-     * The ID of this resource.
-     */
     id: string;
     name: string;
 }
@@ -49,9 +37,6 @@ export interface GetServicesDetail {
     comment: string;
     createdAt: string;
     customerId: string;
-    /**
-     * The ID of this resource.
-     */
     id: string;
     name: string;
     type: string;
@@ -66,17 +51,8 @@ export interface GetTlsConfigurationDnsRecord {
 }
 
 export interface GetWafRulesRule {
-    /**
-     * The rule's latest revision.
-     */
     latestRevisionNumber: number;
-    /**
-     * The rule's modsecurity ID.
-     */
     modsecRuleId: number;
-    /**
-     * The rule's type.
-     */
     type: string;
 }
 
@@ -2995,8 +2971,17 @@ export interface ServiceVclRateLimiter {
 }
 
 export interface ServiceVclRateLimiterResponse {
+    /**
+     * The VCL code that specifies exactly what the snippet does
+     */
     content: string;
+    /**
+     * Value of the `Content-Type` header sent with the request
+     */
     contentType: string;
+    /**
+     * HTTP response status code (e.g. 429)
+     */
     status: number;
 }
 
@@ -3176,32 +3161,14 @@ export interface ServiceWafConfigurationRuleExclusion {
 }
 
 export interface TlsSubscriptionManagedDnsChallenge {
-    /**
-     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     */
     recordName: string;
-    /**
-     * The type of DNS record to add, e.g. `A`, or `CNAME`.
-     */
     recordType: string;
-    /**
-     * The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
-     */
     recordValue: string;
 }
 
 export interface TlsSubscriptionManagedHttpChallenge {
-    /**
-     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     */
     recordName: string;
-    /**
-     * The type of DNS record to add, e.g. `A`, or `CNAME`.
-     */
     recordType: string;
-    /**
-     * A list with the value(s) to which the DNS record should point.
-     */
     recordValues: string[];
 }
 

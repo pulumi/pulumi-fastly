@@ -12,24 +12,14 @@ namespace Pulumi.Fastly.Inputs
 
     public sealed class TlsSubscriptionManagedHttpChallengeGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-        /// </summary>
         [Input("recordName")]
         public Input<string>? RecordName { get; set; }
 
-        /// <summary>
-        /// The type of DNS record to add, e.g. `A`, or `CNAME`.
-        /// </summary>
         [Input("recordType")]
         public Input<string>? RecordType { get; set; }
 
         [Input("recordValues")]
         private InputList<string>? _recordValues;
-
-        /// <summary>
-        /// A list with the value(s) to which the DNS record should point.
-        /// </summary>
         public InputList<string> RecordValues
         {
             get => _recordValues ?? (_recordValues = new InputList<string>());

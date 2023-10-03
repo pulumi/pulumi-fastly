@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class ServiceVclRateLimiterResponse {
+    /**
+     * @return The VCL code that specifies exactly what the snippet does
+     * 
+     */
     private String content;
+    /**
+     * @return Value of the `Content-Type` header sent with the request
+     * 
+     */
     private String contentType;
+    /**
+     * @return HTTP response status code (e.g. 429)
+     * 
+     */
     private Integer status;
 
     private ServiceVclRateLimiterResponse() {}
+    /**
+     * @return The VCL code that specifies exactly what the snippet does
+     * 
+     */
     public String content() {
         return this.content;
     }
+    /**
+     * @return Value of the `Content-Type` header sent with the request
+     * 
+     */
     public String contentType() {
         return this.contentType;
     }
+    /**
+     * @return HTTP response status code (e.g. 429)
+     * 
+     */
     public Integer status() {
         return this.status;
     }

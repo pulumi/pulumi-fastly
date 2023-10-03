@@ -40,12 +40,12 @@ type ServiceCompute struct {
 	Backends      ServiceComputeBackendArrayOutput `pulumi:"backends"`
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
+	// An optional comment about the Domain.
 	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
 	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
-	// A set of Domain names to serve as entry points for your Service
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
 	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
 	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
@@ -79,7 +79,7 @@ type ServiceCompute struct {
 	LoggingSplunks         ServiceComputeLoggingSplunkArrayOutput        `pulumi:"loggingSplunks"`
 	LoggingSumologics      ServiceComputeLoggingSumologicArrayOutput     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         ServiceComputeLoggingSyslogArrayOutput        `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrOutput           `pulumi:"package"`
@@ -134,12 +134,12 @@ type serviceComputeState struct {
 	Backends      []ServiceComputeBackend `pulumi:"backends"`
 	// The latest cloned version by the provider
 	ClonedVersion *int `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
+	// An optional comment about the Domain.
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
-	// A set of Domain names to serve as entry points for your Service
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domains []ServiceComputeDomain `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
 	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
@@ -173,7 +173,7 @@ type serviceComputeState struct {
 	LoggingSplunks         []ServiceComputeLoggingSplunk        `pulumi:"loggingSplunks"`
 	LoggingSumologics      []ServiceComputeLoggingSumologic     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         []ServiceComputeLoggingSyslog        `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           *ServiceComputePackage           `pulumi:"package"`
@@ -196,12 +196,12 @@ type ServiceComputeState struct {
 	Backends      ServiceComputeBackendArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	// Description field for the service. Default `Managed by Terraform`
+	// An optional comment about the Domain.
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
-	// A set of Domain names to serve as entry points for your Service
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domains ServiceComputeDomainArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy pulumi.BoolPtrInput
 	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
 	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
@@ -235,7 +235,7 @@ type ServiceComputeState struct {
 	LoggingSplunks         ServiceComputeLoggingSplunkArrayInput
 	LoggingSumologics      ServiceComputeLoggingSumologicArrayInput
 	LoggingSyslogs         ServiceComputeLoggingSyslogArrayInput
-	// The unique name for the Service to create
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrInput
@@ -258,12 +258,12 @@ type serviceComputeArgs struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate *bool                   `pulumi:"activate"`
 	Backends []ServiceComputeBackend `pulumi:"backends"`
-	// Description field for the service. Default `Managed by Terraform`
+	// An optional comment about the Domain.
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
-	// A set of Domain names to serve as entry points for your Service
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domains []ServiceComputeDomain `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy           *bool                                `pulumi:"forceDestroy"`
 	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    []ServiceComputeLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
@@ -291,7 +291,7 @@ type serviceComputeArgs struct {
 	LoggingSplunks         []ServiceComputeLoggingSplunk        `pulumi:"loggingSplunks"`
 	LoggingSumologics      []ServiceComputeLoggingSumologic     `pulumi:"loggingSumologics"`
 	LoggingSyslogs         []ServiceComputeLoggingSyslog        `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           *ServiceComputePackage           `pulumi:"package"`
@@ -311,12 +311,12 @@ type ServiceComputeArgs struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
 	Backends ServiceComputeBackendArrayInput
-	// Description field for the service. Default `Managed by Terraform`
+	// An optional comment about the Domain.
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
-	// A set of Domain names to serve as entry points for your Service
+	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domains ServiceComputeDomainArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy           pulumi.BoolPtrInput
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
 	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayInput
@@ -344,7 +344,7 @@ type ServiceComputeArgs struct {
 	LoggingSplunks         ServiceComputeLoggingSplunkArrayInput
 	LoggingSumologics      ServiceComputeLoggingSumologicArrayInput
 	LoggingSyslogs         ServiceComputeLoggingSyslogArrayInput
-	// The unique name for the Service to create
+	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrInput
@@ -489,7 +489,7 @@ func (o ServiceComputeOutput) ClonedVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
 }
 
-// Description field for the service. Default `Managed by Terraform`
+// An optional comment about the Domain.
 func (o ServiceComputeOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -498,12 +498,12 @@ func (o ServiceComputeOutput) Dictionaries() ServiceComputeDictionaryArrayOutput
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeDictionaryArrayOutput { return v.Dictionaries }).(ServiceComputeDictionaryArrayOutput)
 }
 
-// A set of Domain names to serve as entry points for your Service
+// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 func (o ServiceComputeOutput) Domains() ServiceComputeDomainArrayOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeDomainArrayOutput { return v.Domains }).(ServiceComputeDomainArrayOutput)
 }
 
-// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 func (o ServiceComputeOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
@@ -624,7 +624,7 @@ func (o ServiceComputeOutput) LoggingSyslogs() ServiceComputeLoggingSyslogArrayO
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingSyslogArrayOutput { return v.LoggingSyslogs }).(ServiceComputeLoggingSyslogArrayOutput)
 }
 
-// The unique name for the Service to create
+// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

@@ -83,7 +83,7 @@ type ServiceWafConfiguration struct {
 	MaxNumArgs pulumi.IntOutput `pulumi:"maxNumArgs"`
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntOutput `pulumi:"noticeAnomalyScore"`
-	// The WAF firewall version
+	// The numeric ID assigned to the WAF Rule Exclusion
 	Number pulumi.IntOutput `pulumi:"number"`
 	// The configured paranoia level
 	ParanoiaLevel pulumi.IntOutput `pulumi:"paranoiaLevel"`
@@ -186,7 +186,7 @@ type serviceWafConfigurationState struct {
 	MaxNumArgs *int `pulumi:"maxNumArgs"`
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore *int `pulumi:"noticeAnomalyScore"`
-	// The WAF firewall version
+	// The numeric ID assigned to the WAF Rule Exclusion
 	Number *int `pulumi:"number"`
 	// The configured paranoia level
 	ParanoiaLevel *int `pulumi:"paranoiaLevel"`
@@ -257,7 +257,7 @@ type ServiceWafConfigurationState struct {
 	MaxNumArgs pulumi.IntPtrInput
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntPtrInput
-	// The WAF firewall version
+	// The numeric ID assigned to the WAF Rule Exclusion
 	Number pulumi.IntPtrInput
 	// The configured paranoia level
 	ParanoiaLevel pulumi.IntPtrInput
@@ -633,7 +633,7 @@ func (o ServiceWafConfigurationOutput) NoticeAnomalyScore() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.NoticeAnomalyScore }).(pulumi.IntOutput)
 }
 
-// The WAF firewall version
+// The numeric ID assigned to the WAF Rule Exclusion
 func (o ServiceWafConfigurationOutput) Number() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.Number }).(pulumi.IntOutput)
 }

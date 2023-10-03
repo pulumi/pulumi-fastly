@@ -14,23 +14,47 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
 
     public static final ServiceVclRateLimiterResponseArgs Empty = new ServiceVclRateLimiterResponseArgs();
 
+    /**
+     * The VCL code that specifies exactly what the snippet does
+     * 
+     */
     @Import(name="content", required=true)
     private Output<String> content;
 
+    /**
+     * @return The VCL code that specifies exactly what the snippet does
+     * 
+     */
     public Output<String> content() {
         return this.content;
     }
 
+    /**
+     * Value of the `Content-Type` header sent with the request
+     * 
+     */
     @Import(name="contentType", required=true)
     private Output<String> contentType;
 
+    /**
+     * @return Value of the `Content-Type` header sent with the request
+     * 
+     */
     public Output<String> contentType() {
         return this.contentType;
     }
 
+    /**
+     * HTTP response status code (e.g. 429)
+     * 
+     */
     @Import(name="status", required=true)
     private Output<Integer> status;
 
+    /**
+     * @return HTTP response status code (e.g. 429)
+     * 
+     */
     public Output<Integer> status() {
         return this.status;
     }
@@ -61,29 +85,65 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
             $ = new ServiceVclRateLimiterResponseArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param content The VCL code that specifies exactly what the snippet does
+         * 
+         * @return builder
+         * 
+         */
         public Builder content(Output<String> content) {
             $.content = content;
             return this;
         }
 
+        /**
+         * @param content The VCL code that specifies exactly what the snippet does
+         * 
+         * @return builder
+         * 
+         */
         public Builder content(String content) {
             return content(Output.of(content));
         }
 
+        /**
+         * @param contentType Value of the `Content-Type` header sent with the request
+         * 
+         * @return builder
+         * 
+         */
         public Builder contentType(Output<String> contentType) {
             $.contentType = contentType;
             return this;
         }
 
+        /**
+         * @param contentType Value of the `Content-Type` header sent with the request
+         * 
+         * @return builder
+         * 
+         */
         public Builder contentType(String contentType) {
             return contentType(Output.of(contentType));
         }
 
+        /**
+         * @param status HTTP response status code (e.g. 429)
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(Output<Integer> status) {
             $.status = status;
             return this;
         }
 
+        /**
+         * @param status HTTP response status code (e.g. 429)
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(Integer status) {
             return status(Output.of(status));
         }

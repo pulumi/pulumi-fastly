@@ -13,9 +13,6 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetConfigstoresStoreResult
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string Id;
         public readonly string Name;
 

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ServiceDictionaryItemsArgs', 'ServiceDictionaryItems']
@@ -25,12 +25,27 @@ class ServiceDictionaryItemsArgs:
         :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[bool] manage_items: Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         """
-        pulumi.set(__self__, "dictionary_id", dictionary_id)
-        pulumi.set(__self__, "service_id", service_id)
+        ServiceDictionaryItemsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            dictionary_id=dictionary_id,
+            service_id=service_id,
+            items=items,
+            manage_items=manage_items,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             dictionary_id: pulumi.Input[str],
+             service_id: pulumi.Input[str],
+             items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             manage_items: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("dictionary_id", dictionary_id)
+        _setter("service_id", service_id)
         if items is not None:
-            pulumi.set(__self__, "items", items)
+            _setter("items", items)
         if manage_items is not None:
-            pulumi.set(__self__, "manage_items", manage_items)
+            _setter("manage_items", manage_items)
 
     @property
     @pulumi.getter(name="dictionaryId")
@@ -95,14 +110,29 @@ class _ServiceDictionaryItemsState:
         :param pulumi.Input[bool] manage_items: Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
         """
+        _ServiceDictionaryItemsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            dictionary_id=dictionary_id,
+            items=items,
+            manage_items=manage_items,
+            service_id=service_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             dictionary_id: Optional[pulumi.Input[str]] = None,
+             items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             manage_items: Optional[pulumi.Input[bool]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if dictionary_id is not None:
-            pulumi.set(__self__, "dictionary_id", dictionary_id)
+            _setter("dictionary_id", dictionary_id)
         if items is not None:
-            pulumi.set(__self__, "items", items)
+            _setter("items", items)
         if manage_items is not None:
-            pulumi.set(__self__, "manage_items", manage_items)
+            _setter("manage_items", manage_items)
         if service_id is not None:
-            pulumi.set(__self__, "service_id", service_id)
+            _setter("service_id", service_id)
 
     @property
     @pulumi.getter(name="dictionaryId")
@@ -208,6 +238,10 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ServiceDictionaryItemsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

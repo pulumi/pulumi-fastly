@@ -142,7 +142,7 @@ export class ServiceWafConfiguration extends pulumi.CustomResource {
      */
     public readonly noticeAnomalyScore!: pulumi.Output<number>;
     /**
-     * The WAF firewall version
+     * The numeric ID assigned to the WAF Rule Exclusion
      */
     public /*out*/ readonly number!: pulumi.Output<number>;
     /**
@@ -375,7 +375,7 @@ export interface ServiceWafConfigurationState {
      */
     noticeAnomalyScore?: pulumi.Input<number>;
     /**
-     * The WAF firewall version
+     * The numeric ID assigned to the WAF Rule Exclusion
      */
     number?: pulumi.Input<number>;
     /**

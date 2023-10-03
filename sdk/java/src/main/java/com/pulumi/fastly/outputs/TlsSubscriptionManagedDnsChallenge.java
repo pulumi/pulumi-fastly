@@ -11,41 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TlsSubscriptionManagedDnsChallenge {
-    /**
-     * @return The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     * 
-     */
     private @Nullable String recordName;
-    /**
-     * @return The type of DNS record to add, e.g. `A`, or `CNAME`.
-     * 
-     */
     private @Nullable String recordType;
-    /**
-     * @return The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
-     * 
-     */
     private @Nullable String recordValue;
 
     private TlsSubscriptionManagedDnsChallenge() {}
-    /**
-     * @return The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     * 
-     */
     public Optional<String> recordName() {
         return Optional.ofNullable(this.recordName);
     }
-    /**
-     * @return The type of DNS record to add, e.g. `A`, or `CNAME`.
-     * 
-     */
     public Optional<String> recordType() {
         return Optional.ofNullable(this.recordType);
     }
-    /**
-     * @return The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
-     * 
-     */
     public Optional<String> recordValue() {
         return Optional.ofNullable(this.recordValue);
     }

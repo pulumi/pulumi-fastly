@@ -62,9 +62,17 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ServiceVclArgs Empty = new ServiceVclArgs();
 
+    /**
+     * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     * 
+     */
     @Import(name="acls")
     private @Nullable Output<List<ServiceVclAclArgs>> acls;
 
+    /**
+     * @return The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+     * 
+     */
     public Optional<Output<List<ServiceVclAclArgs>>> acls() {
         return Optional.ofNullable(this.acls);
     }
@@ -99,14 +107,14 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Description field for the service. Default `Managed by Terraform`
+     * An optional comment about the Director
      * 
      */
     @Import(name="comment")
     private @Nullable Output<String> comment;
 
     /**
-     * @return Description field for the service. Default `Managed by Terraform`
+     * @return An optional comment about the Director
      * 
      */
     public Optional<Output<String>> comment() {
@@ -121,14 +129,14 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The default hostname
+     * Sets the host header
      * 
      */
     @Import(name="defaultHost")
     private @Nullable Output<String> defaultHost;
 
     /**
-     * @return The default hostname
+     * @return Sets the host header
      * 
      */
     public Optional<Output<String>> defaultHost() {
@@ -165,14 +173,14 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
      * 
      */
     @Import(name="domains", required=true)
     private Output<List<ServiceVclDomainArgs>> domains;
 
     /**
-     * @return A set of Domain names to serve as entry points for your Service
+     * @return The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
      * 
      */
     public Output<List<ServiceVclDomainArgs>> domains() {
@@ -187,14 +195,14 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * Allow the ACL to be deleted, even if it contains entries. Defaults to false.
      * 
      */
     @Import(name="forceDestroy")
     private @Nullable Output<Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * @return Allow the ACL to be deleted, even if it contains entries. Defaults to false.
      * 
      */
     public Optional<Output<Boolean>> forceDestroy() {
@@ -215,9 +223,17 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.headers);
     }
 
+    /**
+     * Name of a defined `healthcheck` to assign to this backend
+     * 
+     */
     @Import(name="healthchecks")
     private @Nullable Output<List<ServiceVclHealthcheckArgs>> healthchecks;
 
+    /**
+     * @return Name of a defined `healthcheck` to assign to this backend
+     * 
+     */
     public Optional<Output<List<ServiceVclHealthcheckArgs>>> healthchecks() {
         return Optional.ofNullable(this.healthchecks);
     }
@@ -420,14 +436,14 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The unique name for the Service to create
+     * A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The unique name for the Service to create
+     * @return A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
      * 
      */
     public Optional<Output<String>> name() {
@@ -455,9 +471,17 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.requestSettings);
     }
 
+    /**
+     * The name of the response object used by the Web Application Firewall
+     * 
+     */
     @Import(name="responseObjects")
     private @Nullable Output<List<ServiceVclResponseObjectArgs>> responseObjects;
 
+    /**
+     * @return The name of the response object used by the Web Application Firewall
+     * 
+     */
     public Optional<Output<List<ServiceVclResponseObjectArgs>>> responseObjects() {
         return Optional.ofNullable(this.responseObjects);
     }
@@ -625,15 +649,33 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
             $ = new ServiceVclArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param acls The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+         * 
+         * @return builder
+         * 
+         */
         public Builder acls(@Nullable Output<List<ServiceVclAclArgs>> acls) {
             $.acls = acls;
             return this;
         }
 
+        /**
+         * @param acls The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+         * 
+         * @return builder
+         * 
+         */
         public Builder acls(List<ServiceVclAclArgs> acls) {
             return acls(Output.of(acls));
         }
 
+        /**
+         * @param acls The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+         * 
+         * @return builder
+         * 
+         */
         public Builder acls(ServiceVclAclArgs... acls) {
             return acls(List.of(acls));
         }
@@ -686,7 +728,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param comment Description field for the service. Default `Managed by Terraform`
+         * @param comment An optional comment about the Director
          * 
          * @return builder
          * 
@@ -697,7 +739,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param comment Description field for the service. Default `Managed by Terraform`
+         * @param comment An optional comment about the Director
          * 
          * @return builder
          * 
@@ -720,7 +762,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultHost The default hostname
+         * @param defaultHost Sets the host header
          * 
          * @return builder
          * 
@@ -731,7 +773,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultHost The default hostname
+         * @param defaultHost Sets the host header
          * 
          * @return builder
          * 
@@ -788,7 +830,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A set of Domain names to serve as entry points for your Service
+         * @param domains The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
          * 
          * @return builder
          * 
@@ -799,7 +841,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A set of Domain names to serve as entry points for your Service
+         * @param domains The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
          * 
          * @return builder
          * 
@@ -809,7 +851,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A set of Domain names to serve as entry points for your Service
+         * @param domains The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
          * 
          * @return builder
          * 
@@ -832,7 +874,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Allow the ACL to be deleted, even if it contains entries. Defaults to false.
          * 
          * @return builder
          * 
@@ -843,7 +885,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Allow the ACL to be deleted, even if it contains entries. Defaults to false.
          * 
          * @return builder
          * 
@@ -878,15 +920,33 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
             return headers(List.of(headers));
         }
 
+        /**
+         * @param healthchecks Name of a defined `healthcheck` to assign to this backend
+         * 
+         * @return builder
+         * 
+         */
         public Builder healthchecks(@Nullable Output<List<ServiceVclHealthcheckArgs>> healthchecks) {
             $.healthchecks = healthchecks;
             return this;
         }
 
+        /**
+         * @param healthchecks Name of a defined `healthcheck` to assign to this backend
+         * 
+         * @return builder
+         * 
+         */
         public Builder healthchecks(List<ServiceVclHealthcheckArgs> healthchecks) {
             return healthchecks(Output.of(healthchecks));
         }
 
+        /**
+         * @param healthchecks Name of a defined `healthcheck` to assign to this backend
+         * 
+         * @return builder
+         * 
+         */
         public Builder healthchecks(ServiceVclHealthcheckArgs... healthchecks) {
             return healthchecks(List.of(healthchecks));
         }
@@ -1251,7 +1311,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The unique name for the Service to create
+         * @param name A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
          * 
          * @return builder
          * 
@@ -1262,7 +1322,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The unique name for the Service to create
+         * @param name A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
          * 
          * @return builder
          * 
@@ -1306,15 +1366,33 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
             return requestSettings(List.of(requestSettings));
         }
 
+        /**
+         * @param responseObjects The name of the response object used by the Web Application Firewall
+         * 
+         * @return builder
+         * 
+         */
         public Builder responseObjects(@Nullable Output<List<ServiceVclResponseObjectArgs>> responseObjects) {
             $.responseObjects = responseObjects;
             return this;
         }
 
+        /**
+         * @param responseObjects The name of the response object used by the Web Application Firewall
+         * 
+         * @return builder
+         * 
+         */
         public Builder responseObjects(List<ServiceVclResponseObjectArgs> responseObjects) {
             return responseObjects(Output.of(responseObjects));
         }
 
+        /**
+         * @param responseObjects The name of the response object used by the Web Application Firewall
+         * 
+         * @return builder
+         * 
+         */
         public Builder responseObjects(ServiceVclResponseObjectArgs... responseObjects) {
             return responseObjects(List.of(responseObjects));
         }

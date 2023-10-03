@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetTlsPlatformCertificateIdsResult',
     'AwaitableGetTlsPlatformCertificateIdsResult',
     'get_tls_platform_certificate_ids',
+    'get_tls_platform_certificate_ids_output',
 ]
 
 @pulumi.output_type
@@ -76,3 +77,21 @@ def get_tls_platform_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None
     return AwaitableGetTlsPlatformCertificateIdsResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
+
+
+@_utilities.lift_output_func(get_tls_platform_certificate_ids)
+def get_tls_platform_certificate_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPlatformCertificateIdsResult]:
+    """
+    Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_tls_platform_certificate_ids = fastly.get_tls_platform_certificate_ids()
+    example_tls_platform_certificate = fastly.get_tls_platform_certificate(id=example_tls_platform_certificate_ids.ids[0])
+    ```
+    """
+    ...

@@ -16,47 +16,23 @@ public final class TlsSubscriptionManagedHttpChallengeArgs extends com.pulumi.re
 
     public static final TlsSubscriptionManagedHttpChallengeArgs Empty = new TlsSubscriptionManagedHttpChallengeArgs();
 
-    /**
-     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     * 
-     */
     @Import(name="recordName")
     private @Nullable Output<String> recordName;
 
-    /**
-     * @return The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     * 
-     */
     public Optional<Output<String>> recordName() {
         return Optional.ofNullable(this.recordName);
     }
 
-    /**
-     * The type of DNS record to add, e.g. `A`, or `CNAME`.
-     * 
-     */
     @Import(name="recordType")
     private @Nullable Output<String> recordType;
 
-    /**
-     * @return The type of DNS record to add, e.g. `A`, or `CNAME`.
-     * 
-     */
     public Optional<Output<String>> recordType() {
         return Optional.ofNullable(this.recordType);
     }
 
-    /**
-     * A list with the value(s) to which the DNS record should point.
-     * 
-     */
     @Import(name="recordValues")
     private @Nullable Output<List<String>> recordValues;
 
-    /**
-     * @return A list with the value(s) to which the DNS record should point.
-     * 
-     */
     public Optional<Output<List<String>>> recordValues() {
         return Optional.ofNullable(this.recordValues);
     }
@@ -87,75 +63,33 @@ public final class TlsSubscriptionManagedHttpChallengeArgs extends com.pulumi.re
             $ = new TlsSubscriptionManagedHttpChallengeArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param recordName The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-         * 
-         * @return builder
-         * 
-         */
         public Builder recordName(@Nullable Output<String> recordName) {
             $.recordName = recordName;
             return this;
         }
 
-        /**
-         * @param recordName The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-         * 
-         * @return builder
-         * 
-         */
         public Builder recordName(String recordName) {
             return recordName(Output.of(recordName));
         }
 
-        /**
-         * @param recordType The type of DNS record to add, e.g. `A`, or `CNAME`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder recordType(@Nullable Output<String> recordType) {
             $.recordType = recordType;
             return this;
         }
 
-        /**
-         * @param recordType The type of DNS record to add, e.g. `A`, or `CNAME`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder recordType(String recordType) {
             return recordType(Output.of(recordType));
         }
 
-        /**
-         * @param recordValues A list with the value(s) to which the DNS record should point.
-         * 
-         * @return builder
-         * 
-         */
         public Builder recordValues(@Nullable Output<List<String>> recordValues) {
             $.recordValues = recordValues;
             return this;
         }
 
-        /**
-         * @param recordValues A list with the value(s) to which the DNS record should point.
-         * 
-         * @return builder
-         * 
-         */
         public Builder recordValues(List<String> recordValues) {
             return recordValues(Output.of(recordValues));
         }
 
-        /**
-         * @param recordValues A list with the value(s) to which the DNS record should point.
-         * 
-         * @return builder
-         * 
-         */
         public Builder recordValues(String... recordValues) {
             return recordValues(List.of(recordValues));
         }

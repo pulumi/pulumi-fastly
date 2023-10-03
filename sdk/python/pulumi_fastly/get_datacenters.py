@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetDatacentersResult',
     'AwaitableGetDatacentersResult',
     'get_datacenters',
+    'get_datacenters_output',
 ]
 
 @pulumi.output_type
@@ -67,3 +68,11 @@ def get_datacenters(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     return AwaitableGetDatacentersResult(
         id=pulumi.get(__ret__, 'id'),
         pops=pulumi.get(__ret__, 'pops'))
+
+
+@_utilities.lift_output_func(get_datacenters)
+def get_datacenters_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatacentersResult]:
+    """
+    Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
+    """
+    ...

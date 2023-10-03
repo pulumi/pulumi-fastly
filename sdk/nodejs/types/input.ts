@@ -2920,8 +2920,17 @@ export interface ServiceVclRateLimiter {
 }
 
 export interface ServiceVclRateLimiterResponse {
+    /**
+     * The VCL code that specifies exactly what the snippet does
+     */
     content: pulumi.Input<string>;
+    /**
+     * Value of the `Content-Type` header sent with the request
+     */
     contentType: pulumi.Input<string>;
+    /**
+     * HTTP response status code (e.g. 429)
+     */
     status: pulumi.Input<number>;
 }
 
@@ -3101,31 +3110,13 @@ export interface ServiceWafConfigurationRuleExclusion {
 }
 
 export interface TlsSubscriptionManagedDnsChallenge {
-    /**
-     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     */
     recordName?: pulumi.Input<string>;
-    /**
-     * The type of DNS record to add, e.g. `A`, or `CNAME`.
-     */
     recordType?: pulumi.Input<string>;
-    /**
-     * The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
-     */
     recordValue?: pulumi.Input<string>;
 }
 
 export interface TlsSubscriptionManagedHttpChallenge {
-    /**
-     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-     */
     recordName?: pulumi.Input<string>;
-    /**
-     * The type of DNS record to add, e.g. `A`, or `CNAME`.
-     */
     recordType?: pulumi.Input<string>;
-    /**
-     * A list with the value(s) to which the DNS record should point.
-     */
     recordValues?: pulumi.Input<pulumi.Input<string>[]>;
 }

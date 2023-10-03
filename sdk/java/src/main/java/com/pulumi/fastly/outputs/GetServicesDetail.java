@@ -13,10 +13,6 @@ public final class GetServicesDetail {
     private String comment;
     private String createdAt;
     private String customerId;
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private String id;
     private String name;
     private String type;
@@ -33,10 +29,6 @@ public final class GetServicesDetail {
     public String customerId() {
         return this.customerId;
     }
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

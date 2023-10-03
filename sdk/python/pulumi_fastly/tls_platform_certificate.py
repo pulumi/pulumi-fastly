@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TlsPlatformCertificateArgs', 'TlsPlatformCertificate']
@@ -25,11 +25,26 @@ class TlsPlatformCertificateArgs:
         :param pulumi.Input[str] intermediates_blob: PEM-formatted certificate chain from the `certificate_body` to its root.
         :param pulumi.Input[bool] allow_untrusted_root: Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
         """
-        pulumi.set(__self__, "certificate_body", certificate_body)
-        pulumi.set(__self__, "configuration_id", configuration_id)
-        pulumi.set(__self__, "intermediates_blob", intermediates_blob)
+        TlsPlatformCertificateArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            certificate_body=certificate_body,
+            configuration_id=configuration_id,
+            intermediates_blob=intermediates_blob,
+            allow_untrusted_root=allow_untrusted_root,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             certificate_body: pulumi.Input[str],
+             configuration_id: pulumi.Input[str],
+             intermediates_blob: pulumi.Input[str],
+             allow_untrusted_root: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("certificate_body", certificate_body)
+        _setter("configuration_id", configuration_id)
+        _setter("intermediates_blob", intermediates_blob)
         if allow_untrusted_root is not None:
-            pulumi.set(__self__, "allow_untrusted_root", allow_untrusted_root)
+            _setter("allow_untrusted_root", allow_untrusted_root)
 
     @property
     @pulumi.getter(name="certificateBody")
@@ -106,26 +121,53 @@ class _TlsPlatformCertificateState:
         :param pulumi.Input[bool] replace: A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
         :param pulumi.Input[str] updated_at: Timestamp (GMT) when the certificate was last updated.
         """
+        _TlsPlatformCertificateState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_untrusted_root=allow_untrusted_root,
+            certificate_body=certificate_body,
+            configuration_id=configuration_id,
+            created_at=created_at,
+            domains=domains,
+            intermediates_blob=intermediates_blob,
+            not_after=not_after,
+            not_before=not_before,
+            replace=replace,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_untrusted_root: Optional[pulumi.Input[bool]] = None,
+             certificate_body: Optional[pulumi.Input[str]] = None,
+             configuration_id: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             intermediates_blob: Optional[pulumi.Input[str]] = None,
+             not_after: Optional[pulumi.Input[str]] = None,
+             not_before: Optional[pulumi.Input[str]] = None,
+             replace: Optional[pulumi.Input[bool]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if allow_untrusted_root is not None:
-            pulumi.set(__self__, "allow_untrusted_root", allow_untrusted_root)
+            _setter("allow_untrusted_root", allow_untrusted_root)
         if certificate_body is not None:
-            pulumi.set(__self__, "certificate_body", certificate_body)
+            _setter("certificate_body", certificate_body)
         if configuration_id is not None:
-            pulumi.set(__self__, "configuration_id", configuration_id)
+            _setter("configuration_id", configuration_id)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if domains is not None:
-            pulumi.set(__self__, "domains", domains)
+            _setter("domains", domains)
         if intermediates_blob is not None:
-            pulumi.set(__self__, "intermediates_blob", intermediates_blob)
+            _setter("intermediates_blob", intermediates_blob)
         if not_after is not None:
-            pulumi.set(__self__, "not_after", not_after)
+            _setter("not_after", not_after)
         if not_before is not None:
-            pulumi.set(__self__, "not_before", not_before)
+            _setter("not_before", not_before)
         if replace is not None:
-            pulumi.set(__self__, "replace", replace)
+            _setter("replace", replace)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter(name="allowUntrustedRoot")
@@ -413,6 +455,10 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TlsPlatformCertificateArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

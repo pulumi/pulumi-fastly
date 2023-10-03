@@ -160,7 +160,7 @@ namespace Pulumi.Fastly
         public Output<int> NoticeAnomalyScore { get; private set; } = null!;
 
         /// <summary>
-        /// The WAF firewall version
+        /// The numeric ID assigned to the WAF Rule Exclusion
         /// </summary>
         [Output("number")]
         public Output<int> Number { get; private set; } = null!;
@@ -614,7 +614,7 @@ namespace Pulumi.Fastly
         public Input<int>? NoticeAnomalyScore { get; set; }
 
         /// <summary>
-        /// The WAF firewall version
+        /// The numeric ID assigned to the WAF Rule Exclusion
         /// </summary>
         [Input("number")]
         public Input<int>? Number { get; set; }

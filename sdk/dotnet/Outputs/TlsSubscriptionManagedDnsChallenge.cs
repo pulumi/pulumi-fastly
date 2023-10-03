@@ -13,17 +13,8 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class TlsSubscriptionManagedDnsChallenge
     {
-        /// <summary>
-        /// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-        /// </summary>
         public readonly string? RecordName;
-        /// <summary>
-        /// The type of DNS record to add, e.g. `A`, or `CNAME`.
-        /// </summary>
         public readonly string? RecordType;
-        /// <summary>
-        /// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
-        /// </summary>
         public readonly string? RecordValue;
 
         [OutputConstructor]

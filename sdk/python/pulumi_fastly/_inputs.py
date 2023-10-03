@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -109,15 +109,32 @@ class ServiceACLEntriesEntryArgs:
         :param pulumi.Input[bool] negated: A boolean that will negate the match if true
         :param pulumi.Input[str] subnet: An optional subnet mask applied to the IP address
         """
-        pulumi.set(__self__, "ip", ip)
+        ServiceACLEntriesEntryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ip=ip,
+            comment=comment,
+            id=id,
+            negated=negated,
+            subnet=subnet,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ip: pulumi.Input[str],
+             comment: Optional[pulumi.Input[str]] = None,
+             id: Optional[pulumi.Input[str]] = None,
+             negated: Optional[pulumi.Input[bool]] = None,
+             subnet: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("ip", ip)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if negated is not None:
-            pulumi.set(__self__, "negated", negated)
+            _setter("negated", negated)
         if subnet is not None:
-            pulumi.set(__self__, "subnet", subnet)
+            _setter("subnet", subnet)
 
     @property
     @pulumi.getter
@@ -233,52 +250,107 @@ class ServiceComputeBackendArgs:
         :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
+        ServiceComputeBackendArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            between_bytes_timeout=between_bytes_timeout,
+            connect_timeout=connect_timeout,
+            error_threshold=error_threshold,
+            first_byte_timeout=first_byte_timeout,
+            healthcheck=healthcheck,
+            keepalive_time=keepalive_time,
+            max_conn=max_conn,
+            max_tls_version=max_tls_version,
+            min_tls_version=min_tls_version,
+            override_host=override_host,
+            port=port,
+            share_key=share_key,
+            shield=shield,
+            ssl_ca_cert=ssl_ca_cert,
+            ssl_cert_hostname=ssl_cert_hostname,
+            ssl_check_cert=ssl_check_cert,
+            ssl_ciphers=ssl_ciphers,
+            ssl_client_cert=ssl_client_cert,
+            ssl_client_key=ssl_client_key,
+            ssl_sni_hostname=ssl_sni_hostname,
+            use_ssl=use_ssl,
+            weight=weight,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             between_bytes_timeout: Optional[pulumi.Input[int]] = None,
+             connect_timeout: Optional[pulumi.Input[int]] = None,
+             error_threshold: Optional[pulumi.Input[int]] = None,
+             first_byte_timeout: Optional[pulumi.Input[int]] = None,
+             healthcheck: Optional[pulumi.Input[str]] = None,
+             keepalive_time: Optional[pulumi.Input[int]] = None,
+             max_conn: Optional[pulumi.Input[int]] = None,
+             max_tls_version: Optional[pulumi.Input[str]] = None,
+             min_tls_version: Optional[pulumi.Input[str]] = None,
+             override_host: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             share_key: Optional[pulumi.Input[str]] = None,
+             shield: Optional[pulumi.Input[str]] = None,
+             ssl_ca_cert: Optional[pulumi.Input[str]] = None,
+             ssl_cert_hostname: Optional[pulumi.Input[str]] = None,
+             ssl_check_cert: Optional[pulumi.Input[bool]] = None,
+             ssl_ciphers: Optional[pulumi.Input[str]] = None,
+             ssl_client_cert: Optional[pulumi.Input[str]] = None,
+             ssl_client_key: Optional[pulumi.Input[str]] = None,
+             ssl_sni_hostname: Optional[pulumi.Input[str]] = None,
+             use_ssl: Optional[pulumi.Input[bool]] = None,
+             weight: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
         if between_bytes_timeout is not None:
-            pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
+            _setter("between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
-            pulumi.set(__self__, "connect_timeout", connect_timeout)
+            _setter("connect_timeout", connect_timeout)
         if error_threshold is not None:
-            pulumi.set(__self__, "error_threshold", error_threshold)
+            _setter("error_threshold", error_threshold)
         if first_byte_timeout is not None:
-            pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
+            _setter("first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
-            pulumi.set(__self__, "healthcheck", healthcheck)
+            _setter("healthcheck", healthcheck)
         if keepalive_time is not None:
-            pulumi.set(__self__, "keepalive_time", keepalive_time)
+            _setter("keepalive_time", keepalive_time)
         if max_conn is not None:
-            pulumi.set(__self__, "max_conn", max_conn)
+            _setter("max_conn", max_conn)
         if max_tls_version is not None:
-            pulumi.set(__self__, "max_tls_version", max_tls_version)
+            _setter("max_tls_version", max_tls_version)
         if min_tls_version is not None:
-            pulumi.set(__self__, "min_tls_version", min_tls_version)
+            _setter("min_tls_version", min_tls_version)
         if override_host is not None:
-            pulumi.set(__self__, "override_host", override_host)
+            _setter("override_host", override_host)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if share_key is not None:
-            pulumi.set(__self__, "share_key", share_key)
+            _setter("share_key", share_key)
         if shield is not None:
-            pulumi.set(__self__, "shield", shield)
+            _setter("shield", shield)
         if ssl_ca_cert is not None:
-            pulumi.set(__self__, "ssl_ca_cert", ssl_ca_cert)
+            _setter("ssl_ca_cert", ssl_ca_cert)
         if ssl_cert_hostname is not None:
-            pulumi.set(__self__, "ssl_cert_hostname", ssl_cert_hostname)
+            _setter("ssl_cert_hostname", ssl_cert_hostname)
         if ssl_check_cert is not None:
-            pulumi.set(__self__, "ssl_check_cert", ssl_check_cert)
+            _setter("ssl_check_cert", ssl_check_cert)
         if ssl_ciphers is not None:
-            pulumi.set(__self__, "ssl_ciphers", ssl_ciphers)
+            _setter("ssl_ciphers", ssl_ciphers)
         if ssl_client_cert is not None:
-            pulumi.set(__self__, "ssl_client_cert", ssl_client_cert)
+            _setter("ssl_client_cert", ssl_client_cert)
         if ssl_client_key is not None:
-            pulumi.set(__self__, "ssl_client_key", ssl_client_key)
+            _setter("ssl_client_key", ssl_client_key)
         if ssl_sni_hostname is not None:
-            pulumi.set(__self__, "ssl_sni_hostname", ssl_sni_hostname)
+            _setter("ssl_sni_hostname", ssl_sni_hostname)
         if use_ssl is not None:
-            pulumi.set(__self__, "use_ssl", use_ssl)
+            _setter("use_ssl", use_ssl)
         if weight is not None:
-            pulumi.set(__self__, "weight", weight)
+            _setter("weight", weight)
 
     @property
     @pulumi.getter
@@ -581,13 +653,28 @@ class ServiceComputeDictionaryArgs:
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary
         :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         """
-        pulumi.set(__self__, "name", name)
+        ServiceComputeDictionaryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            dictionary_id=dictionary_id,
+            force_destroy=force_destroy,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             dictionary_id: Optional[pulumi.Input[str]] = None,
+             force_destroy: Optional[pulumi.Input[bool]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if dictionary_id is not None:
-            pulumi.set(__self__, "dictionary_id", dictionary_id)
+            _setter("dictionary_id", dictionary_id)
         if force_destroy is not None:
-            pulumi.set(__self__, "force_destroy", force_destroy)
+            _setter("force_destroy", force_destroy)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter
@@ -644,9 +731,20 @@ class ServiceComputeDomainArgs:
         :param pulumi.Input[str] name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         :param pulumi.Input[str] comment: An optional comment about the Domain.
         """
-        pulumi.set(__self__, "name", name)
+        ServiceComputeDomainArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            comment=comment,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             comment: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
 
     @property
     @pulumi.getter
@@ -694,16 +792,39 @@ class ServiceComputeLoggingBigqueryArgs:
         :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] template: BigQuery table name suffix template
         """
-        pulumi.set(__self__, "dataset", dataset)
-        pulumi.set(__self__, "email", email)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "secret_key", secret_key)
-        pulumi.set(__self__, "table", table)
+        ServiceComputeLoggingBigqueryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            dataset=dataset,
+            email=email,
+            name=name,
+            project_id=project_id,
+            secret_key=secret_key,
+            table=table,
+            account_name=account_name,
+            template=template,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             dataset: pulumi.Input[str],
+             email: pulumi.Input[str],
+             name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             secret_key: pulumi.Input[str],
+             table: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             template: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("dataset", dataset)
+        _setter("email", email)
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("secret_key", secret_key)
+        _setter("table", table)
         if account_name is not None:
-            pulumi.set(__self__, "account_name", account_name)
+            _setter("account_name", account_name)
         if template is not None:
-            pulumi.set(__self__, "template", template)
+            _setter("template", template)
 
     @property
     @pulumi.getter
@@ -831,26 +952,57 @@ class ServiceComputeLoggingBlobstorageArgs:
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "account_name", account_name)
-        pulumi.set(__self__, "container", container)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "sas_token", sas_token)
+        ServiceComputeLoggingBlobstorageArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            account_name=account_name,
+            container=container,
+            name=name,
+            sas_token=sas_token,
+            compression_codec=compression_codec,
+            file_max_bytes=file_max_bytes,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            public_key=public_key,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             account_name: pulumi.Input[str],
+             container: pulumi.Input[str],
+             name: pulumi.Input[str],
+             sas_token: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             file_max_bytes: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("account_name", account_name)
+        _setter("container", container)
+        _setter("name", name)
+        _setter("sas_token", sas_token)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if file_max_bytes is not None:
-            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
+            _setter("file_max_bytes", file_max_bytes)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accountName")
@@ -1026,26 +1178,57 @@ class ServiceComputeLoggingCloudfileArgs:
         :param pulumi.Input[str] region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "user", user)
+        ServiceComputeLoggingCloudfileArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key=access_key,
+            bucket_name=bucket_name,
+            name=name,
+            user=user,
+            compression_codec=compression_codec,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            public_key=public_key,
+            region=region,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key: pulumi.Input[str],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_key", access_key)
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -1203,10 +1386,23 @@ class ServiceComputeLoggingDatadogArgs:
         :param pulumi.Input[str] token: The API key from your Datadog account
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceComputeLoggingDatadogArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -1274,26 +1470,57 @@ class ServiceComputeLoggingDigitaloceanArgs:
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "secret_key", secret_key)
+        ServiceComputeLoggingDigitaloceanArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key=access_key,
+            bucket_name=bucket_name,
+            name=name,
+            secret_key=secret_key,
+            compression_codec=compression_codec,
+            domain=domain,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            public_key=public_key,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key: pulumi.Input[str],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             secret_key: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             domain: Optional[pulumi.Input[str]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_key", access_key)
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
+        _setter("secret_key", secret_key)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -1469,27 +1696,58 @@ class ServiceComputeLoggingElasticsearchArgs:
         :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         :param pulumi.Input[str] user: BasicAuth username for Elasticsearch
         """
-        pulumi.set(__self__, "index", index)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
+        ServiceComputeLoggingElasticsearchArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            index=index,
+            name=name,
+            url=url,
+            password=password,
+            pipeline=pipeline,
+            request_max_bytes=request_max_bytes,
+            request_max_entries=request_max_entries,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             index: pulumi.Input[str],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             password: Optional[pulumi.Input[str]] = None,
+             pipeline: Optional[pulumi.Input[str]] = None,
+             request_max_bytes: Optional[pulumi.Input[int]] = None,
+             request_max_entries: Optional[pulumi.Input[int]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("index", index)
+        _setter("name", name)
+        _setter("url", url)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if pipeline is not None:
-            pulumi.set(__self__, "pipeline", pipeline)
+            _setter("pipeline", pipeline)
         if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+            _setter("request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            pulumi.set(__self__, "request_max_entries", request_max_entries)
+            _setter("request_max_entries", request_max_entries)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if user is not None:
-            pulumi.set(__self__, "user", user)
+            _setter("user", user)
 
     @property
     @pulumi.getter
@@ -1665,25 +1923,56 @@ class ServiceComputeLoggingFtpArgs:
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "user", user)
+        ServiceComputeLoggingFtpArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            password=password,
+            path=path,
+            user=user,
+            compression_codec=compression_codec,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            period=period,
+            port=port,
+            public_key=public_key,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             password: pulumi.Input[str],
+             path: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
+        _setter("password", password)
+        _setter("path", path)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -1859,28 +2148,59 @@ class ServiceComputeLoggingGcArgs:
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
+        ServiceComputeLoggingGcArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket_name=bucket_name,
+            name=name,
+            account_name=account_name,
+            compression_codec=compression_codec,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            project_id=project_id,
+            secret_key=secret_key,
+            timestamp_format=timestamp_format,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
         if account_name is not None:
-            pulumi.set(__self__, "account_name", account_name)
+            _setter("account_name", account_name)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
+            _setter("secret_key", secret_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
         if user is not None:
-            pulumi.set(__self__, "user", user)
+            _setter("user", user)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -2044,13 +2364,32 @@ class ServiceComputeLoggingGooglepubsubArgs:
         :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "secret_key", secret_key)
-        pulumi.set(__self__, "topic", topic)
-        pulumi.set(__self__, "user", user)
+        ServiceComputeLoggingGooglepubsubArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            project_id=project_id,
+            secret_key=secret_key,
+            topic=topic,
+            user=user,
+            account_name=account_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             secret_key: pulumi.Input[str],
+             topic: pulumi.Input[str],
+             user: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("secret_key", secret_key)
+        _setter("topic", topic)
+        _setter("user", user)
         if account_name is not None:
-            pulumi.set(__self__, "account_name", account_name)
+            _setter("account_name", account_name)
 
     @property
     @pulumi.getter
@@ -2136,9 +2475,22 @@ class ServiceComputeLoggingHerokuArgs:
         :param pulumi.Input[str] token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         :param pulumi.Input[str] url: The URL to stream logs to
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
+        ServiceComputeLoggingHerokuArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            url=url,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             url: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
+        _setter("url", url)
 
     @property
     @pulumi.getter
@@ -2188,9 +2540,22 @@ class ServiceComputeLoggingHoneycombArgs:
         :param pulumi.Input[str] name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] token: The Write Key from the Account page of your Honeycomb account
         """
-        pulumi.set(__self__, "dataset", dataset)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceComputeLoggingHoneycombArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            dataset=dataset,
+            name=name,
+            token=token,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             dataset: pulumi.Input[str],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("dataset", dataset)
+        _setter("name", name)
+        _setter("token", token)
 
     @property
     @pulumi.getter
@@ -2262,32 +2627,67 @@ class ServiceComputeLoggingHttpArgs:
         :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param pulumi.Input[str] tls_hostname: Used during the TLS handshake to validate the certificate
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
+        ServiceComputeLoggingHttpArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            url=url,
+            content_type=content_type,
+            header_name=header_name,
+            header_value=header_value,
+            json_format=json_format,
+            message_type=message_type,
+            method=method,
+            request_max_bytes=request_max_bytes,
+            request_max_entries=request_max_entries,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             content_type: Optional[pulumi.Input[str]] = None,
+             header_name: Optional[pulumi.Input[str]] = None,
+             header_value: Optional[pulumi.Input[str]] = None,
+             json_format: Optional[pulumi.Input[str]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             method: Optional[pulumi.Input[str]] = None,
+             request_max_bytes: Optional[pulumi.Input[int]] = None,
+             request_max_entries: Optional[pulumi.Input[int]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("url", url)
         if content_type is not None:
-            pulumi.set(__self__, "content_type", content_type)
+            _setter("content_type", content_type)
         if header_name is not None:
-            pulumi.set(__self__, "header_name", header_name)
+            _setter("header_name", header_name)
         if header_value is not None:
-            pulumi.set(__self__, "header_value", header_value)
+            _setter("header_value", header_value)
         if json_format is not None:
-            pulumi.set(__self__, "json_format", json_format)
+            _setter("json_format", json_format)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if method is not None:
-            pulumi.set(__self__, "method", method)
+            _setter("method", method)
         if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+            _setter("request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            pulumi.set(__self__, "request_max_entries", request_max_entries)
+            _setter("request_max_entries", request_max_entries)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
 
     @property
     @pulumi.getter
@@ -2493,33 +2893,70 @@ class ServiceComputeLoggingKafkaArgs:
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
         :param pulumi.Input[str] user: SASL User
         """
-        pulumi.set(__self__, "brokers", brokers)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "topic", topic)
+        ServiceComputeLoggingKafkaArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            brokers=brokers,
+            name=name,
+            topic=topic,
+            auth_method=auth_method,
+            compression_codec=compression_codec,
+            parse_log_keyvals=parse_log_keyvals,
+            password=password,
+            request_max_bytes=request_max_bytes,
+            required_acks=required_acks,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            use_tls=use_tls,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             brokers: pulumi.Input[str],
+             name: pulumi.Input[str],
+             topic: pulumi.Input[str],
+             auth_method: Optional[pulumi.Input[str]] = None,
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             parse_log_keyvals: Optional[pulumi.Input[bool]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             request_max_bytes: Optional[pulumi.Input[int]] = None,
+             required_acks: Optional[pulumi.Input[str]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             user: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("brokers", brokers)
+        _setter("name", name)
+        _setter("topic", topic)
         if auth_method is not None:
-            pulumi.set(__self__, "auth_method", auth_method)
+            _setter("auth_method", auth_method)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if parse_log_keyvals is not None:
-            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
+            _setter("parse_log_keyvals", parse_log_keyvals)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+            _setter("request_max_bytes", request_max_bytes)
         if required_acks is not None:
-            pulumi.set(__self__, "required_acks", required_acks)
+            _setter("required_acks", required_acks)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
         if user is not None:
-            pulumi.set(__self__, "user", user)
+            _setter("user", user)
 
     @property
     @pulumi.getter
@@ -2719,16 +3156,35 @@ class ServiceComputeLoggingKineseArgs:
         :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "topic", topic)
+        ServiceComputeLoggingKineseArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            topic=topic,
+            access_key=access_key,
+            iam_role=iam_role,
+            region=region,
+            secret_key=secret_key,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             topic: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             iam_role: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("topic", topic)
         if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
+            _setter("access_key", access_key)
         if iam_role is not None:
-            pulumi.set(__self__, "iam_role", iam_role)
+            _setter("iam_role", iam_role)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
+            _setter("secret_key", secret_key)
 
     @property
     @pulumi.getter
@@ -2816,12 +3272,27 @@ class ServiceComputeLoggingLogentryArgs:
         :param pulumi.Input[int] port: The port number configured in Logentries
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceComputeLoggingLogentryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            port=port,
+            use_tls=use_tls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             port: Optional[pulumi.Input[int]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -2881,8 +3352,19 @@ class ServiceComputeLoggingLogglyArgs:
         :param pulumi.Input[str] name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceComputeLoggingLogglyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
 
     @property
     @pulumi.getter
@@ -2920,9 +3402,22 @@ class ServiceComputeLoggingLogshuttleArgs:
         :param pulumi.Input[str] token: The data authentication token associated with this endpoint
         :param pulumi.Input[str] url: Your Log Shuttle endpoint URL
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
+        ServiceComputeLoggingLogshuttleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            url=url,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             url: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
+        _setter("url", url)
 
     @property
     @pulumi.getter
@@ -2972,10 +3467,23 @@ class ServiceComputeLoggingNewrelicArgs:
         :param pulumi.Input[str] token: The Insert API key from the Account page of your New Relic account
         :param pulumi.Input[str] region: The region that log data will be sent to. Default: `US`
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceComputeLoggingNewrelicArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -3043,25 +3551,56 @@ class ServiceComputeLoggingOpenstackArgs:
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "user", user)
+        ServiceComputeLoggingOpenstackArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key=access_key,
+            bucket_name=bucket_name,
+            name=name,
+            url=url,
+            user=user,
+            compression_codec=compression_codec,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            public_key=public_key,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key: pulumi.Input[str],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_key", access_key)
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
+        _setter("url", url)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -3219,9 +3758,22 @@ class ServiceComputeLoggingPapertrailArgs:
         :param pulumi.Input[str] name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[int] port: The port associated with the address where the Papertrail endpoint can be accessed
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "port", port)
+        ServiceComputeLoggingPapertrailArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            port=port,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             port: pulumi.Input[int],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
+        _setter("port", port)
 
     @property
     @pulumi.getter
@@ -3301,40 +3853,83 @@ class ServiceComputeLoggingS3Args:
         :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
+        ServiceComputeLoggingS3Args._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket_name=bucket_name,
+            name=name,
+            acl=acl,
+            compression_codec=compression_codec,
+            domain=domain,
+            file_max_bytes=file_max_bytes,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            public_key=public_key,
+            redundancy=redundancy,
+            s3_access_key=s3_access_key,
+            s3_iam_role=s3_iam_role,
+            s3_secret_key=s3_secret_key,
+            server_side_encryption=server_side_encryption,
+            server_side_encryption_kms_key_id=server_side_encryption_kms_key_id,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             acl: Optional[pulumi.Input[str]] = None,
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             domain: Optional[pulumi.Input[str]] = None,
+             file_max_bytes: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             redundancy: Optional[pulumi.Input[str]] = None,
+             s3_access_key: Optional[pulumi.Input[str]] = None,
+             s3_iam_role: Optional[pulumi.Input[str]] = None,
+             s3_secret_key: Optional[pulumi.Input[str]] = None,
+             server_side_encryption: Optional[pulumi.Input[str]] = None,
+             server_side_encryption_kms_key_id: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
         if acl is not None:
-            pulumi.set(__self__, "acl", acl)
+            _setter("acl", acl)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
         if file_max_bytes is not None:
-            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
+            _setter("file_max_bytes", file_max_bytes)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if redundancy is not None:
-            pulumi.set(__self__, "redundancy", redundancy)
+            _setter("redundancy", redundancy)
         if s3_access_key is not None:
-            pulumi.set(__self__, "s3_access_key", s3_access_key)
+            _setter("s3_access_key", s3_access_key)
         if s3_iam_role is not None:
-            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
+            _setter("s3_iam_role", s3_iam_role)
         if s3_secret_key is not None:
-            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
+            _setter("s3_secret_key", s3_secret_key)
         if server_side_encryption is not None:
-            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
+            _setter("server_side_encryption", server_side_encryption)
         if server_side_encryption_kms_key_id is not None:
-            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
+            _setter("server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -3564,10 +4159,23 @@ class ServiceComputeLoggingScalyrArgs:
         :param pulumi.Input[str] token: The token to use for authentication (https://www.scalyr.com/keys)
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceComputeLoggingScalyrArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -3639,29 +4247,64 @@ class ServiceComputeLoggingSftpArgs:
         :param pulumi.Input[str] secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "ssh_known_hosts", ssh_known_hosts)
-        pulumi.set(__self__, "user", user)
+        ServiceComputeLoggingSftpArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            path=path,
+            ssh_known_hosts=ssh_known_hosts,
+            user=user,
+            compression_codec=compression_codec,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            password=password,
+            period=period,
+            port=port,
+            public_key=public_key,
+            secret_key=secret_key,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             path: pulumi.Input[str],
+             ssh_known_hosts: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
+        _setter("path", path)
+        _setter("ssh_known_hosts", ssh_known_hosts)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
+            _setter("secret_key", secret_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -3853,19 +4496,42 @@ class ServiceComputeLoggingSplunkArgs:
         :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Default: `false`
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
+        ServiceComputeLoggingSplunkArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            url=url,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            use_tls=use_tls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             url: pulumi.Input[str],
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
+        _setter("url", url)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -3975,10 +4641,23 @@ class ServiceComputeLoggingSumologicArgs:
         :param pulumi.Input[str] url: The URL to Sumologic collector endpoint
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
+        ServiceComputeLoggingSumologicArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            url=url,
+            message_type=message_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             message_type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("url", url)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
 
     @property
     @pulumi.getter
@@ -4042,24 +4721,51 @@ class ServiceComputeLoggingSyslogArgs:
         :param pulumi.Input[str] token: Whether to prepend each message with a specific token
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Default `false`
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
+        ServiceComputeLoggingSyslogArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            message_type=message_type,
+            port=port,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            token=token,
+            use_tls=use_tls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             message_type: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if token is not None:
-            pulumi.set(__self__, "token", token)
+            _setter("token", token)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -4193,12 +4899,25 @@ class ServiceComputePackageArgs:
         :param pulumi.Input[str] filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
         :param pulumi.Input[str] source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
         """
+        ServiceComputePackageArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content=content,
+            filename=filename,
+            source_code_hash=source_code_hash,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content: Optional[pulumi.Input[str]] = None,
+             filename: Optional[pulumi.Input[str]] = None,
+             source_code_hash: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if content is not None:
-            pulumi.set(__self__, "content", content)
+            _setter("content", content)
         if filename is not None:
-            pulumi.set(__self__, "filename", filename)
+            _setter("filename", filename)
         if source_code_hash is not None:
-            pulumi.set(__self__, "source_code_hash", source_code_hash)
+            _setter("source_code_hash", source_code_hash)
 
     @property
     @pulumi.getter
@@ -4248,12 +4967,25 @@ class ServiceComputeProductEnablementArgs:
         :param pulumi.Input[str] name: Used internally by the provider to identify modified settings
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
+        ServiceComputeProductEnablementArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            fanout=fanout,
+            name=name,
+            websockets=websockets,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             fanout: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             websockets: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if fanout is not None:
-            pulumi.set(__self__, "fanout", fanout)
+            _setter("fanout", fanout)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if websockets is not None:
-            pulumi.set(__self__, "websockets", websockets)
+            _setter("websockets", websockets)
 
     @property
     @pulumi.getter
@@ -4303,10 +5035,23 @@ class ServiceComputeResourceLinkArgs:
         :param pulumi.Input[str] resource_id: The ID of the underlying linked resource.
         :param pulumi.Input[str] link_id: An alphanumeric string identifying the resource link.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "resource_id", resource_id)
+        ServiceComputeResourceLinkArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            resource_id=resource_id,
+            link_id=link_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             resource_id: pulumi.Input[str],
+             link_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("resource_id", resource_id)
         if link_id is not None:
-            pulumi.set(__self__, "link_id", link_id)
+            _setter("link_id", link_id)
 
     @property
     @pulumi.getter
@@ -4356,11 +5101,24 @@ class ServiceVclAclArgs:
         :param pulumi.Input[str] acl_id: The ID of the ACL
         :param pulumi.Input[bool] force_destroy: Allow the ACL to be deleted, even if it contains entries. Defaults to false.
         """
-        pulumi.set(__self__, "name", name)
+        ServiceVclAclArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            acl_id=acl_id,
+            force_destroy=force_destroy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             acl_id: Optional[pulumi.Input[str]] = None,
+             force_destroy: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if acl_id is not None:
-            pulumi.set(__self__, "acl_id", acl_id)
+            _setter("acl_id", acl_id)
         if force_destroy is not None:
-            pulumi.set(__self__, "force_destroy", force_destroy)
+            _setter("force_destroy", force_destroy)
 
     @property
     @pulumi.getter
@@ -4456,56 +5214,115 @@ class ServiceVclBackendArgs:
         :param pulumi.Input[bool] use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param pulumi.Input[int] weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
+        ServiceVclBackendArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            auto_loadbalance=auto_loadbalance,
+            between_bytes_timeout=between_bytes_timeout,
+            connect_timeout=connect_timeout,
+            error_threshold=error_threshold,
+            first_byte_timeout=first_byte_timeout,
+            healthcheck=healthcheck,
+            keepalive_time=keepalive_time,
+            max_conn=max_conn,
+            max_tls_version=max_tls_version,
+            min_tls_version=min_tls_version,
+            override_host=override_host,
+            port=port,
+            request_condition=request_condition,
+            share_key=share_key,
+            shield=shield,
+            ssl_ca_cert=ssl_ca_cert,
+            ssl_cert_hostname=ssl_cert_hostname,
+            ssl_check_cert=ssl_check_cert,
+            ssl_ciphers=ssl_ciphers,
+            ssl_client_cert=ssl_client_cert,
+            ssl_client_key=ssl_client_key,
+            ssl_sni_hostname=ssl_sni_hostname,
+            use_ssl=use_ssl,
+            weight=weight,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             auto_loadbalance: Optional[pulumi.Input[bool]] = None,
+             between_bytes_timeout: Optional[pulumi.Input[int]] = None,
+             connect_timeout: Optional[pulumi.Input[int]] = None,
+             error_threshold: Optional[pulumi.Input[int]] = None,
+             first_byte_timeout: Optional[pulumi.Input[int]] = None,
+             healthcheck: Optional[pulumi.Input[str]] = None,
+             keepalive_time: Optional[pulumi.Input[int]] = None,
+             max_conn: Optional[pulumi.Input[int]] = None,
+             max_tls_version: Optional[pulumi.Input[str]] = None,
+             min_tls_version: Optional[pulumi.Input[str]] = None,
+             override_host: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             request_condition: Optional[pulumi.Input[str]] = None,
+             share_key: Optional[pulumi.Input[str]] = None,
+             shield: Optional[pulumi.Input[str]] = None,
+             ssl_ca_cert: Optional[pulumi.Input[str]] = None,
+             ssl_cert_hostname: Optional[pulumi.Input[str]] = None,
+             ssl_check_cert: Optional[pulumi.Input[bool]] = None,
+             ssl_ciphers: Optional[pulumi.Input[str]] = None,
+             ssl_client_cert: Optional[pulumi.Input[str]] = None,
+             ssl_client_key: Optional[pulumi.Input[str]] = None,
+             ssl_sni_hostname: Optional[pulumi.Input[str]] = None,
+             use_ssl: Optional[pulumi.Input[bool]] = None,
+             weight: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
         if auto_loadbalance is not None:
-            pulumi.set(__self__, "auto_loadbalance", auto_loadbalance)
+            _setter("auto_loadbalance", auto_loadbalance)
         if between_bytes_timeout is not None:
-            pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
+            _setter("between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
-            pulumi.set(__self__, "connect_timeout", connect_timeout)
+            _setter("connect_timeout", connect_timeout)
         if error_threshold is not None:
-            pulumi.set(__self__, "error_threshold", error_threshold)
+            _setter("error_threshold", error_threshold)
         if first_byte_timeout is not None:
-            pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
+            _setter("first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
-            pulumi.set(__self__, "healthcheck", healthcheck)
+            _setter("healthcheck", healthcheck)
         if keepalive_time is not None:
-            pulumi.set(__self__, "keepalive_time", keepalive_time)
+            _setter("keepalive_time", keepalive_time)
         if max_conn is not None:
-            pulumi.set(__self__, "max_conn", max_conn)
+            _setter("max_conn", max_conn)
         if max_tls_version is not None:
-            pulumi.set(__self__, "max_tls_version", max_tls_version)
+            _setter("max_tls_version", max_tls_version)
         if min_tls_version is not None:
-            pulumi.set(__self__, "min_tls_version", min_tls_version)
+            _setter("min_tls_version", min_tls_version)
         if override_host is not None:
-            pulumi.set(__self__, "override_host", override_host)
+            _setter("override_host", override_host)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if request_condition is not None:
-            pulumi.set(__self__, "request_condition", request_condition)
+            _setter("request_condition", request_condition)
         if share_key is not None:
-            pulumi.set(__self__, "share_key", share_key)
+            _setter("share_key", share_key)
         if shield is not None:
-            pulumi.set(__self__, "shield", shield)
+            _setter("shield", shield)
         if ssl_ca_cert is not None:
-            pulumi.set(__self__, "ssl_ca_cert", ssl_ca_cert)
+            _setter("ssl_ca_cert", ssl_ca_cert)
         if ssl_cert_hostname is not None:
-            pulumi.set(__self__, "ssl_cert_hostname", ssl_cert_hostname)
+            _setter("ssl_cert_hostname", ssl_cert_hostname)
         if ssl_check_cert is not None:
-            pulumi.set(__self__, "ssl_check_cert", ssl_check_cert)
+            _setter("ssl_check_cert", ssl_check_cert)
         if ssl_ciphers is not None:
-            pulumi.set(__self__, "ssl_ciphers", ssl_ciphers)
+            _setter("ssl_ciphers", ssl_ciphers)
         if ssl_client_cert is not None:
-            pulumi.set(__self__, "ssl_client_cert", ssl_client_cert)
+            _setter("ssl_client_cert", ssl_client_cert)
         if ssl_client_key is not None:
-            pulumi.set(__self__, "ssl_client_key", ssl_client_key)
+            _setter("ssl_client_key", ssl_client_key)
         if ssl_sni_hostname is not None:
-            pulumi.set(__self__, "ssl_sni_hostname", ssl_sni_hostname)
+            _setter("ssl_sni_hostname", ssl_sni_hostname)
         if use_ssl is not None:
-            pulumi.set(__self__, "use_ssl", use_ssl)
+            _setter("use_ssl", use_ssl)
         if weight is not None:
-            pulumi.set(__self__, "weight", weight)
+            _setter("weight", weight)
 
     @property
     @pulumi.getter
@@ -4835,15 +5652,32 @@ class ServiceVclCacheSettingArgs:
         :param pulumi.Input[int] stale_ttl: Max "Time To Live" for stale (unreachable) objects
         :param pulumi.Input[int] ttl: The Time-To-Live (TTL) for the object
         """
-        pulumi.set(__self__, "name", name)
+        ServiceVclCacheSettingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            action=action,
+            cache_condition=cache_condition,
+            stale_ttl=stale_ttl,
+            ttl=ttl,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             action: Optional[pulumi.Input[str]] = None,
+             cache_condition: Optional[pulumi.Input[str]] = None,
+             stale_ttl: Optional[pulumi.Input[int]] = None,
+             ttl: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if action is not None:
-            pulumi.set(__self__, "action", action)
+            _setter("action", action)
         if cache_condition is not None:
-            pulumi.set(__self__, "cache_condition", cache_condition)
+            _setter("cache_condition", cache_condition)
         if stale_ttl is not None:
-            pulumi.set(__self__, "stale_ttl", stale_ttl)
+            _setter("stale_ttl", stale_ttl)
         if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
+            _setter("ttl", ttl)
 
     @property
     @pulumi.getter
@@ -4919,11 +5753,26 @@ class ServiceVclConditionArgs:
         :param pulumi.Input[str] type: Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
         :param pulumi.Input[int] priority: A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "statement", statement)
-        pulumi.set(__self__, "type", type)
+        ServiceVclConditionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            statement=statement,
+            type=type,
+            priority=priority,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             statement: pulumi.Input[str],
+             type: pulumi.Input[str],
+             priority: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("statement", statement)
+        _setter("type", type)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
 
     @property
     @pulumi.getter
@@ -4986,13 +5835,28 @@ class ServiceVclDictionaryArgs:
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary
         :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         """
-        pulumi.set(__self__, "name", name)
+        ServiceVclDictionaryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            dictionary_id=dictionary_id,
+            force_destroy=force_destroy,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             dictionary_id: Optional[pulumi.Input[str]] = None,
+             force_destroy: Optional[pulumi.Input[bool]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if dictionary_id is not None:
-            pulumi.set(__self__, "dictionary_id", dictionary_id)
+            _setter("dictionary_id", dictionary_id)
         if force_destroy is not None:
-            pulumi.set(__self__, "force_destroy", force_destroy)
+            _setter("force_destroy", force_destroy)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter
@@ -5059,18 +5923,39 @@ class ServiceVclDirectorArgs:
         :param pulumi.Input[str] shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
         :param pulumi.Input[int] type: Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
         """
-        pulumi.set(__self__, "backends", backends)
-        pulumi.set(__self__, "name", name)
+        ServiceVclDirectorArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            backends=backends,
+            name=name,
+            comment=comment,
+            quorum=quorum,
+            retries=retries,
+            shield=shield,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             backends: pulumi.Input[Sequence[pulumi.Input[str]]],
+             name: pulumi.Input[str],
+             comment: Optional[pulumi.Input[str]] = None,
+             quorum: Optional[pulumi.Input[int]] = None,
+             retries: Optional[pulumi.Input[int]] = None,
+             shield: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("backends", backends)
+        _setter("name", name)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if quorum is not None:
-            pulumi.set(__self__, "quorum", quorum)
+            _setter("quorum", quorum)
         if retries is not None:
-            pulumi.set(__self__, "retries", retries)
+            _setter("retries", retries)
         if shield is not None:
-            pulumi.set(__self__, "shield", shield)
+            _setter("shield", shield)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -5166,9 +6051,20 @@ class ServiceVclDomainArgs:
         :param pulumi.Input[str] name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         :param pulumi.Input[str] comment: An optional comment about the Domain.
         """
-        pulumi.set(__self__, "name", name)
+        ServiceVclDomainArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            comment=comment,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             comment: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
 
     @property
     @pulumi.getter
@@ -5210,14 +6106,31 @@ class ServiceVclDynamicsnippetArgs:
         :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         :param pulumi.Input[str] snippet_id: The ID of the dynamic snippet
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
+        ServiceVclDynamicsnippetArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            type=type,
+            content=content,
+            priority=priority,
+            snippet_id=snippet_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             type: pulumi.Input[str],
+             content: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             snippet_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("type", type)
         if content is not None:
-            pulumi.set(__self__, "content", content)
+            _setter("content", content)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if snippet_id is not None:
-            pulumi.set(__self__, "snippet_id", snippet_id)
+            _setter("snippet_id", snippet_id)
 
     @property
     @pulumi.getter
@@ -5293,13 +6206,28 @@ class ServiceVclGzipArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] content_types: The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] extensions: File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
         """
-        pulumi.set(__self__, "name", name)
+        ServiceVclGzipArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            cache_condition=cache_condition,
+            content_types=content_types,
+            extensions=extensions,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             cache_condition: Optional[pulumi.Input[str]] = None,
+             content_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if cache_condition is not None:
-            pulumi.set(__self__, "cache_condition", cache_condition)
+            _setter("cache_condition", cache_condition)
         if content_types is not None:
-            pulumi.set(__self__, "content_types", content_types)
+            _setter("content_types", content_types)
         if extensions is not None:
-            pulumi.set(__self__, "extensions", extensions)
+            _setter("extensions", extensions)
 
     @property
     @pulumi.getter
@@ -5379,26 +6307,57 @@ class ServiceVclHeaderArgs:
         :param pulumi.Input[str] source: Variable to be used as a source for the header content (Does not apply to `delete` action.)
         :param pulumi.Input[str] substitution: Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
+        ServiceVclHeaderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            destination=destination,
+            name=name,
+            type=type,
+            cache_condition=cache_condition,
+            ignore_if_set=ignore_if_set,
+            priority=priority,
+            regex=regex,
+            request_condition=request_condition,
+            response_condition=response_condition,
+            source=source,
+            substitution=substitution,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: pulumi.Input[str],
+             destination: pulumi.Input[str],
+             name: pulumi.Input[str],
+             type: pulumi.Input[str],
+             cache_condition: Optional[pulumi.Input[str]] = None,
+             ignore_if_set: Optional[pulumi.Input[bool]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             regex: Optional[pulumi.Input[str]] = None,
+             request_condition: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             source: Optional[pulumi.Input[str]] = None,
+             substitution: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("destination", destination)
+        _setter("name", name)
+        _setter("type", type)
         if cache_condition is not None:
-            pulumi.set(__self__, "cache_condition", cache_condition)
+            _setter("cache_condition", cache_condition)
         if ignore_if_set is not None:
-            pulumi.set(__self__, "ignore_if_set", ignore_if_set)
+            _setter("ignore_if_set", ignore_if_set)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if regex is not None:
-            pulumi.set(__self__, "regex", regex)
+            _setter("regex", regex)
         if request_condition is not None:
-            pulumi.set(__self__, "request_condition", request_condition)
+            _setter("request_condition", request_condition)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
         if substitution is not None:
-            pulumi.set(__self__, "substitution", substitution)
+            _setter("substitution", substitution)
 
     @property
     @pulumi.getter
@@ -5574,27 +6533,58 @@ class ServiceVclHealthcheckArgs:
         :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`
         :param pulumi.Input[int] window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
-        pulumi.set(__self__, "host", host)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
+        ServiceVclHealthcheckArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            host=host,
+            name=name,
+            path=path,
+            check_interval=check_interval,
+            expected_response=expected_response,
+            headers=headers,
+            http_version=http_version,
+            initial=initial,
+            method=method,
+            threshold=threshold,
+            timeout=timeout,
+            window=window,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             host: pulumi.Input[str],
+             name: pulumi.Input[str],
+             path: pulumi.Input[str],
+             check_interval: Optional[pulumi.Input[int]] = None,
+             expected_response: Optional[pulumi.Input[int]] = None,
+             headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             http_version: Optional[pulumi.Input[str]] = None,
+             initial: Optional[pulumi.Input[int]] = None,
+             method: Optional[pulumi.Input[str]] = None,
+             threshold: Optional[pulumi.Input[int]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             window: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("host", host)
+        _setter("name", name)
+        _setter("path", path)
         if check_interval is not None:
-            pulumi.set(__self__, "check_interval", check_interval)
+            _setter("check_interval", check_interval)
         if expected_response is not None:
-            pulumi.set(__self__, "expected_response", expected_response)
+            _setter("expected_response", expected_response)
         if headers is not None:
-            pulumi.set(__self__, "headers", headers)
+            _setter("headers", headers)
         if http_version is not None:
-            pulumi.set(__self__, "http_version", http_version)
+            _setter("http_version", http_version)
         if initial is not None:
-            pulumi.set(__self__, "initial", initial)
+            _setter("initial", initial)
         if method is not None:
-            pulumi.set(__self__, "method", method)
+            _setter("method", method)
         if threshold is not None:
-            pulumi.set(__self__, "threshold", threshold)
+            _setter("threshold", threshold)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
         if window is not None:
-            pulumi.set(__self__, "window", window)
+            _setter("window", window)
 
     @property
     @pulumi.getter
@@ -5768,22 +6758,51 @@ class ServiceVclLoggingBigqueryArgs:
         :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
         :param pulumi.Input[str] template: BigQuery table name suffix template
         """
-        pulumi.set(__self__, "dataset", dataset)
-        pulumi.set(__self__, "email", email)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "secret_key", secret_key)
-        pulumi.set(__self__, "table", table)
+        ServiceVclLoggingBigqueryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            dataset=dataset,
+            email=email,
+            name=name,
+            project_id=project_id,
+            secret_key=secret_key,
+            table=table,
+            account_name=account_name,
+            format=format,
+            placement=placement,
+            response_condition=response_condition,
+            template=template,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             dataset: pulumi.Input[str],
+             email: pulumi.Input[str],
+             name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             secret_key: pulumi.Input[str],
+             table: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             template: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("dataset", dataset)
+        _setter("email", email)
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("secret_key", secret_key)
+        _setter("table", table)
         if account_name is not None:
-            pulumi.set(__self__, "account_name", account_name)
+            _setter("account_name", account_name)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if template is not None:
-            pulumi.set(__self__, "template", template)
+            _setter("template", template)
 
     @property
     @pulumi.getter
@@ -5955,34 +6974,73 @@ class ServiceVclLoggingBlobstorageArgs:
         :param pulumi.Input[str] response_condition: The name of the condition to apply
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "account_name", account_name)
-        pulumi.set(__self__, "container", container)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "sas_token", sas_token)
+        ServiceVclLoggingBlobstorageArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            account_name=account_name,
+            container=container,
+            name=name,
+            sas_token=sas_token,
+            compression_codec=compression_codec,
+            file_max_bytes=file_max_bytes,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            placement=placement,
+            public_key=public_key,
+            response_condition=response_condition,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             account_name: pulumi.Input[str],
+             container: pulumi.Input[str],
+             name: pulumi.Input[str],
+             sas_token: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             file_max_bytes: Optional[pulumi.Input[int]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("account_name", account_name)
+        _setter("container", container)
+        _setter("name", name)
+        _setter("sas_token", sas_token)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if file_max_bytes is not None:
-            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
+            _setter("file_max_bytes", file_max_bytes)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accountName")
@@ -6214,34 +7272,73 @@ class ServiceVclLoggingCloudfileArgs:
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "user", user)
+        ServiceVclLoggingCloudfileArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key=access_key,
+            bucket_name=bucket_name,
+            name=name,
+            user=user,
+            compression_codec=compression_codec,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            placement=placement,
+            public_key=public_key,
+            region=region,
+            response_condition=response_condition,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key: pulumi.Input[str],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_key", access_key)
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -6455,18 +7552,39 @@ class ServiceVclLoggingDatadogArgs:
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceVclLoggingDatadogArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            region=region,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -6590,34 +7708,73 @@ class ServiceVclLoggingDigitaloceanArgs:
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "secret_key", secret_key)
+        ServiceVclLoggingDigitaloceanArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key=access_key,
+            bucket_name=bucket_name,
+            name=name,
+            secret_key=secret_key,
+            compression_codec=compression_codec,
+            domain=domain,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            placement=placement,
+            public_key=public_key,
+            response_condition=response_condition,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key: pulumi.Input[str],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             secret_key: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             domain: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_key", access_key)
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
+        _setter("secret_key", secret_key)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -6849,35 +8006,74 @@ class ServiceVclLoggingElasticsearchArgs:
         :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         :param pulumi.Input[str] user: BasicAuth username for Elasticsearch
         """
-        pulumi.set(__self__, "index", index)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
+        ServiceVclLoggingElasticsearchArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            index=index,
+            name=name,
+            url=url,
+            format=format,
+            format_version=format_version,
+            password=password,
+            pipeline=pipeline,
+            placement=placement,
+            request_max_bytes=request_max_bytes,
+            request_max_entries=request_max_entries,
+            response_condition=response_condition,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             index: pulumi.Input[str],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             pipeline: Optional[pulumi.Input[str]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             request_max_bytes: Optional[pulumi.Input[int]] = None,
+             request_max_entries: Optional[pulumi.Input[int]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("index", index)
+        _setter("name", name)
+        _setter("url", url)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if pipeline is not None:
-            pulumi.set(__self__, "pipeline", pipeline)
+            _setter("pipeline", pipeline)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+            _setter("request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            pulumi.set(__self__, "request_max_entries", request_max_entries)
+            _setter("request_max_entries", request_max_entries)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if user is not None:
-            pulumi.set(__self__, "user", user)
+            _setter("user", user)
 
     @property
     @pulumi.getter
@@ -7109,33 +8305,72 @@ class ServiceVclLoggingFtpArgs:
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "user", user)
+        ServiceVclLoggingFtpArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            password=password,
+            path=path,
+            user=user,
+            compression_codec=compression_codec,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            period=period,
+            placement=placement,
+            port=port,
+            public_key=public_key,
+            response_condition=response_condition,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             password: pulumi.Input[str],
+             path: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
+        _setter("password", password)
+        _setter("path", path)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -7367,36 +8602,75 @@ class ServiceVclLoggingGcArgs:
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
+        ServiceVclLoggingGcArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket_name=bucket_name,
+            name=name,
+            account_name=account_name,
+            compression_codec=compression_codec,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            placement=placement,
+            project_id=project_id,
+            response_condition=response_condition,
+            secret_key=secret_key,
+            timestamp_format=timestamp_format,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
         if account_name is not None:
-            pulumi.set(__self__, "account_name", account_name)
+            _setter("account_name", account_name)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
+            _setter("secret_key", secret_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
         if user is not None:
-            pulumi.set(__self__, "user", user)
+            _setter("user", user)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -7616,21 +8890,48 @@ class ServiceVclLoggingGooglepubsubArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "secret_key", secret_key)
-        pulumi.set(__self__, "topic", topic)
-        pulumi.set(__self__, "user", user)
+        ServiceVclLoggingGooglepubsubArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            project_id=project_id,
+            secret_key=secret_key,
+            topic=topic,
+            user=user,
+            account_name=account_name,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             secret_key: pulumi.Input[str],
+             topic: pulumi.Input[str],
+             user: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("secret_key", secret_key)
+        _setter("topic", topic)
+        _setter("user", user)
         if account_name is not None:
-            pulumi.set(__self__, "account_name", account_name)
+            _setter("account_name", account_name)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -7772,17 +9073,38 @@ class ServiceVclLoggingHerokusArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
+        ServiceVclLoggingHerokusArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            url=url,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             url: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
+        _setter("url", url)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -7888,17 +9210,38 @@ class ServiceVclLoggingHoneycombArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "dataset", dataset)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceVclLoggingHoneycombArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            dataset=dataset,
+            name=name,
+            token=token,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             dataset: pulumi.Input[str],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("dataset", dataset)
+        _setter("name", name)
+        _setter("token", token)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -8026,40 +9369,83 @@ class ServiceVclLoggingHttpArgs:
         :param pulumi.Input[str] tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param pulumi.Input[str] tls_hostname: Used during the TLS handshake to validate the certificate
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
+        ServiceVclLoggingHttpArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            url=url,
+            content_type=content_type,
+            format=format,
+            format_version=format_version,
+            header_name=header_name,
+            header_value=header_value,
+            json_format=json_format,
+            message_type=message_type,
+            method=method,
+            placement=placement,
+            request_max_bytes=request_max_bytes,
+            request_max_entries=request_max_entries,
+            response_condition=response_condition,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             content_type: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             header_name: Optional[pulumi.Input[str]] = None,
+             header_value: Optional[pulumi.Input[str]] = None,
+             json_format: Optional[pulumi.Input[str]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             method: Optional[pulumi.Input[str]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             request_max_bytes: Optional[pulumi.Input[int]] = None,
+             request_max_entries: Optional[pulumi.Input[int]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("url", url)
         if content_type is not None:
-            pulumi.set(__self__, "content_type", content_type)
+            _setter("content_type", content_type)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if header_name is not None:
-            pulumi.set(__self__, "header_name", header_name)
+            _setter("header_name", header_name)
         if header_value is not None:
-            pulumi.set(__self__, "header_value", header_value)
+            _setter("header_value", header_value)
         if json_format is not None:
-            pulumi.set(__self__, "json_format", json_format)
+            _setter("json_format", json_format)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if method is not None:
-            pulumi.set(__self__, "method", method)
+            _setter("method", method)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+            _setter("request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            pulumi.set(__self__, "request_max_entries", request_max_entries)
+            _setter("request_max_entries", request_max_entries)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
 
     @property
     @pulumi.getter
@@ -8321,41 +9707,86 @@ class ServiceVclLoggingKafkaArgs:
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
         :param pulumi.Input[str] user: SASL User
         """
-        pulumi.set(__self__, "brokers", brokers)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "topic", topic)
+        ServiceVclLoggingKafkaArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            brokers=brokers,
+            name=name,
+            topic=topic,
+            auth_method=auth_method,
+            compression_codec=compression_codec,
+            format=format,
+            format_version=format_version,
+            parse_log_keyvals=parse_log_keyvals,
+            password=password,
+            placement=placement,
+            request_max_bytes=request_max_bytes,
+            required_acks=required_acks,
+            response_condition=response_condition,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            use_tls=use_tls,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             brokers: pulumi.Input[str],
+             name: pulumi.Input[str],
+             topic: pulumi.Input[str],
+             auth_method: Optional[pulumi.Input[str]] = None,
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             parse_log_keyvals: Optional[pulumi.Input[bool]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             request_max_bytes: Optional[pulumi.Input[int]] = None,
+             required_acks: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             user: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("brokers", brokers)
+        _setter("name", name)
+        _setter("topic", topic)
         if auth_method is not None:
-            pulumi.set(__self__, "auth_method", auth_method)
+            _setter("auth_method", auth_method)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if parse_log_keyvals is not None:
-            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
+            _setter("parse_log_keyvals", parse_log_keyvals)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if request_max_bytes is not None:
-            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
+            _setter("request_max_bytes", request_max_bytes)
         if required_acks is not None:
-            pulumi.set(__self__, "required_acks", required_acks)
+            _setter("required_acks", required_acks)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
         if user is not None:
-            pulumi.set(__self__, "user", user)
+            _setter("user", user)
 
     @property
     @pulumi.getter
@@ -8611,24 +10042,51 @@ class ServiceVclLoggingKineseArgs:
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "topic", topic)
+        ServiceVclLoggingKineseArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            topic=topic,
+            access_key=access_key,
+            format=format,
+            format_version=format_version,
+            iam_role=iam_role,
+            placement=placement,
+            region=region,
+            response_condition=response_condition,
+            secret_key=secret_key,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             topic: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             iam_role: Optional[pulumi.Input[str]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("topic", topic)
         if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
+            _setter("access_key", access_key)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if iam_role is not None:
-            pulumi.set(__self__, "iam_role", iam_role)
+            _setter("iam_role", iam_role)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
+            _setter("secret_key", secret_key)
 
     @property
     @pulumi.getter
@@ -8772,20 +10230,43 @@ class ServiceVclLoggingLogentryArgs:
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceVclLoggingLogentryArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            port=port,
+            response_condition=response_condition,
+            use_tls=use_tls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -8901,16 +10382,35 @@ class ServiceVclLoggingLogglyArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceVclLoggingLogglyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -9004,17 +10504,38 @@ class ServiceVclLoggingLogshuttleArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
+        ServiceVclLoggingLogshuttleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            url=url,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             url: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
+        _setter("url", url)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -9120,18 +10641,39 @@ class ServiceVclLoggingNewrelicArgs:
         :param pulumi.Input[str] region: The region that log data will be sent to. Default: `US`
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceVclLoggingNewrelicArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            region=region,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -9255,33 +10797,72 @@ class ServiceVclLoggingOpenstackArgs:
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "user", user)
+        ServiceVclLoggingOpenstackArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key=access_key,
+            bucket_name=bucket_name,
+            name=name,
+            url=url,
+            user=user,
+            compression_codec=compression_codec,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            placement=placement,
+            public_key=public_key,
+            response_condition=response_condition,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key: pulumi.Input[str],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_key", access_key)
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
+        _setter("url", url)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -9495,17 +11076,38 @@ class ServiceVclLoggingPapertrailArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "port", port)
+        ServiceVclLoggingPapertrailArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            port=port,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             port: pulumi.Input[int],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
+        _setter("port", port)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -9641,48 +11243,99 @@ class ServiceVclLoggingS3Args:
         :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "name", name)
+        ServiceVclLoggingS3Args._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket_name=bucket_name,
+            name=name,
+            acl=acl,
+            compression_codec=compression_codec,
+            domain=domain,
+            file_max_bytes=file_max_bytes,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            path=path,
+            period=period,
+            placement=placement,
+            public_key=public_key,
+            redundancy=redundancy,
+            response_condition=response_condition,
+            s3_access_key=s3_access_key,
+            s3_iam_role=s3_iam_role,
+            s3_secret_key=s3_secret_key,
+            server_side_encryption=server_side_encryption,
+            server_side_encryption_kms_key_id=server_side_encryption_kms_key_id,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket_name: pulumi.Input[str],
+             name: pulumi.Input[str],
+             acl: Optional[pulumi.Input[str]] = None,
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             domain: Optional[pulumi.Input[str]] = None,
+             file_max_bytes: Optional[pulumi.Input[int]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             redundancy: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             s3_access_key: Optional[pulumi.Input[str]] = None,
+             s3_iam_role: Optional[pulumi.Input[str]] = None,
+             s3_secret_key: Optional[pulumi.Input[str]] = None,
+             server_side_encryption: Optional[pulumi.Input[str]] = None,
+             server_side_encryption_kms_key_id: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bucket_name", bucket_name)
+        _setter("name", name)
         if acl is not None:
-            pulumi.set(__self__, "acl", acl)
+            _setter("acl", acl)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
         if file_max_bytes is not None:
-            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
+            _setter("file_max_bytes", file_max_bytes)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if redundancy is not None:
-            pulumi.set(__self__, "redundancy", redundancy)
+            _setter("redundancy", redundancy)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if s3_access_key is not None:
-            pulumi.set(__self__, "s3_access_key", s3_access_key)
+            _setter("s3_access_key", s3_access_key)
         if s3_iam_role is not None:
-            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
+            _setter("s3_iam_role", s3_iam_role)
         if s3_secret_key is not None:
-            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
+            _setter("s3_secret_key", s3_secret_key)
         if server_side_encryption is not None:
-            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
+            _setter("server_side_encryption", server_side_encryption)
         if server_side_encryption_kms_key_id is not None:
-            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
+            _setter("server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -9968,18 +11621,39 @@ class ServiceVclLoggingScalyrArgs:
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
+        ServiceVclLoggingScalyrArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            region=region,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -10107,37 +11781,80 @@ class ServiceVclLoggingSftpArgs:
         :param pulumi.Input[str] secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "ssh_known_hosts", ssh_known_hosts)
-        pulumi.set(__self__, "user", user)
+        ServiceVclLoggingSftpArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            path=path,
+            ssh_known_hosts=ssh_known_hosts,
+            user=user,
+            compression_codec=compression_codec,
+            format=format,
+            format_version=format_version,
+            gzip_level=gzip_level,
+            message_type=message_type,
+            password=password,
+            period=period,
+            placement=placement,
+            port=port,
+            public_key=public_key,
+            response_condition=response_condition,
+            secret_key=secret_key,
+            timestamp_format=timestamp_format,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             path: pulumi.Input[str],
+             ssh_known_hosts: pulumi.Input[str],
+             user: pulumi.Input[str],
+             compression_codec: Optional[pulumi.Input[str]] = None,
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             gzip_level: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             timestamp_format: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
+        _setter("path", path)
+        _setter("ssh_known_hosts", ssh_known_hosts)
+        _setter("user", user)
         if compression_codec is not None:
-            pulumi.set(__self__, "compression_codec", compression_codec)
+            _setter("compression_codec", compression_codec)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if gzip_level is not None:
-            pulumi.set(__self__, "gzip_level", gzip_level)
+            _setter("gzip_level", gzip_level)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
+            _setter("secret_key", secret_key)
         if timestamp_format is not None:
-            pulumi.set(__self__, "timestamp_format", timestamp_format)
+            _setter("timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -10385,27 +12102,58 @@ class ServiceVclLoggingSplunkArgs:
         :param pulumi.Input[str] tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Default: `false`
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
+        ServiceVclLoggingSplunkArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            token=token,
+            url=url,
+            format=format,
+            format_version=format_version,
+            placement=placement,
+            response_condition=response_condition,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            use_tls=use_tls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             token: pulumi.Input[str],
+             url: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("token", token)
+        _setter("url", url)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -10571,18 +12319,39 @@ class ServiceVclLoggingSumologicArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "url", url)
+        ServiceVclLoggingSumologicArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            url=url,
+            format=format,
+            format_version=format_version,
+            message_type=message_type,
+            placement=placement,
+            response_condition=response_condition,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             url: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("url", url)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -10702,32 +12471,67 @@ class ServiceVclLoggingSyslogArgs:
         :param pulumi.Input[str] token: Whether to prepend each message with a specific token
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging. Default `false`
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "name", name)
+        ServiceVclLoggingSyslogArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            name=name,
+            format=format,
+            format_version=format_version,
+            message_type=message_type,
+            placement=placement,
+            port=port,
+            response_condition=response_condition,
+            tls_ca_cert=tls_ca_cert,
+            tls_client_cert=tls_client_cert,
+            tls_client_key=tls_client_key,
+            tls_hostname=tls_hostname,
+            token=token,
+            use_tls=use_tls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: pulumi.Input[str],
+             name: pulumi.Input[str],
+             format: Optional[pulumi.Input[str]] = None,
+             format_version: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             placement: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             response_condition: Optional[pulumi.Input[str]] = None,
+             tls_ca_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_cert: Optional[pulumi.Input[str]] = None,
+             tls_client_key: Optional[pulumi.Input[str]] = None,
+             tls_hostname: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             use_tls: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("address", address)
+        _setter("name", name)
         if format is not None:
-            pulumi.set(__self__, "format", format)
+            _setter("format", format)
         if format_version is not None:
-            pulumi.set(__self__, "format_version", format_version)
+            _setter("format_version", format_version)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if placement is not None:
-            pulumi.set(__self__, "placement", placement)
+            _setter("placement", placement)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if response_condition is not None:
-            pulumi.set(__self__, "response_condition", response_condition)
+            _setter("response_condition", response_condition)
         if tls_ca_cert is not None:
-            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
+            _setter("tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
+            _setter("tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            pulumi.set(__self__, "tls_client_key", tls_client_key)
+            _setter("tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            pulumi.set(__self__, "tls_hostname", tls_hostname)
+            _setter("tls_hostname", tls_hostname)
         if token is not None:
-            pulumi.set(__self__, "token", token)
+            _setter("token", token)
         if use_tls is not None:
-            pulumi.set(__self__, "use_tls", use_tls)
+            _setter("use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -10915,18 +12719,37 @@ class ServiceVclProductEnablementArgs:
         :param pulumi.Input[bool] origin_inspector: Enable Origin Inspector support
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
+        ServiceVclProductEnablementArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            brotli_compression=brotli_compression,
+            domain_inspector=domain_inspector,
+            image_optimizer=image_optimizer,
+            name=name,
+            origin_inspector=origin_inspector,
+            websockets=websockets,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             brotli_compression: Optional[pulumi.Input[bool]] = None,
+             domain_inspector: Optional[pulumi.Input[bool]] = None,
+             image_optimizer: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             origin_inspector: Optional[pulumi.Input[bool]] = None,
+             websockets: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if brotli_compression is not None:
-            pulumi.set(__self__, "brotli_compression", brotli_compression)
+            _setter("brotli_compression", brotli_compression)
         if domain_inspector is not None:
-            pulumi.set(__self__, "domain_inspector", domain_inspector)
+            _setter("domain_inspector", domain_inspector)
         if image_optimizer is not None:
-            pulumi.set(__self__, "image_optimizer", image_optimizer)
+            _setter("image_optimizer", image_optimizer)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if origin_inspector is not None:
-            pulumi.set(__self__, "origin_inspector", origin_inspector)
+            _setter("origin_inspector", origin_inspector)
         if websockets is not None:
-            pulumi.set(__self__, "websockets", websockets)
+            _setter("websockets", websockets)
 
     @property
     @pulumi.getter(name="brotliCompression")
@@ -11032,25 +12855,58 @@ class ServiceVclRateLimiterArgs:
         :param pulumi.Input[str] response_object_name: Name of existing response object. Required if action is response_object
         :param pulumi.Input[str] uri_dictionary_name: The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "client_key", client_key)
-        pulumi.set(__self__, "http_methods", http_methods)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "penalty_box_duration", penalty_box_duration)
-        pulumi.set(__self__, "rps_limit", rps_limit)
-        pulumi.set(__self__, "window_size", window_size)
+        ServiceVclRateLimiterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            client_key=client_key,
+            http_methods=http_methods,
+            name=name,
+            penalty_box_duration=penalty_box_duration,
+            rps_limit=rps_limit,
+            window_size=window_size,
+            feature_revision=feature_revision,
+            logger_type=logger_type,
+            ratelimiter_id=ratelimiter_id,
+            response=response,
+            response_object_name=response_object_name,
+            uri_dictionary_name=uri_dictionary_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: pulumi.Input[str],
+             client_key: pulumi.Input[str],
+             http_methods: pulumi.Input[str],
+             name: pulumi.Input[str],
+             penalty_box_duration: pulumi.Input[int],
+             rps_limit: pulumi.Input[int],
+             window_size: pulumi.Input[int],
+             feature_revision: Optional[pulumi.Input[int]] = None,
+             logger_type: Optional[pulumi.Input[str]] = None,
+             ratelimiter_id: Optional[pulumi.Input[str]] = None,
+             response: Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']] = None,
+             response_object_name: Optional[pulumi.Input[str]] = None,
+             uri_dictionary_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("client_key", client_key)
+        _setter("http_methods", http_methods)
+        _setter("name", name)
+        _setter("penalty_box_duration", penalty_box_duration)
+        _setter("rps_limit", rps_limit)
+        _setter("window_size", window_size)
         if feature_revision is not None:
-            pulumi.set(__self__, "feature_revision", feature_revision)
+            _setter("feature_revision", feature_revision)
         if logger_type is not None:
-            pulumi.set(__self__, "logger_type", logger_type)
+            _setter("logger_type", logger_type)
         if ratelimiter_id is not None:
-            pulumi.set(__self__, "ratelimiter_id", ratelimiter_id)
+            _setter("ratelimiter_id", ratelimiter_id)
         if response is not None:
-            pulumi.set(__self__, "response", response)
+            _setter("response", response)
         if response_object_name is not None:
-            pulumi.set(__self__, "response_object_name", response_object_name)
+            _setter("response_object_name", response_object_name)
         if uri_dictionary_name is not None:
-            pulumi.set(__self__, "uri_dictionary_name", uri_dictionary_name)
+            _setter("uri_dictionary_name", uri_dictionary_name)
 
     @property
     @pulumi.getter
@@ -11215,13 +13071,34 @@ class ServiceVclRateLimiterResponseArgs:
                  content: pulumi.Input[str],
                  content_type: pulumi.Input[str],
                  status: pulumi.Input[int]):
-        pulumi.set(__self__, "content", content)
-        pulumi.set(__self__, "content_type", content_type)
-        pulumi.set(__self__, "status", status)
+        """
+        :param pulumi.Input[str] content: The VCL code that specifies exactly what the snippet does
+        :param pulumi.Input[str] content_type: Value of the `Content-Type` header sent with the request
+        :param pulumi.Input[int] status: HTTP response status code (e.g. 429)
+        """
+        ServiceVclRateLimiterResponseArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content=content,
+            content_type=content_type,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content: pulumi.Input[str],
+             content_type: pulumi.Input[str],
+             status: pulumi.Input[int],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("content", content)
+        _setter("content_type", content_type)
+        _setter("status", status)
 
     @property
     @pulumi.getter
     def content(self) -> pulumi.Input[str]:
+        """
+        The VCL code that specifies exactly what the snippet does
+        """
         return pulumi.get(self, "content")
 
     @content.setter
@@ -11231,6 +13108,9 @@ class ServiceVclRateLimiterResponseArgs:
     @property
     @pulumi.getter(name="contentType")
     def content_type(self) -> pulumi.Input[str]:
+        """
+        Value of the `Content-Type` header sent with the request
+        """
         return pulumi.get(self, "content_type")
 
     @content_type.setter
@@ -11240,6 +13120,9 @@ class ServiceVclRateLimiterResponseArgs:
     @property
     @pulumi.getter
     def status(self) -> pulumi.Input[int]:
+        """
+        HTTP response status code (e.g. 429)
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -11276,32 +13159,63 @@ class ServiceVclRequestSettingArgs:
         :param pulumi.Input[bool] timer_support: Injects the X-Timer info into the request for viewing origin fetch durations
         :param pulumi.Input[str] xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         """
-        pulumi.set(__self__, "name", name)
+        ServiceVclRequestSettingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            action=action,
+            bypass_busy_wait=bypass_busy_wait,
+            default_host=default_host,
+            force_miss=force_miss,
+            force_ssl=force_ssl,
+            geo_headers=geo_headers,
+            hash_keys=hash_keys,
+            max_stale_age=max_stale_age,
+            request_condition=request_condition,
+            timer_support=timer_support,
+            xff=xff,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             action: Optional[pulumi.Input[str]] = None,
+             bypass_busy_wait: Optional[pulumi.Input[bool]] = None,
+             default_host: Optional[pulumi.Input[str]] = None,
+             force_miss: Optional[pulumi.Input[bool]] = None,
+             force_ssl: Optional[pulumi.Input[bool]] = None,
+             geo_headers: Optional[pulumi.Input[bool]] = None,
+             hash_keys: Optional[pulumi.Input[str]] = None,
+             max_stale_age: Optional[pulumi.Input[int]] = None,
+             request_condition: Optional[pulumi.Input[str]] = None,
+             timer_support: Optional[pulumi.Input[bool]] = None,
+             xff: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if action is not None:
-            pulumi.set(__self__, "action", action)
+            _setter("action", action)
         if bypass_busy_wait is not None:
-            pulumi.set(__self__, "bypass_busy_wait", bypass_busy_wait)
+            _setter("bypass_busy_wait", bypass_busy_wait)
         if default_host is not None:
-            pulumi.set(__self__, "default_host", default_host)
+            _setter("default_host", default_host)
         if force_miss is not None:
-            pulumi.set(__self__, "force_miss", force_miss)
+            _setter("force_miss", force_miss)
         if force_ssl is not None:
-            pulumi.set(__self__, "force_ssl", force_ssl)
+            _setter("force_ssl", force_ssl)
         if geo_headers is not None:
             warnings.warn("""'geo_headers' attribute has been deprecated and will be removed in the next major version release""", DeprecationWarning)
             pulumi.log.warn("""geo_headers is deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release""")
         if geo_headers is not None:
-            pulumi.set(__self__, "geo_headers", geo_headers)
+            _setter("geo_headers", geo_headers)
         if hash_keys is not None:
-            pulumi.set(__self__, "hash_keys", hash_keys)
+            _setter("hash_keys", hash_keys)
         if max_stale_age is not None:
-            pulumi.set(__self__, "max_stale_age", max_stale_age)
+            _setter("max_stale_age", max_stale_age)
         if request_condition is not None:
-            pulumi.set(__self__, "request_condition", request_condition)
+            _setter("request_condition", request_condition)
         if timer_support is not None:
-            pulumi.set(__self__, "timer_support", timer_support)
+            _setter("timer_support", timer_support)
         if xff is not None:
-            pulumi.set(__self__, "xff", xff)
+            _setter("xff", xff)
 
     @property
     @pulumi.getter
@@ -11470,19 +13384,40 @@ class ServiceVclResponseObjectArgs:
         :param pulumi.Input[str] response: The HTTP Response. Default `OK`
         :param pulumi.Input[int] status: The HTTP Status Code. Default `200`
         """
-        pulumi.set(__self__, "name", name)
+        ServiceVclResponseObjectArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            cache_condition=cache_condition,
+            content=content,
+            content_type=content_type,
+            request_condition=request_condition,
+            response=response,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: pulumi.Input[str],
+             cache_condition: Optional[pulumi.Input[str]] = None,
+             content: Optional[pulumi.Input[str]] = None,
+             content_type: Optional[pulumi.Input[str]] = None,
+             request_condition: Optional[pulumi.Input[str]] = None,
+             response: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
         if cache_condition is not None:
-            pulumi.set(__self__, "cache_condition", cache_condition)
+            _setter("cache_condition", cache_condition)
         if content is not None:
-            pulumi.set(__self__, "content", content)
+            _setter("content", content)
         if content_type is not None:
-            pulumi.set(__self__, "content_type", content_type)
+            _setter("content_type", content_type)
         if request_condition is not None:
-            pulumi.set(__self__, "request_condition", request_condition)
+            _setter("request_condition", request_condition)
         if response is not None:
-            pulumi.set(__self__, "response", response)
+            _setter("response", response)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter
@@ -11582,11 +13517,26 @@ class ServiceVclSnippetArgs:
         :param pulumi.Input[str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         :param pulumi.Input[int] priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
-        pulumi.set(__self__, "content", content)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
+        ServiceVclSnippetArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content=content,
+            name=name,
+            type=type,
+            priority=priority,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content: pulumi.Input[str],
+             name: pulumi.Input[str],
+             type: pulumi.Input[str],
+             priority: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("content", content)
+        _setter("name", name)
+        _setter("type", type)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
 
     @property
     @pulumi.getter
@@ -11648,10 +13598,23 @@ class ServiceVclVclArgs:
         :param pulumi.Input[str] name: A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[bool] main: If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
         """
-        pulumi.set(__self__, "content", content)
-        pulumi.set(__self__, "name", name)
+        ServiceVclVclArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content=content,
+            name=name,
+            main=main,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content: pulumi.Input[str],
+             name: pulumi.Input[str],
+             main: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("content", content)
+        _setter("name", name)
         if main is not None:
-            pulumi.set(__self__, "main", main)
+            _setter("main", main)
 
     @property
     @pulumi.getter
@@ -11703,13 +13666,28 @@ class ServiceVclWafArgs:
         :param pulumi.Input[str] prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         :param pulumi.Input[str] waf_id: The ID of the WAF
         """
-        pulumi.set(__self__, "response_object", response_object)
+        ServiceVclWafArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            response_object=response_object,
+            disabled=disabled,
+            prefetch_condition=prefetch_condition,
+            waf_id=waf_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             response_object: pulumi.Input[str],
+             disabled: Optional[pulumi.Input[bool]] = None,
+             prefetch_condition: Optional[pulumi.Input[str]] = None,
+             waf_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("response_object", response_object)
         if disabled is not None:
-            pulumi.set(__self__, "disabled", disabled)
+            _setter("disabled", disabled)
         if prefetch_condition is not None:
-            pulumi.set(__self__, "prefetch_condition", prefetch_condition)
+            _setter("prefetch_condition", prefetch_condition)
         if waf_id is not None:
-            pulumi.set(__self__, "waf_id", waf_id)
+            _setter("waf_id", waf_id)
 
     @property
     @pulumi.getter(name="responseObject")
@@ -11771,10 +13749,23 @@ class ServiceWafConfigurationRuleArgs:
         :param pulumi.Input[str] status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
         :param pulumi.Input[int] revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
         """
-        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
-        pulumi.set(__self__, "status", status)
+        ServiceWafConfigurationRuleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            modsec_rule_id=modsec_rule_id,
+            status=status,
+            revision=revision,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             modsec_rule_id: pulumi.Input[int],
+             status: pulumi.Input[str],
+             revision: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("modsec_rule_id", modsec_rule_id)
+        _setter("status", status)
         if revision is not None:
-            pulumi.set(__self__, "revision", revision)
+            _setter("revision", revision)
 
     @property
     @pulumi.getter(name="modsecRuleId")
@@ -11828,13 +13819,30 @@ class ServiceWafConfigurationRuleExclusionArgs:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
         :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion
         """
-        pulumi.set(__self__, "condition", condition)
-        pulumi.set(__self__, "exclusion_type", exclusion_type)
-        pulumi.set(__self__, "name", name)
+        ServiceWafConfigurationRuleExclusionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            condition=condition,
+            exclusion_type=exclusion_type,
+            name=name,
+            modsec_rule_ids=modsec_rule_ids,
+            number=number,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             condition: pulumi.Input[str],
+             exclusion_type: pulumi.Input[str],
+             name: pulumi.Input[str],
+             modsec_rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+             number: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("condition", condition)
+        _setter("exclusion_type", exclusion_type)
+        _setter("name", name)
         if modsec_rule_ids is not None:
-            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
+            _setter("modsec_rule_ids", modsec_rule_ids)
         if number is not None:
-            pulumi.set(__self__, "number", number)
+            _setter("number", number)
 
     @property
     @pulumi.getter
@@ -11903,24 +13911,29 @@ class TlsSubscriptionManagedDnsChallengeArgs:
                  record_name: Optional[pulumi.Input[str]] = None,
                  record_type: Optional[pulumi.Input[str]] = None,
                  record_value: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] record_name: The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-        :param pulumi.Input[str] record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
-        :param pulumi.Input[str] record_value: The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
-        """
+        TlsSubscriptionManagedDnsChallengeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            record_name=record_name,
+            record_type=record_type,
+            record_value=record_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             record_name: Optional[pulumi.Input[str]] = None,
+             record_type: Optional[pulumi.Input[str]] = None,
+             record_value: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if record_name is not None:
-            pulumi.set(__self__, "record_name", record_name)
+            _setter("record_name", record_name)
         if record_type is not None:
-            pulumi.set(__self__, "record_type", record_type)
+            _setter("record_type", record_type)
         if record_value is not None:
-            pulumi.set(__self__, "record_value", record_value)
+            _setter("record_value", record_value)
 
     @property
     @pulumi.getter(name="recordName")
     def record_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-        """
         return pulumi.get(self, "record_name")
 
     @record_name.setter
@@ -11930,9 +13943,6 @@ class TlsSubscriptionManagedDnsChallengeArgs:
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of DNS record to add, e.g. `A`, or `CNAME`.
-        """
         return pulumi.get(self, "record_type")
 
     @record_type.setter
@@ -11942,9 +13952,6 @@ class TlsSubscriptionManagedDnsChallengeArgs:
     @property
     @pulumi.getter(name="recordValue")
     def record_value(self) -> Optional[pulumi.Input[str]]:
-        """
-        The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
-        """
         return pulumi.get(self, "record_value")
 
     @record_value.setter
@@ -11958,24 +13965,29 @@ class TlsSubscriptionManagedHttpChallengeArgs:
                  record_name: Optional[pulumi.Input[str]] = None,
                  record_type: Optional[pulumi.Input[str]] = None,
                  record_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        """
-        :param pulumi.Input[str] record_name: The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-        :param pulumi.Input[str] record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] record_values: A list with the value(s) to which the DNS record should point.
-        """
+        TlsSubscriptionManagedHttpChallengeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            record_name=record_name,
+            record_type=record_type,
+            record_values=record_values,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             record_name: Optional[pulumi.Input[str]] = None,
+             record_type: Optional[pulumi.Input[str]] = None,
+             record_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if record_name is not None:
-            pulumi.set(__self__, "record_name", record_name)
+            _setter("record_name", record_name)
         if record_type is not None:
-            pulumi.set(__self__, "record_type", record_type)
+            _setter("record_type", record_type)
         if record_values is not None:
-            pulumi.set(__self__, "record_values", record_values)
+            _setter("record_values", record_values)
 
     @property
     @pulumi.getter(name="recordName")
     def record_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
-        """
         return pulumi.get(self, "record_name")
 
     @record_name.setter
@@ -11985,9 +13997,6 @@ class TlsSubscriptionManagedHttpChallengeArgs:
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of DNS record to add, e.g. `A`, or `CNAME`.
-        """
         return pulumi.get(self, "record_type")
 
     @record_type.setter
@@ -11997,9 +14006,6 @@ class TlsSubscriptionManagedHttpChallengeArgs:
     @property
     @pulumi.getter(name="recordValues")
     def record_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A list with the value(s) to which the DNS record should point.
-        """
         return pulumi.get(self, "record_values")
 
     @record_values.setter

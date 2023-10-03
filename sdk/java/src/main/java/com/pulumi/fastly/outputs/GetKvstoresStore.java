@@ -9,18 +9,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKvstoresStore {
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private String id;
     private String name;
 
     private GetKvstoresStore() {}
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

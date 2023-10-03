@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetServicesResult',
     'AwaitableGetServicesResult',
     'get_services',
+    'get_services_output',
 ]
 
 @pulumi.output_type
@@ -80,3 +81,11 @@ def get_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSer
         details=pulumi.get(__ret__, 'details'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
+
+
+@_utilities.lift_output_func(get_services)
+def get_services_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServicesResult]:
+    """
+    Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).
+    """
+    ...

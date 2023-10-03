@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TlsMutualAuthenticationArgs', 'TlsMutualAuthentication']
@@ -25,13 +25,28 @@ class TlsMutualAuthenticationArgs:
         :param pulumi.Input[str] include: Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         """
-        pulumi.set(__self__, "cert_bundle", cert_bundle)
+        TlsMutualAuthenticationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cert_bundle=cert_bundle,
+            enforced=enforced,
+            include=include,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cert_bundle: pulumi.Input[str],
+             enforced: Optional[pulumi.Input[bool]] = None,
+             include: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cert_bundle", cert_bundle)
         if enforced is not None:
-            pulumi.set(__self__, "enforced", enforced)
+            _setter("enforced", enforced)
         if include is not None:
-            pulumi.set(__self__, "include", include)
+            _setter("include", include)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="certBundle")
@@ -102,20 +117,41 @@ class _TlsMutualAuthenticationState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_activations: List of alphanumeric strings identifying TLS activations.
         :param pulumi.Input[str] updated_at: Date and time in ISO 8601 format.
         """
+        _TlsMutualAuthenticationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cert_bundle=cert_bundle,
+            created_at=created_at,
+            enforced=enforced,
+            include=include,
+            name=name,
+            tls_activations=tls_activations,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cert_bundle: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             enforced: Optional[pulumi.Input[bool]] = None,
+             include: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             tls_activations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cert_bundle is not None:
-            pulumi.set(__self__, "cert_bundle", cert_bundle)
+            _setter("cert_bundle", cert_bundle)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if enforced is not None:
-            pulumi.set(__self__, "enforced", enforced)
+            _setter("enforced", enforced)
         if include is not None:
-            pulumi.set(__self__, "include", include)
+            _setter("include", include)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if tls_activations is not None:
-            pulumi.set(__self__, "tls_activations", tls_activations)
+            _setter("tls_activations", tls_activations)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter(name="certBundle")
@@ -239,6 +275,10 @@ class TlsMutualAuthentication(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TlsMutualAuthenticationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

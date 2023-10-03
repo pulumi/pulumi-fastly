@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,12 +27,27 @@ class ServiceACLEntriesArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]] entries: ACL Entries
         :param pulumi.Input[bool] manage_entries: Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         """
-        pulumi.set(__self__, "acl_id", acl_id)
-        pulumi.set(__self__, "service_id", service_id)
+        ServiceACLEntriesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acl_id=acl_id,
+            service_id=service_id,
+            entries=entries,
+            manage_entries=manage_entries,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acl_id: pulumi.Input[str],
+             service_id: pulumi.Input[str],
+             entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
+             manage_entries: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("acl_id", acl_id)
+        _setter("service_id", service_id)
         if entries is not None:
-            pulumi.set(__self__, "entries", entries)
+            _setter("entries", entries)
         if manage_entries is not None:
-            pulumi.set(__self__, "manage_entries", manage_entries)
+            _setter("manage_entries", manage_entries)
 
     @property
     @pulumi.getter(name="aclId")
@@ -97,14 +112,29 @@ class _ServiceACLEntriesState:
         :param pulumi.Input[bool] manage_entries: Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         :param pulumi.Input[str] service_id: The ID of the Service that the ACL belongs to
         """
+        _ServiceACLEntriesState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acl_id=acl_id,
+            entries=entries,
+            manage_entries=manage_entries,
+            service_id=service_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acl_id: Optional[pulumi.Input[str]] = None,
+             entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
+             manage_entries: Optional[pulumi.Input[bool]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if acl_id is not None:
-            pulumi.set(__self__, "acl_id", acl_id)
+            _setter("acl_id", acl_id)
         if entries is not None:
-            pulumi.set(__self__, "entries", entries)
+            _setter("entries", entries)
         if manage_entries is not None:
-            pulumi.set(__self__, "manage_entries", manage_entries)
+            _setter("manage_entries", manage_entries)
         if service_id is not None:
-            pulumi.set(__self__, "service_id", service_id)
+            _setter("service_id", service_id)
 
     @property
     @pulumi.getter(name="aclId")
@@ -210,6 +240,10 @@ class ServiceACLEntries(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ServiceACLEntriesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -13,8 +13,17 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class ServiceVclRateLimiterResponse
     {
+        /// <summary>
+        /// The VCL code that specifies exactly what the snippet does
+        /// </summary>
         public readonly string Content;
+        /// <summary>
+        /// Value of the `Content-Type` header sent with the request
+        /// </summary>
         public readonly string ContentType;
+        /// <summary>
+        /// HTTP response status code (e.g. 429)
+        /// </summary>
         public readonly int Status;
 
         [OutputConstructor]

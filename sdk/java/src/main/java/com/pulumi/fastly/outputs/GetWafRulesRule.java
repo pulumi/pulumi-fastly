@@ -10,41 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class GetWafRulesRule {
-    /**
-     * @return The rule&#39;s latest revision.
-     * 
-     */
     private Integer latestRevisionNumber;
-    /**
-     * @return The rule&#39;s modsecurity ID.
-     * 
-     */
     private Integer modsecRuleId;
-    /**
-     * @return The rule&#39;s type.
-     * 
-     */
     private String type;
 
     private GetWafRulesRule() {}
-    /**
-     * @return The rule&#39;s latest revision.
-     * 
-     */
     public Integer latestRevisionNumber() {
         return this.latestRevisionNumber;
     }
-    /**
-     * @return The rule&#39;s modsecurity ID.
-     * 
-     */
     public Integer modsecRuleId() {
         return this.modsecRuleId;
     }
-    /**
-     * @return The rule&#39;s type.
-     * 
-     */
     public String type() {
         return this.type;
     }

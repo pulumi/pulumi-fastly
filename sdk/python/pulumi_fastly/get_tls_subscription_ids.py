@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetTlsSubscriptionIdsResult',
     'AwaitableGetTlsSubscriptionIdsResult',
     'get_tls_subscription_ids',
+    'get_tls_subscription_ids_output',
 ]
 
 @pulumi.output_type
@@ -77,3 +78,22 @@ def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
     return AwaitableGetTlsSubscriptionIdsResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
+
+
+@_utilities.lift_output_func(get_tls_subscription_ids)
+def get_tls_subscription_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsSubscriptionIdsResult]:
+    """
+    Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_tls_subscription_ids = fastly.get_tls_subscription_ids()
+    example_tls_subscription = [fastly.get_tls_subscription(id=__value) for __key, __value in example_tls_subscription_ids.ids]
+    pulumi.export("subscriptionDomains", [a.certificate_authority for a in example_tls_subscription])
+    ```
+    """
+    ...

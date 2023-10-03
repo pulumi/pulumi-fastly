@@ -10,19 +10,11 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDictionariesDictionary {
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private String id;
     private String name;
     private Boolean writeOnly;
 
     private GetDictionariesDictionary() {}
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public String id() {
         return this.id;
     }
