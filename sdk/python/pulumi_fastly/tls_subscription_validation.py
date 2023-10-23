@@ -26,8 +26,14 @@ class TlsSubscriptionValidationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             subscription_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             subscription_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if subscription_id is None and 'subscriptionId' in kwargs:
+            subscription_id = kwargs['subscriptionId']
+        if subscription_id is None:
+            raise TypeError("Missing 'subscription_id' argument")
+
         _setter("subscription_id", subscription_id)
 
     @property
@@ -59,7 +65,11 @@ class _TlsSubscriptionValidationState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              subscription_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if subscription_id is None and 'subscriptionId' in kwargs:
+            subscription_id = kwargs['subscriptionId']
+
         if subscription_id is not None:
             _setter("subscription_id", subscription_id)
 

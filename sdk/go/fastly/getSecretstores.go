@@ -4,8 +4,12 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSecretstores(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSecretstoresResult, error) {
@@ -24,4 +28,50 @@ type GetSecretstoresResult struct {
 	Id string `pulumi:"id"`
 	// List of all Secrets Stores.
 	Stores []GetSecretstoresStore `pulumi:"stores"`
+}
+
+func GetSecretstoresOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSecretstoresResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetSecretstoresResult, error) {
+		r, err := GetSecretstores(ctx, opts...)
+		var s GetSecretstoresResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetSecretstoresResultOutput)
+}
+
+// A collection of values returned by getSecretstores.
+type GetSecretstoresResultOutput struct{ *pulumi.OutputState }
+
+func (GetSecretstoresResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretstoresResult)(nil)).Elem()
+}
+
+func (o GetSecretstoresResultOutput) ToGetSecretstoresResultOutput() GetSecretstoresResultOutput {
+	return o
+}
+
+func (o GetSecretstoresResultOutput) ToGetSecretstoresResultOutputWithContext(ctx context.Context) GetSecretstoresResultOutput {
+	return o
+}
+
+func (o GetSecretstoresResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSecretstoresResult] {
+	return pulumix.Output[GetSecretstoresResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSecretstoresResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretstoresResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of all Secrets Stores.
+func (o GetSecretstoresResultOutput) Stores() GetSecretstoresStoreArrayOutput {
+	return o.ApplyT(func(v GetSecretstoresResult) []GetSecretstoresStore { return v.Stores }).(GetSecretstoresStoreArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSecretstoresResultOutput{})
 }

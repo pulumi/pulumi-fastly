@@ -33,10 +33,20 @@ class ConfigstoreEntriesArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             entries: pulumi.Input[Mapping[str, Any]],
-             store_id: pulumi.Input[str],
+             entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             store_id: Optional[pulumi.Input[str]] = None,
              manage_entries: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if entries is None:
+            raise TypeError("Missing 'entries' argument")
+        if store_id is None and 'storeId' in kwargs:
+            store_id = kwargs['storeId']
+        if store_id is None:
+            raise TypeError("Missing 'store_id' argument")
+        if manage_entries is None and 'manageEntries' in kwargs:
+            manage_entries = kwargs['manageEntries']
+
         _setter("entries", entries)
         _setter("store_id", store_id)
         if manage_entries is not None:
@@ -105,7 +115,13 @@ class _ConfigstoreEntriesState:
              entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
              manage_entries: Optional[pulumi.Input[bool]] = None,
              store_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if manage_entries is None and 'manageEntries' in kwargs:
+            manage_entries = kwargs['manageEntries']
+        if store_id is None and 'storeId' in kwargs:
+            store_id = kwargs['storeId']
+
         if entries is not None:
             _setter("entries", entries)
         if manage_entries is not None:

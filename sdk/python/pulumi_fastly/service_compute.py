@@ -112,7 +112,7 @@ class ServiceComputeArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             domains: pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]],
+             domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
              activate: Optional[pulumi.Input[bool]] = None,
              backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
              comment: Optional[pulumi.Input[str]] = None,
@@ -150,7 +150,71 @@ class ServiceComputeArgs:
              resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
              reuse: Optional[pulumi.Input[bool]] = None,
              version_comment: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if domains is None:
+            raise TypeError("Missing 'domains' argument")
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if logging_bigqueries is None and 'loggingBigqueries' in kwargs:
+            logging_bigqueries = kwargs['loggingBigqueries']
+        if logging_blobstorages is None and 'loggingBlobstorages' in kwargs:
+            logging_blobstorages = kwargs['loggingBlobstorages']
+        if logging_cloudfiles is None and 'loggingCloudfiles' in kwargs:
+            logging_cloudfiles = kwargs['loggingCloudfiles']
+        if logging_datadogs is None and 'loggingDatadogs' in kwargs:
+            logging_datadogs = kwargs['loggingDatadogs']
+        if logging_digitaloceans is None and 'loggingDigitaloceans' in kwargs:
+            logging_digitaloceans = kwargs['loggingDigitaloceans']
+        if logging_elasticsearches is None and 'loggingElasticsearches' in kwargs:
+            logging_elasticsearches = kwargs['loggingElasticsearches']
+        if logging_ftps is None and 'loggingFtps' in kwargs:
+            logging_ftps = kwargs['loggingFtps']
+        if logging_gcs is None and 'loggingGcs' in kwargs:
+            logging_gcs = kwargs['loggingGcs']
+        if logging_googlepubsubs is None and 'loggingGooglepubsubs' in kwargs:
+            logging_googlepubsubs = kwargs['loggingGooglepubsubs']
+        if logging_heroku is None and 'loggingHeroku' in kwargs:
+            logging_heroku = kwargs['loggingHeroku']
+        if logging_honeycombs is None and 'loggingHoneycombs' in kwargs:
+            logging_honeycombs = kwargs['loggingHoneycombs']
+        if logging_https is None and 'loggingHttps' in kwargs:
+            logging_https = kwargs['loggingHttps']
+        if logging_kafkas is None and 'loggingKafkas' in kwargs:
+            logging_kafkas = kwargs['loggingKafkas']
+        if logging_kineses is None and 'loggingKineses' in kwargs:
+            logging_kineses = kwargs['loggingKineses']
+        if logging_logentries is None and 'loggingLogentries' in kwargs:
+            logging_logentries = kwargs['loggingLogentries']
+        if logging_logglies is None and 'loggingLogglies' in kwargs:
+            logging_logglies = kwargs['loggingLogglies']
+        if logging_logshuttles is None and 'loggingLogshuttles' in kwargs:
+            logging_logshuttles = kwargs['loggingLogshuttles']
+        if logging_newrelics is None and 'loggingNewrelics' in kwargs:
+            logging_newrelics = kwargs['loggingNewrelics']
+        if logging_openstacks is None and 'loggingOpenstacks' in kwargs:
+            logging_openstacks = kwargs['loggingOpenstacks']
+        if logging_papertrails is None and 'loggingPapertrails' in kwargs:
+            logging_papertrails = kwargs['loggingPapertrails']
+        if logging_s3s is None and 'loggingS3s' in kwargs:
+            logging_s3s = kwargs['loggingS3s']
+        if logging_scalyrs is None and 'loggingScalyrs' in kwargs:
+            logging_scalyrs = kwargs['loggingScalyrs']
+        if logging_sftps is None and 'loggingSftps' in kwargs:
+            logging_sftps = kwargs['loggingSftps']
+        if logging_splunks is None and 'loggingSplunks' in kwargs:
+            logging_splunks = kwargs['loggingSplunks']
+        if logging_sumologics is None and 'loggingSumologics' in kwargs:
+            logging_sumologics = kwargs['loggingSumologics']
+        if logging_syslogs is None and 'loggingSyslogs' in kwargs:
+            logging_syslogs = kwargs['loggingSyslogs']
+        if product_enablement is None and 'productEnablement' in kwargs:
+            product_enablement = kwargs['productEnablement']
+        if resource_links is None and 'resourceLinks' in kwargs:
+            resource_links = kwargs['resourceLinks']
+        if version_comment is None and 'versionComment' in kwargs:
+            version_comment = kwargs['versionComment']
+
         _setter("domains", domains)
         if activate is not None:
             _setter("activate", activate)
@@ -754,7 +818,75 @@ class _ServiceComputeState:
              resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
              reuse: Optional[pulumi.Input[bool]] = None,
              version_comment: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if active_version is None and 'activeVersion' in kwargs:
+            active_version = kwargs['activeVersion']
+        if cloned_version is None and 'clonedVersion' in kwargs:
+            cloned_version = kwargs['clonedVersion']
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if force_refresh is None and 'forceRefresh' in kwargs:
+            force_refresh = kwargs['forceRefresh']
+        if logging_bigqueries is None and 'loggingBigqueries' in kwargs:
+            logging_bigqueries = kwargs['loggingBigqueries']
+        if logging_blobstorages is None and 'loggingBlobstorages' in kwargs:
+            logging_blobstorages = kwargs['loggingBlobstorages']
+        if logging_cloudfiles is None and 'loggingCloudfiles' in kwargs:
+            logging_cloudfiles = kwargs['loggingCloudfiles']
+        if logging_datadogs is None and 'loggingDatadogs' in kwargs:
+            logging_datadogs = kwargs['loggingDatadogs']
+        if logging_digitaloceans is None and 'loggingDigitaloceans' in kwargs:
+            logging_digitaloceans = kwargs['loggingDigitaloceans']
+        if logging_elasticsearches is None and 'loggingElasticsearches' in kwargs:
+            logging_elasticsearches = kwargs['loggingElasticsearches']
+        if logging_ftps is None and 'loggingFtps' in kwargs:
+            logging_ftps = kwargs['loggingFtps']
+        if logging_gcs is None and 'loggingGcs' in kwargs:
+            logging_gcs = kwargs['loggingGcs']
+        if logging_googlepubsubs is None and 'loggingGooglepubsubs' in kwargs:
+            logging_googlepubsubs = kwargs['loggingGooglepubsubs']
+        if logging_heroku is None and 'loggingHeroku' in kwargs:
+            logging_heroku = kwargs['loggingHeroku']
+        if logging_honeycombs is None and 'loggingHoneycombs' in kwargs:
+            logging_honeycombs = kwargs['loggingHoneycombs']
+        if logging_https is None and 'loggingHttps' in kwargs:
+            logging_https = kwargs['loggingHttps']
+        if logging_kafkas is None and 'loggingKafkas' in kwargs:
+            logging_kafkas = kwargs['loggingKafkas']
+        if logging_kineses is None and 'loggingKineses' in kwargs:
+            logging_kineses = kwargs['loggingKineses']
+        if logging_logentries is None and 'loggingLogentries' in kwargs:
+            logging_logentries = kwargs['loggingLogentries']
+        if logging_logglies is None and 'loggingLogglies' in kwargs:
+            logging_logglies = kwargs['loggingLogglies']
+        if logging_logshuttles is None and 'loggingLogshuttles' in kwargs:
+            logging_logshuttles = kwargs['loggingLogshuttles']
+        if logging_newrelics is None and 'loggingNewrelics' in kwargs:
+            logging_newrelics = kwargs['loggingNewrelics']
+        if logging_openstacks is None and 'loggingOpenstacks' in kwargs:
+            logging_openstacks = kwargs['loggingOpenstacks']
+        if logging_papertrails is None and 'loggingPapertrails' in kwargs:
+            logging_papertrails = kwargs['loggingPapertrails']
+        if logging_s3s is None and 'loggingS3s' in kwargs:
+            logging_s3s = kwargs['loggingS3s']
+        if logging_scalyrs is None and 'loggingScalyrs' in kwargs:
+            logging_scalyrs = kwargs['loggingScalyrs']
+        if logging_sftps is None and 'loggingSftps' in kwargs:
+            logging_sftps = kwargs['loggingSftps']
+        if logging_splunks is None and 'loggingSplunks' in kwargs:
+            logging_splunks = kwargs['loggingSplunks']
+        if logging_sumologics is None and 'loggingSumologics' in kwargs:
+            logging_sumologics = kwargs['loggingSumologics']
+        if logging_syslogs is None and 'loggingSyslogs' in kwargs:
+            logging_syslogs = kwargs['loggingSyslogs']
+        if product_enablement is None and 'productEnablement' in kwargs:
+            product_enablement = kwargs['productEnablement']
+        if resource_links is None and 'resourceLinks' in kwargs:
+            resource_links = kwargs['resourceLinks']
+        if version_comment is None and 'versionComment' in kwargs:
+            version_comment = kwargs['versionComment']
+
         if activate is not None:
             _setter("activate", activate)
         if active_version is not None:

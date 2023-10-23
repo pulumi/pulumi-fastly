@@ -31,7 +31,11 @@ class ConfigstoreArgs:
              _setter: Callable[[Any, Any], None],
              force_destroy: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+
         if force_destroy is not None:
             _setter("force_destroy", force_destroy)
         if name is not None:
@@ -82,7 +86,11 @@ class _ConfigstoreState:
              _setter: Callable[[Any, Any], None],
              force_destroy: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+
         if force_destroy is not None:
             _setter("force_destroy", force_destroy)
         if name is not None:

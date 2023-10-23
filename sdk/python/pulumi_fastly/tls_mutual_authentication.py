@@ -35,11 +35,17 @@ class TlsMutualAuthenticationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cert_bundle: pulumi.Input[str],
+             cert_bundle: Optional[pulumi.Input[str]] = None,
              enforced: Optional[pulumi.Input[bool]] = None,
              include: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cert_bundle is None and 'certBundle' in kwargs:
+            cert_bundle = kwargs['certBundle']
+        if cert_bundle is None:
+            raise TypeError("Missing 'cert_bundle' argument")
+
         _setter("cert_bundle", cert_bundle)
         if enforced is not None:
             _setter("enforced", enforced)
@@ -137,7 +143,17 @@ class _TlsMutualAuthenticationState:
              name: Optional[pulumi.Input[str]] = None,
              tls_activations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cert_bundle is None and 'certBundle' in kwargs:
+            cert_bundle = kwargs['certBundle']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if tls_activations is None and 'tlsActivations' in kwargs:
+            tls_activations = kwargs['tlsActivations']
+        if updated_at is None and 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if cert_bundle is not None:
             _setter("cert_bundle", cert_bundle)
         if created_at is not None:

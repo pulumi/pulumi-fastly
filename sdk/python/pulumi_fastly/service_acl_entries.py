@@ -37,11 +37,23 @@ class ServiceACLEntriesArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             acl_id: pulumi.Input[str],
-             service_id: pulumi.Input[str],
+             acl_id: Optional[pulumi.Input[str]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
              entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
              manage_entries: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if acl_id is None and 'aclId' in kwargs:
+            acl_id = kwargs['aclId']
+        if acl_id is None:
+            raise TypeError("Missing 'acl_id' argument")
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+        if service_id is None:
+            raise TypeError("Missing 'service_id' argument")
+        if manage_entries is None and 'manageEntries' in kwargs:
+            manage_entries = kwargs['manageEntries']
+
         _setter("acl_id", acl_id)
         _setter("service_id", service_id)
         if entries is not None:
@@ -126,7 +138,15 @@ class _ServiceACLEntriesState:
              entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
              manage_entries: Optional[pulumi.Input[bool]] = None,
              service_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if acl_id is None and 'aclId' in kwargs:
+            acl_id = kwargs['aclId']
+        if manage_entries is None and 'manageEntries' in kwargs:
+            manage_entries = kwargs['manageEntries']
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+
         if acl_id is not None:
             _setter("acl_id", acl_id)
         if entries is not None:

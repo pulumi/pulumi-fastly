@@ -4,8 +4,12 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
@@ -68,4 +72,55 @@ type GetFastlyIpRangesResult struct {
 	Id string `pulumi:"id"`
 	// The lexically ordered list of ipv6 CIDR blocks.
 	Ipv6CidrBlocks []string `pulumi:"ipv6CidrBlocks"`
+}
+
+func GetFastlyIpRangesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetFastlyIpRangesResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetFastlyIpRangesResult, error) {
+		r, err := GetFastlyIpRanges(ctx, opts...)
+		var s GetFastlyIpRangesResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetFastlyIpRangesResultOutput)
+}
+
+// A collection of values returned by getFastlyIpRanges.
+type GetFastlyIpRangesResultOutput struct{ *pulumi.OutputState }
+
+func (GetFastlyIpRangesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFastlyIpRangesResult)(nil)).Elem()
+}
+
+func (o GetFastlyIpRangesResultOutput) ToGetFastlyIpRangesResultOutput() GetFastlyIpRangesResultOutput {
+	return o
+}
+
+func (o GetFastlyIpRangesResultOutput) ToGetFastlyIpRangesResultOutputWithContext(ctx context.Context) GetFastlyIpRangesResultOutput {
+	return o
+}
+
+func (o GetFastlyIpRangesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFastlyIpRangesResult] {
+	return pulumix.Output[GetFastlyIpRangesResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The lexically ordered list of ipv4 CIDR blocks.
+func (o GetFastlyIpRangesResultOutput) CidrBlocks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFastlyIpRangesResult) []string { return v.CidrBlocks }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFastlyIpRangesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFastlyIpRangesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The lexically ordered list of ipv6 CIDR blocks.
+func (o GetFastlyIpRangesResultOutput) Ipv6CidrBlocks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFastlyIpRangesResult) []string { return v.Ipv6CidrBlocks }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFastlyIpRangesResultOutput{})
 }

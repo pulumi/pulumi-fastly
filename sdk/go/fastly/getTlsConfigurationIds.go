@@ -4,8 +4,12 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the IDs of available TLS configurations for use with other resources.
@@ -55,4 +59,50 @@ type GetTlsConfigurationIdsResult struct {
 	Id string `pulumi:"id"`
 	// List of IDs corresponding to available TLS configurations.
 	Ids []string `pulumi:"ids"`
+}
+
+func GetTlsConfigurationIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsConfigurationIdsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsConfigurationIdsResult, error) {
+		r, err := GetTlsConfigurationIds(ctx, opts...)
+		var s GetTlsConfigurationIdsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetTlsConfigurationIdsResultOutput)
+}
+
+// A collection of values returned by getTlsConfigurationIds.
+type GetTlsConfigurationIdsResultOutput struct{ *pulumi.OutputState }
+
+func (GetTlsConfigurationIdsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsConfigurationIdsResult)(nil)).Elem()
+}
+
+func (o GetTlsConfigurationIdsResultOutput) ToGetTlsConfigurationIdsResultOutput() GetTlsConfigurationIdsResultOutput {
+	return o
+}
+
+func (o GetTlsConfigurationIdsResultOutput) ToGetTlsConfigurationIdsResultOutputWithContext(ctx context.Context) GetTlsConfigurationIdsResultOutput {
+	return o
+}
+
+func (o GetTlsConfigurationIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsConfigurationIdsResult] {
+	return pulumix.Output[GetTlsConfigurationIdsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTlsConfigurationIdsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsConfigurationIdsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IDs corresponding to available TLS configurations.
+func (o GetTlsConfigurationIdsResultOutput) Ids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsConfigurationIdsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTlsConfigurationIdsResultOutput{})
 }

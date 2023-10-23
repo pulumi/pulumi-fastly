@@ -35,11 +35,23 @@ class ServiceDictionaryItemsArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             dictionary_id: pulumi.Input[str],
-             service_id: pulumi.Input[str],
+             dictionary_id: Optional[pulumi.Input[str]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
              items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
              manage_items: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if dictionary_id is None and 'dictionaryId' in kwargs:
+            dictionary_id = kwargs['dictionaryId']
+        if dictionary_id is None:
+            raise TypeError("Missing 'dictionary_id' argument")
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+        if service_id is None:
+            raise TypeError("Missing 'service_id' argument")
+        if manage_items is None and 'manageItems' in kwargs:
+            manage_items = kwargs['manageItems']
+
         _setter("dictionary_id", dictionary_id)
         _setter("service_id", service_id)
         if items is not None:
@@ -124,7 +136,15 @@ class _ServiceDictionaryItemsState:
              items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
              manage_items: Optional[pulumi.Input[bool]] = None,
              service_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if dictionary_id is None and 'dictionaryId' in kwargs:
+            dictionary_id = kwargs['dictionaryId']
+        if manage_items is None and 'manageItems' in kwargs:
+            manage_items = kwargs['manageItems']
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+
         if dictionary_id is not None:
             _setter("dictionary_id", dictionary_id)
         if items is not None:

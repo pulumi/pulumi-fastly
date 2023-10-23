@@ -35,11 +35,23 @@ class TlsActivationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             certificate_id: pulumi.Input[str],
-             domain: pulumi.Input[str],
+             certificate_id: Optional[pulumi.Input[str]] = None,
+             domain: Optional[pulumi.Input[str]] = None,
              configuration_id: Optional[pulumi.Input[str]] = None,
              mutual_authentication_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if certificate_id is None and 'certificateId' in kwargs:
+            certificate_id = kwargs['certificateId']
+        if certificate_id is None:
+            raise TypeError("Missing 'certificate_id' argument")
+        if domain is None:
+            raise TypeError("Missing 'domain' argument")
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if mutual_authentication_id is None and 'mutualAuthenticationId' in kwargs:
+            mutual_authentication_id = kwargs['mutualAuthenticationId']
+
         _setter("certificate_id", certificate_id)
         _setter("domain", domain)
         if configuration_id is not None:
@@ -128,7 +140,17 @@ class _TlsActivationState:
              created_at: Optional[pulumi.Input[str]] = None,
              domain: Optional[pulumi.Input[str]] = None,
              mutual_authentication_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if certificate_id is None and 'certificateId' in kwargs:
+            certificate_id = kwargs['certificateId']
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if mutual_authentication_id is None and 'mutualAuthenticationId' in kwargs:
+            mutual_authentication_id = kwargs['mutualAuthenticationId']
+
         if certificate_id is not None:
             _setter("certificate_id", certificate_id)
         if configuration_id is not None:

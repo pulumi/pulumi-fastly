@@ -42,7 +42,17 @@ class ProviderArgs:
              base_url: Optional[pulumi.Input[str]] = None,
              force_http2: Optional[pulumi.Input[bool]] = None,
              no_auth: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if base_url is None and 'baseUrl' in kwargs:
+            base_url = kwargs['baseUrl']
+        if force_http2 is None and 'forceHttp2' in kwargs:
+            force_http2 = kwargs['forceHttp2']
+        if no_auth is None and 'noAuth' in kwargs:
+            no_auth = kwargs['noAuth']
+
         if api_key is not None:
             _setter("api_key", api_key)
         if base_url is not None:

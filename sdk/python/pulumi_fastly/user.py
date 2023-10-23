@@ -32,10 +32,14 @@ class UserArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             login: pulumi.Input[str],
+             login: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              role: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if login is None:
+            raise TypeError("Missing 'login' argument")
+
         _setter("login", login)
         if name is not None:
             _setter("name", name)
@@ -103,7 +107,9 @@ class _UserState:
              login: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              role: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if login is not None:
             _setter("login", login)
         if name is not None:

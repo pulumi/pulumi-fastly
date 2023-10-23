@@ -29,9 +29,15 @@ class TlsCertificateArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             certificate_body: pulumi.Input[str],
+             certificate_body: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if certificate_body is None:
+            raise TypeError("Missing 'certificate_body' argument")
+
         _setter("certificate_body", certificate_body)
         if name is not None:
             _setter("name", name)
@@ -113,7 +119,21 @@ class _TlsCertificateState:
              serial_number: Optional[pulumi.Input[str]] = None,
              signature_algorithm: Optional[pulumi.Input[str]] = None,
              updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if issued_to is None and 'issuedTo' in kwargs:
+            issued_to = kwargs['issuedTo']
+        if serial_number is None and 'serialNumber' in kwargs:
+            serial_number = kwargs['serialNumber']
+        if signature_algorithm is None and 'signatureAlgorithm' in kwargs:
+            signature_algorithm = kwargs['signatureAlgorithm']
+        if updated_at is None and 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if certificate_body is not None:
             _setter("certificate_body", certificate_body)
         if created_at is not None:

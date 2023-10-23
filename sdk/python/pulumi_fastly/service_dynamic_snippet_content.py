@@ -35,11 +35,25 @@ class ServiceDynamicSnippetContentArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             content: pulumi.Input[str],
-             service_id: pulumi.Input[str],
-             snippet_id: pulumi.Input[str],
+             content: Optional[pulumi.Input[str]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
+             snippet_id: Optional[pulumi.Input[str]] = None,
              manage_snippets: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if content is None:
+            raise TypeError("Missing 'content' argument")
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+        if service_id is None:
+            raise TypeError("Missing 'service_id' argument")
+        if snippet_id is None and 'snippetId' in kwargs:
+            snippet_id = kwargs['snippetId']
+        if snippet_id is None:
+            raise TypeError("Missing 'snippet_id' argument")
+        if manage_snippets is None and 'manageSnippets' in kwargs:
+            manage_snippets = kwargs['manageSnippets']
+
         _setter("content", content)
         _setter("service_id", service_id)
         _setter("snippet_id", snippet_id)
@@ -123,7 +137,15 @@ class _ServiceDynamicSnippetContentState:
              manage_snippets: Optional[pulumi.Input[bool]] = None,
              service_id: Optional[pulumi.Input[str]] = None,
              snippet_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if manage_snippets is None and 'manageSnippets' in kwargs:
+            manage_snippets = kwargs['manageSnippets']
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+        if snippet_id is None and 'snippetId' in kwargs:
+            snippet_id = kwargs['snippetId']
+
         if content is not None:
             _setter("content", content)
         if manage_snippets is not None:

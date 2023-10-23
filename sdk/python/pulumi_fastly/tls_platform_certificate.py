@@ -35,11 +35,27 @@ class TlsPlatformCertificateArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             certificate_body: pulumi.Input[str],
-             configuration_id: pulumi.Input[str],
-             intermediates_blob: pulumi.Input[str],
+             certificate_body: Optional[pulumi.Input[str]] = None,
+             configuration_id: Optional[pulumi.Input[str]] = None,
+             intermediates_blob: Optional[pulumi.Input[str]] = None,
              allow_untrusted_root: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if certificate_body is None:
+            raise TypeError("Missing 'certificate_body' argument")
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if configuration_id is None:
+            raise TypeError("Missing 'configuration_id' argument")
+        if intermediates_blob is None and 'intermediatesBlob' in kwargs:
+            intermediates_blob = kwargs['intermediatesBlob']
+        if intermediates_blob is None:
+            raise TypeError("Missing 'intermediates_blob' argument")
+        if allow_untrusted_root is None and 'allowUntrustedRoot' in kwargs:
+            allow_untrusted_root = kwargs['allowUntrustedRoot']
+
         _setter("certificate_body", certificate_body)
         _setter("configuration_id", configuration_id)
         _setter("intermediates_blob", intermediates_blob)
@@ -147,7 +163,25 @@ class _TlsPlatformCertificateState:
              not_before: Optional[pulumi.Input[str]] = None,
              replace: Optional[pulumi.Input[bool]] = None,
              updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if allow_untrusted_root is None and 'allowUntrustedRoot' in kwargs:
+            allow_untrusted_root = kwargs['allowUntrustedRoot']
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if intermediates_blob is None and 'intermediatesBlob' in kwargs:
+            intermediates_blob = kwargs['intermediatesBlob']
+        if not_after is None and 'notAfter' in kwargs:
+            not_after = kwargs['notAfter']
+        if not_before is None and 'notBefore' in kwargs:
+            not_before = kwargs['notBefore']
+        if updated_at is None and 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if allow_untrusted_root is not None:
             _setter("allow_untrusted_root", allow_untrusted_root)
         if certificate_body is not None:

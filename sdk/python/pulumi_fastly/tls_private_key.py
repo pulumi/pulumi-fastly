@@ -29,9 +29,15 @@ class TlsPrivateKeyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key_pem: pulumi.Input[str],
+             key_pem: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key_pem is None and 'keyPem' in kwargs:
+            key_pem = kwargs['keyPem']
+        if key_pem is None:
+            raise TypeError("Missing 'key_pem' argument")
+
         _setter("key_pem", key_pem)
         if name is not None:
             _setter("name", name)
@@ -101,7 +107,19 @@ class _TlsPrivateKeyState:
              name: Optional[pulumi.Input[str]] = None,
              public_key_sha1: Optional[pulumi.Input[str]] = None,
              replace: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if key_length is None and 'keyLength' in kwargs:
+            key_length = kwargs['keyLength']
+        if key_pem is None and 'keyPem' in kwargs:
+            key_pem = kwargs['keyPem']
+        if key_type is None and 'keyType' in kwargs:
+            key_type = kwargs['keyType']
+        if public_key_sha1 is None and 'publicKeySha1' in kwargs:
+            public_key_sha1 = kwargs['publicKeySha1']
+
         if created_at is not None:
             _setter("created_at", created_at)
         if key_length is not None:

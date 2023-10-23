@@ -4,8 +4,12 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
@@ -25,4 +29,50 @@ type GetDatacentersResult struct {
 	Id string `pulumi:"id"`
 	// A list of all Fastly POPs.
 	Pops []GetDatacentersPop `pulumi:"pops"`
+}
+
+func GetDatacentersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetDatacentersResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetDatacentersResult, error) {
+		r, err := GetDatacenters(ctx, opts...)
+		var s GetDatacentersResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetDatacentersResultOutput)
+}
+
+// A collection of values returned by getDatacenters.
+type GetDatacentersResultOutput struct{ *pulumi.OutputState }
+
+func (GetDatacentersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatacentersResult)(nil)).Elem()
+}
+
+func (o GetDatacentersResultOutput) ToGetDatacentersResultOutput() GetDatacentersResultOutput {
+	return o
+}
+
+func (o GetDatacentersResultOutput) ToGetDatacentersResultOutputWithContext(ctx context.Context) GetDatacentersResultOutput {
+	return o
+}
+
+func (o GetDatacentersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatacentersResult] {
+	return pulumix.Output[GetDatacentersResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetDatacentersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatacentersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of all Fastly POPs.
+func (o GetDatacentersResultOutput) Pops() GetDatacentersPopArrayOutput {
+	return o.ApplyT(func(v GetDatacentersResult) []GetDatacentersPop { return v.Pops }).(GetDatacentersPopArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetDatacentersResultOutput{})
 }

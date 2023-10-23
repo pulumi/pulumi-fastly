@@ -120,12 +120,16 @@ class ServiceACLEntriesEntryArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             ip: pulumi.Input[str],
+             ip: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
              id: Optional[pulumi.Input[str]] = None,
              negated: Optional[pulumi.Input[bool]] = None,
              subnet: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if ip is None:
+            raise TypeError("Missing 'ip' argument")
+
         _setter("ip", ip)
         if comment is not None:
             _setter("comment", comment)
@@ -280,8 +284,8 @@ class ServiceComputeBackendArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              between_bytes_timeout: Optional[pulumi.Input[int]] = None,
              connect_timeout: Optional[pulumi.Input[int]] = None,
              error_threshold: Optional[pulumi.Input[int]] = None,
@@ -304,7 +308,49 @@ class ServiceComputeBackendArgs:
              ssl_sni_hostname: Optional[pulumi.Input[str]] = None,
              use_ssl: Optional[pulumi.Input[bool]] = None,
              weight: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if between_bytes_timeout is None and 'betweenBytesTimeout' in kwargs:
+            between_bytes_timeout = kwargs['betweenBytesTimeout']
+        if connect_timeout is None and 'connectTimeout' in kwargs:
+            connect_timeout = kwargs['connectTimeout']
+        if error_threshold is None and 'errorThreshold' in kwargs:
+            error_threshold = kwargs['errorThreshold']
+        if first_byte_timeout is None and 'firstByteTimeout' in kwargs:
+            first_byte_timeout = kwargs['firstByteTimeout']
+        if keepalive_time is None and 'keepaliveTime' in kwargs:
+            keepalive_time = kwargs['keepaliveTime']
+        if max_conn is None and 'maxConn' in kwargs:
+            max_conn = kwargs['maxConn']
+        if max_tls_version is None and 'maxTlsVersion' in kwargs:
+            max_tls_version = kwargs['maxTlsVersion']
+        if min_tls_version is None and 'minTlsVersion' in kwargs:
+            min_tls_version = kwargs['minTlsVersion']
+        if override_host is None and 'overrideHost' in kwargs:
+            override_host = kwargs['overrideHost']
+        if share_key is None and 'shareKey' in kwargs:
+            share_key = kwargs['shareKey']
+        if ssl_ca_cert is None and 'sslCaCert' in kwargs:
+            ssl_ca_cert = kwargs['sslCaCert']
+        if ssl_cert_hostname is None and 'sslCertHostname' in kwargs:
+            ssl_cert_hostname = kwargs['sslCertHostname']
+        if ssl_check_cert is None and 'sslCheckCert' in kwargs:
+            ssl_check_cert = kwargs['sslCheckCert']
+        if ssl_ciphers is None and 'sslCiphers' in kwargs:
+            ssl_ciphers = kwargs['sslCiphers']
+        if ssl_client_cert is None and 'sslClientCert' in kwargs:
+            ssl_client_cert = kwargs['sslClientCert']
+        if ssl_client_key is None and 'sslClientKey' in kwargs:
+            ssl_client_key = kwargs['sslClientKey']
+        if ssl_sni_hostname is None and 'sslSniHostname' in kwargs:
+            ssl_sni_hostname = kwargs['sslSniHostname']
+        if use_ssl is None and 'useSsl' in kwargs:
+            use_ssl = kwargs['useSsl']
+
         _setter("address", address)
         _setter("name", name)
         if between_bytes_timeout is not None:
@@ -663,11 +709,21 @@ class ServiceComputeDictionaryArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              dictionary_id: Optional[pulumi.Input[str]] = None,
              force_destroy: Optional[pulumi.Input[bool]] = None,
              write_only: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if dictionary_id is None and 'dictionaryId' in kwargs:
+            dictionary_id = kwargs['dictionaryId']
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
         _setter("name", name)
         if dictionary_id is not None:
             _setter("dictionary_id", dictionary_id)
@@ -739,9 +795,13 @@ class ServiceComputeDomainArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+
         _setter("name", name)
         if comment is not None:
             _setter("comment", comment)
@@ -806,15 +866,35 @@ class ServiceComputeLoggingBigqueryArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             dataset: pulumi.Input[str],
-             email: pulumi.Input[str],
-             name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             secret_key: pulumi.Input[str],
-             table: pulumi.Input[str],
+             dataset: Optional[pulumi.Input[str]] = None,
+             email: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             table: Optional[pulumi.Input[str]] = None,
              account_name: Optional[pulumi.Input[str]] = None,
              template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if dataset is None:
+            raise TypeError("Missing 'dataset' argument")
+        if email is None:
+            raise TypeError("Missing 'email' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if secret_key is None:
+            raise TypeError("Missing 'secret_key' argument")
+        if table is None:
+            raise TypeError("Missing 'table' argument")
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+
         _setter("dataset", dataset)
         _setter("email", email)
         _setter("name", name)
@@ -970,10 +1050,10 @@ class ServiceComputeLoggingBlobstorageArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             account_name: pulumi.Input[str],
-             container: pulumi.Input[str],
-             name: pulumi.Input[str],
-             sas_token: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             container: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             sas_token: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              file_max_bytes: Optional[pulumi.Input[int]] = None,
              gzip_level: Optional[pulumi.Input[int]] = None,
@@ -982,7 +1062,33 @@ class ServiceComputeLoggingBlobstorageArgs:
              period: Optional[pulumi.Input[int]] = None,
              public_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+        if account_name is None:
+            raise TypeError("Missing 'account_name' argument")
+        if container is None:
+            raise TypeError("Missing 'container' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if sas_token is None and 'sasToken' in kwargs:
+            sas_token = kwargs['sasToken']
+        if sas_token is None:
+            raise TypeError("Missing 'sas_token' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
+            file_max_bytes = kwargs['fileMaxBytes']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("account_name", account_name)
         _setter("container", container)
         _setter("name", name)
@@ -1196,10 +1302,10 @@ class ServiceComputeLoggingCloudfileArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             access_key: pulumi.Input[str],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
-             user: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              gzip_level: Optional[pulumi.Input[int]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
@@ -1208,7 +1314,31 @@ class ServiceComputeLoggingCloudfileArgs:
              public_key: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if access_key is None:
+            raise TypeError("Missing 'access_key' argument")
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("access_key", access_key)
         _setter("bucket_name", bucket_name)
         _setter("name", name)
@@ -1395,10 +1525,16 @@ class ServiceComputeLoggingDatadogArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+
         _setter("name", name)
         _setter("token", token)
         if region is not None:
@@ -1488,10 +1624,10 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             access_key: pulumi.Input[str],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
-             secret_key: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              domain: Optional[pulumi.Input[str]] = None,
              gzip_level: Optional[pulumi.Input[int]] = None,
@@ -1500,7 +1636,33 @@ class ServiceComputeLoggingDigitaloceanArgs:
              period: Optional[pulumi.Input[int]] = None,
              public_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if access_key is None:
+            raise TypeError("Missing 'access_key' argument")
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if secret_key is None:
+            raise TypeError("Missing 'secret_key' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("access_key", access_key)
         _setter("bucket_name", bucket_name)
         _setter("name", name)
@@ -1714,9 +1876,9 @@ class ServiceComputeLoggingElasticsearchArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             index: pulumi.Input[str],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
+             index: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              password: Optional[pulumi.Input[str]] = None,
              pipeline: Optional[pulumi.Input[str]] = None,
              request_max_bytes: Optional[pulumi.Input[int]] = None,
@@ -1726,7 +1888,27 @@ class ServiceComputeLoggingElasticsearchArgs:
              tls_client_key: Optional[pulumi.Input[str]] = None,
              tls_hostname: Optional[pulumi.Input[str]] = None,
              user: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if index is None:
+            raise TypeError("Missing 'index' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
+            request_max_bytes = kwargs['requestMaxBytes']
+        if request_max_entries is None and 'requestMaxEntries' in kwargs:
+            request_max_entries = kwargs['requestMaxEntries']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+
         _setter("index", index)
         _setter("name", name)
         _setter("url", url)
@@ -1941,11 +2123,11 @@ class ServiceComputeLoggingFtpArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
-             password: pulumi.Input[str],
-             path: pulumi.Input[str],
-             user: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              gzip_level: Optional[pulumi.Input[int]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
@@ -1953,7 +2135,29 @@ class ServiceComputeLoggingFtpArgs:
              port: Optional[pulumi.Input[int]] = None,
              public_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if password is None:
+            raise TypeError("Missing 'password' argument")
+        if path is None:
+            raise TypeError("Missing 'path' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("address", address)
         _setter("name", name)
         _setter("password", password)
@@ -2166,8 +2370,8 @@ class ServiceComputeLoggingGcArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              account_name: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              gzip_level: Optional[pulumi.Input[int]] = None,
@@ -2178,7 +2382,29 @@ class ServiceComputeLoggingGcArgs:
              secret_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
              user: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("bucket_name", bucket_name)
         _setter("name", name)
         if account_name is not None:
@@ -2376,13 +2602,31 @@ class ServiceComputeLoggingGooglepubsubArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             secret_key: pulumi.Input[str],
-             topic: pulumi.Input[str],
-             user: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             topic: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              account_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if secret_key is None:
+            raise TypeError("Missing 'secret_key' argument")
+        if topic is None:
+            raise TypeError("Missing 'topic' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+
         _setter("name", name)
         _setter("project_id", project_id)
         _setter("secret_key", secret_key)
@@ -2484,10 +2728,18 @@ class ServiceComputeLoggingHerokuArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             url: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+
         _setter("name", name)
         _setter("token", token)
         _setter("url", url)
@@ -2549,10 +2801,18 @@ class ServiceComputeLoggingHoneycombArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             dataset: pulumi.Input[str],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             dataset: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if dataset is None:
+            raise TypeError("Missing 'dataset' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+
         _setter("dataset", dataset)
         _setter("name", name)
         _setter("token", token)
@@ -2647,8 +2907,8 @@ class ServiceComputeLoggingHttpArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              content_type: Optional[pulumi.Input[str]] = None,
              header_name: Optional[pulumi.Input[str]] = None,
              header_value: Optional[pulumi.Input[str]] = None,
@@ -2661,7 +2921,35 @@ class ServiceComputeLoggingHttpArgs:
              tls_client_cert: Optional[pulumi.Input[str]] = None,
              tls_client_key: Optional[pulumi.Input[str]] = None,
              tls_hostname: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if content_type is None and 'contentType' in kwargs:
+            content_type = kwargs['contentType']
+        if header_name is None and 'headerName' in kwargs:
+            header_name = kwargs['headerName']
+        if header_value is None and 'headerValue' in kwargs:
+            header_value = kwargs['headerValue']
+        if json_format is None and 'jsonFormat' in kwargs:
+            json_format = kwargs['jsonFormat']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
+            request_max_bytes = kwargs['requestMaxBytes']
+        if request_max_entries is None and 'requestMaxEntries' in kwargs:
+            request_max_entries = kwargs['requestMaxEntries']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+
         _setter("name", name)
         _setter("url", url)
         if content_type is not None:
@@ -2914,9 +3202,9 @@ class ServiceComputeLoggingKafkaArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             brokers: pulumi.Input[str],
-             name: pulumi.Input[str],
-             topic: pulumi.Input[str],
+             brokers: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             topic: Optional[pulumi.Input[str]] = None,
              auth_method: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              parse_log_keyvals: Optional[pulumi.Input[bool]] = None,
@@ -2929,7 +3217,35 @@ class ServiceComputeLoggingKafkaArgs:
              tls_hostname: Optional[pulumi.Input[str]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
              user: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if brokers is None:
+            raise TypeError("Missing 'brokers' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if topic is None:
+            raise TypeError("Missing 'topic' argument")
+        if auth_method is None and 'authMethod' in kwargs:
+            auth_method = kwargs['authMethod']
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if parse_log_keyvals is None and 'parseLogKeyvals' in kwargs:
+            parse_log_keyvals = kwargs['parseLogKeyvals']
+        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
+            request_max_bytes = kwargs['requestMaxBytes']
+        if required_acks is None and 'requiredAcks' in kwargs:
+            required_acks = kwargs['requiredAcks']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("brokers", brokers)
         _setter("name", name)
         _setter("topic", topic)
@@ -3168,13 +3484,25 @@ class ServiceComputeLoggingKineseArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             topic: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             topic: Optional[pulumi.Input[str]] = None,
              access_key: Optional[pulumi.Input[str]] = None,
              iam_role: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              secret_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if topic is None:
+            raise TypeError("Missing 'topic' argument")
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if iam_role is None and 'iamRole' in kwargs:
+            iam_role = kwargs['iamRole']
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+
         _setter("name", name)
         _setter("topic", topic)
         if access_key is not None:
@@ -3282,11 +3610,19 @@ class ServiceComputeLoggingLogentryArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              port: Optional[pulumi.Input[int]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("name", name)
         _setter("token", token)
         if port is not None:
@@ -3360,9 +3696,15 @@ class ServiceComputeLoggingLogglyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+
         _setter("name", name)
         _setter("token", token)
 
@@ -3411,10 +3753,18 @@ class ServiceComputeLoggingLogshuttleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             url: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+
         _setter("name", name)
         _setter("token", token)
         _setter("url", url)
@@ -3476,10 +3826,16 @@ class ServiceComputeLoggingNewrelicArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+
         _setter("name", name)
         _setter("token", token)
         if region is not None:
@@ -3569,11 +3925,11 @@ class ServiceComputeLoggingOpenstackArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             access_key: pulumi.Input[str],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
-             user: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              gzip_level: Optional[pulumi.Input[int]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
@@ -3581,7 +3937,33 @@ class ServiceComputeLoggingOpenstackArgs:
              period: Optional[pulumi.Input[int]] = None,
              public_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if access_key is None:
+            raise TypeError("Missing 'access_key' argument")
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("access_key", access_key)
         _setter("bucket_name", bucket_name)
         _setter("name", name)
@@ -3767,10 +4149,18 @@ class ServiceComputeLoggingPapertrailArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
-             port: pulumi.Input[int],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if port is None:
+            raise TypeError("Missing 'port' argument")
+
         _setter("address", address)
         _setter("name", name)
         _setter("port", port)
@@ -3877,8 +4267,8 @@ class ServiceComputeLoggingS3Args:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              acl: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              domain: Optional[pulumi.Input[str]] = None,
@@ -3895,7 +4285,37 @@ class ServiceComputeLoggingS3Args:
              server_side_encryption: Optional[pulumi.Input[str]] = None,
              server_side_encryption_kms_key_id: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
+            file_max_bytes = kwargs['fileMaxBytes']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if s3_access_key is None and 's3AccessKey' in kwargs:
+            s3_access_key = kwargs['s3AccessKey']
+        if s3_iam_role is None and 's3IamRole' in kwargs:
+            s3_iam_role = kwargs['s3IamRole']
+        if s3_secret_key is None and 's3SecretKey' in kwargs:
+            s3_secret_key = kwargs['s3SecretKey']
+        if server_side_encryption is None and 'serverSideEncryption' in kwargs:
+            server_side_encryption = kwargs['serverSideEncryption']
+        if server_side_encryption_kms_key_id is None and 'serverSideEncryptionKmsKeyId' in kwargs:
+            server_side_encryption_kms_key_id = kwargs['serverSideEncryptionKmsKeyId']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("bucket_name", bucket_name)
         _setter("name", name)
         if acl is not None:
@@ -4168,10 +4588,16 @@ class ServiceComputeLoggingScalyrArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+
         _setter("name", name)
         _setter("token", token)
         if region is not None:
@@ -4267,11 +4693,11 @@ class ServiceComputeLoggingSftpArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
-             path: pulumi.Input[str],
-             ssh_known_hosts: pulumi.Input[str],
-             user: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             ssh_known_hosts: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              gzip_level: Optional[pulumi.Input[int]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
@@ -4281,7 +4707,33 @@ class ServiceComputeLoggingSftpArgs:
              public_key: Optional[pulumi.Input[str]] = None,
              secret_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if path is None:
+            raise TypeError("Missing 'path' argument")
+        if ssh_known_hosts is None and 'sshKnownHosts' in kwargs:
+            ssh_known_hosts = kwargs['sshKnownHosts']
+        if ssh_known_hosts is None:
+            raise TypeError("Missing 'ssh_known_hosts' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("address", address)
         _setter("name", name)
         _setter("path", path)
@@ -4510,15 +4962,33 @@ class ServiceComputeLoggingSplunkArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              tls_ca_cert: Optional[pulumi.Input[str]] = None,
              tls_client_cert: Optional[pulumi.Input[str]] = None,
              tls_client_key: Optional[pulumi.Input[str]] = None,
              tls_hostname: Optional[pulumi.Input[str]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("name", name)
         _setter("token", token)
         _setter("url", url)
@@ -4650,10 +5120,18 @@ class ServiceComputeLoggingSumologicArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+
         _setter("name", name)
         _setter("url", url)
         if message_type is not None:
@@ -4737,8 +5215,8 @@ class ServiceComputeLoggingSyslogArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
              port: Optional[pulumi.Input[int]] = None,
              tls_ca_cert: Optional[pulumi.Input[str]] = None,
@@ -4747,7 +5225,25 @@ class ServiceComputeLoggingSyslogArgs:
              tls_hostname: Optional[pulumi.Input[str]] = None,
              token: Optional[pulumi.Input[str]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("address", address)
         _setter("name", name)
         if message_type is not None:
@@ -4911,7 +5407,11 @@ class ServiceComputePackageArgs:
              content: Optional[pulumi.Input[str]] = None,
              filename: Optional[pulumi.Input[str]] = None,
              source_code_hash: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if source_code_hash is None and 'sourceCodeHash' in kwargs:
+            source_code_hash = kwargs['sourceCodeHash']
+
         if content is not None:
             _setter("content", content)
         if filename is not None:
@@ -4979,7 +5479,9 @@ class ServiceComputeProductEnablementArgs:
              fanout: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
              websockets: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if fanout is not None:
             _setter("fanout", fanout)
         if name is not None:
@@ -5044,10 +5546,20 @@ class ServiceComputeResourceLinkArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             resource_id: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             resource_id: Optional[pulumi.Input[str]] = None,
              link_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if resource_id is None and 'resourceId' in kwargs:
+            resource_id = kwargs['resourceId']
+        if resource_id is None:
+            raise TypeError("Missing 'resource_id' argument")
+        if link_id is None and 'linkId' in kwargs:
+            link_id = kwargs['linkId']
+
         _setter("name", name)
         _setter("resource_id", resource_id)
         if link_id is not None:
@@ -5110,10 +5622,18 @@ class ServiceVclAclArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              acl_id: Optional[pulumi.Input[str]] = None,
              force_destroy: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if acl_id is None and 'aclId' in kwargs:
+            acl_id = kwargs['aclId']
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+
         _setter("name", name)
         if acl_id is not None:
             _setter("acl_id", acl_id)
@@ -5246,8 +5766,8 @@ class ServiceVclBackendArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              auto_loadbalance: Optional[pulumi.Input[bool]] = None,
              between_bytes_timeout: Optional[pulumi.Input[int]] = None,
              connect_timeout: Optional[pulumi.Input[int]] = None,
@@ -5272,7 +5792,53 @@ class ServiceVclBackendArgs:
              ssl_sni_hostname: Optional[pulumi.Input[str]] = None,
              use_ssl: Optional[pulumi.Input[bool]] = None,
              weight: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if auto_loadbalance is None and 'autoLoadbalance' in kwargs:
+            auto_loadbalance = kwargs['autoLoadbalance']
+        if between_bytes_timeout is None and 'betweenBytesTimeout' in kwargs:
+            between_bytes_timeout = kwargs['betweenBytesTimeout']
+        if connect_timeout is None and 'connectTimeout' in kwargs:
+            connect_timeout = kwargs['connectTimeout']
+        if error_threshold is None and 'errorThreshold' in kwargs:
+            error_threshold = kwargs['errorThreshold']
+        if first_byte_timeout is None and 'firstByteTimeout' in kwargs:
+            first_byte_timeout = kwargs['firstByteTimeout']
+        if keepalive_time is None and 'keepaliveTime' in kwargs:
+            keepalive_time = kwargs['keepaliveTime']
+        if max_conn is None and 'maxConn' in kwargs:
+            max_conn = kwargs['maxConn']
+        if max_tls_version is None and 'maxTlsVersion' in kwargs:
+            max_tls_version = kwargs['maxTlsVersion']
+        if min_tls_version is None and 'minTlsVersion' in kwargs:
+            min_tls_version = kwargs['minTlsVersion']
+        if override_host is None and 'overrideHost' in kwargs:
+            override_host = kwargs['overrideHost']
+        if request_condition is None and 'requestCondition' in kwargs:
+            request_condition = kwargs['requestCondition']
+        if share_key is None and 'shareKey' in kwargs:
+            share_key = kwargs['shareKey']
+        if ssl_ca_cert is None and 'sslCaCert' in kwargs:
+            ssl_ca_cert = kwargs['sslCaCert']
+        if ssl_cert_hostname is None and 'sslCertHostname' in kwargs:
+            ssl_cert_hostname = kwargs['sslCertHostname']
+        if ssl_check_cert is None and 'sslCheckCert' in kwargs:
+            ssl_check_cert = kwargs['sslCheckCert']
+        if ssl_ciphers is None and 'sslCiphers' in kwargs:
+            ssl_ciphers = kwargs['sslCiphers']
+        if ssl_client_cert is None and 'sslClientCert' in kwargs:
+            ssl_client_cert = kwargs['sslClientCert']
+        if ssl_client_key is None and 'sslClientKey' in kwargs:
+            ssl_client_key = kwargs['sslClientKey']
+        if ssl_sni_hostname is None and 'sslSniHostname' in kwargs:
+            ssl_sni_hostname = kwargs['sslSniHostname']
+        if use_ssl is None and 'useSsl' in kwargs:
+            use_ssl = kwargs['useSsl']
+
         _setter("address", address)
         _setter("name", name)
         if auto_loadbalance is not None:
@@ -5663,12 +6229,20 @@ class ServiceVclCacheSettingArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              action: Optional[pulumi.Input[str]] = None,
              cache_condition: Optional[pulumi.Input[str]] = None,
              stale_ttl: Optional[pulumi.Input[int]] = None,
              ttl: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if cache_condition is None and 'cacheCondition' in kwargs:
+            cache_condition = kwargs['cacheCondition']
+        if stale_ttl is None and 'staleTtl' in kwargs:
+            stale_ttl = kwargs['staleTtl']
+
         _setter("name", name)
         if action is not None:
             _setter("action", action)
@@ -5763,11 +6337,19 @@ class ServiceVclConditionArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             statement: pulumi.Input[str],
-             type: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             statement: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              priority: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if statement is None:
+            raise TypeError("Missing 'statement' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+
         _setter("name", name)
         _setter("statement", statement)
         _setter("type", type)
@@ -5845,11 +6427,21 @@ class ServiceVclDictionaryArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              dictionary_id: Optional[pulumi.Input[str]] = None,
              force_destroy: Optional[pulumi.Input[bool]] = None,
              write_only: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if dictionary_id is None and 'dictionaryId' in kwargs:
+            dictionary_id = kwargs['dictionaryId']
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
         _setter("name", name)
         if dictionary_id is not None:
             _setter("dictionary_id", dictionary_id)
@@ -5936,14 +6528,20 @@ class ServiceVclDirectorArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             backends: pulumi.Input[Sequence[pulumi.Input[str]]],
-             name: pulumi.Input[str],
+             backends: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
              quorum: Optional[pulumi.Input[int]] = None,
              retries: Optional[pulumi.Input[int]] = None,
              shield: Optional[pulumi.Input[str]] = None,
              type: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if backends is None:
+            raise TypeError("Missing 'backends' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+
         _setter("backends", backends)
         _setter("name", name)
         if comment is not None:
@@ -6059,9 +6657,13 @@ class ServiceVclDomainArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+
         _setter("name", name)
         if comment is not None:
             _setter("comment", comment)
@@ -6117,12 +6719,20 @@ class ServiceVclDynamicsnippetArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             type: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              content: Optional[pulumi.Input[str]] = None,
              priority: Optional[pulumi.Input[int]] = None,
              snippet_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if snippet_id is None and 'snippetId' in kwargs:
+            snippet_id = kwargs['snippetId']
+
         _setter("name", name)
         _setter("type", type)
         if content is not None:
@@ -6216,11 +6826,19 @@ class ServiceVclGzipArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              cache_condition: Optional[pulumi.Input[str]] = None,
              content_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if cache_condition is None and 'cacheCondition' in kwargs:
+            cache_condition = kwargs['cacheCondition']
+        if content_types is None and 'contentTypes' in kwargs:
+            content_types = kwargs['contentTypes']
+
         _setter("name", name)
         if cache_condition is not None:
             _setter("cache_condition", cache_condition)
@@ -6325,10 +6943,10 @@ class ServiceVclHeaderArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             action: pulumi.Input[str],
-             destination: pulumi.Input[str],
-             name: pulumi.Input[str],
-             type: pulumi.Input[str],
+             action: Optional[pulumi.Input[str]] = None,
+             destination: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              cache_condition: Optional[pulumi.Input[str]] = None,
              ignore_if_set: Optional[pulumi.Input[bool]] = None,
              priority: Optional[pulumi.Input[int]] = None,
@@ -6337,7 +6955,25 @@ class ServiceVclHeaderArgs:
              response_condition: Optional[pulumi.Input[str]] = None,
              source: Optional[pulumi.Input[str]] = None,
              substitution: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if destination is None:
+            raise TypeError("Missing 'destination' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if cache_condition is None and 'cacheCondition' in kwargs:
+            cache_condition = kwargs['cacheCondition']
+        if ignore_if_set is None and 'ignoreIfSet' in kwargs:
+            ignore_if_set = kwargs['ignoreIfSet']
+        if request_condition is None and 'requestCondition' in kwargs:
+            request_condition = kwargs['requestCondition']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("action", action)
         _setter("destination", destination)
         _setter("name", name)
@@ -6551,9 +7187,9 @@ class ServiceVclHealthcheckArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             host: pulumi.Input[str],
-             name: pulumi.Input[str],
-             path: pulumi.Input[str],
+             host: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
              check_interval: Optional[pulumi.Input[int]] = None,
              expected_response: Optional[pulumi.Input[int]] = None,
              headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -6563,7 +7199,21 @@ class ServiceVclHealthcheckArgs:
              threshold: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
              window: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if host is None:
+            raise TypeError("Missing 'host' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if path is None:
+            raise TypeError("Missing 'path' argument")
+        if check_interval is None and 'checkInterval' in kwargs:
+            check_interval = kwargs['checkInterval']
+        if expected_response is None and 'expectedResponse' in kwargs:
+            expected_response = kwargs['expectedResponse']
+        if http_version is None and 'httpVersion' in kwargs:
+            http_version = kwargs['httpVersion']
+
         _setter("host", host)
         _setter("name", name)
         _setter("path", path)
@@ -6775,18 +7425,40 @@ class ServiceVclLoggingBigqueryArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             dataset: pulumi.Input[str],
-             email: pulumi.Input[str],
-             name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             secret_key: pulumi.Input[str],
-             table: pulumi.Input[str],
+             dataset: Optional[pulumi.Input[str]] = None,
+             email: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             table: Optional[pulumi.Input[str]] = None,
              account_name: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if dataset is None:
+            raise TypeError("Missing 'dataset' argument")
+        if email is None:
+            raise TypeError("Missing 'email' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if secret_key is None:
+            raise TypeError("Missing 'secret_key' argument")
+        if table is None:
+            raise TypeError("Missing 'table' argument")
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("dataset", dataset)
         _setter("email", email)
         _setter("name", name)
@@ -6996,10 +7668,10 @@ class ServiceVclLoggingBlobstorageArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             account_name: pulumi.Input[str],
-             container: pulumi.Input[str],
-             name: pulumi.Input[str],
-             sas_token: pulumi.Input[str],
+             account_name: Optional[pulumi.Input[str]] = None,
+             container: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             sas_token: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              file_max_bytes: Optional[pulumi.Input[int]] = None,
              format: Optional[pulumi.Input[str]] = None,
@@ -7012,7 +7684,37 @@ class ServiceVclLoggingBlobstorageArgs:
              public_key: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+        if account_name is None:
+            raise TypeError("Missing 'account_name' argument")
+        if container is None:
+            raise TypeError("Missing 'container' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if sas_token is None and 'sasToken' in kwargs:
+            sas_token = kwargs['sasToken']
+        if sas_token is None:
+            raise TypeError("Missing 'sas_token' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
+            file_max_bytes = kwargs['fileMaxBytes']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("account_name", account_name)
         _setter("container", container)
         _setter("name", name)
@@ -7294,10 +7996,10 @@ class ServiceVclLoggingCloudfileArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             access_key: pulumi.Input[str],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
-             user: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
@@ -7310,7 +8012,35 @@ class ServiceVclLoggingCloudfileArgs:
              region: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if access_key is None:
+            raise TypeError("Missing 'access_key' argument")
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("access_key", access_key)
         _setter("bucket_name", bucket_name)
         _setter("name", name)
@@ -7565,14 +8295,24 @@ class ServiceVclLoggingDatadogArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("token", token)
         if format is not None:
@@ -7730,10 +8470,10 @@ class ServiceVclLoggingDigitaloceanArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             access_key: pulumi.Input[str],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
-             secret_key: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              domain: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
@@ -7746,7 +8486,37 @@ class ServiceVclLoggingDigitaloceanArgs:
              public_key: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if access_key is None:
+            raise TypeError("Missing 'access_key' argument")
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if secret_key is None:
+            raise TypeError("Missing 'secret_key' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("access_key", access_key)
         _setter("bucket_name", bucket_name)
         _setter("name", name)
@@ -8028,9 +8798,9 @@ class ServiceVclLoggingElasticsearchArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             index: pulumi.Input[str],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
+             index: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              password: Optional[pulumi.Input[str]] = None,
@@ -8044,7 +8814,31 @@ class ServiceVclLoggingElasticsearchArgs:
              tls_client_key: Optional[pulumi.Input[str]] = None,
              tls_hostname: Optional[pulumi.Input[str]] = None,
              user: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if index is None:
+            raise TypeError("Missing 'index' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
+            request_max_bytes = kwargs['requestMaxBytes']
+        if request_max_entries is None and 'requestMaxEntries' in kwargs:
+            request_max_entries = kwargs['requestMaxEntries']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+
         _setter("index", index)
         _setter("name", name)
         _setter("url", url)
@@ -8327,11 +9121,11 @@ class ServiceVclLoggingFtpArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
-             password: pulumi.Input[str],
-             path: pulumi.Input[str],
-             user: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
@@ -8343,7 +9137,33 @@ class ServiceVclLoggingFtpArgs:
              public_key: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if password is None:
+            raise TypeError("Missing 'password' argument")
+        if path is None:
+            raise TypeError("Missing 'path' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("address", address)
         _setter("name", name)
         _setter("password", password)
@@ -8624,8 +9444,8 @@ class ServiceVclLoggingGcArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              account_name: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
@@ -8640,7 +9460,33 @@ class ServiceVclLoggingGcArgs:
              secret_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
              user: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("bucket_name", bucket_name)
         _setter("name", name)
         if account_name is not None:
@@ -8906,17 +9752,39 @@ class ServiceVclLoggingGooglepubsubArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             secret_key: pulumi.Input[str],
-             topic: pulumi.Input[str],
-             user: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             secret_key: Optional[pulumi.Input[str]] = None,
+             topic: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              account_name: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if secret_key is None:
+            raise TypeError("Missing 'secret_key' argument")
+        if topic is None:
+            raise TypeError("Missing 'topic' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if account_name is None and 'accountName' in kwargs:
+            account_name = kwargs['accountName']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("project_id", project_id)
         _setter("secret_key", secret_key)
@@ -9086,14 +9954,26 @@ class ServiceVclLoggingHerokusArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("token", token)
         _setter("url", url)
@@ -9223,14 +10103,26 @@ class ServiceVclLoggingHoneycombArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             dataset: pulumi.Input[str],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             dataset: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if dataset is None:
+            raise TypeError("Missing 'dataset' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("dataset", dataset)
         _setter("name", name)
         _setter("token", token)
@@ -9393,8 +10285,8 @@ class ServiceVclLoggingHttpArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              content_type: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
@@ -9411,7 +10303,39 @@ class ServiceVclLoggingHttpArgs:
              tls_client_cert: Optional[pulumi.Input[str]] = None,
              tls_client_key: Optional[pulumi.Input[str]] = None,
              tls_hostname: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if content_type is None and 'contentType' in kwargs:
+            content_type = kwargs['contentType']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if header_name is None and 'headerName' in kwargs:
+            header_name = kwargs['headerName']
+        if header_value is None and 'headerValue' in kwargs:
+            header_value = kwargs['headerValue']
+        if json_format is None and 'jsonFormat' in kwargs:
+            json_format = kwargs['jsonFormat']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
+            request_max_bytes = kwargs['requestMaxBytes']
+        if request_max_entries is None and 'requestMaxEntries' in kwargs:
+            request_max_entries = kwargs['requestMaxEntries']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+
         _setter("name", name)
         _setter("url", url)
         if content_type is not None:
@@ -9732,9 +10656,9 @@ class ServiceVclLoggingKafkaArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             brokers: pulumi.Input[str],
-             name: pulumi.Input[str],
-             topic: pulumi.Input[str],
+             brokers: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             topic: Optional[pulumi.Input[str]] = None,
              auth_method: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
@@ -9751,7 +10675,39 @@ class ServiceVclLoggingKafkaArgs:
              tls_hostname: Optional[pulumi.Input[str]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
              user: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if brokers is None:
+            raise TypeError("Missing 'brokers' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if topic is None:
+            raise TypeError("Missing 'topic' argument")
+        if auth_method is None and 'authMethod' in kwargs:
+            auth_method = kwargs['authMethod']
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if parse_log_keyvals is None and 'parseLogKeyvals' in kwargs:
+            parse_log_keyvals = kwargs['parseLogKeyvals']
+        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
+            request_max_bytes = kwargs['requestMaxBytes']
+        if required_acks is None and 'requiredAcks' in kwargs:
+            required_acks = kwargs['requiredAcks']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("brokers", brokers)
         _setter("name", name)
         _setter("topic", topic)
@@ -10058,8 +11014,8 @@ class ServiceVclLoggingKineseArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             topic: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             topic: Optional[pulumi.Input[str]] = None,
              access_key: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
@@ -10068,7 +11024,23 @@ class ServiceVclLoggingKineseArgs:
              region: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              secret_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if topic is None:
+            raise TypeError("Missing 'topic' argument")
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if iam_role is None and 'iamRole' in kwargs:
+            iam_role = kwargs['iamRole']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+
         _setter("name", name)
         _setter("topic", topic)
         if access_key is not None:
@@ -10244,15 +11216,27 @@ class ServiceVclLoggingLogentryArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              port: Optional[pulumi.Input[int]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("name", name)
         _setter("token", token)
         if format is not None:
@@ -10394,13 +11378,23 @@ class ServiceVclLoggingLogglyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("token", token)
         if format is not None:
@@ -10517,14 +11511,26 @@ class ServiceVclLoggingLogshuttleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("token", token)
         _setter("url", url)
@@ -10654,14 +11660,24 @@ class ServiceVclLoggingNewrelicArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("token", token)
         if format is not None:
@@ -10819,11 +11835,11 @@ class ServiceVclLoggingOpenstackArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             access_key: pulumi.Input[str],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
-             user: pulumi.Input[str],
+             access_key: Optional[pulumi.Input[str]] = None,
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
@@ -10835,7 +11851,37 @@ class ServiceVclLoggingOpenstackArgs:
              public_key: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key is None and 'accessKey' in kwargs:
+            access_key = kwargs['accessKey']
+        if access_key is None:
+            raise TypeError("Missing 'access_key' argument")
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("access_key", access_key)
         _setter("bucket_name", bucket_name)
         _setter("name", name)
@@ -11089,14 +12135,26 @@ class ServiceVclLoggingPapertrailArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
-             port: pulumi.Input[int],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if port is None:
+            raise TypeError("Missing 'port' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("address", address)
         _setter("name", name)
         _setter("port", port)
@@ -11271,8 +12329,8 @@ class ServiceVclLoggingS3Args:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             bucket_name: pulumi.Input[str],
-             name: pulumi.Input[str],
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              acl: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              domain: Optional[pulumi.Input[str]] = None,
@@ -11293,7 +12351,41 @@ class ServiceVclLoggingS3Args:
              server_side_encryption: Optional[pulumi.Input[str]] = None,
              server_side_encryption_kms_key_id: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
+            file_max_bytes = kwargs['fileMaxBytes']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if s3_access_key is None and 's3AccessKey' in kwargs:
+            s3_access_key = kwargs['s3AccessKey']
+        if s3_iam_role is None and 's3IamRole' in kwargs:
+            s3_iam_role = kwargs['s3IamRole']
+        if s3_secret_key is None and 's3SecretKey' in kwargs:
+            s3_secret_key = kwargs['s3SecretKey']
+        if server_side_encryption is None and 'serverSideEncryption' in kwargs:
+            server_side_encryption = kwargs['serverSideEncryption']
+        if server_side_encryption_kms_key_id is None and 'serverSideEncryptionKmsKeyId' in kwargs:
+            server_side_encryption_kms_key_id = kwargs['serverSideEncryptionKmsKeyId']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("bucket_name", bucket_name)
         _setter("name", name)
         if acl is not None:
@@ -11634,14 +12726,24 @@ class ServiceVclLoggingScalyrArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("token", token)
         if format is not None:
@@ -11805,11 +12907,11 @@ class ServiceVclLoggingSftpArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
-             path: pulumi.Input[str],
-             ssh_known_hosts: pulumi.Input[str],
-             user: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             ssh_known_hosts: Optional[pulumi.Input[str]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              compression_codec: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
@@ -11823,7 +12925,37 @@ class ServiceVclLoggingSftpArgs:
              response_condition: Optional[pulumi.Input[str]] = None,
              secret_key: Optional[pulumi.Input[str]] = None,
              timestamp_format: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if path is None:
+            raise TypeError("Missing 'path' argument")
+        if ssh_known_hosts is None and 'sshKnownHosts' in kwargs:
+            ssh_known_hosts = kwargs['sshKnownHosts']
+        if ssh_known_hosts is None:
+            raise TypeError("Missing 'ssh_known_hosts' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+        if compression_codec is None and 'compressionCodec' in kwargs:
+            compression_codec = kwargs['compressionCodec']
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if gzip_level is None and 'gzipLevel' in kwargs:
+            gzip_level = kwargs['gzipLevel']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if secret_key is None and 'secretKey' in kwargs:
+            secret_key = kwargs['secretKey']
+        if timestamp_format is None and 'timestampFormat' in kwargs:
+            timestamp_format = kwargs['timestampFormat']
+
         _setter("address", address)
         _setter("name", name)
         _setter("path", path)
@@ -12120,9 +13252,9 @@ class ServiceVclLoggingSplunkArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             token: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              placement: Optional[pulumi.Input[str]] = None,
@@ -12132,7 +13264,29 @@ class ServiceVclLoggingSplunkArgs:
              tls_client_key: Optional[pulumi.Input[str]] = None,
              tls_hostname: Optional[pulumi.Input[str]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if token is None:
+            raise TypeError("Missing 'token' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("name", name)
         _setter("token", token)
         _setter("url", url)
@@ -12332,14 +13486,26 @@ class ServiceVclLoggingSumologicArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             url: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
              placement: Optional[pulumi.Input[str]] = None,
              response_condition: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+
         _setter("name", name)
         _setter("url", url)
         if format is not None:
@@ -12491,8 +13657,8 @@ class ServiceVclLoggingSyslogArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
-             name: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              format: Optional[pulumi.Input[str]] = None,
              format_version: Optional[pulumi.Input[int]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
@@ -12505,7 +13671,29 @@ class ServiceVclLoggingSyslogArgs:
              tls_hostname: Optional[pulumi.Input[str]] = None,
              token: Optional[pulumi.Input[str]] = None,
              use_tls: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if format_version is None and 'formatVersion' in kwargs:
+            format_version = kwargs['formatVersion']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if response_condition is None and 'responseCondition' in kwargs:
+            response_condition = kwargs['responseCondition']
+        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
+            tls_ca_cert = kwargs['tlsCaCert']
+        if tls_client_cert is None and 'tlsClientCert' in kwargs:
+            tls_client_cert = kwargs['tlsClientCert']
+        if tls_client_key is None and 'tlsClientKey' in kwargs:
+            tls_client_key = kwargs['tlsClientKey']
+        if tls_hostname is None and 'tlsHostname' in kwargs:
+            tls_hostname = kwargs['tlsHostname']
+        if use_tls is None and 'useTls' in kwargs:
+            use_tls = kwargs['useTls']
+
         _setter("address", address)
         _setter("name", name)
         if format is not None:
@@ -12737,7 +13925,17 @@ class ServiceVclProductEnablementArgs:
              name: Optional[pulumi.Input[str]] = None,
              origin_inspector: Optional[pulumi.Input[bool]] = None,
              websockets: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if brotli_compression is None and 'brotliCompression' in kwargs:
+            brotli_compression = kwargs['brotliCompression']
+        if domain_inspector is None and 'domainInspector' in kwargs:
+            domain_inspector = kwargs['domainInspector']
+        if image_optimizer is None and 'imageOptimizer' in kwargs:
+            image_optimizer = kwargs['imageOptimizer']
+        if origin_inspector is None and 'originInspector' in kwargs:
+            origin_inspector = kwargs['originInspector']
+
         if brotli_compression is not None:
             _setter("brotli_compression", brotli_compression)
         if domain_inspector is not None:
@@ -12874,20 +14072,56 @@ class ServiceVclRateLimiterArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             action: pulumi.Input[str],
-             client_key: pulumi.Input[str],
-             http_methods: pulumi.Input[str],
-             name: pulumi.Input[str],
-             penalty_box_duration: pulumi.Input[int],
-             rps_limit: pulumi.Input[int],
-             window_size: pulumi.Input[int],
+             action: Optional[pulumi.Input[str]] = None,
+             client_key: Optional[pulumi.Input[str]] = None,
+             http_methods: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             penalty_box_duration: Optional[pulumi.Input[int]] = None,
+             rps_limit: Optional[pulumi.Input[int]] = None,
+             window_size: Optional[pulumi.Input[int]] = None,
              feature_revision: Optional[pulumi.Input[int]] = None,
              logger_type: Optional[pulumi.Input[str]] = None,
              ratelimiter_id: Optional[pulumi.Input[str]] = None,
              response: Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']] = None,
              response_object_name: Optional[pulumi.Input[str]] = None,
              uri_dictionary_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if client_key is None and 'clientKey' in kwargs:
+            client_key = kwargs['clientKey']
+        if client_key is None:
+            raise TypeError("Missing 'client_key' argument")
+        if http_methods is None and 'httpMethods' in kwargs:
+            http_methods = kwargs['httpMethods']
+        if http_methods is None:
+            raise TypeError("Missing 'http_methods' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if penalty_box_duration is None and 'penaltyBoxDuration' in kwargs:
+            penalty_box_duration = kwargs['penaltyBoxDuration']
+        if penalty_box_duration is None:
+            raise TypeError("Missing 'penalty_box_duration' argument")
+        if rps_limit is None and 'rpsLimit' in kwargs:
+            rps_limit = kwargs['rpsLimit']
+        if rps_limit is None:
+            raise TypeError("Missing 'rps_limit' argument")
+        if window_size is None and 'windowSize' in kwargs:
+            window_size = kwargs['windowSize']
+        if window_size is None:
+            raise TypeError("Missing 'window_size' argument")
+        if feature_revision is None and 'featureRevision' in kwargs:
+            feature_revision = kwargs['featureRevision']
+        if logger_type is None and 'loggerType' in kwargs:
+            logger_type = kwargs['loggerType']
+        if ratelimiter_id is None and 'ratelimiterId' in kwargs:
+            ratelimiter_id = kwargs['ratelimiterId']
+        if response_object_name is None and 'responseObjectName' in kwargs:
+            response_object_name = kwargs['responseObjectName']
+        if uri_dictionary_name is None and 'uriDictionaryName' in kwargs:
+            uri_dictionary_name = kwargs['uriDictionaryName']
+
         _setter("action", action)
         _setter("client_key", client_key)
         _setter("http_methods", http_methods)
@@ -13085,10 +14319,20 @@ class ServiceVclRateLimiterResponseArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             content: pulumi.Input[str],
-             content_type: pulumi.Input[str],
-             status: pulumi.Input[int],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             content: Optional[pulumi.Input[str]] = None,
+             content_type: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if content is None:
+            raise TypeError("Missing 'content' argument")
+        if content_type is None and 'contentType' in kwargs:
+            content_type = kwargs['contentType']
+        if content_type is None:
+            raise TypeError("Missing 'content_type' argument")
+        if status is None:
+            raise TypeError("Missing 'status' argument")
+
         _setter("content", content)
         _setter("content_type", content_type)
         _setter("status", status)
@@ -13177,7 +14421,7 @@ class ServiceVclRequestSettingArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              action: Optional[pulumi.Input[str]] = None,
              bypass_busy_wait: Optional[pulumi.Input[bool]] = None,
              default_host: Optional[pulumi.Input[str]] = None,
@@ -13189,7 +14433,29 @@ class ServiceVclRequestSettingArgs:
              request_condition: Optional[pulumi.Input[str]] = None,
              timer_support: Optional[pulumi.Input[bool]] = None,
              xff: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if bypass_busy_wait is None and 'bypassBusyWait' in kwargs:
+            bypass_busy_wait = kwargs['bypassBusyWait']
+        if default_host is None and 'defaultHost' in kwargs:
+            default_host = kwargs['defaultHost']
+        if force_miss is None and 'forceMiss' in kwargs:
+            force_miss = kwargs['forceMiss']
+        if force_ssl is None and 'forceSsl' in kwargs:
+            force_ssl = kwargs['forceSsl']
+        if geo_headers is None and 'geoHeaders' in kwargs:
+            geo_headers = kwargs['geoHeaders']
+        if hash_keys is None and 'hashKeys' in kwargs:
+            hash_keys = kwargs['hashKeys']
+        if max_stale_age is None and 'maxStaleAge' in kwargs:
+            max_stale_age = kwargs['maxStaleAge']
+        if request_condition is None and 'requestCondition' in kwargs:
+            request_condition = kwargs['requestCondition']
+        if timer_support is None and 'timerSupport' in kwargs:
+            timer_support = kwargs['timerSupport']
+
         _setter("name", name)
         if action is not None:
             _setter("action", action)
@@ -13397,14 +14663,24 @@ class ServiceVclResponseObjectArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
              cache_condition: Optional[pulumi.Input[str]] = None,
              content: Optional[pulumi.Input[str]] = None,
              content_type: Optional[pulumi.Input[str]] = None,
              request_condition: Optional[pulumi.Input[str]] = None,
              response: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if cache_condition is None and 'cacheCondition' in kwargs:
+            cache_condition = kwargs['cacheCondition']
+        if content_type is None and 'contentType' in kwargs:
+            content_type = kwargs['contentType']
+        if request_condition is None and 'requestCondition' in kwargs:
+            request_condition = kwargs['requestCondition']
+
         _setter("name", name)
         if cache_condition is not None:
             _setter("cache_condition", cache_condition)
@@ -13527,11 +14803,19 @@ class ServiceVclSnippetArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             content: pulumi.Input[str],
-             name: pulumi.Input[str],
-             type: pulumi.Input[str],
+             content: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              priority: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if content is None:
+            raise TypeError("Missing 'content' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+
         _setter("content", content)
         _setter("name", name)
         _setter("type", type)
@@ -13607,10 +14891,16 @@ class ServiceVclVclArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             content: pulumi.Input[str],
-             name: pulumi.Input[str],
+             content: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              main: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if content is None:
+            raise TypeError("Missing 'content' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+
         _setter("content", content)
         _setter("name", name)
         if main is not None:
@@ -13676,11 +14966,21 @@ class ServiceVclWafArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             response_object: pulumi.Input[str],
+             response_object: Optional[pulumi.Input[str]] = None,
              disabled: Optional[pulumi.Input[bool]] = None,
              prefetch_condition: Optional[pulumi.Input[str]] = None,
              waf_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if response_object is None and 'responseObject' in kwargs:
+            response_object = kwargs['responseObject']
+        if response_object is None:
+            raise TypeError("Missing 'response_object' argument")
+        if prefetch_condition is None and 'prefetchCondition' in kwargs:
+            prefetch_condition = kwargs['prefetchCondition']
+        if waf_id is None and 'wafId' in kwargs:
+            waf_id = kwargs['wafId']
+
         _setter("response_object", response_object)
         if disabled is not None:
             _setter("disabled", disabled)
@@ -13758,10 +15058,18 @@ class ServiceWafConfigurationRuleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             modsec_rule_id: pulumi.Input[int],
-             status: pulumi.Input[str],
+             modsec_rule_id: Optional[pulumi.Input[int]] = None,
+             status: Optional[pulumi.Input[str]] = None,
              revision: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if modsec_rule_id is None and 'modsecRuleId' in kwargs:
+            modsec_rule_id = kwargs['modsecRuleId']
+        if modsec_rule_id is None:
+            raise TypeError("Missing 'modsec_rule_id' argument")
+        if status is None:
+            raise TypeError("Missing 'status' argument")
+
         _setter("modsec_rule_id", modsec_rule_id)
         _setter("status", status)
         if revision is not None:
@@ -13830,12 +15138,24 @@ class ServiceWafConfigurationRuleExclusionArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             condition: pulumi.Input[str],
-             exclusion_type: pulumi.Input[str],
-             name: pulumi.Input[str],
+             condition: Optional[pulumi.Input[str]] = None,
+             exclusion_type: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
              modsec_rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
              number: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if condition is None:
+            raise TypeError("Missing 'condition' argument")
+        if exclusion_type is None and 'exclusionType' in kwargs:
+            exclusion_type = kwargs['exclusionType']
+        if exclusion_type is None:
+            raise TypeError("Missing 'exclusion_type' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if modsec_rule_ids is None and 'modsecRuleIds' in kwargs:
+            modsec_rule_ids = kwargs['modsecRuleIds']
+
         _setter("condition", condition)
         _setter("exclusion_type", exclusion_type)
         _setter("name", name)
@@ -13923,7 +15243,15 @@ class TlsSubscriptionManagedDnsChallengeArgs:
              record_name: Optional[pulumi.Input[str]] = None,
              record_type: Optional[pulumi.Input[str]] = None,
              record_value: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if record_name is None and 'recordName' in kwargs:
+            record_name = kwargs['recordName']
+        if record_type is None and 'recordType' in kwargs:
+            record_type = kwargs['recordType']
+        if record_value is None and 'recordValue' in kwargs:
+            record_value = kwargs['recordValue']
+
         if record_name is not None:
             _setter("record_name", record_name)
         if record_type is not None:
@@ -13977,7 +15305,15 @@ class TlsSubscriptionManagedHttpChallengeArgs:
              record_name: Optional[pulumi.Input[str]] = None,
              record_type: Optional[pulumi.Input[str]] = None,
              record_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if record_name is None and 'recordName' in kwargs:
+            record_name = kwargs['recordName']
+        if record_type is None and 'recordType' in kwargs:
+            record_type = kwargs['recordType']
+        if record_values is None and 'recordValues' in kwargs:
+            record_values = kwargs['recordValues']
+
         if record_name is not None:
             _setter("record_name", record_name)
         if record_type is not None:

@@ -119,7 +119,7 @@ class ServiceWafConfigurationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             waf_id: pulumi.Input[str],
+             waf_id: Optional[pulumi.Input[str]] = None,
              activate: Optional[pulumi.Input[bool]] = None,
              allowed_http_versions: Optional[pulumi.Input[str]] = None,
              allowed_methods: Optional[pulumi.Input[str]] = None,
@@ -151,7 +151,71 @@ class ServiceWafConfigurationArgs:
              total_arg_length: Optional[pulumi.Input[int]] = None,
              warning_anomaly_score: Optional[pulumi.Input[int]] = None,
              xss_score_threshold: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if waf_id is None and 'wafId' in kwargs:
+            waf_id = kwargs['wafId']
+        if waf_id is None:
+            raise TypeError("Missing 'waf_id' argument")
+        if allowed_http_versions is None and 'allowedHttpVersions' in kwargs:
+            allowed_http_versions = kwargs['allowedHttpVersions']
+        if allowed_methods is None and 'allowedMethods' in kwargs:
+            allowed_methods = kwargs['allowedMethods']
+        if allowed_request_content_type is None and 'allowedRequestContentType' in kwargs:
+            allowed_request_content_type = kwargs['allowedRequestContentType']
+        if allowed_request_content_type_charset is None and 'allowedRequestContentTypeCharset' in kwargs:
+            allowed_request_content_type_charset = kwargs['allowedRequestContentTypeCharset']
+        if arg_length is None and 'argLength' in kwargs:
+            arg_length = kwargs['argLength']
+        if arg_name_length is None and 'argNameLength' in kwargs:
+            arg_name_length = kwargs['argNameLength']
+        if combined_file_sizes is None and 'combinedFileSizes' in kwargs:
+            combined_file_sizes = kwargs['combinedFileSizes']
+        if critical_anomaly_score is None and 'criticalAnomalyScore' in kwargs:
+            critical_anomaly_score = kwargs['criticalAnomalyScore']
+        if crs_validate_utf8_encoding is None and 'crsValidateUtf8Encoding' in kwargs:
+            crs_validate_utf8_encoding = kwargs['crsValidateUtf8Encoding']
+        if error_anomaly_score is None and 'errorAnomalyScore' in kwargs:
+            error_anomaly_score = kwargs['errorAnomalyScore']
+        if high_risk_country_codes is None and 'highRiskCountryCodes' in kwargs:
+            high_risk_country_codes = kwargs['highRiskCountryCodes']
+        if http_violation_score_threshold is None and 'httpViolationScoreThreshold' in kwargs:
+            http_violation_score_threshold = kwargs['httpViolationScoreThreshold']
+        if inbound_anomaly_score_threshold is None and 'inboundAnomalyScoreThreshold' in kwargs:
+            inbound_anomaly_score_threshold = kwargs['inboundAnomalyScoreThreshold']
+        if lfi_score_threshold is None and 'lfiScoreThreshold' in kwargs:
+            lfi_score_threshold = kwargs['lfiScoreThreshold']
+        if max_file_size is None and 'maxFileSize' in kwargs:
+            max_file_size = kwargs['maxFileSize']
+        if max_num_args is None and 'maxNumArgs' in kwargs:
+            max_num_args = kwargs['maxNumArgs']
+        if notice_anomaly_score is None and 'noticeAnomalyScore' in kwargs:
+            notice_anomaly_score = kwargs['noticeAnomalyScore']
+        if paranoia_level is None and 'paranoiaLevel' in kwargs:
+            paranoia_level = kwargs['paranoiaLevel']
+        if php_injection_score_threshold is None and 'phpInjectionScoreThreshold' in kwargs:
+            php_injection_score_threshold = kwargs['phpInjectionScoreThreshold']
+        if rce_score_threshold is None and 'rceScoreThreshold' in kwargs:
+            rce_score_threshold = kwargs['rceScoreThreshold']
+        if restricted_extensions is None and 'restrictedExtensions' in kwargs:
+            restricted_extensions = kwargs['restrictedExtensions']
+        if restricted_headers is None and 'restrictedHeaders' in kwargs:
+            restricted_headers = kwargs['restrictedHeaders']
+        if rfi_score_threshold is None and 'rfiScoreThreshold' in kwargs:
+            rfi_score_threshold = kwargs['rfiScoreThreshold']
+        if rule_exclusions is None and 'ruleExclusions' in kwargs:
+            rule_exclusions = kwargs['ruleExclusions']
+        if session_fixation_score_threshold is None and 'sessionFixationScoreThreshold' in kwargs:
+            session_fixation_score_threshold = kwargs['sessionFixationScoreThreshold']
+        if sql_injection_score_threshold is None and 'sqlInjectionScoreThreshold' in kwargs:
+            sql_injection_score_threshold = kwargs['sqlInjectionScoreThreshold']
+        if total_arg_length is None and 'totalArgLength' in kwargs:
+            total_arg_length = kwargs['totalArgLength']
+        if warning_anomaly_score is None and 'warningAnomalyScore' in kwargs:
+            warning_anomaly_score = kwargs['warningAnomalyScore']
+        if xss_score_threshold is None and 'xssScoreThreshold' in kwargs:
+            xss_score_threshold = kwargs['xssScoreThreshold']
+
         _setter("waf_id", waf_id)
         if activate is not None:
             _setter("activate", activate)
@@ -745,7 +809,71 @@ class _ServiceWafConfigurationState:
              waf_id: Optional[pulumi.Input[str]] = None,
              warning_anomaly_score: Optional[pulumi.Input[int]] = None,
              xss_score_threshold: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if allowed_http_versions is None and 'allowedHttpVersions' in kwargs:
+            allowed_http_versions = kwargs['allowedHttpVersions']
+        if allowed_methods is None and 'allowedMethods' in kwargs:
+            allowed_methods = kwargs['allowedMethods']
+        if allowed_request_content_type is None and 'allowedRequestContentType' in kwargs:
+            allowed_request_content_type = kwargs['allowedRequestContentType']
+        if allowed_request_content_type_charset is None and 'allowedRequestContentTypeCharset' in kwargs:
+            allowed_request_content_type_charset = kwargs['allowedRequestContentTypeCharset']
+        if arg_length is None and 'argLength' in kwargs:
+            arg_length = kwargs['argLength']
+        if arg_name_length is None and 'argNameLength' in kwargs:
+            arg_name_length = kwargs['argNameLength']
+        if cloned_version is None and 'clonedVersion' in kwargs:
+            cloned_version = kwargs['clonedVersion']
+        if combined_file_sizes is None and 'combinedFileSizes' in kwargs:
+            combined_file_sizes = kwargs['combinedFileSizes']
+        if critical_anomaly_score is None and 'criticalAnomalyScore' in kwargs:
+            critical_anomaly_score = kwargs['criticalAnomalyScore']
+        if crs_validate_utf8_encoding is None and 'crsValidateUtf8Encoding' in kwargs:
+            crs_validate_utf8_encoding = kwargs['crsValidateUtf8Encoding']
+        if error_anomaly_score is None and 'errorAnomalyScore' in kwargs:
+            error_anomaly_score = kwargs['errorAnomalyScore']
+        if high_risk_country_codes is None and 'highRiskCountryCodes' in kwargs:
+            high_risk_country_codes = kwargs['highRiskCountryCodes']
+        if http_violation_score_threshold is None and 'httpViolationScoreThreshold' in kwargs:
+            http_violation_score_threshold = kwargs['httpViolationScoreThreshold']
+        if inbound_anomaly_score_threshold is None and 'inboundAnomalyScoreThreshold' in kwargs:
+            inbound_anomaly_score_threshold = kwargs['inboundAnomalyScoreThreshold']
+        if lfi_score_threshold is None and 'lfiScoreThreshold' in kwargs:
+            lfi_score_threshold = kwargs['lfiScoreThreshold']
+        if max_file_size is None and 'maxFileSize' in kwargs:
+            max_file_size = kwargs['maxFileSize']
+        if max_num_args is None and 'maxNumArgs' in kwargs:
+            max_num_args = kwargs['maxNumArgs']
+        if notice_anomaly_score is None and 'noticeAnomalyScore' in kwargs:
+            notice_anomaly_score = kwargs['noticeAnomalyScore']
+        if paranoia_level is None and 'paranoiaLevel' in kwargs:
+            paranoia_level = kwargs['paranoiaLevel']
+        if php_injection_score_threshold is None and 'phpInjectionScoreThreshold' in kwargs:
+            php_injection_score_threshold = kwargs['phpInjectionScoreThreshold']
+        if rce_score_threshold is None and 'rceScoreThreshold' in kwargs:
+            rce_score_threshold = kwargs['rceScoreThreshold']
+        if restricted_extensions is None and 'restrictedExtensions' in kwargs:
+            restricted_extensions = kwargs['restrictedExtensions']
+        if restricted_headers is None and 'restrictedHeaders' in kwargs:
+            restricted_headers = kwargs['restrictedHeaders']
+        if rfi_score_threshold is None and 'rfiScoreThreshold' in kwargs:
+            rfi_score_threshold = kwargs['rfiScoreThreshold']
+        if rule_exclusions is None and 'ruleExclusions' in kwargs:
+            rule_exclusions = kwargs['ruleExclusions']
+        if session_fixation_score_threshold is None and 'sessionFixationScoreThreshold' in kwargs:
+            session_fixation_score_threshold = kwargs['sessionFixationScoreThreshold']
+        if sql_injection_score_threshold is None and 'sqlInjectionScoreThreshold' in kwargs:
+            sql_injection_score_threshold = kwargs['sqlInjectionScoreThreshold']
+        if total_arg_length is None and 'totalArgLength' in kwargs:
+            total_arg_length = kwargs['totalArgLength']
+        if waf_id is None and 'wafId' in kwargs:
+            waf_id = kwargs['wafId']
+        if warning_anomaly_score is None and 'warningAnomalyScore' in kwargs:
+            warning_anomaly_score = kwargs['warningAnomalyScore']
+        if xss_score_threshold is None and 'xssScoreThreshold' in kwargs:
+            xss_score_threshold = kwargs['xssScoreThreshold']
+
         if activate is not None:
             _setter("activate", activate)
         if active is not None:
