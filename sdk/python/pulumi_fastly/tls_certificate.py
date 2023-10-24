@@ -267,7 +267,8 @@ class TlsCertificate(pulumi.CustomResource):
         """
         Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
 
-        > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
+        > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+        can be achieved in Pulumi using `depends_on`
 
         ## Example Usage
 
@@ -331,7 +332,8 @@ class TlsCertificate(pulumi.CustomResource):
         """
         Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
 
-        > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
+        > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+        can be achieved in Pulumi using `depends_on`
 
         ## Example Usage
 
