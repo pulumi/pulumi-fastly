@@ -17,6 +17,7 @@ package fastly
 import (
 	"fmt"
 	// embed is used to store bridge-metadata.json in the compiled binary
+	"bytes"
 	_ "embed"
 	"path/filepath"
 	"unicode"
@@ -81,6 +82,8 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:         "fastly",
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		UpstreamRepoPath:  "./upstream",
+		DocRules:          &tfbridge.DocRuleInfo{EditRules: docRuleEdits},
+
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"fastly_service_acl_entries": {Tok: makeResource(mainMod, "ServiceACLEntries")},
 			"fastly_service_compute": {
@@ -144,3 +147,24 @@ func Provider() tfbridge.ProviderInfo {
 
 //go:embed cmd/pulumi-resource-fastly/bridge-metadata.json
 var metadata []byte
+
+func docRuleEdits(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(defaults, tfbridge.DocsEdit{
+		Path: "*",
+		Edit: func(path string, content []byte) ([]byte, error) {
+			content = bytes.ReplaceAll(content,
+				[]byte(", Terraform will fail."),
+				[]byte(", this provider will fail."))
+			content = bytes.ReplaceAll(content,
+				[]byte("achieved in Terraform using"),
+				[]byte("achieved in Pulumi using"))
+			content = bytes.ReplaceAll(content,
+				[]byte("-> **Note:** The following example is only available from 0.20.0 of the Fastly Terraform provider.\n\n"), nil)
+
+			content = bytes.ReplaceAll(content,
+				[]byte("The first time Terraform is applied,"),
+				[]byte("The first time this provider is applied,"))
+			return content, nil
+		},
+	})
+}

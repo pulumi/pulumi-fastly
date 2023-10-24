@@ -1,0 +1,87 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ian Wahbe <ian@wahbe.com>
+Date: Tue, 24 Oct 2023 15:24:51 -0700
+Subject: [PATCH 2/3] Special case cloned_version
+
+
+diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
+index c4e8938b..157eb846 100644
+--- a/fastly/base_fastly_service.go
++++ b/fastly/base_fastly_service.go
+@@ -320,11 +320,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+ 		}
+ 	}
+ 
++	// FORK: The Fastly provider takes advantage of TF's behavior in a somewhat novel way that causes a bug when the
++	// same provider is bridged in Pulumi. Therefore, we need to add the following block of code to ensure consistent
++	// behavior in the bridged provider.
++	//
++	// Detailed explanation:
++	//
++	// The TF provider interface looks like this:
++	//   Plan(prior state, config) -> planned state
++	//   Apply(prior state, planned state, config) -> new state
++	//
++	// In the Plan() stage, diffs include any CustomizeDiff funcs in the schema. However, Terraform's behavior (at
++	// least after v2.10.1 of the plugin SDK) is to strip diff customizers when performing an Apply.
++	//
++	// The Pulumi interface looks like this:
++	//   Diff(prior state, config) -> diff result
++	//   Update(prior state, config) -> new state
++	//
++	// In both cases, Pulumi does not strip diff customizers.
++	//
++	// For this resource, the effect of the difference in behavior is that during a call to Apply, the cloned_version
++	// attribute is not treated as computed, even though in the Plan it is treated as computed. This difference is
++	// because the cloned_version attribute is marked as computed by CustomizeDiff, which Pulumi runs during Update but
++	// TF does not run during Apply. The Pulumi provider reads the cloned_version field in its implementation of Update
++	// for that resource, so in TF it gets back the last actual value, but with Pulumi it gets back the zero value (0)
++	// because the new value is not known.
++	var clonedVersion int
++	if cv, ok := d.GetOk("cloned_version"); ok {
++		clonedVersion = cv.(int)
++	} else {
++		oldCV, _ := d.GetChange("cloned_version")
++		clonedVersion, _ = oldCV.(int)
++	}
++
++	var activeVersion int
++	if av, ok := d.GetOk("active_version"); ok {
++		activeVersion = av.(int)
++	} else {
++		oldAV, _ := d.GetChange("active_version")
++		activeVersion, _ = oldAV.(int)
++	}
++
+ 	// Update the cloned version's comment. No new version is required for this.
+ 	if d.HasChange("version_comment") && (!needsChange || d.IsNewResource()) {
+ 		opts := gofastly.UpdateVersionInput{
+ 			ServiceID:      d.Id(),
+-			ServiceVersion: d.Get("cloned_version").(int),
++			ServiceVersion: clonedVersion,
+ 			Comment:        gofastly.String(d.Get("version_comment").(string)),
+ 		}
+ 
+@@ -345,7 +386,7 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+ 			// that is unlocked and can be updated.
+ 			latestVersion = 1
+ 		} else {
+-			latestVersion = d.Get("cloned_version").(int)
++			latestVersion = clonedVersion
+ 			// Clone the latest version, giving us an unlocked version we can modify.
+ 			log.Printf("[DEBUG] Creating clone of version (%d) for updates", latestVersion)
+ 			newVersion, err := conn.CloneVersion(&gofastly.CloneVersionInput{
+@@ -430,10 +471,11 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+ 		if err != nil {
+ 			return diag.FromErr(err)
+ 		}
++		clonedVersion = latestVersion
+ 	}
+ 
+-	versionNotYetActivated := d.Get("cloned_version") != d.Get("active_version")
+-	latestVersion := d.Get("cloned_version").(int)
++	versionNotYetActivated := clonedVersion != activeVersion
++	latestVersion := clonedVersion
+ 	if shouldActivate && versionNotYetActivated {
+ 		log.Printf("[DEBUG] Activating Fastly Service (%s), Version (%v)", d.Id(), latestVersion)
+ 		_, err := conn.ActivateVersion(&gofastly.ActivateVersionInput{
