@@ -15,7 +15,7 @@ import (
 
 // Enables TLS on a domain using a specified custom TLS certificate.
 //
-// > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it.
+// > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `dependsOn`.
 //
 // ## Example Usage
 //

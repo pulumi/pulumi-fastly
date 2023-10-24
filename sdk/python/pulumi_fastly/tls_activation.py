@@ -214,7 +214,7 @@ class TlsActivation(pulumi.CustomResource):
         """
         Enables TLS on a domain using a specified custom TLS certificate.
 
-        > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it.
+        > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
 
         ## Example Usage
 
@@ -268,7 +268,7 @@ class TlsActivation(pulumi.CustomResource):
         """
         Enables TLS on a domain using a specified custom TLS certificate.
 
-        > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it.
+        > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
 
         ## Example Usage
 

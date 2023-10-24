@@ -15,7 +15,8 @@ import (
 
 // Uploads a TLS certificate to the Fastly Platform TLS service.
 //
-// > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
+// > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+// can be achieved in Pulumi using `dependsOn`
 //
 // ## Example Usage
 //

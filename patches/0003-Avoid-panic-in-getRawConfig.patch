@@ -1,14 +1,11 @@
-From 00673c35cf1c68df9cb24621d7d47e60a3d8fe47 Mon Sep 17 00:00:00 2001
-From: aq17 <aqiu@pulumi.com>
-Date: Thu, 20 Apr 2023 15:17:05 -0700
-Subject: [PATCH] Avoid panic in base_fastly_service
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ian Wahbe <ian@wahbe.com>
+Date: Tue, 24 Oct 2023 15:25:29 -0700
+Subject: [PATCH 3/3] Avoid panic in getRawConfig
 
----
- fastly/base_fastly_service.go | 4 ++++
- 1 file changed, 4 insertions(+)
 
 diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
-index c0c4c6f6..300676db 100644
+index 157eb846..de24123a 100644
 --- a/fastly/base_fastly_service.go
 +++ b/fastly/base_fastly_service.go
 @@ -165,7 +165,11 @@ func validateUniqueNames(block string) func(_ context.Context, rd *schema.Resour
@@ -23,6 +20,3 @@ index c0c4c6f6..300676db 100644
  		m := c.AsValueMap()
  		s, ok := m[block]
  		if ok {
--- 
-2.39.1
-

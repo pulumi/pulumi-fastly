@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
 /**
  * Uploads a TLS certificate to the Fastly Platform TLS service.
  * 
- * &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
+ * &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+ * can be achieved in Pulumi using `depends_on`
  * 
  * ## Example Usage
  * 
