@@ -15,10 +15,11 @@
 package fastly
 
 import (
-	"fmt"
 	// embed is used to store bridge-metadata.json in the compiled binary
-	"bytes"
 	_ "embed"
+
+	"bytes"
+	"fmt"
 	"path/filepath"
 	"unicode"
 
@@ -159,7 +160,8 @@ func docRuleEdits(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 				[]byte("achieved in Terraform using"),
 				[]byte("achieved in Pulumi using"))
 			content = bytes.ReplaceAll(content,
-				[]byte("-> **Note:** The following example is only available from 0.20.0 of the Fastly Terraform provider.\n\n"), nil)
+				[]byte("-> **Note:** The following example is only available from "+
+					"0.20.0 of the Fastly Terraform provider.\n\n"), nil)
 
 			content = bytes.ReplaceAll(content,
 				[]byte("The first time Terraform is applied,"),
