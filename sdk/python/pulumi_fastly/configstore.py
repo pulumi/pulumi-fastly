@@ -31,7 +31,11 @@ class ConfigstoreArgs:
              _setter: Callable[[Any, Any], None],
              force_destroy: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+
         if force_destroy is not None:
             _setter("force_destroy", force_destroy)
         if name is not None:
@@ -82,7 +86,11 @@ class _ConfigstoreState:
              _setter: Callable[[Any, Any], None],
              force_destroy: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+
         if force_destroy is not None:
             _setter("force_destroy", force_destroy)
         if name is not None:
@@ -126,34 +134,6 @@ class Configstore(pulumi.CustomResource):
 
         In order for a Config Store (`Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
-        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
-        # e.g. resource_link deletion within fastly_service_compute might not finish first.
-        example_configstore = fastly.Configstore("exampleConfigstore")
-        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
-        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
-            domains=[fastly.ServiceComputeDomainArgs(
-                name="demo.example.com",
-            )],
-            package=fastly.ServiceComputePackageArgs(
-                filename="package.tar.gz",
-                source_code_hash=example_package_hash.hash,
-            ),
-            resource_links=[fastly.ServiceComputeResourceLinkArgs(
-                name="my_resource_link",
-                resource_id=example_configstore.id,
-            )],
-            force_destroy=True)
-        ```
-
         ## Import
 
         Fastly Config Stores can be imported using their Store ID, e.g.
@@ -177,34 +157,6 @@ class Configstore(pulumi.CustomResource):
         Provides a container that lets you store data in key-value pairs that are accessible to Compute@Edge services during request processing.
 
         In order for a Config Store (`Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
-
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
-        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
-        # e.g. resource_link deletion within fastly_service_compute might not finish first.
-        example_configstore = fastly.Configstore("exampleConfigstore")
-        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
-        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
-            domains=[fastly.ServiceComputeDomainArgs(
-                name="demo.example.com",
-            )],
-            package=fastly.ServiceComputePackageArgs(
-                filename="package.tar.gz",
-                source_code_hash=example_package_hash.hash,
-            ),
-            resource_links=[fastly.ServiceComputeResourceLinkArgs(
-                name="my_resource_link",
-                resource_id=example_configstore.id,
-            )],
-            force_destroy=True)
-        ```
 
         ## Import
 

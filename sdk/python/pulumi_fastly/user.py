@@ -32,10 +32,14 @@ class UserArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             login: pulumi.Input[str],
+             login: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              role: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if login is None:
+            raise TypeError("Missing 'login' argument")
+
         _setter("login", login)
         if name is not None:
             _setter("name", name)
@@ -103,7 +107,9 @@ class _UserState:
              login: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              role: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if login is not None:
             _setter("login", login)
         if name is not None:
@@ -162,17 +168,6 @@ class User(pulumi.CustomResource):
 
         The User resource requires a login and name, and optionally a role.
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo = fastly.User("demo", login="demo@example.com")
-        ```
-
         ## Import
 
         A Fastly User can be imported using their user ID, e.g.
@@ -197,17 +192,6 @@ class User(pulumi.CustomResource):
         Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.
 
         The User resource requires a login and name, and optionally a role.
-
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo = fastly.User("demo", login="demo@example.com")
-        ```
 
         ## Import
 

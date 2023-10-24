@@ -29,9 +29,15 @@ class TlsCertificateArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             certificate_body: pulumi.Input[str],
+             certificate_body: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if certificate_body is None:
+            raise TypeError("Missing 'certificate_body' argument")
+
         _setter("certificate_body", certificate_body)
         if name is not None:
             _setter("name", name)
@@ -113,7 +119,21 @@ class _TlsCertificateState:
              serial_number: Optional[pulumi.Input[str]] = None,
              signature_algorithm: Optional[pulumi.Input[str]] = None,
              updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if issued_to is None and 'issuedTo' in kwargs:
+            issued_to = kwargs['issuedTo']
+        if serial_number is None and 'serialNumber' in kwargs:
+            serial_number = kwargs['serialNumber']
+        if signature_algorithm is None and 'signatureAlgorithm' in kwargs:
+            signature_algorithm = kwargs['signatureAlgorithm']
+        if updated_at is None and 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if certificate_body is not None:
             _setter("certificate_body", certificate_body)
         if created_at is not None:
@@ -269,34 +289,6 @@ class TlsCertificate(pulumi.CustomResource):
 
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-        import pulumi_tls as tls
-
-        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
-        cert = tls.SelfSignedCert("cert",
-            key_algorithm=key_private_key.algorithm,
-            private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
-                common_name="example.com",
-            )],
-            is_ca_certificate=True,
-            validity_period_hours=360,
-            allowed_uses=[
-                "cert_signing",
-                "server_auth",
-            ],
-            dns_names=["example.com"])
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        example = fastly.TlsCertificate("example", certificate_body=cert.cert_pem,
-        opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
-        # The private key has to be present before the certificate can be uploaded
-        ```
         ## Updating certificates
 
         There are three scenarios for updating a certificate:
@@ -333,34 +325,6 @@ class TlsCertificate(pulumi.CustomResource):
 
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-        import pulumi_tls as tls
-
-        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
-        cert = tls.SelfSignedCert("cert",
-            key_algorithm=key_private_key.algorithm,
-            private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
-                common_name="example.com",
-            )],
-            is_ca_certificate=True,
-            validity_period_hours=360,
-            allowed_uses=[
-                "cert_signing",
-                "server_auth",
-            ],
-            dns_names=["example.com"])
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        example = fastly.TlsCertificate("example", certificate_body=cert.cert_pem,
-        opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
-        # The private key has to be present before the certificate can be uploaded
-        ```
         ## Updating certificates
 
         There are three scenarios for updating a certificate:

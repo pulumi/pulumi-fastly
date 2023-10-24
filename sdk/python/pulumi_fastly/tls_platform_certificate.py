@@ -35,11 +35,27 @@ class TlsPlatformCertificateArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             certificate_body: pulumi.Input[str],
-             configuration_id: pulumi.Input[str],
-             intermediates_blob: pulumi.Input[str],
+             certificate_body: Optional[pulumi.Input[str]] = None,
+             configuration_id: Optional[pulumi.Input[str]] = None,
+             intermediates_blob: Optional[pulumi.Input[str]] = None,
              allow_untrusted_root: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if certificate_body is None:
+            raise TypeError("Missing 'certificate_body' argument")
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if configuration_id is None:
+            raise TypeError("Missing 'configuration_id' argument")
+        if intermediates_blob is None and 'intermediatesBlob' in kwargs:
+            intermediates_blob = kwargs['intermediatesBlob']
+        if intermediates_blob is None:
+            raise TypeError("Missing 'intermediates_blob' argument")
+        if allow_untrusted_root is None and 'allowUntrustedRoot' in kwargs:
+            allow_untrusted_root = kwargs['allowUntrustedRoot']
+
         _setter("certificate_body", certificate_body)
         _setter("configuration_id", configuration_id)
         _setter("intermediates_blob", intermediates_blob)
@@ -147,7 +163,25 @@ class _TlsPlatformCertificateState:
              not_before: Optional[pulumi.Input[str]] = None,
              replace: Optional[pulumi.Input[bool]] = None,
              updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if allow_untrusted_root is None and 'allowUntrustedRoot' in kwargs:
+            allow_untrusted_root = kwargs['allowUntrustedRoot']
+        if certificate_body is None and 'certificateBody' in kwargs:
+            certificate_body = kwargs['certificateBody']
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if intermediates_blob is None and 'intermediatesBlob' in kwargs:
+            intermediates_blob = kwargs['intermediatesBlob']
+        if not_after is None and 'notAfter' in kwargs:
+            not_after = kwargs['notAfter']
+        if not_before is None and 'notBefore' in kwargs:
+            not_before = kwargs['notBefore']
+        if updated_at is None and 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if allow_untrusted_root is not None:
             _setter("allow_untrusted_root", allow_untrusted_root)
         if certificate_body is not None:
@@ -305,59 +339,6 @@ class TlsPlatformCertificate(pulumi.CustomResource):
 
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
 
-        ## Example Usage
-
-        Basic usage with self-signed CA:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-        import pulumi_tls as tls
-
-        ca_key = tls.PrivateKey("caKey", algorithm="RSA")
-        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
-        ca = tls.SelfSignedCert("ca",
-            key_algorithm=ca_key.algorithm,
-            private_key_pem=ca_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
-                common_name="Example CA",
-            )],
-            is_ca_certificate=True,
-            validity_period_hours=360,
-            allowed_uses=[
-                "cert_signing",
-                "server_auth",
-            ])
-        example = tls.CertRequest("example",
-            key_algorithm=key_private_key.algorithm,
-            private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.CertRequestSubjectArgs(
-                common_name="example.com",
-            )],
-            dns_names=[
-                "example.com",
-                "www.example.com",
-            ])
-        cert_locally_signed_cert = tls.LocallySignedCert("certLocallySignedCert",
-            cert_request_pem=example.cert_request_pem,
-            ca_key_algorithm=ca_key.algorithm,
-            ca_private_key_pem=ca_key.private_key_pem,
-            ca_cert_pem=ca.cert_pem,
-            validity_period_hours=360,
-            allowed_uses=[
-                "cert_signing",
-                "server_auth",
-            ])
-        config = fastly.get_tls_configuration(tls_service="PLATFORM")
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
-            certificate_body=cert_locally_signed_cert.cert_pem,
-            intermediates_blob=ca.cert_pem,
-            configuration_id=config.id,
-            allow_untrusted_root=True,
-            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
-        ```
-
         ## Import
 
         A certificate can be imported using its Fastly certificate ID, e.g.
@@ -383,59 +364,6 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         Uploads a TLS certificate to the Fastly Platform TLS service.
 
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
-
-        ## Example Usage
-
-        Basic usage with self-signed CA:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-        import pulumi_tls as tls
-
-        ca_key = tls.PrivateKey("caKey", algorithm="RSA")
-        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
-        ca = tls.SelfSignedCert("ca",
-            key_algorithm=ca_key.algorithm,
-            private_key_pem=ca_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
-                common_name="Example CA",
-            )],
-            is_ca_certificate=True,
-            validity_period_hours=360,
-            allowed_uses=[
-                "cert_signing",
-                "server_auth",
-            ])
-        example = tls.CertRequest("example",
-            key_algorithm=key_private_key.algorithm,
-            private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.CertRequestSubjectArgs(
-                common_name="example.com",
-            )],
-            dns_names=[
-                "example.com",
-                "www.example.com",
-            ])
-        cert_locally_signed_cert = tls.LocallySignedCert("certLocallySignedCert",
-            cert_request_pem=example.cert_request_pem,
-            ca_key_algorithm=ca_key.algorithm,
-            ca_private_key_pem=ca_key.private_key_pem,
-            ca_cert_pem=ca.cert_pem,
-            validity_period_hours=360,
-            allowed_uses=[
-                "cert_signing",
-                "server_auth",
-            ])
-        config = fastly.get_tls_configuration(tls_service="PLATFORM")
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
-            certificate_body=cert_locally_signed_cert.cert_pem,
-            intermediates_blob=ca.cert_pem,
-            configuration_id=config.id,
-            allow_untrusted_root=True,
-            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
-        ```
 
         ## Import
 

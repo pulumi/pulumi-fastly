@@ -9,36 +9,6 @@ import * as utilities from "./utilities";
  *
  * > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
  *
- * ## Example Usage
- *
- * Basic usage:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- * import * as tls from "@pulumi/tls";
- *
- * const keyPrivateKey = new tls.PrivateKey("keyPrivateKey", {algorithm: "RSA"});
- * const cert = new tls.SelfSignedCert("cert", {
- *     keyAlgorithm: keyPrivateKey.algorithm,
- *     privateKeyPem: keyPrivateKey.privateKeyPem,
- *     subjects: [{
- *         commonName: "example.com",
- *     }],
- *     isCaCertificate: true,
- *     validityPeriodHours: 360,
- *     allowedUses: [
- *         "cert_signing",
- *         "server_auth",
- *     ],
- *     dnsNames: ["example.com"],
- * });
- * const keyTlsPrivateKey = new fastly.TlsPrivateKey("keyTlsPrivateKey", {keyPem: keyPrivateKey.privateKeyPem});
- * const example = new fastly.TlsCertificate("example", {certificateBody: cert.certPem}, {
- *     dependsOn: [keyTlsPrivateKey],
- * });
- * // The private key has to be present before the certificate can be uploaded
- * ```
  * ## Updating certificates
  *
  * There are three scenarios for updating a certificate:

@@ -14,34 +14,6 @@ namespace Pulumi.Fastly
     /// 
     /// The Service Authorization resource requires a user id, service id and an optional permission.
     /// 
-    /// ## Example Usage
-    /// 
-    /// Basic usage:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Fastly = Pulumi.Fastly;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var demo = new Fastly.ServiceVcl("demo");
-    /// 
-    ///     //...
-    ///     var user = new Fastly.User("user");
-    /// 
-    ///     // ...
-    ///     var auth = new Fastly.ServiceAuthorization("auth", new()
-    ///     {
-    ///         ServiceId = demo.Id,
-    ///         UserId = user.Id,
-    ///         Permission = "purge_all",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// A Fastly Service Authorization can be imported using their user ID, e.g.

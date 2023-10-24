@@ -32,10 +32,22 @@ class ServiceAuthorizationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             permission: pulumi.Input[str],
-             service_id: pulumi.Input[str],
-             user_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             permission: Optional[pulumi.Input[str]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
+             user_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if permission is None:
+            raise TypeError("Missing 'permission' argument")
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+        if service_id is None:
+            raise TypeError("Missing 'service_id' argument")
+        if user_id is None and 'userId' in kwargs:
+            user_id = kwargs['userId']
+        if user_id is None:
+            raise TypeError("Missing 'user_id' argument")
+
         _setter("permission", permission)
         _setter("service_id", service_id)
         _setter("user_id", user_id)
@@ -101,7 +113,13 @@ class _ServiceAuthorizationState:
              permission: Optional[pulumi.Input[str]] = None,
              service_id: Optional[pulumi.Input[str]] = None,
              user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if service_id is None and 'serviceId' in kwargs:
+            service_id = kwargs['serviceId']
+        if user_id is None and 'userId' in kwargs:
+            user_id = kwargs['userId']
+
         if permission is not None:
             _setter("permission", permission)
         if service_id is not None:
@@ -160,24 +178,6 @@ class ServiceAuthorization(pulumi.CustomResource):
 
         The Service Authorization resource requires a user id, service id and an optional permission.
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo = fastly.ServiceVcl("demo")
-        #...
-        user = fastly.User("user")
-        # ...
-        auth = fastly.ServiceAuthorization("auth",
-            service_id=demo.id,
-            user_id=user.id,
-            permission="purge_all")
-        ```
-
         ## Import
 
         A Fastly Service Authorization can be imported using their user ID, e.g.
@@ -202,24 +202,6 @@ class ServiceAuthorization(pulumi.CustomResource):
         Configures authorization with granular permissions to services. Users can be granted rights for services on different levels.
 
         The Service Authorization resource requires a user id, service id and an optional permission.
-
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo = fastly.ServiceVcl("demo")
-        #...
-        user = fastly.User("user")
-        # ...
-        auth = fastly.ServiceAuthorization("auth",
-            service_id=demo.id,
-            user_id=user.id,
-            permission="purge_all")
-        ```
 
         ## Import
 

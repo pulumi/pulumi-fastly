@@ -4,8 +4,12 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).
@@ -27,4 +31,55 @@ type GetServicesResult struct {
 	Id string `pulumi:"id"`
 	// A list of service IDs in your account. This is limited to the services the API token can read.
 	Ids []string `pulumi:"ids"`
+}
+
+func GetServicesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetServicesResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetServicesResult, error) {
+		r, err := GetServices(ctx, opts...)
+		var s GetServicesResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetServicesResultOutput)
+}
+
+// A collection of values returned by getServices.
+type GetServicesResultOutput struct{ *pulumi.OutputState }
+
+func (GetServicesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServicesResult)(nil)).Elem()
+}
+
+func (o GetServicesResultOutput) ToGetServicesResultOutput() GetServicesResultOutput {
+	return o
+}
+
+func (o GetServicesResultOutput) ToGetServicesResultOutputWithContext(ctx context.Context) GetServicesResultOutput {
+	return o
+}
+
+func (o GetServicesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetServicesResult] {
+	return pulumix.Output[GetServicesResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// A detailed list of Fastly services in your account. This is limited to the services the API token can read.
+func (o GetServicesResultOutput) Details() GetServicesDetailArrayOutput {
+	return o.ApplyT(func(v GetServicesResult) []GetServicesDetail { return v.Details }).(GetServicesDetailArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetServicesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServicesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of service IDs in your account. This is limited to the services the API token can read.
+func (o GetServicesResultOutput) Ids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServicesResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetServicesResultOutput{})
 }

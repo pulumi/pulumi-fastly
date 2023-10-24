@@ -4,8 +4,12 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetConfigstores(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetConfigstoresResult, error) {
@@ -24,4 +28,50 @@ type GetConfigstoresResult struct {
 	Id string `pulumi:"id"`
 	// List of all Config Stores.
 	Stores []GetConfigstoresStore `pulumi:"stores"`
+}
+
+func GetConfigstoresOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetConfigstoresResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetConfigstoresResult, error) {
+		r, err := GetConfigstores(ctx, opts...)
+		var s GetConfigstoresResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetConfigstoresResultOutput)
+}
+
+// A collection of values returned by getConfigstores.
+type GetConfigstoresResultOutput struct{ *pulumi.OutputState }
+
+func (GetConfigstoresResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigstoresResult)(nil)).Elem()
+}
+
+func (o GetConfigstoresResultOutput) ToGetConfigstoresResultOutput() GetConfigstoresResultOutput {
+	return o
+}
+
+func (o GetConfigstoresResultOutput) ToGetConfigstoresResultOutputWithContext(ctx context.Context) GetConfigstoresResultOutput {
+	return o
+}
+
+func (o GetConfigstoresResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetConfigstoresResult] {
+	return pulumix.Output[GetConfigstoresResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetConfigstoresResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigstoresResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of all Config Stores.
+func (o GetConfigstoresResultOutput) Stores() GetConfigstoresStoreArrayOutput {
+	return o.ApplyT(func(v GetConfigstoresResult) []GetConfigstoresStore { return v.Stores }).(GetConfigstoresStoreArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetConfigstoresResultOutput{})
 }

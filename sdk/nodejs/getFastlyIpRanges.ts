@@ -6,25 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fastly from "@pulumi/fastly";
- *
- * const fastly = fastly.getFastlyIpRanges({});
- * const fromFastly = new aws.ec2.SecurityGroup("fromFastly", {ingress: [{
- *     fromPort: 443,
- *     toPort: 443,
- *     protocol: "tcp",
- *     cidrBlocks: fastly.then(fastly => fastly.cidrBlocks),
- *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
- * }]});
- * ```
- *
- * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
 export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
 
@@ -52,25 +33,6 @@ export interface GetFastlyIpRangesResult {
 }
 /**
  * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fastly from "@pulumi/fastly";
- *
- * const fastly = fastly.getFastlyIpRanges({});
- * const fromFastly = new aws.ec2.SecurityGroup("fromFastly", {ingress: [{
- *     fromPort: 443,
- *     toPort: 443,
- *     protocol: "tcp",
- *     cidrBlocks: fastly.then(fastly => fastly.cidrBlocks),
- *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
- * }]});
- * ```
- *
- * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
 export function getFastlyIpRangesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetFastlyIpRangesResult> {
     return pulumi.output(getFastlyIpRanges(opts))

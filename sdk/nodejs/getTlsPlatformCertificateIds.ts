@@ -6,18 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const exampleTlsPlatformCertificateIds = fastly.getTlsPlatformCertificateIds({});
- * const exampleTlsPlatformCertificate = exampleTlsPlatformCertificateIds.then(exampleTlsPlatformCertificateIds => fastly.getTlsPlatformCertificate({
- *     id: exampleTlsPlatformCertificateIds.ids?.[0],
- * }));
- * ```
  */
 export function getTlsPlatformCertificateIds(opts?: pulumi.InvokeOptions): Promise<GetTlsPlatformCertificateIdsResult> {
 
@@ -41,18 +29,6 @@ export interface GetTlsPlatformCertificateIdsResult {
 }
 /**
  * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const exampleTlsPlatformCertificateIds = fastly.getTlsPlatformCertificateIds({});
- * const exampleTlsPlatformCertificate = exampleTlsPlatformCertificateIds.then(exampleTlsPlatformCertificateIds => fastly.getTlsPlatformCertificate({
- *     id: exampleTlsPlatformCertificateIds.ids?.[0],
- * }));
- * ```
  */
 export function getTlsPlatformCertificateIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPlatformCertificateIdsResult> {
     return pulumi.output(getTlsPlatformCertificateIds(opts))

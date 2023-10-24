@@ -4,37 +4,15 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleTlsSubscriptionIds, err := fastly.GetTlsSubscriptionIds(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			exampleTlsSubscription := "TODO: For expression"
-//			ctx.Export("subscriptionDomains", "TODO: For expression")
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetTlsSubscriptionIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsSubscriptionIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsSubscriptionIdsResult
@@ -51,4 +29,50 @@ type GetTlsSubscriptionIdsResult struct {
 	Id string `pulumi:"id"`
 	// IDs of available TLS subscriptions.
 	Ids []string `pulumi:"ids"`
+}
+
+func GetTlsSubscriptionIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsSubscriptionIdsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsSubscriptionIdsResult, error) {
+		r, err := GetTlsSubscriptionIds(ctx, opts...)
+		var s GetTlsSubscriptionIdsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetTlsSubscriptionIdsResultOutput)
+}
+
+// A collection of values returned by getTlsSubscriptionIds.
+type GetTlsSubscriptionIdsResultOutput struct{ *pulumi.OutputState }
+
+func (GetTlsSubscriptionIdsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsSubscriptionIdsResult)(nil)).Elem()
+}
+
+func (o GetTlsSubscriptionIdsResultOutput) ToGetTlsSubscriptionIdsResultOutput() GetTlsSubscriptionIdsResultOutput {
+	return o
+}
+
+func (o GetTlsSubscriptionIdsResultOutput) ToGetTlsSubscriptionIdsResultOutputWithContext(ctx context.Context) GetTlsSubscriptionIdsResultOutput {
+	return o
+}
+
+func (o GetTlsSubscriptionIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsSubscriptionIdsResult] {
+	return pulumix.Output[GetTlsSubscriptionIdsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTlsSubscriptionIdsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsSubscriptionIdsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// IDs of available TLS subscriptions.
+func (o GetTlsSubscriptionIdsResultOutput) Ids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsSubscriptionIdsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTlsSubscriptionIdsResultOutput{})
 }

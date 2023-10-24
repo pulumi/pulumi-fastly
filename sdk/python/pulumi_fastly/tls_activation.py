@@ -35,11 +35,23 @@ class TlsActivationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             certificate_id: pulumi.Input[str],
-             domain: pulumi.Input[str],
+             certificate_id: Optional[pulumi.Input[str]] = None,
+             domain: Optional[pulumi.Input[str]] = None,
              configuration_id: Optional[pulumi.Input[str]] = None,
              mutual_authentication_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if certificate_id is None and 'certificateId' in kwargs:
+            certificate_id = kwargs['certificateId']
+        if certificate_id is None:
+            raise TypeError("Missing 'certificate_id' argument")
+        if domain is None:
+            raise TypeError("Missing 'domain' argument")
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if mutual_authentication_id is None and 'mutualAuthenticationId' in kwargs:
+            mutual_authentication_id = kwargs['mutualAuthenticationId']
+
         _setter("certificate_id", certificate_id)
         _setter("domain", domain)
         if configuration_id is not None:
@@ -128,7 +140,17 @@ class _TlsActivationState:
              created_at: Optional[pulumi.Input[str]] = None,
              domain: Optional[pulumi.Input[str]] = None,
              mutual_authentication_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if certificate_id is None and 'certificateId' in kwargs:
+            certificate_id = kwargs['certificateId']
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if mutual_authentication_id is None and 'mutualAuthenticationId' in kwargs:
+            mutual_authentication_id = kwargs['mutualAuthenticationId']
+
         if certificate_id is not None:
             _setter("certificate_id", certificate_id)
         if configuration_id is not None:
@@ -216,34 +238,6 @@ class TlsActivation(pulumi.CustomResource):
 
         > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it.
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo_service_vcl = fastly.ServiceVcl("demoServiceVcl",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
-            force_destroy=True)
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem="...")
-        demo_tls_certificate = fastly.TlsCertificate("demoTlsCertificate", certificate_body="...",
-        opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
-        test = fastly.TlsActivation("test",
-            certificate_id=demo_tls_certificate.id,
-            domain="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[demo_service_vcl]))
-        ```
-
-        > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
-
         ## Import
 
         A TLS activation can be imported using its ID, e.g.
@@ -269,34 +263,6 @@ class TlsActivation(pulumi.CustomResource):
         Enables TLS on a domain using a specified custom TLS certificate.
 
         > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it.
-
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        demo_service_vcl = fastly.ServiceVcl("demoServiceVcl",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
-            force_destroy=True)
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem="...")
-        demo_tls_certificate = fastly.TlsCertificate("demoTlsCertificate", certificate_body="...",
-        opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
-        test = fastly.TlsActivation("test",
-            certificate_id=demo_tls_certificate.id,
-            domain="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[demo_service_vcl]))
-        ```
-
-        > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
 
         ## Import
 

@@ -14,67 +14,6 @@ namespace Pulumi.Fastly
     /// 
     /// &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate.
     /// 
-    /// ## Example Usage
-    /// 
-    /// Basic usage:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Fastly = Pulumi.Fastly;
-    /// using Tls = Pulumi.Tls;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new()
-    ///     {
-    ///         Algorithm = "RSA",
-    ///     });
-    /// 
-    ///     var cert = new Tls.SelfSignedCert("cert", new()
-    ///     {
-    ///         KeyAlgorithm = keyPrivateKey.Algorithm,
-    ///         PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
-    ///         Subjects = new[]
-    ///         {
-    ///             new Tls.Inputs.SelfSignedCertSubjectArgs
-    ///             {
-    ///                 CommonName = "example.com",
-    ///             },
-    ///         },
-    ///         IsCaCertificate = true,
-    ///         ValidityPeriodHours = 360,
-    ///         AllowedUses = new[]
-    ///         {
-    ///             "cert_signing",
-    ///             "server_auth",
-    ///         },
-    ///         DnsNames = new[]
-    ///         {
-    ///             "example.com",
-    ///         },
-    ///     });
-    /// 
-    ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new()
-    ///     {
-    ///         KeyPem = keyPrivateKey.PrivateKeyPem,
-    ///     });
-    /// 
-    ///     var example = new Fastly.TlsCertificate("example", new()
-    ///     {
-    ///         CertificateBody = cert.CertPem,
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             keyTlsPrivateKey,
-    ///         },
-    ///     });
-    /// 
-    ///     // The private key has to be present before the certificate can be uploaded
-    /// });
-    /// ```
     /// ## Updating certificates
     /// 
     /// There are three scenarios for updating a certificate:

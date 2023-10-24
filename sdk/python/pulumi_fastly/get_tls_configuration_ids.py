@@ -59,17 +59,6 @@ class AwaitableGetTlsConfigurationIdsResult(GetTlsConfigurationIdsResult):
 def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsConfigurationIdsResult:
     """
     Use this data source to get the IDs of available TLS configurations for use with other resources.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example_tls_configuration_ids = fastly.get_tls_configuration_ids()
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration_ids.ids[0])
-    # ...
-    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -84,16 +73,5 @@ def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
 def get_tls_configuration_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsConfigurationIdsResult]:
     """
     Use this data source to get the IDs of available TLS configurations for use with other resources.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example_tls_configuration_ids = fastly.get_tls_configuration_ids()
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration_ids.ids[0])
-    # ...
-    ```
     """
     ...
