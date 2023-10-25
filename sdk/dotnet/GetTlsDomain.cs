@@ -13,56 +13,12 @@ namespace Pulumi.Fastly
     {
         /// <summary>
         /// Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
-        ///     {
-        ///         Domain = "example.com",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsDomainResult> InvokeAsync(GetTlsDomainArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
-        ///     {
-        ///         Domain = "example.com",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsDomainResult> Invoke(GetTlsDomainInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainInvokeArgs(), options.WithDefaults());

@@ -9,37 +9,6 @@ import * as utilities from "./utilities";
  *
  * In order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resourceLink` block (shown in the below examples).
  *
- * ## Example Usage
- *
- * Basic usage:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
- * // This requires a two-step `pulumi up` as we can't guarantee deletion order.
- * // e.g. resource_link deletion within fastly_service_compute might not finish first.
- * const exampleConfigstore = new fastly.Configstore("exampleConfigstore", {});
- * const examplePackageHash = fastly.getPackageHash({
- *     filename: "package.tar.gz",
- * });
- * const exampleServiceCompute = new fastly.ServiceCompute("exampleServiceCompute", {
- *     domains: [{
- *         name: "demo.example.com",
- *     }],
- *     "package": {
- *         filename: "package.tar.gz",
- *         sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
- *     },
- *     resourceLinks: [{
- *         name: "my_resource_link",
- *         resourceId: exampleConfigstore.id,
- *     }],
- *     forceDestroy: true,
- * });
- * ```
- *
  * ## Import
  *
  * Fastly Config Stores can be imported using their Store ID, e.g.

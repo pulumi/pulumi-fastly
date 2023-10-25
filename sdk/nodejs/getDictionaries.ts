@@ -8,38 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
- *     domains: [{
- *         name: "example.com",
- *     }],
- *     dictionaries: [
- *         {
- *             name: "example_1",
- *         },
- *         {
- *             name: "example_2",
- *         },
- *         {
- *             name: "example_3",
- *         },
- *     ],
- *     forceDestroy: true,
- * });
- * const exampleDictionaries = fastly.getDictionariesOutput({
- *     serviceId: exampleServiceVcl.id,
- *     serviceVersion: exampleServiceVcl.activeVersion,
- * });
- * export const serviceDictionaries = exampleDictionaries;
- * ```
- *
- * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
 export function getDictionaries(args: GetDictionariesArgs, opts?: pulumi.InvokeOptions): Promise<GetDictionariesResult> {
 
@@ -87,38 +55,6 @@ export interface GetDictionariesResult {
 }
 /**
  * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
- *     domains: [{
- *         name: "example.com",
- *     }],
- *     dictionaries: [
- *         {
- *             name: "example_1",
- *         },
- *         {
- *             name: "example_2",
- *         },
- *         {
- *             name: "example_3",
- *         },
- *     ],
- *     forceDestroy: true,
- * });
- * const exampleDictionaries = fastly.getDictionariesOutput({
- *     serviceId: exampleServiceVcl.id,
- *     serviceVersion: exampleServiceVcl.activeVersion,
- * });
- * export const serviceDictionaries = exampleDictionaries;
- * ```
- *
- * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
 export function getDictionariesOutput(args: GetDictionariesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDictionariesResult> {
     return pulumi.output(args).apply((a: any) => getDictionaries(a, opts))

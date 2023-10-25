@@ -19,28 +19,6 @@ namespace Pulumi.Fastly
         /// with any of the others.
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Fastly.GetTlsActivation.Invoke(new()
-        ///     {
-        ///         Domain = "example.com",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsActivationResult> InvokeAsync(GetTlsActivationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationArgs(), options.WithDefaults());
@@ -53,28 +31,6 @@ namespace Pulumi.Fastly
         /// with any of the others.
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Fastly.GetTlsActivation.Invoke(new()
-        ///     {
-        ///         Domain = "example.com",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsActivationResult> Invoke(GetTlsActivationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationInvokeArgs(), options.WithDefaults());

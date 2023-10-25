@@ -4,41 +4,15 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the IDs of available TLS certificates for use with other resources.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleTlsCertificateIds, err := fastly.GetTlsCertificateIds(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
-//				CertificateId: *pulumi.String(exampleTlsCertificateIds.Ids[0]),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetTlsCertificateIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsCertificateIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsCertificateIdsResult
@@ -55,4 +29,50 @@ type GetTlsCertificateIdsResult struct {
 	Id string `pulumi:"id"`
 	// List of IDs corresponding to Custom TLS certificates.
 	Ids []string `pulumi:"ids"`
+}
+
+func GetTlsCertificateIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsCertificateIdsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsCertificateIdsResult, error) {
+		r, err := GetTlsCertificateIds(ctx, opts...)
+		var s GetTlsCertificateIdsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetTlsCertificateIdsResultOutput)
+}
+
+// A collection of values returned by getTlsCertificateIds.
+type GetTlsCertificateIdsResultOutput struct{ *pulumi.OutputState }
+
+func (GetTlsCertificateIdsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsCertificateIdsResult)(nil)).Elem()
+}
+
+func (o GetTlsCertificateIdsResultOutput) ToGetTlsCertificateIdsResultOutput() GetTlsCertificateIdsResultOutput {
+	return o
+}
+
+func (o GetTlsCertificateIdsResultOutput) ToGetTlsCertificateIdsResultOutputWithContext(ctx context.Context) GetTlsCertificateIdsResultOutput {
+	return o
+}
+
+func (o GetTlsCertificateIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsCertificateIdsResult] {
+	return pulumix.Output[GetTlsCertificateIdsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTlsCertificateIdsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsCertificateIdsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IDs corresponding to Custom TLS certificates.
+func (o GetTlsCertificateIdsResultOutput) Ids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsCertificateIdsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTlsCertificateIdsResultOutput{})
 }

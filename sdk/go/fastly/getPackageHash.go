@@ -13,41 +13,6 @@ import (
 )
 
 // Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			examplePackageHash, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
-//				Filename: pulumi.StringRef("./path/to/package.tar.gz"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = fastly.NewServiceCompute(ctx, "exampleServiceCompute", &fastly.ServiceComputeArgs{
-//				Package: &fastly.ServiceComputePackageArgs{
-//					Filename:       pulumi.String("./path/to/package.tar.gz"),
-//					SourceCodeHash: *pulumi.String(examplePackageHash.Hash),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetPackageHash(ctx *pulumi.Context, args *GetPackageHashArgs, opts ...pulumi.InvokeOption) (*GetPackageHashResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPackageHashResult

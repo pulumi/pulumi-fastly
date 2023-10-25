@@ -13,60 +13,12 @@ namespace Pulumi.Fastly
     {
         /// <summary>
         /// Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleTlsPlatformCertificateIds = Fastly.GetTlsPlatformCertificateIds.Invoke();
-        /// 
-        ///     var exampleTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
-        ///     {
-        ///         Id = exampleTlsPlatformCertificateIds.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsPlatformCertificateIdsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateIdsResult>("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleTlsPlatformCertificateIds = Fastly.GetTlsPlatformCertificateIds.Invoke();
-        /// 
-        ///     var exampleTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
-        ///     {
-        ///         Id = exampleTlsPlatformCertificateIds.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsPlatformCertificateIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsPlatformCertificateIdsResult>("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", InvokeArgs.Empty, options.WithDefaults());

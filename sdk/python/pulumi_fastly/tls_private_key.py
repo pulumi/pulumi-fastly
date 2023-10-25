@@ -29,9 +29,15 @@ class TlsPrivateKeyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key_pem: pulumi.Input[str],
+             key_pem: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if key_pem is None and 'keyPem' in kwargs:
+            key_pem = kwargs['keyPem']
+        if key_pem is None:
+            raise TypeError("Missing 'key_pem' argument")
+
         _setter("key_pem", key_pem)
         if name is not None:
             _setter("name", name)
@@ -101,7 +107,19 @@ class _TlsPrivateKeyState:
              name: Optional[pulumi.Input[str]] = None,
              public_key_sha1: Optional[pulumi.Input[str]] = None,
              replace: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if key_length is None and 'keyLength' in kwargs:
+            key_length = kwargs['keyLength']
+        if key_pem is None and 'keyPem' in kwargs:
+            key_pem = kwargs['keyPem']
+        if key_type is None and 'keyType' in kwargs:
+            key_type = kwargs['keyType']
+        if public_key_sha1 is None and 'publicKeySha1' in kwargs:
+            public_key_sha1 = kwargs['publicKeySha1']
+
         if created_at is not None:
             _setter("created_at", created_at)
         if key_length is not None:
@@ -215,19 +233,6 @@ class TlsPrivateKey(pulumi.CustomResource):
 
         The Private Key resource requires a key in PEM format, and a name to identify it.
 
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-        import pulumi_tls as tls
-
-        demo_private_key = tls.PrivateKey("demoPrivateKey", algorithm="RSA")
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem=demo_private_key.private_key_pem)
-        ```
-
         ## Import
 
         A Private Key can be imported using its ID, e.g.
@@ -251,19 +256,6 @@ class TlsPrivateKey(pulumi.CustomResource):
         Uploads a Custom TLS Private Key to Fastly. This can be combined with a `TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
 
         The Private Key resource requires a key in PEM format, and a name to identify it.
-
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-        import pulumi_tls as tls
-
-        demo_private_key = tls.PrivateKey("demoPrivateKey", algorithm="RSA")
-        demo_tls_private_key = fastly.TlsPrivateKey("demoTlsPrivateKey", key_pem=demo_private_key.private_key_pem)
-        ```
 
         ## Import
 

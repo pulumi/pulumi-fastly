@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get information about a TLS subscription.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const example = fastly.getTlsSubscription({
- *     domains: ["example.com"],
- * });
- * ```
  */
 export function getTlsSubscription(args?: GetTlsSubscriptionArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionResult> {
     args = args || {};
@@ -91,17 +80,6 @@ export interface GetTlsSubscriptionResult {
 }
 /**
  * Use this data source to get information about a TLS subscription.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const example = fastly.getTlsSubscription({
- *     domains: ["example.com"],
- * });
- * ```
  */
 export function getTlsSubscriptionOutput(args?: GetTlsSubscriptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsSubscriptionResult> {
     return pulumi.output(args).apply((a: any) => getTlsSubscription(a, opts))

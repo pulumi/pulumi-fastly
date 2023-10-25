@@ -4,8 +4,12 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetKvstores(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetKvstoresResult, error) {
@@ -24,4 +28,50 @@ type GetKvstoresResult struct {
 	Id string `pulumi:"id"`
 	// List of all KV Stores.
 	Stores []GetKvstoresStore `pulumi:"stores"`
+}
+
+func GetKvstoresOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetKvstoresResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetKvstoresResult, error) {
+		r, err := GetKvstores(ctx, opts...)
+		var s GetKvstoresResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetKvstoresResultOutput)
+}
+
+// A collection of values returned by getKvstores.
+type GetKvstoresResultOutput struct{ *pulumi.OutputState }
+
+func (GetKvstoresResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKvstoresResult)(nil)).Elem()
+}
+
+func (o GetKvstoresResultOutput) ToGetKvstoresResultOutput() GetKvstoresResultOutput {
+	return o
+}
+
+func (o GetKvstoresResultOutput) ToGetKvstoresResultOutputWithContext(ctx context.Context) GetKvstoresResultOutput {
+	return o
+}
+
+func (o GetKvstoresResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetKvstoresResult] {
+	return pulumix.Output[GetKvstoresResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetKvstoresResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKvstoresResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of all KV Stores.
+func (o GetKvstoresResultOutput) Stores() GetKvstoresStoreArrayOutput {
+	return o.ApplyT(func(v GetKvstoresResult) []GetKvstoresStore { return v.Stores }).(GetKvstoresStoreArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetKvstoresResultOutput{})
 }

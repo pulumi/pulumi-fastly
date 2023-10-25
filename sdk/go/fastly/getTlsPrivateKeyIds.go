@@ -4,41 +4,15 @@
 package fastly
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of TLS private key identifiers in Fastly.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
-//				Id: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetTlsPrivateKeyIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsPrivateKeyIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsPrivateKeyIdsResult
@@ -55,4 +29,50 @@ type GetTlsPrivateKeyIdsResult struct {
 	Id string `pulumi:"id"`
 	// List of IDs of the TLS private keys.
 	Ids []string `pulumi:"ids"`
+}
+
+func GetTlsPrivateKeyIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsPrivateKeyIdsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsPrivateKeyIdsResult, error) {
+		r, err := GetTlsPrivateKeyIds(ctx, opts...)
+		var s GetTlsPrivateKeyIdsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetTlsPrivateKeyIdsResultOutput)
+}
+
+// A collection of values returned by getTlsPrivateKeyIds.
+type GetTlsPrivateKeyIdsResultOutput struct{ *pulumi.OutputState }
+
+func (GetTlsPrivateKeyIdsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsPrivateKeyIdsResult)(nil)).Elem()
+}
+
+func (o GetTlsPrivateKeyIdsResultOutput) ToGetTlsPrivateKeyIdsResultOutput() GetTlsPrivateKeyIdsResultOutput {
+	return o
+}
+
+func (o GetTlsPrivateKeyIdsResultOutput) ToGetTlsPrivateKeyIdsResultOutputWithContext(ctx context.Context) GetTlsPrivateKeyIdsResultOutput {
+	return o
+}
+
+func (o GetTlsPrivateKeyIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsPrivateKeyIdsResult] {
+	return pulumix.Output[GetTlsPrivateKeyIdsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTlsPrivateKeyIdsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsPrivateKeyIdsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IDs of the TLS private keys.
+func (o GetTlsPrivateKeyIdsResultOutput) Ids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTlsPrivateKeyIdsResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTlsPrivateKeyIdsResultOutput{})
 }

@@ -22,33 +22,6 @@ import (
 // > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
 //
 //	is specific enough to return a single key.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			demo, err := fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
-//				Name: pulumi.StringRef("demo-private-key"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("privateKeyNeedsReplacing", demo.Replace)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupTlsPrivateKey(ctx *pulumi.Context, args *LookupTlsPrivateKeyArgs, opts ...pulumi.InvokeOption) (*LookupTlsPrivateKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsPrivateKeyResult

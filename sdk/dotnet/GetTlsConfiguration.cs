@@ -19,34 +19,6 @@ namespace Pulumi.Fastly
         /// with any of the others.
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleTlsConfiguration = Fastly.GetTlsConfiguration.Invoke(new()
-        ///     {
-        ///         Default = true,
-        ///     });
-        /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
-        ///     {
-        ///         ConfigurationId = exampleTlsConfiguration.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
-        ///     });
-        /// 
-        ///     // ...
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetTlsConfigurationResult> InvokeAsync(GetTlsConfigurationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithDefaults());
@@ -59,34 +31,6 @@ namespace Pulumi.Fastly
         /// with any of the others.
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleTlsConfiguration = Fastly.GetTlsConfiguration.Invoke(new()
-        ///     {
-        ///         Default = true,
-        ///     });
-        /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
-        ///     {
-        ///         ConfigurationId = exampleTlsConfiguration.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
-        ///     });
-        /// 
-        ///     // ...
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetTlsConfigurationResult> Invoke(GetTlsConfigurationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationInvokeArgs(), options.WithDefaults());

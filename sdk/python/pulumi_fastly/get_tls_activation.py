@@ -106,15 +106,6 @@ def get_tls_activation(certificate_id: Optional[str] = None,
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example = fastly.get_tls_activation(domain="example.com")
-    ```
-
 
     :param str certificate_id: ID of the TLS Certificate used.
     :param str configuration_id: ID of the TLS Configuration used.
@@ -151,15 +142,6 @@ def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str
     with any of the others.
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example = fastly.get_tls_activation(domain="example.com")
-    ```
 
 
     :param str certificate_id: ID of the TLS Certificate used.

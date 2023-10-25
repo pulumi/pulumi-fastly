@@ -16,59 +16,6 @@ import (
 //
 // In order for a Config Store (`Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resourceLink` block (shown in the below examples).
 //
-// ## Example Usage
-//
-// Basic usage:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleConfigstore, err := fastly.NewConfigstore(ctx, "exampleConfigstore", nil)
-//			if err != nil {
-//				return err
-//			}
-//			examplePackageHash, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
-//				Filename: pulumi.StringRef("package.tar.gz"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = fastly.NewServiceCompute(ctx, "exampleServiceCompute", &fastly.ServiceComputeArgs{
-//				Domains: fastly.ServiceComputeDomainArray{
-//					&fastly.ServiceComputeDomainArgs{
-//						Name: pulumi.String("demo.example.com"),
-//					},
-//				},
-//				Package: &fastly.ServiceComputePackageArgs{
-//					Filename:       pulumi.String("package.tar.gz"),
-//					SourceCodeHash: *pulumi.String(examplePackageHash.Hash),
-//				},
-//				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
-//					&fastly.ServiceComputeResourceLinkArgs{
-//						Name:       pulumi.String("my_resource_link"),
-//						ResourceId: exampleConfigstore.ID(),
-//					},
-//				},
-//				ForceDestroy: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Fastly Config Stores can be imported using their Store ID, e.g.
