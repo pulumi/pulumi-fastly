@@ -125,13 +125,13 @@ public final class ServiceVclDynamicsnippet {
             return this;
         }
         public ServiceVclDynamicsnippet build() {
-            final var o = new ServiceVclDynamicsnippet();
-            o.content = content;
-            o.name = name;
-            o.priority = priority;
-            o.snippetId = snippetId;
-            o.type = type;
-            return o;
+            final var _resultValue = new ServiceVclDynamicsnippet();
+            _resultValue.content = content;
+            _resultValue.name = name;
+            _resultValue.priority = priority;
+            _resultValue.snippetId = snippetId;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

@@ -112,12 +112,12 @@ public final class ServiceVclGzip {
             return this;
         }
         public ServiceVclGzip build() {
-            final var o = new ServiceVclGzip();
-            o.cacheCondition = cacheCondition;
-            o.contentTypes = contentTypes;
-            o.extensions = extensions;
-            o.name = name;
-            return o;
+            final var _resultValue = new ServiceVclGzip();
+            _resultValue.cacheCondition = cacheCondition;
+            _resultValue.contentTypes = contentTypes;
+            _resultValue.extensions = extensions;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

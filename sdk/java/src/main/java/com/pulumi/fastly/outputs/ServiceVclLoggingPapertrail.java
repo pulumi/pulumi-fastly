@@ -163,15 +163,15 @@ public final class ServiceVclLoggingPapertrail {
             return this;
         }
         public ServiceVclLoggingPapertrail build() {
-            final var o = new ServiceVclLoggingPapertrail();
-            o.address = address;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.port = port;
-            o.responseCondition = responseCondition;
-            return o;
+            final var _resultValue = new ServiceVclLoggingPapertrail();
+            _resultValue.address = address;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.port = port;
+            _resultValue.responseCondition = responseCondition;
+            return _resultValue;
         }
     }
 }

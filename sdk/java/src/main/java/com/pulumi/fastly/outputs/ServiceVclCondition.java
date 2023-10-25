@@ -106,12 +106,12 @@ public final class ServiceVclCondition {
             return this;
         }
         public ServiceVclCondition build() {
-            final var o = new ServiceVclCondition();
-            o.name = name;
-            o.priority = priority;
-            o.statement = statement;
-            o.type = type;
-            return o;
+            final var _resultValue = new ServiceVclCondition();
+            _resultValue.name = name;
+            _resultValue.priority = priority;
+            _resultValue.statement = statement;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

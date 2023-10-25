@@ -65,10 +65,10 @@ public final class ServiceComputeLoggingLoggly {
             return this;
         }
         public ServiceComputeLoggingLoggly build() {
-            final var o = new ServiceComputeLoggingLoggly();
-            o.name = name;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingLoggly();
+            _resultValue.name = name;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

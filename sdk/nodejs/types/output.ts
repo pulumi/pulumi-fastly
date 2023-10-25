@@ -1156,9 +1156,9 @@ export interface ServiceComputeProductEnablement {
      */
     fanout?: boolean;
     /**
-     * Used internally by the provider to identify modified settings
+     * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
-    name: string;
+    name?: string;
     /**
      * Enable WebSockets support
      */
@@ -2902,9 +2902,9 @@ export interface ServiceVclProductEnablement {
      */
     imageOptimizer?: boolean;
     /**
-     * Used internally by the provider to identify modified settings
+     * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
-    name: string;
+    name?: string;
     /**
      * Enable Origin Inspector support
      */

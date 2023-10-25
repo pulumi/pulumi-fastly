@@ -85,11 +85,11 @@ public final class ServiceComputeLoggingPapertrail {
             return this;
         }
         public ServiceComputeLoggingPapertrail build() {
-            final var o = new ServiceComputeLoggingPapertrail();
-            o.address = address;
-            o.name = name;
-            o.port = port;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingPapertrail();
+            _resultValue.address = address;
+            _resultValue.name = name;
+            _resultValue.port = port;
+            return _resultValue;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? Fanout { get; set; }
 
         /// <summary>
-        /// Used internally by the provider to identify modified settings
+        /// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

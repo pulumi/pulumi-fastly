@@ -106,12 +106,12 @@ public final class ServiceVclSnippet {
             return this;
         }
         public ServiceVclSnippet build() {
-            final var o = new ServiceVclSnippet();
-            o.content = content;
-            o.name = name;
-            o.priority = priority;
-            o.type = type;
-            return o;
+            final var _resultValue = new ServiceVclSnippet();
+            _resultValue.content = content;
+            _resultValue.name = name;
+            _resultValue.priority = priority;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

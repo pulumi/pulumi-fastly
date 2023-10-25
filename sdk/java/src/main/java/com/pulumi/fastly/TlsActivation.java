@@ -101,7 +101,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * ID of certificate to use. Must have the `domain` specified in the certificate&#39;s Subject Alternative Names.
      * 
      */
-    @Export(name="certificateId", type=String.class, parameters={})
+    @Export(name="certificateId", refs={String.class}, tree="[0]")
     private Output<String> certificateId;
 
     /**
@@ -115,7 +115,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
      * 
      */
-    @Export(name="configurationId", type=String.class, parameters={})
+    @Export(name="configurationId", refs={String.class}, tree="[0]")
     private Output<String> configurationId;
 
     /**
@@ -129,7 +129,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * Time-stamp (GMT) when TLS was enabled.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -143,7 +143,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      * 
      */
-    @Export(name="domain", type=String.class, parameters={})
+    @Export(name="domain", refs={String.class}, tree="[0]")
     private Output<String> domain;
 
     /**
@@ -157,7 +157,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * An alphanumeric string identifying a mutual authentication.
      * 
      */
-    @Export(name="mutualAuthenticationId", type=String.class, parameters={})
+    @Export(name="mutualAuthenticationId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mutualAuthenticationId;
 
     /**

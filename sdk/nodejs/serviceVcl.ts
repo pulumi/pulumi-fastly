@@ -7,14 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Fastly Service, representing the configuration for a website, app,
- * API, or anything else to be served through Fastly. A Service encompasses Domains
- * and Backends.
- *
- * The Service resource requires a domain name that is correctly set up to direct
- * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
- * on their documentation site for guidance.
- *
  * ## Import
  *
  * Fastly Services can be imported using their service ID, e.g.

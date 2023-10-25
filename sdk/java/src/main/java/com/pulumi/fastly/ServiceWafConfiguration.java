@@ -637,7 +637,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Conditionally prevents a new firewall version from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      * 
      */
-    @Export(name="activate", type=Boolean.class, parameters={})
+    @Export(name="activate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> activate;
 
     /**
@@ -651,7 +651,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Whether a specific firewall version is currently deployed
      * 
      */
-    @Export(name="active", type=Boolean.class, parameters={})
+    @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> active;
 
     /**
@@ -665,7 +665,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Allowed HTTP versions
      * 
      */
-    @Export(name="allowedHttpVersions", type=String.class, parameters={})
+    @Export(name="allowedHttpVersions", refs={String.class}, tree="[0]")
     private Output<String> allowedHttpVersions;
 
     /**
@@ -679,7 +679,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * A space-separated list of HTTP method names
      * 
      */
-    @Export(name="allowedMethods", type=String.class, parameters={})
+    @Export(name="allowedMethods", refs={String.class}, tree="[0]")
     private Output<String> allowedMethods;
 
     /**
@@ -693,7 +693,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Allowed request content types
      * 
      */
-    @Export(name="allowedRequestContentType", type=String.class, parameters={})
+    @Export(name="allowedRequestContentType", refs={String.class}, tree="[0]")
     private Output<String> allowedRequestContentType;
 
     /**
@@ -707,7 +707,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Allowed request content type charset
      * 
      */
-    @Export(name="allowedRequestContentTypeCharset", type=String.class, parameters={})
+    @Export(name="allowedRequestContentTypeCharset", refs={String.class}, tree="[0]")
     private Output<String> allowedRequestContentTypeCharset;
 
     /**
@@ -721,7 +721,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The maximum number of arguments allowed
      * 
      */
-    @Export(name="argLength", type=Integer.class, parameters={})
+    @Export(name="argLength", refs={Integer.class}, tree="[0]")
     private Output<Integer> argLength;
 
     /**
@@ -735,7 +735,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The maximum allowed argument name length
      * 
      */
-    @Export(name="argNameLength", type=Integer.class, parameters={})
+    @Export(name="argNameLength", refs={Integer.class}, tree="[0]")
     private Output<Integer> argNameLength;
 
     /**
@@ -749,7 +749,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The latest cloned firewall version by the provider
      * 
      */
-    @Export(name="clonedVersion", type=Integer.class, parameters={})
+    @Export(name="clonedVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> clonedVersion;
 
     /**
@@ -763,7 +763,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The maximum allowed size of all files
      * 
      */
-    @Export(name="combinedFileSizes", type=Integer.class, parameters={})
+    @Export(name="combinedFileSizes", refs={Integer.class}, tree="[0]")
     private Output<Integer> combinedFileSizes;
 
     /**
@@ -777,7 +777,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Score value to add for critical anomalies
      * 
      */
-    @Export(name="criticalAnomalyScore", type=Integer.class, parameters={})
+    @Export(name="criticalAnomalyScore", refs={Integer.class}, tree="[0]")
     private Output<Integer> criticalAnomalyScore;
 
     /**
@@ -791,7 +791,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * CRS validate UTF8 encoding
      * 
      */
-    @Export(name="crsValidateUtf8Encoding", type=Boolean.class, parameters={})
+    @Export(name="crsValidateUtf8Encoding", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> crsValidateUtf8Encoding;
 
     /**
@@ -805,7 +805,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Score value to add for error anomalies
      * 
      */
-    @Export(name="errorAnomalyScore", type=Integer.class, parameters={})
+    @Export(name="errorAnomalyScore", refs={Integer.class}, tree="[0]")
     private Output<Integer> errorAnomalyScore;
 
     /**
@@ -819,7 +819,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * A space-separated list of country codes in ISO 3166-1 (two-letter) format
      * 
      */
-    @Export(name="highRiskCountryCodes", type=String.class, parameters={})
+    @Export(name="highRiskCountryCodes", refs={String.class}, tree="[0]")
     private Output<String> highRiskCountryCodes;
 
     /**
@@ -833,7 +833,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * HTTP violation threshold
      * 
      */
-    @Export(name="httpViolationScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="httpViolationScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> httpViolationScoreThreshold;
 
     /**
@@ -847,7 +847,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Inbound anomaly threshold
      * 
      */
-    @Export(name="inboundAnomalyScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="inboundAnomalyScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> inboundAnomalyScoreThreshold;
 
     /**
@@ -861,7 +861,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Local file inclusion attack threshold
      * 
      */
-    @Export(name="lfiScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="lfiScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> lfiScoreThreshold;
 
     /**
@@ -875,7 +875,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The maximum allowed file size, in bytes
      * 
      */
-    @Export(name="maxFileSize", type=Integer.class, parameters={})
+    @Export(name="maxFileSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxFileSize;
 
     /**
@@ -889,7 +889,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The maximum number of arguments allowed
      * 
      */
-    @Export(name="maxNumArgs", type=Integer.class, parameters={})
+    @Export(name="maxNumArgs", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxNumArgs;
 
     /**
@@ -903,7 +903,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Score value to add for notice anomalies
      * 
      */
-    @Export(name="noticeAnomalyScore", type=Integer.class, parameters={})
+    @Export(name="noticeAnomalyScore", refs={Integer.class}, tree="[0]")
     private Output<Integer> noticeAnomalyScore;
 
     /**
@@ -917,7 +917,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The numeric ID assigned to the WAF Rule Exclusion
      * 
      */
-    @Export(name="number", type=Integer.class, parameters={})
+    @Export(name="number", refs={Integer.class}, tree="[0]")
     private Output<Integer> number;
 
     /**
@@ -931,7 +931,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The configured paranoia level
      * 
      */
-    @Export(name="paranoiaLevel", type=Integer.class, parameters={})
+    @Export(name="paranoiaLevel", refs={Integer.class}, tree="[0]")
     private Output<Integer> paranoiaLevel;
 
     /**
@@ -945,7 +945,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * PHP injection threshold
      * 
      */
-    @Export(name="phpInjectionScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="phpInjectionScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> phpInjectionScoreThreshold;
 
     /**
@@ -959,7 +959,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Remote code execution threshold
      * 
      */
-    @Export(name="rceScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="rceScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> rceScoreThreshold;
 
     /**
@@ -973,7 +973,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * A space-separated list of allowed file extensions
      * 
      */
-    @Export(name="restrictedExtensions", type=String.class, parameters={})
+    @Export(name="restrictedExtensions", refs={String.class}, tree="[0]")
     private Output<String> restrictedExtensions;
 
     /**
@@ -987,7 +987,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * A space-separated list of allowed header names
      * 
      */
-    @Export(name="restrictedHeaders", type=String.class, parameters={})
+    @Export(name="restrictedHeaders", refs={String.class}, tree="[0]")
     private Output<String> restrictedHeaders;
 
     /**
@@ -1001,7 +1001,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Remote file inclusion attack threshold
      * 
      */
-    @Export(name="rfiScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="rfiScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> rfiScoreThreshold;
 
     /**
@@ -1011,13 +1011,13 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
     public Output<Integer> rfiScoreThreshold() {
         return this.rfiScoreThreshold;
     }
-    @Export(name="ruleExclusions", type=List.class, parameters={ServiceWafConfigurationRuleExclusion.class})
+    @Export(name="ruleExclusions", refs={List.class,ServiceWafConfigurationRuleExclusion.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceWafConfigurationRuleExclusion>> ruleExclusions;
 
     public Output<Optional<List<ServiceWafConfigurationRuleExclusion>>> ruleExclusions() {
         return Codegen.optional(this.ruleExclusions);
     }
-    @Export(name="rules", type=List.class, parameters={ServiceWafConfigurationRule.class})
+    @Export(name="rules", refs={List.class,ServiceWafConfigurationRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceWafConfigurationRule>> rules;
 
     public Output<Optional<List<ServiceWafConfigurationRule>>> rules() {
@@ -1027,7 +1027,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Session fixation attack threshold
      * 
      */
-    @Export(name="sessionFixationScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="sessionFixationScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> sessionFixationScoreThreshold;
 
     /**
@@ -1041,7 +1041,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * SQL injection attack threshold
      * 
      */
-    @Export(name="sqlInjectionScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="sqlInjectionScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> sqlInjectionScoreThreshold;
 
     /**
@@ -1055,7 +1055,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The maximum size of argument names and values
      * 
      */
-    @Export(name="totalArgLength", type=Integer.class, parameters={})
+    @Export(name="totalArgLength", refs={Integer.class}, tree="[0]")
     private Output<Integer> totalArgLength;
 
     /**
@@ -1069,7 +1069,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * The ID of the Web Application Firewall that the configuration belongs to
      * 
      */
-    @Export(name="wafId", type=String.class, parameters={})
+    @Export(name="wafId", refs={String.class}, tree="[0]")
     private Output<String> wafId;
 
     /**
@@ -1083,7 +1083,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * Score value to add for warning anomalies
      * 
      */
-    @Export(name="warningAnomalyScore", type=Integer.class, parameters={})
+    @Export(name="warningAnomalyScore", refs={Integer.class}, tree="[0]")
     private Output<Integer> warningAnomalyScore;
 
     /**
@@ -1097,7 +1097,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * XSS attack threshold
      * 
      */
-    @Export(name="xssScoreThreshold", type=Integer.class, parameters={})
+    @Export(name="xssScoreThreshold", refs={Integer.class}, tree="[0]")
     private Output<Integer> xssScoreThreshold;
 
     /**

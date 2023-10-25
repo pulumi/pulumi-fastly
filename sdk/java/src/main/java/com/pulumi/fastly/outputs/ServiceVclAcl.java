@@ -87,11 +87,11 @@ public final class ServiceVclAcl {
             return this;
         }
         public ServiceVclAcl build() {
-            final var o = new ServiceVclAcl();
-            o.aclId = aclId;
-            o.forceDestroy = forceDestroy;
-            o.name = name;
-            return o;
+            final var _resultValue = new ServiceVclAcl();
+            _resultValue.aclId = aclId;
+            _resultValue.forceDestroy = forceDestroy;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

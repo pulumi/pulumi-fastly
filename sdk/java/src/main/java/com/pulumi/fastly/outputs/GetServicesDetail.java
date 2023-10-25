@@ -116,16 +116,16 @@ public final class GetServicesDetail {
             return this;
         }
         public GetServicesDetail build() {
-            final var o = new GetServicesDetail();
-            o.comment = comment;
-            o.createdAt = createdAt;
-            o.customerId = customerId;
-            o.id = id;
-            o.name = name;
-            o.type = type;
-            o.updatedAt = updatedAt;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetServicesDetail();
+            _resultValue.comment = comment;
+            _resultValue.createdAt = createdAt;
+            _resultValue.customerId = customerId;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.type = type;
+            _resultValue.updatedAt = updatedAt;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

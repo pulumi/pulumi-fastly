@@ -143,14 +143,14 @@ public final class ServiceComputeLoggingKinese {
             return this;
         }
         public ServiceComputeLoggingKinese build() {
-            final var o = new ServiceComputeLoggingKinese();
-            o.accessKey = accessKey;
-            o.iamRole = iamRole;
-            o.name = name;
-            o.region = region;
-            o.secretKey = secretKey;
-            o.topic = topic;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingKinese();
+            _resultValue.accessKey = accessKey;
+            _resultValue.iamRole = iamRole;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.secretKey = secretKey;
+            _resultValue.topic = topic;
+            return _resultValue;
         }
     }
 }

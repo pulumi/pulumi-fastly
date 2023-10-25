@@ -258,20 +258,20 @@ public final class ServiceComputeLoggingCloudfile {
             return this;
         }
         public ServiceComputeLoggingCloudfile build() {
-            final var o = new ServiceComputeLoggingCloudfile();
-            o.accessKey = accessKey;
-            o.bucketName = bucketName;
-            o.compressionCodec = compressionCodec;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.publicKey = publicKey;
-            o.region = region;
-            o.timestampFormat = timestampFormat;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingCloudfile();
+            _resultValue.accessKey = accessKey;
+            _resultValue.bucketName = bucketName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.publicKey = publicKey;
+            _resultValue.region = region;
+            _resultValue.timestampFormat = timestampFormat;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

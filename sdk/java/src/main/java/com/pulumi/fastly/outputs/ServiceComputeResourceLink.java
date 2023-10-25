@@ -86,11 +86,11 @@ public final class ServiceComputeResourceLink {
             return this;
         }
         public ServiceComputeResourceLink build() {
-            final var o = new ServiceComputeResourceLink();
-            o.linkId = linkId;
-            o.name = name;
-            o.resourceId = resourceId;
-            return o;
+            final var _resultValue = new ServiceComputeResourceLink();
+            _resultValue.linkId = linkId;
+            _resultValue.name = name;
+            _resultValue.resourceId = resourceId;
+            return _resultValue;
         }
     }
 }

@@ -392,27 +392,27 @@ public final class ServiceVclLoggingKafka {
             return this;
         }
         public ServiceVclLoggingKafka build() {
-            final var o = new ServiceVclLoggingKafka();
-            o.authMethod = authMethod;
-            o.brokers = brokers;
-            o.compressionCodec = compressionCodec;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.parseLogKeyvals = parseLogKeyvals;
-            o.password = password;
-            o.placement = placement;
-            o.requestMaxBytes = requestMaxBytes;
-            o.requiredAcks = requiredAcks;
-            o.responseCondition = responseCondition;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.topic = topic;
-            o.useTls = useTls;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceVclLoggingKafka();
+            _resultValue.authMethod = authMethod;
+            _resultValue.brokers = brokers;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.parseLogKeyvals = parseLogKeyvals;
+            _resultValue.password = password;
+            _resultValue.placement = placement;
+            _resultValue.requestMaxBytes = requestMaxBytes;
+            _resultValue.requiredAcks = requiredAcks;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.topic = topic;
+            _resultValue.useTls = useTls;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

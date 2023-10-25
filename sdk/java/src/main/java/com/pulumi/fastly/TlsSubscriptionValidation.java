@@ -27,7 +27,7 @@ public class TlsSubscriptionValidation extends com.pulumi.resources.CustomResour
      * The ID of the TLS Subscription that should be validated.
      * 
      */
-    @Export(name="subscriptionId", type=String.class, parameters={})
+    @Export(name="subscriptionId", refs={String.class}, tree="[0]")
     private Output<String> subscriptionId;
 
     /**

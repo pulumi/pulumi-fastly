@@ -238,19 +238,19 @@ public final class ServiceVclLoggingBigquery {
             return this;
         }
         public ServiceVclLoggingBigquery build() {
-            final var o = new ServiceVclLoggingBigquery();
-            o.accountName = accountName;
-            o.dataset = dataset;
-            o.email = email;
-            o.format = format;
-            o.name = name;
-            o.placement = placement;
-            o.projectId = projectId;
-            o.responseCondition = responseCondition;
-            o.secretKey = secretKey;
-            o.table = table;
-            o.template = template;
-            return o;
+            final var _resultValue = new ServiceVclLoggingBigquery();
+            _resultValue.accountName = accountName;
+            _resultValue.dataset = dataset;
+            _resultValue.email = email;
+            _resultValue.format = format;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.projectId = projectId;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.secretKey = secretKey;
+            _resultValue.table = table;
+            _resultValue.template = template;
+            return _resultValue;
         }
     }
 }

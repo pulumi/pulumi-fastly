@@ -70,10 +70,10 @@ public final class GetConfigstoresResult {
             return stores(List.of(stores));
         }
         public GetConfigstoresResult build() {
-            final var o = new GetConfigstoresResult();
-            o.id = id;
-            o.stores = stores;
-            return o;
+            final var _resultValue = new GetConfigstoresResult();
+            _resultValue.id = id;
+            _resultValue.stores = stores;
+            return _resultValue;
         }
     }
 }

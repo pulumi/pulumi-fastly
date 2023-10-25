@@ -267,20 +267,20 @@ public final class ServiceVclRequestSetting {
             return this;
         }
         public ServiceVclRequestSetting build() {
-            final var o = new ServiceVclRequestSetting();
-            o.action = action;
-            o.bypassBusyWait = bypassBusyWait;
-            o.defaultHost = defaultHost;
-            o.forceMiss = forceMiss;
-            o.forceSsl = forceSsl;
-            o.geoHeaders = geoHeaders;
-            o.hashKeys = hashKeys;
-            o.maxStaleAge = maxStaleAge;
-            o.name = name;
-            o.requestCondition = requestCondition;
-            o.timerSupport = timerSupport;
-            o.xff = xff;
-            return o;
+            final var _resultValue = new ServiceVclRequestSetting();
+            _resultValue.action = action;
+            _resultValue.bypassBusyWait = bypassBusyWait;
+            _resultValue.defaultHost = defaultHost;
+            _resultValue.forceMiss = forceMiss;
+            _resultValue.forceSsl = forceSsl;
+            _resultValue.geoHeaders = geoHeaders;
+            _resultValue.hashKeys = hashKeys;
+            _resultValue.maxStaleAge = maxStaleAge;
+            _resultValue.name = name;
+            _resultValue.requestCondition = requestCondition;
+            _resultValue.timerSupport = timerSupport;
+            _resultValue.xff = xff;
+            return _resultValue;
         }
     }
 }

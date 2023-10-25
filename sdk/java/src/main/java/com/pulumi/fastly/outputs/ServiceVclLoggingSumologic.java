@@ -163,15 +163,15 @@ public final class ServiceVclLoggingSumologic {
             return this;
         }
         public ServiceVclLoggingSumologic build() {
-            final var o = new ServiceVclLoggingSumologic();
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.messageType = messageType;
-            o.name = name;
-            o.placement = placement;
-            o.responseCondition = responseCondition;
-            o.url = url;
-            return o;
+            final var _resultValue = new ServiceVclLoggingSumologic();
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }

@@ -71,7 +71,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      * 
      */
-    @Export(name="activate", type=Boolean.class, parameters={})
+    @Export(name="activate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> activate;
 
     /**
@@ -85,7 +85,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * The currently active version of your Fastly Service
      * 
      */
-    @Export(name="activeVersion", type=Integer.class, parameters={})
+    @Export(name="activeVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> activeVersion;
 
     /**
@@ -95,7 +95,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Integer> activeVersion() {
         return this.activeVersion;
     }
-    @Export(name="backends", type=List.class, parameters={ServiceComputeBackend.class})
+    @Export(name="backends", refs={List.class,ServiceComputeBackend.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeBackend>> backends;
 
     public Output<Optional<List<ServiceComputeBackend>>> backends() {
@@ -105,7 +105,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * The latest cloned version by the provider
      * 
      */
-    @Export(name="clonedVersion", type=Integer.class, parameters={})
+    @Export(name="clonedVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> clonedVersion;
 
     /**
@@ -119,7 +119,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * An optional comment about the Domain.
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
@@ -129,7 +129,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> comment() {
         return Codegen.optional(this.comment);
     }
-    @Export(name="dictionaries", type=List.class, parameters={ServiceComputeDictionary.class})
+    @Export(name="dictionaries", refs={List.class,ServiceComputeDictionary.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeDictionary>> dictionaries;
 
     public Output<Optional<List<ServiceComputeDictionary>>> dictionaries() {
@@ -139,7 +139,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
      * 
      */
-    @Export(name="domains", type=List.class, parameters={ServiceComputeDomain.class})
+    @Export(name="domains", refs={List.class,ServiceComputeDomain.class}, tree="[0,1]")
     private Output<List<ServiceComputeDomain>> domains;
 
     /**
@@ -153,7 +153,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
      * 
      */
-    @Export(name="forceDestroy", type=Boolean.class, parameters={})
+    @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
@@ -169,7 +169,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
      * 
      */
-    @Export(name="forceRefresh", type=Boolean.class, parameters={})
+    @Export(name="forceRefresh", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> forceRefresh;
 
     /**
@@ -185,7 +185,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
-    @Export(name="imported", type=Boolean.class, parameters={})
+    @Export(name="imported", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> imported;
 
     /**
@@ -195,157 +195,157 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Boolean> imported() {
         return this.imported;
     }
-    @Export(name="loggingBigqueries", type=List.class, parameters={ServiceComputeLoggingBigquery.class})
+    @Export(name="loggingBigqueries", refs={List.class,ServiceComputeLoggingBigquery.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingBigquery>> loggingBigqueries;
 
     public Output<Optional<List<ServiceComputeLoggingBigquery>>> loggingBigqueries() {
         return Codegen.optional(this.loggingBigqueries);
     }
-    @Export(name="loggingBlobstorages", type=List.class, parameters={ServiceComputeLoggingBlobstorage.class})
+    @Export(name="loggingBlobstorages", refs={List.class,ServiceComputeLoggingBlobstorage.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingBlobstorage>> loggingBlobstorages;
 
     public Output<Optional<List<ServiceComputeLoggingBlobstorage>>> loggingBlobstorages() {
         return Codegen.optional(this.loggingBlobstorages);
     }
-    @Export(name="loggingCloudfiles", type=List.class, parameters={ServiceComputeLoggingCloudfile.class})
+    @Export(name="loggingCloudfiles", refs={List.class,ServiceComputeLoggingCloudfile.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingCloudfile>> loggingCloudfiles;
 
     public Output<Optional<List<ServiceComputeLoggingCloudfile>>> loggingCloudfiles() {
         return Codegen.optional(this.loggingCloudfiles);
     }
-    @Export(name="loggingDatadogs", type=List.class, parameters={ServiceComputeLoggingDatadog.class})
+    @Export(name="loggingDatadogs", refs={List.class,ServiceComputeLoggingDatadog.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingDatadog>> loggingDatadogs;
 
     public Output<Optional<List<ServiceComputeLoggingDatadog>>> loggingDatadogs() {
         return Codegen.optional(this.loggingDatadogs);
     }
-    @Export(name="loggingDigitaloceans", type=List.class, parameters={ServiceComputeLoggingDigitalocean.class})
+    @Export(name="loggingDigitaloceans", refs={List.class,ServiceComputeLoggingDigitalocean.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingDigitalocean>> loggingDigitaloceans;
 
     public Output<Optional<List<ServiceComputeLoggingDigitalocean>>> loggingDigitaloceans() {
         return Codegen.optional(this.loggingDigitaloceans);
     }
-    @Export(name="loggingElasticsearches", type=List.class, parameters={ServiceComputeLoggingElasticsearch.class})
+    @Export(name="loggingElasticsearches", refs={List.class,ServiceComputeLoggingElasticsearch.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingElasticsearch>> loggingElasticsearches;
 
     public Output<Optional<List<ServiceComputeLoggingElasticsearch>>> loggingElasticsearches() {
         return Codegen.optional(this.loggingElasticsearches);
     }
-    @Export(name="loggingFtps", type=List.class, parameters={ServiceComputeLoggingFtp.class})
+    @Export(name="loggingFtps", refs={List.class,ServiceComputeLoggingFtp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingFtp>> loggingFtps;
 
     public Output<Optional<List<ServiceComputeLoggingFtp>>> loggingFtps() {
         return Codegen.optional(this.loggingFtps);
     }
-    @Export(name="loggingGcs", type=List.class, parameters={ServiceComputeLoggingGc.class})
+    @Export(name="loggingGcs", refs={List.class,ServiceComputeLoggingGc.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingGc>> loggingGcs;
 
     public Output<Optional<List<ServiceComputeLoggingGc>>> loggingGcs() {
         return Codegen.optional(this.loggingGcs);
     }
-    @Export(name="loggingGooglepubsubs", type=List.class, parameters={ServiceComputeLoggingGooglepubsub.class})
+    @Export(name="loggingGooglepubsubs", refs={List.class,ServiceComputeLoggingGooglepubsub.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingGooglepubsub>> loggingGooglepubsubs;
 
     public Output<Optional<List<ServiceComputeLoggingGooglepubsub>>> loggingGooglepubsubs() {
         return Codegen.optional(this.loggingGooglepubsubs);
     }
-    @Export(name="loggingHeroku", type=List.class, parameters={ServiceComputeLoggingHeroku.class})
+    @Export(name="loggingHeroku", refs={List.class,ServiceComputeLoggingHeroku.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingHeroku>> loggingHeroku;
 
     public Output<Optional<List<ServiceComputeLoggingHeroku>>> loggingHeroku() {
         return Codegen.optional(this.loggingHeroku);
     }
-    @Export(name="loggingHoneycombs", type=List.class, parameters={ServiceComputeLoggingHoneycomb.class})
+    @Export(name="loggingHoneycombs", refs={List.class,ServiceComputeLoggingHoneycomb.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingHoneycomb>> loggingHoneycombs;
 
     public Output<Optional<List<ServiceComputeLoggingHoneycomb>>> loggingHoneycombs() {
         return Codegen.optional(this.loggingHoneycombs);
     }
-    @Export(name="loggingHttps", type=List.class, parameters={ServiceComputeLoggingHttp.class})
+    @Export(name="loggingHttps", refs={List.class,ServiceComputeLoggingHttp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingHttp>> loggingHttps;
 
     public Output<Optional<List<ServiceComputeLoggingHttp>>> loggingHttps() {
         return Codegen.optional(this.loggingHttps);
     }
-    @Export(name="loggingKafkas", type=List.class, parameters={ServiceComputeLoggingKafka.class})
+    @Export(name="loggingKafkas", refs={List.class,ServiceComputeLoggingKafka.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingKafka>> loggingKafkas;
 
     public Output<Optional<List<ServiceComputeLoggingKafka>>> loggingKafkas() {
         return Codegen.optional(this.loggingKafkas);
     }
-    @Export(name="loggingKineses", type=List.class, parameters={ServiceComputeLoggingKinese.class})
+    @Export(name="loggingKineses", refs={List.class,ServiceComputeLoggingKinese.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingKinese>> loggingKineses;
 
     public Output<Optional<List<ServiceComputeLoggingKinese>>> loggingKineses() {
         return Codegen.optional(this.loggingKineses);
     }
-    @Export(name="loggingLogentries", type=List.class, parameters={ServiceComputeLoggingLogentry.class})
+    @Export(name="loggingLogentries", refs={List.class,ServiceComputeLoggingLogentry.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingLogentry>> loggingLogentries;
 
     public Output<Optional<List<ServiceComputeLoggingLogentry>>> loggingLogentries() {
         return Codegen.optional(this.loggingLogentries);
     }
-    @Export(name="loggingLogglies", type=List.class, parameters={ServiceComputeLoggingLoggly.class})
+    @Export(name="loggingLogglies", refs={List.class,ServiceComputeLoggingLoggly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingLoggly>> loggingLogglies;
 
     public Output<Optional<List<ServiceComputeLoggingLoggly>>> loggingLogglies() {
         return Codegen.optional(this.loggingLogglies);
     }
-    @Export(name="loggingLogshuttles", type=List.class, parameters={ServiceComputeLoggingLogshuttle.class})
+    @Export(name="loggingLogshuttles", refs={List.class,ServiceComputeLoggingLogshuttle.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingLogshuttle>> loggingLogshuttles;
 
     public Output<Optional<List<ServiceComputeLoggingLogshuttle>>> loggingLogshuttles() {
         return Codegen.optional(this.loggingLogshuttles);
     }
-    @Export(name="loggingNewrelics", type=List.class, parameters={ServiceComputeLoggingNewrelic.class})
+    @Export(name="loggingNewrelics", refs={List.class,ServiceComputeLoggingNewrelic.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingNewrelic>> loggingNewrelics;
 
     public Output<Optional<List<ServiceComputeLoggingNewrelic>>> loggingNewrelics() {
         return Codegen.optional(this.loggingNewrelics);
     }
-    @Export(name="loggingOpenstacks", type=List.class, parameters={ServiceComputeLoggingOpenstack.class})
+    @Export(name="loggingOpenstacks", refs={List.class,ServiceComputeLoggingOpenstack.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingOpenstack>> loggingOpenstacks;
 
     public Output<Optional<List<ServiceComputeLoggingOpenstack>>> loggingOpenstacks() {
         return Codegen.optional(this.loggingOpenstacks);
     }
-    @Export(name="loggingPapertrails", type=List.class, parameters={ServiceComputeLoggingPapertrail.class})
+    @Export(name="loggingPapertrails", refs={List.class,ServiceComputeLoggingPapertrail.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingPapertrail>> loggingPapertrails;
 
     public Output<Optional<List<ServiceComputeLoggingPapertrail>>> loggingPapertrails() {
         return Codegen.optional(this.loggingPapertrails);
     }
-    @Export(name="loggingS3s", type=List.class, parameters={ServiceComputeLoggingS3.class})
+    @Export(name="loggingS3s", refs={List.class,ServiceComputeLoggingS3.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingS3>> loggingS3s;
 
     public Output<Optional<List<ServiceComputeLoggingS3>>> loggingS3s() {
         return Codegen.optional(this.loggingS3s);
     }
-    @Export(name="loggingScalyrs", type=List.class, parameters={ServiceComputeLoggingScalyr.class})
+    @Export(name="loggingScalyrs", refs={List.class,ServiceComputeLoggingScalyr.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingScalyr>> loggingScalyrs;
 
     public Output<Optional<List<ServiceComputeLoggingScalyr>>> loggingScalyrs() {
         return Codegen.optional(this.loggingScalyrs);
     }
-    @Export(name="loggingSftps", type=List.class, parameters={ServiceComputeLoggingSftp.class})
+    @Export(name="loggingSftps", refs={List.class,ServiceComputeLoggingSftp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingSftp>> loggingSftps;
 
     public Output<Optional<List<ServiceComputeLoggingSftp>>> loggingSftps() {
         return Codegen.optional(this.loggingSftps);
     }
-    @Export(name="loggingSplunks", type=List.class, parameters={ServiceComputeLoggingSplunk.class})
+    @Export(name="loggingSplunks", refs={List.class,ServiceComputeLoggingSplunk.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingSplunk>> loggingSplunks;
 
     public Output<Optional<List<ServiceComputeLoggingSplunk>>> loggingSplunks() {
         return Codegen.optional(this.loggingSplunks);
     }
-    @Export(name="loggingSumologics", type=List.class, parameters={ServiceComputeLoggingSumologic.class})
+    @Export(name="loggingSumologics", refs={List.class,ServiceComputeLoggingSumologic.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingSumologic>> loggingSumologics;
 
     public Output<Optional<List<ServiceComputeLoggingSumologic>>> loggingSumologics() {
         return Codegen.optional(this.loggingSumologics);
     }
-    @Export(name="loggingSyslogs", type=List.class, parameters={ServiceComputeLoggingSyslog.class})
+    @Export(name="loggingSyslogs", refs={List.class,ServiceComputeLoggingSyslog.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingSyslog>> loggingSyslogs;
 
     public Output<Optional<List<ServiceComputeLoggingSyslog>>> loggingSyslogs() {
@@ -355,7 +355,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -366,20 +366,20 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
-    @Export(name="package", type=ServiceComputePackage.class, parameters={})
+    @Export(name="package", refs={ServiceComputePackage.class}, tree="[0]")
     private Output</* @Nullable */ ServiceComputePackage> package_;
 
     /**
-     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     public Output<Optional<ServiceComputePackage>> package_() {
         return Codegen.optional(this.package_);
     }
-    @Export(name="productEnablement", type=ServiceComputeProductEnablement.class, parameters={})
+    @Export(name="productEnablement", refs={ServiceComputeProductEnablement.class}, tree="[0]")
     private Output</* @Nullable */ ServiceComputeProductEnablement> productEnablement;
 
     public Output<Optional<ServiceComputeProductEnablement>> productEnablement() {
@@ -389,7 +389,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
      * 
      */
-    @Export(name="resourceLinks", type=List.class, parameters={ServiceComputeResourceLink.class})
+    @Export(name="resourceLinks", refs={List.class,ServiceComputeResourceLink.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeResourceLink>> resourceLinks;
 
     /**
@@ -405,7 +405,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * an active service will cause an error. Default `false`
      * 
      */
-    @Export(name="reuse", type=Boolean.class, parameters={})
+    @Export(name="reuse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reuse;
 
     /**
@@ -421,7 +421,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * Description field for the version
      * 
      */
-    @Export(name="versionComment", type=String.class, parameters={})
+    @Export(name="versionComment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> versionComment;
 
     /**

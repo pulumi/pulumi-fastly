@@ -262,20 +262,20 @@ public final class ServiceVclHealthcheck {
             return this;
         }
         public ServiceVclHealthcheck build() {
-            final var o = new ServiceVclHealthcheck();
-            o.checkInterval = checkInterval;
-            o.expectedResponse = expectedResponse;
-            o.headers = headers;
-            o.host = host;
-            o.httpVersion = httpVersion;
-            o.initial = initial;
-            o.method = method;
-            o.name = name;
-            o.path = path;
-            o.threshold = threshold;
-            o.timeout = timeout;
-            o.window = window;
-            return o;
+            final var _resultValue = new ServiceVclHealthcheck();
+            _resultValue.checkInterval = checkInterval;
+            _resultValue.expectedResponse = expectedResponse;
+            _resultValue.headers = headers;
+            _resultValue.host = host;
+            _resultValue.httpVersion = httpVersion;
+            _resultValue.initial = initial;
+            _resultValue.method = method;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.threshold = threshold;
+            _resultValue.timeout = timeout;
+            _resultValue.window = window;
+            return _resultValue;
         }
     }
 }

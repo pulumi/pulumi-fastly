@@ -90,11 +90,11 @@ public final class GetTlsActivationIdsResult {
             return ids(List.of(ids));
         }
         public GetTlsActivationIdsResult build() {
-            final var o = new GetTlsActivationIdsResult();
-            o.certificateId = certificateId;
-            o.id = id;
-            o.ids = ids;
-            return o;
+            final var _resultValue = new GetTlsActivationIdsResult();
+            _resultValue.certificateId = certificateId;
+            _resultValue.id = id;
+            _resultValue.ids = ids;
+            return _resultValue;
         }
     }
 }

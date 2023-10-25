@@ -67,10 +67,10 @@ public final class ServiceVclDomain {
             return this;
         }
         public ServiceVclDomain build() {
-            final var o = new ServiceVclDomain();
-            o.comment = comment;
-            o.name = name;
-            return o;
+            final var _resultValue = new ServiceVclDomain();
+            _resultValue.comment = comment;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

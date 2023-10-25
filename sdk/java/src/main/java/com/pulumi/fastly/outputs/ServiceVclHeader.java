@@ -259,20 +259,20 @@ public final class ServiceVclHeader {
             return this;
         }
         public ServiceVclHeader build() {
-            final var o = new ServiceVclHeader();
-            o.action = action;
-            o.cacheCondition = cacheCondition;
-            o.destination = destination;
-            o.ignoreIfSet = ignoreIfSet;
-            o.name = name;
-            o.priority = priority;
-            o.regex = regex;
-            o.requestCondition = requestCondition;
-            o.responseCondition = responseCondition;
-            o.source = source;
-            o.substitution = substitution;
-            o.type = type;
-            return o;
+            final var _resultValue = new ServiceVclHeader();
+            _resultValue.action = action;
+            _resultValue.cacheCondition = cacheCondition;
+            _resultValue.destination = destination;
+            _resultValue.ignoreIfSet = ignoreIfSet;
+            _resultValue.name = name;
+            _resultValue.priority = priority;
+            _resultValue.regex = regex;
+            _resultValue.requestCondition = requestCondition;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.source = source;
+            _resultValue.substitution = substitution;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

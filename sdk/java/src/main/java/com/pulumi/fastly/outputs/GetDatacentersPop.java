@@ -71,12 +71,12 @@ public final class GetDatacentersPop {
             return this;
         }
         public GetDatacentersPop build() {
-            final var o = new GetDatacentersPop();
-            o.code = code;
-            o.group = group;
-            o.name = name;
-            o.shield = shield;
-            return o;
+            final var _resultValue = new GetDatacentersPop();
+            _resultValue.code = code;
+            _resultValue.group = group;
+            _resultValue.name = name;
+            _resultValue.shield = shield;
+            return _resultValue;
         }
     }
 }

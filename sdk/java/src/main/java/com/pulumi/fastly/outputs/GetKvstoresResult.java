@@ -70,10 +70,10 @@ public final class GetKvstoresResult {
             return stores(List.of(stores));
         }
         public GetKvstoresResult build() {
-            final var o = new GetKvstoresResult();
-            o.id = id;
-            o.stores = stores;
-            return o;
+            final var _resultValue = new GetKvstoresResult();
+            _resultValue.id = id;
+            _resultValue.stores = stores;
+            return _resultValue;
         }
     }
 }

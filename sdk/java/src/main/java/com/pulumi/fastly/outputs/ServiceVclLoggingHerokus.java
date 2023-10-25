@@ -163,15 +163,15 @@ public final class ServiceVclLoggingHerokus {
             return this;
         }
         public ServiceVclLoggingHerokus build() {
-            final var o = new ServiceVclLoggingHerokus();
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.responseCondition = responseCondition;
-            o.token = token;
-            o.url = url;
-            return o;
+            final var _resultValue = new ServiceVclLoggingHerokus();
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.token = token;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }

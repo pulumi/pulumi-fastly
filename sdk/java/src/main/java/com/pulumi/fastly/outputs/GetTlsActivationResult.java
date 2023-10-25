@@ -122,13 +122,13 @@ public final class GetTlsActivationResult {
             return this;
         }
         public GetTlsActivationResult build() {
-            final var o = new GetTlsActivationResult();
-            o.certificateId = certificateId;
-            o.configurationId = configurationId;
-            o.createdAt = createdAt;
-            o.domain = domain;
-            o.id = id;
-            return o;
+            final var _resultValue = new GetTlsActivationResult();
+            _resultValue.certificateId = certificateId;
+            _resultValue.configurationId = configurationId;
+            _resultValue.createdAt = createdAt;
+            _resultValue.domain = domain;
+            _resultValue.id = id;
+            return _resultValue;
         }
     }
 }

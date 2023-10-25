@@ -334,24 +334,24 @@ public final class ServiceVclLoggingBlobstorage {
             return this;
         }
         public ServiceVclLoggingBlobstorage build() {
-            final var o = new ServiceVclLoggingBlobstorage();
-            o.accountName = accountName;
-            o.compressionCodec = compressionCodec;
-            o.container = container;
-            o.fileMaxBytes = fileMaxBytes;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.placement = placement;
-            o.publicKey = publicKey;
-            o.responseCondition = responseCondition;
-            o.sasToken = sasToken;
-            o.timestampFormat = timestampFormat;
-            return o;
+            final var _resultValue = new ServiceVclLoggingBlobstorage();
+            _resultValue.accountName = accountName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.container = container;
+            _resultValue.fileMaxBytes = fileMaxBytes;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.placement = placement;
+            _resultValue.publicKey = publicKey;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.sasToken = sasToken;
+            _resultValue.timestampFormat = timestampFormat;
+            return _resultValue;
         }
     }
 }

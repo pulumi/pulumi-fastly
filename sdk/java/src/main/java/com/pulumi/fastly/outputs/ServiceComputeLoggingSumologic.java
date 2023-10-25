@@ -86,11 +86,11 @@ public final class ServiceComputeLoggingSumologic {
             return this;
         }
         public ServiceComputeLoggingSumologic build() {
-            final var o = new ServiceComputeLoggingSumologic();
-            o.messageType = messageType;
-            o.name = name;
-            o.url = url;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingSumologic();
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }

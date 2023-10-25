@@ -32,14 +32,14 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     }
 
     /**
-     * Used internally by the provider to identify modified settings
+     * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Used internally by the provider to identify modified settings
+     * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     public Optional<Output<String>> name() {
@@ -109,7 +109,7 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
         }
 
         /**
-         * @param name Used internally by the provider to identify modified settings
+         * @param name Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
         }
 
         /**
-         * @param name Used internally by the provider to identify modified settings
+         * @param name Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
          * 
          * @return builder
          * 

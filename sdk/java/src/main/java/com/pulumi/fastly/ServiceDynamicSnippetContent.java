@@ -33,7 +33,7 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      * The VCL code that specifies exactly what the snippet does
      * 
      */
-    @Export(name="content", type=String.class, parameters={})
+    @Export(name="content", refs={String.class}, tree="[0]")
     private Output<String> content;
 
     /**
@@ -47,7 +47,7 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      * Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
      * 
      */
-    @Export(name="manageSnippets", type=Boolean.class, parameters={})
+    @Export(name="manageSnippets", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> manageSnippets;
 
     /**
@@ -61,7 +61,7 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      * The ID of the service that the dynamic snippet belongs to
      * 
      */
-    @Export(name="serviceId", type=String.class, parameters={})
+    @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output<String> serviceId;
 
     /**
@@ -75,7 +75,7 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      * The ID of the dynamic snippet that the content belong to
      * 
      */
-    @Export(name="snippetId", type=String.class, parameters={})
+    @Export(name="snippetId", refs={String.class}, tree="[0]")
     private Output<String> snippetId;
 
     /**

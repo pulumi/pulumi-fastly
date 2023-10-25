@@ -49,10 +49,10 @@ public final class GetSecretstoresStore {
             return this;
         }
         public GetSecretstoresStore build() {
-            final var o = new GetSecretstoresStore();
-            o.id = id;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetSecretstoresStore();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

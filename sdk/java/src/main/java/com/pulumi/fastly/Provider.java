@@ -26,7 +26,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Fastly API Key from https://app.fastly.com/#account
      * 
      */
-    @Export(name="apiKey", type=String.class, parameters={})
+    @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
@@ -40,7 +40,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Fastly API URL
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**

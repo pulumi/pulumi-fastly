@@ -316,23 +316,23 @@ public final class ServiceComputeLoggingKafka {
             return this;
         }
         public ServiceComputeLoggingKafka build() {
-            final var o = new ServiceComputeLoggingKafka();
-            o.authMethod = authMethod;
-            o.brokers = brokers;
-            o.compressionCodec = compressionCodec;
-            o.name = name;
-            o.parseLogKeyvals = parseLogKeyvals;
-            o.password = password;
-            o.requestMaxBytes = requestMaxBytes;
-            o.requiredAcks = requiredAcks;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.topic = topic;
-            o.useTls = useTls;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingKafka();
+            _resultValue.authMethod = authMethod;
+            _resultValue.brokers = brokers;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.name = name;
+            _resultValue.parseLogKeyvals = parseLogKeyvals;
+            _resultValue.password = password;
+            _resultValue.requestMaxBytes = requestMaxBytes;
+            _resultValue.requiredAcks = requiredAcks;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.topic = topic;
+            _resultValue.useTls = useTls;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

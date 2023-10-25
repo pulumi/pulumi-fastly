@@ -372,26 +372,26 @@ public final class ServiceVclLoggingHttp {
             return this;
         }
         public ServiceVclLoggingHttp build() {
-            final var o = new ServiceVclLoggingHttp();
-            o.contentType = contentType;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.headerName = headerName;
-            o.headerValue = headerValue;
-            o.jsonFormat = jsonFormat;
-            o.messageType = messageType;
-            o.method = method;
-            o.name = name;
-            o.placement = placement;
-            o.requestMaxBytes = requestMaxBytes;
-            o.requestMaxEntries = requestMaxEntries;
-            o.responseCondition = responseCondition;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.url = url;
-            return o;
+            final var _resultValue = new ServiceVclLoggingHttp();
+            _resultValue.contentType = contentType;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.headerName = headerName;
+            _resultValue.headerValue = headerValue;
+            _resultValue.jsonFormat = jsonFormat;
+            _resultValue.messageType = messageType;
+            _resultValue.method = method;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.requestMaxBytes = requestMaxBytes;
+            _resultValue.requestMaxEntries = requestMaxEntries;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }

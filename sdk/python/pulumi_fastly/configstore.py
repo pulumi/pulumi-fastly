@@ -130,9 +130,9 @@ class Configstore(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides a container that lets you store data in key-value pairs that are accessible to Compute@Edge services during request processing.
+        Provides a container that lets you store data in key-value pairs that are accessible to Compute services during request processing.
 
-        In order for a Config Store (`Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
+        In order for a Config Store (`Configstore`) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
 
         ## Example Usage
 
@@ -182,9 +182,9 @@ class Configstore(pulumi.CustomResource):
                  args: Optional[ConfigstoreArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a container that lets you store data in key-value pairs that are accessible to Compute@Edge services during request processing.
+        Provides a container that lets you store data in key-value pairs that are accessible to Compute services during request processing.
 
-        In order for a Config Store (`Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
+        In order for a Config Store (`Configstore`) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
 
         ## Example Usage
 

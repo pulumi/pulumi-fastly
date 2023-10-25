@@ -69,10 +69,10 @@ public final class GetTlsPlatformCertificateIdsResult {
             return ids(List.of(ids));
         }
         public GetTlsPlatformCertificateIdsResult build() {
-            final var o = new GetTlsPlatformCertificateIdsResult();
-            o.id = id;
-            o.ids = ids;
-            return o;
+            final var _resultValue = new GetTlsPlatformCertificateIdsResult();
+            _resultValue.id = id;
+            _resultValue.ids = ids;
+            return _resultValue;
         }
     }
 }

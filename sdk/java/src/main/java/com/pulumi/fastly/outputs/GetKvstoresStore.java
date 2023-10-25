@@ -49,10 +49,10 @@ public final class GetKvstoresStore {
             return this;
         }
         public GetKvstoresStore build() {
-            final var o = new GetKvstoresStore();
-            o.id = id;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetKvstoresStore();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

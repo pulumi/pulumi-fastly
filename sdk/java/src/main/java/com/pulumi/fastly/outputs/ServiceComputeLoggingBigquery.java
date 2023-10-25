@@ -181,16 +181,16 @@ public final class ServiceComputeLoggingBigquery {
             return this;
         }
         public ServiceComputeLoggingBigquery build() {
-            final var o = new ServiceComputeLoggingBigquery();
-            o.accountName = accountName;
-            o.dataset = dataset;
-            o.email = email;
-            o.name = name;
-            o.projectId = projectId;
-            o.secretKey = secretKey;
-            o.table = table;
-            o.template = template;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingBigquery();
+            _resultValue.accountName = accountName;
+            _resultValue.dataset = dataset;
+            _resultValue.email = email;
+            _resultValue.name = name;
+            _resultValue.projectId = projectId;
+            _resultValue.secretKey = secretKey;
+            _resultValue.table = table;
+            _resultValue.template = template;
+            return _resultValue;
         }
     }
 }

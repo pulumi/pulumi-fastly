@@ -74,7 +74,7 @@ public class TlsPrivateKey extends com.pulumi.resources.CustomResource {
      * Time-stamp (GMT) when the private key was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -88,7 +88,7 @@ public class TlsPrivateKey extends com.pulumi.resources.CustomResource {
      * The key length used to generate the private key.
      * 
      */
-    @Export(name="keyLength", type=Integer.class, parameters={})
+    @Export(name="keyLength", refs={Integer.class}, tree="[0]")
     private Output<Integer> keyLength;
 
     /**
@@ -102,7 +102,7 @@ public class TlsPrivateKey extends com.pulumi.resources.CustomResource {
      * Private key in PEM format.
      * 
      */
-    @Export(name="keyPem", type=String.class, parameters={})
+    @Export(name="keyPem", refs={String.class}, tree="[0]")
     private Output<String> keyPem;
 
     /**
@@ -116,7 +116,7 @@ public class TlsPrivateKey extends com.pulumi.resources.CustomResource {
      * The algorithm used to generate the private key. Must be RSA.
      * 
      */
-    @Export(name="keyType", type=String.class, parameters={})
+    @Export(name="keyType", refs={String.class}, tree="[0]")
     private Output<String> keyType;
 
     /**
@@ -130,7 +130,7 @@ public class TlsPrivateKey extends com.pulumi.resources.CustomResource {
      * Customisable name of the private key.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -144,7 +144,7 @@ public class TlsPrivateKey extends com.pulumi.resources.CustomResource {
      * Useful for safely identifying the key.
      * 
      */
-    @Export(name="publicKeySha1", type=String.class, parameters={})
+    @Export(name="publicKeySha1", refs={String.class}, tree="[0]")
     private Output<String> publicKeySha1;
 
     /**
@@ -158,7 +158,7 @@ public class TlsPrivateKey extends com.pulumi.resources.CustomResource {
      * Whether Fastly recommends replacing this private key.
      * 
      */
-    @Export(name="replace", type=Boolean.class, parameters={})
+    @Export(name="replace", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> replace;
 
     /**

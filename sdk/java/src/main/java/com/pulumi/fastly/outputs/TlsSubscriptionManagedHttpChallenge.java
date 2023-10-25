@@ -66,11 +66,11 @@ public final class TlsSubscriptionManagedHttpChallenge {
             return recordValues(List.of(recordValues));
         }
         public TlsSubscriptionManagedHttpChallenge build() {
-            final var o = new TlsSubscriptionManagedHttpChallenge();
-            o.recordName = recordName;
-            o.recordType = recordType;
-            o.recordValues = recordValues;
-            return o;
+            final var _resultValue = new TlsSubscriptionManagedHttpChallenge();
+            _resultValue.recordName = recordName;
+            _resultValue.recordType = recordType;
+            _resultValue.recordValues = recordValues;
+            return _resultValue;
         }
     }
 }

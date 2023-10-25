@@ -258,20 +258,20 @@ public final class ServiceComputeLoggingGc {
             return this;
         }
         public ServiceComputeLoggingGc build() {
-            final var o = new ServiceComputeLoggingGc();
-            o.accountName = accountName;
-            o.bucketName = bucketName;
-            o.compressionCodec = compressionCodec;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.projectId = projectId;
-            o.secretKey = secretKey;
-            o.timestampFormat = timestampFormat;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingGc();
+            _resultValue.accountName = accountName;
+            _resultValue.bucketName = bucketName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.projectId = projectId;
+            _resultValue.secretKey = secretKey;
+            _resultValue.timestampFormat = timestampFormat;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

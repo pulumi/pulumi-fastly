@@ -70,10 +70,10 @@ public final class GetDatacentersResult {
             return pops(List.of(pops));
         }
         public GetDatacentersResult build() {
-            final var o = new GetDatacentersResult();
-            o.id = id;
-            o.pops = pops;
-            return o;
+            final var _resultValue = new GetDatacentersResult();
+            _resultValue.id = id;
+            _resultValue.pops = pops;
+            return _resultValue;
         }
     }
 }

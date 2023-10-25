@@ -296,22 +296,22 @@ public final class ServiceComputeLoggingSftp {
             return this;
         }
         public ServiceComputeLoggingSftp build() {
-            final var o = new ServiceComputeLoggingSftp();
-            o.address = address;
-            o.compressionCodec = compressionCodec;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.password = password;
-            o.path = path;
-            o.period = period;
-            o.port = port;
-            o.publicKey = publicKey;
-            o.secretKey = secretKey;
-            o.sshKnownHosts = sshKnownHosts;
-            o.timestampFormat = timestampFormat;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingSftp();
+            _resultValue.address = address;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.port = port;
+            _resultValue.publicKey = publicKey;
+            _resultValue.secretKey = secretKey;
+            _resultValue.sshKnownHosts = sshKnownHosts;
+            _resultValue.timestampFormat = timestampFormat;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

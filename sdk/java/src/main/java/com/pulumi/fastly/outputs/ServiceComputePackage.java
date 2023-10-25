@@ -86,11 +86,11 @@ public final class ServiceComputePackage {
             return this;
         }
         public ServiceComputePackage build() {
-            final var o = new ServiceComputePackage();
-            o.content = content;
-            o.filename = filename;
-            o.sourceCodeHash = sourceCodeHash;
-            return o;
+            final var _resultValue = new ServiceComputePackage();
+            _resultValue.content = content;
+            _resultValue.filename = filename;
+            _resultValue.sourceCodeHash = sourceCodeHash;
+            return _resultValue;
         }
     }
 }

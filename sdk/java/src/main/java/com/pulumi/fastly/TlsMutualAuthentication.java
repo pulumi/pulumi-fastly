@@ -22,7 +22,7 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      * 
      */
-    @Export(name="certBundle", type=String.class, parameters={})
+    @Export(name="certBundle", refs={String.class}, tree="[0]")
     private Output<String> certBundle;
 
     /**
@@ -36,7 +36,7 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
      * Date and time in ISO 8601 format.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -50,7 +50,7 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
      * Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
      * 
      */
-    @Export(name="enforced", type=Boolean.class, parameters={})
+    @Export(name="enforced", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enforced;
 
     /**
@@ -64,7 +64,7 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
      * Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
      * 
      */
-    @Export(name="include", type=String.class, parameters={})
+    @Export(name="include", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> include;
 
     /**
@@ -78,7 +78,7 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
      * A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -92,7 +92,7 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
      * List of alphanumeric strings identifying TLS activations.
      * 
      */
-    @Export(name="tlsActivations", type=List.class, parameters={String.class})
+    @Export(name="tlsActivations", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> tlsActivations;
 
     /**
@@ -106,7 +106,7 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
      * Date and time in ISO 8601 format.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

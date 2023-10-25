@@ -220,18 +220,18 @@ public final class ServiceVclLoggingGooglepubsub {
             return this;
         }
         public ServiceVclLoggingGooglepubsub build() {
-            final var o = new ServiceVclLoggingGooglepubsub();
-            o.accountName = accountName;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.projectId = projectId;
-            o.responseCondition = responseCondition;
-            o.secretKey = secretKey;
-            o.topic = topic;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceVclLoggingGooglepubsub();
+            _resultValue.accountName = accountName;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.projectId = projectId;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.secretKey = secretKey;
+            _resultValue.topic = topic;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

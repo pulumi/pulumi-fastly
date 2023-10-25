@@ -87,11 +87,11 @@ public final class ServiceWafConfigurationRule {
             return this;
         }
         public ServiceWafConfigurationRule build() {
-            final var o = new ServiceWafConfigurationRule();
-            o.modsecRuleId = modsecRuleId;
-            o.revision = revision;
-            o.status = status;
-            return o;
+            final var _resultValue = new ServiceWafConfigurationRule();
+            _resultValue.modsecRuleId = modsecRuleId;
+            _resultValue.revision = revision;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

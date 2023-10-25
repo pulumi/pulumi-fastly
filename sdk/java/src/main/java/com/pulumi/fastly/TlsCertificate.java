@@ -111,7 +111,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * PEM-formatted certificate, optionally including any intermediary certificates.
      * 
      */
-    @Export(name="certificateBody", type=String.class, parameters={})
+    @Export(name="certificateBody", refs={String.class}, tree="[0]")
     private Output<String> certificateBody;
 
     /**
@@ -125,7 +125,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * Timestamp (GMT) when the certificate was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -139,7 +139,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * All the domains (including wildcard domains) that are listed in the certificate&#39;s Subject Alternative Names (SAN) list.
      * 
      */
-    @Export(name="domains", type=List.class, parameters={String.class})
+    @Export(name="domains", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> domains;
 
     /**
@@ -153,7 +153,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * The hostname for which a certificate was issued.
      * 
      */
-    @Export(name="issuedTo", type=String.class, parameters={})
+    @Export(name="issuedTo", refs={String.class}, tree="[0]")
     private Output<String> issuedTo;
 
     /**
@@ -167,7 +167,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * The certificate authority that issued the certificate.
      * 
      */
-    @Export(name="issuer", type=String.class, parameters={})
+    @Export(name="issuer", refs={String.class}, tree="[0]")
     private Output<String> issuer;
 
     /**
@@ -181,7 +181,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * Human-readable name used to identify the certificate. Defaults to the certificate&#39;s Common Name or first Subject Alternative Name entry.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -195,7 +195,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
      * 
      */
-    @Export(name="replace", type=Boolean.class, parameters={})
+    @Export(name="replace", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> replace;
 
     /**
@@ -209,7 +209,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * A value assigned by the issuer that is unique to a certificate.
      * 
      */
-    @Export(name="serialNumber", type=String.class, parameters={})
+    @Export(name="serialNumber", refs={String.class}, tree="[0]")
     private Output<String> serialNumber;
 
     /**
@@ -223,7 +223,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * The algorithm used to sign the certificate.
      * 
      */
-    @Export(name="signatureAlgorithm", type=String.class, parameters={})
+    @Export(name="signatureAlgorithm", refs={String.class}, tree="[0]")
     private Output<String> signatureAlgorithm;
 
     /**
@@ -237,7 +237,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * Timestamp (GMT) when the certificate was last updated.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

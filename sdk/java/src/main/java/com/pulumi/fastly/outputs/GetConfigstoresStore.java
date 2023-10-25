@@ -49,10 +49,10 @@ public final class GetConfigstoresStore {
             return this;
         }
         public GetConfigstoresStore build() {
-            final var o = new GetConfigstoresStore();
-            o.id = id;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetConfigstoresStore();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

@@ -61,11 +61,11 @@ public final class GetWafRulesRule {
             return this;
         }
         public GetWafRulesRule build() {
-            final var o = new GetWafRulesRule();
-            o.latestRevisionNumber = latestRevisionNumber;
-            o.modsecRuleId = modsecRuleId;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetWafRulesRule();
+            _resultValue.latestRevisionNumber = latestRevisionNumber;
+            _resultValue.modsecRuleId = modsecRuleId;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

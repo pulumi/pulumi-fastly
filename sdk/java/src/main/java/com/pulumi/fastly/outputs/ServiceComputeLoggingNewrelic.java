@@ -86,11 +86,11 @@ public final class ServiceComputeLoggingNewrelic {
             return this;
         }
         public ServiceComputeLoggingNewrelic build() {
-            final var o = new ServiceComputeLoggingNewrelic();
-            o.name = name;
-            o.region = region;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingNewrelic();
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

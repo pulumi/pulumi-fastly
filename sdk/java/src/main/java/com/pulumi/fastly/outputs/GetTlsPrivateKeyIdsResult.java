@@ -69,10 +69,10 @@ public final class GetTlsPrivateKeyIdsResult {
             return ids(List.of(ids));
         }
         public GetTlsPrivateKeyIdsResult build() {
-            final var o = new GetTlsPrivateKeyIdsResult();
-            o.id = id;
-            o.ids = ids;
-            return o;
+            final var _resultValue = new GetTlsPrivateKeyIdsResult();
+            _resultValue.id = id;
+            _resultValue.ids = ids;
+            return _resultValue;
         }
     }
 }

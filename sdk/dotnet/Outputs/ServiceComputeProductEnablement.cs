@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? Fanout;
         /// <summary>
-        /// Used internally by the provider to identify modified settings
+        /// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         /// </summary>
         public readonly string? Name;
         /// <summary>

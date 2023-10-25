@@ -98,12 +98,12 @@ public final class ServiceVclDictionary {
             return this;
         }
         public ServiceVclDictionary build() {
-            final var o = new ServiceVclDictionary();
-            o.dictionaryId = dictionaryId;
-            o.forceDestroy = forceDestroy;
-            o.name = name;
-            o.writeOnly = writeOnly;
-            return o;
+            final var _resultValue = new ServiceVclDictionary();
+            _resultValue.dictionaryId = dictionaryId;
+            _resultValue.forceDestroy = forceDestroy;
+            _resultValue.name = name;
+            _resultValue.writeOnly = writeOnly;
+            return _resultValue;
         }
     }
 }
