@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const domain = fastly.getTlsDomain({
- *     domain: "example.com",
- * });
- * ```
  */
 export function getTlsDomain(args: GetTlsDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsDomainResult> {
 
@@ -63,17 +52,6 @@ export interface GetTlsDomainResult {
 }
 /**
  * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const domain = fastly.getTlsDomain({
- *     domain: "example.com",
- * });
- * ```
  */
 export function getTlsDomainOutput(args: GetTlsDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsDomainResult> {
     return pulumi.output(args).apply((a: any) => getTlsDomain(a, opts))

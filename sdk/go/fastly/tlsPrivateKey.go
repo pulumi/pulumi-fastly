@@ -17,41 +17,6 @@ import (
 //
 // The Private Key resource requires a key in PEM format, and a name to identify it.
 //
-// ## Example Usage
-//
-// Basic usage:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			demoPrivateKey, err := tls.NewPrivateKey(ctx, "demoPrivateKey", &tls.PrivateKeyArgs{
-//				Algorithm: pulumi.String("RSA"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
-//				KeyPem: demoPrivateKey.PrivateKeyPem,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // A Private Key can be imported using its ID, e.g.

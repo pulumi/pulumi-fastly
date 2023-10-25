@@ -13,124 +13,12 @@ namespace Pulumi.Fastly
     {
         /// <summary>
         /// Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleServiceVcl = new Fastly.ServiceVcl("exampleServiceVcl", new()
-        ///     {
-        ///         Domains = new[]
-        ///         {
-        ///             new Fastly.Inputs.ServiceVclDomainArgs
-        ///             {
-        ///                 Name = "example.com",
-        ///             },
-        ///         },
-        ///         Dictionaries = new[]
-        ///         {
-        ///             new Fastly.Inputs.ServiceVclDictionaryArgs
-        ///             {
-        ///                 Name = "example_1",
-        ///             },
-        ///             new Fastly.Inputs.ServiceVclDictionaryArgs
-        ///             {
-        ///                 Name = "example_2",
-        ///             },
-        ///             new Fastly.Inputs.ServiceVclDictionaryArgs
-        ///             {
-        ///                 Name = "example_3",
-        ///             },
-        ///         },
-        ///         ForceDestroy = true,
-        ///     });
-        /// 
-        ///     var exampleDictionaries = Fastly.GetDictionaries.Invoke(new()
-        ///     {
-        ///         ServiceId = exampleServiceVcl.Id,
-        ///         ServiceVersion = exampleServiceVcl.ActiveVersion,
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["serviceDictionaries"] = exampleDictionaries,
-        ///     };
-        /// });
-        /// ```
-        /// 
-        /// [1]: https://developer.fastly.com/reference/api/dictionaries/
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDictionariesResult> InvokeAsync(GetDictionariesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDictionariesResult>("fastly:index/getDictionaries:getDictionaries", args ?? new GetDictionariesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var exampleServiceVcl = new Fastly.ServiceVcl("exampleServiceVcl", new()
-        ///     {
-        ///         Domains = new[]
-        ///         {
-        ///             new Fastly.Inputs.ServiceVclDomainArgs
-        ///             {
-        ///                 Name = "example.com",
-        ///             },
-        ///         },
-        ///         Dictionaries = new[]
-        ///         {
-        ///             new Fastly.Inputs.ServiceVclDictionaryArgs
-        ///             {
-        ///                 Name = "example_1",
-        ///             },
-        ///             new Fastly.Inputs.ServiceVclDictionaryArgs
-        ///             {
-        ///                 Name = "example_2",
-        ///             },
-        ///             new Fastly.Inputs.ServiceVclDictionaryArgs
-        ///             {
-        ///                 Name = "example_3",
-        ///             },
-        ///         },
-        ///         ForceDestroy = true,
-        ///     });
-        /// 
-        ///     var exampleDictionaries = Fastly.GetDictionaries.Invoke(new()
-        ///     {
-        ///         ServiceId = exampleServiceVcl.Id,
-        ///         ServiceVersion = exampleServiceVcl.ActiveVersion,
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["serviceDictionaries"] = exampleDictionaries,
-        ///     };
-        /// });
-        /// ```
-        /// 
-        /// [1]: https://developer.fastly.com/reference/api/dictionaries/
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetDictionariesResult> Invoke(GetDictionariesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDictionariesResult>("fastly:index/getDictionaries:getDictionaries", args ?? new GetDictionariesInvokeArgs(), options.WithDefaults());

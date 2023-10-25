@@ -59,17 +59,6 @@ class AwaitableGetTlsCertificateIdsResult(GetTlsCertificateIdsResult):
 def get_tls_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsCertificateIdsResult:
     """
     Use this data source to get the IDs of available TLS certificates for use with other resources.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example_tls_certificate_ids = fastly.get_tls_certificate_ids()
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", certificate_id=example_tls_certificate_ids.ids[0])
-    # ...
-    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -84,16 +73,5 @@ def get_tls_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
 def get_tls_certificate_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsCertificateIdsResult]:
     """
     Use this data source to get the IDs of available TLS certificates for use with other resources.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example_tls_certificate_ids = fastly.get_tls_certificate_ids()
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", certificate_id=example_tls_certificate_ids.ids[0])
-    # ...
-    ```
     """
     ...

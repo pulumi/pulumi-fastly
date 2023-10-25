@@ -45,13 +45,29 @@ class TlsSubscriptionArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             certificate_authority: pulumi.Input[str],
-             domains: pulumi.Input[Sequence[pulumi.Input[str]]],
+             certificate_authority: Optional[pulumi.Input[str]] = None,
+             domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              common_name: Optional[pulumi.Input[str]] = None,
              configuration_id: Optional[pulumi.Input[str]] = None,
              force_destroy: Optional[pulumi.Input[bool]] = None,
              force_update: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if certificate_authority is None and 'certificateAuthority' in kwargs:
+            certificate_authority = kwargs['certificateAuthority']
+        if certificate_authority is None:
+            raise TypeError("Missing 'certificate_authority' argument")
+        if domains is None:
+            raise TypeError("Missing 'domains' argument")
+        if common_name is None and 'commonName' in kwargs:
+            common_name = kwargs['commonName']
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if force_update is None and 'forceUpdate' in kwargs:
+            force_update = kwargs['forceUpdate']
+
         _setter("certificate_authority", certificate_authority)
         _setter("domains", domains)
         if common_name is not None:
@@ -204,7 +220,31 @@ class _TlsSubscriptionState:
              managed_http_challenges: Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedHttpChallengeArgs']]]] = None,
              state: Optional[pulumi.Input[str]] = None,
              updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if certificate_authority is None and 'certificateAuthority' in kwargs:
+            certificate_authority = kwargs['certificateAuthority']
+        if certificate_id is None and 'certificateId' in kwargs:
+            certificate_id = kwargs['certificateId']
+        if common_name is None and 'commonName' in kwargs:
+            common_name = kwargs['commonName']
+        if configuration_id is None and 'configurationId' in kwargs:
+            configuration_id = kwargs['configurationId']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if force_update is None and 'forceUpdate' in kwargs:
+            force_update = kwargs['forceUpdate']
+        if managed_dns_challenge is None and 'managedDnsChallenge' in kwargs:
+            managed_dns_challenge = kwargs['managedDnsChallenge']
+        if managed_dns_challenges is None and 'managedDnsChallenges' in kwargs:
+            managed_dns_challenges = kwargs['managedDnsChallenges']
+        if managed_http_challenges is None and 'managedHttpChallenges' in kwargs:
+            managed_http_challenges = kwargs['managedHttpChallenges']
+        if updated_at is None and 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if certificate_authority is not None:
             _setter("certificate_authority", certificate_authority)
         if certificate_id is not None:

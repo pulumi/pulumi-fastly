@@ -27,7 +27,9 @@ class SecretstoreArgs:
     def _configure(
              _setter: Callable[[Any, Any], None],
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if name is not None:
             _setter("name", name)
 
@@ -60,7 +62,9 @@ class _SecretstoreState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if name is not None:
             _setter("name", name)
 
@@ -85,34 +89,6 @@ class Secretstore(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        # IMPORTANT: Deleting a Secret Store requires first deleting its resource_link.
-        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
-        # e.g. resource_link deletion within fastly_service_compute might not finish first.
-        example_secretstore = fastly.Secretstore("exampleSecretstore")
-        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
-        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
-            domains=[fastly.ServiceComputeDomainArgs(
-                name="demo.example.com",
-            )],
-            package=fastly.ServiceComputePackageArgs(
-                filename="package.tar.gz",
-                source_code_hash=example_package_hash.hash,
-            ),
-            resource_links=[fastly.ServiceComputeResourceLinkArgs(
-                name="my_resource_link",
-                resource_id=example_secretstore.id,
-            )],
-            force_destroy=True)
-        ```
-
         ## Import
 
         Fastly Secret Stores can be imported using their Store ID, e.g.
@@ -132,34 +108,6 @@ class Secretstore(pulumi.CustomResource):
                  args: Optional[SecretstoreArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        Basic usage:
-
-        ```python
-        import pulumi
-        import pulumi_fastly as fastly
-
-        # IMPORTANT: Deleting a Secret Store requires first deleting its resource_link.
-        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
-        # e.g. resource_link deletion within fastly_service_compute might not finish first.
-        example_secretstore = fastly.Secretstore("exampleSecretstore")
-        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
-        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
-            domains=[fastly.ServiceComputeDomainArgs(
-                name="demo.example.com",
-            )],
-            package=fastly.ServiceComputePackageArgs(
-                filename="package.tar.gz",
-                source_code_hash=example_package_hash.hash,
-            ),
-            resource_links=[fastly.ServiceComputeResourceLinkArgs(
-                name="my_resource_link",
-                resource_id=example_secretstore.id,
-            )],
-            force_destroy=True)
-        ```
-
         ## Import
 
         Fastly Secret Stores can be imported using their Store ID, e.g.

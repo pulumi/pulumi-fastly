@@ -13,76 +13,12 @@ namespace Pulumi.Fastly
     {
         /// <summary>
         /// Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var examplePackageHash = Fastly.GetPackageHash.Invoke(new()
-        ///     {
-        ///         Filename = "./path/to/package.tar.gz",
-        ///     });
-        /// 
-        ///     // ...
-        ///     var exampleServiceCompute = new Fastly.ServiceCompute("exampleServiceCompute", new()
-        ///     {
-        ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
-        ///         {
-        ///             Filename = "./path/to/package.tar.gz",
-        ///             SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetPackageHashResult> InvokeAsync(GetPackageHashArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPackageHashResult>("fastly:index/getPackageHash:getPackageHash", args ?? new GetPackageHashArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var examplePackageHash = Fastly.GetPackageHash.Invoke(new()
-        ///     {
-        ///         Filename = "./path/to/package.tar.gz",
-        ///     });
-        /// 
-        ///     // ...
-        ///     var exampleServiceCompute = new Fastly.ServiceCompute("exampleServiceCompute", new()
-        ///     {
-        ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
-        ///         {
-        ///             Filename = "./path/to/package.tar.gz",
-        ///             SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetPackageHashResult> Invoke(GetPackageHashInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPackageHashResult>("fastly:index/getPackageHash:getPackageHash", args ?? new GetPackageHashInvokeArgs(), options.WithDefaults());

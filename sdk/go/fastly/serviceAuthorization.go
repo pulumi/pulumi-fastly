@@ -17,44 +17,6 @@ import (
 //
 // The Service Authorization resource requires a user id, service id and an optional permission.
 //
-// ## Example Usage
-//
-// Basic usage:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			demo, err := fastly.NewServiceVcl(ctx, "demo", nil)
-//			if err != nil {
-//				return err
-//			}
-//			user, err := fastly.NewUser(ctx, "user", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = fastly.NewServiceAuthorization(ctx, "auth", &fastly.ServiceAuthorizationArgs{
-//				ServiceId:  demo.ID(),
-//				UserId:     user.ID(),
-//				Permission: pulumi.String("purge_all"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // A Fastly Service Authorization can be imported using their user ID, e.g.
