@@ -61,7 +61,7 @@ class ServiceComputeArgs:
         :param pulumi.Input[str] comment: An optional comment about the Domain.
         :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -607,7 +607,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
@@ -721,7 +721,7 @@ class _ServiceComputeState:
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -1338,7 +1338,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
@@ -1460,7 +1460,7 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -1670,7 +1670,7 @@ class ServiceCompute(pulumi.CustomResource):
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
-        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
@@ -1943,7 +1943,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def package(self) -> pulumi.Output[Optional['outputs.ServiceComputePackage']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 

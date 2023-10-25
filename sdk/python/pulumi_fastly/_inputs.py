@@ -5464,7 +5464,7 @@ class ServiceComputeProductEnablementArgs:
                  websockets: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] fanout: Enable Fanout support
-        :param pulumi.Input[str] name: Used internally by the provider to identify modified settings
+        :param pulumi.Input[str] name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
         ServiceComputeProductEnablementArgs._configure(
@@ -5505,7 +5505,7 @@ class ServiceComputeProductEnablementArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Used internally by the provider to identify modified settings
+        Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
 
@@ -13903,7 +13903,7 @@ class ServiceVclProductEnablementArgs:
         :param pulumi.Input[bool] brotli_compression: Enable Brotli Compression support
         :param pulumi.Input[bool] domain_inspector: Enable Domain Inspector support
         :param pulumi.Input[bool] image_optimizer: Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
-        :param pulumi.Input[str] name: Used internally by the provider to identify modified settings
+        :param pulumi.Input[str] name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         :param pulumi.Input[bool] origin_inspector: Enable Origin Inspector support
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
@@ -13989,7 +13989,7 @@ class ServiceVclProductEnablementArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Used internally by the provider to identify modified settings
+        Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
 

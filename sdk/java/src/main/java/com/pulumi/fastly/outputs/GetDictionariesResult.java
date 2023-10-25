@@ -109,12 +109,12 @@ public final class GetDictionariesResult {
             return this;
         }
         public GetDictionariesResult build() {
-            final var o = new GetDictionariesResult();
-            o.dictionaries = dictionaries;
-            o.id = id;
-            o.serviceId = serviceId;
-            o.serviceVersion = serviceVersion;
-            return o;
+            final var _resultValue = new GetDictionariesResult();
+            _resultValue.dictionaries = dictionaries;
+            _resultValue.id = id;
+            _resultValue.serviceId = serviceId;
+            _resultValue.serviceVersion = serviceVersion;
+            return _resultValue;
         }
     }
 }

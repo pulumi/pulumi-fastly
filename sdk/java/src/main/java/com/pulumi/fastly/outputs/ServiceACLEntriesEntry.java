@@ -125,13 +125,13 @@ public final class ServiceACLEntriesEntry {
             return this;
         }
         public ServiceACLEntriesEntry build() {
-            final var o = new ServiceACLEntriesEntry();
-            o.comment = comment;
-            o.id = id;
-            o.ip = ip;
-            o.negated = negated;
-            o.subnet = subnet;
-            return o;
+            final var _resultValue = new ServiceACLEntriesEntry();
+            _resultValue.comment = comment;
+            _resultValue.id = id;
+            _resultValue.ip = ip;
+            _resultValue.negated = negated;
+            _resultValue.subnet = subnet;
+            return _resultValue;
         }
     }
 }

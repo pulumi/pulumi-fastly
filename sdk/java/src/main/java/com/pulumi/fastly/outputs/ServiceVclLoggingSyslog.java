@@ -297,22 +297,22 @@ public final class ServiceVclLoggingSyslog {
             return this;
         }
         public ServiceVclLoggingSyslog build() {
-            final var o = new ServiceVclLoggingSyslog();
-            o.address = address;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.messageType = messageType;
-            o.name = name;
-            o.placement = placement;
-            o.port = port;
-            o.responseCondition = responseCondition;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.token = token;
-            o.useTls = useTls;
-            return o;
+            final var _resultValue = new ServiceVclLoggingSyslog();
+            _resultValue.address = address;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.port = port;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.token = token;
+            _resultValue.useTls = useTls;
+            return _resultValue;
         }
     }
 }

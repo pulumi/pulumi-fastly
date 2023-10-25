@@ -129,13 +129,13 @@ public final class ServiceWafConfigurationRuleExclusion {
             return this;
         }
         public ServiceWafConfigurationRuleExclusion build() {
-            final var o = new ServiceWafConfigurationRuleExclusion();
-            o.condition = condition;
-            o.exclusionType = exclusionType;
-            o.modsecRuleIds = modsecRuleIds;
-            o.name = name;
-            o.number = number;
-            return o;
+            final var _resultValue = new ServiceWafConfigurationRuleExclusion();
+            _resultValue.condition = condition;
+            _resultValue.exclusionType = exclusionType;
+            _resultValue.modsecRuleIds = modsecRuleIds;
+            _resultValue.name = name;
+            _resultValue.number = number;
+            return _resultValue;
         }
     }
 }

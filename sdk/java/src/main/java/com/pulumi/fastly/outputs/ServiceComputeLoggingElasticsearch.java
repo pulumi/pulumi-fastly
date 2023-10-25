@@ -258,20 +258,20 @@ public final class ServiceComputeLoggingElasticsearch {
             return this;
         }
         public ServiceComputeLoggingElasticsearch build() {
-            final var o = new ServiceComputeLoggingElasticsearch();
-            o.index = index;
-            o.name = name;
-            o.password = password;
-            o.pipeline = pipeline;
-            o.requestMaxBytes = requestMaxBytes;
-            o.requestMaxEntries = requestMaxEntries;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.url = url;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingElasticsearch();
+            _resultValue.index = index;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pipeline = pipeline;
+            _resultValue.requestMaxBytes = requestMaxBytes;
+            _resultValue.requestMaxEntries = requestMaxEntries;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.url = url;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

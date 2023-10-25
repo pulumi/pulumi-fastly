@@ -183,16 +183,16 @@ public final class ServiceVclLoggingLogentry {
             return this;
         }
         public ServiceVclLoggingLogentry build() {
-            final var o = new ServiceVclLoggingLogentry();
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.port = port;
-            o.responseCondition = responseCondition;
-            o.token = token;
-            o.useTls = useTls;
-            return o;
+            final var _resultValue = new ServiceVclLoggingLogentry();
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.port = port;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.token = token;
+            _resultValue.useTls = useTls;
+            return _resultValue;
         }
     }
 }

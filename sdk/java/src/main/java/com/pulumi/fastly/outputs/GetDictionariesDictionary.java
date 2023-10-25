@@ -61,11 +61,11 @@ public final class GetDictionariesDictionary {
             return this;
         }
         public GetDictionariesDictionary build() {
-            final var o = new GetDictionariesDictionary();
-            o.id = id;
-            o.name = name;
-            o.writeOnly = writeOnly;
-            return o;
+            final var _resultValue = new GetDictionariesDictionary();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.writeOnly = writeOnly;
+            return _resultValue;
         }
     }
 }

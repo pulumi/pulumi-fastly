@@ -106,12 +106,12 @@ public final class ServiceVclWaf {
             return this;
         }
         public ServiceVclWaf build() {
-            final var o = new ServiceVclWaf();
-            o.disabled = disabled;
-            o.prefetchCondition = prefetchCondition;
-            o.responseObject = responseObject;
-            o.wafId = wafId;
-            return o;
+            final var _resultValue = new ServiceVclWaf();
+            _resultValue.disabled = disabled;
+            _resultValue.prefetchCondition = prefetchCondition;
+            _resultValue.responseObject = responseObject;
+            _resultValue.wafId = wafId;
+            return _resultValue;
         }
     }
 }

@@ -184,16 +184,16 @@ public final class GetTlsPlatformCertificateResult {
             return this;
         }
         public GetTlsPlatformCertificateResult build() {
-            final var o = new GetTlsPlatformCertificateResult();
-            o.configurationId = configurationId;
-            o.createdAt = createdAt;
-            o.domains = domains;
-            o.id = id;
-            o.notAfter = notAfter;
-            o.notBefore = notBefore;
-            o.replace = replace;
-            o.updatedAt = updatedAt;
-            return o;
+            final var _resultValue = new GetTlsPlatformCertificateResult();
+            _resultValue.configurationId = configurationId;
+            _resultValue.createdAt = createdAt;
+            _resultValue.domains = domains;
+            _resultValue.id = id;
+            _resultValue.notAfter = notAfter;
+            _resultValue.notBefore = notBefore;
+            _resultValue.replace = replace;
+            _resultValue.updatedAt = updatedAt;
+            return _resultValue;
         }
     }
 }

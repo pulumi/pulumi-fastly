@@ -87,11 +87,11 @@ public final class ServiceVclVcl {
             return this;
         }
         public ServiceVclVcl build() {
-            final var o = new ServiceVclVcl();
-            o.content = content;
-            o.main = main;
-            o.name = name;
-            return o;
+            final var _resultValue = new ServiceVclVcl();
+            _resultValue.content = content;
+            _resultValue.main = main;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

@@ -222,18 +222,18 @@ public final class GetTlsCertificateResult {
             return this;
         }
         public GetTlsCertificateResult build() {
-            final var o = new GetTlsCertificateResult();
-            o.createdAt = createdAt;
-            o.domains = domains;
-            o.id = id;
-            o.issuedTo = issuedTo;
-            o.issuer = issuer;
-            o.name = name;
-            o.replace = replace;
-            o.serialNumber = serialNumber;
-            o.signatureAlgorithm = signatureAlgorithm;
-            o.updatedAt = updatedAt;
-            return o;
+            final var _resultValue = new GetTlsCertificateResult();
+            _resultValue.createdAt = createdAt;
+            _resultValue.domains = domains;
+            _resultValue.id = id;
+            _resultValue.issuedTo = issuedTo;
+            _resultValue.issuer = issuer;
+            _resultValue.name = name;
+            _resultValue.replace = replace;
+            _resultValue.serialNumber = serialNumber;
+            _resultValue.signatureAlgorithm = signatureAlgorithm;
+            _resultValue.updatedAt = updatedAt;
+            return _resultValue;
         }
     }
 }

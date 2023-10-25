@@ -85,11 +85,11 @@ public final class ServiceVclRateLimiterResponse {
             return this;
         }
         public ServiceVclRateLimiterResponse build() {
-            final var o = new ServiceVclRateLimiterResponse();
-            o.content = content;
-            o.contentType = contentType;
-            o.status = status;
-            return o;
+            final var _resultValue = new ServiceVclRateLimiterResponse();
+            _resultValue.content = content;
+            _resultValue.contentType = contentType;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

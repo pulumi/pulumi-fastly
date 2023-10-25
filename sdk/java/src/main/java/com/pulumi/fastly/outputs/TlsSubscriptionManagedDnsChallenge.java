@@ -62,11 +62,11 @@ public final class TlsSubscriptionManagedDnsChallenge {
             return this;
         }
         public TlsSubscriptionManagedDnsChallenge build() {
-            final var o = new TlsSubscriptionManagedDnsChallenge();
-            o.recordName = recordName;
-            o.recordType = recordType;
-            o.recordValue = recordValue;
-            return o;
+            final var _resultValue = new TlsSubscriptionManagedDnsChallenge();
+            _resultValue.recordName = recordName;
+            _resultValue.recordType = recordType;
+            _resultValue.recordValue = recordValue;
+            return _resultValue;
         }
     }
 }

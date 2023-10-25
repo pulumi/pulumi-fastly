@@ -84,11 +84,11 @@ public final class ServiceComputeLoggingHeroku {
             return this;
         }
         public ServiceComputeLoggingHeroku build() {
-            final var o = new ServiceComputeLoggingHeroku();
-            o.name = name;
-            o.token = token;
-            o.url = url;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingHeroku();
+            _resultValue.name = name;
+            _resultValue.token = token;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }

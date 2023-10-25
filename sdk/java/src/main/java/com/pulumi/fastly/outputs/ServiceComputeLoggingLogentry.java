@@ -107,12 +107,12 @@ public final class ServiceComputeLoggingLogentry {
             return this;
         }
         public ServiceComputeLoggingLogentry build() {
-            final var o = new ServiceComputeLoggingLogentry();
-            o.name = name;
-            o.port = port;
-            o.token = token;
-            o.useTls = useTls;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingLogentry();
+            _resultValue.name = name;
+            _resultValue.port = port;
+            _resultValue.token = token;
+            _resultValue.useTls = useTls;
+            return _resultValue;
         }
     }
 }

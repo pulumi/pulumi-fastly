@@ -84,7 +84,7 @@ public class Secretstore extends com.pulumi.resources.CustomResource {
      * A human-readable name for the Secret Store. The value must contain only letters, numbers, dashes (-), underscores (*), or periods (.). It is important to note that changing this attribute will delete and recreate the Secret Store, and discard the current entries. You MUST first delete the associated resource*link block from your service before modifying this field.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**

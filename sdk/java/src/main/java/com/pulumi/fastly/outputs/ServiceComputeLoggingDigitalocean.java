@@ -258,20 +258,20 @@ public final class ServiceComputeLoggingDigitalocean {
             return this;
         }
         public ServiceComputeLoggingDigitalocean build() {
-            final var o = new ServiceComputeLoggingDigitalocean();
-            o.accessKey = accessKey;
-            o.bucketName = bucketName;
-            o.compressionCodec = compressionCodec;
-            o.domain = domain;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.publicKey = publicKey;
-            o.secretKey = secretKey;
-            o.timestampFormat = timestampFormat;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingDigitalocean();
+            _resultValue.accessKey = accessKey;
+            _resultValue.bucketName = bucketName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.domain = domain;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.publicKey = publicKey;
+            _resultValue.secretKey = secretKey;
+            _resultValue.timestampFormat = timestampFormat;
+            return _resultValue;
         }
     }
 }

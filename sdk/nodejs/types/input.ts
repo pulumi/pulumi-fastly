@@ -1105,7 +1105,7 @@ export interface ServiceComputeProductEnablement {
      */
     fanout?: pulumi.Input<boolean>;
     /**
-     * Used internally by the provider to identify modified settings
+     * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
     name?: pulumi.Input<string>;
     /**
@@ -2851,7 +2851,7 @@ export interface ServiceVclProductEnablement {
      */
     imageOptimizer?: pulumi.Input<boolean>;
     /**
-     * Used internally by the provider to identify modified settings
+     * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
     name?: pulumi.Input<string>;
     /**

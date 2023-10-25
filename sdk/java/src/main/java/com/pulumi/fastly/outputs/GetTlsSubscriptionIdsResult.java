@@ -69,10 +69,10 @@ public final class GetTlsSubscriptionIdsResult {
             return ids(List.of(ids));
         }
         public GetTlsSubscriptionIdsResult build() {
-            final var o = new GetTlsSubscriptionIdsResult();
-            o.id = id;
-            o.ids = ids;
-            return o;
+            final var _resultValue = new GetTlsSubscriptionIdsResult();
+            _resultValue.id = id;
+            _resultValue.ids = ids;
+            return _resultValue;
         }
     }
 }

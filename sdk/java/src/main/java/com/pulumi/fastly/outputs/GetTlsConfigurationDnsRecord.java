@@ -60,11 +60,11 @@ public final class GetTlsConfigurationDnsRecord {
             return this;
         }
         public GetTlsConfigurationDnsRecord build() {
-            final var o = new GetTlsConfigurationDnsRecord();
-            o.recordType = recordType;
-            o.recordValue = recordValue;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetTlsConfigurationDnsRecord();
+            _resultValue.recordType = recordType;
+            _resultValue.recordValue = recordValue;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

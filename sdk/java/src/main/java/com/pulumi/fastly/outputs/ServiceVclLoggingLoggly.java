@@ -144,14 +144,14 @@ public final class ServiceVclLoggingLoggly {
             return this;
         }
         public ServiceVclLoggingLoggly build() {
-            final var o = new ServiceVclLoggingLoggly();
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.responseCondition = responseCondition;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceVclLoggingLoggly();
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

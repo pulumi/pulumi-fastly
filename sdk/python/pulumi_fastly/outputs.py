@@ -5050,7 +5050,7 @@ class ServiceComputeProductEnablement(dict):
                  websockets: Optional[bool] = None):
         """
         :param bool fanout: Enable Fanout support
-        :param str name: Used internally by the provider to identify modified settings
+        :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         :param bool websockets: Enable WebSockets support
         """
         ServiceComputeProductEnablement._configure(
@@ -5087,7 +5087,7 @@ class ServiceComputeProductEnablement(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Used internally by the provider to identify modified settings
+        Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
 
@@ -12815,7 +12815,7 @@ class ServiceVclProductEnablement(dict):
         :param bool brotli_compression: Enable Brotli Compression support
         :param bool domain_inspector: Enable Domain Inspector support
         :param bool image_optimizer: Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
-        :param str name: Used internally by the provider to identify modified settings
+        :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         :param bool origin_inspector: Enable Origin Inspector support
         :param bool websockets: Enable WebSockets support
         """
@@ -12889,7 +12889,7 @@ class ServiceVclProductEnablement(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Used internally by the provider to identify modified settings
+        Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
 

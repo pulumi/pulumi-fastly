@@ -334,24 +334,24 @@ public final class ServiceVclLoggingElasticsearch {
             return this;
         }
         public ServiceVclLoggingElasticsearch build() {
-            final var o = new ServiceVclLoggingElasticsearch();
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.index = index;
-            o.name = name;
-            o.password = password;
-            o.pipeline = pipeline;
-            o.placement = placement;
-            o.requestMaxBytes = requestMaxBytes;
-            o.requestMaxEntries = requestMaxEntries;
-            o.responseCondition = responseCondition;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.url = url;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceVclLoggingElasticsearch();
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.index = index;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pipeline = pipeline;
+            _resultValue.placement = placement;
+            _resultValue.requestMaxBytes = requestMaxBytes;
+            _resultValue.requestMaxEntries = requestMaxEntries;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.url = url;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

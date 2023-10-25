@@ -143,14 +143,14 @@ public final class ServiceComputeLoggingGooglepubsub {
             return this;
         }
         public ServiceComputeLoggingGooglepubsub build() {
-            final var o = new ServiceComputeLoggingGooglepubsub();
-            o.accountName = accountName;
-            o.name = name;
-            o.projectId = projectId;
-            o.secretKey = secretKey;
-            o.topic = topic;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingGooglepubsub();
+            _resultValue.accountName = accountName;
+            _resultValue.name = name;
+            _resultValue.projectId = projectId;
+            _resultValue.secretKey = secretKey;
+            _resultValue.topic = topic;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

@@ -160,14 +160,14 @@ public final class GetWafRulesResult {
             return tags(List.of(tags));
         }
         public GetWafRulesResult build() {
-            final var o = new GetWafRulesResult();
-            o.excludeModsecRuleIds = excludeModsecRuleIds;
-            o.id = id;
-            o.modsecRuleIds = modsecRuleIds;
-            o.publishers = publishers;
-            o.rules = rules;
-            o.tags = tags;
-            return o;
+            final var _resultValue = new GetWafRulesResult();
+            _resultValue.excludeModsecRuleIds = excludeModsecRuleIds;
+            _resultValue.id = id;
+            _resultValue.modsecRuleIds = modsecRuleIds;
+            _resultValue.publishers = publishers;
+            _resultValue.rules = rules;
+            _resultValue.tags = tags;
+            return _resultValue;
         }
     }
 }

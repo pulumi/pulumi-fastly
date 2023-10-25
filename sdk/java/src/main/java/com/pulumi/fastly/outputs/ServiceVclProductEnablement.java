@@ -28,7 +28,7 @@ public final class ServiceVclProductEnablement {
      */
     private @Nullable Boolean imageOptimizer;
     /**
-     * @return Used internally by the provider to identify modified settings
+     * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     private @Nullable String name;
@@ -66,7 +66,7 @@ public final class ServiceVclProductEnablement {
         return Optional.ofNullable(this.imageOptimizer);
     }
     /**
-     * @return Used internally by the provider to identify modified settings
+     * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     public Optional<String> name() {
@@ -144,14 +144,14 @@ public final class ServiceVclProductEnablement {
             return this;
         }
         public ServiceVclProductEnablement build() {
-            final var o = new ServiceVclProductEnablement();
-            o.brotliCompression = brotliCompression;
-            o.domainInspector = domainInspector;
-            o.imageOptimizer = imageOptimizer;
-            o.name = name;
-            o.originInspector = originInspector;
-            o.websockets = websockets;
-            return o;
+            final var _resultValue = new ServiceVclProductEnablement();
+            _resultValue.brotliCompression = brotliCompression;
+            _resultValue.domainInspector = domainInspector;
+            _resultValue.imageOptimizer = imageOptimizer;
+            _resultValue.name = name;
+            _resultValue.originInspector = originInspector;
+            _resultValue.websockets = websockets;
+            return _resultValue;
         }
     }
 }

@@ -162,15 +162,15 @@ public final class GetTlsPrivateKeyResult {
             return this;
         }
         public GetTlsPrivateKeyResult build() {
-            final var o = new GetTlsPrivateKeyResult();
-            o.createdAt = createdAt;
-            o.id = id;
-            o.keyLength = keyLength;
-            o.keyType = keyType;
-            o.name = name;
-            o.publicKeySha1 = publicKeySha1;
-            o.replace = replace;
-            return o;
+            final var _resultValue = new GetTlsPrivateKeyResult();
+            _resultValue.createdAt = createdAt;
+            _resultValue.id = id;
+            _resultValue.keyLength = keyLength;
+            _resultValue.keyType = keyType;
+            _resultValue.name = name;
+            _resultValue.publicKeySha1 = publicKeySha1;
+            _resultValue.replace = replace;
+            return _resultValue;
         }
     }
 }

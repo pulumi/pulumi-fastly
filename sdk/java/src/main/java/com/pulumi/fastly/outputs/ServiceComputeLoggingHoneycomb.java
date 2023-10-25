@@ -84,11 +84,11 @@ public final class ServiceComputeLoggingHoneycomb {
             return this;
         }
         public ServiceComputeLoggingHoneycomb build() {
-            final var o = new ServiceComputeLoggingHoneycomb();
-            o.dataset = dataset;
-            o.name = name;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingHoneycomb();
+            _resultValue.dataset = dataset;
+            _resultValue.name = name;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

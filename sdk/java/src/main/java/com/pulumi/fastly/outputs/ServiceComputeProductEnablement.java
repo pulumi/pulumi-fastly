@@ -18,7 +18,7 @@ public final class ServiceComputeProductEnablement {
      */
     private @Nullable Boolean fanout;
     /**
-     * @return Used internally by the provider to identify modified settings
+     * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     private @Nullable String name;
@@ -37,7 +37,7 @@ public final class ServiceComputeProductEnablement {
         return Optional.ofNullable(this.fanout);
     }
     /**
-     * @return Used internally by the provider to identify modified settings
+     * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     public Optional<String> name() {
@@ -87,11 +87,11 @@ public final class ServiceComputeProductEnablement {
             return this;
         }
         public ServiceComputeProductEnablement build() {
-            final var o = new ServiceComputeProductEnablement();
-            o.fanout = fanout;
-            o.name = name;
-            o.websockets = websockets;
-            return o;
+            final var _resultValue = new ServiceComputeProductEnablement();
+            _resultValue.fanout = fanout;
+            _resultValue.name = name;
+            _resultValue.websockets = websockets;
+            return _resultValue;
         }
     }
 }

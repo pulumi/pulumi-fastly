@@ -183,16 +183,16 @@ public final class GetTlsSubscriptionResult {
             return this;
         }
         public GetTlsSubscriptionResult build() {
-            final var o = new GetTlsSubscriptionResult();
-            o.certificateAuthority = certificateAuthority;
-            o.commonName = commonName;
-            o.configurationId = configurationId;
-            o.createdAt = createdAt;
-            o.domains = domains;
-            o.id = id;
-            o.state = state;
-            o.updatedAt = updatedAt;
-            return o;
+            final var _resultValue = new GetTlsSubscriptionResult();
+            _resultValue.certificateAuthority = certificateAuthority;
+            _resultValue.commonName = commonName;
+            _resultValue.configurationId = configurationId;
+            _resultValue.createdAt = createdAt;
+            _resultValue.domains = domains;
+            _resultValue.id = id;
+            _resultValue.state = state;
+            _resultValue.updatedAt = updatedAt;
+            return _resultValue;
         }
     }
 }

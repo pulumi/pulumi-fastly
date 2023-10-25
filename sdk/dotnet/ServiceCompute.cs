@@ -168,7 +168,7 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Output("package")]
         public Output<Outputs.ServiceComputePackage?> Package { get; private set; } = null!;
@@ -503,7 +503,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageArgs>? Package { get; set; }
@@ -832,7 +832,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }

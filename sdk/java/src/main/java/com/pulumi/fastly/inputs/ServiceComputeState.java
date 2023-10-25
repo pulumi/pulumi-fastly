@@ -386,14 +386,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     @Import(name="package")
     private @Nullable Output<ServiceComputePackageArgs> package_;
 
     /**
-     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     public Optional<Output<ServiceComputePackageArgs>> package_() {
@@ -1089,7 +1089,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
          * 
          * @return builder
          * 
@@ -1100,7 +1100,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute@Edge service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute@Edge](https://developer.fastly.com/learning/compute/)
+         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
          * 
          * @return builder
          * 

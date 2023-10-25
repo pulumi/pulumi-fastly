@@ -258,20 +258,20 @@ public final class ServiceComputeLoggingOpenstack {
             return this;
         }
         public ServiceComputeLoggingOpenstack build() {
-            final var o = new ServiceComputeLoggingOpenstack();
-            o.accessKey = accessKey;
-            o.bucketName = bucketName;
-            o.compressionCodec = compressionCodec;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.publicKey = publicKey;
-            o.timestampFormat = timestampFormat;
-            o.url = url;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingOpenstack();
+            _resultValue.accessKey = accessKey;
+            _resultValue.bucketName = bucketName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.publicKey = publicKey;
+            _resultValue.timestampFormat = timestampFormat;
+            _resultValue.url = url;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

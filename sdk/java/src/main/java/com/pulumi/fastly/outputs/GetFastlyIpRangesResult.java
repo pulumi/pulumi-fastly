@@ -91,11 +91,11 @@ public final class GetFastlyIpRangesResult {
             return ipv6CidrBlocks(List.of(ipv6CidrBlocks));
         }
         public GetFastlyIpRangesResult build() {
-            final var o = new GetFastlyIpRangesResult();
-            o.cidrBlocks = cidrBlocks;
-            o.id = id;
-            o.ipv6CidrBlocks = ipv6CidrBlocks;
-            return o;
+            final var _resultValue = new GetFastlyIpRangesResult();
+            _resultValue.cidrBlocks = cidrBlocks;
+            _resultValue.id = id;
+            _resultValue.ipv6CidrBlocks = ipv6CidrBlocks;
+            return _resultValue;
         }
     }
 }

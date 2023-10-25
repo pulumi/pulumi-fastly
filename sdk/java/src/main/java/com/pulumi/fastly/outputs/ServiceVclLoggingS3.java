@@ -448,30 +448,30 @@ public final class ServiceVclLoggingS3 {
             return this;
         }
         public ServiceVclLoggingS3 build() {
-            final var o = new ServiceVclLoggingS3();
-            o.acl = acl;
-            o.bucketName = bucketName;
-            o.compressionCodec = compressionCodec;
-            o.domain = domain;
-            o.fileMaxBytes = fileMaxBytes;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.placement = placement;
-            o.publicKey = publicKey;
-            o.redundancy = redundancy;
-            o.responseCondition = responseCondition;
-            o.s3AccessKey = s3AccessKey;
-            o.s3IamRole = s3IamRole;
-            o.s3SecretKey = s3SecretKey;
-            o.serverSideEncryption = serverSideEncryption;
-            o.serverSideEncryptionKmsKeyId = serverSideEncryptionKmsKeyId;
-            o.timestampFormat = timestampFormat;
-            return o;
+            final var _resultValue = new ServiceVclLoggingS3();
+            _resultValue.acl = acl;
+            _resultValue.bucketName = bucketName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.domain = domain;
+            _resultValue.fileMaxBytes = fileMaxBytes;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.placement = placement;
+            _resultValue.publicKey = publicKey;
+            _resultValue.redundancy = redundancy;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.s3AccessKey = s3AccessKey;
+            _resultValue.s3IamRole = s3IamRole;
+            _resultValue.s3SecretKey = s3SecretKey;
+            _resultValue.serverSideEncryption = serverSideEncryption;
+            _resultValue.serverSideEncryptionKmsKeyId = serverSideEncryptionKmsKeyId;
+            _resultValue.timestampFormat = timestampFormat;
+            return _resultValue;
         }
     }
 }

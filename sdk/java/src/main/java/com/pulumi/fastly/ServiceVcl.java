@@ -62,311 +62,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a Fastly Service, representing the configuration for a website, app,
- * API, or anything else to be served through Fastly. A Service encompasses Domains
- * and Backends.
- * 
- * The Service resource requires a domain name that is correctly set up to direct
- * traffic to the Fastly service. See Fastly&#39;s guide on [Adding CNAME Records][fastly-cname]
- * on their documentation site for guidance.
- * 
- * ## Example Usage
- * 
- * Basic usage:
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.fastly.ServiceVcl;
- * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;127.0.0.1&#34;)
- *                 .name(&#34;localhost&#34;)
- *                 .port(80)
- *                 .build())
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .comment(&#34;demo&#34;)
- *                 .name(&#34;demo.notexample.com&#34;)
- *                 .build())
- *             .forceDestroy(true)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
- * 
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.fastly.ServiceVcl;
- * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
- * import com.pulumi.fastly.inputs.ServiceVclGzipArgs;
- * import com.pulumi.fastly.inputs.ServiceVclHeaderArgs;
- * import com.pulumi.aws.s3.BucketV2;
- * import com.pulumi.aws.s3.BucketV2Args;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;demo.notexample.com.s3-website-us-west-2.amazonaws.com&#34;)
- *                 .name(&#34;AWS S3 hosting&#34;)
- *                 .overrideHost(&#34;demo.notexample.com.s3-website-us-west-2.amazonaws.com&#34;)
- *                 .port(80)
- *                 .build())
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .comment(&#34;demo&#34;)
- *                 .name(&#34;demo.notexample.com&#34;)
- *                 .build())
- *             .forceDestroy(true)
- *             .gzips(ServiceVclGzipArgs.builder()
- *                 .contentTypes(                
- *                     &#34;text/html&#34;,
- *                     &#34;text/css&#34;)
- *                 .extensions(                
- *                     &#34;css&#34;,
- *                     &#34;js&#34;)
- *                 .name(&#34;file extensions and content types&#34;)
- *                 .build())
- *             .headers(ServiceVclHeaderArgs.builder()
- *                 .action(&#34;delete&#34;)
- *                 .destination(&#34;http.x-amz-request-id&#34;)
- *                 .name(&#34;remove x-amz-request-id&#34;)
- *                 .type(&#34;cache&#34;)
- *                 .build())
- *             .build());
- * 
- *         var website = new BucketV2(&#34;website&#34;, BucketV2Args.builder()        
- *             .acl(&#34;public-read&#34;)
- *             .websites(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * Basic usage with [custom
- * VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.fastly.ServiceVcl;
- * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
- * import com.pulumi.fastly.inputs.ServiceVclVclArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;127.0.0.1&#34;)
- *                 .name(&#34;localhost&#34;)
- *                 .port(80)
- *                 .build())
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .comment(&#34;demo&#34;)
- *                 .name(&#34;demo.notexample.com&#34;)
- *                 .build())
- *             .forceDestroy(true)
- *             .vcls(            
- *                 ServiceVclVclArgs.builder()
- *                     .content(Files.readString(Paths.get(String.format(&#34;%s/my_custom_main.vcl&#34;, path.module()))))
- *                     .main(true)
- *                     .name(&#34;my_custom_main_vcl&#34;)
- *                     .build(),
- *                 ServiceVclVclArgs.builder()
- *                     .content(Files.readString(Paths.get(String.format(&#34;%s/my_custom_library.vcl&#34;, path.module()))))
- *                     .name(&#34;my_custom_library_vcl&#34;)
- *                     .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * Basic usage with [custom Director](https://developer.fastly.com/reference/api/load-balancing/directors/director/):
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.fastly.ServiceVcl;
- * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDirectorArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .backends(            
- *                 ServiceVclBackendArgs.builder()
- *                     .address(&#34;127.0.0.1&#34;)
- *                     .name(&#34;origin1&#34;)
- *                     .port(80)
- *                     .build(),
- *                 ServiceVclBackendArgs.builder()
- *                     .address(&#34;127.0.0.2&#34;)
- *                     .name(&#34;origin2&#34;)
- *                     .port(80)
- *                     .build())
- *             .directors(ServiceVclDirectorArgs.builder()
- *                 .backends(                
- *                     &#34;origin1&#34;,
- *                     &#34;origin2&#34;)
- *                 .name(&#34;mydirector&#34;)
- *                 .quorum(0)
- *                 .type(3)
- *                 .build())
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .comment(&#34;demo&#34;)
- *                 .name(&#34;demo.notexample.com&#34;)
- *                 .build())
- *             .forceDestroy(true)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * Basic usage with [Web Application Firewall](https://developer.fastly.com/reference/api/waf/):
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.fastly.ServiceVcl;
- * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
- * import com.pulumi.fastly.inputs.ServiceVclConditionArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
- * import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
- * import com.pulumi.fastly.inputs.ServiceVclWafArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;127.0.0.1&#34;)
- *                 .name(&#34;origin1&#34;)
- *                 .port(80)
- *                 .build())
- *             .conditions(            
- *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_Prefetch&#34;)
- *                     .statement(&#34;req.backend.is_origin&#34;)
- *                     .type(&#34;PREFETCH&#34;)
- *                     .build(),
- *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_always_false&#34;)
- *                     .statement(&#34;false&#34;)
- *                     .type(&#34;REQUEST&#34;)
- *                     .build())
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .comment(&#34;demo&#34;)
- *                 .name(&#34;example.com&#34;)
- *                 .build())
- *             .forceDestroy(true)
- *             .responseObjects(ServiceVclResponseObjectArgs.builder()
- *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
- *                 .contentType(&#34;text/html&#34;)
- *                 .name(&#34;WAF_Response&#34;)
- *                 .requestCondition(&#34;WAF_always_false&#34;)
- *                 .response(&#34;Forbidden&#34;)
- *                 .status(&#34;403&#34;)
- *                 .build())
- *             .waf(ServiceVclWafArgs.builder()
- *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
- *                 .responseObject(&#34;WAF_Response&#34;)
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * &gt; **Note:** For an AWS S3 Bucket, the Backend address is
- * `&lt;domain&gt;.s3-website-&lt;region&gt;.amazonaws.com`. The `override_host` attribute
- * should be set to `&lt;bucket_name&gt;.s3-website-&lt;region&gt;.amazonaws.com` in the `backend` block. See the
- * Fastly documentation on [Amazon S3][fastly-s3].
- * 
- * [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3
- * [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records
- * [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions
- * [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/
- * [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/
- * 
  * ## Import
  * 
  * Fastly Services can be imported using their service ID, e.g.
@@ -388,7 +83,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
      * 
      */
-    @Export(name="acls", type=List.class, parameters={ServiceVclAcl.class})
+    @Export(name="acls", refs={List.class,ServiceVclAcl.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclAcl>> acls;
 
     /**
@@ -402,7 +97,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
      * 
      */
-    @Export(name="activate", type=Boolean.class, parameters={})
+    @Export(name="activate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> activate;
 
     /**
@@ -416,7 +111,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * The currently active version of your Fastly Service
      * 
      */
-    @Export(name="activeVersion", type=Integer.class, parameters={})
+    @Export(name="activeVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> activeVersion;
 
     /**
@@ -426,13 +121,13 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Integer> activeVersion() {
         return this.activeVersion;
     }
-    @Export(name="backends", type=List.class, parameters={ServiceVclBackend.class})
+    @Export(name="backends", refs={List.class,ServiceVclBackend.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclBackend>> backends;
 
     public Output<Optional<List<ServiceVclBackend>>> backends() {
         return Codegen.optional(this.backends);
     }
-    @Export(name="cacheSettings", type=List.class, parameters={ServiceVclCacheSetting.class})
+    @Export(name="cacheSettings", refs={List.class,ServiceVclCacheSetting.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclCacheSetting>> cacheSettings;
 
     public Output<Optional<List<ServiceVclCacheSetting>>> cacheSettings() {
@@ -442,7 +137,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * The latest cloned version by the provider
      * 
      */
-    @Export(name="clonedVersion", type=Integer.class, parameters={})
+    @Export(name="clonedVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> clonedVersion;
 
     /**
@@ -456,7 +151,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * An optional comment about the Director
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
@@ -466,7 +161,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> comment() {
         return Codegen.optional(this.comment);
     }
-    @Export(name="conditions", type=List.class, parameters={ServiceVclCondition.class})
+    @Export(name="conditions", refs={List.class,ServiceVclCondition.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclCondition>> conditions;
 
     public Output<Optional<List<ServiceVclCondition>>> conditions() {
@@ -476,7 +171,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Sets the host header
      * 
      */
-    @Export(name="defaultHost", type=String.class, parameters={})
+    @Export(name="defaultHost", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> defaultHost;
 
     /**
@@ -490,7 +185,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * The default Time-to-live (TTL) for requests
      * 
      */
-    @Export(name="defaultTtl", type=Integer.class, parameters={})
+    @Export(name="defaultTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> defaultTtl;
 
     /**
@@ -500,13 +195,13 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> defaultTtl() {
         return Codegen.optional(this.defaultTtl);
     }
-    @Export(name="dictionaries", type=List.class, parameters={ServiceVclDictionary.class})
+    @Export(name="dictionaries", refs={List.class,ServiceVclDictionary.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclDictionary>> dictionaries;
 
     public Output<Optional<List<ServiceVclDictionary>>> dictionaries() {
         return Codegen.optional(this.dictionaries);
     }
-    @Export(name="directors", type=List.class, parameters={ServiceVclDirector.class})
+    @Export(name="directors", refs={List.class,ServiceVclDirector.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclDirector>> directors;
 
     public Output<Optional<List<ServiceVclDirector>>> directors() {
@@ -516,7 +211,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
      * 
      */
-    @Export(name="domains", type=List.class, parameters={ServiceVclDomain.class})
+    @Export(name="domains", refs={List.class,ServiceVclDomain.class}, tree="[0,1]")
     private Output<List<ServiceVclDomain>> domains;
 
     /**
@@ -526,7 +221,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<List<ServiceVclDomain>> domains() {
         return this.domains;
     }
-    @Export(name="dynamicsnippets", type=List.class, parameters={ServiceVclDynamicsnippet.class})
+    @Export(name="dynamicsnippets", refs={List.class,ServiceVclDynamicsnippet.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclDynamicsnippet>> dynamicsnippets;
 
     public Output<Optional<List<ServiceVclDynamicsnippet>>> dynamicsnippets() {
@@ -536,7 +231,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Allow the ACL to be deleted, even if it contains entries. Defaults to false.
      * 
      */
-    @Export(name="forceDestroy", type=Boolean.class, parameters={})
+    @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
@@ -552,7 +247,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
      * 
      */
-    @Export(name="forceRefresh", type=Boolean.class, parameters={})
+    @Export(name="forceRefresh", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> forceRefresh;
 
     /**
@@ -564,13 +259,13 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Boolean> forceRefresh() {
         return this.forceRefresh;
     }
-    @Export(name="gzips", type=List.class, parameters={ServiceVclGzip.class})
+    @Export(name="gzips", refs={List.class,ServiceVclGzip.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclGzip>> gzips;
 
     public Output<Optional<List<ServiceVclGzip>>> gzips() {
         return Codegen.optional(this.gzips);
     }
-    @Export(name="headers", type=List.class, parameters={ServiceVclHeader.class})
+    @Export(name="headers", refs={List.class,ServiceVclHeader.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclHeader>> headers;
 
     public Output<Optional<List<ServiceVclHeader>>> headers() {
@@ -580,7 +275,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Name of a defined `healthcheck` to assign to this backend
      * 
      */
-    @Export(name="healthchecks", type=List.class, parameters={ServiceVclHealthcheck.class})
+    @Export(name="healthchecks", refs={List.class,ServiceVclHealthcheck.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclHealthcheck>> healthchecks;
 
     /**
@@ -594,7 +289,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Enables support for the HTTP/3 (QUIC) protocol
      * 
      */
-    @Export(name="http3", type=Boolean.class, parameters={})
+    @Export(name="http3", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> http3;
 
     /**
@@ -608,7 +303,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
-    @Export(name="imported", type=Boolean.class, parameters={})
+    @Export(name="imported", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> imported;
 
     /**
@@ -618,157 +313,157 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Boolean> imported() {
         return this.imported;
     }
-    @Export(name="loggingBigqueries", type=List.class, parameters={ServiceVclLoggingBigquery.class})
+    @Export(name="loggingBigqueries", refs={List.class,ServiceVclLoggingBigquery.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingBigquery>> loggingBigqueries;
 
     public Output<Optional<List<ServiceVclLoggingBigquery>>> loggingBigqueries() {
         return Codegen.optional(this.loggingBigqueries);
     }
-    @Export(name="loggingBlobstorages", type=List.class, parameters={ServiceVclLoggingBlobstorage.class})
+    @Export(name="loggingBlobstorages", refs={List.class,ServiceVclLoggingBlobstorage.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingBlobstorage>> loggingBlobstorages;
 
     public Output<Optional<List<ServiceVclLoggingBlobstorage>>> loggingBlobstorages() {
         return Codegen.optional(this.loggingBlobstorages);
     }
-    @Export(name="loggingCloudfiles", type=List.class, parameters={ServiceVclLoggingCloudfile.class})
+    @Export(name="loggingCloudfiles", refs={List.class,ServiceVclLoggingCloudfile.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingCloudfile>> loggingCloudfiles;
 
     public Output<Optional<List<ServiceVclLoggingCloudfile>>> loggingCloudfiles() {
         return Codegen.optional(this.loggingCloudfiles);
     }
-    @Export(name="loggingDatadogs", type=List.class, parameters={ServiceVclLoggingDatadog.class})
+    @Export(name="loggingDatadogs", refs={List.class,ServiceVclLoggingDatadog.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingDatadog>> loggingDatadogs;
 
     public Output<Optional<List<ServiceVclLoggingDatadog>>> loggingDatadogs() {
         return Codegen.optional(this.loggingDatadogs);
     }
-    @Export(name="loggingDigitaloceans", type=List.class, parameters={ServiceVclLoggingDigitalocean.class})
+    @Export(name="loggingDigitaloceans", refs={List.class,ServiceVclLoggingDigitalocean.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingDigitalocean>> loggingDigitaloceans;
 
     public Output<Optional<List<ServiceVclLoggingDigitalocean>>> loggingDigitaloceans() {
         return Codegen.optional(this.loggingDigitaloceans);
     }
-    @Export(name="loggingElasticsearches", type=List.class, parameters={ServiceVclLoggingElasticsearch.class})
+    @Export(name="loggingElasticsearches", refs={List.class,ServiceVclLoggingElasticsearch.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingElasticsearch>> loggingElasticsearches;
 
     public Output<Optional<List<ServiceVclLoggingElasticsearch>>> loggingElasticsearches() {
         return Codegen.optional(this.loggingElasticsearches);
     }
-    @Export(name="loggingFtps", type=List.class, parameters={ServiceVclLoggingFtp.class})
+    @Export(name="loggingFtps", refs={List.class,ServiceVclLoggingFtp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingFtp>> loggingFtps;
 
     public Output<Optional<List<ServiceVclLoggingFtp>>> loggingFtps() {
         return Codegen.optional(this.loggingFtps);
     }
-    @Export(name="loggingGcs", type=List.class, parameters={ServiceVclLoggingGc.class})
+    @Export(name="loggingGcs", refs={List.class,ServiceVclLoggingGc.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingGc>> loggingGcs;
 
     public Output<Optional<List<ServiceVclLoggingGc>>> loggingGcs() {
         return Codegen.optional(this.loggingGcs);
     }
-    @Export(name="loggingGooglepubsubs", type=List.class, parameters={ServiceVclLoggingGooglepubsub.class})
+    @Export(name="loggingGooglepubsubs", refs={List.class,ServiceVclLoggingGooglepubsub.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingGooglepubsub>> loggingGooglepubsubs;
 
     public Output<Optional<List<ServiceVclLoggingGooglepubsub>>> loggingGooglepubsubs() {
         return Codegen.optional(this.loggingGooglepubsubs);
     }
-    @Export(name="loggingHerokus", type=List.class, parameters={ServiceVclLoggingHerokus.class})
+    @Export(name="loggingHerokus", refs={List.class,ServiceVclLoggingHerokus.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingHerokus>> loggingHerokus;
 
     public Output<Optional<List<ServiceVclLoggingHerokus>>> loggingHerokus() {
         return Codegen.optional(this.loggingHerokus);
     }
-    @Export(name="loggingHoneycombs", type=List.class, parameters={ServiceVclLoggingHoneycomb.class})
+    @Export(name="loggingHoneycombs", refs={List.class,ServiceVclLoggingHoneycomb.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingHoneycomb>> loggingHoneycombs;
 
     public Output<Optional<List<ServiceVclLoggingHoneycomb>>> loggingHoneycombs() {
         return Codegen.optional(this.loggingHoneycombs);
     }
-    @Export(name="loggingHttps", type=List.class, parameters={ServiceVclLoggingHttp.class})
+    @Export(name="loggingHttps", refs={List.class,ServiceVclLoggingHttp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingHttp>> loggingHttps;
 
     public Output<Optional<List<ServiceVclLoggingHttp>>> loggingHttps() {
         return Codegen.optional(this.loggingHttps);
     }
-    @Export(name="loggingKafkas", type=List.class, parameters={ServiceVclLoggingKafka.class})
+    @Export(name="loggingKafkas", refs={List.class,ServiceVclLoggingKafka.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingKafka>> loggingKafkas;
 
     public Output<Optional<List<ServiceVclLoggingKafka>>> loggingKafkas() {
         return Codegen.optional(this.loggingKafkas);
     }
-    @Export(name="loggingKineses", type=List.class, parameters={ServiceVclLoggingKinese.class})
+    @Export(name="loggingKineses", refs={List.class,ServiceVclLoggingKinese.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingKinese>> loggingKineses;
 
     public Output<Optional<List<ServiceVclLoggingKinese>>> loggingKineses() {
         return Codegen.optional(this.loggingKineses);
     }
-    @Export(name="loggingLogentries", type=List.class, parameters={ServiceVclLoggingLogentry.class})
+    @Export(name="loggingLogentries", refs={List.class,ServiceVclLoggingLogentry.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingLogentry>> loggingLogentries;
 
     public Output<Optional<List<ServiceVclLoggingLogentry>>> loggingLogentries() {
         return Codegen.optional(this.loggingLogentries);
     }
-    @Export(name="loggingLogglies", type=List.class, parameters={ServiceVclLoggingLoggly.class})
+    @Export(name="loggingLogglies", refs={List.class,ServiceVclLoggingLoggly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingLoggly>> loggingLogglies;
 
     public Output<Optional<List<ServiceVclLoggingLoggly>>> loggingLogglies() {
         return Codegen.optional(this.loggingLogglies);
     }
-    @Export(name="loggingLogshuttles", type=List.class, parameters={ServiceVclLoggingLogshuttle.class})
+    @Export(name="loggingLogshuttles", refs={List.class,ServiceVclLoggingLogshuttle.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingLogshuttle>> loggingLogshuttles;
 
     public Output<Optional<List<ServiceVclLoggingLogshuttle>>> loggingLogshuttles() {
         return Codegen.optional(this.loggingLogshuttles);
     }
-    @Export(name="loggingNewrelics", type=List.class, parameters={ServiceVclLoggingNewrelic.class})
+    @Export(name="loggingNewrelics", refs={List.class,ServiceVclLoggingNewrelic.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingNewrelic>> loggingNewrelics;
 
     public Output<Optional<List<ServiceVclLoggingNewrelic>>> loggingNewrelics() {
         return Codegen.optional(this.loggingNewrelics);
     }
-    @Export(name="loggingOpenstacks", type=List.class, parameters={ServiceVclLoggingOpenstack.class})
+    @Export(name="loggingOpenstacks", refs={List.class,ServiceVclLoggingOpenstack.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingOpenstack>> loggingOpenstacks;
 
     public Output<Optional<List<ServiceVclLoggingOpenstack>>> loggingOpenstacks() {
         return Codegen.optional(this.loggingOpenstacks);
     }
-    @Export(name="loggingPapertrails", type=List.class, parameters={ServiceVclLoggingPapertrail.class})
+    @Export(name="loggingPapertrails", refs={List.class,ServiceVclLoggingPapertrail.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingPapertrail>> loggingPapertrails;
 
     public Output<Optional<List<ServiceVclLoggingPapertrail>>> loggingPapertrails() {
         return Codegen.optional(this.loggingPapertrails);
     }
-    @Export(name="loggingS3s", type=List.class, parameters={ServiceVclLoggingS3.class})
+    @Export(name="loggingS3s", refs={List.class,ServiceVclLoggingS3.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingS3>> loggingS3s;
 
     public Output<Optional<List<ServiceVclLoggingS3>>> loggingS3s() {
         return Codegen.optional(this.loggingS3s);
     }
-    @Export(name="loggingScalyrs", type=List.class, parameters={ServiceVclLoggingScalyr.class})
+    @Export(name="loggingScalyrs", refs={List.class,ServiceVclLoggingScalyr.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingScalyr>> loggingScalyrs;
 
     public Output<Optional<List<ServiceVclLoggingScalyr>>> loggingScalyrs() {
         return Codegen.optional(this.loggingScalyrs);
     }
-    @Export(name="loggingSftps", type=List.class, parameters={ServiceVclLoggingSftp.class})
+    @Export(name="loggingSftps", refs={List.class,ServiceVclLoggingSftp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingSftp>> loggingSftps;
 
     public Output<Optional<List<ServiceVclLoggingSftp>>> loggingSftps() {
         return Codegen.optional(this.loggingSftps);
     }
-    @Export(name="loggingSplunks", type=List.class, parameters={ServiceVclLoggingSplunk.class})
+    @Export(name="loggingSplunks", refs={List.class,ServiceVclLoggingSplunk.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingSplunk>> loggingSplunks;
 
     public Output<Optional<List<ServiceVclLoggingSplunk>>> loggingSplunks() {
         return Codegen.optional(this.loggingSplunks);
     }
-    @Export(name="loggingSumologics", type=List.class, parameters={ServiceVclLoggingSumologic.class})
+    @Export(name="loggingSumologics", refs={List.class,ServiceVclLoggingSumologic.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingSumologic>> loggingSumologics;
 
     public Output<Optional<List<ServiceVclLoggingSumologic>>> loggingSumologics() {
         return Codegen.optional(this.loggingSumologics);
     }
-    @Export(name="loggingSyslogs", type=List.class, parameters={ServiceVclLoggingSyslog.class})
+    @Export(name="loggingSyslogs", refs={List.class,ServiceVclLoggingSyslog.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingSyslog>> loggingSyslogs;
 
     public Output<Optional<List<ServiceVclLoggingSyslog>>> loggingSyslogs() {
@@ -778,7 +473,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -788,19 +483,19 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="productEnablement", type=ServiceVclProductEnablement.class, parameters={})
+    @Export(name="productEnablement", refs={ServiceVclProductEnablement.class}, tree="[0]")
     private Output</* @Nullable */ ServiceVclProductEnablement> productEnablement;
 
     public Output<Optional<ServiceVclProductEnablement>> productEnablement() {
         return Codegen.optional(this.productEnablement);
     }
-    @Export(name="rateLimiters", type=List.class, parameters={ServiceVclRateLimiter.class})
+    @Export(name="rateLimiters", refs={List.class,ServiceVclRateLimiter.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclRateLimiter>> rateLimiters;
 
     public Output<Optional<List<ServiceVclRateLimiter>>> rateLimiters() {
         return Codegen.optional(this.rateLimiters);
     }
-    @Export(name="requestSettings", type=List.class, parameters={ServiceVclRequestSetting.class})
+    @Export(name="requestSettings", refs={List.class,ServiceVclRequestSetting.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclRequestSetting>> requestSettings;
 
     public Output<Optional<List<ServiceVclRequestSetting>>> requestSettings() {
@@ -810,7 +505,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * The name of the response object used by the Web Application Firewall
      * 
      */
-    @Export(name="responseObjects", type=List.class, parameters={ServiceVclResponseObject.class})
+    @Export(name="responseObjects", refs={List.class,ServiceVclResponseObject.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclResponseObject>> responseObjects;
 
     /**
@@ -826,7 +521,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * an active service will cause an error. Default `false`
      * 
      */
-    @Export(name="reuse", type=Boolean.class, parameters={})
+    @Export(name="reuse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reuse;
 
     /**
@@ -838,7 +533,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> reuse() {
         return Codegen.optional(this.reuse);
     }
-    @Export(name="snippets", type=List.class, parameters={ServiceVclSnippet.class})
+    @Export(name="snippets", refs={List.class,ServiceVclSnippet.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclSnippet>> snippets;
 
     public Output<Optional<List<ServiceVclSnippet>>> snippets() {
@@ -848,7 +543,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Enables serving a stale object if there is an error
      * 
      */
-    @Export(name="staleIfError", type=Boolean.class, parameters={})
+    @Export(name="staleIfError", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> staleIfError;
 
     /**
@@ -862,7 +557,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * The default time-to-live (TTL) for serving the stale object for the version
      * 
      */
-    @Export(name="staleIfErrorTtl", type=Integer.class, parameters={})
+    @Export(name="staleIfErrorTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> staleIfErrorTtl;
 
     /**
@@ -872,7 +567,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> staleIfErrorTtl() {
         return Codegen.optional(this.staleIfErrorTtl);
     }
-    @Export(name="vcls", type=List.class, parameters={ServiceVclVcl.class})
+    @Export(name="vcls", refs={List.class,ServiceVclVcl.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclVcl>> vcls;
 
     public Output<Optional<List<ServiceVclVcl>>> vcls() {
@@ -882,7 +577,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * Description field for the version
      * 
      */
-    @Export(name="versionComment", type=String.class, parameters={})
+    @Export(name="versionComment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> versionComment;
 
     /**
@@ -892,7 +587,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> versionComment() {
         return Codegen.optional(this.versionComment);
     }
-    @Export(name="waf", type=ServiceVclWaf.class, parameters={})
+    @Export(name="waf", refs={ServiceVclWaf.class}, tree="[0]")
     private Output</* @Nullable */ ServiceVclWaf> waf;
 
     public Output<Optional<ServiceVclWaf>> waf() {

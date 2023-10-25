@@ -84,11 +84,11 @@ public final class ServiceComputeLoggingLogshuttle {
             return this;
         }
         public ServiceComputeLoggingLogshuttle build() {
-            final var o = new ServiceComputeLoggingLogshuttle();
-            o.name = name;
-            o.token = token;
-            o.url = url;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingLogshuttle();
+            _resultValue.name = name;
+            _resultValue.token = token;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }

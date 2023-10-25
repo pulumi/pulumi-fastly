@@ -86,11 +86,11 @@ public final class ServiceComputeLoggingDatadog {
             return this;
         }
         public ServiceComputeLoggingDatadog build() {
-            final var o = new ServiceComputeLoggingDatadog();
-            o.name = name;
-            o.region = region;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingDatadog();
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

@@ -296,22 +296,22 @@ public final class ServiceComputeLoggingHttp {
             return this;
         }
         public ServiceComputeLoggingHttp build() {
-            final var o = new ServiceComputeLoggingHttp();
-            o.contentType = contentType;
-            o.headerName = headerName;
-            o.headerValue = headerValue;
-            o.jsonFormat = jsonFormat;
-            o.messageType = messageType;
-            o.method = method;
-            o.name = name;
-            o.requestMaxBytes = requestMaxBytes;
-            o.requestMaxEntries = requestMaxEntries;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.url = url;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingHttp();
+            _resultValue.contentType = contentType;
+            _resultValue.headerName = headerName;
+            _resultValue.headerValue = headerValue;
+            _resultValue.jsonFormat = jsonFormat;
+            _resultValue.messageType = messageType;
+            _resultValue.method = method;
+            _resultValue.name = name;
+            _resultValue.requestMaxBytes = requestMaxBytes;
+            _resultValue.requestMaxEntries = requestMaxEntries;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }

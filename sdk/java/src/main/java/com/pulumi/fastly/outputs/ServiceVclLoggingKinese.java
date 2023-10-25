@@ -220,18 +220,18 @@ public final class ServiceVclLoggingKinese {
             return this;
         }
         public ServiceVclLoggingKinese build() {
-            final var o = new ServiceVclLoggingKinese();
-            o.accessKey = accessKey;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.iamRole = iamRole;
-            o.name = name;
-            o.placement = placement;
-            o.region = region;
-            o.responseCondition = responseCondition;
-            o.secretKey = secretKey;
-            o.topic = topic;
-            return o;
+            final var _resultValue = new ServiceVclLoggingKinese();
+            _resultValue.accessKey = accessKey;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.iamRole = iamRole;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.region = region;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.secretKey = secretKey;
+            _resultValue.topic = topic;
+            return _resultValue;
         }
     }
 }

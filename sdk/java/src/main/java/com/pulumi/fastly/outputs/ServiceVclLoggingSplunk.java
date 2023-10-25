@@ -259,20 +259,20 @@ public final class ServiceVclLoggingSplunk {
             return this;
         }
         public ServiceVclLoggingSplunk build() {
-            final var o = new ServiceVclLoggingSplunk();
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.responseCondition = responseCondition;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.token = token;
-            o.url = url;
-            o.useTls = useTls;
-            return o;
+            final var _resultValue = new ServiceVclLoggingSplunk();
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.token = token;
+            _resultValue.url = url;
+            _resultValue.useTls = useTls;
+            return _resultValue;
         }
     }
 }

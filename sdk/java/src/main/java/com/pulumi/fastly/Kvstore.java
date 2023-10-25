@@ -86,7 +86,7 @@ public class Kvstore extends com.pulumi.resources.CustomResource {
      * Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
      * 
      */
-    @Export(name="forceDestroy", type=Boolean.class, parameters={})
+    @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
@@ -100,7 +100,7 @@ public class Kvstore extends com.pulumi.resources.CustomResource {
      * A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**

@@ -167,15 +167,15 @@ public final class ServiceVclDirector {
             return this;
         }
         public ServiceVclDirector build() {
-            final var o = new ServiceVclDirector();
-            o.backends = backends;
-            o.comment = comment;
-            o.name = name;
-            o.quorum = quorum;
-            o.retries = retries;
-            o.shield = shield;
-            o.type = type;
-            return o;
+            final var _resultValue = new ServiceVclDirector();
+            _resultValue.backends = backends;
+            _resultValue.comment = comment;
+            _resultValue.name = name;
+            _resultValue.quorum = quorum;
+            _resultValue.retries = retries;
+            _resultValue.shield = shield;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

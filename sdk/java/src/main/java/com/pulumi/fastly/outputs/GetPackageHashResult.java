@@ -105,12 +105,12 @@ public final class GetPackageHashResult {
             return this;
         }
         public GetPackageHashResult build() {
-            final var o = new GetPackageHashResult();
-            o.content = content;
-            o.filename = filename;
-            o.hash = hash;
-            o.id = id;
-            return o;
+            final var _resultValue = new GetPackageHashResult();
+            _resultValue.content = content;
+            _resultValue.filename = filename;
+            _resultValue.hash = hash;
+            _resultValue.id = id;
+            return _resultValue;
         }
     }
 }

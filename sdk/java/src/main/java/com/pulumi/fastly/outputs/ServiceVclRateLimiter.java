@@ -278,21 +278,21 @@ public final class ServiceVclRateLimiter {
             return this;
         }
         public ServiceVclRateLimiter build() {
-            final var o = new ServiceVclRateLimiter();
-            o.action = action;
-            o.clientKey = clientKey;
-            o.featureRevision = featureRevision;
-            o.httpMethods = httpMethods;
-            o.loggerType = loggerType;
-            o.name = name;
-            o.penaltyBoxDuration = penaltyBoxDuration;
-            o.ratelimiterId = ratelimiterId;
-            o.response = response;
-            o.responseObjectName = responseObjectName;
-            o.rpsLimit = rpsLimit;
-            o.uriDictionaryName = uriDictionaryName;
-            o.windowSize = windowSize;
-            return o;
+            final var _resultValue = new ServiceVclRateLimiter();
+            _resultValue.action = action;
+            _resultValue.clientKey = clientKey;
+            _resultValue.featureRevision = featureRevision;
+            _resultValue.httpMethods = httpMethods;
+            _resultValue.loggerType = loggerType;
+            _resultValue.name = name;
+            _resultValue.penaltyBoxDuration = penaltyBoxDuration;
+            _resultValue.ratelimiterId = ratelimiterId;
+            _resultValue.response = response;
+            _resultValue.responseObjectName = responseObjectName;
+            _resultValue.rpsLimit = rpsLimit;
+            _resultValue.uriDictionaryName = uriDictionaryName;
+            _resultValue.windowSize = windowSize;
+            return _resultValue;
         }
     }
 }

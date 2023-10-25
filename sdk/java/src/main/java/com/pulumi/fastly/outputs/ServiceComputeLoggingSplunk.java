@@ -182,16 +182,16 @@ public final class ServiceComputeLoggingSplunk {
             return this;
         }
         public ServiceComputeLoggingSplunk build() {
-            final var o = new ServiceComputeLoggingSplunk();
-            o.name = name;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.token = token;
-            o.url = url;
-            o.useTls = useTls;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingSplunk();
+            _resultValue.name = name;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.token = token;
+            _resultValue.url = url;
+            _resultValue.useTls = useTls;
+            return _resultValue;
         }
     }
 }

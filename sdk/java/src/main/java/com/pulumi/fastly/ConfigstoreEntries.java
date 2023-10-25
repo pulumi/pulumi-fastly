@@ -33,7 +33,7 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      * A map representing an entry in the Config Store, (key/value)
      * 
      */
-    @Export(name="entries", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="entries", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> entries;
 
     /**
@@ -48,7 +48,7 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      * externally from the config seeded values.
      * 
      */
-    @Export(name="manageEntries", type=Boolean.class, parameters={})
+    @Export(name="manageEntries", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> manageEntries;
 
     /**
@@ -63,7 +63,7 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      * An alphanumeric string identifying the Config Store.
      * 
      */
-    @Export(name="storeId", type=String.class, parameters={})
+    @Export(name="storeId", refs={String.class}, tree="[0]")
     private Output<String> storeId;
 
     /**

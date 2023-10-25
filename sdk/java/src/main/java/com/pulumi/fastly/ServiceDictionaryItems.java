@@ -35,7 +35,7 @@ public class ServiceDictionaryItems extends com.pulumi.resources.CustomResource 
      * The ID of the dictionary that the items belong to
      * 
      */
-    @Export(name="dictionaryId", type=String.class, parameters={})
+    @Export(name="dictionaryId", refs={String.class}, tree="[0]")
     private Output<String> dictionaryId;
 
     /**
@@ -49,7 +49,7 @@ public class ServiceDictionaryItems extends com.pulumi.resources.CustomResource 
      * A map representing an entry in the dictionary, (key/value)
      * 
      */
-    @Export(name="items", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="items", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> items;
 
     /**
@@ -63,7 +63,7 @@ public class ServiceDictionaryItems extends com.pulumi.resources.CustomResource 
      * Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
      * 
      */
-    @Export(name="manageItems", type=Boolean.class, parameters={})
+    @Export(name="manageItems", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> manageItems;
 
     /**
@@ -77,7 +77,7 @@ public class ServiceDictionaryItems extends com.pulumi.resources.CustomResource 
      * The ID of the service that the dictionary belongs to
      * 
      */
-    @Export(name="serviceId", type=String.class, parameters={})
+    @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output<String> serviceId;
 
     /**

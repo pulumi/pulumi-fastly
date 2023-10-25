@@ -35,7 +35,7 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      * The ID of the ACL that the items belong to
      * 
      */
-    @Export(name="aclId", type=String.class, parameters={})
+    @Export(name="aclId", refs={String.class}, tree="[0]")
     private Output<String> aclId;
 
     /**
@@ -49,7 +49,7 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      * ACL Entries
      * 
      */
-    @Export(name="entries", type=List.class, parameters={ServiceACLEntriesEntry.class})
+    @Export(name="entries", refs={List.class,ServiceACLEntriesEntry.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceACLEntriesEntry>> entries;
 
     /**
@@ -63,7 +63,7 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      * Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
      * 
      */
-    @Export(name="manageEntries", type=Boolean.class, parameters={})
+    @Export(name="manageEntries", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> manageEntries;
 
     /**
@@ -77,7 +77,7 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      * The ID of the Service that the ACL belongs to
      * 
      */
-    @Export(name="serviceId", type=String.class, parameters={})
+    @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output<String> serviceId;
 
     /**

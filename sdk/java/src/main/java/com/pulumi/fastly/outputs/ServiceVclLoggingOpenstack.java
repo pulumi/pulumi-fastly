@@ -334,24 +334,24 @@ public final class ServiceVclLoggingOpenstack {
             return this;
         }
         public ServiceVclLoggingOpenstack build() {
-            final var o = new ServiceVclLoggingOpenstack();
-            o.accessKey = accessKey;
-            o.bucketName = bucketName;
-            o.compressionCodec = compressionCodec;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.placement = placement;
-            o.publicKey = publicKey;
-            o.responseCondition = responseCondition;
-            o.timestampFormat = timestampFormat;
-            o.url = url;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceVclLoggingOpenstack();
+            _resultValue.accessKey = accessKey;
+            _resultValue.bucketName = bucketName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.placement = placement;
+            _resultValue.publicKey = publicKey;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.timestampFormat = timestampFormat;
+            _resultValue.url = url;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

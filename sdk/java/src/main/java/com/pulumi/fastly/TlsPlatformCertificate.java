@@ -140,7 +140,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
      * 
      */
-    @Export(name="allowUntrustedRoot", type=Boolean.class, parameters={})
+    @Export(name="allowUntrustedRoot", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowUntrustedRoot;
 
     /**
@@ -154,7 +154,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * PEM-formatted certificate.
      * 
      */
-    @Export(name="certificateBody", type=String.class, parameters={})
+    @Export(name="certificateBody", refs={String.class}, tree="[0]")
     private Output<String> certificateBody;
 
     /**
@@ -168,7 +168,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * ID of TLS configuration to be used to terminate TLS traffic.
      * 
      */
-    @Export(name="configurationId", type=String.class, parameters={})
+    @Export(name="configurationId", refs={String.class}, tree="[0]")
     private Output<String> configurationId;
 
     /**
@@ -182,7 +182,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * Timestamp (GMT) when the certificate was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -196,7 +196,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * All the domains (including wildcard domains) that are listed in any certificate&#39;s Subject Alternative Names (SAN) list.
      * 
      */
-    @Export(name="domains", type=List.class, parameters={String.class})
+    @Export(name="domains", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> domains;
 
     /**
@@ -210,7 +210,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * PEM-formatted certificate chain from the `certificate_body` to its root.
      * 
      */
-    @Export(name="intermediatesBlob", type=String.class, parameters={})
+    @Export(name="intermediatesBlob", refs={String.class}, tree="[0]")
     private Output<String> intermediatesBlob;
 
     /**
@@ -224,7 +224,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * Timestamp (GMT) when the certificate will expire.
      * 
      */
-    @Export(name="notAfter", type=String.class, parameters={})
+    @Export(name="notAfter", refs={String.class}, tree="[0]")
     private Output<String> notAfter;
 
     /**
@@ -238,7 +238,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * Timestamp (GMT) when the certificate will become valid.
      * 
      */
-    @Export(name="notBefore", type=String.class, parameters={})
+    @Export(name="notBefore", refs={String.class}, tree="[0]")
     private Output<String> notBefore;
 
     /**
@@ -252,7 +252,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
      * 
      */
-    @Export(name="replace", type=Boolean.class, parameters={})
+    @Export(name="replace", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> replace;
 
     /**
@@ -266,7 +266,7 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
      * Timestamp (GMT) when the certificate was last updated.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

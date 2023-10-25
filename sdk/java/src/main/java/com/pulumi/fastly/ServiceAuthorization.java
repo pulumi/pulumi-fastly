@@ -73,7 +73,7 @@ public class ServiceAuthorization extends com.pulumi.resources.CustomResource {
      * The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
      * 
      */
-    @Export(name="permission", type=String.class, parameters={})
+    @Export(name="permission", refs={String.class}, tree="[0]")
     private Output<String> permission;
 
     /**
@@ -87,7 +87,7 @@ public class ServiceAuthorization extends com.pulumi.resources.CustomResource {
      * The ID of the service to grant permissions for.
      * 
      */
-    @Export(name="serviceId", type=String.class, parameters={})
+    @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output<String> serviceId;
 
     /**
@@ -101,7 +101,7 @@ public class ServiceAuthorization extends com.pulumi.resources.CustomResource {
      * The ID of the user which will receive the granted permissions.
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output<String> userId;
 
     /**

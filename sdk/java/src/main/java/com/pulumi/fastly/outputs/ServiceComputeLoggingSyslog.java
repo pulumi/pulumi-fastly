@@ -221,18 +221,18 @@ public final class ServiceComputeLoggingSyslog {
             return this;
         }
         public ServiceComputeLoggingSyslog build() {
-            final var o = new ServiceComputeLoggingSyslog();
-            o.address = address;
-            o.messageType = messageType;
-            o.name = name;
-            o.port = port;
-            o.tlsCaCert = tlsCaCert;
-            o.tlsClientCert = tlsClientCert;
-            o.tlsClientKey = tlsClientKey;
-            o.tlsHostname = tlsHostname;
-            o.token = token;
-            o.useTls = useTls;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingSyslog();
+            _resultValue.address = address;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.port = port;
+            _resultValue.tlsCaCert = tlsCaCert;
+            _resultValue.tlsClientCert = tlsClientCert;
+            _resultValue.tlsClientKey = tlsClientKey;
+            _resultValue.tlsHostname = tlsHostname;
+            _resultValue.token = token;
+            _resultValue.useTls = useTls;
+            return _resultValue;
         }
     }
 }

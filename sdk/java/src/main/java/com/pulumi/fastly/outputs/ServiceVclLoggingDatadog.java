@@ -163,15 +163,15 @@ public final class ServiceVclLoggingDatadog {
             return this;
         }
         public ServiceVclLoggingDatadog build() {
-            final var o = new ServiceVclLoggingDatadog();
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.region = region;
-            o.responseCondition = responseCondition;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceVclLoggingDatadog();
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.region = region;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

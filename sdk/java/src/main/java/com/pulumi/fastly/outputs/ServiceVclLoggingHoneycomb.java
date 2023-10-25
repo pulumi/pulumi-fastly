@@ -163,15 +163,15 @@ public final class ServiceVclLoggingHoneycomb {
             return this;
         }
         public ServiceVclLoggingHoneycomb build() {
-            final var o = new ServiceVclLoggingHoneycomb();
-            o.dataset = dataset;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.name = name;
-            o.placement = placement;
-            o.responseCondition = responseCondition;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceVclLoggingHoneycomb();
+            _resultValue.dataset = dataset;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.name = name;
+            _resultValue.placement = placement;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

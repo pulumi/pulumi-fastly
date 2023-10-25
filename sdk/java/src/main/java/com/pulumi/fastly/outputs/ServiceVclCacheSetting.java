@@ -125,13 +125,13 @@ public final class ServiceVclCacheSetting {
             return this;
         }
         public ServiceVclCacheSetting build() {
-            final var o = new ServiceVclCacheSetting();
-            o.action = action;
-            o.cacheCondition = cacheCondition;
-            o.name = name;
-            o.staleTtl = staleTtl;
-            o.ttl = ttl;
-            return o;
+            final var _resultValue = new ServiceVclCacheSetting();
+            _resultValue.action = action;
+            _resultValue.cacheCondition = cacheCondition;
+            _resultValue.name = name;
+            _resultValue.staleTtl = staleTtl;
+            _resultValue.ttl = ttl;
+            return _resultValue;
         }
     }
 }

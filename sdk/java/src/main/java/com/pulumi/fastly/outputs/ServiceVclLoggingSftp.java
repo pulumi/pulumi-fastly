@@ -372,26 +372,26 @@ public final class ServiceVclLoggingSftp {
             return this;
         }
         public ServiceVclLoggingSftp build() {
-            final var o = new ServiceVclLoggingSftp();
-            o.address = address;
-            o.compressionCodec = compressionCodec;
-            o.format = format;
-            o.formatVersion = formatVersion;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.password = password;
-            o.path = path;
-            o.period = period;
-            o.placement = placement;
-            o.port = port;
-            o.publicKey = publicKey;
-            o.responseCondition = responseCondition;
-            o.secretKey = secretKey;
-            o.sshKnownHosts = sshKnownHosts;
-            o.timestampFormat = timestampFormat;
-            o.user = user;
-            return o;
+            final var _resultValue = new ServiceVclLoggingSftp();
+            _resultValue.address = address;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.format = format;
+            _resultValue.formatVersion = formatVersion;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.placement = placement;
+            _resultValue.port = port;
+            _resultValue.publicKey = publicKey;
+            _resultValue.responseCondition = responseCondition;
+            _resultValue.secretKey = secretKey;
+            _resultValue.sshKnownHosts = sshKnownHosts;
+            _resultValue.timestampFormat = timestampFormat;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

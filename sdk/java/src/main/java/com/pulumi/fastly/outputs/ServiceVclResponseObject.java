@@ -163,15 +163,15 @@ public final class ServiceVclResponseObject {
             return this;
         }
         public ServiceVclResponseObject build() {
-            final var o = new ServiceVclResponseObject();
-            o.cacheCondition = cacheCondition;
-            o.content = content;
-            o.contentType = contentType;
-            o.name = name;
-            o.requestCondition = requestCondition;
-            o.response = response;
-            o.status = status;
-            return o;
+            final var _resultValue = new ServiceVclResponseObject();
+            _resultValue.cacheCondition = cacheCondition;
+            _resultValue.content = content;
+            _resultValue.contentType = contentType;
+            _resultValue.name = name;
+            _resultValue.requestCondition = requestCondition;
+            _resultValue.response = response;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

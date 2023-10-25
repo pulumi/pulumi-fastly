@@ -258,20 +258,20 @@ public final class ServiceComputeLoggingBlobstorage {
             return this;
         }
         public ServiceComputeLoggingBlobstorage build() {
-            final var o = new ServiceComputeLoggingBlobstorage();
-            o.accountName = accountName;
-            o.compressionCodec = compressionCodec;
-            o.container = container;
-            o.fileMaxBytes = fileMaxBytes;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.publicKey = publicKey;
-            o.sasToken = sasToken;
-            o.timestampFormat = timestampFormat;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingBlobstorage();
+            _resultValue.accountName = accountName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.container = container;
+            _resultValue.fileMaxBytes = fileMaxBytes;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.publicKey = publicKey;
+            _resultValue.sasToken = sasToken;
+            _resultValue.timestampFormat = timestampFormat;
+            return _resultValue;
         }
     }
 }

@@ -487,32 +487,32 @@ public final class ServiceComputeBackend {
             return this;
         }
         public ServiceComputeBackend build() {
-            final var o = new ServiceComputeBackend();
-            o.address = address;
-            o.betweenBytesTimeout = betweenBytesTimeout;
-            o.connectTimeout = connectTimeout;
-            o.errorThreshold = errorThreshold;
-            o.firstByteTimeout = firstByteTimeout;
-            o.healthcheck = healthcheck;
-            o.keepaliveTime = keepaliveTime;
-            o.maxConn = maxConn;
-            o.maxTlsVersion = maxTlsVersion;
-            o.minTlsVersion = minTlsVersion;
-            o.name = name;
-            o.overrideHost = overrideHost;
-            o.port = port;
-            o.shareKey = shareKey;
-            o.shield = shield;
-            o.sslCaCert = sslCaCert;
-            o.sslCertHostname = sslCertHostname;
-            o.sslCheckCert = sslCheckCert;
-            o.sslCiphers = sslCiphers;
-            o.sslClientCert = sslClientCert;
-            o.sslClientKey = sslClientKey;
-            o.sslSniHostname = sslSniHostname;
-            o.useSsl = useSsl;
-            o.weight = weight;
-            return o;
+            final var _resultValue = new ServiceComputeBackend();
+            _resultValue.address = address;
+            _resultValue.betweenBytesTimeout = betweenBytesTimeout;
+            _resultValue.connectTimeout = connectTimeout;
+            _resultValue.errorThreshold = errorThreshold;
+            _resultValue.firstByteTimeout = firstByteTimeout;
+            _resultValue.healthcheck = healthcheck;
+            _resultValue.keepaliveTime = keepaliveTime;
+            _resultValue.maxConn = maxConn;
+            _resultValue.maxTlsVersion = maxTlsVersion;
+            _resultValue.minTlsVersion = minTlsVersion;
+            _resultValue.name = name;
+            _resultValue.overrideHost = overrideHost;
+            _resultValue.port = port;
+            _resultValue.shareKey = shareKey;
+            _resultValue.shield = shield;
+            _resultValue.sslCaCert = sslCaCert;
+            _resultValue.sslCertHostname = sslCertHostname;
+            _resultValue.sslCheckCert = sslCheckCert;
+            _resultValue.sslCiphers = sslCiphers;
+            _resultValue.sslClientCert = sslClientCert;
+            _resultValue.sslClientKey = sslClientKey;
+            _resultValue.sslSniHostname = sslSniHostname;
+            _resultValue.useSsl = useSsl;
+            _resultValue.weight = weight;
+            return _resultValue;
         }
     }
 }

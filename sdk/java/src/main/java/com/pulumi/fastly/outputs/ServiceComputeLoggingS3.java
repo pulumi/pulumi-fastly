@@ -372,26 +372,26 @@ public final class ServiceComputeLoggingS3 {
             return this;
         }
         public ServiceComputeLoggingS3 build() {
-            final var o = new ServiceComputeLoggingS3();
-            o.acl = acl;
-            o.bucketName = bucketName;
-            o.compressionCodec = compressionCodec;
-            o.domain = domain;
-            o.fileMaxBytes = fileMaxBytes;
-            o.gzipLevel = gzipLevel;
-            o.messageType = messageType;
-            o.name = name;
-            o.path = path;
-            o.period = period;
-            o.publicKey = publicKey;
-            o.redundancy = redundancy;
-            o.s3AccessKey = s3AccessKey;
-            o.s3IamRole = s3IamRole;
-            o.s3SecretKey = s3SecretKey;
-            o.serverSideEncryption = serverSideEncryption;
-            o.serverSideEncryptionKmsKeyId = serverSideEncryptionKmsKeyId;
-            o.timestampFormat = timestampFormat;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingS3();
+            _resultValue.acl = acl;
+            _resultValue.bucketName = bucketName;
+            _resultValue.compressionCodec = compressionCodec;
+            _resultValue.domain = domain;
+            _resultValue.fileMaxBytes = fileMaxBytes;
+            _resultValue.gzipLevel = gzipLevel;
+            _resultValue.messageType = messageType;
+            _resultValue.name = name;
+            _resultValue.path = path;
+            _resultValue.period = period;
+            _resultValue.publicKey = publicKey;
+            _resultValue.redundancy = redundancy;
+            _resultValue.s3AccessKey = s3AccessKey;
+            _resultValue.s3IamRole = s3IamRole;
+            _resultValue.s3SecretKey = s3SecretKey;
+            _resultValue.serverSideEncryption = serverSideEncryption;
+            _resultValue.serverSideEncryptionKmsKeyId = serverSideEncryptionKmsKeyId;
+            _resultValue.timestampFormat = timestampFormat;
+            return _resultValue;
         }
     }
 }

@@ -5805,7 +5805,7 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 type ServiceComputeProductEnablement struct {
 	// Enable Fanout support
 	Fanout *bool `pulumi:"fanout"`
-	// Used internally by the provider to identify modified settings
+	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
 	// Enable WebSockets support
 	Websockets *bool `pulumi:"websockets"`
@@ -5825,7 +5825,7 @@ type ServiceComputeProductEnablementInput interface {
 type ServiceComputeProductEnablementArgs struct {
 	// Enable Fanout support
 	Fanout pulumi.BoolPtrInput `pulumi:"fanout"`
-	// Used internally by the provider to identify modified settings
+	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Enable WebSockets support
 	Websockets pulumi.BoolPtrInput `pulumi:"websockets"`
@@ -5931,7 +5931,7 @@ func (o ServiceComputeProductEnablementOutput) Fanout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.Fanout }).(pulumi.BoolPtrOutput)
 }
 
-// Used internally by the provider to identify modified settings
+// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceComputeProductEnablementOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -5981,7 +5981,7 @@ func (o ServiceComputeProductEnablementPtrOutput) Fanout() pulumi.BoolPtrOutput 
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Used internally by the provider to identify modified settings
+// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceComputeProductEnablementPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputeProductEnablement) *string {
 		if v == nil {
@@ -13888,7 +13888,7 @@ type ServiceVclProductEnablement struct {
 	DomainInspector *bool `pulumi:"domainInspector"`
 	// Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
 	ImageOptimizer *bool `pulumi:"imageOptimizer"`
-	// Used internally by the provider to identify modified settings
+	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
 	// Enable Origin Inspector support
 	OriginInspector *bool `pulumi:"originInspector"`
@@ -13914,7 +13914,7 @@ type ServiceVclProductEnablementArgs struct {
 	DomainInspector pulumi.BoolPtrInput `pulumi:"domainInspector"`
 	// Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
 	ImageOptimizer pulumi.BoolPtrInput `pulumi:"imageOptimizer"`
-	// Used internally by the provider to identify modified settings
+	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Enable Origin Inspector support
 	OriginInspector pulumi.BoolPtrInput `pulumi:"originInspector"`
@@ -14032,7 +14032,7 @@ func (o ServiceVclProductEnablementOutput) ImageOptimizer() pulumi.BoolPtrOutput
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.ImageOptimizer }).(pulumi.BoolPtrOutput)
 }
 
-// Used internally by the provider to identify modified settings
+// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceVclProductEnablementOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -14107,7 +14107,7 @@ func (o ServiceVclProductEnablementPtrOutput) ImageOptimizer() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Used internally by the provider to identify modified settings
+// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceVclProductEnablementPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablement) *string {
 		if v == nil {

@@ -86,11 +86,11 @@ public final class ServiceComputeLoggingScalyr {
             return this;
         }
         public ServiceComputeLoggingScalyr build() {
-            final var o = new ServiceComputeLoggingScalyr();
-            o.name = name;
-            o.region = region;
-            o.token = token;
-            return o;
+            final var _resultValue = new ServiceComputeLoggingScalyr();
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.token = token;
+            return _resultValue;
         }
     }
 }

@@ -67,10 +67,10 @@ public final class ServiceComputeDomain {
             return this;
         }
         public ServiceComputeDomain build() {
-            final var o = new ServiceComputeDomain();
-            o.comment = comment;
-            o.name = name;
-            return o;
+            final var _resultValue = new ServiceComputeDomain();
+            _resultValue.comment = comment;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

@@ -210,17 +210,17 @@ public final class GetTlsConfigurationResult {
             return this;
         }
         public GetTlsConfigurationResult build() {
-            final var o = new GetTlsConfigurationResult();
-            o.createdAt = createdAt;
-            o.default_ = default_;
-            o.dnsRecords = dnsRecords;
-            o.httpProtocols = httpProtocols;
-            o.id = id;
-            o.name = name;
-            o.tlsProtocols = tlsProtocols;
-            o.tlsService = tlsService;
-            o.updatedAt = updatedAt;
-            return o;
+            final var _resultValue = new GetTlsConfigurationResult();
+            _resultValue.createdAt = createdAt;
+            _resultValue.default_ = default_;
+            _resultValue.dnsRecords = dnsRecords;
+            _resultValue.httpProtocols = httpProtocols;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.tlsProtocols = tlsProtocols;
+            _resultValue.tlsService = tlsService;
+            _resultValue.updatedAt = updatedAt;
+            return _resultValue;
         }
     }
 }

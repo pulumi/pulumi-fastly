@@ -132,13 +132,13 @@ public final class GetTlsDomainResult {
             return tlsSubscriptionIds(List.of(tlsSubscriptionIds));
         }
         public GetTlsDomainResult build() {
-            final var o = new GetTlsDomainResult();
-            o.domain = domain;
-            o.id = id;
-            o.tlsActivationIds = tlsActivationIds;
-            o.tlsCertificateIds = tlsCertificateIds;
-            o.tlsSubscriptionIds = tlsSubscriptionIds;
-            return o;
+            final var _resultValue = new GetTlsDomainResult();
+            _resultValue.domain = domain;
+            _resultValue.id = id;
+            _resultValue.tlsActivationIds = tlsActivationIds;
+            _resultValue.tlsCertificateIds = tlsCertificateIds;
+            _resultValue.tlsSubscriptionIds = tlsSubscriptionIds;
+            return _resultValue;
         }
     }
 }
