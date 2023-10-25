@@ -13,6 +13,18 @@ import * as utilities from "./utilities";
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
  *  is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = fastly.getTlsPrivateKey({
+ *     name: "demo-private-key",
+ * });
+ * export const privateKeyNeedsReplacing = demo.then(demo => demo.replace);
+ * ```
  */
 export function getTlsPrivateKey(args?: GetTlsPrivateKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsPrivateKeyResult> {
     args = args || {};
@@ -100,6 +112,18 @@ export interface GetTlsPrivateKeyResult {
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
  *  is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = fastly.getTlsPrivateKey({
+ *     name: "demo-private-key",
+ * });
+ * export const privateKeyNeedsReplacing = demo.then(demo => demo.replace);
+ * ```
  */
 export function getTlsPrivateKeyOutput(args?: GetTlsPrivateKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyResult> {
     return pulumi.output(args).apply((a: any) => getTlsPrivateKey(a, opts))

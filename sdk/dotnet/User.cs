@@ -14,6 +14,26 @@ namespace Pulumi.Fastly
     /// 
     /// The User resource requires a login and name, and optionally a role.
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var demo = new Fastly.User("demo", new()
+    ///     {
+    ///         Login = "demo@example.com",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A Fastly User can be imported using their user ID, e.g.

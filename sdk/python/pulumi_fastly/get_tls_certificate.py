@@ -167,6 +167,15 @@ def get_tls_certificate(domains: Optional[Sequence[str]] = None,
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example = fastly.get_tls_certificate(name="example.com")
+    ```
+
 
     :param Sequence[str] domains: Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
     :param str id: Unique ID assigned to certificate by Fastly
@@ -211,6 +220,15 @@ def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[
     with any of the others.
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example = fastly.get_tls_certificate(name="example.com")
+    ```
 
 
     :param Sequence[str] domains: Domains that are listed in any certificates' Subject Alternative Names (SAN) list.

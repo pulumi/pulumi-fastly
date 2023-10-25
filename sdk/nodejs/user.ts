@@ -9,6 +9,17 @@ import * as utilities from "./utilities";
  *
  * The User resource requires a login and name, and optionally a role.
  *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.User("demo", {login: "demo@example.com"});
+ * ```
+ *
  * ## Import
  *
  * A Fastly User can be imported using their user ID, e.g.

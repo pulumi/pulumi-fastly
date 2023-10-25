@@ -13,6 +13,47 @@ import (
 )
 
 // Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fastly, err := fastly.GetFastlyIpRanges(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec2.NewSecurityGroup(ctx, "fromFastly", &ec2.SecurityGroupArgs{
+//				Ingress: ec2.SecurityGroupIngressArray{
+//					&ec2.SecurityGroupIngressArgs{
+//						FromPort:       pulumi.Int(443),
+//						ToPort:         pulumi.Int(443),
+//						Protocol:       pulumi.String("tcp"),
+//						CidrBlocks:     interface{}(fastly.CidrBlocks),
+//						Ipv6CidrBlocks: interface{}(fastly.Ipv6CidrBlocks),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
 func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFastlyIpRangesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFastlyIpRangesResult

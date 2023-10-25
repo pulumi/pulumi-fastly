@@ -168,6 +168,17 @@ class User(pulumi.CustomResource):
 
         The User resource requires a login and name, and optionally a role.
 
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.User("demo", login="demo@example.com")
+        ```
+
         ## Import
 
         A Fastly User can be imported using their user ID, e.g.
@@ -192,6 +203,17 @@ class User(pulumi.CustomResource):
         Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.
 
         The User resource requires a login and name, and optionally a role.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.User("demo", login="demo@example.com")
+        ```
 
         ## Import
 

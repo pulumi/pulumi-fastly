@@ -13,6 +13,36 @@ import (
 )
 
 // Use this data source to get the IDs of available TLS certificates for use with other resources.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleTlsCertificateIds, err := fastly.GetTlsCertificateIds(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
+//				CertificateId: *pulumi.String(exampleTlsCertificateIds.Ids[0]),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetTlsCertificateIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsCertificateIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsCertificateIdsResult

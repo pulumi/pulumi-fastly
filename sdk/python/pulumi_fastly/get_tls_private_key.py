@@ -133,6 +133,16 @@ def get_tls_private_key(created_at: Optional[str] = None,
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
      is specific enough to return a single key.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    demo = fastly.get_tls_private_key(name="demo-private-key")
+    pulumi.export("privateKeyNeedsReplacing", demo.replace)
+    ```
+
 
     :param str created_at: Timestamp (GMT) when the private key was created.
     :param str id: Fastly private key ID. Conflicts with all the other filters
@@ -178,6 +188,16 @@ def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]]
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
      is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    demo = fastly.get_tls_private_key(name="demo-private-key")
+    pulumi.export("privateKeyNeedsReplacing", demo.replace)
+    ```
 
 
     :param str created_at: Timestamp (GMT) when the private key was created.

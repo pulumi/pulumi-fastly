@@ -13,6 +13,36 @@ import (
 )
 
 // Use this data source to get the list of TLS private key identifiers in Fastly.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.GetTlsPrivateKeyIds(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.LookupTlsPrivateKey(ctx, &fastly.LookupTlsPrivateKeyArgs{
+//				Id: pulumi.StringRef(fastly_tls_private_key_ids.Demo.Ids[0]),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetTlsPrivateKeyIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsPrivateKeyIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsPrivateKeyIdsResult

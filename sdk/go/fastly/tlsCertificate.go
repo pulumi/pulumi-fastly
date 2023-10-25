@@ -18,6 +18,69 @@ import (
 // > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
 // can be achieved in Pulumi using `dependsOn`
 //
+// ## Example Usage
+//
+// Basic usage:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			keyPrivateKey, err := tls.NewPrivateKey(ctx, "keyPrivateKey", &tls.PrivateKeyArgs{
+//				Algorithm: pulumi.String("RSA"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cert, err := tls.NewSelfSignedCert(ctx, "cert", &tls.SelfSignedCertArgs{
+//				KeyAlgorithm:  keyPrivateKey.Algorithm,
+//				PrivateKeyPem: keyPrivateKey.PrivateKeyPem,
+//				Subjects: tls.SelfSignedCertSubjectArray{
+//					&tls.SelfSignedCertSubjectArgs{
+//						CommonName: pulumi.String("example.com"),
+//					},
+//				},
+//				IsCaCertificate:     pulumi.Bool(true),
+//				ValidityPeriodHours: pulumi.Int(360),
+//				AllowedUses: pulumi.StringArray{
+//					pulumi.String("cert_signing"),
+//					pulumi.String("server_auth"),
+//				},
+//				DnsNames: pulumi.StringArray{
+//					pulumi.String("example.com"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			keyTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "keyTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
+//				KeyPem: keyPrivateKey.PrivateKeyPem,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewTlsCertificate(ctx, "example", &fastly.TlsCertificateArgs{
+//				CertificateBody: cert.CertPem,
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				keyTlsPrivateKey,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Updating certificates
 //
 // There are three scenarios for updating a certificate:

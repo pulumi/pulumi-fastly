@@ -13,12 +13,86 @@ namespace Pulumi.Fastly
     {
         /// <summary>
         /// Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Aws = Pulumi.Aws;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
+        /// 
+        ///     var fromFastly = new Aws.Ec2.SecurityGroup("fromFastly", new()
+        ///     {
+        ///         Ingress = new[]
+        ///         {
+        ///             new Aws.Ec2.Inputs.SecurityGroupIngressArgs
+        ///             {
+        ///                 FromPort = 443,
+        ///                 ToPort = 443,
+        ///                 Protocol = "tcp",
+        ///                 CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks),
+        ///                 Ipv6CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks),
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFastlyIpRangesResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFastlyIpRangesResult>("fastly:index/getFastlyIpRanges:getFastlyIpRanges", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Aws = Pulumi.Aws;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
+        /// 
+        ///     var fromFastly = new Aws.Ec2.SecurityGroup("fromFastly", new()
+        ///     {
+        ///         Ingress = new[]
+        ///         {
+        ///             new Aws.Ec2.Inputs.SecurityGroupIngressArgs
+        ///             {
+        ///                 FromPort = 443,
+        ///                 ToPort = 443,
+        ///                 Protocol = "tcp",
+        ///                 CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks),
+        ///                 Ipv6CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks),
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFastlyIpRangesResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFastlyIpRangesResult>("fastly:index/getFastlyIpRanges:getFastlyIpRanges", InvokeArgs.Empty, options.WithDefaults());

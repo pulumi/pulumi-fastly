@@ -14,6 +14,56 @@ namespace Pulumi.Fastly
     /// 
     /// In order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute@Edge](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+    ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+    ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
+    ///     var exampleConfigstore = new Fastly.Configstore("exampleConfigstore");
+    /// 
+    ///     var examplePackageHash = Fastly.GetPackageHash.Invoke(new()
+    ///     {
+    ///         Filename = "package.tar.gz",
+    ///     });
+    /// 
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("exampleServiceCompute", new()
+    ///     {
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeDomainArgs
+    ///             {
+    ///                 Name = "demo.example.com",
+    ///             },
+    ///         },
+    ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
+    ///         {
+    ///             Filename = "package.tar.gz",
+    ///             SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///         },
+    ///         ResourceLinks = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeResourceLinkArgs
+    ///             {
+    ///                 Name = "my_resource_link",
+    ///                 ResourceId = exampleConfigstore.Id,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Fastly Config Stores can be imported using their Store ID, e.g.

@@ -9,6 +9,19 @@ import * as utilities from "./utilities";
  *
  * The Private Key resource requires a key in PEM format, and a name to identify it.
  *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ * import * as tls from "@pulumi/tls";
+ *
+ * const demoPrivateKey = new tls.PrivateKey("demoPrivateKey", {algorithm: "RSA"});
+ * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demoTlsPrivateKey", {keyPem: demoPrivateKey.privateKeyPem});
+ * ```
+ *
  * ## Import
  *
  * A Private Key can be imported using its ID, e.g.

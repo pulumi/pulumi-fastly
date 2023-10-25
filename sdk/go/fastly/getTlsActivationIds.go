@@ -13,6 +13,34 @@ import (
 )
 
 // Use this data source to get the list of TLS Activation identifiers in Fastly.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleTlsActivationIds, err := fastly.GetTlsActivationIds(ctx, &fastly.GetTlsActivationIdsArgs{
+//				CertificateId: pulumi.StringRef(fastly_tls_certificate.Example.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleTlsActivation := "TODO: For expression"
+//			ctx.Export("activationDomains", "TODO: For expression")
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetTlsActivationIds(ctx *pulumi.Context, args *GetTlsActivationIdsArgs, opts ...pulumi.InvokeOption) (*GetTlsActivationIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsActivationIdsResult

@@ -6,6 +6,21 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get the list of TLS Activation identifiers in Fastly.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleTlsActivationIds = fastly.getTlsActivationIds({
+ *     certificateId: fastly_tls_certificate.example.id,
+ * });
+ * const exampleTlsActivation = exampleTlsActivationIds.then(exampleTlsActivationIds => .map(([, ]) => (fastly.getTlsActivation({
+ *     id: __value,
+ * }))));
+ * export const activationDomains = exampleTlsActivation.map(a => (a.domain));
+ * ```
  */
 export function getTlsActivationIds(args?: GetTlsActivationIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationIdsResult> {
     args = args || {};
@@ -45,6 +60,21 @@ export interface GetTlsActivationIdsResult {
 }
 /**
  * Use this data source to get the list of TLS Activation identifiers in Fastly.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleTlsActivationIds = fastly.getTlsActivationIds({
+ *     certificateId: fastly_tls_certificate.example.id,
+ * });
+ * const exampleTlsActivation = exampleTlsActivationIds.then(exampleTlsActivationIds => .map(([, ]) => (fastly.getTlsActivation({
+ *     id: __value,
+ * }))));
+ * export const activationDomains = exampleTlsActivation.map(a => (a.domain));
+ * ```
  */
 export function getTlsActivationIdsOutput(args?: GetTlsActivationIdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationIdsResult> {
     return pulumi.output(args).apply((a: any) => getTlsActivationIds(a, opts))

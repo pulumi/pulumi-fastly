@@ -12,6 +12,17 @@ import * as utilities from "./utilities";
  * with any of the others.
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = fastly.getTlsPlatformCertificate({
+ *     domains: ["example.com"],
+ * });
+ * ```
  */
 export function getTlsPlatformCertificate(args?: GetTlsPlatformCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsPlatformCertificateResult> {
     args = args || {};
@@ -82,6 +93,17 @@ export interface GetTlsPlatformCertificateResult {
  * with any of the others.
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = fastly.getTlsPlatformCertificate({
+ *     domains: ["example.com"],
+ * });
+ * ```
  */
 export function getTlsPlatformCertificateOutput(args?: GetTlsPlatformCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPlatformCertificateResult> {
     return pulumi.output(args).apply((a: any) => getTlsPlatformCertificate(a, opts))

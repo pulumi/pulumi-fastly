@@ -12,6 +12,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// ## Example Usage
+//
+// Basic usage:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleSecretstore, err := fastly.NewSecretstore(ctx, "exampleSecretstore", nil)
+//			if err != nil {
+//				return err
+//			}
+//			examplePackageHash, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//				Filename: pulumi.StringRef("package.tar.gz"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceCompute(ctx, "exampleServiceCompute", &fastly.ServiceComputeArgs{
+//				Domains: fastly.ServiceComputeDomainArray{
+//					&fastly.ServiceComputeDomainArgs{
+//						Name: pulumi.String("demo.example.com"),
+//					},
+//				},
+//				Package: &fastly.ServiceComputePackageArgs{
+//					Filename:       pulumi.String("package.tar.gz"),
+//					SourceCodeHash: *pulumi.String(examplePackageHash.Hash),
+//				},
+//				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
+//					&fastly.ServiceComputeResourceLinkArgs{
+//						Name:       pulumi.String("my_resource_link"),
+//						ResourceId: exampleSecretstore.ID(),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Fastly Secret Stores can be imported using their Store ID, e.g.

@@ -178,6 +178,24 @@ class ServiceAuthorization(pulumi.CustomResource):
 
         The Service Authorization resource requires a user id, service id and an optional permission.
 
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo")
+        #...
+        user = fastly.User("user")
+        # ...
+        auth = fastly.ServiceAuthorization("auth",
+            service_id=demo.id,
+            user_id=user.id,
+            permission="purge_all")
+        ```
+
         ## Import
 
         A Fastly Service Authorization can be imported using their user ID, e.g.
@@ -202,6 +220,24 @@ class ServiceAuthorization(pulumi.CustomResource):
         Configures authorization with granular permissions to services. Users can be granted rights for services on different levels.
 
         The Service Authorization resource requires a user id, service id and an optional permission.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo")
+        #...
+        user = fastly.User("user")
+        # ...
+        auth = fastly.ServiceAuthorization("auth",
+            service_id=demo.id,
+            user_id=user.id,
+            permission="purge_all")
+        ```
 
         ## Import
 

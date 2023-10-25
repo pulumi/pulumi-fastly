@@ -12,6 +12,17 @@ import * as utilities from "./utilities";
  * with any of the others.
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = fastly.getTlsActivation({
+ *     domain: "example.com",
+ * });
+ * ```
  */
 export function getTlsActivation(args?: GetTlsActivationArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationResult> {
     args = args || {};
@@ -80,6 +91,17 @@ export interface GetTlsActivationResult {
  * with any of the others.
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = fastly.getTlsActivation({
+ *     domain: "example.com",
+ * });
+ * ```
  */
 export function getTlsActivationOutput(args?: GetTlsActivationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationResult> {
     return pulumi.output(args).apply((a: any) => getTlsActivation(a, opts))
