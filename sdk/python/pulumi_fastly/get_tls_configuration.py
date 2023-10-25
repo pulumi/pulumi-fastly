@@ -157,6 +157,17 @@ def get_tls_configuration(default: Optional[bool] = None,
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_tls_configuration = fastly.get_tls_configuration(default=True)
+    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration.id)
+    # ...
+    ```
+
 
     :param bool default: Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
     :param Sequence[str] http_protocols: HTTP protocols available on the TLS configuration.
@@ -203,6 +214,17 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
     with any of the others.
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_tls_configuration = fastly.get_tls_configuration(default=True)
+    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration.id)
+    # ...
+    ```
 
 
     :param bool default: Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.

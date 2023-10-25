@@ -9,6 +9,25 @@ import * as utilities from "./utilities";
  *
  * The Service Authorization resource requires a user id, service id and an optional permission.
  *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.ServiceVcl("demo", {});
+ * //...
+ * const user = new fastly.User("user", {});
+ * // ...
+ * const auth = new fastly.ServiceAuthorization("auth", {
+ *     serviceId: demo.id,
+ *     userId: user.id,
+ *     permission: "purge_all",
+ * });
+ * ```
+ *
  * ## Import
  *
  * A Fastly Service Authorization can be imported using their user ID, e.g.

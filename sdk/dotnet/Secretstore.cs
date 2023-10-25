@@ -10,6 +10,56 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // IMPORTANT: Deleting a Secret Store requires first deleting its resource_link.
+    ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+    ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
+    ///     var exampleSecretstore = new Fastly.Secretstore("exampleSecretstore");
+    /// 
+    ///     var examplePackageHash = Fastly.GetPackageHash.Invoke(new()
+    ///     {
+    ///         Filename = "package.tar.gz",
+    ///     });
+    /// 
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("exampleServiceCompute", new()
+    ///     {
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeDomainArgs
+    ///             {
+    ///                 Name = "demo.example.com",
+    ///             },
+    ///         },
+    ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
+    ///         {
+    ///             Filename = "package.tar.gz",
+    ///             SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///         },
+    ///         ResourceLinks = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeResourceLinkArgs
+    ///             {
+    ///                 Name = "my_resource_link",
+    ///                 ResourceId = exampleSecretstore.Id,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Fastly Secret Stores can be imported using their Store ID, e.g.

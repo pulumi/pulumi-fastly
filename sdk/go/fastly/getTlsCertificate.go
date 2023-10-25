@@ -19,6 +19,32 @@ import (
 // with any of the others.
 //
 // > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.LookupTlsCertificate(ctx, &fastly.LookupTlsCertificateArgs{
+//				Name: pulumi.StringRef("example.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupTlsCertificate(ctx *pulumi.Context, args *LookupTlsCertificateArgs, opts ...pulumi.InvokeOption) (*LookupTlsCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsCertificateResult

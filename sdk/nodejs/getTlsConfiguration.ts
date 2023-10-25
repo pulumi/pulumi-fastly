@@ -14,6 +14,19 @@ import * as utilities from "./utilities";
  * with any of the others.
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleTlsConfiguration = fastly.getTlsConfiguration({
+ *     "default": true,
+ * });
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfiguration.then(exampleTlsConfiguration => exampleTlsConfiguration.id)});
+ * // ...
+ * ```
  */
 export function getTlsConfiguration(args?: GetTlsConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsConfigurationResult> {
     args = args || {};
@@ -108,6 +121,19 @@ export interface GetTlsConfigurationResult {
  * with any of the others.
  *
  * > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleTlsConfiguration = fastly.getTlsConfiguration({
+ *     "default": true,
+ * });
+ * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfiguration.then(exampleTlsConfiguration => exampleTlsConfiguration.id)});
+ * // ...
+ * ```
  */
 export function getTlsConfigurationOutput(args?: GetTlsConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationResult> {
     return pulumi.output(args).apply((a: any) => getTlsConfiguration(a, opts))

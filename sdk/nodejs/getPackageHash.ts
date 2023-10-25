@@ -6,6 +6,22 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const examplePackageHash = fastly.getPackageHash({
+ *     filename: "./path/to/package.tar.gz",
+ * });
+ * // ...
+ * const exampleServiceCompute = new fastly.ServiceCompute("exampleServiceCompute", {"package": {
+ *     filename: "./path/to/package.tar.gz",
+ *     sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
+ * }});
+ * ```
  */
 export function getPackageHash(args?: GetPackageHashArgs, opts?: pulumi.InvokeOptions): Promise<GetPackageHashResult> {
     args = args || {};
@@ -54,6 +70,22 @@ export interface GetPackageHashResult {
 }
 /**
  * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const examplePackageHash = fastly.getPackageHash({
+ *     filename: "./path/to/package.tar.gz",
+ * });
+ * // ...
+ * const exampleServiceCompute = new fastly.ServiceCompute("exampleServiceCompute", {"package": {
+ *     filename: "./path/to/package.tar.gz",
+ *     sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
+ * }});
+ * ```
  */
 export function getPackageHashOutput(args?: GetPackageHashOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPackageHashResult> {
     return pulumi.output(args).apply((a: any) => getPackageHash(a, opts))

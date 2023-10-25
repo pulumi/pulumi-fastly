@@ -13,6 +13,36 @@ import (
 )
 
 // Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleTlsPlatformCertificateIds, err := fastly.GetTlsPlatformCertificateIds(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.LookupTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
+//				Id: pulumi.StringRef(exampleTlsPlatformCertificateIds.Ids[0]),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetTlsPlatformCertificateIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsPlatformCertificateIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsPlatformCertificateIdsResult

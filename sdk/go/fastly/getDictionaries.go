@@ -13,6 +13,55 @@ import (
 )
 
 // Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleServiceVcl, err := fastly.NewServiceVcl(ctx, "exampleServiceVcl", &fastly.ServiceVclArgs{
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name: pulumi.String("example.com"),
+//					},
+//				},
+//				Dictionaries: fastly.ServiceVclDictionaryArray{
+//					&fastly.ServiceVclDictionaryArgs{
+//						Name: pulumi.String("example_1"),
+//					},
+//					&fastly.ServiceVclDictionaryArgs{
+//						Name: pulumi.String("example_2"),
+//					},
+//					&fastly.ServiceVclDictionaryArgs{
+//						Name: pulumi.String("example_3"),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleDictionaries := fastly.GetDictionariesOutput(ctx, fastly.GetDictionariesOutputArgs{
+//				ServiceId:      exampleServiceVcl.ID(),
+//				ServiceVersion: exampleServiceVcl.ActiveVersion,
+//			}, nil)
+//			ctx.Export("serviceDictionaries", exampleDictionaries)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// [1]: https://developer.fastly.com/reference/api/dictionaries/
 func GetDictionaries(ctx *pulumi.Context, args *GetDictionariesArgs, opts ...pulumi.InvokeOption) (*GetDictionariesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDictionariesResult

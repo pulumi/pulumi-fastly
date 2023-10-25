@@ -87,6 +87,35 @@ def get_dictionaries(service_id: Optional[str] = None,
     """
     Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_service_vcl = fastly.ServiceVcl("exampleServiceVcl",
+        domains=[fastly.ServiceVclDomainArgs(
+            name="example.com",
+        )],
+        dictionaries=[
+            fastly.ServiceVclDictionaryArgs(
+                name="example_1",
+            ),
+            fastly.ServiceVclDictionaryArgs(
+                name="example_2",
+            ),
+            fastly.ServiceVclDictionaryArgs(
+                name="example_3",
+            ),
+        ],
+        force_destroy=True)
+    example_dictionaries = fastly.get_dictionaries_output(service_id=example_service_vcl.id,
+        service_version=example_service_vcl.active_version)
+    pulumi.export("serviceDictionaries", example_dictionaries)
+    ```
+
+    [1]: https://developer.fastly.com/reference/api/dictionaries/
+
 
     :param str service_id: Alphanumeric string identifying the service.
     :param int service_version: Integer identifying a service version.
@@ -110,6 +139,35 @@ def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDictionariesResult]:
     """
     Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_service_vcl = fastly.ServiceVcl("exampleServiceVcl",
+        domains=[fastly.ServiceVclDomainArgs(
+            name="example.com",
+        )],
+        dictionaries=[
+            fastly.ServiceVclDictionaryArgs(
+                name="example_1",
+            ),
+            fastly.ServiceVclDictionaryArgs(
+                name="example_2",
+            ),
+            fastly.ServiceVclDictionaryArgs(
+                name="example_3",
+            ),
+        ],
+        force_destroy=True)
+    example_dictionaries = fastly.get_dictionaries_output(service_id=example_service_vcl.id,
+        service_version=example_service_vcl.active_version)
+    pulumi.export("serviceDictionaries", example_dictionaries)
+    ```
+
+    [1]: https://developer.fastly.com/reference/api/dictionaries/
 
 
     :param str service_id: Alphanumeric string identifying the service.

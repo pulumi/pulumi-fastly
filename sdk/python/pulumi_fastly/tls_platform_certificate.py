@@ -340,6 +340,59 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
         can be achieved in Pulumi using `depends_on`
 
+        ## Example Usage
+
+        Basic usage with self-signed CA:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_tls as tls
+
+        ca_key = tls.PrivateKey("caKey", algorithm="RSA")
+        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
+        ca = tls.SelfSignedCert("ca",
+            key_algorithm=ca_key.algorithm,
+            private_key_pem=ca_key.private_key_pem,
+            subjects=[tls.SelfSignedCertSubjectArgs(
+                common_name="Example CA",
+            )],
+            is_ca_certificate=True,
+            validity_period_hours=360,
+            allowed_uses=[
+                "cert_signing",
+                "server_auth",
+            ])
+        example = tls.CertRequest("example",
+            key_algorithm=key_private_key.algorithm,
+            private_key_pem=key_private_key.private_key_pem,
+            subjects=[tls.CertRequestSubjectArgs(
+                common_name="example.com",
+            )],
+            dns_names=[
+                "example.com",
+                "www.example.com",
+            ])
+        cert_locally_signed_cert = tls.LocallySignedCert("certLocallySignedCert",
+            cert_request_pem=example.cert_request_pem,
+            ca_key_algorithm=ca_key.algorithm,
+            ca_private_key_pem=ca_key.private_key_pem,
+            ca_cert_pem=ca.cert_pem,
+            validity_period_hours=360,
+            allowed_uses=[
+                "cert_signing",
+                "server_auth",
+            ])
+        config = fastly.get_tls_configuration(tls_service="PLATFORM")
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
+        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
+            certificate_body=cert_locally_signed_cert.cert_pem,
+            intermediates_blob=ca.cert_pem,
+            configuration_id=config.id,
+            allow_untrusted_root=True,
+            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+        ```
+
         ## Import
 
         A certificate can be imported using its Fastly certificate ID, e.g.
@@ -366,6 +419,59 @@ class TlsPlatformCertificate(pulumi.CustomResource):
 
         > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
         can be achieved in Pulumi using `depends_on`
+
+        ## Example Usage
+
+        Basic usage with self-signed CA:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_tls as tls
+
+        ca_key = tls.PrivateKey("caKey", algorithm="RSA")
+        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
+        ca = tls.SelfSignedCert("ca",
+            key_algorithm=ca_key.algorithm,
+            private_key_pem=ca_key.private_key_pem,
+            subjects=[tls.SelfSignedCertSubjectArgs(
+                common_name="Example CA",
+            )],
+            is_ca_certificate=True,
+            validity_period_hours=360,
+            allowed_uses=[
+                "cert_signing",
+                "server_auth",
+            ])
+        example = tls.CertRequest("example",
+            key_algorithm=key_private_key.algorithm,
+            private_key_pem=key_private_key.private_key_pem,
+            subjects=[tls.CertRequestSubjectArgs(
+                common_name="example.com",
+            )],
+            dns_names=[
+                "example.com",
+                "www.example.com",
+            ])
+        cert_locally_signed_cert = tls.LocallySignedCert("certLocallySignedCert",
+            cert_request_pem=example.cert_request_pem,
+            ca_key_algorithm=ca_key.algorithm,
+            ca_private_key_pem=ca_key.private_key_pem,
+            ca_cert_pem=ca.cert_pem,
+            validity_period_hours=360,
+            allowed_uses=[
+                "cert_signing",
+                "server_auth",
+            ])
+        config = fastly.get_tls_configuration(tls_service="PLATFORM")
+        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
+        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
+            certificate_body=cert_locally_signed_cert.cert_pem,
+            intermediates_blob=ca.cert_pem,
+            configuration_id=config.id,
+            allow_untrusted_root=True,
+            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+        ```
 
         ## Import
 

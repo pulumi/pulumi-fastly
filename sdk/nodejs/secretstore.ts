@@ -5,6 +5,37 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * // IMPORTANT: Deleting a Secret Store requires first deleting its resource_link.
+ * // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ * // e.g. resource_link deletion within fastly_service_compute might not finish first.
+ * const exampleSecretstore = new fastly.Secretstore("exampleSecretstore", {});
+ * const examplePackageHash = fastly.getPackageHash({
+ *     filename: "package.tar.gz",
+ * });
+ * const exampleServiceCompute = new fastly.ServiceCompute("exampleServiceCompute", {
+ *     domains: [{
+ *         name: "demo.example.com",
+ *     }],
+ *     "package": {
+ *         filename: "package.tar.gz",
+ *         sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
+ *     },
+ *     resourceLinks: [{
+ *         name: "my_resource_link",
+ *         resourceId: exampleSecretstore.id,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Fastly Secret Stores can be imported using their Store ID, e.g.

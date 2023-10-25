@@ -13,6 +13,34 @@ import (
 )
 
 // Use this data source to get information about a TLS subscription.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.LookupTlsSubscription(ctx, &fastly.LookupTlsSubscriptionArgs{
+//				Domains: []string{
+//					"example.com",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupTlsSubscription(ctx *pulumi.Context, args *LookupTlsSubscriptionArgs, opts ...pulumi.InvokeOption) (*LookupTlsSubscriptionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsSubscriptionResult

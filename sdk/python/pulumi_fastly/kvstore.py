@@ -130,6 +130,34 @@ class Kvstore(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a KV Store requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        # e.g. resource_link deletion within fastly_service_compute might not finish first.
+        example_kvstore = fastly.Kvstore("exampleKvstore")
+        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
+            domains=[fastly.ServiceComputeDomainArgs(
+                name="demo.example.com",
+            )],
+            package=fastly.ServiceComputePackageArgs(
+                filename="package.tar.gz",
+                source_code_hash=example_package_hash.hash,
+            ),
+            resource_links=[fastly.ServiceComputeResourceLinkArgs(
+                name="my_resource_link",
+                resource_id=example_kvstore.id,
+            )],
+            force_destroy=True)
+        ```
+
         ## Import
 
         Fastly KV Stores can be imported using their Store ID, e.g.
@@ -150,6 +178,34 @@ class Kvstore(pulumi.CustomResource):
                  args: Optional[KvstoreArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a KV Store requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        # e.g. resource_link deletion within fastly_service_compute might not finish first.
+        example_kvstore = fastly.Kvstore("exampleKvstore")
+        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
+            domains=[fastly.ServiceComputeDomainArgs(
+                name="demo.example.com",
+            )],
+            package=fastly.ServiceComputePackageArgs(
+                filename="package.tar.gz",
+                source_code_hash=example_package_hash.hash,
+            ),
+            resource_links=[fastly.ServiceComputeResourceLinkArgs(
+                name="my_resource_link",
+                resource_id=example_kvstore.id,
+            )],
+            force_destroy=True)
+        ```
+
         ## Import
 
         Fastly KV Stores can be imported using their Store ID, e.g.

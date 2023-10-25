@@ -86,6 +86,20 @@ def get_package_hash(content: Optional[str] = None,
     """
     Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_package_hash = fastly.get_package_hash(filename="./path/to/package.tar.gz")
+    # ...
+    example_service_compute = fastly.ServiceCompute("exampleServiceCompute", package=fastly.ServiceComputePackageArgs(
+        filename="./path/to/package.tar.gz",
+        source_code_hash=example_package_hash.hash,
+    ))
+    ```
+
 
     :param str content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
     :param str filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
@@ -109,6 +123,20 @@ def get_package_hash_output(content: Optional[pulumi.Input[Optional[str]]] = Non
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPackageHashResult]:
     """
     Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_package_hash = fastly.get_package_hash(filename="./path/to/package.tar.gz")
+    # ...
+    example_service_compute = fastly.ServiceCompute("exampleServiceCompute", package=fastly.ServiceComputePackageArgs(
+        filename="./path/to/package.tar.gz",
+        source_code_hash=example_package_hash.hash,
+    ))
+    ```
 
 
     :param str content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified

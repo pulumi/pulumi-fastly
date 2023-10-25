@@ -13,6 +13,36 @@ import (
 )
 
 // Use this data source to get the IDs of available TLS configurations for use with other resources.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleTlsConfigurationIds, err := fastly.GetTlsConfigurationIds(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
+//				ConfigurationId: *pulumi.String(exampleTlsConfigurationIds.Ids[0]),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetTlsConfigurationIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsConfigurationIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsConfigurationIdsResult
