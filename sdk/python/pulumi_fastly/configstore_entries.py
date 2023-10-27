@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ConfigstoreEntriesArgs', 'ConfigstoreEntries']
@@ -24,33 +24,10 @@ class ConfigstoreEntriesArgs:
         :param pulumi.Input[bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
                externally from the config seeded values.
         """
-        ConfigstoreEntriesArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            entries=entries,
-            store_id=store_id,
-            manage_entries=manage_entries,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             store_id: Optional[pulumi.Input[str]] = None,
-             manage_entries: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if entries is None:
-            raise TypeError("Missing 'entries' argument")
-        if store_id is None and 'storeId' in kwargs:
-            store_id = kwargs['storeId']
-        if store_id is None:
-            raise TypeError("Missing 'store_id' argument")
-        if manage_entries is None and 'manageEntries' in kwargs:
-            manage_entries = kwargs['manageEntries']
-
-        _setter("entries", entries)
-        _setter("store_id", store_id)
+        pulumi.set(__self__, "entries", entries)
+        pulumi.set(__self__, "store_id", store_id)
         if manage_entries is not None:
-            _setter("manage_entries", manage_entries)
+            pulumi.set(__self__, "manage_entries", manage_entries)
 
     @property
     @pulumi.getter
@@ -103,31 +80,12 @@ class _ConfigstoreEntriesState:
                externally from the config seeded values.
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
-        _ConfigstoreEntriesState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            entries=entries,
-            manage_entries=manage_entries,
-            store_id=store_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             manage_entries: Optional[pulumi.Input[bool]] = None,
-             store_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if manage_entries is None and 'manageEntries' in kwargs:
-            manage_entries = kwargs['manageEntries']
-        if store_id is None and 'storeId' in kwargs:
-            store_id = kwargs['storeId']
-
         if entries is not None:
-            _setter("entries", entries)
+            pulumi.set(__self__, "entries", entries)
         if manage_entries is not None:
-            _setter("manage_entries", manage_entries)
+            pulumi.set(__self__, "manage_entries", manage_entries)
         if store_id is not None:
-            _setter("store_id", store_id)
+            pulumi.set(__self__, "store_id", store_id)
 
     @property
     @pulumi.getter
@@ -217,10 +175,6 @@ class ConfigstoreEntries(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ConfigstoreEntriesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
