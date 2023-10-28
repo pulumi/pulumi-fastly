@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,51 +33,16 @@ class TlsSubscriptionArgs:
                !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
         :param pulumi.Input[bool] force_update: Always update subscription, even when active domains are present. Defaults to false.
         """
-        TlsSubscriptionArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            certificate_authority=certificate_authority,
-            domains=domains,
-            common_name=common_name,
-            configuration_id=configuration_id,
-            force_destroy=force_destroy,
-            force_update=force_update,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             certificate_authority: Optional[pulumi.Input[str]] = None,
-             domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             common_name: Optional[pulumi.Input[str]] = None,
-             configuration_id: Optional[pulumi.Input[str]] = None,
-             force_destroy: Optional[pulumi.Input[bool]] = None,
-             force_update: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if certificate_authority is None and 'certificateAuthority' in kwargs:
-            certificate_authority = kwargs['certificateAuthority']
-        if certificate_authority is None:
-            raise TypeError("Missing 'certificate_authority' argument")
-        if domains is None:
-            raise TypeError("Missing 'domains' argument")
-        if common_name is None and 'commonName' in kwargs:
-            common_name = kwargs['commonName']
-        if configuration_id is None and 'configurationId' in kwargs:
-            configuration_id = kwargs['configurationId']
-        if force_destroy is None and 'forceDestroy' in kwargs:
-            force_destroy = kwargs['forceDestroy']
-        if force_update is None and 'forceUpdate' in kwargs:
-            force_update = kwargs['forceUpdate']
-
-        _setter("certificate_authority", certificate_authority)
-        _setter("domains", domains)
+        pulumi.set(__self__, "certificate_authority", certificate_authority)
+        pulumi.set(__self__, "domains", domains)
         if common_name is not None:
-            _setter("common_name", common_name)
+            pulumi.set(__self__, "common_name", common_name)
         if configuration_id is not None:
-            _setter("configuration_id", configuration_id)
+            pulumi.set(__self__, "configuration_id", configuration_id)
         if force_destroy is not None:
-            _setter("force_destroy", force_destroy)
+            pulumi.set(__self__, "force_destroy", force_destroy)
         if force_update is not None:
-            _setter("force_update", force_update)
+            pulumi.set(__self__, "force_update", force_update)
 
     @property
     @pulumi.getter(name="certificateAuthority")
@@ -188,92 +153,35 @@ class _TlsSubscriptionState:
         :param pulumi.Input[str] state: The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
         :param pulumi.Input[str] updated_at: Timestamp (GMT) when the subscription was updated.
         """
-        _TlsSubscriptionState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            certificate_authority=certificate_authority,
-            certificate_id=certificate_id,
-            common_name=common_name,
-            configuration_id=configuration_id,
-            created_at=created_at,
-            domains=domains,
-            force_destroy=force_destroy,
-            force_update=force_update,
-            managed_dns_challenge=managed_dns_challenge,
-            managed_dns_challenges=managed_dns_challenges,
-            managed_http_challenges=managed_http_challenges,
-            state=state,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             certificate_authority: Optional[pulumi.Input[str]] = None,
-             certificate_id: Optional[pulumi.Input[str]] = None,
-             common_name: Optional[pulumi.Input[str]] = None,
-             configuration_id: Optional[pulumi.Input[str]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             force_destroy: Optional[pulumi.Input[bool]] = None,
-             force_update: Optional[pulumi.Input[bool]] = None,
-             managed_dns_challenge: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             managed_dns_challenges: Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedDnsChallengeArgs']]]] = None,
-             managed_http_challenges: Optional[pulumi.Input[Sequence[pulumi.Input['TlsSubscriptionManagedHttpChallengeArgs']]]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if certificate_authority is None and 'certificateAuthority' in kwargs:
-            certificate_authority = kwargs['certificateAuthority']
-        if certificate_id is None and 'certificateId' in kwargs:
-            certificate_id = kwargs['certificateId']
-        if common_name is None and 'commonName' in kwargs:
-            common_name = kwargs['commonName']
-        if configuration_id is None and 'configurationId' in kwargs:
-            configuration_id = kwargs['configurationId']
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if force_destroy is None and 'forceDestroy' in kwargs:
-            force_destroy = kwargs['forceDestroy']
-        if force_update is None and 'forceUpdate' in kwargs:
-            force_update = kwargs['forceUpdate']
-        if managed_dns_challenge is None and 'managedDnsChallenge' in kwargs:
-            managed_dns_challenge = kwargs['managedDnsChallenge']
-        if managed_dns_challenges is None and 'managedDnsChallenges' in kwargs:
-            managed_dns_challenges = kwargs['managedDnsChallenges']
-        if managed_http_challenges is None and 'managedHttpChallenges' in kwargs:
-            managed_http_challenges = kwargs['managedHttpChallenges']
-        if updated_at is None and 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if certificate_authority is not None:
-            _setter("certificate_authority", certificate_authority)
+            pulumi.set(__self__, "certificate_authority", certificate_authority)
         if certificate_id is not None:
-            _setter("certificate_id", certificate_id)
+            pulumi.set(__self__, "certificate_id", certificate_id)
         if common_name is not None:
-            _setter("common_name", common_name)
+            pulumi.set(__self__, "common_name", common_name)
         if configuration_id is not None:
-            _setter("configuration_id", configuration_id)
+            pulumi.set(__self__, "configuration_id", configuration_id)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if domains is not None:
-            _setter("domains", domains)
+            pulumi.set(__self__, "domains", domains)
         if force_destroy is not None:
-            _setter("force_destroy", force_destroy)
+            pulumi.set(__self__, "force_destroy", force_destroy)
         if force_update is not None:
-            _setter("force_update", force_update)
+            pulumi.set(__self__, "force_update", force_update)
         if managed_dns_challenge is not None:
             warnings.warn("""Use 'managed_dns_challenges' attribute instead""", DeprecationWarning)
             pulumi.log.warn("""managed_dns_challenge is deprecated: Use 'managed_dns_challenges' attribute instead""")
         if managed_dns_challenge is not None:
-            _setter("managed_dns_challenge", managed_dns_challenge)
+            pulumi.set(__self__, "managed_dns_challenge", managed_dns_challenge)
         if managed_dns_challenges is not None:
-            _setter("managed_dns_challenges", managed_dns_challenges)
+            pulumi.set(__self__, "managed_dns_challenges", managed_dns_challenges)
         if managed_http_challenges is not None:
-            _setter("managed_http_challenges", managed_http_challenges)
+            pulumi.set(__self__, "managed_http_challenges", managed_http_challenges)
         if state is not None:
-            _setter("state", state)
+            pulumi.set(__self__, "state", state)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter(name="certificateAuthority")
@@ -514,10 +422,6 @@ class TlsSubscription(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            TlsSubscriptionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
