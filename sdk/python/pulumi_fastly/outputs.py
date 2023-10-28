@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -118,36 +118,15 @@ class ServiceACLEntriesEntry(dict):
         :param bool negated: A boolean that will negate the match if true
         :param str subnet: An optional subnet mask applied to the IP address
         """
-        ServiceACLEntriesEntry._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            ip=ip,
-            comment=comment,
-            id=id,
-            negated=negated,
-            subnet=subnet,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             ip: Optional[str] = None,
-             comment: Optional[str] = None,
-             id: Optional[str] = None,
-             negated: Optional[bool] = None,
-             subnet: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if ip is None:
-            raise TypeError("Missing 'ip' argument")
-
-        _setter("ip", ip)
+        pulumi.set(__self__, "ip", ip)
         if comment is not None:
-            _setter("comment", comment)
+            pulumi.set(__self__, "comment", comment)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if negated is not None:
-            _setter("negated", negated)
+            pulumi.set(__self__, "negated", negated)
         if subnet is not None:
-            _setter("subnet", subnet)
+            pulumi.set(__self__, "subnet", subnet)
 
     @property
     @pulumi.getter
@@ -294,149 +273,52 @@ class ServiceComputeBackend(dict):
         :param bool use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param int weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
-        ServiceComputeBackend._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            between_bytes_timeout=between_bytes_timeout,
-            connect_timeout=connect_timeout,
-            error_threshold=error_threshold,
-            first_byte_timeout=first_byte_timeout,
-            healthcheck=healthcheck,
-            keepalive_time=keepalive_time,
-            max_conn=max_conn,
-            max_tls_version=max_tls_version,
-            min_tls_version=min_tls_version,
-            override_host=override_host,
-            port=port,
-            share_key=share_key,
-            shield=shield,
-            ssl_ca_cert=ssl_ca_cert,
-            ssl_cert_hostname=ssl_cert_hostname,
-            ssl_check_cert=ssl_check_cert,
-            ssl_ciphers=ssl_ciphers,
-            ssl_client_cert=ssl_client_cert,
-            ssl_client_key=ssl_client_key,
-            ssl_sni_hostname=ssl_sni_hostname,
-            use_ssl=use_ssl,
-            weight=weight,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             between_bytes_timeout: Optional[int] = None,
-             connect_timeout: Optional[int] = None,
-             error_threshold: Optional[int] = None,
-             first_byte_timeout: Optional[int] = None,
-             healthcheck: Optional[str] = None,
-             keepalive_time: Optional[int] = None,
-             max_conn: Optional[int] = None,
-             max_tls_version: Optional[str] = None,
-             min_tls_version: Optional[str] = None,
-             override_host: Optional[str] = None,
-             port: Optional[int] = None,
-             share_key: Optional[str] = None,
-             shield: Optional[str] = None,
-             ssl_ca_cert: Optional[str] = None,
-             ssl_cert_hostname: Optional[str] = None,
-             ssl_check_cert: Optional[bool] = None,
-             ssl_ciphers: Optional[str] = None,
-             ssl_client_cert: Optional[str] = None,
-             ssl_client_key: Optional[str] = None,
-             ssl_sni_hostname: Optional[str] = None,
-             use_ssl: Optional[bool] = None,
-             weight: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if between_bytes_timeout is None and 'betweenBytesTimeout' in kwargs:
-            between_bytes_timeout = kwargs['betweenBytesTimeout']
-        if connect_timeout is None and 'connectTimeout' in kwargs:
-            connect_timeout = kwargs['connectTimeout']
-        if error_threshold is None and 'errorThreshold' in kwargs:
-            error_threshold = kwargs['errorThreshold']
-        if first_byte_timeout is None and 'firstByteTimeout' in kwargs:
-            first_byte_timeout = kwargs['firstByteTimeout']
-        if keepalive_time is None and 'keepaliveTime' in kwargs:
-            keepalive_time = kwargs['keepaliveTime']
-        if max_conn is None and 'maxConn' in kwargs:
-            max_conn = kwargs['maxConn']
-        if max_tls_version is None and 'maxTlsVersion' in kwargs:
-            max_tls_version = kwargs['maxTlsVersion']
-        if min_tls_version is None and 'minTlsVersion' in kwargs:
-            min_tls_version = kwargs['minTlsVersion']
-        if override_host is None and 'overrideHost' in kwargs:
-            override_host = kwargs['overrideHost']
-        if share_key is None and 'shareKey' in kwargs:
-            share_key = kwargs['shareKey']
-        if ssl_ca_cert is None and 'sslCaCert' in kwargs:
-            ssl_ca_cert = kwargs['sslCaCert']
-        if ssl_cert_hostname is None and 'sslCertHostname' in kwargs:
-            ssl_cert_hostname = kwargs['sslCertHostname']
-        if ssl_check_cert is None and 'sslCheckCert' in kwargs:
-            ssl_check_cert = kwargs['sslCheckCert']
-        if ssl_ciphers is None and 'sslCiphers' in kwargs:
-            ssl_ciphers = kwargs['sslCiphers']
-        if ssl_client_cert is None and 'sslClientCert' in kwargs:
-            ssl_client_cert = kwargs['sslClientCert']
-        if ssl_client_key is None and 'sslClientKey' in kwargs:
-            ssl_client_key = kwargs['sslClientKey']
-        if ssl_sni_hostname is None and 'sslSniHostname' in kwargs:
-            ssl_sni_hostname = kwargs['sslSniHostname']
-        if use_ssl is None and 'useSsl' in kwargs:
-            use_ssl = kwargs['useSsl']
-
-        _setter("address", address)
-        _setter("name", name)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
         if between_bytes_timeout is not None:
-            _setter("between_bytes_timeout", between_bytes_timeout)
+            pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
-            _setter("connect_timeout", connect_timeout)
+            pulumi.set(__self__, "connect_timeout", connect_timeout)
         if error_threshold is not None:
-            _setter("error_threshold", error_threshold)
+            pulumi.set(__self__, "error_threshold", error_threshold)
         if first_byte_timeout is not None:
-            _setter("first_byte_timeout", first_byte_timeout)
+            pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
-            _setter("healthcheck", healthcheck)
+            pulumi.set(__self__, "healthcheck", healthcheck)
         if keepalive_time is not None:
-            _setter("keepalive_time", keepalive_time)
+            pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
-            _setter("max_conn", max_conn)
+            pulumi.set(__self__, "max_conn", max_conn)
         if max_tls_version is not None:
-            _setter("max_tls_version", max_tls_version)
+            pulumi.set(__self__, "max_tls_version", max_tls_version)
         if min_tls_version is not None:
-            _setter("min_tls_version", min_tls_version)
+            pulumi.set(__self__, "min_tls_version", min_tls_version)
         if override_host is not None:
-            _setter("override_host", override_host)
+            pulumi.set(__self__, "override_host", override_host)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if share_key is not None:
-            _setter("share_key", share_key)
+            pulumi.set(__self__, "share_key", share_key)
         if shield is not None:
-            _setter("shield", shield)
+            pulumi.set(__self__, "shield", shield)
         if ssl_ca_cert is not None:
-            _setter("ssl_ca_cert", ssl_ca_cert)
+            pulumi.set(__self__, "ssl_ca_cert", ssl_ca_cert)
         if ssl_cert_hostname is not None:
-            _setter("ssl_cert_hostname", ssl_cert_hostname)
+            pulumi.set(__self__, "ssl_cert_hostname", ssl_cert_hostname)
         if ssl_check_cert is not None:
-            _setter("ssl_check_cert", ssl_check_cert)
+            pulumi.set(__self__, "ssl_check_cert", ssl_check_cert)
         if ssl_ciphers is not None:
-            _setter("ssl_ciphers", ssl_ciphers)
+            pulumi.set(__self__, "ssl_ciphers", ssl_ciphers)
         if ssl_client_cert is not None:
-            _setter("ssl_client_cert", ssl_client_cert)
+            pulumi.set(__self__, "ssl_client_cert", ssl_client_cert)
         if ssl_client_key is not None:
-            _setter("ssl_client_key", ssl_client_key)
+            pulumi.set(__self__, "ssl_client_key", ssl_client_key)
         if ssl_sni_hostname is not None:
-            _setter("ssl_sni_hostname", ssl_sni_hostname)
+            pulumi.set(__self__, "ssl_sni_hostname", ssl_sni_hostname)
         if use_ssl is not None:
-            _setter("use_ssl", use_ssl)
+            pulumi.set(__self__, "use_ssl", use_ssl)
         if weight is not None:
-            _setter("weight", weight)
+            pulumi.set(__self__, "weight", weight)
 
     @property
     @pulumi.getter
@@ -664,38 +546,13 @@ class ServiceComputeDictionary(dict):
         :param str dictionary_id: The ID of the dictionary
         :param bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         """
-        ServiceComputeDictionary._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            dictionary_id=dictionary_id,
-            force_destroy=force_destroy,
-            write_only=write_only,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             dictionary_id: Optional[str] = None,
-             force_destroy: Optional[bool] = None,
-             write_only: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if dictionary_id is None and 'dictionaryId' in kwargs:
-            dictionary_id = kwargs['dictionaryId']
-        if force_destroy is None and 'forceDestroy' in kwargs:
-            force_destroy = kwargs['forceDestroy']
-        if write_only is None and 'writeOnly' in kwargs:
-            write_only = kwargs['writeOnly']
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
-            _setter("dictionary_id", dictionary_id)
+            pulumi.set(__self__, "dictionary_id", dictionary_id)
         if force_destroy is not None:
-            _setter("force_destroy", force_destroy)
+            pulumi.set(__self__, "force_destroy", force_destroy)
         if write_only is not None:
-            _setter("write_only", write_only)
+            pulumi.set(__self__, "write_only", write_only)
 
     @property
     @pulumi.getter
@@ -736,24 +593,9 @@ class ServiceComputeDomain(dict):
         :param str name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         :param str comment: An optional comment about the Domain.
         """
-        ServiceComputeDomain._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            comment=comment,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             comment: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if comment is not None:
-            _setter("comment", comment)
+            pulumi.set(__self__, "comment", comment)
 
     @property
     @pulumi.getter
@@ -814,59 +656,16 @@ class ServiceComputeLoggingBigquery(dict):
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param str template: BigQuery table name suffix template
         """
-        ServiceComputeLoggingBigquery._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            dataset=dataset,
-            email=email,
-            name=name,
-            project_id=project_id,
-            secret_key=secret_key,
-            table=table,
-            account_name=account_name,
-            template=template,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             dataset: Optional[str] = None,
-             email: Optional[str] = None,
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             table: Optional[str] = None,
-             account_name: Optional[str] = None,
-             template: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if dataset is None:
-            raise TypeError("Missing 'dataset' argument")
-        if email is None:
-            raise TypeError("Missing 'email' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if secret_key is None:
-            raise TypeError("Missing 'secret_key' argument")
-        if table is None:
-            raise TypeError("Missing 'table' argument")
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-
-        _setter("dataset", dataset)
-        _setter("email", email)
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("secret_key", secret_key)
-        _setter("table", table)
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "table", table)
         if account_name is not None:
-            _setter("account_name", account_name)
+            pulumi.set(__self__, "account_name", account_name)
         if template is not None:
-            _setter("template", template)
+            pulumi.set(__self__, "template", template)
 
     @property
     @pulumi.getter
@@ -993,83 +792,26 @@ class ServiceComputeLoggingBlobstorage(dict):
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceComputeLoggingBlobstorage._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            account_name=account_name,
-            container=container,
-            name=name,
-            sas_token=sas_token,
-            compression_codec=compression_codec,
-            file_max_bytes=file_max_bytes,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            public_key=public_key,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             account_name: Optional[str] = None,
-             container: Optional[str] = None,
-             name: Optional[str] = None,
-             sas_token: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             file_max_bytes: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             public_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-        if account_name is None:
-            raise TypeError("Missing 'account_name' argument")
-        if container is None:
-            raise TypeError("Missing 'container' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if sas_token is None and 'sasToken' in kwargs:
-            sas_token = kwargs['sasToken']
-        if sas_token is None:
-            raise TypeError("Missing 'sas_token' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
-            file_max_bytes = kwargs['fileMaxBytes']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("account_name", account_name)
-        _setter("container", container)
-        _setter("name", name)
-        _setter("sas_token", sas_token)
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "container", container)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sas_token", sas_token)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if file_max_bytes is not None:
-            _setter("file_max_bytes", file_max_bytes)
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accountName")
@@ -1226,81 +968,26 @@ class ServiceComputeLoggingCloudfile(dict):
         :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceComputeLoggingCloudfile._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            bucket_name=bucket_name,
-            name=name,
-            user=user,
-            compression_codec=compression_codec,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            public_key=public_key,
-            region=region,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[str] = None,
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             public_key: Optional[str] = None,
-             region: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if access_key is None:
-            raise TypeError("Missing 'access_key' argument")
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("access_key", access_key)
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
-        _setter("user", user)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -1410,29 +1097,10 @@ class ServiceComputeLoggingDatadog(dict):
         :param str token: The API key from your Datadog account
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
-        ServiceComputeLoggingDatadog._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -1519,83 +1187,26 @@ class ServiceComputeLoggingDigitalocean(dict):
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceComputeLoggingDigitalocean._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            bucket_name=bucket_name,
-            name=name,
-            secret_key=secret_key,
-            compression_codec=compression_codec,
-            domain=domain,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            public_key=public_key,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[str] = None,
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             domain: Optional[str] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             public_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if access_key is None:
-            raise TypeError("Missing 'access_key' argument")
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if secret_key is None:
-            raise TypeError("Missing 'secret_key' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("access_key", access_key)
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
-        _setter("secret_key", secret_key)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "secret_key", secret_key)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -1750,78 +1361,27 @@ class ServiceComputeLoggingElasticsearch(dict):
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         :param str user: BasicAuth username for Elasticsearch
         """
-        ServiceComputeLoggingElasticsearch._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            index=index,
-            name=name,
-            url=url,
-            password=password,
-            pipeline=pipeline,
-            request_max_bytes=request_max_bytes,
-            request_max_entries=request_max_entries,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             index: Optional[str] = None,
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             password: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             request_max_bytes: Optional[int] = None,
-             request_max_entries: Optional[int] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             user: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if index is None:
-            raise TypeError("Missing 'index' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
-            request_max_bytes = kwargs['requestMaxBytes']
-        if request_max_entries is None and 'requestMaxEntries' in kwargs:
-            request_max_entries = kwargs['requestMaxEntries']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-
-        _setter("index", index)
-        _setter("name", name)
-        _setter("url", url)
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if pipeline is not None:
-            _setter("pipeline", pipeline)
+            pulumi.set(__self__, "pipeline", pipeline)
         if request_max_bytes is not None:
-            _setter("request_max_bytes", request_max_bytes)
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            _setter("request_max_entries", request_max_entries)
+            pulumi.set(__self__, "request_max_entries", request_max_entries)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -1974,78 +1534,25 @@ class ServiceComputeLoggingFtp(dict):
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceComputeLoggingFtp._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            password=password,
-            path=path,
-            user=user,
-            compression_codec=compression_codec,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            period=period,
-            port=port,
-            public_key=public_key,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             password: Optional[str] = None,
-             path: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             period: Optional[int] = None,
-             port: Optional[int] = None,
-             public_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if password is None:
-            raise TypeError("Missing 'password' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("address", address)
-        _setter("name", name)
-        _setter("password", password)
-        _setter("path", path)
-        _setter("user", user)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -2204,81 +1711,28 @@ class ServiceComputeLoggingGc(dict):
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
-        ServiceComputeLoggingGc._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket_name=bucket_name,
-            name=name,
-            account_name=account_name,
-            compression_codec=compression_codec,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            project_id=project_id,
-            secret_key=secret_key,
-            timestamp_format=timestamp_format,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             account_name: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             project_id: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             user: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
         if account_name is not None:
-            _setter("account_name", account_name)
+            pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -2415,50 +1869,13 @@ class ServiceComputeLoggingGooglepubsub(dict):
         :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
-        ServiceComputeLoggingGooglepubsub._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            project_id=project_id,
-            secret_key=secret_key,
-            topic=topic,
-            user=user,
-            account_name=account_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             topic: Optional[str] = None,
-             user: Optional[str] = None,
-             account_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if secret_key is None:
-            raise TypeError("Missing 'secret_key' argument")
-        if topic is None:
-            raise TypeError("Missing 'topic' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("secret_key", secret_key)
-        _setter("topic", topic)
-        _setter("user", user)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "user", user)
         if account_name is not None:
-            _setter("account_name", account_name)
+            pulumi.set(__self__, "account_name", account_name)
 
     @property
     @pulumi.getter
@@ -2520,30 +1937,9 @@ class ServiceComputeLoggingHeroku(dict):
         :param str token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         :param str url: The URL to stream logs to
         """
-        ServiceComputeLoggingHeroku._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-
-        _setter("name", name)
-        _setter("token", token)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -2581,30 +1977,9 @@ class ServiceComputeLoggingHoneycomb(dict):
         :param str name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str token: The Write Key from the Account page of your Honeycomb account
         """
-        ServiceComputeLoggingHoneycomb._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            dataset=dataset,
-            name=name,
-            token=token,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             dataset: Optional[str] = None,
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if dataset is None:
-            raise TypeError("Missing 'dataset' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-
-        _setter("dataset", dataset)
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
 
     @property
     @pulumi.getter
@@ -2701,95 +2076,32 @@ class ServiceComputeLoggingHttp(dict):
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: Used during the TLS handshake to validate the certificate
         """
-        ServiceComputeLoggingHttp._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            url=url,
-            content_type=content_type,
-            header_name=header_name,
-            header_value=header_value,
-            json_format=json_format,
-            message_type=message_type,
-            method=method,
-            request_max_bytes=request_max_bytes,
-            request_max_entries=request_max_entries,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             content_type: Optional[str] = None,
-             header_name: Optional[str] = None,
-             header_value: Optional[str] = None,
-             json_format: Optional[str] = None,
-             message_type: Optional[str] = None,
-             method: Optional[str] = None,
-             request_max_bytes: Optional[int] = None,
-             request_max_entries: Optional[int] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if content_type is None and 'contentType' in kwargs:
-            content_type = kwargs['contentType']
-        if header_name is None and 'headerName' in kwargs:
-            header_name = kwargs['headerName']
-        if header_value is None and 'headerValue' in kwargs:
-            header_value = kwargs['headerValue']
-        if json_format is None and 'jsonFormat' in kwargs:
-            json_format = kwargs['jsonFormat']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
-            request_max_bytes = kwargs['requestMaxBytes']
-        if request_max_entries is None and 'requestMaxEntries' in kwargs:
-            request_max_entries = kwargs['requestMaxEntries']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-
-        _setter("name", name)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
         if content_type is not None:
-            _setter("content_type", content_type)
+            pulumi.set(__self__, "content_type", content_type)
         if header_name is not None:
-            _setter("header_name", header_name)
+            pulumi.set(__self__, "header_name", header_name)
         if header_value is not None:
-            _setter("header_value", header_value)
+            pulumi.set(__self__, "header_value", header_value)
         if json_format is not None:
-            _setter("json_format", json_format)
+            pulumi.set(__self__, "json_format", json_format)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if method is not None:
-            _setter("method", method)
+            pulumi.set(__self__, "method", method)
         if request_max_bytes is not None:
-            _setter("request_max_bytes", request_max_bytes)
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            _setter("request_max_entries", request_max_entries)
+            pulumi.set(__self__, "request_max_entries", request_max_entries)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
 
     @property
     @pulumi.getter
@@ -2974,98 +2286,33 @@ class ServiceComputeLoggingKafka(dict):
         :param bool use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
         :param str user: SASL User
         """
-        ServiceComputeLoggingKafka._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            brokers=brokers,
-            name=name,
-            topic=topic,
-            auth_method=auth_method,
-            compression_codec=compression_codec,
-            parse_log_keyvals=parse_log_keyvals,
-            password=password,
-            request_max_bytes=request_max_bytes,
-            required_acks=required_acks,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            use_tls=use_tls,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             brokers: Optional[str] = None,
-             name: Optional[str] = None,
-             topic: Optional[str] = None,
-             auth_method: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             parse_log_keyvals: Optional[bool] = None,
-             password: Optional[str] = None,
-             request_max_bytes: Optional[int] = None,
-             required_acks: Optional[str] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             use_tls: Optional[bool] = None,
-             user: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if brokers is None:
-            raise TypeError("Missing 'brokers' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if topic is None:
-            raise TypeError("Missing 'topic' argument")
-        if auth_method is None and 'authMethod' in kwargs:
-            auth_method = kwargs['authMethod']
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if parse_log_keyvals is None and 'parseLogKeyvals' in kwargs:
-            parse_log_keyvals = kwargs['parseLogKeyvals']
-        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
-            request_max_bytes = kwargs['requestMaxBytes']
-        if required_acks is None and 'requiredAcks' in kwargs:
-            required_acks = kwargs['requiredAcks']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("brokers", brokers)
-        _setter("name", name)
-        _setter("topic", topic)
+        pulumi.set(__self__, "brokers", brokers)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "topic", topic)
         if auth_method is not None:
-            _setter("auth_method", auth_method)
+            pulumi.set(__self__, "auth_method", auth_method)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if parse_log_keyvals is not None:
-            _setter("parse_log_keyvals", parse_log_keyvals)
+            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if request_max_bytes is not None:
-            _setter("request_max_bytes", request_max_bytes)
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
-            _setter("required_acks", required_acks)
+            pulumi.set(__self__, "required_acks", required_acks)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -3226,47 +2473,16 @@ class ServiceComputeLoggingKinese(dict):
         :param str region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param str secret_key: The AWS secret access key to authenticate with
         """
-        ServiceComputeLoggingKinese._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            topic=topic,
-            access_key=access_key,
-            iam_role=iam_role,
-            region=region,
-            secret_key=secret_key,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             topic: Optional[str] = None,
-             access_key: Optional[str] = None,
-             iam_role: Optional[str] = None,
-             region: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if topic is None:
-            raise TypeError("Missing 'topic' argument")
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if iam_role is None and 'iamRole' in kwargs:
-            iam_role = kwargs['iamRole']
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-
-        _setter("name", name)
-        _setter("topic", topic)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "topic", topic)
         if access_key is not None:
-            _setter("access_key", access_key)
+            pulumi.set(__self__, "access_key", access_key)
         if iam_role is not None:
-            _setter("iam_role", iam_role)
+            pulumi.set(__self__, "iam_role", iam_role)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
 
     @property
     @pulumi.getter
@@ -3347,35 +2563,12 @@ class ServiceComputeLoggingLogentry(dict):
         :param int port: The port number configured in Logentries
         :param bool use_tls: Whether to use TLS for secure logging
         """
-        ServiceComputeLoggingLogentry._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            port=port,
-            use_tls=use_tls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             port: Optional[int] = None,
-             use_tls: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -3419,25 +2612,8 @@ class ServiceComputeLoggingLoggly(dict):
         :param str name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         """
-        ServiceComputeLoggingLoggly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
 
     @property
     @pulumi.getter
@@ -3467,30 +2643,9 @@ class ServiceComputeLoggingLogshuttle(dict):
         :param str token: The data authentication token associated with this endpoint
         :param str url: Your Log Shuttle endpoint URL
         """
-        ServiceComputeLoggingLogshuttle._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-
-        _setter("name", name)
-        _setter("token", token)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -3528,29 +2683,10 @@ class ServiceComputeLoggingNewrelic(dict):
         :param str token: The Insert API key from the Account page of your New Relic account
         :param str region: The region that log data will be sent to. Default: `US`
         """
-        ServiceComputeLoggingNewrelic._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -3635,82 +2771,25 @@ class ServiceComputeLoggingOpenstack(dict):
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceComputeLoggingOpenstack._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            bucket_name=bucket_name,
-            name=name,
-            url=url,
-            user=user,
-            compression_codec=compression_codec,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            public_key=public_key,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[str] = None,
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             public_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if access_key is None:
-            raise TypeError("Missing 'access_key' argument")
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("access_key", access_key)
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
-        _setter("url", url)
-        _setter("user", user)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -3820,30 +2899,9 @@ class ServiceComputeLoggingPapertrail(dict):
         :param str name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param int port: The port associated with the address where the Papertrail endpoint can be accessed
         """
-        ServiceComputeLoggingPapertrail._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            port=port,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             port: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if port is None:
-            raise TypeError("Missing 'port' argument")
-
-        _setter("address", address)
-        _setter("name", name)
-        _setter("port", port)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -3950,113 +3008,40 @@ class ServiceComputeLoggingS3(dict):
         :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceComputeLoggingS3._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket_name=bucket_name,
-            name=name,
-            acl=acl,
-            compression_codec=compression_codec,
-            domain=domain,
-            file_max_bytes=file_max_bytes,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            public_key=public_key,
-            redundancy=redundancy,
-            s3_access_key=s3_access_key,
-            s3_iam_role=s3_iam_role,
-            s3_secret_key=s3_secret_key,
-            server_side_encryption=server_side_encryption,
-            server_side_encryption_kms_key_id=server_side_encryption_kms_key_id,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             acl: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             domain: Optional[str] = None,
-             file_max_bytes: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             public_key: Optional[str] = None,
-             redundancy: Optional[str] = None,
-             s3_access_key: Optional[str] = None,
-             s3_iam_role: Optional[str] = None,
-             s3_secret_key: Optional[str] = None,
-             server_side_encryption: Optional[str] = None,
-             server_side_encryption_kms_key_id: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
-            file_max_bytes = kwargs['fileMaxBytes']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if s3_access_key is None and 's3AccessKey' in kwargs:
-            s3_access_key = kwargs['s3AccessKey']
-        if s3_iam_role is None and 's3IamRole' in kwargs:
-            s3_iam_role = kwargs['s3IamRole']
-        if s3_secret_key is None and 's3SecretKey' in kwargs:
-            s3_secret_key = kwargs['s3SecretKey']
-        if server_side_encryption is None and 'serverSideEncryption' in kwargs:
-            server_side_encryption = kwargs['serverSideEncryption']
-        if server_side_encryption_kms_key_id is None and 'serverSideEncryptionKmsKeyId' in kwargs:
-            server_side_encryption_kms_key_id = kwargs['serverSideEncryptionKmsKeyId']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
         if acl is not None:
-            _setter("acl", acl)
+            pulumi.set(__self__, "acl", acl)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if file_max_bytes is not None:
-            _setter("file_max_bytes", file_max_bytes)
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if redundancy is not None:
-            _setter("redundancy", redundancy)
+            pulumi.set(__self__, "redundancy", redundancy)
         if s3_access_key is not None:
-            _setter("s3_access_key", s3_access_key)
+            pulumi.set(__self__, "s3_access_key", s3_access_key)
         if s3_iam_role is not None:
-            _setter("s3_iam_role", s3_iam_role)
+            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
         if s3_secret_key is not None:
-            _setter("s3_secret_key", s3_secret_key)
+            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
         if server_side_encryption is not None:
-            _setter("server_side_encryption", server_side_encryption)
+            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
         if server_side_encryption_kms_key_id is not None:
-            _setter("server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
+            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -4214,29 +3199,10 @@ class ServiceComputeLoggingScalyr(dict):
         :param str token: The token to use for authentication (https://www.scalyr.com/keys)
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
-        ServiceComputeLoggingScalyr._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -4325,90 +3291,29 @@ class ServiceComputeLoggingSftp(dict):
         :param str secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceComputeLoggingSftp._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            path=path,
-            ssh_known_hosts=ssh_known_hosts,
-            user=user,
-            compression_codec=compression_codec,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            password=password,
-            period=period,
-            port=port,
-            public_key=public_key,
-            secret_key=secret_key,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             path: Optional[str] = None,
-             ssh_known_hosts: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             password: Optional[str] = None,
-             period: Optional[int] = None,
-             port: Optional[int] = None,
-             public_key: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if ssh_known_hosts is None and 'sshKnownHosts' in kwargs:
-            ssh_known_hosts = kwargs['sshKnownHosts']
-        if ssh_known_hosts is None:
-            raise TypeError("Missing 'ssh_known_hosts' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("address", address)
-        _setter("name", name)
-        _setter("path", path)
-        _setter("ssh_known_hosts", ssh_known_hosts)
-        _setter("user", user)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "ssh_known_hosts", ssh_known_hosts)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -4569,60 +3474,19 @@ class ServiceComputeLoggingSplunk(dict):
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         :param bool use_tls: Whether to use TLS for secure logging. Default: `false`
         """
-        ServiceComputeLoggingSplunk._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            url=url,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            use_tls=use_tls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             url: Optional[str] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             use_tls: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("name", name)
-        _setter("token", token)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -4717,31 +3581,10 @@ class ServiceComputeLoggingSumologic(dict):
         :param str url: The URL to Sumologic collector endpoint
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
-        ServiceComputeLoggingSumologic._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            url=url,
-            message_type=message_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             message_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-
-        _setter("name", name)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
 
     @property
     @pulumi.getter
@@ -4820,69 +3663,24 @@ class ServiceComputeLoggingSyslog(dict):
         :param str token: Whether to prepend each message with a specific token
         :param bool use_tls: Whether to use TLS for secure logging. Default `false`
         """
-        ServiceComputeLoggingSyslog._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            message_type=message_type,
-            port=port,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            token=token,
-            use_tls=use_tls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             message_type: Optional[str] = None,
-             port: Optional[int] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             token: Optional[str] = None,
-             use_tls: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("address", address)
-        _setter("name", name)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if token is not None:
-            _setter("token", token)
+            pulumi.set(__self__, "token", token)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -4993,29 +3791,12 @@ class ServiceComputePackage(dict):
         :param str filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
         :param str source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
         """
-        ServiceComputePackage._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            content=content,
-            filename=filename,
-            source_code_hash=source_code_hash,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             content: Optional[str] = None,
-             filename: Optional[str] = None,
-             source_code_hash: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if source_code_hash is None and 'sourceCodeHash' in kwargs:
-            source_code_hash = kwargs['sourceCodeHash']
-
         if content is not None:
-            _setter("content", content)
+            pulumi.set(__self__, "content", content)
         if filename is not None:
-            _setter("filename", filename)
+            pulumi.set(__self__, "filename", filename)
         if source_code_hash is not None:
-            _setter("source_code_hash", source_code_hash)
+            pulumi.set(__self__, "source_code_hash", source_code_hash)
 
     @property
     @pulumi.getter
@@ -5053,27 +3834,12 @@ class ServiceComputeProductEnablement(dict):
         :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         :param bool websockets: Enable WebSockets support
         """
-        ServiceComputeProductEnablement._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            fanout=fanout,
-            name=name,
-            websockets=websockets,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             fanout: Optional[bool] = None,
-             name: Optional[str] = None,
-             websockets: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if fanout is not None:
-            _setter("fanout", fanout)
+            pulumi.set(__self__, "fanout", fanout)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if websockets is not None:
-            _setter("websockets", websockets)
+            pulumi.set(__self__, "websockets", websockets)
 
     @property
     @pulumi.getter
@@ -5130,33 +3896,10 @@ class ServiceComputeResourceLink(dict):
         :param str resource_id: The ID of the underlying linked resource.
         :param str link_id: An alphanumeric string identifying the resource link.
         """
-        ServiceComputeResourceLink._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            resource_id=resource_id,
-            link_id=link_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             resource_id: Optional[str] = None,
-             link_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if resource_id is None and 'resourceId' in kwargs:
-            resource_id = kwargs['resourceId']
-        if resource_id is None:
-            raise TypeError("Missing 'resource_id' argument")
-        if link_id is None and 'linkId' in kwargs:
-            link_id = kwargs['linkId']
-
-        _setter("name", name)
-        _setter("resource_id", resource_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "resource_id", resource_id)
         if link_id is not None:
-            _setter("link_id", link_id)
+            pulumi.set(__self__, "link_id", link_id)
 
     @property
     @pulumi.getter
@@ -5213,32 +3956,11 @@ class ServiceVclAcl(dict):
         :param str acl_id: The ID of the ACL
         :param bool force_destroy: Allow the ACL to be deleted, even if it contains entries. Defaults to false.
         """
-        ServiceVclAcl._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            acl_id=acl_id,
-            force_destroy=force_destroy,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             acl_id: Optional[str] = None,
-             force_destroy: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if acl_id is None and 'aclId' in kwargs:
-            acl_id = kwargs['aclId']
-        if force_destroy is None and 'forceDestroy' in kwargs:
-            force_destroy = kwargs['forceDestroy']
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if acl_id is not None:
-            _setter("acl_id", acl_id)
+            pulumi.set(__self__, "acl_id", acl_id)
         if force_destroy is not None:
-            _setter("force_destroy", force_destroy)
+            pulumi.set(__self__, "force_destroy", force_destroy)
 
     @property
     @pulumi.getter
@@ -5377,161 +4099,56 @@ class ServiceVclBackend(dict):
         :param bool use_ssl: Whether or not to use SSL to reach the Backend. Default `false`
         :param int weight: The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
-        ServiceVclBackend._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            auto_loadbalance=auto_loadbalance,
-            between_bytes_timeout=between_bytes_timeout,
-            connect_timeout=connect_timeout,
-            error_threshold=error_threshold,
-            first_byte_timeout=first_byte_timeout,
-            healthcheck=healthcheck,
-            keepalive_time=keepalive_time,
-            max_conn=max_conn,
-            max_tls_version=max_tls_version,
-            min_tls_version=min_tls_version,
-            override_host=override_host,
-            port=port,
-            request_condition=request_condition,
-            share_key=share_key,
-            shield=shield,
-            ssl_ca_cert=ssl_ca_cert,
-            ssl_cert_hostname=ssl_cert_hostname,
-            ssl_check_cert=ssl_check_cert,
-            ssl_ciphers=ssl_ciphers,
-            ssl_client_cert=ssl_client_cert,
-            ssl_client_key=ssl_client_key,
-            ssl_sni_hostname=ssl_sni_hostname,
-            use_ssl=use_ssl,
-            weight=weight,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             auto_loadbalance: Optional[bool] = None,
-             between_bytes_timeout: Optional[int] = None,
-             connect_timeout: Optional[int] = None,
-             error_threshold: Optional[int] = None,
-             first_byte_timeout: Optional[int] = None,
-             healthcheck: Optional[str] = None,
-             keepalive_time: Optional[int] = None,
-             max_conn: Optional[int] = None,
-             max_tls_version: Optional[str] = None,
-             min_tls_version: Optional[str] = None,
-             override_host: Optional[str] = None,
-             port: Optional[int] = None,
-             request_condition: Optional[str] = None,
-             share_key: Optional[str] = None,
-             shield: Optional[str] = None,
-             ssl_ca_cert: Optional[str] = None,
-             ssl_cert_hostname: Optional[str] = None,
-             ssl_check_cert: Optional[bool] = None,
-             ssl_ciphers: Optional[str] = None,
-             ssl_client_cert: Optional[str] = None,
-             ssl_client_key: Optional[str] = None,
-             ssl_sni_hostname: Optional[str] = None,
-             use_ssl: Optional[bool] = None,
-             weight: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if auto_loadbalance is None and 'autoLoadbalance' in kwargs:
-            auto_loadbalance = kwargs['autoLoadbalance']
-        if between_bytes_timeout is None and 'betweenBytesTimeout' in kwargs:
-            between_bytes_timeout = kwargs['betweenBytesTimeout']
-        if connect_timeout is None and 'connectTimeout' in kwargs:
-            connect_timeout = kwargs['connectTimeout']
-        if error_threshold is None and 'errorThreshold' in kwargs:
-            error_threshold = kwargs['errorThreshold']
-        if first_byte_timeout is None and 'firstByteTimeout' in kwargs:
-            first_byte_timeout = kwargs['firstByteTimeout']
-        if keepalive_time is None and 'keepaliveTime' in kwargs:
-            keepalive_time = kwargs['keepaliveTime']
-        if max_conn is None and 'maxConn' in kwargs:
-            max_conn = kwargs['maxConn']
-        if max_tls_version is None and 'maxTlsVersion' in kwargs:
-            max_tls_version = kwargs['maxTlsVersion']
-        if min_tls_version is None and 'minTlsVersion' in kwargs:
-            min_tls_version = kwargs['minTlsVersion']
-        if override_host is None and 'overrideHost' in kwargs:
-            override_host = kwargs['overrideHost']
-        if request_condition is None and 'requestCondition' in kwargs:
-            request_condition = kwargs['requestCondition']
-        if share_key is None and 'shareKey' in kwargs:
-            share_key = kwargs['shareKey']
-        if ssl_ca_cert is None and 'sslCaCert' in kwargs:
-            ssl_ca_cert = kwargs['sslCaCert']
-        if ssl_cert_hostname is None and 'sslCertHostname' in kwargs:
-            ssl_cert_hostname = kwargs['sslCertHostname']
-        if ssl_check_cert is None and 'sslCheckCert' in kwargs:
-            ssl_check_cert = kwargs['sslCheckCert']
-        if ssl_ciphers is None and 'sslCiphers' in kwargs:
-            ssl_ciphers = kwargs['sslCiphers']
-        if ssl_client_cert is None and 'sslClientCert' in kwargs:
-            ssl_client_cert = kwargs['sslClientCert']
-        if ssl_client_key is None and 'sslClientKey' in kwargs:
-            ssl_client_key = kwargs['sslClientKey']
-        if ssl_sni_hostname is None and 'sslSniHostname' in kwargs:
-            ssl_sni_hostname = kwargs['sslSniHostname']
-        if use_ssl is None and 'useSsl' in kwargs:
-            use_ssl = kwargs['useSsl']
-
-        _setter("address", address)
-        _setter("name", name)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
         if auto_loadbalance is not None:
-            _setter("auto_loadbalance", auto_loadbalance)
+            pulumi.set(__self__, "auto_loadbalance", auto_loadbalance)
         if between_bytes_timeout is not None:
-            _setter("between_bytes_timeout", between_bytes_timeout)
+            pulumi.set(__self__, "between_bytes_timeout", between_bytes_timeout)
         if connect_timeout is not None:
-            _setter("connect_timeout", connect_timeout)
+            pulumi.set(__self__, "connect_timeout", connect_timeout)
         if error_threshold is not None:
-            _setter("error_threshold", error_threshold)
+            pulumi.set(__self__, "error_threshold", error_threshold)
         if first_byte_timeout is not None:
-            _setter("first_byte_timeout", first_byte_timeout)
+            pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
-            _setter("healthcheck", healthcheck)
+            pulumi.set(__self__, "healthcheck", healthcheck)
         if keepalive_time is not None:
-            _setter("keepalive_time", keepalive_time)
+            pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
-            _setter("max_conn", max_conn)
+            pulumi.set(__self__, "max_conn", max_conn)
         if max_tls_version is not None:
-            _setter("max_tls_version", max_tls_version)
+            pulumi.set(__self__, "max_tls_version", max_tls_version)
         if min_tls_version is not None:
-            _setter("min_tls_version", min_tls_version)
+            pulumi.set(__self__, "min_tls_version", min_tls_version)
         if override_host is not None:
-            _setter("override_host", override_host)
+            pulumi.set(__self__, "override_host", override_host)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if request_condition is not None:
-            _setter("request_condition", request_condition)
+            pulumi.set(__self__, "request_condition", request_condition)
         if share_key is not None:
-            _setter("share_key", share_key)
+            pulumi.set(__self__, "share_key", share_key)
         if shield is not None:
-            _setter("shield", shield)
+            pulumi.set(__self__, "shield", shield)
         if ssl_ca_cert is not None:
-            _setter("ssl_ca_cert", ssl_ca_cert)
+            pulumi.set(__self__, "ssl_ca_cert", ssl_ca_cert)
         if ssl_cert_hostname is not None:
-            _setter("ssl_cert_hostname", ssl_cert_hostname)
+            pulumi.set(__self__, "ssl_cert_hostname", ssl_cert_hostname)
         if ssl_check_cert is not None:
-            _setter("ssl_check_cert", ssl_check_cert)
+            pulumi.set(__self__, "ssl_check_cert", ssl_check_cert)
         if ssl_ciphers is not None:
-            _setter("ssl_ciphers", ssl_ciphers)
+            pulumi.set(__self__, "ssl_ciphers", ssl_ciphers)
         if ssl_client_cert is not None:
-            _setter("ssl_client_cert", ssl_client_cert)
+            pulumi.set(__self__, "ssl_client_cert", ssl_client_cert)
         if ssl_client_key is not None:
-            _setter("ssl_client_key", ssl_client_key)
+            pulumi.set(__self__, "ssl_client_key", ssl_client_key)
         if ssl_sni_hostname is not None:
-            _setter("ssl_sni_hostname", ssl_sni_hostname)
+            pulumi.set(__self__, "ssl_sni_hostname", ssl_sni_hostname)
         if use_ssl is not None:
-            _setter("use_ssl", use_ssl)
+            pulumi.set(__self__, "use_ssl", use_ssl)
         if weight is not None:
-            _setter("weight", weight)
+            pulumi.set(__self__, "weight", weight)
 
     @property
     @pulumi.getter
@@ -5776,40 +4393,15 @@ class ServiceVclCacheSetting(dict):
         :param int stale_ttl: Max "Time To Live" for stale (unreachable) objects
         :param int ttl: The Time-To-Live (TTL) for the object
         """
-        ServiceVclCacheSetting._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            action=action,
-            cache_condition=cache_condition,
-            stale_ttl=stale_ttl,
-            ttl=ttl,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             action: Optional[str] = None,
-             cache_condition: Optional[str] = None,
-             stale_ttl: Optional[int] = None,
-             ttl: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if cache_condition is None and 'cacheCondition' in kwargs:
-            cache_condition = kwargs['cacheCondition']
-        if stale_ttl is None and 'staleTtl' in kwargs:
-            stale_ttl = kwargs['staleTtl']
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if action is not None:
-            _setter("action", action)
+            pulumi.set(__self__, "action", action)
         if cache_condition is not None:
-            _setter("cache_condition", cache_condition)
+            pulumi.set(__self__, "cache_condition", cache_condition)
         if stale_ttl is not None:
-            _setter("stale_ttl", stale_ttl)
+            pulumi.set(__self__, "stale_ttl", stale_ttl)
         if ttl is not None:
-            _setter("ttl", ttl)
+            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter
@@ -5865,34 +4457,11 @@ class ServiceVclCondition(dict):
         :param str type: Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
         :param int priority: A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
         """
-        ServiceVclCondition._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            statement=statement,
-            type=type,
-            priority=priority,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             statement: Optional[str] = None,
-             type: Optional[str] = None,
-             priority: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if statement is None:
-            raise TypeError("Missing 'statement' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("name", name)
-        _setter("statement", statement)
-        _setter("type", type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "statement", statement)
+        pulumi.set(__self__, "type", type)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
 
     @property
     @pulumi.getter
@@ -5960,38 +4529,13 @@ class ServiceVclDictionary(dict):
         :param str dictionary_id: The ID of the dictionary
         :param bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         """
-        ServiceVclDictionary._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            dictionary_id=dictionary_id,
-            force_destroy=force_destroy,
-            write_only=write_only,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             dictionary_id: Optional[str] = None,
-             force_destroy: Optional[bool] = None,
-             write_only: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if dictionary_id is None and 'dictionaryId' in kwargs:
-            dictionary_id = kwargs['dictionaryId']
-        if force_destroy is None and 'forceDestroy' in kwargs:
-            force_destroy = kwargs['forceDestroy']
-        if write_only is None and 'writeOnly' in kwargs:
-            write_only = kwargs['writeOnly']
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
-            _setter("dictionary_id", dictionary_id)
+            pulumi.set(__self__, "dictionary_id", dictionary_id)
         if force_destroy is not None:
-            _setter("force_destroy", force_destroy)
+            pulumi.set(__self__, "force_destroy", force_destroy)
         if write_only is not None:
-            _setter("write_only", write_only)
+            pulumi.set(__self__, "write_only", write_only)
 
     @property
     @pulumi.getter
@@ -6042,45 +4586,18 @@ class ServiceVclDirector(dict):
         :param str shield: Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
         :param int type: Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
         """
-        ServiceVclDirector._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            backends=backends,
-            name=name,
-            comment=comment,
-            quorum=quorum,
-            retries=retries,
-            shield=shield,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             backends: Optional[Sequence[str]] = None,
-             name: Optional[str] = None,
-             comment: Optional[str] = None,
-             quorum: Optional[int] = None,
-             retries: Optional[int] = None,
-             shield: Optional[str] = None,
-             type: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if backends is None:
-            raise TypeError("Missing 'backends' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("backends", backends)
-        _setter("name", name)
+        pulumi.set(__self__, "backends", backends)
+        pulumi.set(__self__, "name", name)
         if comment is not None:
-            _setter("comment", comment)
+            pulumi.set(__self__, "comment", comment)
         if quorum is not None:
-            _setter("quorum", quorum)
+            pulumi.set(__self__, "quorum", quorum)
         if retries is not None:
-            _setter("retries", retries)
+            pulumi.set(__self__, "retries", retries)
         if shield is not None:
-            _setter("shield", shield)
+            pulumi.set(__self__, "shield", shield)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -6148,24 +4665,9 @@ class ServiceVclDomain(dict):
         :param str name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         :param str comment: An optional comment about the Domain.
         """
-        ServiceVclDomain._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            comment=comment,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             comment: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if comment is not None:
-            _setter("comment", comment)
+            pulumi.set(__self__, "comment", comment)
 
     @property
     @pulumi.getter
@@ -6216,39 +4718,14 @@ class ServiceVclDynamicsnippet(dict):
         :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         :param str snippet_id: The ID of the dynamic snippet
         """
-        ServiceVclDynamicsnippet._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            type=type,
-            content=content,
-            priority=priority,
-            snippet_id=snippet_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             type: Optional[str] = None,
-             content: Optional[str] = None,
-             priority: Optional[int] = None,
-             snippet_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if snippet_id is None and 'snippetId' in kwargs:
-            snippet_id = kwargs['snippetId']
-
-        _setter("name", name)
-        _setter("type", type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
         if content is not None:
-            _setter("content", content)
+            pulumi.set(__self__, "content", content)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
         if snippet_id is not None:
-            _setter("snippet_id", snippet_id)
+            pulumi.set(__self__, "snippet_id", snippet_id)
 
     @property
     @pulumi.getter
@@ -6323,36 +4800,13 @@ class ServiceVclGzip(dict):
         :param Sequence[str] content_types: The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
         :param Sequence[str] extensions: File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
         """
-        ServiceVclGzip._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            cache_condition=cache_condition,
-            content_types=content_types,
-            extensions=extensions,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             cache_condition: Optional[str] = None,
-             content_types: Optional[Sequence[str]] = None,
-             extensions: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if cache_condition is None and 'cacheCondition' in kwargs:
-            cache_condition = kwargs['cacheCondition']
-        if content_types is None and 'contentTypes' in kwargs:
-            content_types = kwargs['contentTypes']
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if cache_condition is not None:
-            _setter("cache_condition", cache_condition)
+            pulumi.set(__self__, "cache_condition", cache_condition)
         if content_types is not None:
-            _setter("content_types", content_types)
+            pulumi.set(__self__, "content_types", content_types)
         if extensions is not None:
-            _setter("extensions", extensions)
+            pulumi.set(__self__, "extensions", extensions)
 
     @property
     @pulumi.getter
@@ -6439,75 +4893,26 @@ class ServiceVclHeader(dict):
         :param str source: Variable to be used as a source for the header content (Does not apply to `delete` action.)
         :param str substitution: Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
         """
-        ServiceVclHeader._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            destination=destination,
-            name=name,
-            type=type,
-            cache_condition=cache_condition,
-            ignore_if_set=ignore_if_set,
-            priority=priority,
-            regex=regex,
-            request_condition=request_condition,
-            response_condition=response_condition,
-            source=source,
-            substitution=substitution,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: Optional[str] = None,
-             destination: Optional[str] = None,
-             name: Optional[str] = None,
-             type: Optional[str] = None,
-             cache_condition: Optional[str] = None,
-             ignore_if_set: Optional[bool] = None,
-             priority: Optional[int] = None,
-             regex: Optional[str] = None,
-             request_condition: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             source: Optional[str] = None,
-             substitution: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if action is None:
-            raise TypeError("Missing 'action' argument")
-        if destination is None:
-            raise TypeError("Missing 'destination' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if cache_condition is None and 'cacheCondition' in kwargs:
-            cache_condition = kwargs['cacheCondition']
-        if ignore_if_set is None and 'ignoreIfSet' in kwargs:
-            ignore_if_set = kwargs['ignoreIfSet']
-        if request_condition is None and 'requestCondition' in kwargs:
-            request_condition = kwargs['requestCondition']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("action", action)
-        _setter("destination", destination)
-        _setter("name", name)
-        _setter("type", type)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
         if cache_condition is not None:
-            _setter("cache_condition", cache_condition)
+            pulumi.set(__self__, "cache_condition", cache_condition)
         if ignore_if_set is not None:
-            _setter("ignore_if_set", ignore_if_set)
+            pulumi.set(__self__, "ignore_if_set", ignore_if_set)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
         if regex is not None:
-            _setter("regex", regex)
+            pulumi.set(__self__, "regex", regex)
         if request_condition is not None:
-            _setter("request_condition", request_condition)
+            pulumi.set(__self__, "request_condition", request_condition)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if source is not None:
-            _setter("source", source)
+            pulumi.set(__self__, "source", source)
         if substitution is not None:
-            _setter("substitution", substitution)
+            pulumi.set(__self__, "substitution", substitution)
 
     @property
     @pulumi.getter
@@ -6656,72 +5061,27 @@ class ServiceVclHealthcheck(dict):
         :param int timeout: Timeout in milliseconds. Default `500`
         :param int window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
-        ServiceVclHealthcheck._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            host=host,
-            name=name,
-            path=path,
-            check_interval=check_interval,
-            expected_response=expected_response,
-            headers=headers,
-            http_version=http_version,
-            initial=initial,
-            method=method,
-            threshold=threshold,
-            timeout=timeout,
-            window=window,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             host: Optional[str] = None,
-             name: Optional[str] = None,
-             path: Optional[str] = None,
-             check_interval: Optional[int] = None,
-             expected_response: Optional[int] = None,
-             headers: Optional[Sequence[str]] = None,
-             http_version: Optional[str] = None,
-             initial: Optional[int] = None,
-             method: Optional[str] = None,
-             threshold: Optional[int] = None,
-             timeout: Optional[int] = None,
-             window: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if host is None:
-            raise TypeError("Missing 'host' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if check_interval is None and 'checkInterval' in kwargs:
-            check_interval = kwargs['checkInterval']
-        if expected_response is None and 'expectedResponse' in kwargs:
-            expected_response = kwargs['expectedResponse']
-        if http_version is None and 'httpVersion' in kwargs:
-            http_version = kwargs['httpVersion']
-
-        _setter("host", host)
-        _setter("name", name)
-        _setter("path", path)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
         if check_interval is not None:
-            _setter("check_interval", check_interval)
+            pulumi.set(__self__, "check_interval", check_interval)
         if expected_response is not None:
-            _setter("expected_response", expected_response)
+            pulumi.set(__self__, "expected_response", expected_response)
         if headers is not None:
-            _setter("headers", headers)
+            pulumi.set(__self__, "headers", headers)
         if http_version is not None:
-            _setter("http_version", http_version)
+            pulumi.set(__self__, "http_version", http_version)
         if initial is not None:
-            _setter("initial", initial)
+            pulumi.set(__self__, "initial", initial)
         if method is not None:
-            _setter("method", method)
+            pulumi.set(__self__, "method", method)
         if threshold is not None:
-            _setter("threshold", threshold)
+            pulumi.set(__self__, "threshold", threshold)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
         if window is not None:
-            _setter("window", window)
+            pulumi.set(__self__, "window", window)
 
     @property
     @pulumi.getter
@@ -6870,73 +5230,22 @@ class ServiceVclLoggingBigquery(dict):
         :param str response_condition: Name of a condition to apply this logging.
         :param str template: BigQuery table name suffix template
         """
-        ServiceVclLoggingBigquery._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            dataset=dataset,
-            email=email,
-            name=name,
-            project_id=project_id,
-            secret_key=secret_key,
-            table=table,
-            account_name=account_name,
-            format=format,
-            placement=placement,
-            response_condition=response_condition,
-            template=template,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             dataset: Optional[str] = None,
-             email: Optional[str] = None,
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             table: Optional[str] = None,
-             account_name: Optional[str] = None,
-             format: Optional[str] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             template: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if dataset is None:
-            raise TypeError("Missing 'dataset' argument")
-        if email is None:
-            raise TypeError("Missing 'email' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if secret_key is None:
-            raise TypeError("Missing 'secret_key' argument")
-        if table is None:
-            raise TypeError("Missing 'table' argument")
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("dataset", dataset)
-        _setter("email", email)
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("secret_key", secret_key)
-        _setter("table", table)
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "table", table)
         if account_name is not None:
-            _setter("account_name", account_name)
+            pulumi.set(__self__, "account_name", account_name)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if template is not None:
-            _setter("template", template)
+            pulumi.set(__self__, "template", template)
 
     @property
     @pulumi.getter
@@ -7099,103 +5408,34 @@ class ServiceVclLoggingBlobstorage(dict):
         :param str response_condition: The name of the condition to apply
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceVclLoggingBlobstorage._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            account_name=account_name,
-            container=container,
-            name=name,
-            sas_token=sas_token,
-            compression_codec=compression_codec,
-            file_max_bytes=file_max_bytes,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            placement=placement,
-            public_key=public_key,
-            response_condition=response_condition,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             account_name: Optional[str] = None,
-             container: Optional[str] = None,
-             name: Optional[str] = None,
-             sas_token: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             file_max_bytes: Optional[int] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             public_key: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-        if account_name is None:
-            raise TypeError("Missing 'account_name' argument")
-        if container is None:
-            raise TypeError("Missing 'container' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if sas_token is None and 'sasToken' in kwargs:
-            sas_token = kwargs['sasToken']
-        if sas_token is None:
-            raise TypeError("Missing 'sas_token' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
-            file_max_bytes = kwargs['fileMaxBytes']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("account_name", account_name)
-        _setter("container", container)
-        _setter("name", name)
-        _setter("sas_token", sas_token)
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "container", container)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sas_token", sas_token)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if file_max_bytes is not None:
-            _setter("file_max_bytes", file_max_bytes)
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accountName")
@@ -7396,101 +5636,34 @@ class ServiceVclLoggingCloudfile(dict):
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceVclLoggingCloudfile._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            bucket_name=bucket_name,
-            name=name,
-            user=user,
-            compression_codec=compression_codec,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            placement=placement,
-            public_key=public_key,
-            region=region,
-            response_condition=response_condition,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[str] = None,
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             public_key: Optional[str] = None,
-             region: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if access_key is None:
-            raise TypeError("Missing 'access_key' argument")
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("access_key", access_key)
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
-        _setter("user", user)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -7659,49 +5832,18 @@ class ServiceVclLoggingDatadog(dict):
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param str response_condition: The name of the condition to apply.
         """
-        ServiceVclLoggingDatadog._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            region=region,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             region: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -7832,103 +5974,34 @@ class ServiceVclLoggingDigitalocean(dict):
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceVclLoggingDigitalocean._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            bucket_name=bucket_name,
-            name=name,
-            secret_key=secret_key,
-            compression_codec=compression_codec,
-            domain=domain,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            placement=placement,
-            public_key=public_key,
-            response_condition=response_condition,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[str] = None,
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             domain: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             public_key: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if access_key is None:
-            raise TypeError("Missing 'access_key' argument")
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if secret_key is None:
-            raise TypeError("Missing 'secret_key' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("access_key", access_key)
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
-        _setter("secret_key", secret_key)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "secret_key", secret_key)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -8127,98 +6200,35 @@ class ServiceVclLoggingElasticsearch(dict):
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         :param str user: BasicAuth username for Elasticsearch
         """
-        ServiceVclLoggingElasticsearch._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            index=index,
-            name=name,
-            url=url,
-            format=format,
-            format_version=format_version,
-            password=password,
-            pipeline=pipeline,
-            placement=placement,
-            request_max_bytes=request_max_bytes,
-            request_max_entries=request_max_entries,
-            response_condition=response_condition,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             index: Optional[str] = None,
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             password: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             placement: Optional[str] = None,
-             request_max_bytes: Optional[int] = None,
-             request_max_entries: Optional[int] = None,
-             response_condition: Optional[str] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             user: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if index is None:
-            raise TypeError("Missing 'index' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
-            request_max_bytes = kwargs['requestMaxBytes']
-        if request_max_entries is None and 'requestMaxEntries' in kwargs:
-            request_max_entries = kwargs['requestMaxEntries']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-
-        _setter("index", index)
-        _setter("name", name)
-        _setter("url", url)
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if pipeline is not None:
-            _setter("pipeline", pipeline)
+            pulumi.set(__self__, "pipeline", pipeline)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if request_max_bytes is not None:
-            _setter("request_max_bytes", request_max_bytes)
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            _setter("request_max_entries", request_max_entries)
+            pulumi.set(__self__, "request_max_entries", request_max_entries)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -8415,98 +6425,33 @@ class ServiceVclLoggingFtp(dict):
         :param str response_condition: The name of the condition to apply.
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceVclLoggingFtp._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            password=password,
-            path=path,
-            user=user,
-            compression_codec=compression_codec,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            period=period,
-            placement=placement,
-            port=port,
-            public_key=public_key,
-            response_condition=response_condition,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             password: Optional[str] = None,
-             path: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             port: Optional[int] = None,
-             public_key: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if password is None:
-            raise TypeError("Missing 'password' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("address", address)
-        _setter("name", name)
-        _setter("password", password)
-        _setter("path", path)
-        _setter("user", user)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -8709,101 +6654,36 @@ class ServiceVclLoggingGc(dict):
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
-        ServiceVclLoggingGc._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket_name=bucket_name,
-            name=name,
-            account_name=account_name,
-            compression_codec=compression_codec,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            placement=placement,
-            project_id=project_id,
-            response_condition=response_condition,
-            secret_key=secret_key,
-            timestamp_format=timestamp_format,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             account_name: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             project_id: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             user: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
         if account_name is not None:
-            _setter("account_name", account_name)
+            pulumi.set(__self__, "account_name", account_name)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -8984,70 +6864,21 @@ class ServiceVclLoggingGooglepubsub(dict):
         :param str placement: Where in the generated VCL the logging call should be placed.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        ServiceVclLoggingGooglepubsub._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            project_id=project_id,
-            secret_key=secret_key,
-            topic=topic,
-            user=user,
-            account_name=account_name,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             topic: Optional[str] = None,
-             user: Optional[str] = None,
-             account_name: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if secret_key is None:
-            raise TypeError("Missing 'secret_key' argument")
-        if topic is None:
-            raise TypeError("Missing 'topic' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if account_name is None and 'accountName' in kwargs:
-            account_name = kwargs['accountName']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("secret_key", secret_key)
-        _setter("topic", topic)
-        _setter("user", user)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "secret_key", secret_key)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "user", user)
         if account_name is not None:
-            _setter("account_name", account_name)
+            pulumi.set(__self__, "account_name", account_name)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -9168,50 +6999,17 @@ class ServiceVclLoggingHerokus(dict):
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        ServiceVclLoggingHerokus._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            url=url,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             url: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("token", token)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -9308,50 +7106,17 @@ class ServiceVclLoggingHoneycomb(dict):
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        ServiceVclLoggingHoneycomb._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            dataset=dataset,
-            name=name,
-            token=token,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             dataset: Optional[str] = None,
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if dataset is None:
-            raise TypeError("Missing 'dataset' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("dataset", dataset)
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -9492,115 +7257,40 @@ class ServiceVclLoggingHttp(dict):
         :param str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format
         :param str tls_hostname: Used during the TLS handshake to validate the certificate
         """
-        ServiceVclLoggingHttp._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            url=url,
-            content_type=content_type,
-            format=format,
-            format_version=format_version,
-            header_name=header_name,
-            header_value=header_value,
-            json_format=json_format,
-            message_type=message_type,
-            method=method,
-            placement=placement,
-            request_max_bytes=request_max_bytes,
-            request_max_entries=request_max_entries,
-            response_condition=response_condition,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             content_type: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             header_name: Optional[str] = None,
-             header_value: Optional[str] = None,
-             json_format: Optional[str] = None,
-             message_type: Optional[str] = None,
-             method: Optional[str] = None,
-             placement: Optional[str] = None,
-             request_max_bytes: Optional[int] = None,
-             request_max_entries: Optional[int] = None,
-             response_condition: Optional[str] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if content_type is None and 'contentType' in kwargs:
-            content_type = kwargs['contentType']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if header_name is None and 'headerName' in kwargs:
-            header_name = kwargs['headerName']
-        if header_value is None and 'headerValue' in kwargs:
-            header_value = kwargs['headerValue']
-        if json_format is None and 'jsonFormat' in kwargs:
-            json_format = kwargs['jsonFormat']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
-            request_max_bytes = kwargs['requestMaxBytes']
-        if request_max_entries is None and 'requestMaxEntries' in kwargs:
-            request_max_entries = kwargs['requestMaxEntries']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-
-        _setter("name", name)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
         if content_type is not None:
-            _setter("content_type", content_type)
+            pulumi.set(__self__, "content_type", content_type)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if header_name is not None:
-            _setter("header_name", header_name)
+            pulumi.set(__self__, "header_name", header_name)
         if header_value is not None:
-            _setter("header_value", header_value)
+            pulumi.set(__self__, "header_value", header_value)
         if json_format is not None:
-            _setter("json_format", json_format)
+            pulumi.set(__self__, "json_format", json_format)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if method is not None:
-            _setter("method", method)
+            pulumi.set(__self__, "method", method)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if request_max_bytes is not None:
-            _setter("request_max_bytes", request_max_bytes)
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
-            _setter("request_max_entries", request_max_entries)
+            pulumi.set(__self__, "request_max_entries", request_max_entries)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
 
     @property
     @pulumi.getter
@@ -9829,118 +7519,41 @@ class ServiceVclLoggingKafka(dict):
         :param bool use_tls: Whether to use TLS for secure logging. Can be either `true` or `false`
         :param str user: SASL User
         """
-        ServiceVclLoggingKafka._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            brokers=brokers,
-            name=name,
-            topic=topic,
-            auth_method=auth_method,
-            compression_codec=compression_codec,
-            format=format,
-            format_version=format_version,
-            parse_log_keyvals=parse_log_keyvals,
-            password=password,
-            placement=placement,
-            request_max_bytes=request_max_bytes,
-            required_acks=required_acks,
-            response_condition=response_condition,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            use_tls=use_tls,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             brokers: Optional[str] = None,
-             name: Optional[str] = None,
-             topic: Optional[str] = None,
-             auth_method: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             parse_log_keyvals: Optional[bool] = None,
-             password: Optional[str] = None,
-             placement: Optional[str] = None,
-             request_max_bytes: Optional[int] = None,
-             required_acks: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             use_tls: Optional[bool] = None,
-             user: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if brokers is None:
-            raise TypeError("Missing 'brokers' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if topic is None:
-            raise TypeError("Missing 'topic' argument")
-        if auth_method is None and 'authMethod' in kwargs:
-            auth_method = kwargs['authMethod']
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if parse_log_keyvals is None and 'parseLogKeyvals' in kwargs:
-            parse_log_keyvals = kwargs['parseLogKeyvals']
-        if request_max_bytes is None and 'requestMaxBytes' in kwargs:
-            request_max_bytes = kwargs['requestMaxBytes']
-        if required_acks is None and 'requiredAcks' in kwargs:
-            required_acks = kwargs['requiredAcks']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("brokers", brokers)
-        _setter("name", name)
-        _setter("topic", topic)
+        pulumi.set(__self__, "brokers", brokers)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "topic", topic)
         if auth_method is not None:
-            _setter("auth_method", auth_method)
+            pulumi.set(__self__, "auth_method", auth_method)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if parse_log_keyvals is not None:
-            _setter("parse_log_keyvals", parse_log_keyvals)
+            pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if request_max_bytes is not None:
-            _setter("request_max_bytes", request_max_bytes)
+            pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
-            _setter("required_acks", required_acks)
+            pulumi.set(__self__, "required_acks", required_acks)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -10145,67 +7758,24 @@ class ServiceVclLoggingKinese(dict):
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str secret_key: The AWS secret access key to authenticate with
         """
-        ServiceVclLoggingKinese._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            topic=topic,
-            access_key=access_key,
-            format=format,
-            format_version=format_version,
-            iam_role=iam_role,
-            placement=placement,
-            region=region,
-            response_condition=response_condition,
-            secret_key=secret_key,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             topic: Optional[str] = None,
-             access_key: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             iam_role: Optional[str] = None,
-             placement: Optional[str] = None,
-             region: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if topic is None:
-            raise TypeError("Missing 'topic' argument")
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if iam_role is None and 'iamRole' in kwargs:
-            iam_role = kwargs['iamRole']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-
-        _setter("name", name)
-        _setter("topic", topic)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "topic", topic)
         if access_key is not None:
-            _setter("access_key", access_key)
+            pulumi.set(__self__, "access_key", access_key)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if iam_role is not None:
-            _setter("iam_role", iam_role)
+            pulumi.set(__self__, "iam_role", iam_role)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
 
     @property
     @pulumi.getter
@@ -10330,55 +7900,20 @@ class ServiceVclLoggingLogentry(dict):
         :param str response_condition: Name of blockAttributes condition to apply this logging.
         :param bool use_tls: Whether to use TLS for secure logging
         """
-        ServiceVclLoggingLogentry._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            port=port,
-            response_condition=response_condition,
-            use_tls=use_tls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             port: Optional[int] = None,
-             response_condition: Optional[str] = None,
-             use_tls: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -10481,45 +8016,16 @@ class ServiceVclLoggingLoggly(dict):
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        ServiceVclLoggingLoggly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -10608,50 +8114,17 @@ class ServiceVclLoggingLogshuttle(dict):
         :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        ServiceVclLoggingLogshuttle._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            url=url,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             url: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("token", token)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -10748,49 +8221,18 @@ class ServiceVclLoggingNewrelic(dict):
         :param str region: The region that log data will be sent to. Default: `US`
         :param str response_condition: The name of the condition to apply.
         """
-        ServiceVclLoggingNewrelic._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            region=region,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             region: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -10919,102 +8361,33 @@ class ServiceVclLoggingOpenstack(dict):
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceVclLoggingOpenstack._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            bucket_name=bucket_name,
-            name=name,
-            url=url,
-            user=user,
-            compression_codec=compression_codec,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            placement=placement,
-            public_key=public_key,
-            response_condition=response_condition,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[str] = None,
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             public_key: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key is None and 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if access_key is None:
-            raise TypeError("Missing 'access_key' argument")
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("access_key", access_key)
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
-        _setter("url", url)
-        _setter("user", user)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -11183,50 +8556,17 @@ class ServiceVclLoggingPapertrail(dict):
         :param str placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
-        ServiceVclLoggingPapertrail._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            port=port,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             port: Optional[int] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if port is None:
-            raise TypeError("Missing 'port' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("address", address)
-        _setter("name", name)
-        _setter("port", port)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -11377,133 +8717,48 @@ class ServiceVclLoggingS3(dict):
         :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceVclLoggingS3._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket_name=bucket_name,
-            name=name,
-            acl=acl,
-            compression_codec=compression_codec,
-            domain=domain,
-            file_max_bytes=file_max_bytes,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            path=path,
-            period=period,
-            placement=placement,
-            public_key=public_key,
-            redundancy=redundancy,
-            response_condition=response_condition,
-            s3_access_key=s3_access_key,
-            s3_iam_role=s3_iam_role,
-            s3_secret_key=s3_secret_key,
-            server_side_encryption=server_side_encryption,
-            server_side_encryption_kms_key_id=server_side_encryption_kms_key_id,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket_name: Optional[str] = None,
-             name: Optional[str] = None,
-             acl: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             domain: Optional[str] = None,
-             file_max_bytes: Optional[int] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             path: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             public_key: Optional[str] = None,
-             redundancy: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             s3_access_key: Optional[str] = None,
-             s3_iam_role: Optional[str] = None,
-             s3_secret_key: Optional[str] = None,
-             server_side_encryption: Optional[str] = None,
-             server_side_encryption_kms_key_id: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if file_max_bytes is None and 'fileMaxBytes' in kwargs:
-            file_max_bytes = kwargs['fileMaxBytes']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if s3_access_key is None and 's3AccessKey' in kwargs:
-            s3_access_key = kwargs['s3AccessKey']
-        if s3_iam_role is None and 's3IamRole' in kwargs:
-            s3_iam_role = kwargs['s3IamRole']
-        if s3_secret_key is None and 's3SecretKey' in kwargs:
-            s3_secret_key = kwargs['s3SecretKey']
-        if server_side_encryption is None and 'serverSideEncryption' in kwargs:
-            server_side_encryption = kwargs['serverSideEncryption']
-        if server_side_encryption_kms_key_id is None and 'serverSideEncryptionKmsKeyId' in kwargs:
-            server_side_encryption_kms_key_id = kwargs['serverSideEncryptionKmsKeyId']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("bucket_name", bucket_name)
-        _setter("name", name)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
         if acl is not None:
-            _setter("acl", acl)
+            pulumi.set(__self__, "acl", acl)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if file_max_bytes is not None:
-            _setter("file_max_bytes", file_max_bytes)
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if redundancy is not None:
-            _setter("redundancy", redundancy)
+            pulumi.set(__self__, "redundancy", redundancy)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if s3_access_key is not None:
-            _setter("s3_access_key", s3_access_key)
+            pulumi.set(__self__, "s3_access_key", s3_access_key)
         if s3_iam_role is not None:
-            _setter("s3_iam_role", s3_iam_role)
+            pulumi.set(__self__, "s3_iam_role", s3_iam_role)
         if s3_secret_key is not None:
-            _setter("s3_secret_key", s3_secret_key)
+            pulumi.set(__self__, "s3_secret_key", s3_secret_key)
         if server_side_encryption is not None:
-            _setter("server_side_encryption", server_side_encryption)
+            pulumi.set(__self__, "server_side_encryption", server_side_encryption)
         if server_side_encryption_kms_key_id is not None:
-            _setter("server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
+            pulumi.set(__self__, "server_side_encryption_kms_key_id", server_side_encryption_kms_key_id)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -11720,49 +8975,18 @@ class ServiceVclLoggingScalyr(dict):
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
-        ServiceVclLoggingScalyr._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            region=region,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             region: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("token", token)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -11895,110 +9119,37 @@ class ServiceVclLoggingSftp(dict):
         :param str secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
-        ServiceVclLoggingSftp._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            path=path,
-            ssh_known_hosts=ssh_known_hosts,
-            user=user,
-            compression_codec=compression_codec,
-            format=format,
-            format_version=format_version,
-            gzip_level=gzip_level,
-            message_type=message_type,
-            password=password,
-            period=period,
-            placement=placement,
-            port=port,
-            public_key=public_key,
-            response_condition=response_condition,
-            secret_key=secret_key,
-            timestamp_format=timestamp_format,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             path: Optional[str] = None,
-             ssh_known_hosts: Optional[str] = None,
-             user: Optional[str] = None,
-             compression_codec: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             gzip_level: Optional[int] = None,
-             message_type: Optional[str] = None,
-             password: Optional[str] = None,
-             period: Optional[int] = None,
-             placement: Optional[str] = None,
-             port: Optional[int] = None,
-             public_key: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             secret_key: Optional[str] = None,
-             timestamp_format: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if ssh_known_hosts is None and 'sshKnownHosts' in kwargs:
-            ssh_known_hosts = kwargs['sshKnownHosts']
-        if ssh_known_hosts is None:
-            raise TypeError("Missing 'ssh_known_hosts' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-        if compression_codec is None and 'compressionCodec' in kwargs:
-            compression_codec = kwargs['compressionCodec']
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if gzip_level is None and 'gzipLevel' in kwargs:
-            gzip_level = kwargs['gzipLevel']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if secret_key is None and 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if timestamp_format is None and 'timestampFormat' in kwargs:
-            timestamp_format = kwargs['timestampFormat']
-
-        _setter("address", address)
-        _setter("name", name)
-        _setter("path", path)
-        _setter("ssh_known_hosts", ssh_known_hosts)
-        _setter("user", user)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "ssh_known_hosts", ssh_known_hosts)
+        pulumi.set(__self__, "user", user)
         if compression_codec is not None:
-            _setter("compression_codec", compression_codec)
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if gzip_level is not None:
-            _setter("gzip_level", gzip_level)
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if period is not None:
-            _setter("period", period)
+            pulumi.set(__self__, "period", period)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
         if timestamp_format is not None:
-            _setter("timestamp_format", timestamp_format)
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
 
     @property
     @pulumi.getter
@@ -12203,80 +9354,27 @@ class ServiceVclLoggingSplunk(dict):
         :param str tls_hostname: The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         :param bool use_tls: Whether to use TLS for secure logging. Default: `false`
         """
-        ServiceVclLoggingSplunk._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            token=token,
-            url=url,
-            format=format,
-            format_version=format_version,
-            placement=placement,
-            response_condition=response_condition,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            use_tls=use_tls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             token: Optional[str] = None,
-             url: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             use_tls: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if token is None:
-            raise TypeError("Missing 'token' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("name", name)
-        _setter("token", token)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -12415,51 +9513,18 @@ class ServiceVclLoggingSumologic(dict):
         :param str placement: Where in the generated VCL the logging call should be placed.
         :param str response_condition: Name of blockAttributes condition to apply this logging.
         """
-        ServiceVclLoggingSumologic._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            url=url,
-            format=format,
-            format_version=format_version,
-            message_type=message_type,
-            placement=placement,
-            response_condition=response_condition,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             url: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             message_type: Optional[str] = None,
-             placement: Optional[str] = None,
-             response_condition: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-
-        _setter("name", name)
-        _setter("url", url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
 
     @property
     @pulumi.getter
@@ -12582,89 +9647,32 @@ class ServiceVclLoggingSyslog(dict):
         :param str token: Whether to prepend each message with a specific token
         :param bool use_tls: Whether to use TLS for secure logging. Default `false`
         """
-        ServiceVclLoggingSyslog._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            name=name,
-            format=format,
-            format_version=format_version,
-            message_type=message_type,
-            placement=placement,
-            port=port,
-            response_condition=response_condition,
-            tls_ca_cert=tls_ca_cert,
-            tls_client_cert=tls_client_cert,
-            tls_client_key=tls_client_key,
-            tls_hostname=tls_hostname,
-            token=token,
-            use_tls=use_tls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[str] = None,
-             name: Optional[str] = None,
-             format: Optional[str] = None,
-             format_version: Optional[int] = None,
-             message_type: Optional[str] = None,
-             placement: Optional[str] = None,
-             port: Optional[int] = None,
-             response_condition: Optional[str] = None,
-             tls_ca_cert: Optional[str] = None,
-             tls_client_cert: Optional[str] = None,
-             tls_client_key: Optional[str] = None,
-             tls_hostname: Optional[str] = None,
-             token: Optional[str] = None,
-             use_tls: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if address is None:
-            raise TypeError("Missing 'address' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if format_version is None and 'formatVersion' in kwargs:
-            format_version = kwargs['formatVersion']
-        if message_type is None and 'messageType' in kwargs:
-            message_type = kwargs['messageType']
-        if response_condition is None and 'responseCondition' in kwargs:
-            response_condition = kwargs['responseCondition']
-        if tls_ca_cert is None and 'tlsCaCert' in kwargs:
-            tls_ca_cert = kwargs['tlsCaCert']
-        if tls_client_cert is None and 'tlsClientCert' in kwargs:
-            tls_client_cert = kwargs['tlsClientCert']
-        if tls_client_key is None and 'tlsClientKey' in kwargs:
-            tls_client_key = kwargs['tlsClientKey']
-        if tls_hostname is None and 'tlsHostname' in kwargs:
-            tls_hostname = kwargs['tlsHostname']
-        if use_tls is None and 'useTls' in kwargs:
-            use_tls = kwargs['useTls']
-
-        _setter("address", address)
-        _setter("name", name)
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "name", name)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if format_version is not None:
-            _setter("format_version", format_version)
+            pulumi.set(__self__, "format_version", format_version)
         if message_type is not None:
-            _setter("message_type", message_type)
+            pulumi.set(__self__, "message_type", message_type)
         if placement is not None:
-            _setter("placement", placement)
+            pulumi.set(__self__, "placement", placement)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if response_condition is not None:
-            _setter("response_condition", response_condition)
+            pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
-            _setter("tls_ca_cert", tls_ca_cert)
+            pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
-            _setter("tls_client_cert", tls_client_cert)
+            pulumi.set(__self__, "tls_client_cert", tls_client_cert)
         if tls_client_key is not None:
-            _setter("tls_client_key", tls_client_key)
+            pulumi.set(__self__, "tls_client_key", tls_client_key)
         if tls_hostname is not None:
-            _setter("tls_hostname", tls_hostname)
+            pulumi.set(__self__, "tls_hostname", tls_hostname)
         if token is not None:
-            _setter("token", token)
+            pulumi.set(__self__, "token", token)
         if use_tls is not None:
-            _setter("use_tls", use_tls)
+            pulumi.set(__self__, "use_tls", use_tls)
 
     @property
     @pulumi.getter
@@ -12819,47 +9827,18 @@ class ServiceVclProductEnablement(dict):
         :param bool origin_inspector: Enable Origin Inspector support
         :param bool websockets: Enable WebSockets support
         """
-        ServiceVclProductEnablement._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            brotli_compression=brotli_compression,
-            domain_inspector=domain_inspector,
-            image_optimizer=image_optimizer,
-            name=name,
-            origin_inspector=origin_inspector,
-            websockets=websockets,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             brotli_compression: Optional[bool] = None,
-             domain_inspector: Optional[bool] = None,
-             image_optimizer: Optional[bool] = None,
-             name: Optional[str] = None,
-             origin_inspector: Optional[bool] = None,
-             websockets: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if brotli_compression is None and 'brotliCompression' in kwargs:
-            brotli_compression = kwargs['brotliCompression']
-        if domain_inspector is None and 'domainInspector' in kwargs:
-            domain_inspector = kwargs['domainInspector']
-        if image_optimizer is None and 'imageOptimizer' in kwargs:
-            image_optimizer = kwargs['imageOptimizer']
-        if origin_inspector is None and 'originInspector' in kwargs:
-            origin_inspector = kwargs['originInspector']
-
         if brotli_compression is not None:
-            _setter("brotli_compression", brotli_compression)
+            pulumi.set(__self__, "brotli_compression", brotli_compression)
         if domain_inspector is not None:
-            _setter("domain_inspector", domain_inspector)
+            pulumi.set(__self__, "domain_inspector", domain_inspector)
         if image_optimizer is not None:
-            _setter("image_optimizer", image_optimizer)
+            pulumi.set(__self__, "image_optimizer", image_optimizer)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if origin_inspector is not None:
-            _setter("origin_inspector", origin_inspector)
+            pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
-            _setter("websockets", websockets)
+            pulumi.set(__self__, "websockets", websockets)
 
     @property
     @pulumi.getter(name="brotliCompression")
@@ -12976,94 +9955,25 @@ class ServiceVclRateLimiter(dict):
         :param str response_object_name: Name of existing response object. Required if action is response_object
         :param str uri_dictionary_name: The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
         """
-        ServiceVclRateLimiter._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            client_key=client_key,
-            http_methods=http_methods,
-            name=name,
-            penalty_box_duration=penalty_box_duration,
-            rps_limit=rps_limit,
-            window_size=window_size,
-            feature_revision=feature_revision,
-            logger_type=logger_type,
-            ratelimiter_id=ratelimiter_id,
-            response=response,
-            response_object_name=response_object_name,
-            uri_dictionary_name=uri_dictionary_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: Optional[str] = None,
-             client_key: Optional[str] = None,
-             http_methods: Optional[str] = None,
-             name: Optional[str] = None,
-             penalty_box_duration: Optional[int] = None,
-             rps_limit: Optional[int] = None,
-             window_size: Optional[int] = None,
-             feature_revision: Optional[int] = None,
-             logger_type: Optional[str] = None,
-             ratelimiter_id: Optional[str] = None,
-             response: Optional['outputs.ServiceVclRateLimiterResponse'] = None,
-             response_object_name: Optional[str] = None,
-             uri_dictionary_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if action is None:
-            raise TypeError("Missing 'action' argument")
-        if client_key is None and 'clientKey' in kwargs:
-            client_key = kwargs['clientKey']
-        if client_key is None:
-            raise TypeError("Missing 'client_key' argument")
-        if http_methods is None and 'httpMethods' in kwargs:
-            http_methods = kwargs['httpMethods']
-        if http_methods is None:
-            raise TypeError("Missing 'http_methods' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if penalty_box_duration is None and 'penaltyBoxDuration' in kwargs:
-            penalty_box_duration = kwargs['penaltyBoxDuration']
-        if penalty_box_duration is None:
-            raise TypeError("Missing 'penalty_box_duration' argument")
-        if rps_limit is None and 'rpsLimit' in kwargs:
-            rps_limit = kwargs['rpsLimit']
-        if rps_limit is None:
-            raise TypeError("Missing 'rps_limit' argument")
-        if window_size is None and 'windowSize' in kwargs:
-            window_size = kwargs['windowSize']
-        if window_size is None:
-            raise TypeError("Missing 'window_size' argument")
-        if feature_revision is None and 'featureRevision' in kwargs:
-            feature_revision = kwargs['featureRevision']
-        if logger_type is None and 'loggerType' in kwargs:
-            logger_type = kwargs['loggerType']
-        if ratelimiter_id is None and 'ratelimiterId' in kwargs:
-            ratelimiter_id = kwargs['ratelimiterId']
-        if response_object_name is None and 'responseObjectName' in kwargs:
-            response_object_name = kwargs['responseObjectName']
-        if uri_dictionary_name is None and 'uriDictionaryName' in kwargs:
-            uri_dictionary_name = kwargs['uriDictionaryName']
-
-        _setter("action", action)
-        _setter("client_key", client_key)
-        _setter("http_methods", http_methods)
-        _setter("name", name)
-        _setter("penalty_box_duration", penalty_box_duration)
-        _setter("rps_limit", rps_limit)
-        _setter("window_size", window_size)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "client_key", client_key)
+        pulumi.set(__self__, "http_methods", http_methods)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "penalty_box_duration", penalty_box_duration)
+        pulumi.set(__self__, "rps_limit", rps_limit)
+        pulumi.set(__self__, "window_size", window_size)
         if feature_revision is not None:
-            _setter("feature_revision", feature_revision)
+            pulumi.set(__self__, "feature_revision", feature_revision)
         if logger_type is not None:
-            _setter("logger_type", logger_type)
+            pulumi.set(__self__, "logger_type", logger_type)
         if ratelimiter_id is not None:
-            _setter("ratelimiter_id", ratelimiter_id)
+            pulumi.set(__self__, "ratelimiter_id", ratelimiter_id)
         if response is not None:
-            _setter("response", response)
+            pulumi.set(__self__, "response", response)
         if response_object_name is not None:
-            _setter("response_object_name", response_object_name)
+            pulumi.set(__self__, "response_object_name", response_object_name)
         if uri_dictionary_name is not None:
-            _setter("uri_dictionary_name", uri_dictionary_name)
+            pulumi.set(__self__, "uri_dictionary_name", uri_dictionary_name)
 
     @property
     @pulumi.getter
@@ -13198,32 +10108,9 @@ class ServiceVclRateLimiterResponse(dict):
         :param str content_type: Value of the `Content-Type` header sent with the request
         :param int status: HTTP response status code (e.g. 429)
         """
-        ServiceVclRateLimiterResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            content=content,
-            content_type=content_type,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             content: Optional[str] = None,
-             content_type: Optional[str] = None,
-             status: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if content is None:
-            raise TypeError("Missing 'content' argument")
-        if content_type is None and 'contentType' in kwargs:
-            content_type = kwargs['contentType']
-        if content_type is None:
-            raise TypeError("Missing 'content_type' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-
-        _setter("content", content)
-        _setter("content_type", content_type)
-        _setter("status", status)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "content_type", content_type)
+        pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -13312,82 +10199,29 @@ class ServiceVclRequestSetting(dict):
         :param bool timer_support: Injects the X-Timer info into the request for viewing origin fetch durations
         :param str xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
         """
-        ServiceVclRequestSetting._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            action=action,
-            bypass_busy_wait=bypass_busy_wait,
-            default_host=default_host,
-            force_miss=force_miss,
-            force_ssl=force_ssl,
-            geo_headers=geo_headers,
-            hash_keys=hash_keys,
-            max_stale_age=max_stale_age,
-            request_condition=request_condition,
-            timer_support=timer_support,
-            xff=xff,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             action: Optional[str] = None,
-             bypass_busy_wait: Optional[bool] = None,
-             default_host: Optional[str] = None,
-             force_miss: Optional[bool] = None,
-             force_ssl: Optional[bool] = None,
-             geo_headers: Optional[bool] = None,
-             hash_keys: Optional[str] = None,
-             max_stale_age: Optional[int] = None,
-             request_condition: Optional[str] = None,
-             timer_support: Optional[bool] = None,
-             xff: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if bypass_busy_wait is None and 'bypassBusyWait' in kwargs:
-            bypass_busy_wait = kwargs['bypassBusyWait']
-        if default_host is None and 'defaultHost' in kwargs:
-            default_host = kwargs['defaultHost']
-        if force_miss is None and 'forceMiss' in kwargs:
-            force_miss = kwargs['forceMiss']
-        if force_ssl is None and 'forceSsl' in kwargs:
-            force_ssl = kwargs['forceSsl']
-        if geo_headers is None and 'geoHeaders' in kwargs:
-            geo_headers = kwargs['geoHeaders']
-        if hash_keys is None and 'hashKeys' in kwargs:
-            hash_keys = kwargs['hashKeys']
-        if max_stale_age is None and 'maxStaleAge' in kwargs:
-            max_stale_age = kwargs['maxStaleAge']
-        if request_condition is None and 'requestCondition' in kwargs:
-            request_condition = kwargs['requestCondition']
-        if timer_support is None and 'timerSupport' in kwargs:
-            timer_support = kwargs['timerSupport']
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if action is not None:
-            _setter("action", action)
+            pulumi.set(__self__, "action", action)
         if bypass_busy_wait is not None:
-            _setter("bypass_busy_wait", bypass_busy_wait)
+            pulumi.set(__self__, "bypass_busy_wait", bypass_busy_wait)
         if default_host is not None:
-            _setter("default_host", default_host)
+            pulumi.set(__self__, "default_host", default_host)
         if force_miss is not None:
-            _setter("force_miss", force_miss)
+            pulumi.set(__self__, "force_miss", force_miss)
         if force_ssl is not None:
-            _setter("force_ssl", force_ssl)
+            pulumi.set(__self__, "force_ssl", force_ssl)
         if geo_headers is not None:
-            _setter("geo_headers", geo_headers)
+            pulumi.set(__self__, "geo_headers", geo_headers)
         if hash_keys is not None:
-            _setter("hash_keys", hash_keys)
+            pulumi.set(__self__, "hash_keys", hash_keys)
         if max_stale_age is not None:
-            _setter("max_stale_age", max_stale_age)
+            pulumi.set(__self__, "max_stale_age", max_stale_age)
         if request_condition is not None:
-            _setter("request_condition", request_condition)
+            pulumi.set(__self__, "request_condition", request_condition)
         if timer_support is not None:
-            _setter("timer_support", timer_support)
+            pulumi.set(__self__, "timer_support", timer_support)
         if xff is not None:
-            _setter("xff", xff)
+            pulumi.set(__self__, "xff", xff)
 
     @property
     @pulumi.getter
@@ -13529,50 +10363,19 @@ class ServiceVclResponseObject(dict):
         :param str response: The HTTP Response. Default `OK`
         :param int status: The HTTP Status Code. Default `200`
         """
-        ServiceVclResponseObject._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            cache_condition=cache_condition,
-            content=content,
-            content_type=content_type,
-            request_condition=request_condition,
-            response=response,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             cache_condition: Optional[str] = None,
-             content: Optional[str] = None,
-             content_type: Optional[str] = None,
-             request_condition: Optional[str] = None,
-             response: Optional[str] = None,
-             status: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if cache_condition is None and 'cacheCondition' in kwargs:
-            cache_condition = kwargs['cacheCondition']
-        if content_type is None and 'contentType' in kwargs:
-            content_type = kwargs['contentType']
-        if request_condition is None and 'requestCondition' in kwargs:
-            request_condition = kwargs['requestCondition']
-
-        _setter("name", name)
+        pulumi.set(__self__, "name", name)
         if cache_condition is not None:
-            _setter("cache_condition", cache_condition)
+            pulumi.set(__self__, "cache_condition", cache_condition)
         if content is not None:
-            _setter("content", content)
+            pulumi.set(__self__, "content", content)
         if content_type is not None:
-            _setter("content_type", content_type)
+            pulumi.set(__self__, "content_type", content_type)
         if request_condition is not None:
-            _setter("request_condition", request_condition)
+            pulumi.set(__self__, "request_condition", request_condition)
         if response is not None:
-            _setter("response", response)
+            pulumi.set(__self__, "response", response)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -13644,34 +10447,11 @@ class ServiceVclSnippet(dict):
         :param str type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
         :param int priority: Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
-        ServiceVclSnippet._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            content=content,
-            name=name,
-            type=type,
-            priority=priority,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             content: Optional[str] = None,
-             name: Optional[str] = None,
-             type: Optional[str] = None,
-             priority: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if content is None:
-            raise TypeError("Missing 'content' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("content", content)
-        _setter("name", name)
-        _setter("type", type)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
 
     @property
     @pulumi.getter
@@ -13717,29 +10497,10 @@ class ServiceVclVcl(dict):
         :param str name: A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
         :param bool main: If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
         """
-        ServiceVclVcl._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            content=content,
-            name=name,
-            main=main,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             content: Optional[str] = None,
-             name: Optional[str] = None,
-             main: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if content is None:
-            raise TypeError("Missing 'content' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("content", content)
-        _setter("name", name)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "name", name)
         if main is not None:
-            _setter("main", main)
+            pulumi.set(__self__, "main", main)
 
     @property
     @pulumi.getter
@@ -13800,38 +10561,13 @@ class ServiceVclWaf(dict):
         :param str prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         :param str waf_id: The ID of the WAF
         """
-        ServiceVclWaf._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            response_object=response_object,
-            disabled=disabled,
-            prefetch_condition=prefetch_condition,
-            waf_id=waf_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             response_object: Optional[str] = None,
-             disabled: Optional[bool] = None,
-             prefetch_condition: Optional[str] = None,
-             waf_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if response_object is None and 'responseObject' in kwargs:
-            response_object = kwargs['responseObject']
-        if response_object is None:
-            raise TypeError("Missing 'response_object' argument")
-        if prefetch_condition is None and 'prefetchCondition' in kwargs:
-            prefetch_condition = kwargs['prefetchCondition']
-        if waf_id is None and 'wafId' in kwargs:
-            waf_id = kwargs['wafId']
-
-        _setter("response_object", response_object)
+        pulumi.set(__self__, "response_object", response_object)
         if disabled is not None:
-            _setter("disabled", disabled)
+            pulumi.set(__self__, "disabled", disabled)
         if prefetch_condition is not None:
-            _setter("prefetch_condition", prefetch_condition)
+            pulumi.set(__self__, "prefetch_condition", prefetch_condition)
         if waf_id is not None:
-            _setter("waf_id", waf_id)
+            pulumi.set(__self__, "waf_id", waf_id)
 
     @property
     @pulumi.getter(name="responseObject")
@@ -13894,31 +10630,10 @@ class ServiceWafConfigurationRule(dict):
         :param str status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
         :param int revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
         """
-        ServiceWafConfigurationRule._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            modsec_rule_id=modsec_rule_id,
-            status=status,
-            revision=revision,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             modsec_rule_id: Optional[int] = None,
-             status: Optional[str] = None,
-             revision: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if modsec_rule_id is None and 'modsecRuleId' in kwargs:
-            modsec_rule_id = kwargs['modsecRuleId']
-        if modsec_rule_id is None:
-            raise TypeError("Missing 'modsec_rule_id' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-
-        _setter("modsec_rule_id", modsec_rule_id)
-        _setter("status", status)
+        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
+        pulumi.set(__self__, "status", status)
         if revision is not None:
-            _setter("revision", revision)
+            pulumi.set(__self__, "revision", revision)
 
     @property
     @pulumi.getter(name="modsecRuleId")
@@ -13979,42 +10694,13 @@ class ServiceWafConfigurationRuleExclusion(dict):
         :param Sequence[int] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
         :param int number: The numeric ID assigned to the WAF Rule Exclusion
         """
-        ServiceWafConfigurationRuleExclusion._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            condition=condition,
-            exclusion_type=exclusion_type,
-            name=name,
-            modsec_rule_ids=modsec_rule_ids,
-            number=number,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             condition: Optional[str] = None,
-             exclusion_type: Optional[str] = None,
-             name: Optional[str] = None,
-             modsec_rule_ids: Optional[Sequence[int]] = None,
-             number: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if condition is None:
-            raise TypeError("Missing 'condition' argument")
-        if exclusion_type is None and 'exclusionType' in kwargs:
-            exclusion_type = kwargs['exclusionType']
-        if exclusion_type is None:
-            raise TypeError("Missing 'exclusion_type' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if modsec_rule_ids is None and 'modsecRuleIds' in kwargs:
-            modsec_rule_ids = kwargs['modsecRuleIds']
-
-        _setter("condition", condition)
-        _setter("exclusion_type", exclusion_type)
-        _setter("name", name)
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "exclusion_type", exclusion_type)
+        pulumi.set(__self__, "name", name)
         if modsec_rule_ids is not None:
-            _setter("modsec_rule_ids", modsec_rule_ids)
+            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
         if number is not None:
-            _setter("number", number)
+            pulumi.set(__self__, "number", number)
 
     @property
     @pulumi.getter
@@ -14084,33 +10770,12 @@ class TlsSubscriptionManagedDnsChallenge(dict):
                  record_name: Optional[str] = None,
                  record_type: Optional[str] = None,
                  record_value: Optional[str] = None):
-        TlsSubscriptionManagedDnsChallenge._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            record_name=record_name,
-            record_type=record_type,
-            record_value=record_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             record_name: Optional[str] = None,
-             record_type: Optional[str] = None,
-             record_value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if record_name is None and 'recordName' in kwargs:
-            record_name = kwargs['recordName']
-        if record_type is None and 'recordType' in kwargs:
-            record_type = kwargs['recordType']
-        if record_value is None and 'recordValue' in kwargs:
-            record_value = kwargs['recordValue']
-
         if record_name is not None:
-            _setter("record_name", record_name)
+            pulumi.set(__self__, "record_name", record_name)
         if record_type is not None:
-            _setter("record_type", record_type)
+            pulumi.set(__self__, "record_type", record_type)
         if record_value is not None:
-            _setter("record_value", record_value)
+            pulumi.set(__self__, "record_value", record_value)
 
     @property
     @pulumi.getter(name="recordName")
@@ -14155,33 +10820,12 @@ class TlsSubscriptionManagedHttpChallenge(dict):
                  record_name: Optional[str] = None,
                  record_type: Optional[str] = None,
                  record_values: Optional[Sequence[str]] = None):
-        TlsSubscriptionManagedHttpChallenge._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            record_name=record_name,
-            record_type=record_type,
-            record_values=record_values,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             record_name: Optional[str] = None,
-             record_type: Optional[str] = None,
-             record_values: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if record_name is None and 'recordName' in kwargs:
-            record_name = kwargs['recordName']
-        if record_type is None and 'recordType' in kwargs:
-            record_type = kwargs['recordType']
-        if record_values is None and 'recordValues' in kwargs:
-            record_values = kwargs['recordValues']
-
         if record_name is not None:
-            _setter("record_name", record_name)
+            pulumi.set(__self__, "record_name", record_name)
         if record_type is not None:
-            _setter("record_type", record_type)
+            pulumi.set(__self__, "record_type", record_type)
         if record_values is not None:
-            _setter("record_values", record_values)
+            pulumi.set(__self__, "record_values", record_values)
 
     @property
     @pulumi.getter(name="recordName")
@@ -14204,25 +10848,8 @@ class GetConfigstoresStoreResult(dict):
     def __init__(__self__, *,
                  id: str,
                  name: str):
-        GetConfigstoresStoreResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("id", id)
-        _setter("name", name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -14242,35 +10869,10 @@ class GetDatacentersPopResult(dict):
                  group: str,
                  name: str,
                  shield: str):
-        GetDatacentersPopResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            code=code,
-            group=group,
-            name=name,
-            shield=shield,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             code: Optional[str] = None,
-             group: Optional[str] = None,
-             name: Optional[str] = None,
-             shield: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if code is None:
-            raise TypeError("Missing 'code' argument")
-        if group is None:
-            raise TypeError("Missing 'group' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if shield is None:
-            raise TypeError("Missing 'shield' argument")
-
-        _setter("code", code)
-        _setter("group", group)
-        _setter("name", name)
-        _setter("shield", shield)
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "group", group)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "shield", shield)
 
     @property
     @pulumi.getter
@@ -14299,32 +10901,9 @@ class GetDictionariesDictionaryResult(dict):
                  id: str,
                  name: str,
                  write_only: bool):
-        GetDictionariesDictionaryResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-            write_only=write_only,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             write_only: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if write_only is None and 'writeOnly' in kwargs:
-            write_only = kwargs['writeOnly']
-        if write_only is None:
-            raise TypeError("Missing 'write_only' argument")
-
-        _setter("id", id)
-        _setter("name", name)
-        _setter("write_only", write_only)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "write_only", write_only)
 
     @property
     @pulumi.getter
@@ -14347,25 +10926,8 @@ class GetKvstoresStoreResult(dict):
     def __init__(__self__, *,
                  id: str,
                  name: str):
-        GetKvstoresStoreResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("id", id)
-        _setter("name", name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -14383,25 +10945,8 @@ class GetSecretstoresStoreResult(dict):
     def __init__(__self__, *,
                  id: str,
                  name: str):
-        GetSecretstoresStoreResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("id", id)
-        _setter("name", name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -14425,61 +10970,14 @@ class GetServicesDetailResult(dict):
                  type: str,
                  updated_at: str,
                  version: int):
-        GetServicesDetailResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            comment=comment,
-            created_at=created_at,
-            customer_id=customer_id,
-            id=id,
-            name=name,
-            type=type,
-            updated_at=updated_at,
-            version=version,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             comment: Optional[str] = None,
-             created_at: Optional[str] = None,
-             customer_id: Optional[str] = None,
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             version: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if comment is None:
-            raise TypeError("Missing 'comment' argument")
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if created_at is None:
-            raise TypeError("Missing 'created_at' argument")
-        if customer_id is None and 'customerId' in kwargs:
-            customer_id = kwargs['customerId']
-        if customer_id is None:
-            raise TypeError("Missing 'customer_id' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if updated_at is None and 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-        if updated_at is None:
-            raise TypeError("Missing 'updated_at' argument")
-        if version is None:
-            raise TypeError("Missing 'version' argument")
-
-        _setter("comment", comment)
-        _setter("created_at", created_at)
-        _setter("customer_id", customer_id)
-        _setter("id", id)
-        _setter("name", name)
-        _setter("type", type)
-        _setter("updated_at", updated_at)
-        _setter("version", version)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "customer_id", customer_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
@@ -14528,34 +11026,9 @@ class GetTlsConfigurationDnsRecordResult(dict):
                  record_type: str,
                  record_value: str,
                  region: str):
-        GetTlsConfigurationDnsRecordResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            record_type=record_type,
-            record_value=record_value,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             record_type: Optional[str] = None,
-             record_value: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if record_type is None and 'recordType' in kwargs:
-            record_type = kwargs['recordType']
-        if record_type is None:
-            raise TypeError("Missing 'record_type' argument")
-        if record_value is None and 'recordValue' in kwargs:
-            record_value = kwargs['recordValue']
-        if record_value is None:
-            raise TypeError("Missing 'record_value' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("record_type", record_type)
-        _setter("record_value", record_value)
-        _setter("region", region)
+        pulumi.set(__self__, "record_type", record_type)
+        pulumi.set(__self__, "record_value", record_value)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="recordType")
@@ -14579,34 +11052,9 @@ class GetWafRulesRuleResult(dict):
                  latest_revision_number: int,
                  modsec_rule_id: int,
                  type: str):
-        GetWafRulesRuleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            latest_revision_number=latest_revision_number,
-            modsec_rule_id=modsec_rule_id,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             latest_revision_number: Optional[int] = None,
-             modsec_rule_id: Optional[int] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if latest_revision_number is None and 'latestRevisionNumber' in kwargs:
-            latest_revision_number = kwargs['latestRevisionNumber']
-        if latest_revision_number is None:
-            raise TypeError("Missing 'latest_revision_number' argument")
-        if modsec_rule_id is None and 'modsecRuleId' in kwargs:
-            modsec_rule_id = kwargs['modsecRuleId']
-        if modsec_rule_id is None:
-            raise TypeError("Missing 'modsec_rule_id' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("latest_revision_number", latest_revision_number)
-        _setter("modsec_rule_id", modsec_rule_id)
-        _setter("type", type)
+        pulumi.set(__self__, "latest_revision_number", latest_revision_number)
+        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="latestRevisionNumber")

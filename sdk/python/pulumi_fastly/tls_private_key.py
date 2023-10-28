@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TlsPrivateKeyArgs', 'TlsPrivateKey']
@@ -21,26 +21,9 @@ class TlsPrivateKeyArgs:
         :param pulumi.Input[str] key_pem: Private key in PEM format.
         :param pulumi.Input[str] name: Customisable name of the private key.
         """
-        TlsPrivateKeyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key_pem=key_pem,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key_pem: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key_pem is None and 'keyPem' in kwargs:
-            key_pem = kwargs['keyPem']
-        if key_pem is None:
-            raise TypeError("Missing 'key_pem' argument")
-
-        _setter("key_pem", key_pem)
+        pulumi.set(__self__, "key_pem", key_pem)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="keyPem")
@@ -87,53 +70,20 @@ class _TlsPrivateKeyState:
         :param pulumi.Input[str] public_key_sha1: Useful for safely identifying the key.
         :param pulumi.Input[bool] replace: Whether Fastly recommends replacing this private key.
         """
-        _TlsPrivateKeyState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            key_length=key_length,
-            key_pem=key_pem,
-            key_type=key_type,
-            name=name,
-            public_key_sha1=public_key_sha1,
-            replace=replace,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             key_length: Optional[pulumi.Input[int]] = None,
-             key_pem: Optional[pulumi.Input[str]] = None,
-             key_type: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             public_key_sha1: Optional[pulumi.Input[str]] = None,
-             replace: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if key_length is None and 'keyLength' in kwargs:
-            key_length = kwargs['keyLength']
-        if key_pem is None and 'keyPem' in kwargs:
-            key_pem = kwargs['keyPem']
-        if key_type is None and 'keyType' in kwargs:
-            key_type = kwargs['keyType']
-        if public_key_sha1 is None and 'publicKeySha1' in kwargs:
-            public_key_sha1 = kwargs['publicKeySha1']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if key_length is not None:
-            _setter("key_length", key_length)
+            pulumi.set(__self__, "key_length", key_length)
         if key_pem is not None:
-            _setter("key_pem", key_pem)
+            pulumi.set(__self__, "key_pem", key_pem)
         if key_type is not None:
-            _setter("key_type", key_type)
+            pulumi.set(__self__, "key_type", key_type)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if public_key_sha1 is not None:
-            _setter("public_key_sha1", public_key_sha1)
+            pulumi.set(__self__, "public_key_sha1", public_key_sha1)
         if replace is not None:
-            _setter("replace", replace)
+            pulumi.set(__self__, "replace", replace)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -301,10 +251,6 @@ class TlsPrivateKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            TlsPrivateKeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

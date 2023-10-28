@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -28,39 +28,14 @@ class ProviderArgs:
         :param pulumi.Input[bool] no_auth: Set to `true` if your configuration only consumes data sources that do not require authentication, such as
                `fastly_ip_ranges`
         """
-        ProviderArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key=api_key,
-            base_url=base_url,
-            force_http2=force_http2,
-            no_auth=no_auth,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key: Optional[pulumi.Input[str]] = None,
-             base_url: Optional[pulumi.Input[str]] = None,
-             force_http2: Optional[pulumi.Input[bool]] = None,
-             no_auth: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_key is None and 'apiKey' in kwargs:
-            api_key = kwargs['apiKey']
-        if base_url is None and 'baseUrl' in kwargs:
-            base_url = kwargs['baseUrl']
-        if force_http2 is None and 'forceHttp2' in kwargs:
-            force_http2 = kwargs['forceHttp2']
-        if no_auth is None and 'noAuth' in kwargs:
-            no_auth = kwargs['noAuth']
-
         if api_key is not None:
-            _setter("api_key", api_key)
+            pulumi.set(__self__, "api_key", api_key)
         if base_url is not None:
-            _setter("base_url", base_url)
+            pulumi.set(__self__, "base_url", base_url)
         if force_http2 is not None:
-            _setter("force_http2", force_http2)
+            pulumi.set(__self__, "force_http2", force_http2)
         if no_auth is not None:
-            _setter("no_auth", no_auth)
+            pulumi.set(__self__, "no_auth", no_auth)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -162,10 +137,6 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
