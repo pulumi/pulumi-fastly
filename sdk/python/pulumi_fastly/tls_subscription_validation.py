@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TlsSubscriptionValidationArgs', 'TlsSubscriptionValidation']
@@ -19,7 +19,22 @@ class TlsSubscriptionValidationArgs:
         The set of arguments for constructing a TlsSubscriptionValidation resource.
         :param pulumi.Input[str] subscription_id: The ID of the TLS Subscription that should be validated.
         """
-        pulumi.set(__self__, "subscription_id", subscription_id)
+        TlsSubscriptionValidationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            subscription_id=subscription_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             subscription_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if subscription_id is None and 'subscriptionId' in kwargs:
+            subscription_id = kwargs['subscriptionId']
+        if subscription_id is None:
+            raise TypeError("Missing 'subscription_id' argument")
+
+        _setter("subscription_id", subscription_id)
 
     @property
     @pulumi.getter(name="subscriptionId")
@@ -42,8 +57,21 @@ class _TlsSubscriptionValidationState:
         Input properties used for looking up and filtering TlsSubscriptionValidation resources.
         :param pulumi.Input[str] subscription_id: The ID of the TLS Subscription that should be validated.
         """
+        _TlsSubscriptionValidationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            subscription_id=subscription_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             subscription_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if subscription_id is None and 'subscriptionId' in kwargs:
+            subscription_id = kwargs['subscriptionId']
+
         if subscription_id is not None:
-            pulumi.set(__self__, "subscription_id", subscription_id)
+            _setter("subscription_id", subscription_id)
 
     @property
     @pulumi.getter(name="subscriptionId")
@@ -99,6 +127,10 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TlsSubscriptionValidationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

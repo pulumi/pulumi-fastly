@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -68,81 +68,228 @@ class ServiceComputeArgs:
                an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
-        pulumi.set(__self__, "domains", domains)
+        ServiceComputeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            domains=domains,
+            activate=activate,
+            backends=backends,
+            comment=comment,
+            dictionaries=dictionaries,
+            force_destroy=force_destroy,
+            logging_bigqueries=logging_bigqueries,
+            logging_blobstorages=logging_blobstorages,
+            logging_cloudfiles=logging_cloudfiles,
+            logging_datadogs=logging_datadogs,
+            logging_digitaloceans=logging_digitaloceans,
+            logging_elasticsearches=logging_elasticsearches,
+            logging_ftps=logging_ftps,
+            logging_gcs=logging_gcs,
+            logging_googlepubsubs=logging_googlepubsubs,
+            logging_heroku=logging_heroku,
+            logging_honeycombs=logging_honeycombs,
+            logging_https=logging_https,
+            logging_kafkas=logging_kafkas,
+            logging_kineses=logging_kineses,
+            logging_logentries=logging_logentries,
+            logging_logglies=logging_logglies,
+            logging_logshuttles=logging_logshuttles,
+            logging_newrelics=logging_newrelics,
+            logging_openstacks=logging_openstacks,
+            logging_papertrails=logging_papertrails,
+            logging_s3s=logging_s3s,
+            logging_scalyrs=logging_scalyrs,
+            logging_sftps=logging_sftps,
+            logging_splunks=logging_splunks,
+            logging_sumologics=logging_sumologics,
+            logging_syslogs=logging_syslogs,
+            name=name,
+            package=package,
+            product_enablement=product_enablement,
+            resource_links=resource_links,
+            reuse=reuse,
+            version_comment=version_comment,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
+             activate: Optional[pulumi.Input[bool]] = None,
+             backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
+             comment: Optional[pulumi.Input[str]] = None,
+             dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
+             force_destroy: Optional[pulumi.Input[bool]] = None,
+             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
+             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
+             logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
+             logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]] = None,
+             logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]] = None,
+             logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]] = None,
+             logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]] = None,
+             logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]] = None,
+             logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]] = None,
+             logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]] = None,
+             logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]] = None,
+             logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]] = None,
+             logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]] = None,
+             logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]] = None,
+             logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
+             logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
+             logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
+             logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
+             logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
+             logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
+             logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]] = None,
+             logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]] = None,
+             logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]] = None,
+             logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]] = None,
+             logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
+             logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
+             product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
+             resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
+             reuse: Optional[pulumi.Input[bool]] = None,
+             version_comment: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if domains is None:
+            raise TypeError("Missing 'domains' argument")
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if logging_bigqueries is None and 'loggingBigqueries' in kwargs:
+            logging_bigqueries = kwargs['loggingBigqueries']
+        if logging_blobstorages is None and 'loggingBlobstorages' in kwargs:
+            logging_blobstorages = kwargs['loggingBlobstorages']
+        if logging_cloudfiles is None and 'loggingCloudfiles' in kwargs:
+            logging_cloudfiles = kwargs['loggingCloudfiles']
+        if logging_datadogs is None and 'loggingDatadogs' in kwargs:
+            logging_datadogs = kwargs['loggingDatadogs']
+        if logging_digitaloceans is None and 'loggingDigitaloceans' in kwargs:
+            logging_digitaloceans = kwargs['loggingDigitaloceans']
+        if logging_elasticsearches is None and 'loggingElasticsearches' in kwargs:
+            logging_elasticsearches = kwargs['loggingElasticsearches']
+        if logging_ftps is None and 'loggingFtps' in kwargs:
+            logging_ftps = kwargs['loggingFtps']
+        if logging_gcs is None and 'loggingGcs' in kwargs:
+            logging_gcs = kwargs['loggingGcs']
+        if logging_googlepubsubs is None and 'loggingGooglepubsubs' in kwargs:
+            logging_googlepubsubs = kwargs['loggingGooglepubsubs']
+        if logging_heroku is None and 'loggingHeroku' in kwargs:
+            logging_heroku = kwargs['loggingHeroku']
+        if logging_honeycombs is None and 'loggingHoneycombs' in kwargs:
+            logging_honeycombs = kwargs['loggingHoneycombs']
+        if logging_https is None and 'loggingHttps' in kwargs:
+            logging_https = kwargs['loggingHttps']
+        if logging_kafkas is None and 'loggingKafkas' in kwargs:
+            logging_kafkas = kwargs['loggingKafkas']
+        if logging_kineses is None and 'loggingKineses' in kwargs:
+            logging_kineses = kwargs['loggingKineses']
+        if logging_logentries is None and 'loggingLogentries' in kwargs:
+            logging_logentries = kwargs['loggingLogentries']
+        if logging_logglies is None and 'loggingLogglies' in kwargs:
+            logging_logglies = kwargs['loggingLogglies']
+        if logging_logshuttles is None and 'loggingLogshuttles' in kwargs:
+            logging_logshuttles = kwargs['loggingLogshuttles']
+        if logging_newrelics is None and 'loggingNewrelics' in kwargs:
+            logging_newrelics = kwargs['loggingNewrelics']
+        if logging_openstacks is None and 'loggingOpenstacks' in kwargs:
+            logging_openstacks = kwargs['loggingOpenstacks']
+        if logging_papertrails is None and 'loggingPapertrails' in kwargs:
+            logging_papertrails = kwargs['loggingPapertrails']
+        if logging_s3s is None and 'loggingS3s' in kwargs:
+            logging_s3s = kwargs['loggingS3s']
+        if logging_scalyrs is None and 'loggingScalyrs' in kwargs:
+            logging_scalyrs = kwargs['loggingScalyrs']
+        if logging_sftps is None and 'loggingSftps' in kwargs:
+            logging_sftps = kwargs['loggingSftps']
+        if logging_splunks is None and 'loggingSplunks' in kwargs:
+            logging_splunks = kwargs['loggingSplunks']
+        if logging_sumologics is None and 'loggingSumologics' in kwargs:
+            logging_sumologics = kwargs['loggingSumologics']
+        if logging_syslogs is None and 'loggingSyslogs' in kwargs:
+            logging_syslogs = kwargs['loggingSyslogs']
+        if product_enablement is None and 'productEnablement' in kwargs:
+            product_enablement = kwargs['productEnablement']
+        if resource_links is None and 'resourceLinks' in kwargs:
+            resource_links = kwargs['resourceLinks']
+        if version_comment is None and 'versionComment' in kwargs:
+            version_comment = kwargs['versionComment']
+
+        _setter("domains", domains)
         if activate is not None:
-            pulumi.set(__self__, "activate", activate)
+            _setter("activate", activate)
         if backends is not None:
-            pulumi.set(__self__, "backends", backends)
+            _setter("backends", backends)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if dictionaries is not None:
-            pulumi.set(__self__, "dictionaries", dictionaries)
+            _setter("dictionaries", dictionaries)
         if force_destroy is not None:
-            pulumi.set(__self__, "force_destroy", force_destroy)
+            _setter("force_destroy", force_destroy)
         if logging_bigqueries is not None:
-            pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
+            _setter("logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
-            pulumi.set(__self__, "logging_blobstorages", logging_blobstorages)
+            _setter("logging_blobstorages", logging_blobstorages)
         if logging_cloudfiles is not None:
-            pulumi.set(__self__, "logging_cloudfiles", logging_cloudfiles)
+            _setter("logging_cloudfiles", logging_cloudfiles)
         if logging_datadogs is not None:
-            pulumi.set(__self__, "logging_datadogs", logging_datadogs)
+            _setter("logging_datadogs", logging_datadogs)
         if logging_digitaloceans is not None:
-            pulumi.set(__self__, "logging_digitaloceans", logging_digitaloceans)
+            _setter("logging_digitaloceans", logging_digitaloceans)
         if logging_elasticsearches is not None:
-            pulumi.set(__self__, "logging_elasticsearches", logging_elasticsearches)
+            _setter("logging_elasticsearches", logging_elasticsearches)
         if logging_ftps is not None:
-            pulumi.set(__self__, "logging_ftps", logging_ftps)
+            _setter("logging_ftps", logging_ftps)
         if logging_gcs is not None:
-            pulumi.set(__self__, "logging_gcs", logging_gcs)
+            _setter("logging_gcs", logging_gcs)
         if logging_googlepubsubs is not None:
-            pulumi.set(__self__, "logging_googlepubsubs", logging_googlepubsubs)
+            _setter("logging_googlepubsubs", logging_googlepubsubs)
         if logging_heroku is not None:
-            pulumi.set(__self__, "logging_heroku", logging_heroku)
+            _setter("logging_heroku", logging_heroku)
         if logging_honeycombs is not None:
-            pulumi.set(__self__, "logging_honeycombs", logging_honeycombs)
+            _setter("logging_honeycombs", logging_honeycombs)
         if logging_https is not None:
-            pulumi.set(__self__, "logging_https", logging_https)
+            _setter("logging_https", logging_https)
         if logging_kafkas is not None:
-            pulumi.set(__self__, "logging_kafkas", logging_kafkas)
+            _setter("logging_kafkas", logging_kafkas)
         if logging_kineses is not None:
-            pulumi.set(__self__, "logging_kineses", logging_kineses)
+            _setter("logging_kineses", logging_kineses)
         if logging_logentries is not None:
-            pulumi.set(__self__, "logging_logentries", logging_logentries)
+            _setter("logging_logentries", logging_logentries)
         if logging_logglies is not None:
-            pulumi.set(__self__, "logging_logglies", logging_logglies)
+            _setter("logging_logglies", logging_logglies)
         if logging_logshuttles is not None:
-            pulumi.set(__self__, "logging_logshuttles", logging_logshuttles)
+            _setter("logging_logshuttles", logging_logshuttles)
         if logging_newrelics is not None:
-            pulumi.set(__self__, "logging_newrelics", logging_newrelics)
+            _setter("logging_newrelics", logging_newrelics)
         if logging_openstacks is not None:
-            pulumi.set(__self__, "logging_openstacks", logging_openstacks)
+            _setter("logging_openstacks", logging_openstacks)
         if logging_papertrails is not None:
-            pulumi.set(__self__, "logging_papertrails", logging_papertrails)
+            _setter("logging_papertrails", logging_papertrails)
         if logging_s3s is not None:
-            pulumi.set(__self__, "logging_s3s", logging_s3s)
+            _setter("logging_s3s", logging_s3s)
         if logging_scalyrs is not None:
-            pulumi.set(__self__, "logging_scalyrs", logging_scalyrs)
+            _setter("logging_scalyrs", logging_scalyrs)
         if logging_sftps is not None:
-            pulumi.set(__self__, "logging_sftps", logging_sftps)
+            _setter("logging_sftps", logging_sftps)
         if logging_splunks is not None:
-            pulumi.set(__self__, "logging_splunks", logging_splunks)
+            _setter("logging_splunks", logging_splunks)
         if logging_sumologics is not None:
-            pulumi.set(__self__, "logging_sumologics", logging_sumologics)
+            _setter("logging_sumologics", logging_sumologics)
         if logging_syslogs is not None:
-            pulumi.set(__self__, "logging_syslogs", logging_syslogs)
+            _setter("logging_syslogs", logging_syslogs)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if package is not None:
-            pulumi.set(__self__, "package", package)
+            _setter("package", package)
         if product_enablement is not None:
-            pulumi.set(__self__, "product_enablement", product_enablement)
+            _setter("product_enablement", product_enablement)
         if resource_links is not None:
-            pulumi.set(__self__, "resource_links", resource_links)
+            _setter("resource_links", resource_links)
         if reuse is not None:
-            pulumi.set(__self__, "reuse", reuse)
+            _setter("reuse", reuse)
         if version_comment is not None:
-            pulumi.set(__self__, "version_comment", version_comment)
+            _setter("version_comment", version_comment)
 
     @property
     @pulumi.getter
@@ -581,90 +728,249 @@ class _ServiceComputeState:
                an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
+        _ServiceComputeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            activate=activate,
+            active_version=active_version,
+            backends=backends,
+            cloned_version=cloned_version,
+            comment=comment,
+            dictionaries=dictionaries,
+            domains=domains,
+            force_destroy=force_destroy,
+            force_refresh=force_refresh,
+            imported=imported,
+            logging_bigqueries=logging_bigqueries,
+            logging_blobstorages=logging_blobstorages,
+            logging_cloudfiles=logging_cloudfiles,
+            logging_datadogs=logging_datadogs,
+            logging_digitaloceans=logging_digitaloceans,
+            logging_elasticsearches=logging_elasticsearches,
+            logging_ftps=logging_ftps,
+            logging_gcs=logging_gcs,
+            logging_googlepubsubs=logging_googlepubsubs,
+            logging_heroku=logging_heroku,
+            logging_honeycombs=logging_honeycombs,
+            logging_https=logging_https,
+            logging_kafkas=logging_kafkas,
+            logging_kineses=logging_kineses,
+            logging_logentries=logging_logentries,
+            logging_logglies=logging_logglies,
+            logging_logshuttles=logging_logshuttles,
+            logging_newrelics=logging_newrelics,
+            logging_openstacks=logging_openstacks,
+            logging_papertrails=logging_papertrails,
+            logging_s3s=logging_s3s,
+            logging_scalyrs=logging_scalyrs,
+            logging_sftps=logging_sftps,
+            logging_splunks=logging_splunks,
+            logging_sumologics=logging_sumologics,
+            logging_syslogs=logging_syslogs,
+            name=name,
+            package=package,
+            product_enablement=product_enablement,
+            resource_links=resource_links,
+            reuse=reuse,
+            version_comment=version_comment,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             activate: Optional[pulumi.Input[bool]] = None,
+             active_version: Optional[pulumi.Input[int]] = None,
+             backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
+             cloned_version: Optional[pulumi.Input[int]] = None,
+             comment: Optional[pulumi.Input[str]] = None,
+             dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
+             domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
+             force_destroy: Optional[pulumi.Input[bool]] = None,
+             force_refresh: Optional[pulumi.Input[bool]] = None,
+             imported: Optional[pulumi.Input[bool]] = None,
+             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
+             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
+             logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
+             logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]] = None,
+             logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]] = None,
+             logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]] = None,
+             logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]] = None,
+             logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]] = None,
+             logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]] = None,
+             logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]] = None,
+             logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]] = None,
+             logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]] = None,
+             logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]] = None,
+             logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]] = None,
+             logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
+             logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
+             logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
+             logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
+             logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
+             logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
+             logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]] = None,
+             logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]] = None,
+             logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]] = None,
+             logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]] = None,
+             logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
+             logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
+             product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
+             resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
+             reuse: Optional[pulumi.Input[bool]] = None,
+             version_comment: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if active_version is None and 'activeVersion' in kwargs:
+            active_version = kwargs['activeVersion']
+        if cloned_version is None and 'clonedVersion' in kwargs:
+            cloned_version = kwargs['clonedVersion']
+        if force_destroy is None and 'forceDestroy' in kwargs:
+            force_destroy = kwargs['forceDestroy']
+        if force_refresh is None and 'forceRefresh' in kwargs:
+            force_refresh = kwargs['forceRefresh']
+        if logging_bigqueries is None and 'loggingBigqueries' in kwargs:
+            logging_bigqueries = kwargs['loggingBigqueries']
+        if logging_blobstorages is None and 'loggingBlobstorages' in kwargs:
+            logging_blobstorages = kwargs['loggingBlobstorages']
+        if logging_cloudfiles is None and 'loggingCloudfiles' in kwargs:
+            logging_cloudfiles = kwargs['loggingCloudfiles']
+        if logging_datadogs is None and 'loggingDatadogs' in kwargs:
+            logging_datadogs = kwargs['loggingDatadogs']
+        if logging_digitaloceans is None and 'loggingDigitaloceans' in kwargs:
+            logging_digitaloceans = kwargs['loggingDigitaloceans']
+        if logging_elasticsearches is None and 'loggingElasticsearches' in kwargs:
+            logging_elasticsearches = kwargs['loggingElasticsearches']
+        if logging_ftps is None and 'loggingFtps' in kwargs:
+            logging_ftps = kwargs['loggingFtps']
+        if logging_gcs is None and 'loggingGcs' in kwargs:
+            logging_gcs = kwargs['loggingGcs']
+        if logging_googlepubsubs is None and 'loggingGooglepubsubs' in kwargs:
+            logging_googlepubsubs = kwargs['loggingGooglepubsubs']
+        if logging_heroku is None and 'loggingHeroku' in kwargs:
+            logging_heroku = kwargs['loggingHeroku']
+        if logging_honeycombs is None and 'loggingHoneycombs' in kwargs:
+            logging_honeycombs = kwargs['loggingHoneycombs']
+        if logging_https is None and 'loggingHttps' in kwargs:
+            logging_https = kwargs['loggingHttps']
+        if logging_kafkas is None and 'loggingKafkas' in kwargs:
+            logging_kafkas = kwargs['loggingKafkas']
+        if logging_kineses is None and 'loggingKineses' in kwargs:
+            logging_kineses = kwargs['loggingKineses']
+        if logging_logentries is None and 'loggingLogentries' in kwargs:
+            logging_logentries = kwargs['loggingLogentries']
+        if logging_logglies is None and 'loggingLogglies' in kwargs:
+            logging_logglies = kwargs['loggingLogglies']
+        if logging_logshuttles is None and 'loggingLogshuttles' in kwargs:
+            logging_logshuttles = kwargs['loggingLogshuttles']
+        if logging_newrelics is None and 'loggingNewrelics' in kwargs:
+            logging_newrelics = kwargs['loggingNewrelics']
+        if logging_openstacks is None and 'loggingOpenstacks' in kwargs:
+            logging_openstacks = kwargs['loggingOpenstacks']
+        if logging_papertrails is None and 'loggingPapertrails' in kwargs:
+            logging_papertrails = kwargs['loggingPapertrails']
+        if logging_s3s is None and 'loggingS3s' in kwargs:
+            logging_s3s = kwargs['loggingS3s']
+        if logging_scalyrs is None and 'loggingScalyrs' in kwargs:
+            logging_scalyrs = kwargs['loggingScalyrs']
+        if logging_sftps is None and 'loggingSftps' in kwargs:
+            logging_sftps = kwargs['loggingSftps']
+        if logging_splunks is None and 'loggingSplunks' in kwargs:
+            logging_splunks = kwargs['loggingSplunks']
+        if logging_sumologics is None and 'loggingSumologics' in kwargs:
+            logging_sumologics = kwargs['loggingSumologics']
+        if logging_syslogs is None and 'loggingSyslogs' in kwargs:
+            logging_syslogs = kwargs['loggingSyslogs']
+        if product_enablement is None and 'productEnablement' in kwargs:
+            product_enablement = kwargs['productEnablement']
+        if resource_links is None and 'resourceLinks' in kwargs:
+            resource_links = kwargs['resourceLinks']
+        if version_comment is None and 'versionComment' in kwargs:
+            version_comment = kwargs['versionComment']
+
         if activate is not None:
-            pulumi.set(__self__, "activate", activate)
+            _setter("activate", activate)
         if active_version is not None:
-            pulumi.set(__self__, "active_version", active_version)
+            _setter("active_version", active_version)
         if backends is not None:
-            pulumi.set(__self__, "backends", backends)
+            _setter("backends", backends)
         if cloned_version is not None:
-            pulumi.set(__self__, "cloned_version", cloned_version)
+            _setter("cloned_version", cloned_version)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if dictionaries is not None:
-            pulumi.set(__self__, "dictionaries", dictionaries)
+            _setter("dictionaries", dictionaries)
         if domains is not None:
-            pulumi.set(__self__, "domains", domains)
+            _setter("domains", domains)
         if force_destroy is not None:
-            pulumi.set(__self__, "force_destroy", force_destroy)
+            _setter("force_destroy", force_destroy)
         if force_refresh is not None:
-            pulumi.set(__self__, "force_refresh", force_refresh)
+            _setter("force_refresh", force_refresh)
         if imported is not None:
-            pulumi.set(__self__, "imported", imported)
+            _setter("imported", imported)
         if logging_bigqueries is not None:
-            pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
+            _setter("logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
-            pulumi.set(__self__, "logging_blobstorages", logging_blobstorages)
+            _setter("logging_blobstorages", logging_blobstorages)
         if logging_cloudfiles is not None:
-            pulumi.set(__self__, "logging_cloudfiles", logging_cloudfiles)
+            _setter("logging_cloudfiles", logging_cloudfiles)
         if logging_datadogs is not None:
-            pulumi.set(__self__, "logging_datadogs", logging_datadogs)
+            _setter("logging_datadogs", logging_datadogs)
         if logging_digitaloceans is not None:
-            pulumi.set(__self__, "logging_digitaloceans", logging_digitaloceans)
+            _setter("logging_digitaloceans", logging_digitaloceans)
         if logging_elasticsearches is not None:
-            pulumi.set(__self__, "logging_elasticsearches", logging_elasticsearches)
+            _setter("logging_elasticsearches", logging_elasticsearches)
         if logging_ftps is not None:
-            pulumi.set(__self__, "logging_ftps", logging_ftps)
+            _setter("logging_ftps", logging_ftps)
         if logging_gcs is not None:
-            pulumi.set(__self__, "logging_gcs", logging_gcs)
+            _setter("logging_gcs", logging_gcs)
         if logging_googlepubsubs is not None:
-            pulumi.set(__self__, "logging_googlepubsubs", logging_googlepubsubs)
+            _setter("logging_googlepubsubs", logging_googlepubsubs)
         if logging_heroku is not None:
-            pulumi.set(__self__, "logging_heroku", logging_heroku)
+            _setter("logging_heroku", logging_heroku)
         if logging_honeycombs is not None:
-            pulumi.set(__self__, "logging_honeycombs", logging_honeycombs)
+            _setter("logging_honeycombs", logging_honeycombs)
         if logging_https is not None:
-            pulumi.set(__self__, "logging_https", logging_https)
+            _setter("logging_https", logging_https)
         if logging_kafkas is not None:
-            pulumi.set(__self__, "logging_kafkas", logging_kafkas)
+            _setter("logging_kafkas", logging_kafkas)
         if logging_kineses is not None:
-            pulumi.set(__self__, "logging_kineses", logging_kineses)
+            _setter("logging_kineses", logging_kineses)
         if logging_logentries is not None:
-            pulumi.set(__self__, "logging_logentries", logging_logentries)
+            _setter("logging_logentries", logging_logentries)
         if logging_logglies is not None:
-            pulumi.set(__self__, "logging_logglies", logging_logglies)
+            _setter("logging_logglies", logging_logglies)
         if logging_logshuttles is not None:
-            pulumi.set(__self__, "logging_logshuttles", logging_logshuttles)
+            _setter("logging_logshuttles", logging_logshuttles)
         if logging_newrelics is not None:
-            pulumi.set(__self__, "logging_newrelics", logging_newrelics)
+            _setter("logging_newrelics", logging_newrelics)
         if logging_openstacks is not None:
-            pulumi.set(__self__, "logging_openstacks", logging_openstacks)
+            _setter("logging_openstacks", logging_openstacks)
         if logging_papertrails is not None:
-            pulumi.set(__self__, "logging_papertrails", logging_papertrails)
+            _setter("logging_papertrails", logging_papertrails)
         if logging_s3s is not None:
-            pulumi.set(__self__, "logging_s3s", logging_s3s)
+            _setter("logging_s3s", logging_s3s)
         if logging_scalyrs is not None:
-            pulumi.set(__self__, "logging_scalyrs", logging_scalyrs)
+            _setter("logging_scalyrs", logging_scalyrs)
         if logging_sftps is not None:
-            pulumi.set(__self__, "logging_sftps", logging_sftps)
+            _setter("logging_sftps", logging_sftps)
         if logging_splunks is not None:
-            pulumi.set(__self__, "logging_splunks", logging_splunks)
+            _setter("logging_splunks", logging_splunks)
         if logging_sumologics is not None:
-            pulumi.set(__self__, "logging_sumologics", logging_sumologics)
+            _setter("logging_sumologics", logging_sumologics)
         if logging_syslogs is not None:
-            pulumi.set(__self__, "logging_syslogs", logging_syslogs)
+            _setter("logging_syslogs", logging_syslogs)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if package is not None:
-            pulumi.set(__self__, "package", package)
+            _setter("package", package)
         if product_enablement is not None:
-            pulumi.set(__self__, "product_enablement", product_enablement)
+            _setter("product_enablement", product_enablement)
         if resource_links is not None:
-            pulumi.set(__self__, "resource_links", resource_links)
+            _setter("resource_links", resource_links)
         if reuse is not None:
-            pulumi.set(__self__, "reuse", reuse)
+            _setter("reuse", reuse)
         if version_comment is not None:
-            pulumi.set(__self__, "version_comment", version_comment)
+            _setter("version_comment", version_comment)
 
     @property
     @pulumi.getter
@@ -1192,6 +1498,10 @@ class ServiceCompute(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ServiceComputeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1279,7 +1589,17 @@ class ServiceCompute(pulumi.CustomResource):
             __props__.__dict__["logging_sumologics"] = logging_sumologics
             __props__.__dict__["logging_syslogs"] = logging_syslogs
             __props__.__dict__["name"] = name
+            if package is not None and not isinstance(package, ServiceComputePackageArgs):
+                package = package or {}
+                def _setter(key, value):
+                    package[key] = value
+                ServiceComputePackageArgs._configure(_setter, **package)
             __props__.__dict__["package"] = package
+            if product_enablement is not None and not isinstance(product_enablement, ServiceComputeProductEnablementArgs):
+                product_enablement = product_enablement or {}
+                def _setter(key, value):
+                    product_enablement[key] = value
+                ServiceComputeProductEnablementArgs._configure(_setter, **product_enablement)
             __props__.__dict__["product_enablement"] = product_enablement
             __props__.__dict__["resource_links"] = resource_links
             __props__.__dict__["reuse"] = reuse
