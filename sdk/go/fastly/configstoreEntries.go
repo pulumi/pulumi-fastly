@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -137,12 +136,6 @@ func (i *ConfigstoreEntries) ToConfigstoreEntriesOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigstoreEntriesOutput)
 }
 
-func (i *ConfigstoreEntries) ToOutput(ctx context.Context) pulumix.Output[*ConfigstoreEntries] {
-	return pulumix.Output[*ConfigstoreEntries]{
-		OutputState: i.ToConfigstoreEntriesOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ConfigstoreEntriesArrayInput is an input type that accepts ConfigstoreEntriesArray and ConfigstoreEntriesArrayOutput values.
 // You can construct a concrete instance of `ConfigstoreEntriesArrayInput` via:
 //
@@ -166,12 +159,6 @@ func (i ConfigstoreEntriesArray) ToConfigstoreEntriesArrayOutput() ConfigstoreEn
 
 func (i ConfigstoreEntriesArray) ToConfigstoreEntriesArrayOutputWithContext(ctx context.Context) ConfigstoreEntriesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigstoreEntriesArrayOutput)
-}
-
-func (i ConfigstoreEntriesArray) ToOutput(ctx context.Context) pulumix.Output[[]*ConfigstoreEntries] {
-	return pulumix.Output[[]*ConfigstoreEntries]{
-		OutputState: i.ToConfigstoreEntriesArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ConfigstoreEntriesMapInput is an input type that accepts ConfigstoreEntriesMap and ConfigstoreEntriesMapOutput values.
@@ -199,12 +186,6 @@ func (i ConfigstoreEntriesMap) ToConfigstoreEntriesMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigstoreEntriesMapOutput)
 }
 
-func (i ConfigstoreEntriesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ConfigstoreEntries] {
-	return pulumix.Output[map[string]*ConfigstoreEntries]{
-		OutputState: i.ToConfigstoreEntriesMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ConfigstoreEntriesOutput struct{ *pulumi.OutputState }
 
 func (ConfigstoreEntriesOutput) ElementType() reflect.Type {
@@ -217,12 +198,6 @@ func (o ConfigstoreEntriesOutput) ToConfigstoreEntriesOutput() ConfigstoreEntrie
 
 func (o ConfigstoreEntriesOutput) ToConfigstoreEntriesOutputWithContext(ctx context.Context) ConfigstoreEntriesOutput {
 	return o
-}
-
-func (o ConfigstoreEntriesOutput) ToOutput(ctx context.Context) pulumix.Output[*ConfigstoreEntries] {
-	return pulumix.Output[*ConfigstoreEntries]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A map representing an entry in the Config Store, (key/value)
@@ -255,12 +230,6 @@ func (o ConfigstoreEntriesArrayOutput) ToConfigstoreEntriesArrayOutputWithContex
 	return o
 }
 
-func (o ConfigstoreEntriesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ConfigstoreEntries] {
-	return pulumix.Output[[]*ConfigstoreEntries]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ConfigstoreEntriesArrayOutput) Index(i pulumi.IntInput) ConfigstoreEntriesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ConfigstoreEntries {
 		return vs[0].([]*ConfigstoreEntries)[vs[1].(int)]
@@ -279,12 +248,6 @@ func (o ConfigstoreEntriesMapOutput) ToConfigstoreEntriesMapOutput() Configstore
 
 func (o ConfigstoreEntriesMapOutput) ToConfigstoreEntriesMapOutputWithContext(ctx context.Context) ConfigstoreEntriesMapOutput {
 	return o
-}
-
-func (o ConfigstoreEntriesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ConfigstoreEntries] {
-	return pulumix.Output[map[string]*ConfigstoreEntries]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ConfigstoreEntriesMapOutput) MapIndex(k pulumi.StringInput) ConfigstoreEntriesOutput {

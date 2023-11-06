@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the IDs of available TLS configurations for use with other resources.
@@ -85,12 +84,6 @@ func (o GetTlsConfigurationIdsResultOutput) ToGetTlsConfigurationIdsResultOutput
 
 func (o GetTlsConfigurationIdsResultOutput) ToGetTlsConfigurationIdsResultOutputWithContext(ctx context.Context) GetTlsConfigurationIdsResultOutput {
 	return o
-}
-
-func (o GetTlsConfigurationIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsConfigurationIdsResult] {
-	return pulumix.Output[GetTlsConfigurationIdsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

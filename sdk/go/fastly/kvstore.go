@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -168,12 +167,6 @@ func (i *Kvstore) ToKvstoreOutputWithContext(ctx context.Context) KvstoreOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(KvstoreOutput)
 }
 
-func (i *Kvstore) ToOutput(ctx context.Context) pulumix.Output[*Kvstore] {
-	return pulumix.Output[*Kvstore]{
-		OutputState: i.ToKvstoreOutputWithContext(ctx).OutputState,
-	}
-}
-
 // KvstoreArrayInput is an input type that accepts KvstoreArray and KvstoreArrayOutput values.
 // You can construct a concrete instance of `KvstoreArrayInput` via:
 //
@@ -197,12 +190,6 @@ func (i KvstoreArray) ToKvstoreArrayOutput() KvstoreArrayOutput {
 
 func (i KvstoreArray) ToKvstoreArrayOutputWithContext(ctx context.Context) KvstoreArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KvstoreArrayOutput)
-}
-
-func (i KvstoreArray) ToOutput(ctx context.Context) pulumix.Output[[]*Kvstore] {
-	return pulumix.Output[[]*Kvstore]{
-		OutputState: i.ToKvstoreArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // KvstoreMapInput is an input type that accepts KvstoreMap and KvstoreMapOutput values.
@@ -230,12 +217,6 @@ func (i KvstoreMap) ToKvstoreMapOutputWithContext(ctx context.Context) KvstoreMa
 	return pulumi.ToOutputWithContext(ctx, i).(KvstoreMapOutput)
 }
 
-func (i KvstoreMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Kvstore] {
-	return pulumix.Output[map[string]*Kvstore]{
-		OutputState: i.ToKvstoreMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KvstoreOutput struct{ *pulumi.OutputState }
 
 func (KvstoreOutput) ElementType() reflect.Type {
@@ -248,12 +229,6 @@ func (o KvstoreOutput) ToKvstoreOutput() KvstoreOutput {
 
 func (o KvstoreOutput) ToKvstoreOutputWithContext(ctx context.Context) KvstoreOutput {
 	return o
-}
-
-func (o KvstoreOutput) ToOutput(ctx context.Context) pulumix.Output[*Kvstore] {
-	return pulumix.Output[*Kvstore]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
@@ -280,12 +255,6 @@ func (o KvstoreArrayOutput) ToKvstoreArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o KvstoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Kvstore] {
-	return pulumix.Output[[]*Kvstore]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o KvstoreArrayOutput) Index(i pulumi.IntInput) KvstoreOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Kvstore {
 		return vs[0].([]*Kvstore)[vs[1].(int)]
@@ -304,12 +273,6 @@ func (o KvstoreMapOutput) ToKvstoreMapOutput() KvstoreMapOutput {
 
 func (o KvstoreMapOutput) ToKvstoreMapOutputWithContext(ctx context.Context) KvstoreMapOutput {
 	return o
-}
-
-func (o KvstoreMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Kvstore] {
-	return pulumix.Output[map[string]*Kvstore]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KvstoreMapOutput) MapIndex(k pulumi.StringInput) KvstoreOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of TLS private key identifiers in Fastly.
@@ -85,12 +84,6 @@ func (o GetTlsPrivateKeyIdsResultOutput) ToGetTlsPrivateKeyIdsResultOutput() Get
 
 func (o GetTlsPrivateKeyIdsResultOutput) ToGetTlsPrivateKeyIdsResultOutputWithContext(ctx context.Context) GetTlsPrivateKeyIdsResultOutput {
 	return o
-}
-
-func (o GetTlsPrivateKeyIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsPrivateKeyIdsResult] {
-	return pulumix.Output[GetTlsPrivateKeyIdsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

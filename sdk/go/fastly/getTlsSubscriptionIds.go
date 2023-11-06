@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
@@ -81,12 +80,6 @@ func (o GetTlsSubscriptionIdsResultOutput) ToGetTlsSubscriptionIdsResultOutput()
 
 func (o GetTlsSubscriptionIdsResultOutput) ToGetTlsSubscriptionIdsResultOutputWithContext(ctx context.Context) GetTlsSubscriptionIdsResultOutput {
 	return o
-}
-
-func (o GetTlsSubscriptionIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsSubscriptionIdsResult] {
-	return pulumix.Output[GetTlsSubscriptionIdsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

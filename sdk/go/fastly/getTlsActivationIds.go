@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of TLS Activation identifiers in Fastly.
@@ -103,12 +102,6 @@ func (o GetTlsActivationIdsResultOutput) ToGetTlsActivationIdsResultOutput() Get
 
 func (o GetTlsActivationIdsResultOutput) ToGetTlsActivationIdsResultOutputWithContext(ctx context.Context) GetTlsActivationIdsResultOutput {
 	return o
-}
-
-func (o GetTlsActivationIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsActivationIdsResult] {
-	return pulumix.Output[GetTlsActivationIdsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of TLS certificate used to filter activations
