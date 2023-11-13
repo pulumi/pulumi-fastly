@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
@@ -55,12 +54,6 @@ func (o GetDatacentersResultOutput) ToGetDatacentersResultOutput() GetDatacenter
 
 func (o GetDatacentersResultOutput) ToGetDatacentersResultOutputWithContext(ctx context.Context) GetDatacentersResultOutput {
 	return o
-}
-
-func (o GetDatacentersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatacentersResult] {
-	return pulumix.Output[GetDatacentersResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

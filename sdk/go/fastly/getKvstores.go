@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetKvstores(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetKvstoresResult, error) {
@@ -54,12 +53,6 @@ func (o GetKvstoresResultOutput) ToGetKvstoresResultOutput() GetKvstoresResultOu
 
 func (o GetKvstoresResultOutput) ToGetKvstoresResultOutputWithContext(ctx context.Context) GetKvstoresResultOutput {
 	return o
-}
-
-func (o GetKvstoresResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetKvstoresResult] {
-	return pulumix.Output[GetKvstoresResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

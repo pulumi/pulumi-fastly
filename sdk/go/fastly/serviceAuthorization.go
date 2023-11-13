@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Configures authorization with granular permissions to services. Users can be granted rights for services on different levels.
@@ -177,12 +176,6 @@ func (i *ServiceAuthorization) ToServiceAuthorizationOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAuthorizationOutput)
 }
 
-func (i *ServiceAuthorization) ToOutput(ctx context.Context) pulumix.Output[*ServiceAuthorization] {
-	return pulumix.Output[*ServiceAuthorization]{
-		OutputState: i.ToServiceAuthorizationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ServiceAuthorizationArrayInput is an input type that accepts ServiceAuthorizationArray and ServiceAuthorizationArrayOutput values.
 // You can construct a concrete instance of `ServiceAuthorizationArrayInput` via:
 //
@@ -206,12 +199,6 @@ func (i ServiceAuthorizationArray) ToServiceAuthorizationArrayOutput() ServiceAu
 
 func (i ServiceAuthorizationArray) ToServiceAuthorizationArrayOutputWithContext(ctx context.Context) ServiceAuthorizationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAuthorizationArrayOutput)
-}
-
-func (i ServiceAuthorizationArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAuthorization] {
-	return pulumix.Output[[]*ServiceAuthorization]{
-		OutputState: i.ToServiceAuthorizationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ServiceAuthorizationMapInput is an input type that accepts ServiceAuthorizationMap and ServiceAuthorizationMapOutput values.
@@ -239,12 +226,6 @@ func (i ServiceAuthorizationMap) ToServiceAuthorizationMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceAuthorizationMapOutput)
 }
 
-func (i ServiceAuthorizationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAuthorization] {
-	return pulumix.Output[map[string]*ServiceAuthorization]{
-		OutputState: i.ToServiceAuthorizationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ServiceAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (ServiceAuthorizationOutput) ElementType() reflect.Type {
@@ -257,12 +238,6 @@ func (o ServiceAuthorizationOutput) ToServiceAuthorizationOutput() ServiceAuthor
 
 func (o ServiceAuthorizationOutput) ToServiceAuthorizationOutputWithContext(ctx context.Context) ServiceAuthorizationOutput {
 	return o
-}
-
-func (o ServiceAuthorizationOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceAuthorization] {
-	return pulumix.Output[*ServiceAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
@@ -294,12 +269,6 @@ func (o ServiceAuthorizationArrayOutput) ToServiceAuthorizationArrayOutputWithCo
 	return o
 }
 
-func (o ServiceAuthorizationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceAuthorization] {
-	return pulumix.Output[[]*ServiceAuthorization]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceAuthorizationArrayOutput) Index(i pulumi.IntInput) ServiceAuthorizationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceAuthorization {
 		return vs[0].([]*ServiceAuthorization)[vs[1].(int)]
@@ -318,12 +287,6 @@ func (o ServiceAuthorizationMapOutput) ToServiceAuthorizationMapOutput() Service
 
 func (o ServiceAuthorizationMapOutput) ToServiceAuthorizationMapOutputWithContext(ctx context.Context) ServiceAuthorizationMapOutput {
 	return o
-}
-
-func (o ServiceAuthorizationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceAuthorization] {
-	return pulumix.Output[map[string]*ServiceAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServiceAuthorizationMapOutput) MapIndex(k pulumi.StringInput) ServiceAuthorizationOutput {

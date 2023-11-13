@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Enables TLS on a domain using a specified custom TLS certificate.
@@ -216,12 +215,6 @@ func (i *TlsActivation) ToTlsActivationOutputWithContext(ctx context.Context) Tl
 	return pulumi.ToOutputWithContext(ctx, i).(TlsActivationOutput)
 }
 
-func (i *TlsActivation) ToOutput(ctx context.Context) pulumix.Output[*TlsActivation] {
-	return pulumix.Output[*TlsActivation]{
-		OutputState: i.ToTlsActivationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TlsActivationArrayInput is an input type that accepts TlsActivationArray and TlsActivationArrayOutput values.
 // You can construct a concrete instance of `TlsActivationArrayInput` via:
 //
@@ -245,12 +238,6 @@ func (i TlsActivationArray) ToTlsActivationArrayOutput() TlsActivationArrayOutpu
 
 func (i TlsActivationArray) ToTlsActivationArrayOutputWithContext(ctx context.Context) TlsActivationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsActivationArrayOutput)
-}
-
-func (i TlsActivationArray) ToOutput(ctx context.Context) pulumix.Output[[]*TlsActivation] {
-	return pulumix.Output[[]*TlsActivation]{
-		OutputState: i.ToTlsActivationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TlsActivationMapInput is an input type that accepts TlsActivationMap and TlsActivationMapOutput values.
@@ -278,12 +265,6 @@ func (i TlsActivationMap) ToTlsActivationMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(TlsActivationMapOutput)
 }
 
-func (i TlsActivationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsActivation] {
-	return pulumix.Output[map[string]*TlsActivation]{
-		OutputState: i.ToTlsActivationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TlsActivationOutput struct{ *pulumi.OutputState }
 
 func (TlsActivationOutput) ElementType() reflect.Type {
@@ -296,12 +277,6 @@ func (o TlsActivationOutput) ToTlsActivationOutput() TlsActivationOutput {
 
 func (o TlsActivationOutput) ToTlsActivationOutputWithContext(ctx context.Context) TlsActivationOutput {
 	return o
-}
-
-func (o TlsActivationOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsActivation] {
-	return pulumix.Output[*TlsActivation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
@@ -343,12 +318,6 @@ func (o TlsActivationArrayOutput) ToTlsActivationArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o TlsActivationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TlsActivation] {
-	return pulumix.Output[[]*TlsActivation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TlsActivationArrayOutput) Index(i pulumi.IntInput) TlsActivationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsActivation {
 		return vs[0].([]*TlsActivation)[vs[1].(int)]
@@ -367,12 +336,6 @@ func (o TlsActivationMapOutput) ToTlsActivationMapOutput() TlsActivationMapOutpu
 
 func (o TlsActivationMapOutput) ToTlsActivationMapOutputWithContext(ctx context.Context) TlsActivationMapOutput {
 	return o
-}
-
-func (o TlsActivationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsActivation] {
-	return pulumix.Output[map[string]*TlsActivation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TlsActivationMapOutput) MapIndex(k pulumi.StringInput) TlsActivationOutput {

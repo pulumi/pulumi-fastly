@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetConfigstores(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetConfigstoresResult, error) {
@@ -54,12 +53,6 @@ func (o GetConfigstoresResultOutput) ToGetConfigstoresResultOutput() GetConfigst
 
 func (o GetConfigstoresResultOutput) ToGetConfigstoresResultOutputWithContext(ctx context.Context) GetConfigstoresResultOutput {
 	return o
-}
-
-func (o GetConfigstoresResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetConfigstoresResult] {
-	return pulumix.Output[GetConfigstoresResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

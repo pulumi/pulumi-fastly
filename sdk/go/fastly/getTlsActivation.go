@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
@@ -123,12 +122,6 @@ func (o LookupTlsActivationResultOutput) ToLookupTlsActivationResultOutput() Loo
 
 func (o LookupTlsActivationResultOutput) ToLookupTlsActivationResultOutputWithContext(ctx context.Context) LookupTlsActivationResultOutput {
 	return o
-}
-
-func (o LookupTlsActivationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTlsActivationResult] {
-	return pulumix.Output[LookupTlsActivationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the TLS Certificate used.
