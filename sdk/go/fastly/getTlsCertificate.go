@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get information of a TLS certificate for use with other resources.
@@ -137,12 +136,6 @@ func (o LookupTlsCertificateResultOutput) ToLookupTlsCertificateResultOutput() L
 
 func (o LookupTlsCertificateResultOutput) ToLookupTlsCertificateResultOutputWithContext(ctx context.Context) LookupTlsCertificateResultOutput {
 	return o
-}
-
-func (o LookupTlsCertificateResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTlsCertificateResult] {
-	return pulumix.Output[LookupTlsCertificateResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp (GMT) when the certificate was created

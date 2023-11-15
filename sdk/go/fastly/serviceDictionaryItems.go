@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -144,12 +143,6 @@ func (i *ServiceDictionaryItems) ToServiceDictionaryItemsOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsOutput)
 }
 
-func (i *ServiceDictionaryItems) ToOutput(ctx context.Context) pulumix.Output[*ServiceDictionaryItems] {
-	return pulumix.Output[*ServiceDictionaryItems]{
-		OutputState: i.ToServiceDictionaryItemsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ServiceDictionaryItemsArrayInput is an input type that accepts ServiceDictionaryItemsArray and ServiceDictionaryItemsArrayOutput values.
 // You can construct a concrete instance of `ServiceDictionaryItemsArrayInput` via:
 //
@@ -173,12 +166,6 @@ func (i ServiceDictionaryItemsArray) ToServiceDictionaryItemsArrayOutput() Servi
 
 func (i ServiceDictionaryItemsArray) ToServiceDictionaryItemsArrayOutputWithContext(ctx context.Context) ServiceDictionaryItemsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsArrayOutput)
-}
-
-func (i ServiceDictionaryItemsArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceDictionaryItems] {
-	return pulumix.Output[[]*ServiceDictionaryItems]{
-		OutputState: i.ToServiceDictionaryItemsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ServiceDictionaryItemsMapInput is an input type that accepts ServiceDictionaryItemsMap and ServiceDictionaryItemsMapOutput values.
@@ -206,12 +193,6 @@ func (i ServiceDictionaryItemsMap) ToServiceDictionaryItemsMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceDictionaryItemsMapOutput)
 }
 
-func (i ServiceDictionaryItemsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceDictionaryItems] {
-	return pulumix.Output[map[string]*ServiceDictionaryItems]{
-		OutputState: i.ToServiceDictionaryItemsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ServiceDictionaryItemsOutput struct{ *pulumi.OutputState }
 
 func (ServiceDictionaryItemsOutput) ElementType() reflect.Type {
@@ -224,12 +205,6 @@ func (o ServiceDictionaryItemsOutput) ToServiceDictionaryItemsOutput() ServiceDi
 
 func (o ServiceDictionaryItemsOutput) ToServiceDictionaryItemsOutputWithContext(ctx context.Context) ServiceDictionaryItemsOutput {
 	return o
-}
-
-func (o ServiceDictionaryItemsOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceDictionaryItems] {
-	return pulumix.Output[*ServiceDictionaryItems]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the dictionary that the items belong to
@@ -266,12 +241,6 @@ func (o ServiceDictionaryItemsArrayOutput) ToServiceDictionaryItemsArrayOutputWi
 	return o
 }
 
-func (o ServiceDictionaryItemsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceDictionaryItems] {
-	return pulumix.Output[[]*ServiceDictionaryItems]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceDictionaryItemsArrayOutput) Index(i pulumi.IntInput) ServiceDictionaryItemsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceDictionaryItems {
 		return vs[0].([]*ServiceDictionaryItems)[vs[1].(int)]
@@ -290,12 +259,6 @@ func (o ServiceDictionaryItemsMapOutput) ToServiceDictionaryItemsMapOutput() Ser
 
 func (o ServiceDictionaryItemsMapOutput) ToServiceDictionaryItemsMapOutputWithContext(ctx context.Context) ServiceDictionaryItemsMapOutput {
 	return o
-}
-
-func (o ServiceDictionaryItemsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceDictionaryItems] {
-	return pulumix.Output[map[string]*ServiceDictionaryItems]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServiceDictionaryItemsMapOutput) MapIndex(k pulumi.StringInput) ServiceDictionaryItemsOutput {

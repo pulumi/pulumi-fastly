@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
@@ -247,12 +246,6 @@ func (i *TlsCertificate) ToTlsCertificateOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(TlsCertificateOutput)
 }
 
-func (i *TlsCertificate) ToOutput(ctx context.Context) pulumix.Output[*TlsCertificate] {
-	return pulumix.Output[*TlsCertificate]{
-		OutputState: i.ToTlsCertificateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TlsCertificateArrayInput is an input type that accepts TlsCertificateArray and TlsCertificateArrayOutput values.
 // You can construct a concrete instance of `TlsCertificateArrayInput` via:
 //
@@ -276,12 +269,6 @@ func (i TlsCertificateArray) ToTlsCertificateArrayOutput() TlsCertificateArrayOu
 
 func (i TlsCertificateArray) ToTlsCertificateArrayOutputWithContext(ctx context.Context) TlsCertificateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsCertificateArrayOutput)
-}
-
-func (i TlsCertificateArray) ToOutput(ctx context.Context) pulumix.Output[[]*TlsCertificate] {
-	return pulumix.Output[[]*TlsCertificate]{
-		OutputState: i.ToTlsCertificateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TlsCertificateMapInput is an input type that accepts TlsCertificateMap and TlsCertificateMapOutput values.
@@ -309,12 +296,6 @@ func (i TlsCertificateMap) ToTlsCertificateMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(TlsCertificateMapOutput)
 }
 
-func (i TlsCertificateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsCertificate] {
-	return pulumix.Output[map[string]*TlsCertificate]{
-		OutputState: i.ToTlsCertificateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TlsCertificateOutput struct{ *pulumi.OutputState }
 
 func (TlsCertificateOutput) ElementType() reflect.Type {
@@ -327,12 +308,6 @@ func (o TlsCertificateOutput) ToTlsCertificateOutput() TlsCertificateOutput {
 
 func (o TlsCertificateOutput) ToTlsCertificateOutputWithContext(ctx context.Context) TlsCertificateOutput {
 	return o
-}
-
-func (o TlsCertificateOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsCertificate] {
-	return pulumix.Output[*TlsCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 // PEM-formatted certificate, optionally including any intermediary certificates.
@@ -399,12 +374,6 @@ func (o TlsCertificateArrayOutput) ToTlsCertificateArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o TlsCertificateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TlsCertificate] {
-	return pulumix.Output[[]*TlsCertificate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TlsCertificateArrayOutput) Index(i pulumi.IntInput) TlsCertificateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsCertificate {
 		return vs[0].([]*TlsCertificate)[vs[1].(int)]
@@ -423,12 +392,6 @@ func (o TlsCertificateMapOutput) ToTlsCertificateMapOutput() TlsCertificateMapOu
 
 func (o TlsCertificateMapOutput) ToTlsCertificateMapOutputWithContext(ctx context.Context) TlsCertificateMapOutput {
 	return o
-}
-
-func (o TlsCertificateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsCertificate] {
-	return pulumix.Output[map[string]*TlsCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TlsCertificateMapOutput) MapIndex(k pulumi.StringInput) TlsCertificateOutput {
