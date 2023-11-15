@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type TlsMutualAuthentication struct {
@@ -148,12 +147,6 @@ func (i *TlsMutualAuthentication) ToTlsMutualAuthenticationOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(TlsMutualAuthenticationOutput)
 }
 
-func (i *TlsMutualAuthentication) ToOutput(ctx context.Context) pulumix.Output[*TlsMutualAuthentication] {
-	return pulumix.Output[*TlsMutualAuthentication]{
-		OutputState: i.ToTlsMutualAuthenticationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TlsMutualAuthenticationArrayInput is an input type that accepts TlsMutualAuthenticationArray and TlsMutualAuthenticationArrayOutput values.
 // You can construct a concrete instance of `TlsMutualAuthenticationArrayInput` via:
 //
@@ -177,12 +170,6 @@ func (i TlsMutualAuthenticationArray) ToTlsMutualAuthenticationArrayOutput() Tls
 
 func (i TlsMutualAuthenticationArray) ToTlsMutualAuthenticationArrayOutputWithContext(ctx context.Context) TlsMutualAuthenticationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsMutualAuthenticationArrayOutput)
-}
-
-func (i TlsMutualAuthenticationArray) ToOutput(ctx context.Context) pulumix.Output[[]*TlsMutualAuthentication] {
-	return pulumix.Output[[]*TlsMutualAuthentication]{
-		OutputState: i.ToTlsMutualAuthenticationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TlsMutualAuthenticationMapInput is an input type that accepts TlsMutualAuthenticationMap and TlsMutualAuthenticationMapOutput values.
@@ -210,12 +197,6 @@ func (i TlsMutualAuthenticationMap) ToTlsMutualAuthenticationMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(TlsMutualAuthenticationMapOutput)
 }
 
-func (i TlsMutualAuthenticationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsMutualAuthentication] {
-	return pulumix.Output[map[string]*TlsMutualAuthentication]{
-		OutputState: i.ToTlsMutualAuthenticationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TlsMutualAuthenticationOutput struct{ *pulumi.OutputState }
 
 func (TlsMutualAuthenticationOutput) ElementType() reflect.Type {
@@ -228,12 +209,6 @@ func (o TlsMutualAuthenticationOutput) ToTlsMutualAuthenticationOutput() TlsMutu
 
 func (o TlsMutualAuthenticationOutput) ToTlsMutualAuthenticationOutputWithContext(ctx context.Context) TlsMutualAuthenticationOutput {
 	return o
-}
-
-func (o TlsMutualAuthenticationOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsMutualAuthentication] {
-	return pulumix.Output[*TlsMutualAuthentication]{
-		OutputState: o.OutputState,
-	}
 }
 
 // One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
@@ -285,12 +260,6 @@ func (o TlsMutualAuthenticationArrayOutput) ToTlsMutualAuthenticationArrayOutput
 	return o
 }
 
-func (o TlsMutualAuthenticationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TlsMutualAuthentication] {
-	return pulumix.Output[[]*TlsMutualAuthentication]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TlsMutualAuthenticationArrayOutput) Index(i pulumi.IntInput) TlsMutualAuthenticationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsMutualAuthentication {
 		return vs[0].([]*TlsMutualAuthentication)[vs[1].(int)]
@@ -309,12 +278,6 @@ func (o TlsMutualAuthenticationMapOutput) ToTlsMutualAuthenticationMapOutput() T
 
 func (o TlsMutualAuthenticationMapOutput) ToTlsMutualAuthenticationMapOutputWithContext(ctx context.Context) TlsMutualAuthenticationMapOutput {
 	return o
-}
-
-func (o TlsMutualAuthenticationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsMutualAuthentication] {
-	return pulumix.Output[map[string]*TlsMutualAuthentication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TlsMutualAuthenticationMapOutput) MapIndex(k pulumi.StringInput) TlsMutualAuthenticationOutput {

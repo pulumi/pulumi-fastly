@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -497,12 +496,6 @@ func (i *ServiceVcl) ToServiceVclOutputWithContext(ctx context.Context) ServiceV
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclOutput)
 }
 
-func (i *ServiceVcl) ToOutput(ctx context.Context) pulumix.Output[*ServiceVcl] {
-	return pulumix.Output[*ServiceVcl]{
-		OutputState: i.ToServiceVclOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ServiceVclArrayInput is an input type that accepts ServiceVclArray and ServiceVclArrayOutput values.
 // You can construct a concrete instance of `ServiceVclArrayInput` via:
 //
@@ -526,12 +519,6 @@ func (i ServiceVclArray) ToServiceVclArrayOutput() ServiceVclArrayOutput {
 
 func (i ServiceVclArray) ToServiceVclArrayOutputWithContext(ctx context.Context) ServiceVclArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclArrayOutput)
-}
-
-func (i ServiceVclArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceVcl] {
-	return pulumix.Output[[]*ServiceVcl]{
-		OutputState: i.ToServiceVclArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ServiceVclMapInput is an input type that accepts ServiceVclMap and ServiceVclMapOutput values.
@@ -559,12 +546,6 @@ func (i ServiceVclMap) ToServiceVclMapOutputWithContext(ctx context.Context) Ser
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclMapOutput)
 }
 
-func (i ServiceVclMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceVcl] {
-	return pulumix.Output[map[string]*ServiceVcl]{
-		OutputState: i.ToServiceVclMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ServiceVclOutput struct{ *pulumi.OutputState }
 
 func (ServiceVclOutput) ElementType() reflect.Type {
@@ -577,12 +558,6 @@ func (o ServiceVclOutput) ToServiceVclOutput() ServiceVclOutput {
 
 func (o ServiceVclOutput) ToServiceVclOutputWithContext(ctx context.Context) ServiceVclOutput {
 	return o
-}
-
-func (o ServiceVclOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceVcl] {
-	return pulumix.Output[*ServiceVcl]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
@@ -858,12 +833,6 @@ func (o ServiceVclArrayOutput) ToServiceVclArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ServiceVclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceVcl] {
-	return pulumix.Output[[]*ServiceVcl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceVclArrayOutput) Index(i pulumi.IntInput) ServiceVclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceVcl {
 		return vs[0].([]*ServiceVcl)[vs[1].(int)]
@@ -882,12 +851,6 @@ func (o ServiceVclMapOutput) ToServiceVclMapOutput() ServiceVclMapOutput {
 
 func (o ServiceVclMapOutput) ToServiceVclMapOutputWithContext(ctx context.Context) ServiceVclMapOutput {
 	return o
-}
-
-func (o ServiceVclMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceVcl] {
-	return pulumix.Output[map[string]*ServiceVcl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServiceVclMapOutput) MapIndex(k pulumi.StringInput) ServiceVclOutput {

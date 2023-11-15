@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -382,12 +381,6 @@ func (i *ServiceCompute) ToServiceComputeOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeOutput)
 }
 
-func (i *ServiceCompute) ToOutput(ctx context.Context) pulumix.Output[*ServiceCompute] {
-	return pulumix.Output[*ServiceCompute]{
-		OutputState: i.ToServiceComputeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ServiceComputeArrayInput is an input type that accepts ServiceComputeArray and ServiceComputeArrayOutput values.
 // You can construct a concrete instance of `ServiceComputeArrayInput` via:
 //
@@ -411,12 +404,6 @@ func (i ServiceComputeArray) ToServiceComputeArrayOutput() ServiceComputeArrayOu
 
 func (i ServiceComputeArray) ToServiceComputeArrayOutputWithContext(ctx context.Context) ServiceComputeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeArrayOutput)
-}
-
-func (i ServiceComputeArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceCompute] {
-	return pulumix.Output[[]*ServiceCompute]{
-		OutputState: i.ToServiceComputeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ServiceComputeMapInput is an input type that accepts ServiceComputeMap and ServiceComputeMapOutput values.
@@ -444,12 +431,6 @@ func (i ServiceComputeMap) ToServiceComputeMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeMapOutput)
 }
 
-func (i ServiceComputeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceCompute] {
-	return pulumix.Output[map[string]*ServiceCompute]{
-		OutputState: i.ToServiceComputeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ServiceComputeOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeOutput) ElementType() reflect.Type {
@@ -462,12 +443,6 @@ func (o ServiceComputeOutput) ToServiceComputeOutput() ServiceComputeOutput {
 
 func (o ServiceComputeOutput) ToServiceComputeOutputWithContext(ctx context.Context) ServiceComputeOutput {
 	return o
-}
-
-func (o ServiceComputeOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceCompute] {
-	return pulumix.Output[*ServiceCompute]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -669,12 +644,6 @@ func (o ServiceComputeArrayOutput) ToServiceComputeArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o ServiceComputeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServiceCompute] {
-	return pulumix.Output[[]*ServiceCompute]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceComputeArrayOutput) Index(i pulumi.IntInput) ServiceComputeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServiceCompute {
 		return vs[0].([]*ServiceCompute)[vs[1].(int)]
@@ -693,12 +662,6 @@ func (o ServiceComputeMapOutput) ToServiceComputeMapOutput() ServiceComputeMapOu
 
 func (o ServiceComputeMapOutput) ToServiceComputeMapOutputWithContext(ctx context.Context) ServiceComputeMapOutput {
 	return o
-}
-
-func (o ServiceComputeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServiceCompute] {
-	return pulumix.Output[map[string]*ServiceCompute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServiceComputeMapOutput) MapIndex(k pulumi.StringInput) ServiceComputeOutput {

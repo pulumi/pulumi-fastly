@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
@@ -130,12 +129,6 @@ func (o GetDictionariesResultOutput) ToGetDictionariesResultOutput() GetDictiona
 
 func (o GetDictionariesResultOutput) ToGetDictionariesResultOutputWithContext(ctx context.Context) GetDictionariesResultOutput {
 	return o
-}
-
-func (o GetDictionariesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDictionariesResult] {
-	return pulumix.Output[GetDictionariesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of all dictionaries for the version of the service.

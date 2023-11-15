@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
@@ -98,12 +97,6 @@ func (o GetFastlyIpRangesResultOutput) ToGetFastlyIpRangesResultOutput() GetFast
 
 func (o GetFastlyIpRangesResultOutput) ToGetFastlyIpRangesResultOutputWithContext(ctx context.Context) GetFastlyIpRangesResultOutput {
 	return o
-}
-
-func (o GetFastlyIpRangesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFastlyIpRangesResult] {
-	return pulumix.Output[GetFastlyIpRangesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The lexically ordered list of ipv4 CIDR blocks.

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).
@@ -57,12 +56,6 @@ func (o GetServicesResultOutput) ToGetServicesResultOutput() GetServicesResultOu
 
 func (o GetServicesResultOutput) ToGetServicesResultOutputWithContext(ctx context.Context) GetServicesResultOutput {
 	return o
-}
-
-func (o GetServicesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetServicesResult] {
-	return pulumix.Output[GetServicesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A detailed list of Fastly services in your account. This is limited to the services the API token can read.

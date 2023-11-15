@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
@@ -85,12 +84,6 @@ func (o GetTlsPlatformCertificateIdsResultOutput) ToGetTlsPlatformCertificateIds
 
 func (o GetTlsPlatformCertificateIdsResultOutput) ToGetTlsPlatformCertificateIdsResultOutputWithContext(ctx context.Context) GetTlsPlatformCertificateIdsResultOutput {
 	return o
-}
-
-func (o GetTlsPlatformCertificateIdsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsPlatformCertificateIdsResult] {
-	return pulumix.Output[GetTlsPlatformCertificateIdsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

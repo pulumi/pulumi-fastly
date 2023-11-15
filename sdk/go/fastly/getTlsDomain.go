@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
@@ -105,12 +104,6 @@ func (o GetTlsDomainResultOutput) ToGetTlsDomainResultOutput() GetTlsDomainResul
 
 func (o GetTlsDomainResultOutput) ToGetTlsDomainResultOutputWithContext(ctx context.Context) GetTlsDomainResultOutput {
 	return o
-}
-
-func (o GetTlsDomainResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetTlsDomainResult] {
-	return pulumix.Output[GetTlsDomainResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Domain name to look up activations, certificates and subscriptions for.

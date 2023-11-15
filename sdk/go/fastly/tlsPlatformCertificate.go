@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Uploads a TLS certificate to the Fastly Platform TLS service.
@@ -292,12 +291,6 @@ func (i *TlsPlatformCertificate) ToTlsPlatformCertificateOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPlatformCertificateOutput)
 }
 
-func (i *TlsPlatformCertificate) ToOutput(ctx context.Context) pulumix.Output[*TlsPlatformCertificate] {
-	return pulumix.Output[*TlsPlatformCertificate]{
-		OutputState: i.ToTlsPlatformCertificateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TlsPlatformCertificateArrayInput is an input type that accepts TlsPlatformCertificateArray and TlsPlatformCertificateArrayOutput values.
 // You can construct a concrete instance of `TlsPlatformCertificateArrayInput` via:
 //
@@ -321,12 +314,6 @@ func (i TlsPlatformCertificateArray) ToTlsPlatformCertificateArrayOutput() TlsPl
 
 func (i TlsPlatformCertificateArray) ToTlsPlatformCertificateArrayOutputWithContext(ctx context.Context) TlsPlatformCertificateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPlatformCertificateArrayOutput)
-}
-
-func (i TlsPlatformCertificateArray) ToOutput(ctx context.Context) pulumix.Output[[]*TlsPlatformCertificate] {
-	return pulumix.Output[[]*TlsPlatformCertificate]{
-		OutputState: i.ToTlsPlatformCertificateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TlsPlatformCertificateMapInput is an input type that accepts TlsPlatformCertificateMap and TlsPlatformCertificateMapOutput values.
@@ -354,12 +341,6 @@ func (i TlsPlatformCertificateMap) ToTlsPlatformCertificateMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(TlsPlatformCertificateMapOutput)
 }
 
-func (i TlsPlatformCertificateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsPlatformCertificate] {
-	return pulumix.Output[map[string]*TlsPlatformCertificate]{
-		OutputState: i.ToTlsPlatformCertificateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TlsPlatformCertificateOutput struct{ *pulumi.OutputState }
 
 func (TlsPlatformCertificateOutput) ElementType() reflect.Type {
@@ -372,12 +353,6 @@ func (o TlsPlatformCertificateOutput) ToTlsPlatformCertificateOutput() TlsPlatfo
 
 func (o TlsPlatformCertificateOutput) ToTlsPlatformCertificateOutputWithContext(ctx context.Context) TlsPlatformCertificateOutput {
 	return o
-}
-
-func (o TlsPlatformCertificateOutput) ToOutput(ctx context.Context) pulumix.Output[*TlsPlatformCertificate] {
-	return pulumix.Output[*TlsPlatformCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
@@ -444,12 +419,6 @@ func (o TlsPlatformCertificateArrayOutput) ToTlsPlatformCertificateArrayOutputWi
 	return o
 }
 
-func (o TlsPlatformCertificateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TlsPlatformCertificate] {
-	return pulumix.Output[[]*TlsPlatformCertificate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TlsPlatformCertificateArrayOutput) Index(i pulumi.IntInput) TlsPlatformCertificateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TlsPlatformCertificate {
 		return vs[0].([]*TlsPlatformCertificate)[vs[1].(int)]
@@ -468,12 +437,6 @@ func (o TlsPlatformCertificateMapOutput) ToTlsPlatformCertificateMapOutput() Tls
 
 func (o TlsPlatformCertificateMapOutput) ToTlsPlatformCertificateMapOutputWithContext(ctx context.Context) TlsPlatformCertificateMapOutput {
 	return o
-}
-
-func (o TlsPlatformCertificateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TlsPlatformCertificate] {
-	return pulumix.Output[map[string]*TlsPlatformCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TlsPlatformCertificateMapOutput) MapIndex(k pulumi.StringInput) TlsPlatformCertificateOutput {
