@@ -569,6 +569,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renames": {
         "resources": {
             "fastly:index/configstore:Configstore": "fastly_configstore",
